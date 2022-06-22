@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1- Testes de Dominio", "4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2- Testes de Integracao", "4.2- Testes de Integracao", "{6E1B342C-6AF1-483A-A306-9511F75814FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.Dominio", "LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj", "{1867B608-4AF5-4EC4-99F2-23B98E85CB2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{36EC600D-C5D1-47D0-9049-21E9915AA120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36EC600D-C5D1-47D0-9049-21E9915AA120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36EC600D-C5D1-47D0-9049-21E9915AA120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1867B608-4AF5-4EC4-99F2-23B98E85CB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1867B608-4AF5-4EC4-99F2-23B98E85CB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1867B608-4AF5-4EC4-99F2-23B98E85CB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1867B608-4AF5-4EC4-99F2-23B98E85CB2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,6 +41,7 @@ Global
 		{36EC600D-C5D1-47D0-9049-21E9915AA120} = {2FABA49A-C4EF-4DB6-BF8B-162213F39EDF}
 		{5C9453BC-143A-4E9B-AC18-99F43A5A7838} = {871F82CB-B93F-4A30-9D62-4F0945416941}
 		{6E1B342C-6AF1-483A-A306-9511F75814FE} = {871F82CB-B93F-4A30-9D62-4F0945416941}
+		{1867B608-4AF5-4EC4-99F2-23B98E85CB2A} = {BE43B0B9-BE62-456E-851C-F395FB15E81E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFB22DCF-72CE-4820-99D4-D5A13699E51E}
