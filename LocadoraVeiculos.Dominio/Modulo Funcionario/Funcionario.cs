@@ -8,5 +8,40 @@ namespace LocadoraVeiculos.Dominio.Modulo_Funcionario
 {
     public class Funcionario : EntidadeBase<Funcionario>
     {
+        public Funcionario()
+        {
+
+        }
+        public Funcionario(string nome, string login, string senha, float salario, DateTime dataAdmissao)
+        {
+            Nome = nome;
+            Login = login;
+            Senha = senha;
+            Salario = salario;
+            DataAdmissao = dataAdmissao;
+        }
+
+        public string Nome { get; set; }
+        public string Login { get; set; }
+        public string Senha { get; set; }
+        public float Salario { get; set; }
+        public DateTime DataAdmissao { get; set; }
+        public string Cidade { get; set; }
+        public string Estado { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Funcionario funcionario &&
+                   Id == funcionario.Id &&
+                   Nome == funcionario.Nome &&
+                   Login == funcionario.Login &&
+                   Senha == funcionario.Senha &&
+                   DataAdmissao == funcionario.DataAdmissao;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Nome, Login, Senha, Salario, DataAdmissao);
+        }
     }
 }
