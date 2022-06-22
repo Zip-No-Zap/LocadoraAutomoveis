@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Dominio.Modulo_Cliente
 {
-    public class ValidadorCliente : AbstractValidator<Cliente<Pessoa>>
+    public class ValidadorCliente : AbstractValidator<Cliente>
     {
         public ValidadorCliente()
         {
