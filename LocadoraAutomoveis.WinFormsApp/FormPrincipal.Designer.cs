@@ -1,6 +1,6 @@
 ﻿namespace LocadoraAutomoveis.WinFormsApp
 {
-    partial class Form1
+    partial class FormPrincipal
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,13 +30,17 @@
         {
             this.SuspendLayout();
             // 
-            // Form1
+            // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(994, 529);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(1342, 688);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "FormPrincipal";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Locadora de Veículos 1.0";
             this.ResumeLayout(false);
 
         }
