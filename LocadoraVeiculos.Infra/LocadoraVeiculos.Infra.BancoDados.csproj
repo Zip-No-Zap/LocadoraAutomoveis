@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Modulo Funcionario\" />
     <Folder Include="Modulo GrupoVeiculo\" />
     <Folder Include="Modulo Taxa\" />
   </ItemGroup>
