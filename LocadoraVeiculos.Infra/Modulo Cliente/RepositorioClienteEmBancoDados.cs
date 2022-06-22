@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 {
-    public class RepositorioCliente
+    public class RepositorioClienteEmBancoDados
     {
     }
 }
