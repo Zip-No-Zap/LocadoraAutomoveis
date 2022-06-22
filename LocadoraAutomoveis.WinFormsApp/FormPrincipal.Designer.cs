@@ -34,6 +34,7 @@
             this.funcionarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grupoDeVeículoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taxaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.menuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,32 +63,45 @@
             // clienteToolStripMenuItem
             // 
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(250, 34);
             this.clienteToolStripMenuItem.Text = "Cliente";
             // 
             // funcionarioToolStripMenuItem
             // 
             this.funcionarioToolStripMenuItem.Name = "funcionarioToolStripMenuItem";
-            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(250, 34);
             this.funcionarioToolStripMenuItem.Text = "Funcionário";
             // 
             // grupoDeVeículoToolStripMenuItem
             // 
             this.grupoDeVeículoToolStripMenuItem.Name = "grupoDeVeículoToolStripMenuItem";
-            this.grupoDeVeículoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.grupoDeVeículoToolStripMenuItem.Size = new System.Drawing.Size(250, 34);
             this.grupoDeVeículoToolStripMenuItem.Text = "Grupo de Veículo";
             // 
             // taxaToolStripMenuItem
             // 
             this.taxaToolStripMenuItem.Name = "taxaToolStripMenuItem";
-            this.taxaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.taxaToolStripMenuItem.Size = new System.Drawing.Size(250, 34);
             this.taxaToolStripMenuItem.Text = "Taxa";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 660);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1342, 28);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1342, 688);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuPrincipal;
@@ -111,5 +125,6 @@
         private System.Windows.Forms.ToolStripMenuItem funcionarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grupoDeVeículoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem taxaToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip toolStrip1;
     }
 }
