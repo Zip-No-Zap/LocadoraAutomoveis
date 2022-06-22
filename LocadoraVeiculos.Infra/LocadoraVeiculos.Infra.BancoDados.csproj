@@ -6,10 +6,14 @@
 
   <ItemGroup>
     <Folder Include="Modulo Cliente\" />
-    <Folder Include="Banco de Dados\" />
     <Folder Include="Modulo Funcionario\" />
     <Folder Include="Modulo GrupoVeiculo\" />
     <Folder Include="Modulo Taxa\" />
+    <Folder Include="Compartilhado\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj" />
   </ItemGroup>
 
 </Project>
