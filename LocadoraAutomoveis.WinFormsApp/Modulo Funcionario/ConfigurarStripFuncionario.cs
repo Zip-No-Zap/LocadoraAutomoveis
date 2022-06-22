@@ -1,8 +1,10 @@
 ﻿
 
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 {
-    public class ConfigurarStripFuncionario
+    public class ConfigurarStripFuncionario : ConfiguracaoToolStripBase
     {
         public string TipoCadastro => "cadastro de funcionário";
 
