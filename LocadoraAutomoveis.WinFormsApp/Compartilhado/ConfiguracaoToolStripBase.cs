@@ -8,13 +8,13 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
 {
     public class ConfiguracaoToolStripBase
     {
-        string TipoCadastro { get; }
-       
-        string TooltipInserir { get; }
-       
-        string TooltipEditar { get; }
-       
-        string TooltipExcluir { get; }
+        public string TipoCadastro { get; }
+
+        public string TooltipInserir { get; }
+
+        public string TooltipEditar { get; }
+
+        public string TooltipExcluir { get; }
 
         public virtual bool InserirHabilitado { get { return true; } }
 

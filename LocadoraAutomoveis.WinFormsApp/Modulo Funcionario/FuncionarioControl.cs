@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GeradorTestes.WinApp.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_Funcionario;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,9 +27,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Numero", HeaderText = "Número"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Proriedade", HeaderText = "Valor1"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Propriedade", HeaderText = "Valor2"},
             };
 
             return colunas;
@@ -38,9 +40,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             return grid.SelecionarNumero<int>();
         }
 
-        public void AtualizarRegistros(List<Disciplina> disciplinas)
+        public void AtualizarRegistros(List<Funcionario> funcionarios)
         {
-            grid.DataSource = disciplinas;
+            grid.DataSource = funcionarios;
         }
     }
 }
