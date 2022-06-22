@@ -69,7 +69,7 @@
             // 
             this.funcionarioToolStripMenuItem.Name = "funcionarioToolStripMenuItem";
             this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.funcionarioToolStripMenuItem.Text = "Funcionario";
+            this.funcionarioToolStripMenuItem.Text = "Funcionário";
             // 
             // grupoDeVeículoToolStripMenuItem
             // 
