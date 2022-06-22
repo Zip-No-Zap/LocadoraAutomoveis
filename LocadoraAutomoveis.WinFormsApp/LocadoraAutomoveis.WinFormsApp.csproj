@@ -7,4 +7,9 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Infra\LocadoraVeiculos.Infra.BancoDados.csproj" />
+  </ItemGroup>
+
 </Project>
