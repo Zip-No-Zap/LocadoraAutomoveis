@@ -17,9 +17,10 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
         public string Cidade { get; set; }
         public string Email { get; set; }   
         public string Endereco { get; set; }
+        public string Telefone { get; set; }
 
         public Cliente (string nome, string cpf, string cnpj,
-            string cnh,string cidade, string email, string endereco)
+            string cnh,string cidade, string email, string endereco, string telefone)
         {
             Nome = nome;
             Cpf = cpf;
@@ -28,6 +29,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
             Cidade = cidade;
             Email = email;
             Endereco = endereco;
+            Telefone = telefone;
         }
 
         public EnumTipoCliente TipoClienteEnum
@@ -59,6 +61,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
                 Email == cliente.Email &&
                 Endereco == cliente.Endereco &&
                 Cidade == cliente.Cidade &&
+                Telefone == cliente.Telefone &&
                 TipoClienteEnum == cliente.TipoClienteEnum;
         }
         public override int GetHashCode()
@@ -72,6 +75,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
             hash.Add(Email);
             hash.Add(Endereco);
             hash.Add(Cidade);
+            hash.Add(Telefone);
             hash.Add(TipoClienteEnum);
             return hash.ToHashCode();
         }
