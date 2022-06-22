@@ -2,12 +2,6 @@
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp
@@ -114,7 +108,7 @@ namespace LocadoraAutomoveis.WinFormsApp
             }
         }
 
-        private void AtualizarRodape(string v)
+        private void AtualizarRodape(string mensagem)
         {
             lblStatusPrincipal.Text = mensagem;
         }
