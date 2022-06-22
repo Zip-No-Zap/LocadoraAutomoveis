@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Dominio.Modulo_Cliente
 {
-    public class Cliente : EntidadeBase<Cliente>
+    public interface IRepositorioCliente : IRepositorioBase<Cliente>
     {
-        
     }
 }

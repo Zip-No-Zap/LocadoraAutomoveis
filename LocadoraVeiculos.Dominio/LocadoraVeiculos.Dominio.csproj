@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Modulo GrupoVeiculo\" />
-    <Folder Include="Modulo Taxa\" />
+    <Compile Remove="Modulo GrupoVeiculo\**" />
+    <Compile Remove="Modulo Taxa\**" />
+    <EmbeddedResource Remove="Modulo GrupoVeiculo\**" />
+    <EmbeddedResource Remove="Modulo Taxa\**" />
+    <None Remove="Modulo GrupoVeiculo\**" />
+    <None Remove="Modulo Taxa\**" />
   </ItemGroup>
 
   <ItemGroup>
