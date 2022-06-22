@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
+namespace LocadoraVeiculos.Dominio.Modulo_Cliente
 {
-    public class RepositorioCliente
+    public enum EnumTipoCliente
     {
+        PessoaFisica, PessoaJuridica
     }
 }
