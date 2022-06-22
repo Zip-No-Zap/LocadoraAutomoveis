@@ -1,4 +1,5 @@
 ﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,24 @@ namespace LocadoraAutomoveis.WinFormsApp
         public FormPrincipal()
         {
             InitializeComponent();
+
+            Instancia = this;
+
+            toolStripPrincipal.Text = string.Empty;
+            lblToolStripPrincipal.Text = string.Empty;
+
+            InicializarControladores();
+        }
+
+        private void InicializarControladores()
+        {
+            var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
+        }
+
+        public static FormPrincipal Instancia
+        {
+            get;
+            private set;
         }
 
         private void funcionarioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -29,7 +48,9 @@ namespace LocadoraAutomoveis.WinFormsApp
 
         private void HabilitarBotoesToolStrip()
         {
-            throw new NotImplementedException();
+            btnInserir.Enabled = true;
+            btnEditar.Enabled = true;
+            btnExcluir.Enabled = true;
         }
 
         private void ConfigurarTelaPrincipal(ToolStripMenuItem opcaoSelecionada)
@@ -59,14 +80,43 @@ namespace LocadoraAutomoveis.WinFormsApp
             }
         }
 
+        private void ConfigurarBotoes(ConfiguracaoToolStripBase configuracao)
+        {
+            btnInserir.Enabled = configuracao.InserirHabilitado;
+            btnEditar.Enabled = configuracao.EditarHabilitado;
+            btnExcluir.Enabled = configuracao.ExcluirHabilitado;
+        }
+
         private void ConfigurarTooltips(ConfiguracaoToolStripBase configuracao)
         {
-            throw new NotImplementedException();
+            btnInserir.ToolTipText = configuracao.TooltipInserir;
+            btnEditar.ToolTipText = configuracao.TooltipEditar;
+            btnExcluir.ToolTipText = configuracao.TooltipExcluir;
         }
 
         private void ConfigurarListagem()
         {
-            throw new NotImplementedException();
+            try
+            {
+                AtualizarRodape("");
+
+                var listagemControl = controlador.ObtemListagem();
+
+                panelPrincipal.Controls.Clear();
+
+                listagemControl.Dock = DockStyle.Fill;
+
+                panelPrincipal.Controls.Add(listagemControl);
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Erro durante redimensionamento de coluna de preenchimento automático", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AtualizarRodape(string v)
+        {
+            lblStatusPrincipal.Text = mensagem;
         }
     }
 }

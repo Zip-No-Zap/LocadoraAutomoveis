@@ -42,7 +42,9 @@
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.lblToolStripPrincipal = new System.Windows.Forms.ToolStripLabel();
+            this.lblStatusPrincipal = new System.Windows.Forms.ToolStripLabel();
             this.menuPrincipal.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.toolStripPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,9 +101,11 @@
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.toolStrip1.Location = new System.Drawing.Point(0, 663);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblStatusPrincipal});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 658);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1342, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1342, 30);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -160,6 +164,12 @@
             this.lblToolStripPrincipal.Size = new System.Drawing.Size(83, 28);
             this.lblToolStripPrincipal.Text = "Cadastro";
             // 
+            // lblStatusPrincipal
+            // 
+            this.lblStatusPrincipal.Name = "lblStatusPrincipal";
+            this.lblStatusPrincipal.Size = new System.Drawing.Size(121, 25);
+            this.lblStatusPrincipal.Text = "Tela Principal";
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -178,6 +188,8 @@
             this.Text = "Locadora de Veículos 1.0";
             this.menuPrincipal.ResumeLayout(false);
             this.menuPrincipal.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.toolStripPrincipal.ResumeLayout(false);
             this.toolStripPrincipal.PerformLayout();
             this.ResumeLayout(false);
@@ -200,5 +212,6 @@
         private System.Windows.Forms.ToolStripButton btnEditar;
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripLabel lblToolStripPrincipal;
+        private System.Windows.Forms.ToolStripLabel lblStatusPrincipal;
     }
 }
