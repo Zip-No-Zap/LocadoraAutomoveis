@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraAutomoveis.WinFormsApp", "LocadoraAutomoveis.WinFormsApp\LocadoraAutomoveis.WinFormsApp.csproj", "{36EC600D-C5D1-47D0-9049-21E9915AA120}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraAutomoveis.WinFormsApp", "LocadoraAutomoveis.WinFormsApp\LocadoraAutomoveis.WinFormsApp.csproj", "{36EC600D-C5D1-47D0-9049-21E9915AA120}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1- Apresentacao", "1- Apresentacao", "{2FABA49A-C4EF-4DB6-BF8B-162213F39EDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2- Dominio", "2- Dominio", "{BE43B0B9-BE62-456E-851C-F395FB15E81E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3- Infra", "3- Infra", "{0B17407B-D3BC-455C-9EDE-049302331B8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4- Testes", "4- Testes", "{871F82CB-B93F-4A30-9D62-4F0945416941}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1- Testes de Dominio", "4.1- Testes de Dominio", "{5C9453BC-143A-4E9B-AC18-99F43A5A7838}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2- Testes de Integracao", "4.2- Testes de Integracao", "{6E1B342C-6AF1-483A-A306-9511F75814FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +30,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{36EC600D-C5D1-47D0-9049-21E9915AA120} = {2FABA49A-C4EF-4DB6-BF8B-162213F39EDF}
+		{5C9453BC-143A-4E9B-AC18-99F43A5A7838} = {871F82CB-B93F-4A30-9D62-4F0945416941}
+		{6E1B342C-6AF1-483A-A306-9511F75814FE} = {871F82CB-B93F-4A30-9D62-4F0945416941}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFB22DCF-72CE-4820-99D4-D5A13699E51E}
