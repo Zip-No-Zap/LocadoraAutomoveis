@@ -13,6 +13,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
        public abstract void Editar();
        public abstract void Excluir();
        public abstract UserControl ObtemListagem();
-       public abstract IConfiguracaoToolStrip ObtemConfiguracaoToolStrip();
+       public abstract ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip();
     }
 }
