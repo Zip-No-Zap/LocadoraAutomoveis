@@ -8,8 +8,5 @@ namespace LocadoraVeiculos.Dominio.Compartilhado
 {
     public abstract class Pessoa : EntidadeBase<Pessoa>
     {
-
-
-
     }
 }

@@ -5,12 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Modulo Funcionario\" />
     <Folder Include="Modulo GrupoVeiculo\" />
     <Folder Include="Modulo Taxa\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
   <ItemGroup>
