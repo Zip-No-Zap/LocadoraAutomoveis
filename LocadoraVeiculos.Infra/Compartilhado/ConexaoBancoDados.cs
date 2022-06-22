@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
         {
             conexao = new();
 
-            conexao.ConnectionString = @"Data Source=(localDB)\MSSqlLocalDB;Initial Catalog=ControleMedicamentosDb;Integrated Security=True";
+            conexao.ConnectionString = @"Data Source=(localDB)\MSSqlLocalDB;Initial Catalog=LocadoraAutomoveisDb;Integrated Security=True";
 
             conexao.Open();
         }
