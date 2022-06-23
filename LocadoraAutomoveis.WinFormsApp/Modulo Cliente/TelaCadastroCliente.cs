@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,6 +70,74 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             tbTelefone.Clear();
             rdbPessoaFisica.Checked = false;
             rdbPessoaJuridica.Checked = false;
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            cliente.Nome = tbNome.Text;
+            cliente.Cnpj = tbCNPJ.Text;
+            cliente.Cpf = tbCPF.Text;
+            cliente.Endereco = tbEndereco.Text;
+            cliente.Cnh = tbCnhCondutor.Text;
+            cliente.Telefone = tbTelefone.Text;
+
+            if (rdbPessoaFisica.Checked)
+            {
+                cliente.TipoCliente = EnumTipoCliente.PessoaFisica;
+                cliente.Cpf = tbCPF.Text;
+            }
+            else
+            {
+                cliente.TipoCliente = EnumTipoCliente.PessoaJuridica;
+                cliente.Cnpj = tbCNPJ.Text;
+            }
+            
+
+            ValidationResult resultadoValidacao = GravarRegistro(cliente);
+
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                FormPrincipal.Instancia.AtualizarRodape(erro);
+
+                DialogResult = DialogResult.None;
+            }
+        }
+
+        private void rdbPessoaFisica_CheckedChanged(object sender, EventArgs e)
+        {
+            tbCNPJ.Text = "";
+            tbCNPJ.Enabled = false;
+            tbCPF.Enabled = true;
+        }
+
+        private void rdbPessoaJuridica_CheckedChanged(object sender, EventArgs e)
+        {
+            tbCPF.Text = "";
+            tbCPF.Enabled = false;
+            tbCNPJ.Enabled = true;
+        }
+
+        
+        private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e = ImpedirNumeroTexBox(e);
+        }
+        private static KeyPressEventArgs ImpedirNumeroTexBox(KeyPressEventArgs e)
+        {
+            if ((Strings.Asc(e.KeyChar) >= 48 & Strings.Asc(e.KeyChar) <= 57))
+            {
+                e.Handled = true;
+                e = null;
+            }
+
+            return e;
+        }
+
+        private void TelaCadastroCliente_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            FormPrincipal.Instancia.AtualizarRodape("");
         }
     }
 }

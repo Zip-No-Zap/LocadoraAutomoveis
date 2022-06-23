@@ -72,6 +72,7 @@
             this.tbNome.Name = "tbNome";
             this.tbNome.Size = new System.Drawing.Size(472, 27);
             this.tbNome.TabIndex = 21;
+            this.tbNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNome_KeyPress);
             // 
             // tbCPF
             // 
@@ -207,6 +208,7 @@
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // panel2
             // 
@@ -242,6 +244,7 @@
             this.rdbPessoaJuridica.TabStop = true;
             this.rdbPessoaJuridica.Text = "Pessoa Juridica";
             this.rdbPessoaJuridica.UseVisualStyleBackColor = true;
+            this.rdbPessoaJuridica.CheckedChanged += new System.EventHandler(this.rdbPessoaJuridica_CheckedChanged);
             // 
             // rdbPessoaFisica
             // 
@@ -253,6 +256,7 @@
             this.rdbPessoaFisica.TabStop = true;
             this.rdbPessoaFisica.Text = "Pessoa Fisica";
             this.rdbPessoaFisica.UseVisualStyleBackColor = true;
+            this.rdbPessoaFisica.CheckedChanged += new System.EventHandler(this.rdbPessoaFisica_CheckedChanged);
             // 
             // tbTelefone
             // 
@@ -297,6 +301,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Cliente";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TelaCadastroCliente_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
