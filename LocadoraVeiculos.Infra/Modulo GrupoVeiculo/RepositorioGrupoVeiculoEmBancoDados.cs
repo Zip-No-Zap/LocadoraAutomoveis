@@ -96,7 +96,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
                            )
                            VALUES
                            (
-                                @NOME
+                                @NOMEGRUPO
 
 
                            );SELECT SCOPE_IDENTITY();";
@@ -116,7 +116,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 
             sql = @"UPDATE [TBGRUPOVEICULO] SET 
 
-                                [NOME] = @NOME    
+                                [NOMEGRUPO] = @NOMEGRUPO    
                            WHERE
 		                         ID = @ID";
 
@@ -151,7 +151,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
             while (leitor.Read())
             {
                 int id = Convert.ToInt32(leitor["ID"]);
-                string nome = leitor["NOME"].ToString();
+                string nome = leitor["NOMEGRUPO"].ToString();
 
                 GrupoVeiculo grupoVeiculo = new GrupoVeiculo(nome)
                 {
@@ -173,7 +173,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
             if (leitor.Read())
             {
                 int id = Convert.ToInt32(leitor["ID"]);
-                string nome = leitor["NOME"].ToString();
+                string nome = leitor["NOMEGRUPO"].ToString();
 
 
                 funcionario = new GrupoVeiculo(nome)

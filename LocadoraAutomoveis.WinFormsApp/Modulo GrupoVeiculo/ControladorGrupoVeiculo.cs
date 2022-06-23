@@ -50,9 +50,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
             }
 
             TelaCadastroGrupoVeiculo tela = new();
-            tela.GrupoVeiculo = new();
 
-            tela.GravarRegistro = repoGrupoVeiculo.Inserir;
+            tela.GrupoVeiculo = Selecionado;
+
+            tela.GravarRegistro = repoGrupoVeiculo.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -113,7 +114,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 
         private GrupoVeiculo ObtemGrupoVeiculoSelecionado()
         {
-            throw new NotImplementedException();
+            var numero = tabelaGrupoVeiculo.ObtemNumeroGrupoVeiculoSelecionado();
+
+            return repoGrupoVeiculo.SelecionarPorId(numero);
         }
     }
 }
