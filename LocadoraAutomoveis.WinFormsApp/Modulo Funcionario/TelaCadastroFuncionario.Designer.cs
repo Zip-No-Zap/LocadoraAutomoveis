@@ -54,7 +54,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.Controls.Add(this.btnLimpar);
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Location = new System.Drawing.Point(12, 347);
@@ -64,23 +64,27 @@
             // 
             // btnLimpar
             // 
+            this.btnLimpar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLimpar.Location = new System.Drawing.Point(135, 14);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(112, 59);
             this.btnLimpar.TabIndex = 2;
             this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnOK
             // 
+            this.btnOK.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Location = new System.Drawing.Point(17, 14);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(112, 59);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.UseVisualStyleBackColor = false;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // panel2
@@ -139,7 +143,7 @@
             "SP",
             "SE",
             "TO"});
-            this.cbUF.Location = new System.Drawing.Point(331, 249);
+            this.cbUF.Location = new System.Drawing.Point(380, 247);
             this.cbUF.Name = "cbUF";
             this.cbUF.Size = new System.Drawing.Size(94, 33);
             this.cbUF.TabIndex = 20;
@@ -230,7 +234,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(331, 225);
+            this.label2.Location = new System.Drawing.Point(380, 223);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 21);
             this.label2.TabIndex = 8;

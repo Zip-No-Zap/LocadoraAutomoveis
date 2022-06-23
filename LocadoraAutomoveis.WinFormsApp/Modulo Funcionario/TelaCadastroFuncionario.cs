@@ -123,15 +123,18 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void tbNome_Leave(object sender, EventArgs e)
         {
-           // ImpedirTextoMenorDois(tbNome.Text);
-            //tbNome.Focus();
+            ImpedirTextoMenorDois(tbNome.Text);
+        }
+
+        private void tbCidade_Leave(object sender, EventArgs e)
+        {
+            ImpedirTextoMenorDois(tbCidade.Text);
         }
 
         private void ImpedirTextoMenorDois(string texto)
         {
-            //if(Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57)
-            //e.Handled = true;
-            //e = null;
+            if (Text.Length < 2)
+                MessageBox.Show("Este campo não aceita menos de dois caracteres","Aviso");
         }
 
         private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
@@ -141,12 +144,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             {
                 e.Handled = true;
             }
-        }
-
-        private void tbCidade_Leave(object sender, EventArgs e)
-        {
-            //ImpedirTextoMenorDois(tbCidade.Text);
-            //tbCidade.Focus();
         }
 
         private static KeyPressEventArgs ImpedirNumeroTexBox(KeyPressEventArgs e)
