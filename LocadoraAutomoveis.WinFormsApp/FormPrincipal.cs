@@ -3,7 +3,6 @@ using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
 using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Taxa;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;

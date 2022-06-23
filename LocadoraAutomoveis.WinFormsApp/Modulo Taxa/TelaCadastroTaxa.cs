@@ -31,14 +31,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
             {
                 taxa = value;
 
-                //tbNome.Text = Taxa.Nome;
-                //tbSalario.Text = Taxa.Salario.ToString();
-                //tbData.Text = Taxa.DataAdmissao.ToString();
-                //tbCidade.Text = Taxa.Cidade;
-                //cbUF.Text = Taxa.Estado;
-                //tbLogin.Text = Taxa.Login;
-                //tbSenha.Text = Taxa.Senha;
-                //cbPerfil.Text = Taxa.Perfil;
+                tbDescricao.Text = taxa.Descricao;
+                cbTipo.Text = taxa.Tipo;
+                tbValor.Text = taxa.Valor.ToString();
             }
         }
         public TelaCadastroTaxa()
@@ -46,6 +41,35 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
             InitializeComponent();
         }
 
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            tbDescricao.Clear();
+            tbValor.Clear();
+            cbTipo.Items.Clear();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            taxa.Descricao = tbDescricao.Text;
+            taxa.Tipo = cbTipo.Text;
+            taxa.Valor = float.Parse(tbValor.Text);
+
+            ValidationResult resultadoValidacao = GravarRegistro(taxa);
+
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                FormPrincipal.Instancia.AtualizarRodape(erro);
+
+                DialogResult = DialogResult.None;
+            }
+
+        }
     }
 }
