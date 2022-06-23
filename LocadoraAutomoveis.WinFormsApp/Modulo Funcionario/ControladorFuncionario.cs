@@ -20,10 +20,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         public override void Inserir()
         {
-            TelaCadasrtoFuncionario tela = new();
+            TelaCadastroFuncionario tela = new();
             tela.Funcionario = new();
 
-            repoFuncionario.Inserir(tela.Funcionario);
+            tela.GravarRegistro = repoFuncionario.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -33,18 +33,29 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             }
         }
 
-        private void CarregarFuncionarios()
-        {
-            List<Funcionario> funcionarios = repoFuncionario.SelecionarTodos();
-
-            tabelaFuncionarios.AtualizarRegistros(funcionarios);
-
-            FormPrincipal.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionario(s)");
-        }
-
         public override void Editar()
         {
-            throw new NotImplementedException();
+            Funcionario discSelecionada = ObtemfuncionarioSelecionado();
+
+            if (discSelecionada == null)
+            {
+                MessageBox.Show("Selecione uma funcionario primeiro",
+                "Edição de Funcionarios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            TelaCadastroFuncionario tela = new();
+
+            tela.Funcionario = discSelecionada;
+
+            tela.GravarRegistro = repoFuncionario.Editar;
+
+            DialogResult resultado = tela.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                CarregarFuncionarios();
+            }
         }
 
         public override void Excluir()
@@ -66,5 +77,22 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
             return tabelaFuncionarios;
         }
+
+        private void CarregarFuncionarios()
+        {
+            List<Funcionario> funcionarios = repoFuncionario.SelecionarTodos();
+
+            tabelaFuncionarios.AtualizarRegistros(funcionarios);
+
+            FormPrincipal.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionario(s)");
+        }
+
+        private Funcionario ObtemfuncionarioSelecionado()
+        {
+            var numero = tabelaFuncionarios.ObtemNumerFuncionarioSelecionado();
+
+            return repoFuncionario.SelecionarPorId(numero);
+        }
+
     }
 }

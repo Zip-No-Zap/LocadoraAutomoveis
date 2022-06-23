@@ -12,13 +12,14 @@ namespace LocadoraVeiculos.Dominio.Modulo_Funcionario
         {
 
         }
-        public Funcionario(string nome, string login, string senha, double salario, DateTime dataAdmissao)
+        public Funcionario(string nome, string login, string senha, double salario, DateTime dataAdmissao, string perfil)
         {
             Nome = nome;
             Login = login;
             Senha = senha;
             Salario = salario;
             DataAdmissao = dataAdmissao;
+            Perfil = Perfil;
         }
 
         public string Nome { get; set; }
@@ -28,6 +29,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Funcionario
         public DateTime DataAdmissao { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
+        public string Perfil { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -37,6 +39,14 @@ namespace LocadoraVeiculos.Dominio.Modulo_Funcionario
                    Login == funcionario.Login &&
                    Senha == funcionario.Senha &&
                    DataAdmissao == funcionario.DataAdmissao;
+        }
+
+        public string DataString
+        {
+            get
+            {
+                return DataAdmissao.ToShortDateString();
+            }
         }
 
         public override int GetHashCode()

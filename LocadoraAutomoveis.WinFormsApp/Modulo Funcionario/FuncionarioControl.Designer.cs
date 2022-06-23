@@ -35,11 +35,12 @@
             // grid
             // 
             this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid.Location = new System.Drawing.Point(3, 3);
+            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid.Location = new System.Drawing.Point(0, 0);
             this.grid.Name = "grid";
             this.grid.RowHeadersWidth = 62;
             this.grid.RowTemplate.Height = 33;
-            this.grid.Size = new System.Drawing.Size(1153, 716);
+            this.grid.Size = new System.Drawing.Size(1159, 722);
             this.grid.TabIndex = 0;
             // 
             // FuncionarioControl

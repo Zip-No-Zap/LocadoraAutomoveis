@@ -27,15 +27,21 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Proriedade", HeaderText = "Valor1"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Propriedade", HeaderText = "Valor2"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Login", HeaderText = "Login"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Senha", HeaderText = "Senha"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Salario", HeaderText = "Salario"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "DataString", HeaderText = "Data Admissão"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Cidade", HeaderText = "Cidade"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Estado", HeaderText = "Estado"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Perfil", HeaderText = "Perfil"},
             };
 
             return colunas;
         }
 
-        public int ObtemNumerDisciplinaSelecionada()
+        public int ObtemNumerFuncionarioSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }

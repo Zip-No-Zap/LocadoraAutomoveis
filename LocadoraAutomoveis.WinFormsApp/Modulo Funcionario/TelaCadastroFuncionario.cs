@@ -1,14 +1,20 @@
-﻿using LocadoraVeiculos.Dominio.Modulo_Funcionario;
+﻿using FluentValidation.Results;
+using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using System;
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 {
-    public partial class TelaCadasrtoFuncionario : Form
+    public partial class TelaCadastroFuncionario : Form
     {
         private Funcionario funcionario;
 
-        public TelaCadasrtoFuncionario()
+        public Func<Funcionario, ValidationResult> GravarRegistro
+        {
+            get; set;
+        }
+
+        public TelaCadastroFuncionario()
         {
             InitializeComponent();
         }
@@ -30,12 +36,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
                 tbUF.Text = funcionario.Estado;
                 tbLogin.Text = funcionario.Login;
                 tbSenha.Text = funcionario.Senha;
+                cbPerfil.Text = funcionario.Perfil;
             }
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            tbSenha.Text = "";
             tbSenha.PasswordChar = '*';
             tbSenha.MaxLength = 14;
         }
@@ -48,13 +54,24 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         private void btnOK_Click(object sender, EventArgs e)
         {
             funcionario.Nome = tbNome.Text;
-       
             funcionario.Salario = float.Parse(tbSalario.Text);
             funcionario.DataAdmissao = Convert.ToDateTime(tbData.Text);
             funcionario.Cidade = tbCidade.Text;
             funcionario.Estado = tbUF.Text;
             funcionario.Login = tbLogin.Text;
             funcionario.Senha = tbSenha.Text;
+            funcionario.Perfil = cbPerfil.SelectedItem.ToString();
+
+            ValidationResult resultadoValidacao = GravarRegistro(funcionario);
+
+            if (resultadoValidacao.IsValid == false)
+            {
+                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+
+                FormPrincipal.Instancia.AtualizarRodape(erro);
+
+                DialogResult = DialogResult.None;
+            }
 
         }
 

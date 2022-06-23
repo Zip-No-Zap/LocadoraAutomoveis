@@ -90,6 +90,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
             cmd.Parameters.AddWithValue("DATAADMISSAO", entidade.DataAdmissao);
             cmd.Parameters.AddWithValue("CIDADE", entidade.Cidade);
             cmd.Parameters.AddWithValue("ESTADO", entidade.Estado);
+            cmd.Parameters.AddWithValue("PERFIL", entidade.Perfil);
         }
 
         protected override void InserirRegistroBancoDados(Funcionario entidade)
@@ -104,7 +105,8 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                                 [SALARIO],
                                 [DATAADMISSAO],
                                 [CIDADE],
-                                [ESTADO]
+                                [ESTADO],
+                                [PERFIL]
                            )
                            VALUES
                            (
@@ -114,7 +116,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                                 @SALARIO,
                                 @DATAADMISSAO,
                                 @CIDADE,
-                                @ESTADO
+                                @ESTADO,
+                                @PERFIL
+
                            );SELECT SCOPE_IDENTITY();";
 
             SqlCommand cmd_Insercao = new(sql, conexao);
@@ -125,8 +129,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 
             DesconectarBancoDados();
         }
-
-    
 
         protected override void EditarRegistroBancoDados(Funcionario entidade)
         {
@@ -169,7 +171,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
             DesconectarBancoDados();
         }
 
-
         protected override List<Funcionario> LerTodos(SqlDataReader leitor)
         {
             List<Funcionario> funcionarios = new();
@@ -182,10 +183,12 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                 string senha = leitor["SENHA"].ToString();
                 double salario = Convert.ToDouble(leitor["SALARIO"]);
                 DateTime dataAdmissao = Convert.ToDateTime(leitor["DATAADMISSAO"]);
+                string perfil = leitor["PERFIL"].ToString();
 
-                Funcionario funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao)
+                Funcionario funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao, perfil)
                 {
                     Id = id
+                    
                 };
 
                 funcionarios.Add(funcionario);
@@ -206,8 +209,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                 string senha = leitor["SENHA"].ToString();
                 double salario = Convert.ToDouble(leitor["SALARIO"]);
                 DateTime dataAdmissao = Convert.ToDateTime(leitor["DATAADMISSAO"]);
+                string perfil = leitor["PERFIL"].ToString();
 
-                funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao)
+                funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao, perfil)
                 {
                     Id = id
                 };
@@ -215,7 +219,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 
             return funcionario;
         }
-
 
         protected override ValidationResult Validar(Funcionario entidade)
         {
