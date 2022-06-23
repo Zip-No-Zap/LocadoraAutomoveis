@@ -39,7 +39,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
 
 
-        private void TelaCadasrtoFuncionario_Load(object sender, EventArgs e)
+        private void TelaCadastroGrupoVeiculo_Load(object sender, EventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
         }
@@ -71,7 +71,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             
         }
 
-        private void TelaCadasrtoFuncionario_FormClosing(object sender, FormClosingEventArgs e)
+        private void TelaCadastroGrupoVeiculo_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
         }
