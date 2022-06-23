@@ -100,5 +100,26 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
                 e = null;
             }
         }
+
+        private void tbSalario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+               (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbData_Leave(object sender, EventArgs e)
+        {
+            DateTime convertido = Convert.ToDateTime(tbData.Text);
+
+            if (convertido > DateTime.Today)
+            {
+                MessageBox.Show("Data de admissão não pode ser maior que hoje", "Aviso");
+                tbData.Focus();
+                return;
+            }
+        }
     }
 }

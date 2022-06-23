@@ -32,6 +32,7 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbUF = new System.Windows.Forms.ComboBox();
             this.cbPerfil = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tbData = new System.Windows.Forms.MaskedTextBox();
@@ -47,7 +48,6 @@
             this.tbSenha = new System.Windows.Forms.TextBox();
             this.tbSalario = new System.Windows.Forms.TextBox();
             this.tbNome = new System.Windows.Forms.TextBox();
-            this.cbUF = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -107,6 +107,43 @@
             this.panel2.Size = new System.Drawing.Size(588, 329);
             this.panel2.TabIndex = 1;
             // 
+            // cbUF
+            // 
+            this.cbUF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbUF.FormattingEnabled = true;
+            this.cbUF.Items.AddRange(new object[] {
+            "AC",
+            "AL",
+            "AP",
+            "AM",
+            "BA",
+            "CE",
+            "DF",
+            "ES",
+            "GO",
+            "MA",
+            "MT",
+            "MS",
+            "MG",
+            "PA",
+            "PB",
+            "PR",
+            "PE",
+            "PI",
+            "RJ",
+            "RN",
+            "RS",
+            "RO",
+            "RR",
+            "SC",
+            "SP",
+            "SE",
+            "TO"});
+            this.cbUF.Location = new System.Drawing.Point(331, 249);
+            this.cbUF.Name = "cbUF";
+            this.cbUF.Size = new System.Drawing.Size(94, 33);
+            this.cbUF.TabIndex = 20;
+            // 
             // cbPerfil
             // 
             this.cbPerfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -137,6 +174,7 @@
             this.tbData.Size = new System.Drawing.Size(206, 31);
             this.tbData.TabIndex = 14;
             this.tbData.ValidatingType = typeof(System.DateTime);
+            this.tbData.Leave += new System.EventHandler(this.tbData_Leave);
             // 
             // label7
             // 
@@ -237,6 +275,7 @@
             this.tbSalario.Name = "tbSalario";
             this.tbSalario.Size = new System.Drawing.Size(309, 31);
             this.tbSalario.TabIndex = 1;
+            this.tbSalario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSalario_KeyPress);
             // 
             // tbNome
             // 
@@ -245,43 +284,6 @@
             this.tbNome.Size = new System.Drawing.Size(309, 31);
             this.tbNome.TabIndex = 0;
             this.tbNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNome_KeyPress);
-            // 
-            // cbUF
-            // 
-            this.cbUF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbUF.FormattingEnabled = true;
-            this.cbUF.Items.AddRange(new object[] {
-            "AC",
-            "AL",
-            "AP",
-            "AM",
-            "BA",
-            "CE",
-            "DF",
-            "ES",
-            "GO",
-            "MA",
-            "MT",
-            "MS",
-            "MG",
-            "PA",
-            "PB",
-            "PR",
-            "PE",
-            "PI",
-            "RJ",
-            "RN",
-            "RS",
-            "RO",
-            "RR",
-            "SC",
-            "SP",
-            "SE",
-            "TO"});
-            this.cbUF.Location = new System.Drawing.Point(331, 249);
-            this.cbUF.Name = "cbUF";
-            this.cbUF.Size = new System.Drawing.Size(94, 33);
-            this.cbUF.TabIndex = 20;
             // 
             // TelaCadastroFuncionario
             // 
