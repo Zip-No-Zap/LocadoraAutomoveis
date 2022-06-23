@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 {
@@ -82,7 +83,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()
         {
-            return new ConfigurarStripTaxa();
+            return new ConfiguracaoStripTaxa();
         }
 
         public override UserControl ObtemListagem()
