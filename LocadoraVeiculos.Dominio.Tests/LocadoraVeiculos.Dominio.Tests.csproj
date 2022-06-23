@@ -17,7 +17,10 @@
     <Folder Include="Modulo Cliente\" />
     <Folder Include="Modulo Funcionario\" />
     <Folder Include="Modulo GrupoVeiculo\" />
-    <Folder Include="Modulo Taxa\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

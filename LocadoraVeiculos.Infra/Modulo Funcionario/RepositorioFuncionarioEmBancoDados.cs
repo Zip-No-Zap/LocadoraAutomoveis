@@ -42,8 +42,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
             return resultado;
         }
 
-
-
         public Funcionario SelecionarPorId(int numero)
         {
             ConectarBancoDados();
