@@ -32,7 +32,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
             return resultado;
         }
 
-
         public ValidationResult Excluir(Taxa entidade)
         {
             ValidationResult resultado = Validar(entidade);
@@ -81,24 +80,76 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
 
         #region protected
 
-        protected override void DefinirParametros(Taxa entidade, SqlCommand cmd_Insercao)
+        protected override void DefinirParametros(Taxa entidade, SqlCommand cmd)
         {
-            throw new NotImplementedException();
-        }
-
-        protected override void EditarRegistroBancoDados(Taxa entidade)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void ExcluirRegistroBancoDados(Taxa entidade)
-        {
-            throw new NotImplementedException();
+            cmd.Parameters.AddWithValue("ID", entidade.Id);
+            cmd.Parameters.AddWithValue("DESCRICAO", entidade.Descricao);
+            cmd.Parameters.AddWithValue("TIPO", entidade.Tipo);
+            cmd.Parameters.AddWithValue("VALOR", entidade.Valor);
         }
 
         protected override void InserirRegistroBancoDados(Taxa entidade)
         {
-            throw new NotImplementedException();
+            ConectarBancoDados();
+
+            sql = @"INSERT INTO TBTAXA
+                           (
+                                [DESCRICAO],    
+                                [TIPO],
+                                [VALOR]
+                           )
+                           VALUES
+                           (
+                                @DESCRICAO,
+                                @TIPO,
+                                @VALOR
+
+                           );SELECT SCOPE_IDENTITY();";
+
+            SqlCommand cmd_Insercao = new(sql, conexao);
+
+            DefinirParametros(entidade, cmd_Insercao);
+
+            entidade.Id = Convert.ToInt32(cmd_Insercao.ExecuteScalar());
+
+            DesconectarBancoDados();
+        }
+
+        protected override void EditarRegistroBancoDados(Taxa entidade)
+        {
+            ConectarBancoDados();
+
+            sql = @"UPDATE [TBTAXA] SET 
+
+                                [DESCRICAO] = @DESCRICAO, 
+                                [TIPO] = @TIPO,
+                                [VALOR] = @VALOR
+
+                           WHERE
+		                         ID = @ID";
+
+            SqlCommand cmd_Edicao = new(sql, conexao);
+
+            DefinirParametros(entidade, cmd_Edicao);
+
+            cmd_Edicao.ExecuteNonQuery();
+
+            DesconectarBancoDados();
+        }
+
+        protected override void ExcluirRegistroBancoDados(Taxa entidade)
+        {
+            ConectarBancoDados();
+
+            sql = @"DELETE FROM TBTAXA WHERE ID = @ID;";
+
+            SqlCommand cmd_Exclusao = new(sql, conexao);
+
+            cmd_Exclusao.Parameters.AddWithValue("ID", entidade.Id);
+
+            cmd_Exclusao.ExecuteNonQuery();
+
+            DesconectarBancoDados();
         }
 
         protected override List<Taxa> LerTodos(SqlDataReader leitor)
@@ -151,7 +202,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
 
         protected override ValidationResult Validar(Taxa entidade)
         {
-            throw new NotImplementedException();
+            return new ValidadorTaxa().Validate(entidade);
         }
 
         #endregion
