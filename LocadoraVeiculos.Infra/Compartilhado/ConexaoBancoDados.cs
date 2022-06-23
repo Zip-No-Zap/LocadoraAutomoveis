@@ -28,14 +28,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             conexao.Close();
         }
 
-        public void ExecutarSql(string sql)
-        {          
-            SqlCommand comando = new SqlCommand(sql);
 
-            ConectarBancoDados();
-            comando.ExecuteNonQuery();
-            DesconectarBancoDados();
-        }
 
         #region metodos abstratos
 

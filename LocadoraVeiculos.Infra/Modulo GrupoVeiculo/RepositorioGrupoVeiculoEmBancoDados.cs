@@ -71,11 +71,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 
             SqlDataReader leitor = cmd_Selecao.ExecuteReader();
 
-            List<GrupoVeiculo> funcionarios = LerTodos(leitor);
+            List<GrupoVeiculo> grupos = LerTodos(leitor);
 
             DesconectarBancoDados();
 
-            return funcionarios;
+            return grupos;
         }
 
         protected override void DefinirParametros(GrupoVeiculo entidade, SqlCommand cmd)
@@ -168,7 +168,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 
         protected override GrupoVeiculo LerUnico(SqlDataReader leitor)
         {
-            GrupoVeiculo funcionario = null;
+            GrupoVeiculo grupo = null;
 
             if (leitor.Read())
             {
@@ -176,13 +176,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
                 string nome = leitor["NOMEGRUPO"].ToString();
 
 
-                funcionario = new GrupoVeiculo(nome)
+                grupo = new GrupoVeiculo(nome)
                 {
                     Id = id
                 };
             }
 
-            return funcionario;
+            return grupo;
         }
 
         protected override ValidationResult Validar(GrupoVeiculo entidade)

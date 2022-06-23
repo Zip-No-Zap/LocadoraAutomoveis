@@ -16,7 +16,6 @@
   <ItemGroup>
     <Folder Include="Modulo Cliente\" />
     <Folder Include="Modulo Funcionario\" />
-    <Folder Include="Modulo GrupoVeiculo\" />
   </ItemGroup>
 
   <ItemGroup>

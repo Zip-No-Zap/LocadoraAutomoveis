@@ -141,8 +141,8 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Grupo Veiculo";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadasrtoFuncionario_FormClosing);
-            this.Load += new System.EventHandler(this.TelaCadasrtoFuncionario_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroGrupoVeiculo_FormClosing);
+            this.Load += new System.EventHandler(this.TelaCadastroGrupoVeiculo_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
