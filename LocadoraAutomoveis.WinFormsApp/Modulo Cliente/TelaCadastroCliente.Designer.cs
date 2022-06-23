@@ -42,16 +42,16 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.tbCnhCondutor = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tbEmail = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.tbTelefone = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tbCNPJ = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.tbTelefone = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -225,13 +225,13 @@
             this.tbCnhCondutor.Size = new System.Drawing.Size(285, 27);
             this.tbCnhCondutor.TabIndex = 43;
             // 
-            // textBox4
+            // tbEmail
             // 
-            this.textBox4.Location = new System.Drawing.Point(14, 336);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(286, 27);
-            this.textBox4.TabIndex = 45;
+            this.tbEmail.Location = new System.Drawing.Point(14, 336);
+            this.tbEmail.Margin = new System.Windows.Forms.Padding(2);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(286, 27);
+            this.tbEmail.TabIndex = 45;
             // 
             // label9
             // 
@@ -254,14 +254,6 @@
             this.label10.Size = new System.Drawing.Size(59, 19);
             this.label10.TabIndex = 49;
             this.label10.Text = "Telefone";
-            // 
-            // tbTelefone
-            // 
-            this.tbTelefone.Location = new System.Drawing.Point(304, 336);
-            this.tbTelefone.Margin = new System.Windows.Forms.Padding(2);
-            this.tbTelefone.Name = "tbTelefone";
-            this.tbTelefone.Size = new System.Drawing.Size(182, 27);
-            this.tbTelefone.TabIndex = 50;
             // 
             // panel1
             // 
@@ -300,15 +292,15 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.tbTelefone);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.tbCNPJ);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.tbCnhCondutor);
-            this.panel2.Controls.Add(this.tbTelefone);
             this.panel2.Controls.Add(this.tbNome);
-            this.panel2.Controls.Add(this.textBox4);
+            this.panel2.Controls.Add(this.tbEmail);
             this.panel2.Controls.Add(this.cbTipoCliente);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.tbCPF);
@@ -344,6 +336,15 @@
             this.label8.Size = new System.Drawing.Size(40, 19);
             this.label8.TabIndex = 52;
             this.label8.Text = "CNPJ";
+            // 
+            // tbTelefone
+            // 
+            this.tbTelefone.Location = new System.Drawing.Point(305, 336);
+            this.tbTelefone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbTelefone.Mask = "(99) 00000-0000";
+            this.tbTelefone.Name = "tbTelefone";
+            this.tbTelefone.Size = new System.Drawing.Size(181, 27);
+            this.tbTelefone.TabIndex = 53;
             // 
             // TelaCadastroCliente
             // 
@@ -382,15 +383,15 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbCnhCondutor;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox tbTelefone;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tbCNPJ;
+        private System.Windows.Forms.MaskedTextBox tbTelefone;
     }
 }
