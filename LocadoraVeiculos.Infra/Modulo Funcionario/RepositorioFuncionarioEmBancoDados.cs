@@ -4,9 +4,6 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 {
@@ -14,6 +11,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
     {
         public ValidationResult Inserir(Funcionario entidade)
         {
+            if (VerificarDuplicidade(entidade) == true)
+                return null;
+
             ValidationResult resultado = Validar(entidade);
 
             if (resultado.IsValid)
@@ -231,6 +231,21 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
         protected override ValidationResult Validar(Funcionario entidade)
         {
             return new ValidadorFuncionario().Validate(entidade);
+        }
+
+        protected override bool VerificarDuplicidade(Funcionario entidade)
+        {
+            var funcs = SelecionarTodos();
+
+            foreach (Funcionario f in funcs)
+            {
+                if (f.Login == entidade.Login)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

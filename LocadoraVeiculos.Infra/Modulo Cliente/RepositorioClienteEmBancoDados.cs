@@ -4,9 +4,7 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 {
@@ -14,6 +12,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
     {
         public ValidationResult Inserir(Cliente entidade)
         {
+            if (VerificarDuplicidade(entidade) == true)
+                return null;
+
             ValidationResult resultado = Validar(entidade);
 
             if (resultado.IsValid)
@@ -40,8 +41,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 
             return resultado;
         }
-
-
 
         public Cliente SelecionarPorId(int numero)
         {
@@ -229,6 +228,21 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
         protected override ValidationResult Validar(Cliente entidade)
         {
             return new ValidadorCliente().Validate(entidade);
+        }
+
+        protected override bool VerificarDuplicidade(Cliente entidade)
+        {
+            var cli = SelecionarTodos();
+
+            foreach (Cliente c in cli)
+            {
+                if (c.Cpf == entidade.Cpf || c.Cnpj == entidade.Cnpj || c.Cnh == entidade.Cnh)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

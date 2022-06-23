@@ -14,6 +14,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
     {
         public ValidationResult Inserir(Taxa entidade)
         {
+            if (VerificarDuplicidade(entidade) == true)
+                return null;
+
             ValidationResult resultado = Validar(entidade);
 
             if (resultado.IsValid)
@@ -203,6 +206,21 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
         protected override ValidationResult Validar(Taxa entidade)
         {
             return new ValidadorTaxa().Validate(entidade);
+        }
+
+        protected override bool VerificarDuplicidade(Taxa entidade)
+        {
+            var taxas = SelecionarTodos();
+
+            foreach (Taxa t in taxas)
+            {
+                if (t.Descricao == entidade.Descricao)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         #endregion

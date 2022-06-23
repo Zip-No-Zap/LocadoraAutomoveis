@@ -66,6 +66,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
             ValidationResult resultadoValidacao = GravarRegistro(funcionario);
 
+            if (resultadoValidacao == null)
+            {
+                MessageBox.Show("Tentativa de inserir informação duplicada", "Aviso");
+                return;
+            }
+
             if (resultadoValidacao.IsValid == false)
             {
                 string erro = resultadoValidacao.Errors[0].ErrorMessage;
