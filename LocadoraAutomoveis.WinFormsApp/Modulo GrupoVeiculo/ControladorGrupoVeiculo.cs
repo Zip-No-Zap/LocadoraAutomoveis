@@ -10,17 +10,17 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 {
     public class ControladorGrupoVeiculo : ControladorBase
     {
+        public override void Inserir()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Editar()
         {
             throw new NotImplementedException();
         }
 
         public override void Excluir()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Inserir()
         {
             throw new NotImplementedException();
         }
