@@ -1,4 +1,5 @@
 ﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa;
 using System;
 using System.Collections.Generic;
 using System.Linq;

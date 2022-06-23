@@ -32,7 +32,40 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             Assert.AreEqual(true, resultado.IsValid);
         }
 
-#region privados
+        [TestMethod]
+        public void Deve_editar_taxa()
+        {
+            //arrange
+            var taxa = InstanciarTaxa();
+
+            repoTaxa.Inserir(taxa);
+
+            taxa.Descricao = "alterado no teste";
+
+            //action
+            var resultado = repoTaxa.Editar(taxa);
+
+            //assert
+            Assert.AreEqual(true, resultado.IsValid);
+        }
+
+        [TestMethod]
+        public void Deve_excluir_taxa()
+        {
+            //arrange
+            var taxa = InstanciarTaxa();
+
+            repoTaxa.Inserir(taxa);
+
+            //action
+            var resultado = repoTaxa.Excluir(taxa);
+
+            //assert
+            Assert.AreEqual(true, resultado.IsValid);
+        }
+
+
+        #region privados
         Taxa InstanciarTaxa()
         {
             return new Taxa()
