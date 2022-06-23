@@ -86,8 +86,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
         private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-               (e.KeyChar != '.'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != ',')
             {
                 e.Handled = true;
             }
