@@ -2,24 +2,17 @@
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using Microsoft.VisualBasic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 {
     public partial class TelaCadastroCliente : Form
     {
-        public Cliente cliente;
+        private Cliente cliente;
 
         public Func<Cliente, ValidationResult> GravarRegistro
         {
-            get; set; 
+            get; set;
         }
         public TelaCadastroCliente()
         {
@@ -37,14 +30,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
                 tbNome.Text = cliente.Nome;
                 tbEndereco.Text = cliente.Endereco;
-                tbCnhCondutor.Text = cliente.Cnh;
+                tbCnh.Text = cliente.Cnh;
                 tbEmail.Text = cliente.Email;
                 tbTelefone.Text = cliente.Telefone;
 
                 if (cliente.TipoCliente == EnumTipoCliente.PessoaFisica)
                 {
                     rdbPessoaFisica.Checked = true;
-                    tbCPF.Text = cliente.Cnpj;
+                    tbCPF.Text = cliente.Cpf;
                     
                 }
                 else
@@ -53,11 +46,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
                     tbCNPJ.Text = cliente.Cnpj;
                 }
             }
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)
@@ -75,25 +63,26 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
         private void btnOK_Click(object sender, EventArgs e)
         {
             cliente.Nome = tbNome.Text;
-            cliente.Cnpj = tbCNPJ.Text;
-            cliente.Cpf = tbCPF.Text;
             cliente.Endereco = tbEndereco.Text;
-            cliente.Cnh = tbCnhCondutor.Text;
+            cliente.Cnh = tbCnh.Text;
             cliente.Telefone = tbTelefone.Text;
+            cliente.Email = tbEmail.Text;
 
             if (rdbPessoaFisica.Checked)
-            {
+            {   
                 cliente.TipoCliente = EnumTipoCliente.PessoaFisica;
                 cliente.Cpf = tbCPF.Text;
+                cliente.Cnpj = "";
             }
             else
             {
                 cliente.TipoCliente = EnumTipoCliente.PessoaJuridica;
                 cliente.Cnpj = tbCNPJ.Text;
+                cliente.Cpf = "";
             }
             
 
-            ValidationResult resultadoValidacao = GravarRegistro(cliente);
+            var resultadoValidacao = GravarRegistro(cliente);
 
             if (resultadoValidacao.IsValid == false)
             {
@@ -135,9 +124,15 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             return e;
         }
 
-        private void TelaCadastroCliente_FormClosed(object sender, FormClosedEventArgs e)
+        private void TelaCadastroCliente_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
+        }
+
+        private void TelaCadastroCliente_Load(object sender, EventArgs e)
+        {
+            FormPrincipal.Instancia.AtualizarRodape("");
+
         }
     }
 }

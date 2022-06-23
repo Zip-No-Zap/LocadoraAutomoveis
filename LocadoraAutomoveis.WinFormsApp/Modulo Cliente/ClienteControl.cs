@@ -26,7 +26,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
                 new DataGridViewTextBoxColumn { DataPropertyName = "Cpf", HeaderText = "CPF"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Cnpj", HeaderText = "CNPJ"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Cnh", HeaderText = "CNH"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Cidade", HeaderText = "Cidade"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = "Email"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Endereco", HeaderText = "Endereco"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Telefone", HeaderText = "Telefone"},

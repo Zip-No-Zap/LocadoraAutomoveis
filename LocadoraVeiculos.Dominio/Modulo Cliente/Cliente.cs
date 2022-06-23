@@ -9,24 +9,27 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
 {
     public class Cliente : EntidadeBase<Cliente>
     {
+        public Cliente()
+        {
+
+        }
+
         private EnumTipoCliente _tipoCliente;
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public string Cnpj { get; set; }
         public string Cnh { get; set; }
-        public string Cidade { get; set; }
         public string Email { get; set; }   
         public string Endereco { get; set; }
         public string Telefone { get; set; }
 
         public Cliente (string nome, string cpf, string cnpj,
-            string cnh,string cidade, string email, string endereco, string telefone)
+            string cnh, string email, string endereco, string telefone)
         {
             Nome = nome;
             Cpf = cpf;
             Cnpj = cnpj;
             Cnh = cnh;
-            Cidade = cidade;
             Email = email;
             Endereco = endereco;
             Telefone = telefone;
@@ -60,7 +63,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
                 Cnpj == cliente.Cnpj &&
                 Email == cliente.Email &&
                 Endereco == cliente.Endereco &&
-                Cidade == cliente.Cidade &&
                 Telefone == cliente.Telefone &&
                 TipoCliente == cliente.TipoCliente;
         }
@@ -74,7 +76,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
             hash.Add(Cnpj);
             hash.Add(Email);
             hash.Add(Endereco);
-            hash.Add(Cidade);
             hash.Add(Telefone);
             hash.Add(TipoCliente);
             return hash.ToHashCode();
