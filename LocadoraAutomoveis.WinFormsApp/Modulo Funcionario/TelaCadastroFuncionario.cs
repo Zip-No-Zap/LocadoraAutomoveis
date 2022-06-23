@@ -16,11 +16,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             get; set;
         }
 
-        public TelaCadastroFuncionario()
-        {
-            InitializeComponent();
-        }
-
         public Funcionario Funcionario
         {
             get
@@ -40,6 +35,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
                 tbSenha.Text = funcionario.Senha;
                 cbPerfil.Text = funcionario.Perfil;
             }
+        }
+
+        public TelaCadastroFuncionario()
+        {
+            InitializeComponent();
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)

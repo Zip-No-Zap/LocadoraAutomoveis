@@ -1,5 +1,8 @@
 ﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
+using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.WinFormsApp.Modulo_Taxa;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using System;
 using System.Collections.Generic;
@@ -26,11 +29,12 @@ namespace LocadoraAutomoveis.WinFormsApp
 
         private void InicializarControladores()
         {
-            var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
-
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Funcionário", new ControladorFuncionario());
+            controladores.Add("Cliente", new ControladorCliente());
+            controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo());
+            controladores.Add("Taxa", new ControladorTaxa());
         }
 
         public static FormPrincipal Instancia
