@@ -3,7 +3,6 @@ using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
 using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Taxa;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -135,6 +134,12 @@ namespace LocadoraAutomoveis.WinFormsApp
         private void btnExcluir_Click(object sender, EventArgs e)
         {
             controlador.Excluir();
+        }
+
+        private void taxaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            HabilitarBotoesToolStrip();
         }
     }
 }
