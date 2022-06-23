@@ -6,7 +6,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 {
     public class ConfigurarStripFuncionario : ConfiguracaoToolStripBase
     {
-        public string TipoCadastro => "cadastro de funcionário";
+        public string TipoCadastro  => "cadastro de funcionário";
 
         public string TooltipInserir => "inserir novo funcionário";
 

@@ -2,6 +2,8 @@
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using System;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using Microsoft.VisualBasic;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 {
@@ -94,7 +96,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e = ImpedirNumeros(e);
+            e = ImpedirNumeroTexBox(e);
+        }
+
+        private void tbCidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e = ImpedirNumeroTexBox(e);
         }
 
         private void tbSalario_KeyPress(object sender, KeyPressEventArgs e)
@@ -114,32 +121,17 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             }
         }
 
-        private void tbCidade_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e = ImpedirNumeros(e);
-        }
-
         private void tbNome_Leave(object sender, EventArgs e)
         {
-            ImpedirTextoMenorDois(tbNome.Text);
-            tbNome.Focus();
+           // ImpedirTextoMenorDois(tbNome.Text);
+            //tbNome.Focus();
         }
 
         private void ImpedirTextoMenorDois(string texto)
         {
-            if (texto.Length < 2)
-                MessageBox.Show("Este campo deve ter mais que dois caracteres", "Aviso");
-        }
-
-        private static KeyPressEventArgs ImpedirNumeros(KeyPressEventArgs e)
-        {
-            if ((Microsoft.VisualBasic.Strings.Asc(e.KeyChar) >= 48 & Microsoft.VisualBasic.Strings.Asc(e.KeyChar) <= 57))
-            {
-                e.Handled = true;
-                e = null;
-            }
-
-            return e;
+            //if(Asc(e.KeyChar) >= 48 And Asc(e.KeyChar) <= 57)
+            //e.Handled = true;
+            //e = null;
         }
 
         private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
@@ -153,8 +145,19 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void tbCidade_Leave(object sender, EventArgs e)
         {
-            ImpedirTextoMenorDois(tbCidade.Text);
-            tbCidade.Focus();
+            //ImpedirTextoMenorDois(tbCidade.Text);
+            //tbCidade.Focus();
+        }
+
+        private static KeyPressEventArgs ImpedirNumeroTexBox(KeyPressEventArgs e)
+        {
+            if ((Strings.Asc(e.KeyChar) >= 48 & Strings.Asc(e.KeyChar) <= 57))
+            {
+                e.Handled = true;
+                e = null;
+            }
+
+            return e;
         }
     }
 }
