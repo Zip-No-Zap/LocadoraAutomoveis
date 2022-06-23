@@ -184,10 +184,14 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                 double salario = Convert.ToDouble(leitor["SALARIO"]);
                 DateTime dataAdmissao = Convert.ToDateTime(leitor["DATAADMISSAO"]);
                 string perfil = leitor["PERFIL"].ToString();
+                string cidade = leitor["CIDADE"].ToString();
+                string estado = leitor["ESTADO"].ToString();
 
                 Funcionario funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao, perfil)
                 {
-                    Id = id
+                    Id = id,
+                    Cidade = cidade,
+                    Estado = estado
                     
                 };
 
@@ -210,10 +214,14 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                 double salario = Convert.ToDouble(leitor["SALARIO"]);
                 DateTime dataAdmissao = Convert.ToDateTime(leitor["DATAADMISSAO"]);
                 string perfil = leitor["PERFIL"].ToString();
+                string cidade = leitor["CIDADE"].ToString();
+                string estado = leitor["ESTADO"].ToString();
 
                 funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao, perfil)
                 {
-                    Id = id
+                    Id = id,
+                    Cidade = cidade,
+                    Estado = estado
                 };
             }
 

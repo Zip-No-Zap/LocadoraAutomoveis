@@ -60,7 +60,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             funcionario.Estado = tbUF.Text;
             funcionario.Login = tbLogin.Text;
             funcionario.Senha = tbSenha.Text;
-            funcionario.Perfil = cbPerfil.SelectedItem.ToString();
+            funcionario.Perfil = cbPerfil.Text;
 
             ValidationResult resultadoValidacao = GravarRegistro(funcionario);
 
