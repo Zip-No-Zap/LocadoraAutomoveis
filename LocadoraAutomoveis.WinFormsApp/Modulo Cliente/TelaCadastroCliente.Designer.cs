@@ -34,22 +34,24 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbCidade = new System.Windows.Forms.TextBox();
             this.tbNome = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbCPF = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.cbPerfil = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cbTipoCliente = new System.Windows.Forms.ComboBox();
+            this.tbEndereco = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbCnhCondutor = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.tbTelefone = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tbCNPJ = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -86,7 +88,7 @@
             "SP",
             "SE",
             "TO"});
-            this.cbUF.Location = new System.Drawing.Point(304, 203);
+            this.cbUF.Location = new System.Drawing.Point(304, 273);
             this.cbUF.Margin = new System.Windows.Forms.Padding(2);
             this.cbUF.Name = "cbUF";
             this.cbUF.Size = new System.Drawing.Size(182, 28);
@@ -96,7 +98,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(14, 184);
+            this.label3.Location = new System.Drawing.Point(14, 254);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 19);
@@ -107,7 +109,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(304, 182);
+            this.label2.Location = new System.Drawing.Point(304, 252);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 19);
@@ -124,11 +126,10 @@
             this.label1.Size = new System.Drawing.Size(46, 19);
             this.label1.TabIndex = 26;
             this.label1.Text = "Nome";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // tbCidade
             // 
-            this.tbCidade.Location = new System.Drawing.Point(14, 203);
+            this.tbCidade.Location = new System.Drawing.Point(14, 273);
             this.tbCidade.Margin = new System.Windows.Forms.Padding(2);
             this.tbCidade.Name = "tbCidade";
             this.tbCidade.Size = new System.Drawing.Size(286, 27);
@@ -142,62 +143,63 @@
             this.tbNome.Size = new System.Drawing.Size(472, 27);
             this.tbNome.TabIndex = 21;
             // 
-            // textBox1
+            // tbCPF
             // 
-            this.textBox1.Location = new System.Drawing.Point(14, 84);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(286, 27);
-            this.textBox1.TabIndex = 37;
+            this.tbCPF.Enabled = false;
+            this.tbCPF.Location = new System.Drawing.Point(14, 153);
+            this.tbCPF.Margin = new System.Windows.Forms.Padding(2);
+            this.tbCPF.Name = "tbCPF";
+            this.tbCPF.Size = new System.Drawing.Size(227, 27);
+            this.tbCPF.TabIndex = 37;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(14, 63);
+            this.label4.Location = new System.Drawing.Point(14, 132);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 19);
+            this.label4.Size = new System.Drawing.Size(33, 19);
             this.label4.TabIndex = 38;
-            this.label4.Text = "CPF/CNPJ";
+            this.label4.Text = "CPF";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(304, 63);
+            this.label5.Location = new System.Drawing.Point(14, 73);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 19);
             this.label5.TabIndex = 39;
             this.label5.Text = "Tipo de Cliente";
             // 
-            // cbPerfil
+            // cbTipoCliente
             // 
-            this.cbPerfil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPerfil.FormattingEnabled = true;
-            this.cbPerfil.Items.AddRange(new object[] {
+            this.cbTipoCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipoCliente.FormattingEnabled = true;
+            this.cbTipoCliente.Items.AddRange(new object[] {
             "Administrador",
             "Usuário Geral"});
-            this.cbPerfil.Location = new System.Drawing.Point(304, 83);
-            this.cbPerfil.Margin = new System.Windows.Forms.Padding(2);
-            this.cbPerfil.Name = "cbPerfil";
-            this.cbPerfil.Size = new System.Drawing.Size(182, 28);
-            this.cbPerfil.TabIndex = 40;
+            this.cbTipoCliente.Location = new System.Drawing.Point(14, 93);
+            this.cbTipoCliente.Margin = new System.Windows.Forms.Padding(2);
+            this.cbTipoCliente.Name = "cbTipoCliente";
+            this.cbTipoCliente.Size = new System.Drawing.Size(227, 28);
+            this.cbTipoCliente.TabIndex = 40;
             // 
-            // textBox2
+            // tbEndereco
             // 
-            this.textBox2.Location = new System.Drawing.Point(14, 144);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(286, 27);
-            this.textBox2.TabIndex = 41;
+            this.tbEndereco.Location = new System.Drawing.Point(14, 214);
+            this.tbEndereco.Margin = new System.Windows.Forms.Padding(2);
+            this.tbEndereco.Name = "tbEndereco";
+            this.tbEndereco.Size = new System.Drawing.Size(472, 27);
+            this.tbEndereco.TabIndex = 41;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(14, 123);
+            this.label6.Location = new System.Drawing.Point(14, 193);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 19);
@@ -208,24 +210,24 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(14, 311);
+            this.label7.Location = new System.Drawing.Point(14, 381);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(121, 19);
             this.label7.TabIndex = 44;
             this.label7.Text = "CNH do Condutor";
             // 
-            // textBox3
+            // tbCnhCondutor
             // 
-            this.textBox3.Location = new System.Drawing.Point(14, 332);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(286, 27);
-            this.textBox3.TabIndex = 43;
+            this.tbCnhCondutor.Location = new System.Drawing.Point(14, 402);
+            this.tbCnhCondutor.Margin = new System.Windows.Forms.Padding(2);
+            this.tbCnhCondutor.Name = "tbCnhCondutor";
+            this.tbCnhCondutor.Size = new System.Drawing.Size(285, 27);
+            this.tbCnhCondutor.TabIndex = 43;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(14, 266);
+            this.textBox4.Location = new System.Drawing.Point(14, 336);
             this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(286, 27);
@@ -235,7 +237,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(14, 245);
+            this.label9.Location = new System.Drawing.Point(14, 315);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 19);
@@ -246,28 +248,27 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(304, 245);
+            this.label10.Location = new System.Drawing.Point(304, 315);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 19);
             this.label10.TabIndex = 49;
             this.label10.Text = "Telefone";
             // 
-            // textBox5
+            // tbTelefone
             // 
-            this.textBox5.Location = new System.Drawing.Point(304, 266);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(182, 27);
-            this.textBox5.TabIndex = 50;
-            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            this.tbTelefone.Location = new System.Drawing.Point(304, 336);
+            this.tbTelefone.Margin = new System.Windows.Forms.Padding(2);
+            this.tbTelefone.Name = "tbTelefone";
+            this.tbTelefone.Size = new System.Drawing.Size(182, 27);
+            this.tbTelefone.TabIndex = 50;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.Controls.Add(this.btnLimpar);
             this.panel1.Controls.Add(this.btnOK);
-            this.panel1.Location = new System.Drawing.Point(26, 409);
+            this.panel1.Location = new System.Drawing.Point(26, 471);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(524, 72);
@@ -299,34 +300,56 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.tbCNPJ);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.textBox5);
+            this.panel2.Controls.Add(this.tbCnhCondutor);
+            this.panel2.Controls.Add(this.tbTelefone);
             this.panel2.Controls.Add(this.tbNome);
             this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.cbPerfil);
+            this.panel2.Controls.Add(this.cbTipoCliente);
             this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.tbCPF);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.cbUF);
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.tbEndereco);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.tbCidade);
             this.panel2.Location = new System.Drawing.Point(26, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(524, 381);
+            this.panel2.Size = new System.Drawing.Size(524, 440);
             this.panel2.TabIndex = 52;
+            // 
+            // tbCNPJ
+            // 
+            this.tbCNPJ.Enabled = false;
+            this.tbCNPJ.Location = new System.Drawing.Point(245, 153);
+            this.tbCNPJ.Margin = new System.Windows.Forms.Padding(2);
+            this.tbCNPJ.Name = "tbCNPJ";
+            this.tbCNPJ.Size = new System.Drawing.Size(241, 27);
+            this.tbCNPJ.TabIndex = 51;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(245, 132);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(40, 19);
+            this.label8.TabIndex = 52;
+            this.label8.Text = "CNPJ";
             // 
             // TelaCadastroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 504);
+            this.ClientSize = new System.Drawing.Size(574, 566);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -336,7 +359,6 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Cliente";
-            this.Load += new System.EventHandler(this.TelaCadastroCliente_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -352,21 +374,23 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbCidade;
         private System.Windows.Forms.TextBox tbNome;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbCPF;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cbPerfil;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ComboBox cbTipoCliente;
+        private System.Windows.Forms.TextBox tbEndereco;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbCnhCondutor;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox tbTelefone;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tbCNPJ;
     }
 }
