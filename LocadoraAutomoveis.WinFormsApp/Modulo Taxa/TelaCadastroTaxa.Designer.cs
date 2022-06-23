@@ -73,6 +73,7 @@
             this.tbDescricao.Name = "tbDescricao";
             this.tbDescricao.Size = new System.Drawing.Size(329, 31);
             this.tbDescricao.TabIndex = 0;
+            this.tbDescricao.Leave += new System.EventHandler(this.tbDescricao_Leave);
             // 
             // tbValor
             // 
@@ -81,6 +82,7 @@
             this.tbValor.Size = new System.Drawing.Size(329, 31);
             this.tbValor.TabIndex = 2;
             this.tbValor.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.tbValor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValor_KeyPress);
             // 
             // label1
             // 
@@ -89,7 +91,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 25);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Descricao";
+            this.label1.Text = "Descrição";
             // 
             // label2
             // 

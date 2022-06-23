@@ -1,13 +1,6 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
@@ -70,6 +63,34 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
                 DialogResult = DialogResult.None;
             }
 
+        }
+
+        private void tbDescricao_Leave(object sender, EventArgs e)
+        {
+            ImpedirTextoMenorDois(tbDescricao.Text);
+        }
+
+        private void ImpedirTextoMenorDois(string texto)
+        {
+            if (Text.Length < 2)
+            {
+                MessageBox.Show("Este campo não aceita menos de dois caracteres", "Aviso");
+                return;
+            }
+        }
+
+        private void tbValor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ImpedirLetrasCharEspeciais(e);
+        }
+
+        private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+               (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

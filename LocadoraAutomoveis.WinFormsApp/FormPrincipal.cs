@@ -135,5 +135,11 @@ namespace LocadoraAutomoveis.WinFormsApp
         {
             controlador.Excluir();
         }
+
+        private void taxaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            HabilitarBotoesToolStrip();
+        }
     }
 }

@@ -134,7 +134,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         private void ImpedirTextoMenorDois(string texto)
         {
             if (Text.Length < 2)
-                MessageBox.Show("Este campo não aceita menos de dois caracteres","Aviso");
+            {
+                MessageBox.Show("Este campo não aceita menos de dois caracteres", "Aviso");
+                return;
+            }
         }
 
         private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
@@ -156,5 +159,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
             return e;
         }
+
     }
 }
