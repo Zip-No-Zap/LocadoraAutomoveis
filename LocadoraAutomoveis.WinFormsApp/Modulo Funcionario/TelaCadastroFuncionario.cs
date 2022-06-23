@@ -94,20 +94,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((Microsoft.VisualBasic.Strings.Asc(e.KeyChar) >= 48 & Microsoft.VisualBasic.Strings.Asc(e.KeyChar) <= 57))
-            {
-                e.Handled = true;
-                e = null;
-            }
+            e = ImpedirNumeros(e);
         }
 
         private void tbSalario_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-               (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
+            ImpedirLetrasCharEspeciais(e);
         }
 
         private void tbData_Leave(object sender, EventArgs e)
@@ -120,6 +112,49 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
                 tbData.Focus();
                 return;
             }
+        }
+
+        private void tbCidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e = ImpedirNumeros(e);
+        }
+
+        private void tbNome_Leave(object sender, EventArgs e)
+        {
+            ImpedirTextoMenorDois(tbNome.Text);
+            tbNome.Focus();
+        }
+
+        private void ImpedirTextoMenorDois(string texto)
+        {
+            if (texto.Length < 2)
+                MessageBox.Show("Este campo deve ter mais que dois caracteres", "Aviso");
+        }
+
+        private static KeyPressEventArgs ImpedirNumeros(KeyPressEventArgs e)
+        {
+            if ((Microsoft.VisualBasic.Strings.Asc(e.KeyChar) >= 48 & Microsoft.VisualBasic.Strings.Asc(e.KeyChar) <= 57))
+            {
+                e.Handled = true;
+                e = null;
+            }
+
+            return e;
+        }
+
+        private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+               (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbCidade_Leave(object sender, EventArgs e)
+        {
+            ImpedirTextoMenorDois(tbCidade.Text);
+            tbCidade.Focus();
         }
     }
 }

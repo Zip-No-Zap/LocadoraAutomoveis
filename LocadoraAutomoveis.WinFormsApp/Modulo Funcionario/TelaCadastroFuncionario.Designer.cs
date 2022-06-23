@@ -259,6 +259,8 @@
             this.tbCidade.Name = "tbCidade";
             this.tbCidade.Size = new System.Drawing.Size(309, 31);
             this.tbCidade.TabIndex = 4;
+            this.tbCidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCidade_KeyPress);
+            this.tbCidade.Leave += new System.EventHandler(this.tbCidade_Leave);
             // 
             // tbSenha
             // 
@@ -284,6 +286,7 @@
             this.tbNome.Size = new System.Drawing.Size(309, 31);
             this.tbNome.TabIndex = 0;
             this.tbNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNome_KeyPress);
+            this.tbNome.Leave += new System.EventHandler(this.tbNome_Leave);
             // 
             // TelaCadastroFuncionario
             // 
@@ -295,8 +298,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "TelaCadastroFuncionario";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TelaCadasrtoFuncionario";
+            this.Text = "Cadasrto de Funcionario";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadasrtoFuncionario_FormClosing);
             this.Load += new System.EventHandler(this.TelaCadasrtoFuncionario_Load);
             this.panel1.ResumeLayout(false);
