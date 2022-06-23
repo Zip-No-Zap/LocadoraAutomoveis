@@ -12,14 +12,13 @@ namespace LocadoraVeiculos.Dominio.Modulo_Funcionario
         {
 
         }
-        public Funcionario(string nome, string login, string senha, double salario, DateTime dataAdmissao, string perfil)
+        public Funcionario(string nome, string login, string senha, double salario, DateTime dataAdmissao)
         {
             Nome = nome;
             Login = login;
             Senha = senha;
             Salario = salario;
             DataAdmissao = dataAdmissao;
-            Perfil = Perfil;
         }
 
         public string Nome { get; set; }

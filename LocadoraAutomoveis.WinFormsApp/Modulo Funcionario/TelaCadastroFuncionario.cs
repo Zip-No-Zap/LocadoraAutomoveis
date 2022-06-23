@@ -33,7 +33,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
                 tbSalario.Text = funcionario.Salario.ToString();
                 tbData.Text = funcionario.DataAdmissao.ToString();
                 tbCidade.Text = funcionario.Cidade;
-                tbUF.Text = funcionario.Estado;
+                cbUF.Text = funcionario.Estado;
                 tbLogin.Text = funcionario.Login;
                 tbSenha.Text = funcionario.Senha;
                 cbPerfil.Text = funcionario.Perfil;
@@ -57,7 +57,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             funcionario.Salario = float.Parse(tbSalario.Text);
             funcionario.DataAdmissao = Convert.ToDateTime(tbData.Text);
             funcionario.Cidade = tbCidade.Text;
-            funcionario.Estado = tbUF.Text;
+            funcionario.Estado = cbUF.Text;
             funcionario.Login = tbLogin.Text;
             funcionario.Senha = tbSenha.Text;
             funcionario.Perfil = cbPerfil.Text;
@@ -81,7 +81,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             tbSalario.Clear();
             tbData.Clear();
             tbCidade.Clear();
-            tbUF.Clear();
             tbLogin.Clear();
             tbSenha.Clear();
 
@@ -91,6 +90,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         private void TelaCadasrtoFuncionario_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
+        }
+
+        private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

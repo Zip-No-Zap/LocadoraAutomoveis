@@ -34,7 +34,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.cbPerfil = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.tbUF = new System.Windows.Forms.MaskedTextBox();
             this.tbData = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -48,6 +47,7 @@
             this.tbSenha = new System.Windows.Forms.TextBox();
             this.tbSalario = new System.Windows.Forms.TextBox();
             this.tbNome = new System.Windows.Forms.TextBox();
+            this.cbUF = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -86,9 +86,9 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cbUF);
             this.panel2.Controls.Add(this.cbPerfil);
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.tbUF);
             this.panel2.Controls.Add(this.tbData);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
@@ -128,13 +128,6 @@
             this.label8.Size = new System.Drawing.Size(45, 21);
             this.label8.TabIndex = 17;
             this.label8.Text = "Perfil";
-            // 
-            // tbUF
-            // 
-            this.tbUF.Location = new System.Drawing.Point(331, 249);
-            this.tbUF.Name = "tbUF";
-            this.tbUF.Size = new System.Drawing.Size(75, 31);
-            this.tbUF.TabIndex = 15;
             // 
             // tbData
             // 
@@ -232,6 +225,7 @@
             // tbSenha
             // 
             this.tbSenha.Location = new System.Drawing.Point(382, 105);
+            this.tbSenha.MaxLength = 50;
             this.tbSenha.Name = "tbSenha";
             this.tbSenha.Size = new System.Drawing.Size(180, 31);
             this.tbSenha.TabIndex = 3;
@@ -250,6 +244,44 @@
             this.tbNome.Name = "tbNome";
             this.tbNome.Size = new System.Drawing.Size(309, 31);
             this.tbNome.TabIndex = 0;
+            this.tbNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNome_KeyPress);
+            // 
+            // cbUF
+            // 
+            this.cbUF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbUF.FormattingEnabled = true;
+            this.cbUF.Items.AddRange(new object[] {
+            "AC",
+            "AL",
+            "AP",
+            "AM",
+            "BA",
+            "CE",
+            "DF",
+            "ES",
+            "GO",
+            "MA",
+            "MT",
+            "MS",
+            "MG",
+            "PA",
+            "PB",
+            "PR",
+            "PE",
+            "PI",
+            "RJ",
+            "RN",
+            "RS",
+            "RO",
+            "RR",
+            "SC",
+            "SP",
+            "SE",
+            "TO"});
+            this.cbUF.Location = new System.Drawing.Point(331, 249);
+            this.cbUF.Name = "cbUF";
+            this.cbUF.Size = new System.Drawing.Size(94, 33);
+            this.cbUF.TabIndex = 20;
             // 
             // TelaCadastroFuncionario
             // 
@@ -291,8 +323,8 @@
         private System.Windows.Forms.TextBox tbSenha;
         private System.Windows.Forms.TextBox tbSalario;
         private System.Windows.Forms.MaskedTextBox tbData;
-        private System.Windows.Forms.MaskedTextBox tbUF;
         private System.Windows.Forms.ComboBox cbPerfil;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cbUF;
     }
 }

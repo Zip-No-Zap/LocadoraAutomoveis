@@ -187,11 +187,12 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                 string cidade = leitor["CIDADE"].ToString();
                 string estado = leitor["ESTADO"].ToString();
 
-                Funcionario funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao, perfil)
+                Funcionario funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao)
                 {
                     Id = id,
                     Cidade = cidade,
-                    Estado = estado
+                    Estado = estado,
+                    Perfil= perfil
                     
                 };
 
@@ -217,11 +218,12 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                 string cidade = leitor["CIDADE"].ToString();
                 string estado = leitor["ESTADO"].ToString();
 
-                funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao, perfil)
+                funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao)
                 {
                     Id = id,
                     Cidade = cidade,
-                    Estado = estado
+                    Estado = estado,
+                    Perfil = perfil
                 };
             }
 

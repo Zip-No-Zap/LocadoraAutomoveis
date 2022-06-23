@@ -35,18 +35,18 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         public override void Editar()
         {
-            Funcionario discSelecionada = ObtemfuncionarioSelecionado();
+            Funcionario Selecionado = ObtemFuncionarioSelecionado();
 
-            if (discSelecionada == null)
+            if (Selecionado == null)
             {
-                MessageBox.Show("Selecione uma funcionario primeiro",
+                MessageBox.Show("Selecione um funcionario primeiro",
                 "Edição de Funcionarios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             TelaCadastroFuncionario tela = new();
 
-            tela.Funcionario = discSelecionada;
+            tela.Funcionario = Selecionado;
 
             tela.GravarRegistro = repoFuncionario.Editar;
 
@@ -60,7 +60,24 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         public override void Excluir()
         {
-            throw new NotImplementedException();
+            Funcionario Selecionado = ObtemFuncionarioSelecionado();
+
+            if (Selecionado == null)
+            {
+                MessageBox.Show("Selecione um Funcionario primeiro",
+                "Exclusão de Funcionarios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o Funcionario?",
+                "Exclusão de Funcionario", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.OK)
+            {
+                repoFuncionario.Excluir(Selecionado);
+
+                CarregarFuncionarios();
+            }
         }
 
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()
@@ -87,7 +104,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             FormPrincipal.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionario(s)");
         }
 
-        private Funcionario ObtemfuncionarioSelecionado()
+        private Funcionario ObtemFuncionarioSelecionado()
         {
             var numero = tabelaFuncionarios.ObtemNumerFuncionarioSelecionado();
 
