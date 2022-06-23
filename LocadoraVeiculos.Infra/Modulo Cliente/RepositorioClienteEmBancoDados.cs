@@ -86,7 +86,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
             cmd.Parameters.AddWithValue("CPF", entidade.Cpf);
             cmd.Parameters.AddWithValue("CPNJ", entidade.Cnpj);
             cmd.Parameters.AddWithValue("ENDERECO", entidade.Endereco);
-            cmd.Parameters.AddWithValue("TIPOCLIENTE", entidade.TipoClienteEnum);
+            cmd.Parameters.AddWithValue("TIPOCLIENTE", entidade.TipoCliente);
             cmd.Parameters.AddWithValue("CNH", entidade.Cnh);
             cmd.Parameters.AddWithValue("EMAIL", entidade.Email);
             cmd.Parameters.AddWithValue("TELEFONE", entidade.Telefone);

@@ -32,7 +32,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
             Telefone = telefone;
         }
 
-        public EnumTipoCliente TipoClienteEnum
+        public EnumTipoCliente TipoCliente
         {
             get { return _tipoCliente; }
             set
@@ -62,7 +62,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
                 Endereco == cliente.Endereco &&
                 Cidade == cliente.Cidade &&
                 Telefone == cliente.Telefone &&
-                TipoClienteEnum == cliente.TipoClienteEnum;
+                TipoCliente == cliente.TipoCliente;
         }
         public override int GetHashCode()
         {
@@ -76,7 +76,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
             hash.Add(Endereco);
             hash.Add(Cidade);
             hash.Add(Telefone);
-            hash.Add(TipoClienteEnum);
+            hash.Add(TipoCliente);
             return hash.ToHashCode();
         }
     }
