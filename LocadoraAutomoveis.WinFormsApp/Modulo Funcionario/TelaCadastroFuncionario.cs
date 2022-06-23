@@ -94,9 +94,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar)))
+            if ((Microsoft.VisualBasic.Strings.Asc(e.KeyChar) >= 48 & Microsoft.VisualBasic.Strings.Asc(e.KeyChar) <= 57))
             {
                 e.Handled = true;
+                e = null;
             }
         }
     }
