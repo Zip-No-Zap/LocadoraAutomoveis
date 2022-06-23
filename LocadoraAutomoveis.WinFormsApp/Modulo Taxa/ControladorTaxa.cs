@@ -1,10 +1,8 @@
 ﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
@@ -40,7 +38,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
             if (Selecionado == null)
             {
-                MessageBox.Show("Selecione um Taxa primeiro",
+                MessageBox.Show("Selecione uma taxa primeiro",
                 "Edição de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -65,12 +63,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
             if (Selecionado == null)
             {
-                MessageBox.Show("Selecione um Taxa primeiro",
-                "Exclusão de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione uma taxa primeiro",
+                "Exclusão de taxas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o Taxa?",
+            DialogResult resultado = MessageBox.Show("Deseja realmente excluir a taxa?",
                 "Exclusão de Taxa", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.OK)
