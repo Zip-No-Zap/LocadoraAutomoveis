@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GeradorTestes.WinApp.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,31 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
         public GrupoVeiculoControl()
         {
             InitializeComponent();
+            grid.ConfigurarGridSomenteLeitura();
+            grid.ConfigurarGridZebrado();
+            grid.Columns.AddRange(ObterColunas());
+        }
+
+        private DataGridViewColumn[] ObterColunas()
+        {
+            var colunas = new DataGridViewColumn[]
+            {
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome do Grupo"},
+
+            };
+
+            return colunas;
+        }
+
+        public int ObtemNumeroGrupoVeiculoSelecionado()
+        {
+            return grid.SelecionarNumero<int>();
+        }
+
+        public void AtualizarRegistros(List<GrupoVeiculo> grupos)
+        {
+            grid.DataSource = grupos;
         }
     }
 }
