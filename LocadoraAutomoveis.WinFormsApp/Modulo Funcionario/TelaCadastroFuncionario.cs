@@ -87,7 +87,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         {
             tbNome.Clear();
             tbSalario.Clear();
-            tbData.Clear();
+            tbData.Text = "1/1/1753";
             tbCidade.Clear();
             tbLogin.Clear();
             tbSenha.Clear();
@@ -117,7 +117,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void tbData_Leave(object sender, EventArgs e)
         {
-            //VerificarDataAdmissao();
+            if (VerificarDataAdmissao(tbData.Text) == false)
+            {
+                MessageBox.Show("Data em formato incorreto", "Aviso");
+                tbData.Clear();
+                tbData.Focus();
+            }
         }
 
         private void tbNome_Leave(object sender, EventArgs e)
@@ -147,23 +152,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             }
         }
 
-        private void VerificarDataAdmissao()
+        private bool VerificarDataAdmissao(string data)
         {
-            DateTime convertido = Convert.ToDateTime(tbData.Text), dataMinima = Convert.ToDateTime("1/1/1753");
+            DateTime date = new(); 
 
-            if (convertido > DateTime.Today)
-            {
-                MessageBox.Show("Data de admissão não pode ser maior que hoje", "Aviso");
-                tbData.Focus();
-                return;
-            }
+            if (DateTime.TryParse(data, out date) == false)
+                return false;
 
-            if (convertido <= dataMinima)
-            {
-                MessageBox.Show("Data deve ser maior que 1/1/1753", "Aviso");
-                tbData.Focus();
-                return;
-            }
+            return true;
         }
 
         private static KeyPressEventArgs ImpedirNumeroTexBox(KeyPressEventArgs e)
