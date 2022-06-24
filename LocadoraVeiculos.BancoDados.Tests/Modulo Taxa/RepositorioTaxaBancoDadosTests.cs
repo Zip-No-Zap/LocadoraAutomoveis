@@ -1,11 +1,7 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
 {
@@ -24,6 +20,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
         {
             //arrange
             var taxa = InstanciarTaxa();
+            taxa.Descricao = "teste05";
 
             //action
             var resultado = repoTaxa.Inserir(taxa);

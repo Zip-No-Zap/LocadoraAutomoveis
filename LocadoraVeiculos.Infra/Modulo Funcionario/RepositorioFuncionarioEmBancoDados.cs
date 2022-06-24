@@ -24,6 +24,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 
         public ValidationResult Editar(Funcionario entidade)
         {
+            if (VerificarDuplicidade(entidade) == true)
+                return null;
+
             ValidationResult resultado = Validar(entidade);
 
             if (resultado.IsValid)

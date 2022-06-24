@@ -25,6 +25,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 
         public ValidationResult Editar(GrupoVeiculo entidade)
         {
+            if (VerificarDuplicidade(entidade) == true)
+                return null;
+
             ValidationResult resultado = Validar(entidade);
 
             if (resultado.IsValid)
