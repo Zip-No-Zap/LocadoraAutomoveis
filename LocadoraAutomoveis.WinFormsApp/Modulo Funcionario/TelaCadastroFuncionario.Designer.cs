@@ -304,7 +304,7 @@
             this.Name = "TelaCadastroFuncionario";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Funcionario";
+            this.Text = "Cadastro de Funcionário";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadasrtoFuncionario_FormClosing);
             this.Load += new System.EventHandler(this.TelaCadasrtoFuncionario_Load);
             this.panel1.ResumeLayout(false);
