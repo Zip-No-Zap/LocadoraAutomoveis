@@ -15,7 +15,14 @@ namespace LocadoraVeiculos.Dominio.Modulo_Funcionario
             RuleFor(x => x.Estado).NotEmpty().WithMessage("'Estado' não pode ser vazio");
             RuleFor(x => x.Perfil).NotNull().WithMessage("'Perfil' não pode ser nulo");
             RuleFor(x => x.DataAdmissao).NotNull().WithMessage("'Data de Admissão' não pode ser nulo");
-            RuleFor(x => x.DataAdmissao).GreaterThan(Convert.ToDateTime("1/1/1753")).WithMessage("'Data de Admissão' não pode ser menor que 1/1/1753");
+            RuleFor(x => x.DataAdmissao).GreaterThan(Convert.ToDateTime("1/1/1753")).WithMessage("'Data de Admissão' deve ser maior que 1/1/1753");
+            RuleFor(x => x.DataAdmissao).LessThan(DateTime.Today).WithMessage("'Data de Admissão' deve ser menor que hoje");
+            RuleFor(x => x.DataAdmissao).Must(VerificaDatavalida).WithMessage("Data de Admissão' formato incorreto");
+        }
+
+        private bool VerificaDatavalida(DateTime date)
+        {
+            return !date.Equals(default(DateTime));
         }
     }
 }

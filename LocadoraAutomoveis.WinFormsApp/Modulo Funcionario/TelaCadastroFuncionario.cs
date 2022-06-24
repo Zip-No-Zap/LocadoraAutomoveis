@@ -117,7 +117,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void tbData_Leave(object sender, EventArgs e)
         {
-            VerificarDataAdmissao();
+            //VerificarDataAdmissao();
         }
 
         private void tbNome_Leave(object sender, EventArgs e)
