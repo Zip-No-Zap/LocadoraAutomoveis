@@ -19,28 +19,29 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
                 .NotEmpty().WithMessage("Campo 'Nome' é obrigatótio.");
 
             RuleFor(x => x.Telefone)
-               .Matches(new Regex(@"^\d{2}\d{4,5}\d{4}$"))
-               .NotEmpty();
+               .Matches(new Regex(@"^\d{2}\d{4,5}\d{4}$")).WithMessage("'Telefone' formato incorreto")
+               .NotEmpty().WithMessage("'Telefone' formato incorreto");
 
             RuleFor(x => x.Email)
-               .EmailAddress(EmailValidationMode.AspNetCoreCompatible)
-               .NotNull().NotEmpty();
+               .EmailAddress(EmailValidationMode.AspNetCoreCompatible).WithMessage("'Email' formato incorreto")
+               .NotNull().NotEmpty().WithMessage("'Email' formato incorreto");
 
             RuleFor(x => x.Cpf)
                 .MaximumLength(11)
-                .WithMessage("'CPF' com tamanho inválido.");
+                .WithMessage("'CPF' inválido.");
 
             RuleFor(x => x.Cnpj)
                 .MaximumLength(14)
-                .WithMessage("'CNPJ' com tamanho inválido.");
+                .WithMessage("'CNPJ' inválido.");
 
             RuleFor(x => x.Cnh)
                 .NotNull().NotEmpty()
                 .MaximumLength(12)
-                .WithMessage("'CNH' com tamanho inválido.");
+                .WithMessage("'CNH' inválido.");
 
             RuleFor(x => x.Endereco)
-                .NotNull().NotEmpty();
+                .NotNull().WithMessage("Campo 'Endereço' é obrigatório.")
+                .NotEmpty().WithMessage("Campo 'Endereço' é obrigatório.");
 
         }
     }
