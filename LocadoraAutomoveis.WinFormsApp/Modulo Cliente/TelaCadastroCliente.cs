@@ -85,7 +85,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
             if (resultadoValidacao == null)
             {
-                MessageBox.Show("Tentativa de inserir informação inválida", "Aviso");
+                MessageBox.Show("Tentativa de inserir campo duplicado ou vazio", "Aviso");
                 return;
             }
 

@@ -236,7 +236,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 
             foreach (Cliente c in cli)
             {
-                if (c.Cpf == entidade.Cpf || c.Cnpj == entidade.Cnpj || c.Cnh == entidade.Cnh)
+                if ((c.Cpf == entidade.Cpf && c.Cnh == entidade.Cnh ) || (c.Cnpj == entidade.Cnpj && c.Cnh == entidade.Cnh))
                 {
                     return true;
                 }
