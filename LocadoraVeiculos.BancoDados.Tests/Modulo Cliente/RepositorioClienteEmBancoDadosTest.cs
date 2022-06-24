@@ -12,11 +12,11 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
     [TestClass]
     public class RepositorioClienteEmBancoDadosTest
     {
-        RepositorioClienteEmBancoDados repositorio ;
+        RepositorioClienteEmBancoDados repositorioCliente ;
 
         public RepositorioClienteEmBancoDadosTest()
         {
-            repositorio = new RepositorioClienteEmBancoDados();
+            repositorioCliente = new RepositorioClienteEmBancoDados();
         }
         [TestMethod]
         public void Deve_inserir_cliete()
@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             var cliente = InstanciarCliente();
 
             //action
-            var resultado = repositorio.Inserir(cliente);
+            var resultado = repositorioCliente.Inserir(cliente);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -35,12 +35,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
         {
             // arrange
             var cliente = InstanciarCliente();
-            repositorio.Inserir(cliente);
+            repositorioCliente.Inserir(cliente);
 
             cliente.Nome = "Ana Beatriz";
 
             //action
-            var resultado = repositorio.Editar(cliente);
+            var resultado = repositorioCliente.Editar(cliente);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -49,18 +49,40 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
         public void Deve_excluir_cliente()
         {
             //arrange
-            Cliente cliente = repositorio.SelecionarPorId(5);
+            Cliente cliente = repositorioCliente.SelecionarPorId(5);
 
             //action
-            var resultado = repositorio.Excluir(cliente);
+            var resultado = repositorioCliente.Excluir(cliente);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
         }
+
         [TestMethod]
         public void Deve_selecionar_todos()
         {
+            //arrange
 
+
+            //action
+            var resultado = repositorioCliente.SelecionarTodos();
+
+            //assert
+            Assert.AreNotEqual(0, resultado.Count);
+        }
+
+
+        [TestMethod]
+        public void Deve_selecionar_unico()
+        {
+            //arrange
+
+
+            //action
+            var resultado = repositorioCliente.SelecionarPorId(3);
+
+            //assert
+            Assert.AreNotEqual(null, resultado);
         }
 
         private Cliente InstanciarCliente()

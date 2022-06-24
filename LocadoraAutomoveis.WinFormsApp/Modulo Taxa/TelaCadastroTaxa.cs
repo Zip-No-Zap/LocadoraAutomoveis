@@ -56,7 +56,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
             if(resultadoValidacao == null)
             {
-                MessageBox.Show("Tentativa de inserir informação duplicada","Aviso");
+                MessageBox.Show("Tentativa de inserir descrição duplicada","Aviso");
                 return;
             }
 

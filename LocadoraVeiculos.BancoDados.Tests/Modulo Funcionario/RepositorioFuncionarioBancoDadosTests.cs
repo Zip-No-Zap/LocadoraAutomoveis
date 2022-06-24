@@ -58,6 +58,19 @@ namespace LocadoraVeiculos.BancoDados.Tests
             Assert.AreEqual(true, resultado.IsValid);
         }
 
+        [TestMethod]
+        public void Deve_selecionarTodos_funcionario()
+        {
+            //arrange
+
+
+            //action
+            var resultado = repoFunc.SelecionarTodos();
+
+            //assert
+            Assert.AreNotEqual(0, resultado.Count);
+        }
+
         #region privados
 
         Funcionario InstanciarFuncionario()
