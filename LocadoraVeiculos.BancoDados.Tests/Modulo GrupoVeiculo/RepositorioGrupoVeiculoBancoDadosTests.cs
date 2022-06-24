@@ -12,7 +12,6 @@ namespace LocadoraVeiculos.BancoDados.Tests
     {
         RepositorioGrupoVeiculoEmBancoDados repoGrupoVeiculo;
         
-
         public RepositorioGrupoVeiculoBancoDadosTests()
         {
             Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
@@ -21,7 +20,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
         }
 
         [TestMethod]
-        public void Deve_inserir_funcionario()
+        public void Deve_inserir_grupo()
         {
             //arrange
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
@@ -38,10 +37,12 @@ namespace LocadoraVeiculos.BancoDados.Tests
         }
 
         [TestMethod]
-        public void Deve_editar_funcionario()
+        public void Deve_editar_grupo()
         {
             //arrange
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
+
+            repoGrupoVeiculo.Inserir(grupo);
 
             grupo.Nome = "Foi alterado no teste";
             
@@ -58,7 +59,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
         }
 
         [TestMethod]
-        public void Deve_excluir_funcionario()
+        public void Deve_excluir_grupo()
         {
             //arrange
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
@@ -88,11 +89,15 @@ namespace LocadoraVeiculos.BancoDados.Tests
         public void Deve_selecionar_um_grupo()
         {
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
+            grupo.Nome = "teste04";
+            grupo.Id = 1000;
 
             repoGrupoVeiculo.Inserir(grupo);
 
+            //action
             GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
 
+            //assert
             Assert.IsNotNull(grupoEncontrado);
             Assert.AreEqual(grupo, grupoEncontrado);
 

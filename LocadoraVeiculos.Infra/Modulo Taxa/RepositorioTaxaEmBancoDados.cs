@@ -27,9 +27,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
 
         public ValidationResult Editar(Taxa entidade)
         {
-            if (VerificarDuplicidade(entidade) == true)
-                return null;
-
             ValidationResult resultado = Validar(entidade);
 
             if (resultado.IsValid)

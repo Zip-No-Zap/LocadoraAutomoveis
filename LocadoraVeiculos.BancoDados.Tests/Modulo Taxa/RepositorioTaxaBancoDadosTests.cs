@@ -61,6 +61,19 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             Assert.AreEqual(true, resultado.IsValid);
         }
 
+        [TestMethod]
+        public void Deve_selecionar_todos_taxa()
+        {
+            //arrange
+            
+
+            //action
+            var resultado = repoTaxa.SelecionarTodos();
+
+            //assert
+            Assert.AreNotEqual(0, resultado.Count);
+        }
+
 
         #region privados
         Taxa InstanciarTaxa()

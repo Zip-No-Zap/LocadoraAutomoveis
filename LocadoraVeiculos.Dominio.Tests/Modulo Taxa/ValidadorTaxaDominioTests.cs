@@ -8,7 +8,7 @@ namespace LocadoraVeiculos.Dominio.Tests
     public class ValidadorTaxaDominioTests
     {
         [TestMethod]
-        public void NaoDeve_servazio_descricao()
+        public void Nao_deve_ser_vazio_descricao()
         {
             //arrange
             var taxa = InstanciarTaxa();
@@ -25,7 +25,7 @@ namespace LocadoraVeiculos.Dominio.Tests
         }
 
         [TestMethod]
-        public void NaoDeve_serzeroumenos_valor()
+        public void Nao_deve_ser_zero_ou_menos_valor()
         {
             //arrange
             var taxa = InstanciarTaxa();

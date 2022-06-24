@@ -49,7 +49,9 @@ namespace LocadoraVeiculos.BancoDados.Tests
         public void Deve_excluir_funcionario()
         {
             //arrange
-            Funcionario funcionario = repoFunc.SelecionarPorId(1006);
+            var funcionario = InstanciarFuncionario();
+
+            repoFunc.Inserir(funcionario);
 
             //action
             var resultado = repoFunc.Excluir(funcionario);

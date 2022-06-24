@@ -24,9 +24,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
         }
         public ValidationResult Editar(Cliente entidade)
         {
-            if (VerificarDuplicidade(entidade) == true)
-                return null;
-
             ValidationResult resultado = Validar(entidade);
 
             if (resultado.IsValid)
