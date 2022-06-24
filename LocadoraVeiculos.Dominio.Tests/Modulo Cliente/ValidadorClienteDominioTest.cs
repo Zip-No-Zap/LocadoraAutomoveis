@@ -11,39 +11,19 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
     [TestClass]
     public class ValidadorClienteDominioTest
     {
-        private readonly Cliente clientePessoaFisica;
-        private readonly Cliente clientePessoaJuridica;
+
 
         public ValidadorClienteDominioTest()
         {
-            clientePessoaFisica = new()
-            {
-                Nome = "Ana",
-                Cpf = "12345678978",
-                Cnpj = "-",
-                Cnh = "1234567891",
-                Email = "anabeatriz@gmail.com",
-                Endereco = "Lages - SC",
-                Telefone = "(11)92312-1231",
-            };
-            clientePessoaJuridica = new()
-            {
-                Nome = "Ana",
-                Cpf = "-",
-                Cnpj = "1231234564567",
-                Cnh = "1234567891",
-                Email = "anabeatriz@gmail.com",
-                Endereco = "Lages - SC",
-                Telefone = "(11)92312-1231", 
-                TipoCliente = (EnumTipoCliente)1
-                
-            };
+            
 
         }
         [TestMethod]
         public void Nome_cliente_deve_ser_obrigatorio()
         {
             //arrange
+            var clientePessoaFisica = InstanciarClientePessoaFisica();
+            var clientePessoaJuridica = InstanciarClientePessoaJuridica();
             clientePessoaFisica.Nome = null;
             clientePessoaJuridica.Nome = null;
 
@@ -61,6 +41,8 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
         public void Telefone_deve_ter_um_formato_valido()
         {
             //arrange
+            var clientePessoaFisica = InstanciarClientePessoaFisica();
+            var clientePessoaJuridica = InstanciarClientePessoaJuridica();
             clientePessoaFisica.Telefone = "323423";
             clientePessoaJuridica.Telefone = "4324343";
 
@@ -80,6 +62,8 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
         public void Email_deve_ter_um_formato_valido()
         {
             //arrange
+            var clientePessoaFisica = InstanciarClientePessoaFisica();
+            var clientePessoaJuridica = InstanciarClientePessoaJuridica();
             clientePessoaFisica.Email = "email@";
             clientePessoaJuridica.Email = "email.com";
 
@@ -95,24 +79,70 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
 
         }
 
-        //[TestMethod]
-        //public void Cpf_deve_ter_um_formato_valido()
-        //{
-        //    //arrange
-        //    clientePessoaFisica.Cpf = "234.234";
-        //    clientePessoaJuridica.Cpf = null;
+        [TestMethod]
+        public void Cpf_deve_ter_um_formato_valido()
+        {
+            //arrange
+            var clientePessoaFisica = InstanciarClientePessoaFisica();
+            clientePessoaFisica.Cpf = "234.234";
 
-        //    ValidadorCliente validador = new ValidadorCliente();
+            ValidadorCliente validador = new ValidadorCliente();
 
-        //    //action
-        //    var resultadoPessoaFisica = validador.Validate(clientePessoaFisica);
-        //    var resultadoPessoaJuridica = validador.Validate(clientePessoaJuridica);
+            //action
+            var resultadoPessoaFisica = validador.Validate(clientePessoaFisica);
 
-        //    //assert
-        //    Assert.AreEqual("'CPF' com formato incorreto.", resultadoPessoaFisica.Errors[0].ErrorMessage);
-        //    Assert.AreEqual("'CPF' com formato incorreto.", resultadoPessoaJuridica.Errors[0].ErrorMessage);
+            //assert
+            Assert.AreEqual("'CPF' com formato incorreto.", resultadoPessoaFisica.Errors[0].ErrorMessage);
 
-        //}
+        }
+        [TestMethod]
+        public void Cnpj_deve_ter_um_formato_valido()
+        {
+            //arrange
+            var clientePessoaJuridica = InstanciarClientePessoaJuridica();
+            clientePessoaJuridica.Cnpj = "234224";
 
+            ValidadorCliente validador = new ValidadorCliente();
+
+            //action
+            var resultadoPessoaJuridica = validador.Validate(clientePessoaJuridica);
+
+            //assert
+            Assert.AreEqual("'CNPJ' com formato incorreto.", resultadoPessoaJuridica.Errors[0].ErrorMessage);
+
+        }
+        [TestMethod]
+       
+
+        private Cliente InstanciarClientePessoaFisica()
+        {
+
+            return new Cliente()
+            {
+                Nome = "Ana",
+                Cpf = "12345678985",
+                Cnpj = "",
+                Cnh = "123123123123",
+                Email = "anabeatriz@gmail.com",
+                Endereco = "Lages - SC",
+                Telefone = "(11)92312-1231",
+                TipoCliente = EnumTipoCliente.PessoaFisica
+
+            };
+        }
+        private Cliente InstanciarClientePessoaJuridica()
+        {
+            return new Cliente()
+            {
+                Nome = "Ana",
+                Cpf = "",
+                Cnpj = "11155599988877",
+                Cnh = "123123123123",
+                Email = "anabeatriz@gmail.com",
+                Endereco = "Lages - SC",
+                Telefone = "(11)92312-1231",
+                //TipoCliente = EnumTipoCliente.PessoaJuridica
+            };
+        }
     }
 }
