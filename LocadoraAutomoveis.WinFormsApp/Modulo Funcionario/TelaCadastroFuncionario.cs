@@ -117,14 +117,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void tbData_Leave(object sender, EventArgs e)
         {
-            DateTime convertido = Convert.ToDateTime(tbData.Text);
-
-            if (convertido > DateTime.Today)
-            {
-                MessageBox.Show("Data de admissão não pode ser maior que hoje", "Aviso");
-                tbData.Focus();
-                return;
-            }
+            VerificarDataAdmissao();
         }
 
         private void tbNome_Leave(object sender, EventArgs e)
@@ -151,6 +144,25 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != ',')
             {
                 e.Handled = true;
+            }
+        }
+
+        private void VerificarDataAdmissao()
+        {
+            DateTime convertido = Convert.ToDateTime(tbData.Text), dataMinima = Convert.ToDateTime("1/1/1753");
+
+            if (convertido > DateTime.Today)
+            {
+                MessageBox.Show("Data de admissão não pode ser maior que hoje", "Aviso");
+                tbData.Focus();
+                return;
+            }
+
+            if (convertido <= dataMinima)
+            {
+                MessageBox.Show("Data deve ser maior que 1/1/1753", "Aviso");
+                tbData.Focus();
+                return;
             }
         }
 
