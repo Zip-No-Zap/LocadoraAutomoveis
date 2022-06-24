@@ -20,9 +20,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
         public override void Inserir()
         {
             TelaCadastroCliente tela = new();
-         //   tela.Cliente = new();
+            tela.Cliente = new();
 
-         //   tela.GravarRegistro = repoCliente.Inserir;
+            tela.GravarRegistro = repoCliente.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -45,9 +45,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
             TelaCadastroCliente tela = new();
 
-            //tela.Cliente = Selecionado;
+             tela.Cliente = Selecionado;
 
-            //tela.GravarRegistro = repoCliente.Editar;
+            tela.GravarRegistro = repoCliente.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 

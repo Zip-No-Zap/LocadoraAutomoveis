@@ -42,11 +42,7 @@ namespace LocadoraAutomoveis.WinFormsApp
             private set;
         }
 
-        private void funcionarioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
-            HabilitarBotoesToolStrip();
-        }
+
 
         private void HabilitarBotoesToolStrip()
         {
@@ -136,7 +132,25 @@ namespace LocadoraAutomoveis.WinFormsApp
             controlador.Excluir();
         }
 
+        private void funcionarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            HabilitarBotoesToolStrip();
+        }
+
         private void taxaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            HabilitarBotoesToolStrip();
+        }
+
+        private void grupoDeVeículoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            HabilitarBotoesToolStrip();
+        }
+
+        private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
             HabilitarBotoesToolStrip();

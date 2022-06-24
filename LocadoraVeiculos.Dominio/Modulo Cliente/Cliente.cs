@@ -9,6 +9,11 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
 {
     public class Cliente : EntidadeBase<Cliente>
     {
+        public Cliente()
+        {
+
+        }
+
         private EnumTipoCliente _tipoCliente;
         public string Nome { get; set; }
         public string Cpf { get; set; }
@@ -30,7 +35,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
             Telefone = telefone;
         }
 
-        public EnumTipoCliente TipoClienteEnum
+        public EnumTipoCliente TipoCliente
         {
             get { return _tipoCliente; }
             set
@@ -59,7 +64,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
                 Email == cliente.Email &&
                 Endereco == cliente.Endereco &&
                 Telefone == cliente.Telefone &&
-                TipoClienteEnum == cliente.TipoClienteEnum;
+                TipoCliente == cliente.TipoCliente;
         }
         public override int GetHashCode()
         {
@@ -72,7 +77,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
             hash.Add(Email);
             hash.Add(Endereco);
             hash.Add(Telefone);
-            hash.Add(TipoClienteEnum);
+            hash.Add(TipoCliente);
             return hash.ToHashCode();
         }
     }
