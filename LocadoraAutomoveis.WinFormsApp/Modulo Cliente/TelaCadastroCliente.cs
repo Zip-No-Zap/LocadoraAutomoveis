@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
+using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using Microsoft.VisualBasic;
 using System;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
         {
             InitializeComponent();
         }
+
         public Cliente Cliente
         {
             get
@@ -85,7 +87,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
             if (resultadoValidacao == null)
             {
-                MessageBox.Show("Tentativa de inserir campo duplicado ou vazio", "Aviso");
+                MessageBox.Show("Tentativa de inserir 'CPF', 'CNPJ' ou 'CNH' duplicado", "Aviso");
                 return;
             }
 

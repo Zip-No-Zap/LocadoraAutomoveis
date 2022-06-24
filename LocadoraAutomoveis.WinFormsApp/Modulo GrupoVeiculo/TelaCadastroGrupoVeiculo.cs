@@ -50,7 +50,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
             if (resultadoValidacao == null)
             {
-                MessageBox.Show("Tentativa de inserir informação duplicada", "Aviso");
+                MessageBox.Show("Tentativa de inserir Nome duplicado", "Aviso");
                 return;
             }
 

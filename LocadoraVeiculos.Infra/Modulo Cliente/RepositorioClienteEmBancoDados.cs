@@ -232,14 +232,18 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 
         protected override bool VerificarDuplicidade(Cliente entidade)
         {
-            var cli = SelecionarTodos();
+            var clientes = SelecionarTodos();
 
-            foreach (Cliente c in cli)
+            foreach (Cliente c in clientes)
             {
-                if ((c.Cpf == entidade.Cpf && c.Cnh == entidade.Cnh ) || (c.Cnpj == entidade.Cnpj && c.Cnh == entidade.Cnh))
-                {
+                if (entidade.Cpf != "-" && c.Cpf == entidade.Cpf  ) 
                     return true;
-                }
+
+                if (entidade.Cnpj != "-" && c.Cnpj == entidade.Cnpj)
+                    return true;
+
+                if (c.Cnh == entidade.Cnh) 
+                    return true;
             }
 
             return false;
