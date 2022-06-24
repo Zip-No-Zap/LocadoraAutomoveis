@@ -68,7 +68,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
             if (resultadoValidacao == null)
             {
-                MessageBox.Show("Tentativa de inserir informação duplicada", "Aviso");
+                MessageBox.Show("Tentativa de inserir 'Login' duplicado", "Aviso");
                 return;
             }
 
@@ -87,7 +87,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         {
             tbNome.Clear();
             tbSalario.Clear();
-            tbData.Text = "1/1/1753";
+            tbData.Text = "01/01/1753";
             tbCidade.Clear();
             tbLogin.Clear();
             tbSenha.Clear();
