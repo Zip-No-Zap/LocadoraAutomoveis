@@ -70,7 +70,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             {
                 Nome = "Ana",
                 Cpf = "12345678978",
-                Cnpj = " ",
+                Cnpj = "-",
                 Cnh = "123123123123",
                 Email = "anabeatriz@gmail.com",
                 Endereco = "Lages - SC",

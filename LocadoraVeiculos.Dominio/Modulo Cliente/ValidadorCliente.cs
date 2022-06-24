@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using System.Text.RegularExpressions;
 
 
@@ -14,12 +15,11 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
                 .NotEmpty().WithMessage("Campo 'Nome' é obrigatótio.");
 
             RuleFor(x => x.Telefone)
-               .MaximumLength(16).WithMessage("'Telefone' formato incorreto")
-               .NotEmpty().WithMessage("'Telefone' formato incorreto");
+               .Telefone();
 
             RuleFor(x => x.Email)
-               .EmailAddress(EmailValidationMode.AspNetCoreCompatible).WithMessage("'Email' formato incorreto")
-               .NotNull().NotEmpty().WithMessage("'Email' formato incorreto");
+               .EmailAddress(EmailValidationMode.AspNetCoreCompatible).WithMessage("'Email' com formato incorreto")
+               .NotNull().NotEmpty().WithMessage("'Email' com formato incorreto");
 
             RuleFor(x => x.Cpf)
                 .MaximumLength(11)
