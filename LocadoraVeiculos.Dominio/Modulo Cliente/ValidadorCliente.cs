@@ -1,12 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
-using LocadoraVeiculos.Dominio.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 
 namespace LocadoraVeiculos.Dominio.Modulo_Cliente
 {
@@ -19,7 +14,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
                 .NotEmpty().WithMessage("Campo 'Nome' é obrigatótio.");
 
             RuleFor(x => x.Telefone)
-               .Matches(new Regex(@"^\d{2}\d{4,5}\d{4}$")).WithMessage("'Telefone' formato incorreto")
+               .MaximumLength(16).WithMessage("'Telefone' formato incorreto")
                .NotEmpty().WithMessage("'Telefone' formato incorreto");
 
             RuleFor(x => x.Email)
@@ -42,7 +37,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
             RuleFor(x => x.Endereco)
                 .NotNull().WithMessage("Campo 'Endereço' é obrigatório.")
                 .NotEmpty().WithMessage("Campo 'Endereço' é obrigatório.");
-
         }
     }
 }
