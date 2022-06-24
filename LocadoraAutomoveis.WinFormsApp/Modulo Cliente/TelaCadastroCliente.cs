@@ -141,5 +141,29 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             FormPrincipal.Instancia.AtualizarRodape("");
 
         }
+
+
+        private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbCPF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void tbCNPJ_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void tbCnh_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ImpedirLetrasCharEspeciais(e);
+        }
     }
 }

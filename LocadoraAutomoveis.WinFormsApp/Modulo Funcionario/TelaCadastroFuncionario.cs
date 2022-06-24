@@ -173,5 +173,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             return e;
         }
 
+        private void tbSalario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
