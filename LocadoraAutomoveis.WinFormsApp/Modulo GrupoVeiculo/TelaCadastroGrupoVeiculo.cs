@@ -37,8 +37,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             InitializeComponent();
         }
 
-
-
         private void TelaCadastroGrupoVeiculo_Load(object sender, EventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
@@ -48,9 +46,13 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         {
             grupoVeiculo.Nome = tbNomeGrupoVeiculo.Text;
 
-
-
             ValidationResult resultadoValidacao = GravarRegistro(grupoVeiculo);
+
+            if (resultadoValidacao == null)
+            {
+                MessageBox.Show("Tentativa de inserir informação duplicada", "Aviso");
+                return;
+            }
 
             if (resultadoValidacao.IsValid == false)
             {
@@ -66,9 +68,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             tbNomeGrupoVeiculo.Clear();
-
-
-            
         }
 
         private void TelaCadastroGrupoVeiculo_FormClosing(object sender, FormClosingEventArgs e)
@@ -83,11 +82,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         }
 
 
-
         private void tbNome_Leave(object sender, EventArgs e)
         {
             ImpedirTextoMenorDois(tbNomeGrupoVeiculo.Text);
-
         }
 
         private void ImpedirTextoMenorDois(string texto)

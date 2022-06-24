@@ -4,9 +4,7 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 {
@@ -14,6 +12,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
     {
         public ValidationResult Inserir(GrupoVeiculo entidade)
         {
+            if (VerificarDuplicidade(entidade) == true)
+                return null;
+
             ValidationResult resultado = Validar(entidade);
 
             if (resultado.IsValid)
@@ -188,6 +189,21 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
         protected override ValidationResult Validar(GrupoVeiculo entidade)
         {
             return new ValidadorGrupoVeiculo().Validate(entidade);
+        }
+
+        protected override bool VerificarDuplicidade(GrupoVeiculo entidade)
+        {
+            var grupos = SelecionarTodos();
+
+            foreach (GrupoVeiculo g in grupos)
+            {
+                if (g.Nome == entidade.Nome)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
