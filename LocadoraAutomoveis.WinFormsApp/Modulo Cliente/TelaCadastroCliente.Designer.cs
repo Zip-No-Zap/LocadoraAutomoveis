@@ -36,7 +36,7 @@
             this.tbEndereco = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.tbCnhCondutor = new System.Windows.Forms.TextBox();
+            this.tbCnh = new System.Windows.Forms.TextBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -72,6 +72,7 @@
             this.tbNome.Name = "tbNome";
             this.tbNome.Size = new System.Drawing.Size(472, 27);
             this.tbNome.TabIndex = 21;
+            this.tbNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNome_KeyPress);
             // 
             // tbCPF
             // 
@@ -134,13 +135,13 @@
             this.label7.TabIndex = 44;
             this.label7.Text = "CNH do Condutor";
             // 
-            // tbCnhCondutor
+            // tbCnh
             // 
-            this.tbCnhCondutor.Location = new System.Drawing.Point(14, 344);
-            this.tbCnhCondutor.Margin = new System.Windows.Forms.Padding(2);
-            this.tbCnhCondutor.Name = "tbCnhCondutor";
-            this.tbCnhCondutor.Size = new System.Drawing.Size(285, 27);
-            this.tbCnhCondutor.TabIndex = 43;
+            this.tbCnh.Location = new System.Drawing.Point(14, 344);
+            this.tbCnh.Margin = new System.Windows.Forms.Padding(2);
+            this.tbCnh.Name = "tbCnh";
+            this.tbCnh.Size = new System.Drawing.Size(285, 27);
+            this.tbCnh.TabIndex = 43;
             // 
             // tbEmail
             // 
@@ -182,7 +183,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(508, 72);
             this.panel1.TabIndex = 51;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnLimpar
             // 
@@ -207,6 +207,7 @@
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // panel2
             // 
@@ -218,7 +219,7 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.tbCnhCondutor);
+            this.panel2.Controls.Add(this.tbCnh);
             this.panel2.Controls.Add(this.tbNome);
             this.panel2.Controls.Add(this.tbEmail);
             this.panel2.Controls.Add(this.label9);
@@ -242,6 +243,7 @@
             this.rdbPessoaJuridica.TabStop = true;
             this.rdbPessoaJuridica.Text = "Pessoa Juridica";
             this.rdbPessoaJuridica.UseVisualStyleBackColor = true;
+            this.rdbPessoaJuridica.CheckedChanged += new System.EventHandler(this.rdbPessoaJuridica_CheckedChanged);
             // 
             // rdbPessoaFisica
             // 
@@ -253,6 +255,7 @@
             this.rdbPessoaFisica.TabStop = true;
             this.rdbPessoaFisica.Text = "Pessoa Fisica";
             this.rdbPessoaFisica.UseVisualStyleBackColor = true;
+            this.rdbPessoaFisica.CheckedChanged += new System.EventHandler(this.rdbPessoaFisica_CheckedChanged);
             // 
             // tbTelefone
             // 
@@ -297,6 +300,8 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Cliente";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroCliente_FormClosing);
+            this.Load += new System.EventHandler(this.TelaCadastroCliente_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -313,7 +318,7 @@
         private System.Windows.Forms.TextBox tbEndereco;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tbCnhCondutor;
+        private System.Windows.Forms.TextBox tbCnh;
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
