@@ -72,17 +72,22 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             {   
                 cliente.TipoCliente = EnumTipoCliente.PessoaFisica;
                 cliente.Cpf = tbCPF.Text;
-                cliente.Cnpj = "";
+                cliente.Cnpj = "-";
             }
             else
             {
                 cliente.TipoCliente = EnumTipoCliente.PessoaJuridica;
                 cliente.Cnpj = tbCNPJ.Text;
-                cliente.Cpf = "";
+                cliente.Cpf = "-";
             }
             
-
             var resultadoValidacao = GravarRegistro(cliente);
+
+            if (resultadoValidacao == null)
+            {
+                MessageBox.Show("Tentativa de inserir informação duplicada", "Aviso");
+                return;
+            }
 
             if (resultadoValidacao.IsValid == false)
             {
