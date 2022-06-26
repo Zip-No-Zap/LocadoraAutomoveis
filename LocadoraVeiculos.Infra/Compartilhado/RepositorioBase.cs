@@ -51,6 +51,23 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             return resultado;
         }
 
+        public T SelecionarPorId(T entidade, string sqlSelecaoPorId)
+        {
+            conexaoBancoDados.ConectarBancoDados();
+
+            SqlCommand cmdSelecao = new(sqlSelecaoPorId, conexaoBancoDados.conexao);
+
+            cmdSelecao.Parameters.AddWithValue("ID", entidade.Id);
+
+            SqlDataReader leitor = cmdSelecao.ExecuteReader();
+
+            var selecionado = TMapeador.LerUnico(leitor);
+
+            conexaoBancoDados.DesconectarBancoDados();
+
+            return selecionado;
+        }
+
         protected abstract bool VerificarDuplicidade(T entidade);
 
         protected abstract ValidationResult Validar(T entidade);

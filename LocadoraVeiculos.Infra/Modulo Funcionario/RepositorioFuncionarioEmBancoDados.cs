@@ -45,6 +45,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                                WHERE
 		                             ID = @ID";
         const string sql_exclusao = @"DELETE FROM TBFUNCIONARIO WHERE ID = @ID;";
+        const string sql_selecao_por_id = @"SELECT * FROM TBFUNCIONARIO WHERE ID = @ID";
 
         //public ValidationResult Inserir(Funcionario entidade)
         //{
