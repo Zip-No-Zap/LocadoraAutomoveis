@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using System;
 
 namespace LocadoraVeiculos.Dominio.Modulo_Funcionario
 {
-    public class ValidadorFuncionario : AbstractValidator<Funcionario>
+    public class ValidadorFuncionario : ValidadorBase<Funcionario>
     {
         public ValidadorFuncionario()
         {

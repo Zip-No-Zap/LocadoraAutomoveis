@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using System;
@@ -7,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 {
-    public class RepositorioFuncionarioEmBancoDados : RepositorioBase<Funcionario>
+    public class RepositorioFuncionarioEmBancoDados : RepositorioBase<Funcionario, MapeadorFuncionario>
     {
         const string sql_insercao = @"INSERT INTO TBFUNCIONARIO 
                                     (
@@ -100,35 +101,35 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
         //    return selecionado;
         //}
 
-        public List<Funcionario> SelecionarTodos()
-        {
-            ConectarBancoDados();
+        //public List<Funcionario> SelecionarTodos()
+        //{
+        //    ConectarBancoDados();
 
-            sql = @"SELECT * FROM TBFUNCIONARIO";
+        //    sql = @"SELECT * FROM TBFUNCIONARIO";
 
-            SqlCommand cmd_Selecao = new(sql, conexao);
+        //    SqlCommand cmd_Selecao = new(sql, conexao);
 
-            SqlDataReader leitor = cmd_Selecao.ExecuteReader();
+        //    SqlDataReader leitor = cmd_Selecao.ExecuteReader();
 
-            List<Funcionario> funcionarios = LerTodos(leitor);
+        //    List<Funcionario> funcionarios = LerTodos(leitor);
 
-            DesconectarBancoDados();
+        //    DesconectarBancoDados();
 
-            return funcionarios;
-        }
+        //    return funcionarios;
+        //}
 
-        protected override void DefinirParametros(Funcionario entidade, SqlCommand cmd)
-        {
-            cmd.Parameters.AddWithValue("ID", entidade.Id);
-            cmd.Parameters.AddWithValue("NOME", entidade.Nome);
-            cmd.Parameters.AddWithValue("LOGIN", entidade.Login);
-            cmd.Parameters.AddWithValue("SENHA", entidade.Senha);
-            cmd.Parameters.AddWithValue("SALARIO", entidade.Salario);
-            cmd.Parameters.AddWithValue("DATAADMISSAO", entidade.DataAdmissao);
-            cmd.Parameters.AddWithValue("CIDADE", entidade.Cidade);
-            cmd.Parameters.AddWithValue("ESTADO", entidade.Estado);
-            cmd.Parameters.AddWithValue("PERFIL", entidade.Perfil);
-        }
+        //protected override void DefinirParametros(Funcionario entidade, SqlCommand cmd)
+        //{
+        //    cmd.Parameters.AddWithValue("ID", entidade.Id);
+        //    cmd.Parameters.AddWithValue("NOME", entidade.Nome);
+        //    cmd.Parameters.AddWithValue("LOGIN", entidade.Login);
+        //    cmd.Parameters.AddWithValue("SENHA", entidade.Senha);
+        //    cmd.Parameters.AddWithValue("SALARIO", entidade.Salario);
+        //    cmd.Parameters.AddWithValue("DATAADMISSAO", entidade.DataAdmissao);
+        //    cmd.Parameters.AddWithValue("CIDADE", entidade.Cidade);
+        //    cmd.Parameters.AddWithValue("ESTADO", entidade.Estado);
+        //    cmd.Parameters.AddWithValue("PERFIL", entidade.Perfil);
+        //}
 
         //protected override void InserirRegistroBancoDados(Funcionario entidade)
         //{
@@ -174,7 +175,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
         //        sql = @"UPDATE [TBFUNCIONARIO] SET 
 
         //                        [NOME] = @NOME,    
-	       //                     [LOGIN] = @LOGIN,
+        //                     [LOGIN] = @LOGIN,
         //                        [SENHA] = @SENHA,
         //                        [SALARIO] = @SALARIO,
         //                        [DATAADMISSAO] = @DATAADMISSAO,
@@ -182,7 +183,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
         //                        [ESTADO] = @ESTADO
 
         //                   WHERE
-		      //                   ID = @ID";
+        //                   ID = @ID";
 
         //        SqlCommand cmd_Edicao = new(sql, conexao);
 
@@ -230,7 +231,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
         //            Cidade = cidade,
         //            Estado = estado,
         //            Perfil= perfil
-                    
+
         //        };
 
         //        funcionarios.Add(funcionario);
@@ -274,7 +275,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 
         protected override bool VerificarDuplicidade(Funcionario entidade)
         {
-            var funcs = SelecionarTodos();
+            var funcs = SelecionarTodos(sql_selecao_todos);
 
             foreach (Funcionario f in funcs)
             {

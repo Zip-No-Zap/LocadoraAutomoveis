@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -93,11 +94,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
         protected abstract bool VerificarDuplicidade(T entidade);
 
-        protected abstract ValidationResult Validar(T entidade);
-
        #endregion
 
         #region privates
+
         private void InserirRegistroBancoDados(T entidade, string sqlInsercao)
         {
             conexaoBancoDados.ConectarBancoDados();
@@ -137,6 +137,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             conexaoBancoDados.DesconectarBancoDados();
         }
 
-#endregion
+        private ValidationResult Validar(T entidade)
+        {
+            return new ValidadorBase<T>().Validate(entidade);
+        }
+
+        #endregion
     }
 }
