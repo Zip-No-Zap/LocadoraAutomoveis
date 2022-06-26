@@ -46,6 +46,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 		                             ID = @ID";
         const string sql_exclusao = @"DELETE FROM TBFUNCIONARIO WHERE ID = @ID;";
         const string sql_selecao_por_id = @"SELECT * FROM TBFUNCIONARIO WHERE ID = @ID";
+        const string sql_selecao_todos = @"SELECT * FROM TBFUNCIONARIO";
 
         //public ValidationResult Inserir(Funcionario entidade)
         //{
@@ -80,24 +81,24 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
         //    return resultado;
         //}
 
-        public Funcionario SelecionarPorId(int numero)
-        {
-            ConectarBancoDados();
+        //public Funcionario SelecionarPorId(int numero)
+        //{
+        //    ConectarBancoDados();
 
-            sql = @"SELECT * FROM TBFUNCIONARIO WHERE ID = @ID";
+        //    sql = @"SELECT * FROM TBFUNCIONARIO WHERE ID = @ID";
 
-            SqlCommand cmdSelecao = new(sql, conexao);
+        //    SqlCommand cmdSelecao = new(sql, conexao);
 
-            cmdSelecao.Parameters.AddWithValue("ID", numero);
+        //    cmdSelecao.Parameters.AddWithValue("ID", numero);
 
-            SqlDataReader leitor = cmdSelecao.ExecuteReader();
+        //    SqlDataReader leitor = cmdSelecao.ExecuteReader();
 
-            Funcionario selecionado = LerUnico(leitor);
+        //    Funcionario selecionado = LerUnico(leitor);
 
-            DesconectarBancoDados();
+        //    DesconectarBancoDados();
 
-            return selecionado;
-        }
+        //    return selecionado;
+        //}
 
         public List<Funcionario> SelecionarTodos()
         {
@@ -207,69 +208,69 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
         //    DesconectarBancoDados();
         //}
 
-        protected override List<Funcionario> LerTodos(SqlDataReader leitor)
-        {
-            List<Funcionario> funcionarios = new();
+        //protected override List<Funcionario> LerTodos(SqlDataReader leitor)
+        //{
+        //    List<Funcionario> funcionarios = new();
 
-            while (leitor.Read())
-            {
-                int id = Convert.ToInt32(leitor["ID"]);
-                string nome = leitor["NOME"].ToString();
-                string login = leitor["LOGIN"].ToString();
-                string senha = leitor["SENHA"].ToString();
-                double salario = Convert.ToDouble(leitor["SALARIO"]);
-                DateTime dataAdmissao = Convert.ToDateTime(leitor["DATAADMISSAO"]);
-                string perfil = leitor["PERFIL"].ToString();
-                string cidade = leitor["CIDADE"].ToString();
-                string estado = leitor["ESTADO"].ToString();
+        //    while (leitor.Read())
+        //    {
+        //        int id = Convert.ToInt32(leitor["ID"]);
+        //        string nome = leitor["NOME"].ToString();
+        //        string login = leitor["LOGIN"].ToString();
+        //        string senha = leitor["SENHA"].ToString();
+        //        double salario = Convert.ToDouble(leitor["SALARIO"]);
+        //        DateTime dataAdmissao = Convert.ToDateTime(leitor["DATAADMISSAO"]);
+        //        string perfil = leitor["PERFIL"].ToString();
+        //        string cidade = leitor["CIDADE"].ToString();
+        //        string estado = leitor["ESTADO"].ToString();
 
-                Funcionario funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao)
-                {
-                    Id = id,
-                    Cidade = cidade,
-                    Estado = estado,
-                    Perfil= perfil
+        //        Funcionario funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao)
+        //        {
+        //            Id = id,
+        //            Cidade = cidade,
+        //            Estado = estado,
+        //            Perfil= perfil
                     
-                };
+        //        };
 
-                funcionarios.Add(funcionario);
-            }
+        //        funcionarios.Add(funcionario);
+        //    }
 
-            return funcionarios;
-        }
+        //    return funcionarios;
+        //}
 
-        protected override Funcionario LerUnico(SqlDataReader leitor)
-        {
-            Funcionario funcionario = null;
+        //protected override Funcionario LerUnico(SqlDataReader leitor)
+        //{
+        //    Funcionario funcionario = null;
 
-            if (leitor.Read())
-            {
-                int id = Convert.ToInt32(leitor["ID"]);
-                string nome = leitor["NOME"].ToString();
-                string login = leitor["LOGIN"].ToString();
-                string senha = leitor["SENHA"].ToString();
-                double salario = Convert.ToDouble(leitor["SALARIO"]);
-                DateTime dataAdmissao = Convert.ToDateTime(leitor["DATAADMISSAO"]);
-                string perfil = leitor["PERFIL"].ToString();
-                string cidade = leitor["CIDADE"].ToString();
-                string estado = leitor["ESTADO"].ToString();
+        //    if (leitor.Read())
+        //    {
+        //        int id = Convert.ToInt32(leitor["ID"]);
+        //        string nome = leitor["NOME"].ToString();
+        //        string login = leitor["LOGIN"].ToString();
+        //        string senha = leitor["SENHA"].ToString();
+        //        double salario = Convert.ToDouble(leitor["SALARIO"]);
+        //        DateTime dataAdmissao = Convert.ToDateTime(leitor["DATAADMISSAO"]);
+        //        string perfil = leitor["PERFIL"].ToString();
+        //        string cidade = leitor["CIDADE"].ToString();
+        //        string estado = leitor["ESTADO"].ToString();
 
-                funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao)
-                {
-                    Id = id,
-                    Cidade = cidade,
-                    Estado = estado,
-                    Perfil = perfil
-                };
-            }
+        //        funcionario = new Funcionario(nome, login, senha, salario, dataAdmissao)
+        //        {
+        //            Id = id,
+        //            Cidade = cidade,
+        //            Estado = estado,
+        //            Perfil = perfil
+        //        };
+        //    }
 
-            return funcionario;
-        }
+        //    return funcionario;
+        //}
 
-        protected override ValidationResult Validar(Funcionario entidade)
-        {
-            return new ValidadorFuncionario().Validate(entidade);
-        }
+        //protected override ValidationResult Validar(Funcionario entidade)
+        //{
+        //    return new ValidadorFuncionario().Validate(entidade);
+        //}
 
         protected override bool VerificarDuplicidade(Funcionario entidade)
         {

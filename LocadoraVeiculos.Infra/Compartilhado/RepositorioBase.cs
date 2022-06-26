@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 {
-    public abstract class RepositorioBase<T> where T : EntidadeBase<T>, IRepositorio<T>
+    public abstract class RepositorioBase<T, Tmapeador> where T : EntidadeBase<T>
+                                                        where Tmapeador : MapeadorBase<T>,
+                                                        IRepositorio<T>
     {
         ConexaoBancoDados conexaoBancoDados;
 
@@ -53,6 +55,8 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
         public T SelecionarPorId(T entidade, string sqlSelecaoPorId)
         {
+            Tmapeador mapeador = null;
+
             conexaoBancoDados.ConectarBancoDados();
 
             SqlCommand cmdSelecao = new(sqlSelecaoPorId, conexaoBancoDados.conexao);
@@ -61,19 +65,39 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             SqlDataReader leitor = cmdSelecao.ExecuteReader();
 
-            var selecionado = TMapeador.LerUnico(leitor);
+            var selecionado = mapeador.LerUnico(leitor);
 
             conexaoBancoDados.DesconectarBancoDados();
 
             return selecionado;
         }
 
+        public List<T> SelecionarTodos(string sqlSelecaoTodos)
+        {
+            Tmapeador mapeador = null;
+
+            conexaoBancoDados.ConectarBancoDados();
+
+            SqlCommand cmd_Selecao = new(sqlSelecaoTodos, conexaoBancoDados.conexao);
+
+            SqlDataReader leitor = cmd_Selecao.ExecuteReader();
+
+            List<T> funcionarios = mapeador.LerTodos(leitor);
+
+            conexaoBancoDados.DesconectarBancoDados();
+
+            return funcionarios;
+        }
+
+        #region abstracts
+
         protected abstract bool VerificarDuplicidade(T entidade);
 
         protected abstract ValidationResult Validar(T entidade);
 
-        protected abstract void DefinirParametros(T entidade, SqlCommand cmd);
+       #endregion
 
+        #region privates
         private void InserirRegistroBancoDados(T entidade, string sqlInsercao)
         {
             conexaoBancoDados.ConectarBancoDados();
@@ -113,8 +137,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             conexaoBancoDados.DesconectarBancoDados();
         }
 
-
-
-
+#endregion
     }
 }
