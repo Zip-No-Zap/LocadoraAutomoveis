@@ -7,40 +7,77 @@ using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 {
-    public class RepositorioFuncionarioEmBancoDados : RepositorioBase
+    public class RepositorioFuncionarioEmBancoDados : RepositorioBase<Funcionario>
     {
-        public ValidationResult Inserir(Funcionario entidade)
-        {
-            if (VerificarDuplicidade(entidade) == true)
-                return null;
+        const string sql_insercao = @"INSERT INTO TBFUNCIONARIO 
+                                    (
+                                            [NOME],    
+                                            [LOGIN],
+                                            [SENHA],
+                                            [SALARIO],
+                                            [DATAADMISSAO],
+                                            [CIDADE],
+                                            [ESTADO],
+                                            [PERFIL]
+                                    )
+                                    VALUES
+                                    (
+                                            @NOME,
+                                            @LOGIN,
+                                            @SENHA,
+                                            @SALARIO,
+                                            @DATAADMISSAO,
+                                            @CIDADE,
+                                            @ESTADO,
+                                            @PERFIL
 
-            ValidationResult resultado = Validar(entidade);
+                                    );SELECT SCOPE_IDENTITY();";
+        const string sql_edicao = @"UPDATE [TBFUNCIONARIO] SET 
 
-            if (resultado.IsValid)
-                InserirRegistroBancoDados(entidade);
+                                    [NOME] = @NOME,    
+	                                [LOGIN] = @LOGIN,
+                                    [SENHA] = @SENHA,
+                                    [SALARIO] = @SALARIO,
+                                    [DATAADMISSAO] = @DATAADMISSAO,
+                                    [CIDADE] = @CIDADE,
+                                    [ESTADO] = @ESTADO
 
-            return resultado;
-        }
+                               WHERE
+		                             ID = @ID";
+        const string sql_exclusao = @"DELETE FROM TBFUNCIONARIO WHERE ID = @ID;";
 
-        public ValidationResult Editar(Funcionario entidade)
-        {
-            ValidationResult resultado = Validar(entidade);
+        //public ValidationResult Inserir(Funcionario entidade)
+        //{
+        //    if (VerificarDuplicidade(entidade) == true)
+        //        return null;
 
-            if (resultado.IsValid)
-                EditarRegistroBancoDados(entidade);
+        //    ValidationResult resultado = Validar(entidade);
 
-            return resultado;
-        }
+        //    if (resultado.IsValid)
+        //        InserirRegistroBancoDados(entidade);
 
-        public ValidationResult Excluir(Funcionario entidade)
-        {
-            ValidationResult resultado = Validar(entidade);
+        //    return resultado;
+        //}
 
-            if (resultado.IsValid)
-                ExcluirRegistroBancoDados(entidade);
+        //public ValidationResult Editar(Funcionario entidade)
+        //{
+        //    ValidationResult resultado = Validar(entidade);
 
-            return resultado;
-        }
+        //    if (resultado.IsValid)
+        //        EditarRegistroBancoDados(entidade);
+
+        //    return resultado;
+        //}
+
+        //public ValidationResult Excluir(Funcionario entidade)
+        //{
+        //    ValidationResult resultado = Validar(entidade);
+
+        //    if (resultado.IsValid)
+        //        ExcluirRegistroBancoDados(entidade);
+
+        //    return resultado;
+        //}
 
         public Funcionario SelecionarPorId(int numero)
         {
@@ -91,83 +128,83 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
             cmd.Parameters.AddWithValue("PERFIL", entidade.Perfil);
         }
 
-        protected override void InserirRegistroBancoDados(Funcionario entidade)
-        {
-            ConectarBancoDados();
+        //protected override void InserirRegistroBancoDados(Funcionario entidade)
+        //{
+        //    ConectarBancoDados();
 
-            sql = @"INSERT INTO TBFUNCIONARIO 
-                           (
-                                [NOME],    
-                                [LOGIN],
-                                [SENHA],
-                                [SALARIO],
-                                [DATAADMISSAO],
-                                [CIDADE],
-                                [ESTADO],
-                                [PERFIL]
-                           )
-                           VALUES
-                           (
-                                @NOME,
-                                @LOGIN,
-                                @SENHA,
-                                @SALARIO,
-                                @DATAADMISSAO,
-                                @CIDADE,
-                                @ESTADO,
-                                @PERFIL
+        //    sql = @"INSERT INTO TBFUNCIONARIO 
+        //                   (
+        //                        [NOME],    
+        //                        [LOGIN],
+        //                        [SENHA],
+        //                        [SALARIO],
+        //                        [DATAADMISSAO],
+        //                        [CIDADE],
+        //                        [ESTADO],
+        //                        [PERFIL]
+        //                   )
+        //                   VALUES
+        //                   (
+        //                        @NOME,
+        //                        @LOGIN,
+        //                        @SENHA,
+        //                        @SALARIO,
+        //                        @DATAADMISSAO,
+        //                        @CIDADE,
+        //                        @ESTADO,
+        //                        @PERFIL
 
-                           );SELECT SCOPE_IDENTITY();";
+        //                   );SELECT SCOPE_IDENTITY();";
 
-            SqlCommand cmd_Insercao = new(sql, conexao);
+        //    SqlCommand cmd_Insercao = new(sql, conexao);
 
-            DefinirParametros(entidade, cmd_Insercao);
+        //    DefinirParametros(entidade, cmd_Insercao);
 
-            entidade.Id = Convert.ToInt32(cmd_Insercao.ExecuteScalar());
+        //    entidade.Id = Convert.ToInt32(cmd_Insercao.ExecuteScalar());
 
-            DesconectarBancoDados();
-        }
+        //    DesconectarBancoDados();
+        //}
 
-        protected override void EditarRegistroBancoDados(Funcionario entidade)
-        {
-                ConectarBancoDados();
+        //protected override void EditarRegistroBancoDados(Funcionario entidade)
+        //{
+        //        ConectarBancoDados();
 
-                sql = @"UPDATE [TBFUNCIONARIO] SET 
+        //        sql = @"UPDATE [TBFUNCIONARIO] SET 
 
-                                [NOME] = @NOME,    
-	                            [LOGIN] = @LOGIN,
-                                [SENHA] = @SENHA,
-                                [SALARIO] = @SALARIO,
-                                [DATAADMISSAO] = @DATAADMISSAO,
-                                [CIDADE] = @CIDADE,
-                                [ESTADO] = @ESTADO
+        //                        [NOME] = @NOME,    
+	       //                     [LOGIN] = @LOGIN,
+        //                        [SENHA] = @SENHA,
+        //                        [SALARIO] = @SALARIO,
+        //                        [DATAADMISSAO] = @DATAADMISSAO,
+        //                        [CIDADE] = @CIDADE,
+        //                        [ESTADO] = @ESTADO
 
-                           WHERE
-		                         ID = @ID";
+        //                   WHERE
+		      //                   ID = @ID";
 
-                SqlCommand cmd_Edicao = new(sql, conexao);
+        //        SqlCommand cmd_Edicao = new(sql, conexao);
 
-                DefinirParametros(entidade, cmd_Edicao);
+        //        DefinirParametros(entidade, cmd_Edicao);
 
-                cmd_Edicao.ExecuteNonQuery();
+        //        cmd_Edicao.ExecuteNonQuery();
 
-                DesconectarBancoDados();
-        }
+        //        DesconectarBancoDados();
+        //}
 
-        protected override void ExcluirRegistroBancoDados(Funcionario entidade)
-        {
-            ConectarBancoDados();
+        //protected override void ExcluirRegistroBancoDados(Funcionario entidade)
+        //{
+        //    ConectarBancoDados();
 
-            sql = @"DELETE FROM TBFUNCIONARIO WHERE ID = @ID;";
+        //    sql = @"DELETE FROM TBFUNCIONARIO WHERE ID = @ID;";
 
-            SqlCommand cmd_Exclusao = new(sql, conexao);
+        //    SqlCommand cmd_Exclusao = new(sql, conexao);
 
-            cmd_Exclusao.Parameters.AddWithValue("ID", entidade.Id);
+        //    cmd_Exclusao.Parameters.AddWithValue("ID", entidade.Id);
 
-            cmd_Exclusao.ExecuteNonQuery();
+        //    cmd_Exclusao.ExecuteNonQuery();
 
-            DesconectarBancoDados();
-        }
+        //    DesconectarBancoDados();
+        //}
 
         protected override List<Funcionario> LerTodos(SqlDataReader leitor)
         {

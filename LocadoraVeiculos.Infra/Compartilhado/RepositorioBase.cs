@@ -18,7 +18,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             conexaoBancoDados = new();
         }
 
-        public ValidationResult Inserir(T entidade, string sql)
+        public ValidationResult Inserir(T entidade, string sqlInsercao)
         {
             if (VerificarDuplicidade(entidade) == true)
                 return null;
@@ -26,7 +26,27 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             ValidationResult resultado = Validar(entidade);
 
             if (resultado.IsValid)
-                InserirRegistroBancoDados(entidade, sql);
+                InserirRegistroBancoDados(entidade, sqlInsercao);
+
+            return resultado;
+        }
+
+        public ValidationResult Editar(T entidade, string sqlEdicao)
+        {
+            ValidationResult resultado = Validar(entidade);
+
+            if (resultado.IsValid)
+                EditarRegistroBancoDados(entidade, sqlEdicao);
+
+            return resultado;
+        }
+
+        public ValidationResult Excluir(T entidade, string sqExclusao)
+        {
+            ValidationResult resultado = Validar(entidade);
+
+            if (resultado.IsValid)
+                ExcluirRegistroBancoDados(entidade, sqExclusao);
 
             return resultado;
         }
@@ -37,11 +57,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
         protected abstract void DefinirParametros(T entidade, SqlCommand cmd);
 
-        private void InserirRegistroBancoDados(T entidade, string sql)
+        private void InserirRegistroBancoDados(T entidade, string sqlInsercao)
         {
             conexaoBancoDados.ConectarBancoDados();
 
-            SqlCommand cmd_Insercao = new(sql, conexaoBancoDados.conexao);
+            SqlCommand cmd_Insercao = new(sqlInsercao, conexaoBancoDados.conexao);
 
             DefinirParametros(entidade, cmd_Insercao);
 
@@ -49,6 +69,34 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             conexaoBancoDados.DesconectarBancoDados();
         }
+
+        private void EditarRegistroBancoDados(T entidade, string sqlEdicao)
+        {
+            conexaoBancoDados.ConectarBancoDados();
+
+            SqlCommand cmd_Edicao = new(sqlEdicao, conexaoBancoDados.conexao);
+
+            DefinirParametros(entidade, cmd_Edicao);
+
+            cmd_Edicao.ExecuteNonQuery();
+
+            conexaoBancoDados.DesconectarBancoDados();
+        }
+
+        private void ExcluirRegistroBancoDados(T entidade, string sqlExclusao)
+        {
+            conexaoBancoDados.ConectarBancoDados();
+
+            SqlCommand cmd_Exclusao = new(sqlExclusao, conexaoBancoDados.conexao);
+
+            cmd_Exclusao.Parameters.AddWithValue("ID", entidade.Id);
+
+            cmd_Exclusao.ExecuteNonQuery();
+
+            conexaoBancoDados.DesconectarBancoDados();
+        }
+
+
 
 
     }
