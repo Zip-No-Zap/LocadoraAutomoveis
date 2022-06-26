@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 {
-    public class RepositorioFuncionarioEmBancoDados : ConexaoBancoDados<Funcionario>, IRepositorio<Funcionario>
+    public class RepositorioFuncionarioEmBancoDados : RepositorioBase
     {
         public ValidationResult Inserir(Funcionario entidade)
         {
