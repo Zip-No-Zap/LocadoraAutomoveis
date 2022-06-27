@@ -1,199 +1,217 @@
-﻿using FluentValidation.Results;
+﻿
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 {
-    public class RepositorioGrupoVeiculoEmBancoDados : ConexaoBancoDados<GrupoVeiculo>, IRepositorio<GrupoVeiculo>
+    public class RepositorioGrupoVeiculoEmBancoDados : RepositorioBase<GrupoVeiculo, MapeadorGrupoVeiculo>
     {
-        public ValidationResult Inserir(GrupoVeiculo entidade)
-        {
-            if (VerificarDuplicidade(entidade) == true)
-                return null;
+        protected override string sql_insercao => @"INSERT INTO TBGRUPOVEICULO 
+                                                    (
+                                                        [NOMEGRUPO]   
+                                                    )
+                                                    VALUES
+                                                    (
+                                                        @NOMEGRUPO
 
-            ValidationResult resultado = Validar(entidade);
+                                                    );SELECT SCOPE_IDENTITY();";
 
-            if (resultado.IsValid)
-                InserirRegistroBancoDados(entidade);
+        protected override string sql_edicao => @"UPDATE [TBGRUPOVEICULO] SET 
 
-            return resultado;
-        }
+                                                    [NOMEGRUPO] = @NOMEGRUPO    
+                                               WHERE
+                                                    ID = @ID";
 
-        public ValidationResult Editar(GrupoVeiculo entidade)
-        {
-            ValidationResult resultado = Validar(entidade);
+        protected override string sql_exclusao => @"DELETE FROM TBGRUPOVEICULO WHERE ID = @ID;";
 
-            if (resultado.IsValid)
-                EditarRegistroBancoDados(entidade);
+        protected override string sql_selecao_por_id => @"SELECT * FROM TBGRUPOVEICULO WHERE ID = @ID";
 
-            return resultado;
-        }
+        protected override string sql_selecao_todos => @"SELECT * FROM TBGRUPOVEICULO";
 
-        public ValidationResult Excluir(GrupoVeiculo entidade)
-        {
-            ValidationResult resultado = Validar(entidade);
+        //public ValidationResult Inserir(GrupoVeiculo entidade)
+        //{
+        //    if (VerificarDuplicidade(entidade) == true)
+        //        return null;
 
-            if (resultado.IsValid)
-                ExcluirRegistroBancoDados(entidade);
+        //    ValidationResult resultado = Validar(entidade);
 
-            return resultado;
-        }
+        //    if (resultado.IsValid)
+        //        InserirRegistroBancoDados(entidade);
 
-        public GrupoVeiculo SelecionarPorId(int numero)
-        {
-            ConectarBancoDados();
+        //    return resultado;
+        //}
 
-            sql = @"SELECT * FROM TBGRUPOVEICULO WHERE ID = @ID";
+        //public ValidationResult Editar(GrupoVeiculo entidade)
+        //{
+        //    ValidationResult resultado = Validar(entidade);
 
-            SqlCommand cmdSelecao = new(sql, conexao);
+        //    if (resultado.IsValid)
+        //        EditarRegistroBancoDados(entidade);
 
-            cmdSelecao.Parameters.AddWithValue("ID", numero);
+        //    return resultado;
+        //}
 
-            SqlDataReader leitor = cmdSelecao.ExecuteReader();
+        //public ValidationResult Excluir(GrupoVeiculo entidade)
+        //{
+        //    ValidationResult resultado = Validar(entidade);
 
-            GrupoVeiculo selecionado = LerUnico(leitor);
+        //    if (resultado.IsValid)
+        //        ExcluirRegistroBancoDados(entidade);
 
-            DesconectarBancoDados();
+        //    return resultado;
+        //}
 
-            return selecionado;
-        }
+        //public GrupoVeiculo SelecionarPorId(int numero)
+        //{
+        //    ConectarBancoDados();
 
-        public List<GrupoVeiculo> SelecionarTodos()
-        {
-            ConectarBancoDados();
+        //    sql = @"SELECT * FROM TBGRUPOVEICULO WHERE ID = @ID";
 
-            sql = @"SELECT * FROM TBGRUPOVEICULO";
+        //    SqlCommand cmdSelecao = new(sql, conexao);
 
-            SqlCommand cmd_Selecao = new(sql, conexao);
+        //    cmdSelecao.Parameters.AddWithValue("ID", numero);
 
-            SqlDataReader leitor = cmd_Selecao.ExecuteReader();
+        //    SqlDataReader leitor = cmdSelecao.ExecuteReader();
 
-            List<GrupoVeiculo> grupos = LerTodos(leitor);
+        //    GrupoVeiculo selecionado = LerUnico(leitor);
 
-            DesconectarBancoDados();
+        //    DesconectarBancoDados();
 
-            return grupos;
-        }
+        //    return selecionado;
+        //}
 
-        protected override void DefinirParametros(GrupoVeiculo entidade, SqlCommand cmd)
-        {
-            cmd.Parameters.AddWithValue("ID", entidade.Id);
-            cmd.Parameters.AddWithValue("NOMEGRUPO", entidade.Nome);
+        //public List<GrupoVeiculo> SelecionarTodos()
+        //{
+        //    ConectarBancoDados();
 
-        }
+        //    sql = @"SELECT * FROM TBGRUPOVEICULO";
 
-        protected override void InserirRegistroBancoDados(GrupoVeiculo entidade)
-        {
-            ConectarBancoDados();
+        //    SqlCommand cmd_Selecao = new(sql, conexao);
 
-            sql = @"INSERT INTO TBGRUPOVEICULO 
-                           (
-                                [NOMEGRUPO]   
+        //    SqlDataReader leitor = cmd_Selecao.ExecuteReader();
 
-                           )
-                           VALUES
-                           (
-                                @NOMEGRUPO
+        //    List<GrupoVeiculo> grupos = LerTodos(leitor);
 
+        //    DesconectarBancoDados();
 
-                           );SELECT SCOPE_IDENTITY();";
+        //    return grupos;
+        //}
 
-            SqlCommand cmd_Insercao = new(sql, conexao);
+        //protected override void DefinirParametros(GrupoVeiculo entidade, SqlCommand cmd)
+        //{
+        //    cmd.Parameters.AddWithValue("ID", entidade.Id);
+        //    cmd.Parameters.AddWithValue("NOMEGRUPO", entidade.Nome);
 
-            DefinirParametros(entidade, cmd_Insercao);
+        //}
 
-            entidade.Id = Convert.ToInt32(cmd_Insercao.ExecuteScalar());
+        //protected override void InserirRegistroBancoDados(GrupoVeiculo entidade)
+        //{
+        //    ConectarBancoDados();
 
-            DesconectarBancoDados();
-        }
+        //    sql = @"INSERT INTO TBGRUPOVEICULO 
+        //                   (
+        //                        [NOMEGRUPO]   
 
-        protected override void EditarRegistroBancoDados(GrupoVeiculo entidade)
-        {
-            ConectarBancoDados();
-
-            sql = @"UPDATE [TBGRUPOVEICULO] SET 
-
-                                [NOMEGRUPO] = @NOMEGRUPO    
-                           WHERE
-		                         ID = @ID";
-
-            SqlCommand cmd_Edicao = new(sql, conexao);
-
-            DefinirParametros(entidade, cmd_Edicao);
-
-            cmd_Edicao.ExecuteNonQuery();
-
-            DesconectarBancoDados();
-        }
-
-        protected override void ExcluirRegistroBancoDados(GrupoVeiculo entidade)
-        {
-            ConectarBancoDados();
-
-            sql = @"DELETE FROM TBGRUPOVEICULO WHERE ID = @ID;";
-
-            SqlCommand cmd_Exclusao = new(sql, conexao);
-
-            cmd_Exclusao.Parameters.AddWithValue("ID", entidade.Id);
-
-            cmd_Exclusao.ExecuteNonQuery();
-
-            DesconectarBancoDados();
-        }
-
-        protected override List<GrupoVeiculo> LerTodos(SqlDataReader leitor)
-        {
-            List<GrupoVeiculo> gruposVeiculos = new();
-
-            while (leitor.Read())
-            {
-                int id = Convert.ToInt32(leitor["ID"]);
-                string nome = leitor["NOMEGRUPO"].ToString();
-
-                GrupoVeiculo grupoVeiculo = new GrupoVeiculo(nome)
-                {
-                    Id = id
+        //                   )
+        //                   VALUES
+        //                   (
+        //                        @NOMEGRUPO
 
 
-                };
+        //                   );SELECT SCOPE_IDENTITY();";
 
-                gruposVeiculos.Add(grupoVeiculo);
-            }
+        //    SqlCommand cmd_Insercao = new(sql, conexao);
 
-            return gruposVeiculos;
-        }
+        //    DefinirParametros(entidade, cmd_Insercao);
 
-        protected override GrupoVeiculo LerUnico(SqlDataReader leitor)
-        {
-            GrupoVeiculo grupo = null;
+        //    entidade.Id = Convert.ToInt32(cmd_Insercao.ExecuteScalar());
 
-            if (leitor.Read())
-            {
-                int id = Convert.ToInt32(leitor["ID"]);
-                string nome = leitor["NOMEGRUPO"].ToString();
+        //    DesconectarBancoDados();
+        //}
+
+        //protected override void EditarRegistroBancoDados(GrupoVeiculo entidade)
+        //{
+        //    ConectarBancoDados();
+
+        //    sql = @"UPDATE [TBGRUPOVEICULO] SET 
+
+        //                        [NOMEGRUPO] = @NOMEGRUPO    
+        //                   WHERE
+        //                   ID = @ID";
+
+        //    SqlCommand cmd_Edicao = new(sql, conexao);
+
+        //    DefinirParametros(entidade, cmd_Edicao);
+
+        //    cmd_Edicao.ExecuteNonQuery();
+
+        //    DesconectarBancoDados();
+        //}
+
+        ////protected override void ExcluirRegistroBancoDados(GrupoVeiculo entidade)
+        ////{
+        ////    ConectarBancoDados();
+
+        ////    sql = @"DELETE FROM TBGRUPOVEICULO WHERE ID = @ID;";
+
+        ////    SqlCommand cmd_Exclusao = new(sql, conexao);
+
+        ////    cmd_Exclusao.Parameters.AddWithValue("ID", entidade.Id);
+
+        ////    cmd_Exclusao.ExecuteNonQuery();
+
+        ////    DesconectarBancoDados();
+        ////}
+
+        //protected override List<GrupoVeiculo> LerTodos(SqlDataReader leitor)
+        //{
+        //List<GrupoVeiculo> gruposVeiculos = new();
+
+        //while (leitor.Read())
+        //{
+        //    int id = Convert.ToInt32(leitor["ID"]);
+        //    string nome = leitor["NOMEGRUPO"].ToString();
+
+        //    GrupoVeiculo grupoVeiculo = new GrupoVeiculo(nome)
+        //    {
+        //        Id = id
 
 
-                grupo = new GrupoVeiculo(nome)
-                {
-                    Id = id
-                };
-            }
+        //    };
 
-            return grupo;
-        }
+        //    gruposVeiculos.Add(grupoVeiculo);
+        //}
 
-        protected override ValidationResult Validar(GrupoVeiculo entidade)
-        {
-            return new ValidadorGrupoVeiculo().Validate(entidade);
-        }
+        //return gruposVeiculos;
+
+        //protected override GrupoVeiculo LerUnico(SqlDataReader leitor)
+        //{
+        //    GrupoVeiculo grupo = null;
+
+        //    if (leitor.Read())
+        //    {
+        //        int id = Convert.ToInt32(leitor["ID"]);
+        //        string nome = leitor["NOMEGRUPO"].ToString();
+
+
+        //        grupo = new GrupoVeiculo(nome)
+        //        {
+        //            Id = id
+        //        };
+        //    }
+
+        //    return grupo;
+        //}
+
+        //protected override ValidationResult Validar(GrupoVeiculo entidade)
+        //{
+        //    return new ValidadorGrupoVeiculo().Validate(entidade);
+        //}
 
         protected override bool VerificarDuplicidade(GrupoVeiculo entidade)
         {
-            var grupos = SelecionarTodos();
+            var grupos = SelecionarTodos(sql_selecao_todos);
 
             foreach (GrupoVeiculo g in grupos)
             {

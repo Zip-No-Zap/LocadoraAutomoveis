@@ -1,4 +1,3 @@
-using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
