@@ -22,6 +22,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 
             return resultado;
         }
+
         public ValidationResult Editar(Cliente entidade)
         {
             ValidationResult resultado = Validar(entidade);

@@ -118,14 +118,27 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
         
         private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e = ImpedirNumeroTexBox(e);
+            e = ImpedirNumeroECharsEspeciaisTexBox(e);
         }
-        private static KeyPressEventArgs ImpedirNumeroTexBox(KeyPressEventArgs e)
+
+        private static void ImpedirCharEspeciais(KeyPressEventArgs e)
+        {
+            if (!((e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z')))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private static KeyPressEventArgs ImpedirNumeroECharsEspeciaisTexBox(KeyPressEventArgs e)
         {
             if ((Strings.Asc(e.KeyChar) >= 48 & Strings.Asc(e.KeyChar) <= 57))
             {
                 e.Handled = true;
-                e = null;
+            }
+
+            if (!((e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z')))
+            {
+                e.Handled = true;
             }
 
             return e;
