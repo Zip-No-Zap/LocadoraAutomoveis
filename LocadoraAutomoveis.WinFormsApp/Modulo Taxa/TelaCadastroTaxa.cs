@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
+using Microsoft.VisualBasic;
 using System;
 using System.Windows.Forms;
 
@@ -88,6 +89,26 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
             {
                 e.Handled = true;
             }
+        }
+
+        private void tbDescricao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ImpedirNumerosECharsEspeciaisTextBox(e);
+        }
+
+        private static KeyPressEventArgs ImpedirNumerosECharsEspeciaisTextBox(KeyPressEventArgs e)
+        {
+            if ((Strings.Asc(e.KeyChar) >= 48 & Strings.Asc(e.KeyChar) <= 57))
+            {
+                e.Handled = true;
+            }
+
+            if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar)))
+            {
+                e.Handled = true;
+            }
+
+            return e;
         }
     }
 }
