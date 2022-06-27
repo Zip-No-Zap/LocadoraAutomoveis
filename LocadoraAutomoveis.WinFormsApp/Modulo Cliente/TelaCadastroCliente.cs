@@ -181,7 +181,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
         private void tbEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string caracteresPermitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+            string caracteresPermitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_@.";
 
             if (! ( caracteresPermitidos.Contains( e.KeyChar.ToString().ToUpper())  || char.IsControl(e.KeyChar) ) )
             {
