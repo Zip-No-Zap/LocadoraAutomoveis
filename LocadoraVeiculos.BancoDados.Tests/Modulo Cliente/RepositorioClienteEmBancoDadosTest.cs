@@ -97,13 +97,13 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             
             return new Cliente()
             {
-                Nome = "Ana",
-                Cpf = "12345678978",
+                Nome = "Felipe Rafael",
+                Cpf = "35467859765",
                 Cnpj = "-",
-                Cnh = "123123123123",
-                Email = "anabeatriz@gmail.com",
+                Cnh = "123435467890",
+                Email = "fr@gmail.com",
                 Endereco = "Lages - SC",
-                Telefone = "11923121231",
+                Telefone = "(49)99910-6130",
             };
         }
 
@@ -113,12 +113,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             return new Cliente()
             {
                 Nome = "Luis B",
-                Cpf = "11111111111",
+                Cpf = "05165502929",
                 Cnpj = "-",
-                Cnh = "111111111111",
+                Cnh = "123456789098",
                 Email = "luish@gmail.com",
                 Endereco = "Lages - SC",
-                Telefone = "(49)99106130",
+                Telefone = "(49)99910-6130",
             };
         }
 

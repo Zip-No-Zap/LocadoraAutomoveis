@@ -121,7 +121,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
                 Cnh = "123123123123",
                 Email = "anabeatriz@gmail.com",
                 Endereco = "Lages - SC",
-                Telefone = "(11)92312-1231",
+                Telefone = "11923121231",
                 TipoCliente = EnumTipoCliente.PessoaFisica
 
             };
