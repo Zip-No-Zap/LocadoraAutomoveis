@@ -1,4 +1,5 @@
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
+using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -13,6 +14,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
         public RepositorioFuncionarioBancoDadosTests()
         {
             repoFunc = new();
+            ResetarBancoDadosFuncionario();
         }
 
         [TestMethod]
@@ -90,7 +92,12 @@ namespace LocadoraVeiculos.BancoDados.Tests
                 
             };
         }
-            
+
+        private void ResetarBancoDadosFuncionario()
+        {
+            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
+        }
+
 
         #endregion
     }

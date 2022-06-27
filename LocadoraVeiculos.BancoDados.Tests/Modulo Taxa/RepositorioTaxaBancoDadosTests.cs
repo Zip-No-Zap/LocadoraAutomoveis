@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_Taxa;
+using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,6 +14,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
         public RepositorioTaxaBancoDadosTests()
         {
             repoTaxa = new();
+            ResetarBancoDadosTaxa();
         }
 
         [TestMethod]
@@ -86,6 +88,14 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             };
         }
 
-#endregion
+        private void ResetarBancoDadosTaxa()
+        {
+
+            repoTaxa = new();
+
+            Db.ExecutarSql("DELETE FROM TBTAXA; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
+        }
+
+        #endregion
     }
 }

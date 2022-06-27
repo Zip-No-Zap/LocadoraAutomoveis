@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_Cliente;
+using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,7 +13,9 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
         public RepositorioClienteEmBancoDadosTest()
         {
             repositorioCliente = new RepositorioClienteEmBancoDados();
+            ResetarBancoDadosCliente();
         }
+
         [TestMethod]
         public void Deve_inserir_cliente()
         {
@@ -25,6 +28,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             //assert
             Assert.AreEqual(true, resultado.IsValid);
         }
+
         [TestMethod]
         public void Deve_editar_cliente()
         {
@@ -40,6 +44,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             //assert
             Assert.AreEqual(true, resultado.IsValid);
         }
+
         [TestMethod]
         public void Deve_excluir_cliente()
         {
@@ -80,6 +85,11 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             Assert.AreNotEqual(null, resultado);
         }
 
+        private void ResetarBancoDadosCliente()
+        {
+
+            Db.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
+        }
         private Cliente InstanciarCliente()
         {
             
