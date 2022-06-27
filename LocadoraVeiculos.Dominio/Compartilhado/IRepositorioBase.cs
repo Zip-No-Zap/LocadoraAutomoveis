@@ -5,14 +5,10 @@ namespace LocadoraVeiculos.Dominio.Compartilhado
 {
     public interface IRepositorioBase<T> where T : EntidadeBase<T>
     {
-        ValidationResult Inserir(T registro);
-
-        ValidationResult Editar(T registro);
-
-        void Excluir(T registro);
-
-        T SelecionarPorId(int id);
-
+        ValidationResult Inserir(T entidade);
+        ValidationResult Editar(T entidade);
+        ValidationResult Excluir(T entidade);
         List<T> SelecionarTodos();
+        T SelecionarPorId(int numero);
     }
 }

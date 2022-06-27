@@ -3,7 +3,7 @@
 
 namespace LocadoraVeiculos.Dominio.Modulo_Taxa
 {
-    public interface IRepositorioTaxa : IRepositorioBase<Taxa>
+    public interface IRepositorioTaxa : IRepositorio<Taxa>
     {
     }
 }
