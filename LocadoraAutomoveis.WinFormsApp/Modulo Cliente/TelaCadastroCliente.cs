@@ -128,7 +128,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
                 e.Handled = true;
             }
 
-            if (!((e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z')))
+            if (! (char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) ))
             {
                 e.Handled = true;
             }
@@ -176,6 +176,16 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             if (tbNome.Text.Length < 2)
             {
                 tbNome.Clear();
+            }
+        }
+
+        private void tbEmail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string caracteresPermitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+
+            if (! ( caracteresPermitidos.Contains( e.KeyChar.ToString().ToUpper())  || char.IsControl(e.KeyChar) ) )
+            {
+                e.Handled = true;
             }
         }
     }
