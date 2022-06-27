@@ -91,7 +91,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         {
            if(texto.Length < 2)
             {
-                MessageBox.Show("Este campo não aceita menos que dois caracteres", "Aviso", MessageBoxButtons.OK);
+                MessageBox.Show("Campo 'Nome' não aceita menos que dois caracteres", "Aviso", MessageBoxButtons.OK);
 
                 return;
             }

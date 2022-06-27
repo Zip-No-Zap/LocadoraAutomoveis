@@ -170,8 +170,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
             DesconectarBancoDados();
         }
 
-
-
         protected override List<Cliente> LerTodos(SqlDataReader leitor)
         {
             List<Cliente> clientes = new();

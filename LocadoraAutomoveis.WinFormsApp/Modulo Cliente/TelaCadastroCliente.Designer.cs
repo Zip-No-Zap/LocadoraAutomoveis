@@ -73,6 +73,7 @@
             this.tbNome.Size = new System.Drawing.Size(589, 31);
             this.tbNome.TabIndex = 0;
             this.tbNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNome_KeyPress);
+            this.tbNome.Leave += new System.EventHandler(this.tbNome_Leave);
             // 
             // tbCPF
             // 

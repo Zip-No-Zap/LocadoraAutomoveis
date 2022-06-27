@@ -120,30 +120,24 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             if (VerificarDataAdmissao(tbData.Text) == false)
             {
                 MessageBox.Show("Data em formato incorreto", "Aviso");
-                tbData.Clear();
-                tbData.Focus();
             }
         }
 
         private void tbNome_Leave(object sender, EventArgs e)
         {
-            ImpedirTextoMenorDois(tbNome.Text);
-        }
+            if (tbNome.Text.Length < 2)
+            {
+                tbNome.Clear();
+            }
 
+        }
         private void tbCidade_Leave(object sender, EventArgs e)
         {
-            ImpedirTextoMenorDois(tbCidade.Text);
-        }
-
-        private void ImpedirTextoMenorDois(string texto)
-        {
-            if (Text.Length < 2)
+            if (tbCidade.Text.Length < 2)
             {
-                MessageBox.Show("Este campo não aceita menos de dois caracteres", "Aviso");
-                return;
+                tbCidade.Clear();
             }
         }
-
         private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != ',')

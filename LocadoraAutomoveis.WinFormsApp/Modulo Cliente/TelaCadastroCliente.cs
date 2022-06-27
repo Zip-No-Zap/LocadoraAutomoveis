@@ -165,5 +165,13 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
         {
             ImpedirLetrasCharEspeciais(e);
         }
+
+        private void tbNome_Leave(object sender, EventArgs e)
+        {
+            if (tbNome.Text.Length < 2)
+            {
+                tbNome.Clear();
+            }
+        }
     }
 }
