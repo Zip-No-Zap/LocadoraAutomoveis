@@ -1,16 +1,14 @@
-﻿using FluentValidation.Results;
-using LocadoraVeiculos.Dominio.Compartilhado;
-using LocadoraVeiculos.Dominio.Modulo_Funcionario;
+﻿using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 {
     public class RepositorioFuncionarioEmBancoDados : RepositorioBase<Funcionario, MapeadorFuncionario>
     {
-        const string sql_insercao = @"INSERT INTO TBFUNCIONARIO 
+        protected override string sql_insercao
+        {
+            get => @"INSERT INTO TBFUNCIONARIO 
                                     (
                                             [NOME],    
                                             [LOGIN],
@@ -33,7 +31,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                                             @PERFIL
 
                                     );SELECT SCOPE_IDENTITY();";
-        const string sql_edicao = @"UPDATE [TBFUNCIONARIO] SET 
+        }
+        protected override string sql_edicao
+        {
+            get =>
+                                @"UPDATE [TBFUNCIONARIO] SET 
 
                                     [NOME] = @NOME,    
 	                                [LOGIN] = @LOGIN,
@@ -45,9 +47,19 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 
                                WHERE
 		                             ID = @ID";
-        const string sql_exclusao = @"DELETE FROM TBFUNCIONARIO WHERE ID = @ID;";
-        const string sql_selecao_por_id = @"SELECT * FROM TBFUNCIONARIO WHERE ID = @ID";
-        const string sql_selecao_todos = @"SELECT * FROM TBFUNCIONARIO";
+        }
+        protected override string sql_exclusao
+        {
+            get => @"DELETE FROM TBFUNCIONARIO WHERE ID = @ID;";
+        }
+        protected override string sql_selecao_por_id 
+        { 
+            get => @"SELECT * FROM TBFUNCIONARIO WHERE ID = @ID";
+        }
+        protected override string sql_selecao_todos 
+        { 
+            get => @"SELECT * FROM TBFUNCIONARIO";
+        }
 
         //public ValidationResult Inserir(Funcionario entidade)
         //{

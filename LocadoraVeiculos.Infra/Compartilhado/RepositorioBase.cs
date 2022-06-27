@@ -4,17 +4,20 @@ using LocadoraVeiculos.Dominio.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 {
-    public abstract class RepositorioBase<T, Tmapeador> where T : EntidadeBase<T>
-                                                        where Tmapeador : MapeadorBase<T>,
-                                                        IRepositorio<T>
+    public abstract class RepositorioBase<T, Tmapeador> where T : EntidadeBase<T>//, IRepositorio<T>
+                                                        where Tmapeador : MapeadorBase<T>, new()
+                                                       
     {
         ConexaoBancoDados conexaoBancoDados;
+        protected abstract string sql_insercao { get; }
+        protected abstract string sql_edicao { get; }
+        protected abstract string sql_exclusao { get; }
+        protected abstract string sql_selecao_por_id  {get;}
+        protected abstract string sql_selecao_todos { get; }
 
         public RepositorioBase()
         {
@@ -56,7 +59,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
         public T SelecionarPorId(T entidade, string sqlSelecaoPorId)
         {
-            Tmapeador mapeador = null;
+            Tmapeador mapeador = new();
 
             conexaoBancoDados.ConectarBancoDados();
 
@@ -75,7 +78,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
         public List<T> SelecionarTodos(string sqlSelecaoTodos)
         {
-            Tmapeador mapeador = null;
+            Tmapeador mapeador = new();
 
             conexaoBancoDados.ConectarBancoDados();
 
@@ -100,11 +103,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
         private void InserirRegistroBancoDados(T entidade, string sqlInsercao)
         {
+            Tmapeador mapeador = new();
+
             conexaoBancoDados.ConectarBancoDados();
 
             SqlCommand cmd_Insercao = new(sqlInsercao, conexaoBancoDados.conexao);
 
-            DefinirParametros(entidade, cmd_Insercao);
+            mapeador.DefinirParametros(entidade, cmd_Insercao);
 
             entidade.Id = Convert.ToInt32(cmd_Insercao.ExecuteScalar());
 
@@ -113,11 +118,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
         private void EditarRegistroBancoDados(T entidade, string sqlEdicao)
         {
+            Tmapeador mapeador = new();
+
             conexaoBancoDados.ConectarBancoDados();
 
             SqlCommand cmd_Edicao = new(sqlEdicao, conexaoBancoDados.conexao);
 
-            DefinirParametros(entidade, cmd_Edicao);
+            mapeador.DefinirParametros(entidade, cmd_Edicao);
 
             cmd_Edicao.ExecuteNonQuery();
 
