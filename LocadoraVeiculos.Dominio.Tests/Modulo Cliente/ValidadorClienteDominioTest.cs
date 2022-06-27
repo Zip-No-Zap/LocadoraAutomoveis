@@ -11,8 +11,6 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
     [TestClass]
     public class ValidadorClienteDominioTest
     {
-
-
         public ValidadorClienteDominioTest()
         {
             
@@ -74,8 +72,8 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
             var resultadoPessoaJuridica = validador.Validate(clientePessoaJuridica);
 
             //assert
-            Assert.AreEqual("'Email' com formato incorreto", resultadoPessoaFisica.Errors[0].ErrorMessage);
-            Assert.AreEqual("'Email' com formato incorreto", resultadoPessoaJuridica.Errors[0].ErrorMessage);
+            Assert.AreEqual("'Email' formato incorreto", resultadoPessoaFisica.Errors[0].ErrorMessage);
+            Assert.AreEqual("'Email' formato incorreto", resultadoPessoaJuridica.Errors[0].ErrorMessage);
 
         }
 
@@ -84,7 +82,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
         {
             //arrange
             var clientePessoaFisica = InstanciarClientePessoaFisica();
-            clientePessoaFisica.Cpf = "234.234";
+            clientePessoaFisica.Cpf = "2908098908098098912";
 
             ValidadorCliente validador = new ValidadorCliente();
 
@@ -92,15 +90,14 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
             var resultadoPessoaFisica = validador.Validate(clientePessoaFisica);
 
             //assert
-            Assert.AreEqual("'CPF' com formato incorreto.", resultadoPessoaFisica.Errors[0].ErrorMessage);
-
+            Assert.AreEqual("'CPF' inválido.", resultadoPessoaFisica.Errors[0].ErrorMessage);
         }
         [TestMethod]
         public void Cnpj_deve_ter_um_formato_valido()
         {
             //arrange
             var clientePessoaJuridica = InstanciarClientePessoaJuridica();
-            clientePessoaJuridica.Cnpj = "234224";
+            clientePessoaJuridica.Cnpj = "234224709709709870988709709870987980";
 
             ValidadorCliente validador = new ValidadorCliente();
 
@@ -108,13 +105,12 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
             var resultadoPessoaJuridica = validador.Validate(clientePessoaJuridica);
 
             //assert
-            Assert.AreEqual("'CNPJ' com formato incorreto.", resultadoPessoaJuridica.Errors[0].ErrorMessage);
+            Assert.AreEqual("'CNPJ' inválido.", resultadoPessoaJuridica.Errors[0].ErrorMessage);
 
         }
-        [TestMethod]
-       
 
-        private Cliente InstanciarClientePessoaFisica()
+        [TestMethod]
+       private Cliente InstanciarClientePessoaFisica()
         {
 
             return new Cliente()

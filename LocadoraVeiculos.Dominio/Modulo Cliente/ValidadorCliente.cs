@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
+using LocadoraVeiculos.Dominio.Compartilhado;
 using System.Text.RegularExpressions;
 
 
@@ -30,7 +31,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
              .NotNull().NotEmpty().WithMessage("'Email' formato incorreto");
 
             RuleFor(x => x.Telefone)
-               //.Matches(@"((?\d{2})?\s)?(\d{4,5}-\d{4})").WithMessage("'Telefone' com formato incorreto.")
+               .Telefone()
                .MaximumLength(16).WithMessage("'Telefone' formato incorreto")
                .NotEmpty().WithMessage("'Telefone' formato incorreto")
                .NotNull().WithMessage("'Telefone' formato incorreto")
