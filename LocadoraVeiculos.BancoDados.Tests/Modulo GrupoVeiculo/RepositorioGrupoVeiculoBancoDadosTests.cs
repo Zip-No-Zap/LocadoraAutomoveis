@@ -100,7 +100,6 @@ namespace LocadoraVeiculos.BancoDados.Tests
             //assert
             Assert.IsNotNull(grupoEncontrado);
             Assert.AreEqual(grupo, grupoEncontrado);
-
         }
 
         #region privados
@@ -114,6 +113,8 @@ namespace LocadoraVeiculos.BancoDados.Tests
   
             };
         }
+
+       
             
 
         #endregion

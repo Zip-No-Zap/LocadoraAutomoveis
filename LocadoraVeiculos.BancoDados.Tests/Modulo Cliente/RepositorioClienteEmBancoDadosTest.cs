@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_Cliente;
+using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,9 +14,10 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
         public RepositorioClienteEmBancoDadosTest()
         {
             repositorioCliente = new RepositorioClienteEmBancoDados();
+            ResetarBancoDados();
         }
         [TestMethod]
-        public void Deve_inserir_cliete()
+        public void Deve_inserir_cliente()
         {
             // arrange
             var cliente = InstanciarCliente();
@@ -27,7 +29,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             Assert.AreEqual(true, resultado.IsValid);
         }
         [TestMethod]
-        public void Deve_editar_cliete()
+        public void Deve_editar_cliente()
         {
             // arrange
             var cliente = InstanciarCliente();
@@ -45,10 +47,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
         public void Deve_excluir_cliente()
         {
             //arrange
-            Cliente cliente = repositorioCliente.SelecionarPorId(5);
+            var cliente = InstanciarCliente();
+            repositorioCliente.Inserir(cliente);
+            Cliente clienteSelecionado = repositorioCliente.SelecionarPorId(cliente.Id);
 
             //action
-            var resultado = repositorioCliente.Excluir(cliente);
+            var resultado = repositorioCliente.Excluir(clienteSelecionado);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -58,8 +62,13 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
         public void Deve_selecionar_todos()
         {
             //arrange
+            var cliente1 = InstanciarCliente();
 
+            repositorioCliente.Inserir(cliente1);
 
+            var cliente2 = InstanciarCliente2();
+
+            repositorioCliente.Inserir(cliente2);
             //action
             var resultado = repositorioCliente.SelecionarTodos();
 
@@ -72,10 +81,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
         public void Deve_selecionar_unico()
         {
             //arrange
+            var cliente1 = InstanciarCliente();
 
+            repositorioCliente.Inserir(cliente1);
 
             //action
-            var resultado = repositorioCliente.SelecionarPorId(3);
+            var resultado = repositorioCliente.SelecionarPorId(cliente1.Id);
 
             //assert
             Assert.AreNotEqual(null, resultado);
@@ -94,6 +105,26 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
                 Endereco = "Lages - SC",
                 Telefone = "11923121231",
             };
+        }
+
+        private Cliente InstanciarCliente2()
+        {
+
+            return new Cliente()
+            {
+                Nome = "Luis B",
+                Cpf = "11111111111",
+                Cnpj = "-",
+                Cnh = "111111111111",
+                Email = "luish@gmail.com",
+                Endereco = "Lages - SC",
+                Telefone = "(49)99106130",
+            };
+        }
+
+        void ResetarBancoDados()
+        {
+            Db.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)");
         }
 
     }
