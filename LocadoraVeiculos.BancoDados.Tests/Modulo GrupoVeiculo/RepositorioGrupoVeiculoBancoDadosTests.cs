@@ -14,9 +14,8 @@ namespace LocadoraVeiculos.BancoDados.Tests
         
         public RepositorioGrupoVeiculoBancoDadosTests()
         {
-            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
+            Db.ExecutarSql("DELETE FROM TBGRUPOVEICULO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
             repoGrupoVeiculo = new();
-            InstanciarGrupoVeiculo();
         }
 
         [TestMethod]
@@ -76,21 +75,27 @@ namespace LocadoraVeiculos.BancoDados.Tests
         [TestMethod]
         public void Deve_selecionar_todos_os_grupos()
         {
-            GrupoVeiculo grupo = InstanciarGrupoVeiculo();
+            //arrange
+            GrupoVeiculo grupo1 = InstanciarGrupoVeiculo();
+            GrupoVeiculo grupo2 = InstanciarGrupoVeiculo2();
 
-            repoGrupoVeiculo.Inserir(grupo);
+            repoGrupoVeiculo.Inserir(grupo1);
+            repoGrupoVeiculo.Inserir(grupo2);
 
+            //action
             var grupos = repoGrupoVeiculo.SelecionarTodos();
 
-            Assert.AreEqual(1, grupos.Count);
+            //assert
+            Assert.AreNotEqual(0, grupos.Count);
         }
 
         [TestMethod]
-        public void Deve_selecionar_um_grupo()
+        public void Deve_selecionar_por_id_grupo()
         {
+            
+            //arrange
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
             grupo.Nome = "teste04";
-            grupo.Id = 1000;
 
             repoGrupoVeiculo.Inserir(grupo);
 
@@ -99,7 +104,6 @@ namespace LocadoraVeiculos.BancoDados.Tests
 
             //assert
             Assert.IsNotNull(grupoEncontrado);
-            Assert.AreEqual(grupo, grupoEncontrado);
         }
 
         #region privados
@@ -108,14 +112,22 @@ namespace LocadoraVeiculos.BancoDados.Tests
         {
             return new GrupoVeiculo()
             {
-                Id = 1,
                 Nome = "Uber"
   
             };
         }
 
-       
-            
+        GrupoVeiculo InstanciarGrupoVeiculo2()
+        {
+            return new GrupoVeiculo()
+            {
+                Nome = "Uber22"
+
+            };
+        }
+
+
+
 
         #endregion
     }
