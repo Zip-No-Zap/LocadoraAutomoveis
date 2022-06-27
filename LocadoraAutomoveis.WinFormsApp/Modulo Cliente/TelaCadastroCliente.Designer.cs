@@ -71,7 +71,7 @@
             this.tbNome.Margin = new System.Windows.Forms.Padding(2);
             this.tbNome.Name = "tbNome";
             this.tbNome.Size = new System.Drawing.Size(589, 31);
-            this.tbNome.TabIndex = 21;
+            this.tbNome.TabIndex = 0;
             this.tbNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNome_KeyPress);
             // 
             // tbCPF
@@ -81,7 +81,7 @@
             this.tbCPF.Margin = new System.Windows.Forms.Padding(2);
             this.tbCPF.Name = "tbCPF";
             this.tbCPF.Size = new System.Drawing.Size(316, 31);
-            this.tbCPF.TabIndex = 37;
+            this.tbCPF.TabIndex = 1;
             this.tbCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCPF_KeyPress);
             // 
             // label4
@@ -112,7 +112,7 @@
             this.tbEndereco.Margin = new System.Windows.Forms.Padding(2);
             this.tbEndereco.Name = "tbEndereco";
             this.tbEndereco.Size = new System.Drawing.Size(589, 31);
-            this.tbEndereco.TabIndex = 41;
+            this.tbEndereco.TabIndex = 3;
             // 
             // label6
             // 
@@ -142,7 +142,7 @@
             this.tbCnh.Margin = new System.Windows.Forms.Padding(2);
             this.tbCnh.Name = "tbCnh";
             this.tbCnh.Size = new System.Drawing.Size(355, 31);
-            this.tbCnh.TabIndex = 43;
+            this.tbCnh.TabIndex = 6;
             this.tbCnh.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCnh_KeyPress);
             // 
             // tbEmail
@@ -151,7 +151,7 @@
             this.tbEmail.Margin = new System.Windows.Forms.Padding(2);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(356, 31);
-            this.tbEmail.TabIndex = 45;
+            this.tbEmail.TabIndex = 4;
             // 
             // label9
             // 
@@ -193,7 +193,7 @@
             this.btnLimpar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(112, 59);
-            this.btnLimpar.TabIndex = 2;
+            this.btnLimpar.TabIndex = 8;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
@@ -206,7 +206,7 @@
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(112, 59);
-            this.btnOK.TabIndex = 1;
+            this.btnOK.TabIndex = 7;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -231,7 +231,7 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.tbEndereco);
             this.panel2.Location = new System.Drawing.Point(32, 15);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(635, 510);
             this.panel2.TabIndex = 52;
@@ -240,7 +240,7 @@
             // 
             this.rdbPessoaJuridica.AutoSize = true;
             this.rdbPessoaJuridica.Location = new System.Drawing.Point(26, 178);
-            this.rdbPessoaJuridica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdbPessoaJuridica.Margin = new System.Windows.Forms.Padding(4);
             this.rdbPessoaJuridica.Name = "rdbPessoaJuridica";
             this.rdbPessoaJuridica.Size = new System.Drawing.Size(154, 29);
             this.rdbPessoaJuridica.TabIndex = 55;
@@ -253,7 +253,7 @@
             // 
             this.rdbPessoaFisica.AutoSize = true;
             this.rdbPessoaFisica.Location = new System.Drawing.Point(26, 140);
-            this.rdbPessoaFisica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdbPessoaFisica.Margin = new System.Windows.Forms.Padding(4);
             this.rdbPessoaFisica.Name = "rdbPessoaFisica";
             this.rdbPessoaFisica.Size = new System.Drawing.Size(138, 29);
             this.rdbPessoaFisica.TabIndex = 54;
@@ -269,7 +269,7 @@
             this.tbTelefone.Mask = "(99) 00000-0000";
             this.tbTelefone.Name = "tbTelefone";
             this.tbTelefone.Size = new System.Drawing.Size(225, 31);
-            this.tbTelefone.TabIndex = 53;
+            this.tbTelefone.TabIndex = 5;
             // 
             // label8
             // 
@@ -289,7 +289,7 @@
             this.tbCNPJ.Margin = new System.Windows.Forms.Padding(2);
             this.tbCNPJ.Name = "tbCNPJ";
             this.tbCNPJ.Size = new System.Drawing.Size(316, 31);
-            this.tbCNPJ.TabIndex = 51;
+            this.tbCNPJ.TabIndex = 2;
             this.tbCNPJ.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCNPJ_KeyPress);
             // 
             // TelaCadastroCliente

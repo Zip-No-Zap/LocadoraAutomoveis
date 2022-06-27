@@ -32,10 +32,10 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbNomeGrupoVeiculo = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -88,6 +88,15 @@
             this.panel2.Size = new System.Drawing.Size(588, 235);
             this.panel2.TabIndex = 1;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(279, 52);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(286, 33);
+            this.comboBox1.TabIndex = 19;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -117,15 +126,6 @@
             this.tbNomeGrupoVeiculo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNome_KeyPress);
             this.tbNomeGrupoVeiculo.Leave += new System.EventHandler(this.tbNome_Leave);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(279, 52);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(286, 33);
-            this.comboBox1.TabIndex = 19;
-            // 
             // TelaCadastroGrupoVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -137,7 +137,7 @@
             this.Name = "TelaCadastroGrupoVeiculo";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Grupo Veículo";
+            this.Text = "Cadastro de Grupo de Veículo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroGrupoVeiculo_FormClosing);
             this.Load += new System.EventHandler(this.TelaCadastroGrupoVeiculo_Load);
             this.panel1.ResumeLayout(false);
