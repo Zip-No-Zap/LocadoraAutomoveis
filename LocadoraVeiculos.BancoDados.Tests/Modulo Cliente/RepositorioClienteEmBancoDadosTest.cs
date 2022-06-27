@@ -9,13 +9,14 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
     [TestClass]
     public class RepositorioClienteEmBancoDadosTest
     {
-        RepositorioClienteEmBancoDados repositorioCliente ;
+        RepositorioClienteEmBancoDados repositorioCliente;
 
         public RepositorioClienteEmBancoDadosTest()
         {
             repositorioCliente = new RepositorioClienteEmBancoDados();
-            ResetarBancoDados();
+            ResetarBancoDadosCliente();
         }
+
         [TestMethod]
         public void Deve_inserir_cliente()
         {
@@ -28,6 +29,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             //assert
             Assert.AreEqual(true, resultado.IsValid);
         }
+
         [TestMethod]
         public void Deve_editar_cliente()
         {
@@ -43,12 +45,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             //assert
             Assert.AreEqual(true, resultado.IsValid);
         }
+
         [TestMethod]
         public void Deve_excluir_cliente()
         {
             //arrange
             var cliente = InstanciarCliente();
-            repositorioCliente.Inserir(cliente);
             Cliente clienteSelecionado = repositorioCliente.SelecionarPorId(cliente.Id);
 
             //action
@@ -76,22 +78,24 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             Assert.AreNotEqual(0, resultado.Count);
         }
 
-
         [TestMethod]
         public void Deve_selecionar_unico()
         {
             //arrange
-            var cliente1 = InstanciarCliente();
-
-            repositorioCliente.Inserir(cliente1);
+            var cliente = InstanciarCliente();
 
             //action
-            var resultado = repositorioCliente.SelecionarPorId(cliente1.Id);
+            var resultado = repositorioCliente.SelecionarPorId(cliente.Id);
 
             //assert
             Assert.AreNotEqual(null, resultado);
         }
 
+        private void ResetarBancoDadosCliente()
+        {
+
+            Db.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
+        }
         private Cliente InstanciarCliente()
         {
             

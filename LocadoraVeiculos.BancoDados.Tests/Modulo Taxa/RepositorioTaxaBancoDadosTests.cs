@@ -10,11 +10,11 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
     public class RepositorioTaxaBancoDadosTests
     {
         RepositorioTaxaEmBancoDados repoTaxa;
-
+       
         public RepositorioTaxaBancoDadosTests()
         {
             repoTaxa = new();
-            ResetarBancoDados();
+            ResetarBancoDadosTaxa();
         }
 
         [TestMethod]
@@ -107,20 +107,14 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             };
         }
 
-        Taxa InstanciarTaxa2()
+        private void ResetarBancoDadosTaxa()
         {
-            return new Taxa()
-            {
-                Descricao = "descrição teste2222",
-                Tipo = "Fixo",
-                Valor = 250
-            };
+
+            repoTaxa = new();
+
+            Db.ExecutarSql("DELETE FROM TBTAXA; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
         }
 
-        void ResetarBancoDados()
-        {
-            Db.ExecutarSql("DELETE FROM TBTAXA; DBCC CHECKIDENT (TBTAXA, RESEED, 0)");
-        }
         #endregion
     }
 }

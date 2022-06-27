@@ -1,4 +1,3 @@
-using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
@@ -15,8 +14,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
         public RepositorioFuncionarioBancoDadosTests()
         {
             repoFunc = new();
-
-            ResetarBancoDados();
+            ResetarBancoDadosFuncionario();
         }
 
         [TestMethod]
@@ -37,9 +35,10 @@ namespace LocadoraVeiculos.BancoDados.Tests
         {
             //arrange
             var funcionario = InstanciarFuncionario();
-            repoFunc.Inserir(funcionario);
-           
-            Funcionario funcionarioSelecionado = repoFunc.SelecionarPorId(funcionario.Id);
+            Funcionario selecionado = repoFunc.SelecionarPorId(funcionario.Id);
+
+            funcionario.Nome = "Foi alterado no teste";
+            funcionario.Salario = 9000;
 
             funcionarioSelecionado.Nome = "Foi alterado no teste";
             funcionarioSelecionado.Salario = 9000;
@@ -117,24 +116,9 @@ namespace LocadoraVeiculos.BancoDados.Tests
             };
         }
 
-        Funcionario InstanciarFuncionario2()
+        private void ResetarBancoDadosFuncionario()
         {
-            return new Funcionario()
-            {
-                Nome = "nome teste 2222",
-                Cidade = "cidade teste 2222",
-                Estado = "sc",
-                Salario = 2000,
-                DataAdmissao = DateTime.Parse("12/10/2021"),
-                Login = "loginteste2222",
-                Senha = "senhateste222",
-                Perfil = "Administrador"
-            };
-        }
-
-        void ResetarBancoDados()
-        {
-            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBFUNCIONARIO, RESEED, 0)");
+            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
         }
 
 
