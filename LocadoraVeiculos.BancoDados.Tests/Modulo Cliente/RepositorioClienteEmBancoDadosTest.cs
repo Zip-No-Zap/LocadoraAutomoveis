@@ -8,45 +8,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
     public class RepositorioClienteEmBancoDadosTest
     {
         RepositorioClienteEmBancoDados repositorioCliente;
-       string sql_insercao => @"INSERT INTO TBCLIENTE 
-                                                   (
-                                                        [NOME],    
-                                                        [CPF],
-                                                        [CNPJ],   
-                                                        [ENDERECO],
-                                                        [TIPOCLIENTE],
-                                                        [CNH],
-                                                        [EMAIL],
-                                                        [TELEFONE]  
-                                                   )
-                                                   VALUES
-                                                   (
-                                                        @NOME,    
-                                                        @CPF,
-                                                        @CNPJ,   
-                                                        @ENDERECO,
-                                                        @TIPOCLIENTE,
-                                                        @CNH,
-                                                        @EMAIL,
-                                                        @TELEFONE
-
-                                                   );SELECT SCOPE_IDENTITY();";
-       string sql_edicao => @"UPDATE [TBCLIENTE] SET 
-
-                                                        [NOME] = @NOME,
-                                                        [CPF] = @CPF,
-                                                        [CNPJ] = @CNPJ,
-                                                        [ENDERECO] = @ENDERECO,
-                                                        [TIPOCLIENTE] = @TIPOCLIENTE,
-                                                        [CNH] = @CNH,
-                                                        [EMAIL] = @EMAIL,
-                                                        [TELEFONE] = @TELEFONE
-
-                                                WHERE
-		                                                ID = @ID";
-       string sql_exclusao => @"DELETE FROM TBCLIENTE WHERE ID = @ID;";
-       string sql_selecao_por_id => @"SELECT * FROM TBCLIENTE WHERE ID = @ID";
-       string sql_selecao_todos => @"SELECT * FROM TBCLIENTE";
 
         public RepositorioClienteEmBancoDadosTest()
         {
@@ -59,7 +20,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             var cliente = InstanciarCliente();
 
             //action
-            var resultado = repositorioCliente.Inserir(cliente, sql_insercao);
+            var resultado = repositorioCliente.Inserir(cliente);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -69,12 +30,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
         {
             // arrange
             var cliente = InstanciarCliente();
-            repositorioCliente.Inserir(cliente, sql_insercao);
+            repositorioCliente.Inserir(cliente);
 
             cliente.Nome = "Ana Beatriz";
 
             //action
-            var resultado = repositorioCliente.Editar(cliente, sql_edicao);
+            var resultado = repositorioCliente.Editar(cliente);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -84,10 +45,10 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
         {
             //arrange
             var cliente = InstanciarCliente();
-            Cliente clienteSelecionado = repositorioCliente.SelecionarPorId(cliente, sql_selecao_por_id);
+            Cliente clienteSelecionado = repositorioCliente.SelecionarPorId(cliente.Id);
 
             //action
-            var resultado = repositorioCliente.Excluir(clienteSelecionado, sql_exclusao);
+            var resultado = repositorioCliente.Excluir(clienteSelecionado);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -100,7 +61,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
 
 
             //action
-            var resultado = repositorioCliente.SelecionarTodos(sql_selecao_todos);
+            var resultado = repositorioCliente.SelecionarTodos();
 
             //assert
             Assert.AreNotEqual(0, resultado.Count);
@@ -113,7 +74,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             var cliente = InstanciarCliente();
 
             //action
-            var resultado = repositorioCliente.SelecionarPorId(cliente, sql_selecao_por_id);
+            var resultado = repositorioCliente.SelecionarPorId(cliente.Id);
 
             //assert
             Assert.AreNotEqual(null, resultado);

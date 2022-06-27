@@ -287,7 +287,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 
         protected override bool VerificarDuplicidade(Funcionario entidade)
         {
-            var funcs = SelecionarTodos(sql_selecao_todos);
+            var funcs = SelecionarTodos();
 
             foreach (Funcionario f in funcs)
             {

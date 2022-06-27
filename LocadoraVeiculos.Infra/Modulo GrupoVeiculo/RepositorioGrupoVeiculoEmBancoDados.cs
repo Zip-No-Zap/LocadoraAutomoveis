@@ -211,7 +211,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 
         protected override bool VerificarDuplicidade(GrupoVeiculo entidade)
         {
-            var grupos = SelecionarTodos(sql_selecao_todos);
+            var grupos = SelecionarTodos();
 
             foreach (GrupoVeiculo g in grupos)
             {

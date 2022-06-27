@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 {
-    public abstract class RepositorioBase<T, Tmapeador> where T : EntidadeBase<T>//, IRepositorio<T>
+    public abstract class RepositorioBase<T, Tmapeador> where T : EntidadeBase<T>
                                                         where Tmapeador : MapeadorBase<T>, new()
                                                        
     {
@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             conexaoBancoDados = new();
         }
 
-        public ValidationResult Inserir(T entidade, string sqlInsercao)
+        public ValidationResult Inserir(T entidade)
         {
             if (VerificarDuplicidade(entidade) == true)
                 return null;
@@ -32,40 +32,40 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             ValidationResult resultado = Validar(entidade);
 
             if (resultado.IsValid)
-                InserirRegistroBancoDados(entidade, sqlInsercao);
+                InserirRegistroBancoDados(entidade);
 
             return resultado;
         }
 
-        public ValidationResult Editar(T entidade, string sqlEdicao)
+        public ValidationResult Editar(T entidade)
         {
             ValidationResult resultado = Validar(entidade);
 
             if (resultado.IsValid)
-                EditarRegistroBancoDados(entidade, sqlEdicao);
+                EditarRegistroBancoDados(entidade);
 
             return resultado;
         }
 
-        public ValidationResult Excluir(T entidade, string sqExclusao)
+        public ValidationResult Excluir(T entidade)
         {
             ValidationResult resultado = Validar(entidade);
 
             if (resultado.IsValid)
-                ExcluirRegistroBancoDados(entidade, sqExclusao);
+                ExcluirRegistroBancoDados(entidade);
 
             return resultado;
         }
 
-        public T SelecionarPorId(T entidade, string sqlSelecaoPorId)
+        public T SelecionarPorId(int id)
         {
             Tmapeador mapeador = new();
 
             conexaoBancoDados.ConectarBancoDados();
 
-            SqlCommand cmdSelecao = new(sqlSelecaoPorId, conexaoBancoDados.conexao);
+            SqlCommand cmdSelecao = new(sql_selecao_por_id, conexaoBancoDados.conexao);
 
-            cmdSelecao.Parameters.AddWithValue("ID", entidade.Id);
+            cmdSelecao.Parameters.AddWithValue("ID", id);
 
             SqlDataReader leitor = cmdSelecao.ExecuteReader();
 
@@ -76,13 +76,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             return selecionado;
         }
 
-        public List<T> SelecionarTodos(string sqlSelecaoTodos)
+        public List<T> SelecionarTodos()
         {
             Tmapeador mapeador = new();
 
             conexaoBancoDados.ConectarBancoDados();
 
-            SqlCommand cmd_Selecao = new(sqlSelecaoTodos, conexaoBancoDados.conexao);
+            SqlCommand cmd_Selecao = new(sql_selecao_todos, conexaoBancoDados.conexao);
 
             SqlDataReader leitor = cmd_Selecao.ExecuteReader();
 
@@ -101,13 +101,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
         #region privates
 
-        private void InserirRegistroBancoDados(T entidade, string sqlInsercao)
+        private void InserirRegistroBancoDados(T entidade)
         {
             Tmapeador mapeador = new();
 
             conexaoBancoDados.ConectarBancoDados();
 
-            SqlCommand cmd_Insercao = new(sqlInsercao, conexaoBancoDados.conexao);
+            SqlCommand cmd_Insercao = new(sql_insercao, conexaoBancoDados.conexao);
 
             mapeador.DefinirParametros(entidade, cmd_Insercao);
 
@@ -116,13 +116,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             conexaoBancoDados.DesconectarBancoDados();
         }
 
-        private void EditarRegistroBancoDados(T entidade, string sqlEdicao)
+        private void EditarRegistroBancoDados(T entidade)
         {
             Tmapeador mapeador = new();
 
             conexaoBancoDados.ConectarBancoDados();
 
-            SqlCommand cmd_Edicao = new(sqlEdicao, conexaoBancoDados.conexao);
+            SqlCommand cmd_Edicao = new(sql_edicao, conexaoBancoDados.conexao);
 
             mapeador.DefinirParametros(entidade, cmd_Edicao);
 
@@ -131,11 +131,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             conexaoBancoDados.DesconectarBancoDados();
         }
 
-        private void ExcluirRegistroBancoDados(T entidade, string sqlExclusao)
+        private void ExcluirRegistroBancoDados(T entidade)
         {
             conexaoBancoDados.ConectarBancoDados();
 
-            SqlCommand cmd_Exclusao = new(sqlExclusao, conexaoBancoDados.conexao);
+            SqlCommand cmd_Exclusao = new(sql_exclusao, conexaoBancoDados.conexao);
 
             cmd_Exclusao.Parameters.AddWithValue("ID", entidade.Id);
 

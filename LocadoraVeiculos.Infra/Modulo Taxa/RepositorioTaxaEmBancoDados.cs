@@ -37,7 +37,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
 
         protected override bool VerificarDuplicidade(Taxa entidade)
         {
-            var taxas = SelecionarTodos(sql_selecao_todos);
+            var taxas = SelecionarTodos();
 
             foreach (Taxa t in taxas)
             {

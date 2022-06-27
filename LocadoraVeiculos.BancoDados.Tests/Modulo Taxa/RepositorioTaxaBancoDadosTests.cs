@@ -9,31 +9,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
     public class RepositorioTaxaBancoDadosTests
     {
         RepositorioTaxaEmBancoDados repoTaxa;
-       string sql_insercao => @"INSERT INTO TBTAXA
-                                                   (
-                                                        [DESCRICAO],    
-                                                        [TIPO],
-                                                        [VALOR]
-                                                   )
-                                                   VALUES
-                                                   (
-                                                        @DESCRICAO,
-                                                        @TIPO,
-                                                        @VALOR
-
-                                                   );SELECT SCOPE_IDENTITY();";
-       string sql_edicao => @"UPDATE [TBTAXA] SET 
-
-                                                    [DESCRICAO] = @DESCRICAO, 
-                                                    [TIPO] = @TIPO,
-                                                    [VALOR] = @VALOR
-
-                                                WHERE
-		                                             ID = @ID";
-       string sql_exclusao => @"DELETE FROM TBTAXA WHERE ID = @ID;";
-       string sql_selecao_por_id => @"SELECT * FROM TBTAXA WHERE ID = @ID";
-       string sql_selecao_todos => @"SELECT * FROM TBTAXA";
-
+       
         public RepositorioTaxaBancoDadosTests()
         {
             repoTaxa = new();
@@ -47,7 +23,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             taxa.Descricao = "teste05";
 
             //action
-            var resultado = repoTaxa.Inserir(taxa, sql_insercao);
+            var resultado = repoTaxa.Inserir(taxa);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -59,12 +35,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             //arrange
             var taxa = InstanciarTaxa();
 
-            repoTaxa.Inserir(taxa, sql_insercao);
+            repoTaxa.Inserir(taxa);
 
             taxa.Descricao = "alterado no teste";
 
             //action
-            var resultado = repoTaxa.Editar(taxa, sql_edicao);
+            var resultado = repoTaxa.Editar(taxa);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -76,10 +52,10 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             //arrange
             var taxa = InstanciarTaxa();
 
-            repoTaxa.Inserir(taxa, sql_insercao);
+            repoTaxa.Inserir(taxa);
 
             //action
-            var resultado = repoTaxa.Excluir(taxa, sql_exclusao);
+            var resultado = repoTaxa.Excluir(taxa);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -92,7 +68,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             
 
             //action
-            var resultado = repoTaxa.SelecionarTodos(sql_selecao_todos);
+            var resultado = repoTaxa.SelecionarTodos();
 
             //assert
             Assert.AreNotEqual(0, resultado.Count);

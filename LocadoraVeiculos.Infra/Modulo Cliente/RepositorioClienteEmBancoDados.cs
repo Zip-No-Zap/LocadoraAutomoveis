@@ -49,7 +49,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 
         protected override bool VerificarDuplicidade(Cliente entidade)
         {
-            var clientes = SelecionarTodos(sql_selecao_todos);
+            var clientes = SelecionarTodos();
 
             foreach (Cliente c in clientes)
             {

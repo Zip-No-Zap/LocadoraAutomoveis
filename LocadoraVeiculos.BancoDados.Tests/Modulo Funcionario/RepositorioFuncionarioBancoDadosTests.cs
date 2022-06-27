@@ -9,60 +9,6 @@ namespace LocadoraVeiculos.BancoDados.Tests
     public class RepositorioFuncionarioBancoDadosTests
     {
         RepositorioFuncionarioEmBancoDados repoFunc;
-        protected string sql_insercao
-        {
-            get => @"INSERT INTO TBFUNCIONARIO 
-                                    (
-                                            [NOME],    
-                                            [LOGIN],
-                                            [SENHA],
-                                            [SALARIO],
-                                            [DATAADMISSAO],
-                                            [CIDADE],
-                                            [ESTADO],
-                                            [PERFIL]
-                                    )
-                                    VALUES
-                                    (
-                                            @NOME,
-                                            @LOGIN,
-                                            @SENHA,
-                                            @SALARIO,
-                                            @DATAADMISSAO,
-                                            @CIDADE,
-                                            @ESTADO,
-                                            @PERFIL
-
-                                    );SELECT SCOPE_IDENTITY();";
-        }
-        protected string sql_edicao
-        {
-            get =>
-                                @"UPDATE [TBFUNCIONARIO] SET 
-
-                                    [NOME] = @NOME,    
-	                                [LOGIN] = @LOGIN,
-                                    [SENHA] = @SENHA,
-                                    [SALARIO] = @SALARIO,
-                                    [DATAADMISSAO] = @DATAADMISSAO,
-                                    [CIDADE] = @CIDADE,
-                                    [ESTADO] = @ESTADO
-
-                               WHERE
-		                             ID = @ID";
-        }
-        protected string sql_exclusao
-        {
-            get => @"DELETE FROM TBFUNCIONARIO WHERE ID = @ID;";
-        }
-        protected string sql_selecao_por_id
-        {
-            get => @"SELECT * FROM TBFUNCIONARIO WHERE ID = @ID";
-        }
-        protected string sql_selecao_todos
-        {
-            get => @"SELECT * FROM TBFUNCIONARIO";
-        }
 
         public RepositorioFuncionarioBancoDadosTests()
         {
@@ -76,7 +22,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
             Funcionario funcionario = InstanciarFuncionario();
 
             //action
-            var resultado = repoFunc.Inserir(funcionario, sql_insercao);
+            var resultado = repoFunc.Inserir(funcionario);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -87,13 +33,13 @@ namespace LocadoraVeiculos.BancoDados.Tests
         {
             //arrange
             var funcionario = InstanciarFuncionario();
-            Funcionario selecionado = repoFunc.SelecionarPorId(funcionario, sql_selecao_por_id);
+            Funcionario selecionado = repoFunc.SelecionarPorId(funcionario.Id);
 
             funcionario.Nome = "Foi alterado no teste";
             funcionario.Salario = 9000;
 
             //action
-            var resultado = repoFunc.Editar(funcionario, sql_edicao);
+            var resultado = repoFunc.Editar(funcionario);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -105,10 +51,10 @@ namespace LocadoraVeiculos.BancoDados.Tests
             //arrange
             var funcionario = InstanciarFuncionario();
 
-            repoFunc.Inserir(funcionario, sql_insercao);
+            repoFunc.Inserir(funcionario);
 
             //action
-            var resultado = repoFunc.Excluir(funcionario, sql_exclusao);
+            var resultado = repoFunc.Excluir(funcionario);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -121,7 +67,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
 
 
             //action
-            var resultado = repoFunc.SelecionarTodos(sql_selecao_todos);
+            var resultado = repoFunc.SelecionarTodos();
 
             //assert
             Assert.AreNotEqual(0, resultado.Count);

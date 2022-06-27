@@ -12,24 +12,6 @@ namespace LocadoraVeiculos.BancoDados.Tests
     {
         RepositorioGrupoVeiculoEmBancoDados repoGrupoVeiculo;
 
-        string sql_insercao => @"INSERT INTO TBGRUPOVEICULO 
-                                                    (
-                                                        [NOMEGRUPO]   
-                                                    )
-                                                    VALUES
-                                                    (
-                                                        @NOMEGRUPO
-
-                                                    );SELECT SCOPE_IDENTITY();";
-        string sql_edicao => @"UPDATE [TBGRUPOVEICULO] SET 
-
-                                                    [NOMEGRUPO] = @NOMEGRUPO    
-                                               WHERE
-                                                    ID = @ID";
-        string sql_exclusao => @"DELETE FROM TBGRUPOVEICULO WHERE ID = @ID;";
-        string sql_selecao_por_id => @"SELECT * FROM TBGRUPOVEICULO WHERE ID = @ID";
-        string sql_selecao_todos => @"SELECT * FROM TBGRUPOVEICULO";
-
         public RepositorioGrupoVeiculoBancoDadosTests()
         {
             Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
@@ -44,11 +26,11 @@ namespace LocadoraVeiculos.BancoDados.Tests
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
 
             //action
-            repoGrupoVeiculo.Inserir(grupo, sql_insercao);
+            repoGrupoVeiculo.Inserir(grupo);
 
             //assert
 
-            GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo, sql_selecao_por_id);
+            GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
 
             Assert.IsNotNull(grupoEncontrado);
             Assert.AreEqual(grupo, grupoEncontrado);
@@ -60,15 +42,15 @@ namespace LocadoraVeiculos.BancoDados.Tests
             //arrange
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
 
-            repoGrupoVeiculo.Inserir(grupo, sql_insercao);
+            repoGrupoVeiculo.Inserir(grupo);
 
             grupo.Nome = "Foi alterado no teste";
             
 
             //action
-            repoGrupoVeiculo.Editar(grupo, sql_edicao);
+            repoGrupoVeiculo.Editar(grupo);
 
-            GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo, sql_selecao_por_id);
+            GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
 
             //assert
             Assert.IsNotNull(grupoEncontrado);
@@ -83,9 +65,9 @@ namespace LocadoraVeiculos.BancoDados.Tests
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
 
             //action
-            var resultado = repoGrupoVeiculo.Excluir(grupo, sql_exclusao);
+            var resultado = repoGrupoVeiculo.Excluir(grupo);
 
-            GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo, sql_selecao_por_id);
+            GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
 
             //assert
             Assert.IsNull(grupoEncontrado);
@@ -96,9 +78,9 @@ namespace LocadoraVeiculos.BancoDados.Tests
         {
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
 
-            repoGrupoVeiculo.Inserir(grupo, sql_insercao);
+            repoGrupoVeiculo.Inserir(grupo);
 
-            var grupos = repoGrupoVeiculo.SelecionarTodos(sql_selecao_todos);
+            var grupos = repoGrupoVeiculo.SelecionarTodos();
 
             Assert.AreEqual(1, grupos.Count);
         }
@@ -110,10 +92,10 @@ namespace LocadoraVeiculos.BancoDados.Tests
             grupo.Nome = "teste04";
             grupo.Id = 1000;
 
-            repoGrupoVeiculo.Inserir(grupo, sql_insercao);
+            repoGrupoVeiculo.Inserir(grupo);
 
             //action
-            GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo, sql_selecao_por_id);
+            GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
 
             //assert
             Assert.IsNotNull(grupoEncontrado);
