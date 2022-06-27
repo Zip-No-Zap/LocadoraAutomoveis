@@ -118,14 +118,19 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
         
         private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e = ImpedirNumeroTexBox(e);
+            e = ImpedirNumeroECharsEspeciaisTextBox(e);
         }
-        private static KeyPressEventArgs ImpedirNumeroTexBox(KeyPressEventArgs e)
+
+        private static KeyPressEventArgs ImpedirNumeroECharsEspeciaisTextBox(KeyPressEventArgs e)
         {
             if ((Strings.Asc(e.KeyChar) >= 48 & Strings.Asc(e.KeyChar) <= 57))
             {
                 e.Handled = true;
-                e = null;
+            }
+
+            if (! (char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) ))
+            {
+                e.Handled = true;
             }
 
             return e;
@@ -171,6 +176,16 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             if (tbNome.Text.Length < 2)
             {
                 tbNome.Clear();
+            }
+        }
+
+        private void tbEmail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string caracteresPermitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+
+            if (! ( caracteresPermitidos.Contains( e.KeyChar.ToString().ToUpper())  || char.IsControl(e.KeyChar) ) )
+            {
+                e.Handled = true;
             }
         }
     }

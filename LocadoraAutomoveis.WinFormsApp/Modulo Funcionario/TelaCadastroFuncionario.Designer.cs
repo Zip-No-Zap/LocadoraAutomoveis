@@ -256,6 +256,7 @@
             this.tbLogin.Name = "tbLogin";
             this.tbLogin.Size = new System.Drawing.Size(180, 31);
             this.tbLogin.TabIndex = 4;
+            this.tbLogin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbLogin_KeyPress);
             // 
             // tbCidade
             // 

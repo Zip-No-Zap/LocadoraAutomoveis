@@ -146,6 +146,7 @@
             this.tbDescricao.Name = "tbDescricao";
             this.tbDescricao.Size = new System.Drawing.Size(329, 31);
             this.tbDescricao.TabIndex = 0;
+            this.tbDescricao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbDescricao_KeyPress);
             this.tbDescricao.Leave += new System.EventHandler(this.tbDescricao_Leave);
             // 
             // TelaCadastroTaxa

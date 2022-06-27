@@ -130,7 +130,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
         {
             var funcionario = InstanciarFuncionario();
 
-            funcionario.DataAdmissao = Convert.ToDateTime("25/06/2022");
+            funcionario.DataAdmissao = Convert.ToDateTime("25/08/2022");
 
             ValidadorFuncionario validaFuncionario = new();
 
