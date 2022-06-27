@@ -43,18 +43,16 @@
             this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.panel1.Controls.Add(this.btnLimpar);
             this.panel1.Controls.Add(this.btnOK);
-            this.panel1.Location = new System.Drawing.Point(-1, 139);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Location = new System.Drawing.Point(3, 122);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(412, 60);
+            this.panel1.Size = new System.Drawing.Size(580, 100);
             this.panel1.TabIndex = 0;
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(94, 8);
-            this.btnLimpar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnLimpar.Location = new System.Drawing.Point(134, 13);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(78, 35);
+            this.btnLimpar.Size = new System.Drawing.Size(111, 58);
             this.btnLimpar.TabIndex = 2;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
@@ -63,10 +61,9 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(12, 8);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOK.Location = new System.Drawing.Point(17, 13);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(78, 35);
+            this.btnOK.Size = new System.Drawing.Size(111, 58);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -78,42 +75,37 @@
             this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.tbNomeGrupoVeiculo);
-            this.panel2.Location = new System.Drawing.Point(8, 7);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Location = new System.Drawing.Point(11, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(412, 200);
+            this.panel2.Size = new System.Drawing.Size(588, 236);
             this.panel2.TabIndex = 1;
-
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(11, 4);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(16, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
+            this.label1.Size = new System.Drawing.Size(123, 21);
             this.label1.TabIndex = 7;
             this.label1.Text = "Nome do Grupo";
             // 
             // tbNomeGrupoVeiculo
             // 
-            this.tbNomeGrupoVeiculo.Location = new System.Drawing.Point(11, 19);
-            this.tbNomeGrupoVeiculo.Margin = new System.Windows.Forms.Padding(2);
+            this.tbNomeGrupoVeiculo.Location = new System.Drawing.Point(16, 40);
             this.tbNomeGrupoVeiculo.Name = "tbNomeGrupoVeiculo";
-            this.tbNomeGrupoVeiculo.Size = new System.Drawing.Size(160, 23);
+            this.tbNomeGrupoVeiculo.Size = new System.Drawing.Size(227, 31);
             this.tbNomeGrupoVeiculo.TabIndex = 0;
             this.tbNomeGrupoVeiculo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNome_KeyPress);
             this.tbNomeGrupoVeiculo.Leave += new System.EventHandler(this.tbNome_Leave);
             // 
             // TelaCadastroGrupoVeiculo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(430, 218);
+            this.ClientSize = new System.Drawing.Size(614, 255);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "TelaCadastroGrupoVeiculo";
             this.ShowIcon = false;
