@@ -8,8 +8,9 @@ using System.Data.SqlClient;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 {
-    public abstract class RepositorioBase<T, Tmapeador> where T : EntidadeBase<T>
+    public abstract class RepositorioBase<T, Tmapeador, Tvalidador> where T : EntidadeBase<T>
                                                         where Tmapeador : MapeadorBase<T>, new()
+                                                        where Tvalidador : ValidadorBase<T>, new()
                                                        
     {
         ConexaoBancoDados conexaoBancoDados;
@@ -146,7 +147,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
         private ValidationResult Validar(T entidade)
         {
-            return new ValidadorBase<T>().Validate(entidade);
+            return new Tvalidador().Validate(entidade);
         }
 
         #endregion
