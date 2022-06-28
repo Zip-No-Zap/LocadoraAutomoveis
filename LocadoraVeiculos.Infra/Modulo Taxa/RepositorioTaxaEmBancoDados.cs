@@ -4,7 +4,7 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
 {
-    public class RepositorioTaxaEmBancoDados : RepositorioBase<Taxa, MapeadorTaxa>
+    public class RepositorioTaxaEmBancoDados : RepositorioBase<Taxa, MapeadorTaxa, ValidadorTaxa>
     {
         protected override string sql_insercao => @"INSERT INTO TBTAXA
                                                    (

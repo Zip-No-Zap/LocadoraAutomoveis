@@ -5,7 +5,7 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 {
-    public class RepositorioGrupoVeiculoEmBancoDados : RepositorioBase<GrupoVeiculo, MapeadorGrupoVeiculo>
+    public class RepositorioGrupoVeiculoEmBancoDados : RepositorioBase<GrupoVeiculo, MapeadorGrupoVeiculo, ValidadorGrupoVeiculo>
     {
         protected override string sql_insercao => @"INSERT INTO TBGRUPOVEICULO 
                                                     (

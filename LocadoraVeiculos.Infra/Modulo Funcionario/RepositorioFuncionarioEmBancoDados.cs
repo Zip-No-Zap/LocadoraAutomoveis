@@ -4,7 +4,7 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 {
-    public class RepositorioFuncionarioEmBancoDados : RepositorioBase<Funcionario, MapeadorFuncionario>
+    public class RepositorioFuncionarioEmBancoDados : RepositorioBase<Funcionario, MapeadorFuncionario, ValidadorFuncionario>
     {
         protected override string sql_insercao
         {
