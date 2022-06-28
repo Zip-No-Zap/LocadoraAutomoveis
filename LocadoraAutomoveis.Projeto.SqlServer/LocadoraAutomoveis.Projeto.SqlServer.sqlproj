@@ -60,9 +60,12 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\TBFUNCIONARIO.sql" />
     <Build Include="dbo\Tables\TBCLIENTE.sql" />
+    <None Include="Scripts\TBGRUPOVEICULO.sql" />
+    <None Include="Scripts\TBTAXA.sql" />
   </ItemGroup>
 </Project>

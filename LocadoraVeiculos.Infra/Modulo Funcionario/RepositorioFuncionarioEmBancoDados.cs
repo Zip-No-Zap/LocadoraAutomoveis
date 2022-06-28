@@ -243,6 +243,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                 {
                     return true;
                 }
+
+                if(f.Nome == entidade.Nome)
+                {
+                    return true;
+                }
             }
 
             return false;
