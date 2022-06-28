@@ -68,7 +68,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
             if (resultadoValidacao == null)
             {
-                MessageBox.Show("Tentativa de inserir 'Login' duplicado", "Aviso");
+                MessageBox.Show("Tentativa de inserir 'Nome', 'Login' duplicado", "Aviso");
                 return;
             }
 
@@ -102,12 +102,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e = ImpedirNumeroTexBox(e);
+            e = ImpedirNumeroECharsEspeciaisTexBox(e);
         }
 
         private void tbCidade_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e = ImpedirNumeroTexBox(e);
+            e = ImpedirNumeroECharsEspeciaisTexBox(e);
         }
 
         private void tbSalario_KeyPress(object sender, KeyPressEventArgs e)
@@ -120,30 +120,24 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             if (VerificarDataAdmissao(tbData.Text) == false)
             {
                 MessageBox.Show("Data em formato incorreto", "Aviso");
-                tbData.Clear();
-                tbData.Focus();
             }
         }
 
         private void tbNome_Leave(object sender, EventArgs e)
         {
-            ImpedirTextoMenorDois(tbNome.Text);
-        }
+            if (tbNome.Text.Length < 2)
+            {
+                tbNome.Clear();
+            }
 
+        }
         private void tbCidade_Leave(object sender, EventArgs e)
         {
-            ImpedirTextoMenorDois(tbCidade.Text);
-        }
-
-        private void ImpedirTextoMenorDois(string texto)
-        {
-            if (Text.Length < 2)
+            if (tbCidade.Text.Length < 2)
             {
-                MessageBox.Show("Este campo não aceita menos de dois caracteres", "Aviso");
-                return;
+                tbCidade.Clear();
             }
         }
-
         private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != ',')
@@ -162,20 +156,27 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             return true;
         }
 
-        private static KeyPressEventArgs ImpedirNumeroTexBox(KeyPressEventArgs e)
+        private static KeyPressEventArgs ImpedirNumeroECharsEspeciaisTexBox(KeyPressEventArgs e)
         {
             if ((Strings.Asc(e.KeyChar) >= 48 & Strings.Asc(e.KeyChar) <= 57))
             {
                 e.Handled = true;
-                e = null;
+            }
+
+            if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar)))
+            {
+                e.Handled = true;
             }
 
             return e;
         }
 
-        private void tbSalario_TextChanged(object sender, EventArgs e)
+        private void tbLogin_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (!((e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z')))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

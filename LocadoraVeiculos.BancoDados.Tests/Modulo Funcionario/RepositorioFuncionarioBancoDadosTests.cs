@@ -1,3 +1,4 @@
+using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
@@ -14,7 +15,8 @@ namespace LocadoraVeiculos.BancoDados.Tests
         public RepositorioFuncionarioBancoDadosTests()
         {
             repoFunc = new();
-            ResetarBancoDadosFuncionario();
+
+            ResetarBancoDados();
         }
 
         [TestMethod]
@@ -35,13 +37,15 @@ namespace LocadoraVeiculos.BancoDados.Tests
         {
             //arrange
             var funcionario = InstanciarFuncionario();
-            Funcionario selecionado = repoFunc.SelecionarPorId(funcionario.Id);
+            repoFunc.Inserir(funcionario);
+           
+            Funcionario funcionarioSelecionado = repoFunc.SelecionarPorId(funcionario.Id);
 
-            funcionario.Nome = "Foi alterado no teste";
-            funcionario.Salario = 9000;
+            funcionarioSelecionado.Nome = "Foi alterado no teste";
+            funcionarioSelecionado.Salario = 9000;
 
             //action
-            var resultado = repoFunc.Editar(funcionario);
+            var resultado = repoFunc.Editar(funcionarioSelecionado);
 
             //assert
             Assert.AreEqual(true, resultado.IsValid);
@@ -66,13 +70,33 @@ namespace LocadoraVeiculos.BancoDados.Tests
         public void Deve_selecionarTodos_funcionario()
         {
             //arrange
+            var func1 = InstanciarFuncionario();
+            var func2 = InstanciarFuncionario2();
 
+            repoFunc.Inserir(func1); 
+            repoFunc.Inserir(func2); 
 
             //action
             var resultado = repoFunc.SelecionarTodos();
 
             //assert
             Assert.AreNotEqual(0, resultado.Count);
+        }
+
+
+        [TestMethod]
+        public void Deve_selecionar_unico()
+        {
+            //arrange
+            var func1 = InstanciarFuncionario();
+
+            repoFunc.Inserir(func1);
+
+            //action
+            var resultado = repoFunc.SelecionarPorId(func1.Id);
+
+            //assert
+            Assert.AreNotEqual(null, resultado);
         }
 
         #region privados
@@ -93,9 +117,24 @@ namespace LocadoraVeiculos.BancoDados.Tests
             };
         }
 
-        private void ResetarBancoDadosFuncionario()
+        Funcionario InstanciarFuncionario2()
         {
-            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
+            return new Funcionario()
+            {
+                Nome = "nome teste 2222",
+                Cidade = "cidade teste 2222",
+                Estado = "sc",
+                Salario = 2000,
+                DataAdmissao = DateTime.Parse("12/10/2021"),
+                Login = "loginteste2222",
+                Senha = "senhateste222",
+                Perfil = "Administrador"
+            };
+        }
+
+        void ResetarBancoDados()
+        {
+            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBFUNCIONARIO, RESEED, 0)");
         }
 
 
