@@ -51,7 +51,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
         protected override string sql_exclusao => @"DELETE FROM TBCLIENTE WHERE ID = @ID;";
         protected override string sql_selecao_por_id => @"SELECT * FROM TBCLIENTE";
 
-        protected override string sql_selecao_todos => throw new NotImplementedException();
+        protected override string sql_selecao_todos => @"SELECT * FROM TBCLIENTE";
 
 
         protected override bool VerificarDuplicidade(Cliente entidade)
