@@ -1,12 +1,11 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
 using LocadoraVeiculos.Dominio.Compartilhado;
-using System.Text.RegularExpressions;
 
 
 namespace LocadoraVeiculos.Dominio.Modulo_Cliente
 {
-    public class ValidadorCliente : AbstractValidator<Cliente>
+    public class ValidadorCliente : ValidadorBase<Cliente>
     {
         public ValidadorCliente()
         {

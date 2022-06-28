@@ -1,13 +1,10 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LocadoraVeiculos.Dominio.Compartilhado;
+
 
 namespace LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo
 {
-    public class ValidadorGrupoVeiculo : AbstractValidator<GrupoVeiculo>
+    public class ValidadorGrupoVeiculo : ValidadorBase<GrupoVeiculo>
     {
         public ValidadorGrupoVeiculo()
         {

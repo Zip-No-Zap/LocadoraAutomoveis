@@ -5,7 +5,7 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 {
-    public class RepositorioClienteEmBancoDados : RepositorioBase<Cliente, MapeadorCliente>
+    public class RepositorioClienteEmBancoDados : RepositorioBase<Cliente, MapeadorCliente, ValidadorCliente>
     {
         protected override string sql_insercao => @"INSERT INTO TBCLIENTE 
                                                    (
