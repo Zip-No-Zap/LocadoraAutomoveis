@@ -15,6 +15,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
             cmd.Parameters.AddWithValue("NOMEGRUPO", entidade.Nome);
         }
 
+        public override void DefinirParametroValidacao(string campoBd, GrupoVeiculo entidade, SqlCommand cmd)
+        {
+            throw new NotImplementedException();
+        }
+
         public override List<GrupoVeiculo> LerTodos(SqlDataReader leitor)
         {
             List<GrupoVeiculo> gruposVeiculos = new();
@@ -24,11 +29,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
                 int id = Convert.ToInt32(leitor["ID"]);
                 string nome = leitor["NOMEGRUPO"].ToString();
 
-                GrupoVeiculo grupoVeiculo = new GrupoVeiculo(nome)
+                GrupoVeiculo grupoVeiculo = new (nome)
                 {
                     Id = id
-
-
                 };
 
                 gruposVeiculos.Add(grupoVeiculo);

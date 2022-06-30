@@ -22,6 +22,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
             cmd.Parameters.AddWithValue("TELEFONE", entidade.Telefone);
         }
 
+        public override void DefinirParametroValidacao(string campoBd, Cliente entidade, SqlCommand cmd)
+        {
+            throw new NotImplementedException();
+        }
+
         public override List<Cliente> LerTodos(SqlDataReader leitor)
         {
             List<Cliente> clientes = new();

@@ -16,6 +16,5 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         public override string TooltipEditar => "editar veiculo selecionado";
 
         public override string TooltipExcluir => "excluir veiculo selecionado";
-    {
     }
 }

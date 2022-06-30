@@ -16,6 +16,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
             throw new NotImplementedException();
         }
 
+        public override void DefinirParametroValidacao(string campoBd, Veiculo entidade, SqlCommand cmd)
+        {
+            throw new NotImplementedException();
+        }
+
         public override List<Veiculo> LerTodos(SqlDataReader leitor)
         {
             throw new NotImplementedException();
