@@ -52,7 +52,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
             //assert
             var resultado = repoFunc.SelecionarPorId(funcionarioSelecionado.Id);
 
-            Assert.AreEqual(funcionarioSelecionado, resultado.Nome);
+            Assert.AreEqual(funcionarioSelecionado, resultado);
         }
 
         [TestMethod]
