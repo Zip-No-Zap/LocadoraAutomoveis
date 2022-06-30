@@ -30,37 +30,19 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             conexaoBancoDados = new();
         }
 
-        public ValidationResult Inserir(T entidade)
+        public void Inserir(T entidade)
         {
-            if (VerificarDuplicidade(entidade) == true)
-                return null;
-
-            ValidationResult resultado = Validar(entidade);
-
-            if (resultado.IsValid)
-                InserirRegistroBancoDados(entidade);
-
-            return resultado;
+            InserirRegistroBancoDados(entidade);
         }
 
-        public ValidationResult Editar(T entidade)
+        public void Editar(T entidade)
         {
-            ValidationResult resultado = Validar(entidade);
-
-            if (resultado.IsValid)
-                EditarRegistroBancoDados(entidade);
-
-            return resultado;
+            EditarRegistroBancoDados(entidade);
         }
 
-        public ValidationResult Excluir(T entidade)
+        public void Excluir(T entidade)
         {
-            ValidationResult resultado = Validar(entidade);
-
-            if (resultado.IsValid)
-                ExcluirRegistroBancoDados(entidade);
-
-            return resultado;
+            ExcluirRegistroBancoDados(entidade);
         }
 
         public T SelecionarPorId(int id)
