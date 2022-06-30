@@ -13,17 +13,15 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
                                                         where Tvalidador : ValidadorBase<T>, new()
                                                        
     {
-        ConexaoBancoDados conexaoBancoDados;
+        readonly ConexaoBancoDados conexaoBancoDados;
 
-        protected abstract string sql_insercao { get; }
-        protected abstract string sql_edicao { get; }
-        protected abstract string sql_exclusao { get; }
-        protected abstract string sql_selecao_por_id  {get;}
-        protected abstract string sql_selecao_todos { get; }
-        public  string sql_selecao_por_parametro { get; set; }
+        protected abstract string Sql_insercao { get; }
+        protected abstract string Sql_edicao { get; }
+        protected abstract string Sql_exclusao { get; }
+        protected abstract string Sql_selecao_por_id  {get;}
+        protected abstract string Sql_selecao_todos { get; }
+        public  string Sql_selecao_por_parametro { get; set; }
         public  string PropriedadeValidar { get; set; } 
-
-
 
         public RepositorioBase()
         {
@@ -51,7 +49,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             conexaoBancoDados.ConectarBancoDados();
 
-            SqlCommand cmdSelecao = new(sql_selecao_por_id, conexaoBancoDados.conexao);
+            SqlCommand cmdSelecao = new(Sql_selecao_por_id, conexaoBancoDados.conexao);
 
             cmdSelecao.Parameters.AddWithValue("ID", id);
 
@@ -70,7 +68,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             conexaoBancoDados.ConectarBancoDados();
 
-            SqlCommand cmd_Selecao = new(sql_selecao_todos, conexaoBancoDados.conexao);
+            SqlCommand cmd_Selecao = new(Sql_selecao_todos, conexaoBancoDados.conexao);
 
             SqlDataReader leitor = cmd_Selecao.ExecuteReader();
 
@@ -87,7 +85,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             conexaoBancoDados.ConectarBancoDados();
 
-            SqlCommand cmd_Selecao = new(sql_selecao_por_parametro, conexaoBancoDados.conexao);
+            SqlCommand cmd_Selecao = new(Sql_selecao_por_parametro, conexaoBancoDados.conexao);
 
             mapeador.DefinirParametroValidacao(propriedade, entidade, cmd_Selecao);
 
@@ -114,7 +112,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             conexaoBancoDados.ConectarBancoDados();
 
-            SqlCommand cmd_Insercao = new(sql_insercao, conexaoBancoDados.conexao);
+            SqlCommand cmd_Insercao = new(Sql_insercao, conexaoBancoDados.conexao);
 
             mapeador.DefinirParametros(entidade, cmd_Insercao);
 
@@ -129,7 +127,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             conexaoBancoDados.ConectarBancoDados();
 
-            SqlCommand cmd_Edicao = new(sql_edicao, conexaoBancoDados.conexao);
+            SqlCommand cmd_Edicao = new(Sql_edicao, conexaoBancoDados.conexao);
 
             mapeador.DefinirParametros(entidade, cmd_Edicao);
 
@@ -142,7 +140,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
         {
             conexaoBancoDados.ConectarBancoDados();
 
-            SqlCommand cmd_Exclusao = new(sql_exclusao, conexaoBancoDados.conexao);
+            SqlCommand cmd_Exclusao = new(Sql_exclusao, conexaoBancoDados.conexao);
 
             cmd_Exclusao.Parameters.AddWithValue("ID", entidade.Id);
 

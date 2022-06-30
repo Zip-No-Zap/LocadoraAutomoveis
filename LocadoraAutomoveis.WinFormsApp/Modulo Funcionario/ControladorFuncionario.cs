@@ -1,8 +1,6 @@
 ﻿using LocadoraAutomoveis.Aplicacao.Modulo_Funcionario;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -10,7 +8,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 {
     public class ControladorFuncionario : ControladorBase
     {
-        //readonly RepositorioFuncionarioEmBancoDados repoFuncionario;
         readonly ServicoFuncionario servicoFuncionario;
         FuncionarioControl tabelaFuncionarios;
 
@@ -18,13 +15,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         {
             this.servicoFuncionario = servicoFuncionario; 
         }
-
+         
         public override void Inserir()
         {
-            TelaCadastroFuncionario tela = new();
-            tela.Funcionario = new();
-
-            tela.GravarRegistro = servicoFuncionario.Inserir;
+            TelaCadastroFuncionario tela = new()
+            {
+                Funcionario = new(),
+                GravarRegistro = servicoFuncionario.Inserir
+            };
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -49,7 +47,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
             tela.Funcionario = Selecionado;
 
-         //   tela.GravarRegistro = servicoFuncionario.Editar;
+            tela.GravarRegistro = servicoFuncionario.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -75,7 +73,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
             if (resultado == DialogResult.OK)
             {
-            //    servicoFuncionario.Excluir(Selecionado);
+                servicoFuncionario.Excluir(Selecionado);
 
                 CarregarFuncionarios();
             }

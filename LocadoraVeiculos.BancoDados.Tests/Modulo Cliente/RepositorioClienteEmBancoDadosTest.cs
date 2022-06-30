@@ -23,10 +23,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             var cliente = InstanciarCliente();
 
             //action
-            var resultado = repositorioCliente.Inserir(cliente);
+            repositorioCliente.Inserir(cliente);
 
             //assert
-            Assert.AreEqual(true, resultado.IsValid);
+            var selecionado = repositorioCliente.SelecionarPorId(cliente.Id);
+
+            Assert.IsNotNull(selecionado);
         }
         [TestMethod]
         public void Deve_editar_cliente()
@@ -38,10 +40,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             cliente.Nome = "Ana Beatriz";
 
             //action
-            var resultado = repositorioCliente.Editar(cliente);
+            repositorioCliente.Editar(cliente);
 
             //assert
-            Assert.AreEqual(true, resultado.IsValid);
+            var selecionado = repositorioCliente.SelecionarPorId(cliente.Id);
+
+            Assert.AreEqual(cliente.Nome, selecionado.Nome);
         }
         [TestMethod]
         public void Deve_excluir_cliente()
@@ -52,10 +56,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             Cliente clienteSelecionado = repositorioCliente.SelecionarPorId(cliente.Id);
 
             //action
-            var resultado = repositorioCliente.Excluir(clienteSelecionado);
+            repositorioCliente.Excluir(clienteSelecionado);
 
             //assert
-            Assert.AreEqual(true, resultado.IsValid);
+            var selecionado = repositorioCliente.SelecionarPorId(clienteSelecionado.Id);
+
+            Assert.IsNull(selecionado);
         }
 
         [TestMethod]

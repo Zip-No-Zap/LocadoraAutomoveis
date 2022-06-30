@@ -26,6 +26,26 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             return resultadoValidacao;
         }
 
+        public ValidationResult Editar(Funcionario funcionario)
+        {
+            var resultadoValidacao = Validar(funcionario);
+
+            if (resultadoValidacao.IsValid)
+                repositorioFuncionario.Editar(funcionario);
+
+            return resultadoValidacao;
+        }
+
+        public ValidationResult Excluir(Funcionario funcionario)
+        {
+            var resultadoValidacao = Validar(funcionario);
+
+            if (resultadoValidacao.IsValid)
+                repositorioFuncionario.Excluir(funcionario);
+
+            return resultadoValidacao;
+        }
+
         public List<Funcionario> SelecionarTodos()
         {
             return repositorioFuncionario.SelecionarTodos();
@@ -52,10 +72,10 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
         }
 
 
-        #region private
+        #region privates
         private bool LoginDuplicado(Funcionario funcionario)
         {
-            repositorioFuncionario.sql_selecao_por_parametro = @"SELECT * FROM TBFUNCIONARIO WHERE LOGIN = @LOGIN";
+            repositorioFuncionario.Sql_selecao_por_parametro = @"SELECT * FROM TBFUNCIONARIO WHERE LOGIN = @LOGIN";
             repositorioFuncionario.PropriedadeValidar = "login";
 
             var funcionarioEncontrado = repositorioFuncionario.SelecionarPorParametro(repositorioFuncionario.PropriedadeValidar, funcionario);
@@ -67,7 +87,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 
         private bool NomeDuplicado(Funcionario funcionario)
         {
-            repositorioFuncionario.sql_selecao_por_parametro = @"SELECT * FROM TBFUNCIONARIO WHERE NOME = @NOME";
+            repositorioFuncionario.Sql_selecao_por_parametro = @"SELECT * FROM TBFUNCIONARIO WHERE NOME = @NOME";
             repositorioFuncionario.PropriedadeValidar = "nome";
 
             var funcionarioEncontrado = repositorioFuncionario.SelecionarPorParametro(repositorioFuncionario.PropriedadeValidar, funcionario);

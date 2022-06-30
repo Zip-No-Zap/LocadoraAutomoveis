@@ -22,7 +22,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
             TelaCadastroTaxa tela = new();
             tela.Taxa = new();
 
-            tela.GravarRegistro = repoTaxa.Inserir;
+          //  tela.GravarRegistro = repoTaxa.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -47,7 +47,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
             tela.Taxa = Selecionado;
 
-            tela.GravarRegistro = repoTaxa.Editar;
+         //   tela.GravarRegistro = repoTaxa.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 

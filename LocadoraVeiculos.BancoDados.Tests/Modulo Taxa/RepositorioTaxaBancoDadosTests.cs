@@ -25,10 +25,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             taxa.Descricao = "teste05";
 
             //action
-            var resultado = repoTaxa.Inserir(taxa);
+            repoTaxa.Inserir(taxa);
 
             //assert
-            Assert.AreEqual(true, resultado.IsValid);
+            var resultado = repoTaxa.SelecionarPorId(taxa.Id);
+
+            Assert.IsNotNull(resultado);
         }
 
         [TestMethod]
@@ -42,10 +44,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             taxa.Descricao = "alterado no teste";
 
             //action
-            var resultado = repoTaxa.Editar(taxa);
+            repoTaxa.Editar(taxa);
 
             //assert
-            Assert.AreEqual(true, resultado.IsValid);
+            var resultado = repoTaxa.SelecionarPorId(taxa.Id);
+
+            Assert.AreEqual(taxa.Descricao, resultado.Descricao);
         }
 
         [TestMethod]
@@ -57,10 +61,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             repoTaxa.Inserir(taxa);
 
             //action
-            var resultado = repoTaxa.Excluir(taxa);
+            repoTaxa.Excluir(taxa);
 
             //assert
-            Assert.AreEqual(true, resultado.IsValid);
+            var resultado = repoTaxa.SelecionarPorId(taxa.Id);
+
+            Assert.IsNull(resultado);
         }
 
         [TestMethod]

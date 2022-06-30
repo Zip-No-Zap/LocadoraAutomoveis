@@ -10,7 +10,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 {
     public class RepositorioClienteEmBancoDados : RepositorioBase<Cliente, MapeadorCliente, ValidadorCliente>
     {
-        protected override string sql_insercao => @"INSERT INTO TBCLIENTE 
+        protected override string Sql_insercao => @"INSERT INTO TBCLIENTE 
                                                    (
                                                         [NOME],    
                                                         [CPF],
@@ -34,7 +34,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 
                                                    );SELECT SCOPE_IDENTITY();";
 
-        protected override string sql_edicao => @"UPDATE [TBCLIENTE] SET 
+        protected override string Sql_edicao => @"UPDATE [TBCLIENTE] SET 
 
                                                         [NOME] = @NOME,
                                                         [CPF] = @CPF,
@@ -48,10 +48,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                                                 WHERE
 		                                                ID = @ID";
 
-        protected override string sql_exclusao => @"DELETE FROM TBCLIENTE WHERE ID = @ID;";
-        protected override string sql_selecao_por_id => @"SELECT * FROM TBCLIENTE";
+        protected override string Sql_exclusao => @"DELETE FROM TBCLIENTE WHERE ID = @ID;";
+        protected override string Sql_selecao_por_id => @"SELECT * FROM TBCLIENTE";
 
-        protected override string sql_selecao_todos => @"SELECT * FROM TBCLIENTE";
+        protected override string Sql_selecao_todos => @"SELECT * FROM TBCLIENTE";
 
 
         protected override bool VerificarDuplicidade(Cliente entidade)

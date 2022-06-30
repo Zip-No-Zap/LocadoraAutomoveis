@@ -10,15 +10,15 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
 {
     public class RepositorioVeiculoEmBancoDados : RepositorioBase<Veiculo, MapeadorVeiculo, ValidadorVeiculo>
     {
-        protected override string sql_insercao => throw new NotImplementedException();
+        protected override string Sql_insercao => throw new NotImplementedException();
 
-        protected override string sql_edicao => throw new NotImplementedException();
+        protected override string Sql_edicao => throw new NotImplementedException();
 
-        protected override string sql_exclusao => throw new NotImplementedException();
+        protected override string Sql_exclusao => throw new NotImplementedException();
 
-        protected override string sql_selecao_por_id => throw new NotImplementedException();
+        protected override string Sql_selecao_por_id => throw new NotImplementedException();
 
-        protected override string sql_selecao_todos => throw new NotImplementedException();
+        protected override string Sql_selecao_todos => throw new NotImplementedException();
 
         protected override bool VerificarDuplicidade(Veiculo entidade)
         {

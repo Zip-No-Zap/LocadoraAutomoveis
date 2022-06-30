@@ -7,7 +7,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 {
     public class RepositorioGrupoVeiculoEmBancoDados : RepositorioBase<GrupoVeiculo, MapeadorGrupoVeiculo, ValidadorGrupoVeiculo>
     {
-        protected override string sql_insercao => @"INSERT INTO TBGRUPOVEICULO 
+        protected override string Sql_insercao => @"INSERT INTO TBGRUPOVEICULO 
                                                     (
                                                         [NOMEGRUPO]   
                                                     )
@@ -17,17 +17,17 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 
                                                     );SELECT SCOPE_IDENTITY();";
 
-        protected override string sql_edicao => @"UPDATE [TBGRUPOVEICULO] SET 
+        protected override string Sql_edicao => @"UPDATE [TBGRUPOVEICULO] SET 
 
                                                     [NOMEGRUPO] = @NOMEGRUPO    
                                                WHERE
                                                     ID = @ID";
 
-        protected override string sql_exclusao => @"DELETE FROM TBGRUPOVEICULO WHERE ID = @ID;";
+        protected override string Sql_exclusao => @"DELETE FROM TBGRUPOVEICULO WHERE ID = @ID;";
 
-        protected override string sql_selecao_por_id => @"SELECT * FROM TBGRUPOVEICULO WHERE ID = @ID";
+        protected override string Sql_selecao_por_id => @"SELECT * FROM TBGRUPOVEICULO WHERE ID = @ID";
 
-        protected override string sql_selecao_todos => @"SELECT * FROM TBGRUPOVEICULO";
+        protected override string Sql_selecao_todos => @"SELECT * FROM TBGRUPOVEICULO";
 
         protected override bool VerificarDuplicidade(GrupoVeiculo entidade)
         {

@@ -26,10 +26,12 @@ namespace LocadoraVeiculos.BancoDados.Tests
             Funcionario funcionario = InstanciarFuncionario();
 
             //action
-            var resultado = repoFunc.Inserir(funcionario);
+            repoFunc.Inserir(funcionario);
 
             //assert
-            Assert.AreEqual(true, resultado.IsValid);
+            var resultado = repoFunc.SelecionarPorId(funcionario.Id);
+
+            Assert.IsNotNull(resultado);
         }
 
         [TestMethod]
@@ -45,10 +47,12 @@ namespace LocadoraVeiculos.BancoDados.Tests
             funcionarioSelecionado.Salario = 9000;
 
             //action
-            var resultado = repoFunc.Editar(funcionarioSelecionado);
+            repoFunc.Editar(funcionarioSelecionado);
 
             //assert
-            Assert.AreEqual(true, resultado.IsValid);
+            var resultado = repoFunc.SelecionarPorId(funcionarioSelecionado.Id);
+
+            Assert.AreEqual(funcionarioSelecionado, resultado.Nome);
         }
 
         [TestMethod]
@@ -60,10 +64,12 @@ namespace LocadoraVeiculos.BancoDados.Tests
             repoFunc.Inserir(funcionario);
 
             //action
-            var resultado = repoFunc.Excluir(funcionario);
+            repoFunc.Excluir(funcionario);
 
             //assert
-            Assert.AreEqual(true, resultado.IsValid);
+            var resultado = repoFunc.SelecionarPorId(funcionario.Id);
+
+            Assert.IsNull(resultado);
         }
 
         [TestMethod]

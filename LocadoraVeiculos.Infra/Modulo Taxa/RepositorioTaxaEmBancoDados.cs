@@ -6,7 +6,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
 {
     public class RepositorioTaxaEmBancoDados : RepositorioBase<Taxa, MapeadorTaxa, ValidadorTaxa>
     {
-        protected override string sql_insercao => @"INSERT INTO TBTAXA
+        protected override string Sql_insercao => @"INSERT INTO TBTAXA
                                                    (
                                                         [DESCRICAO],    
                                                         [TIPO],
@@ -20,7 +20,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
 
                                                    );SELECT SCOPE_IDENTITY();";
 
-        protected override string sql_edicao => @"UPDATE [TBTAXA] SET 
+        protected override string Sql_edicao => @"UPDATE [TBTAXA] SET 
 
                                                     [DESCRICAO] = @DESCRICAO, 
                                                     [TIPO] = @TIPO,
@@ -29,11 +29,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
                                                 WHERE
 		                                             ID = @ID";
 
-        protected override string sql_exclusao => @"DELETE FROM TBTAXA WHERE ID = @ID;";
+        protected override string Sql_exclusao => @"DELETE FROM TBTAXA WHERE ID = @ID;";
 
-        protected override string sql_selecao_por_id => @"SELECT * FROM TBTAXA WHERE ID = @ID";
+        protected override string Sql_selecao_por_id => @"SELECT * FROM TBTAXA WHERE ID = @ID";
 
-        protected override string sql_selecao_todos => @"SELECT * FROM TBTAXA";
+        protected override string Sql_selecao_todos => @"SELECT * FROM TBTAXA";
 
         protected override bool VerificarDuplicidade(Taxa entidade)
         {

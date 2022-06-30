@@ -64,11 +64,11 @@ namespace LocadoraVeiculos.BancoDados.Tests
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
 
             //action
-            var resultado = repoGrupoVeiculo.Excluir(grupo);
-
-            GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
+            repoGrupoVeiculo.Excluir(grupo);
 
             //assert
+            GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
+
             Assert.IsNull(grupoEncontrado);
         }
 

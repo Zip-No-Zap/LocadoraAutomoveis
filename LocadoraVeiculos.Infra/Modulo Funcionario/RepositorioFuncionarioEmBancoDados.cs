@@ -7,7 +7,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
     public class RepositorioFuncionarioEmBancoDados : RepositorioBase<Funcionario, MapeadorFuncionario, ValidadorFuncionario>
     {
 
-        protected override string sql_insercao
+        protected override string Sql_insercao
         {
             get => @"INSERT INTO TBFUNCIONARIO 
                                     (
@@ -33,7 +33,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 
                                     );SELECT SCOPE_IDENTITY();";
         }
-        protected override string sql_edicao
+        protected override string Sql_edicao
         {
             get =>
                                 @"UPDATE [TBFUNCIONARIO] SET 
@@ -49,15 +49,15 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                                WHERE
 		                             ID = @ID";
         }
-        protected override string sql_exclusao
+        protected override string Sql_exclusao
         {
             get => @"DELETE FROM TBFUNCIONARIO WHERE ID = @ID;";
         }
-        protected override string sql_selecao_por_id 
+        protected override string Sql_selecao_por_id 
         { 
             get => @"SELECT * FROM TBFUNCIONARIO WHERE ID = @ID";
         }
-        protected override string sql_selecao_todos 
+        protected override string Sql_selecao_todos 
         { 
             get => @"SELECT * FROM TBFUNCIONARIO";
         }

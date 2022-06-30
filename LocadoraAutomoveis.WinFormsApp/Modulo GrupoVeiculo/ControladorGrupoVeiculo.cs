@@ -26,7 +26,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
             TelaCadastroGrupoVeiculo tela = new();
             tela.GrupoVeiculo = new();
 
-            tela.GravarRegistro = repoGrupoVeiculo.Inserir;
+           // tela.GravarRegistro = repoGrupoVeiculo.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -53,7 +53,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 
             tela.GrupoVeiculo = Selecionado;
 
-            tela.GravarRegistro = repoGrupoVeiculo.Editar;
+           // tela.GravarRegistro = repoGrupoVeiculo.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
