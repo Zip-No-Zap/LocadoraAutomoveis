@@ -62,6 +62,5 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
             get => @"SELECT * FROM TBFUNCIONARIO";
         }
 
-     
-    }
+     }
 }

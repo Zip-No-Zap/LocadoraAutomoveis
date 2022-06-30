@@ -44,22 +44,5 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
         protected override string Sql_selecao_por_id => @"SELECT * FROM TBCLIENTE";
 
         protected override string Sql_selecao_todos => @"SELECT * FROM TBCLIENTE";
-
-
-        protected override bool VerificarDuplicidade(Cliente entidade)
-        {
-            var clientes = SelecionarTodos();
-
-            foreach (Cliente c in clientes)
-            {
-                if (entidade.Cpf != "-" && c.Cpf == entidade.Cpf  ) 
-                    return true;
-
-                if (entidade.Cnpj != "-" && c.Cnpj == entidade.Cnpj)
-                    return true;
-            }
-
-            return false;
-        }
     }
 }
