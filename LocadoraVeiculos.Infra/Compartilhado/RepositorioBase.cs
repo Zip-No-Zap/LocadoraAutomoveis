@@ -14,11 +14,16 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
                                                        
     {
         ConexaoBancoDados conexaoBancoDados;
+
         protected abstract string sql_insercao { get; }
         protected abstract string sql_edicao { get; }
         protected abstract string sql_exclusao { get; }
         protected abstract string sql_selecao_por_id  {get;}
         protected abstract string sql_selecao_todos { get; }
+        public  string sql_selecao_por_parametro { get; set; }
+        public  string PropriedadeValidar { get; set; } 
+
+
 
         public RepositorioBase()
         {
@@ -92,6 +97,25 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             conexaoBancoDados.DesconectarBancoDados();
 
             return funcionarios;
+        }
+
+        public T SelecionarPorParametro(string propriedade, T entidade)
+        {
+            Tmapeador mapeador = new();
+
+            conexaoBancoDados.ConectarBancoDados();
+
+            SqlCommand cmd_Selecao = new(sql_selecao_por_parametro, conexaoBancoDados.conexao);
+
+            mapeador.DefinirParametroValidacao(propriedade, entidade, cmd_Selecao);
+
+            SqlDataReader leitor = cmd_Selecao.ExecuteReader();
+
+            var selecionado = mapeador.LerUnico(leitor);
+
+            conexaoBancoDados.DesconectarBancoDados();
+
+            return selecionado;
         }
 
         #region abstracts

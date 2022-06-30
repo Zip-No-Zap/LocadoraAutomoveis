@@ -11,4 +11,9 @@
     <Folder Include="Modulo Taxa\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculos.Dominio\LocadoraVeiculos.Dominio.csproj" />
+    <ProjectReference Include="..\LocadoraVeiculos.Infra\LocadoraVeiculos.Infra.BancoDados.csproj" />
+  </ItemGroup>
+
 </Project>

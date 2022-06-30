@@ -19,6 +19,5 @@ namespace LocadoraVeiculos.Dominio.Modulo_Funcionario
             RuleFor(x => x.Perfil).NotNull().WithMessage("'Perfil' não pode ser nulo");
             RuleFor(x => x.Estado).NotEmpty().WithMessage("'Estado' não pode ser vazio");
         }
-
     }
 }

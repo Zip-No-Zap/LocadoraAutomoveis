@@ -12,5 +12,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
         public abstract T LerUnico(SqlDataReader leitor);
 
         public abstract void DefinirParametros(T entidade, SqlCommand cmd);
+
+        public abstract void DefinirParametroValidacao(string campoBd, T entidade, SqlCommand cmd);
     }
 }

@@ -11,13 +11,13 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
     public class ControladorFuncionario : ControladorBase
     {
         readonly RepositorioFuncionarioEmBancoDados repoFuncionario;
-        FuncionarioControl tabelaFuncionarios;
         readonly ServicoFuncionario servicoFuncionario;
+        FuncionarioControl tabelaFuncionarios;
 
         public ControladorFuncionario(ServicoFuncionario servicoFuncionario)
         {
-            repoFuncionario = new();
-            this.servicoFuncionario = servicoFuncionario;
+          //  this.repoFuncionario = repoFuncionario;//logo será deletado
+            this.servicoFuncionario = servicoFuncionario; 
         }
 
         public override void Inserir()
@@ -25,7 +25,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             TelaCadastroFuncionario tela = new();
             tela.Funcionario = new();
 
-            tela.GravarRegistro = repoFuncionario.Inserir;
+            tela.GravarRegistro = servicoFuncionario.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 

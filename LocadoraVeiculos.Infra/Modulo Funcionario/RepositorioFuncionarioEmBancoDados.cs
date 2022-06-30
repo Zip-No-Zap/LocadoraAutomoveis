@@ -6,6 +6,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 {
     public class RepositorioFuncionarioEmBancoDados : RepositorioBase<Funcionario, MapeadorFuncionario, ValidadorFuncionario>
     {
+
         protected override string sql_insercao
         {
             get => @"INSERT INTO TBFUNCIONARIO 
@@ -60,6 +61,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
         { 
             get => @"SELECT * FROM TBFUNCIONARIO";
         }
+
 
         protected override bool VerificarDuplicidade(Funcionario entidade)
         {

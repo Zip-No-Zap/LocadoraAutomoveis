@@ -22,6 +22,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
             cmd.Parameters.AddWithValue("PERFIL", entidade.Perfil);
         }
 
+        public override void DefinirParametroValidacao(string campoBancoDados, Funcionario entidade, SqlCommand cmd)
+        {
+            cmd.Parameters.AddWithValue(campoBancoDados.ToUpper(), entidade.Nome);
+        }
+
         public override List<Funcionario> LerTodos(SqlDataReader leitor)
         {
             List<Funcionario> funcionarios = new();
@@ -80,5 +85,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 
             return funcionario;
         }
+
     }
 }
