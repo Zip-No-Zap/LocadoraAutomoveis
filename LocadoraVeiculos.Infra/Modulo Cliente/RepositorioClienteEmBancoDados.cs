@@ -12,7 +12,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                                                         [CNPJ],   
                                                         [ENDERECO],
                                                         [TIPOCLIENTE],
-                                                        [CNH],
                                                         [EMAIL],
                                                         [TELEFONE]  
                                                    )
@@ -23,7 +22,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                                                         @CNPJ,   
                                                         @ENDERECO,
                                                         @TIPOCLIENTE,
-                                                        @CNH,
                                                         @EMAIL,
                                                         @TELEFONE
 
@@ -36,7 +34,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                                                         [CNPJ] = @CNPJ,
                                                         [ENDERECO] = @ENDERECO,
                                                         [TIPOCLIENTE] = @TIPOCLIENTE,
-                                                        [CNH] = @CNH,
                                                         [EMAIL] = @EMAIL,
                                                         [TELEFONE] = @TELEFONE
 
@@ -59,9 +56,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                     return true;
 
                 if (entidade.Cnpj != "-" && c.Cnpj == entidade.Cnpj)
-                    return true;
-
-                if (c.Cnh == entidade.Cnh) 
                     return true;
             }
 

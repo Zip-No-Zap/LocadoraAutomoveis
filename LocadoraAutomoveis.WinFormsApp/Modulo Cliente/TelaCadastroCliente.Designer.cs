@@ -34,7 +34,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tbEndereco = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -42,14 +41,13 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tbCNPJ = new System.Windows.Forms.MaskedTextBox();
+            this.tbCPF = new System.Windows.Forms.MaskedTextBox();
             this.rdbPessoaJuridica = new System.Windows.Forms.RadioButton();
             this.rdbPessoaFisica = new System.Windows.Forms.RadioButton();
             this.tbTelefone = new System.Windows.Forms.MaskedTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.tbCPF = new System.Windows.Forms.MaskedTextBox();
-            this.tbCNPJ = new System.Windows.Forms.MaskedTextBox();
-            this.tbCnh = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -115,17 +113,6 @@
             this.label6.Size = new System.Drawing.Size(65, 19);
             this.label6.TabIndex = 42;
             this.label6.Text = "Endereço";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(14, 323);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(121, 19);
-            this.label7.TabIndex = 44;
-            this.label7.Text = "CNH do Condutor";
             // 
             // tbEmail
             // 
@@ -196,7 +183,6 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.tbCnh);
             this.panel2.Controls.Add(this.tbCNPJ);
             this.panel2.Controls.Add(this.tbCPF);
             this.panel2.Controls.Add(this.rdbPessoaJuridica);
@@ -204,7 +190,6 @@
             this.panel2.Controls.Add(this.tbTelefone);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.tbNome);
             this.panel2.Controls.Add(this.tbEmail);
@@ -217,6 +202,24 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(508, 408);
             this.panel2.TabIndex = 52;
+            // 
+            // tbCNPJ
+            // 
+            this.tbCNPJ.Location = new System.Drawing.Point(233, 141);
+            this.tbCNPJ.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbCNPJ.Mask = "00. 000. 000/0000-00";
+            this.tbCNPJ.Name = "tbCNPJ";
+            this.tbCNPJ.Size = new System.Drawing.Size(254, 27);
+            this.tbCNPJ.TabIndex = 57;
+            // 
+            // tbCPF
+            // 
+            this.tbCPF.Location = new System.Drawing.Point(232, 111);
+            this.tbCPF.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbCPF.Mask = "000.000.000-00";
+            this.tbCPF.Name = "tbCPF";
+            this.tbCPF.Size = new System.Drawing.Size(254, 27);
+            this.tbCPF.TabIndex = 56;
             // 
             // rdbPessoaJuridica
             // 
@@ -262,33 +265,6 @@
             this.label8.TabIndex = 52;
             this.label8.Text = "CNPJ";
             // 
-            // tbCPF
-            // 
-            this.tbCPF.Location = new System.Drawing.Point(232, 111);
-            this.tbCPF.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbCPF.Mask = "000.000.000-00";
-            this.tbCPF.Name = "tbCPF";
-            this.tbCPF.Size = new System.Drawing.Size(254, 27);
-            this.tbCPF.TabIndex = 56;
-            // 
-            // tbCNPJ
-            // 
-            this.tbCNPJ.Location = new System.Drawing.Point(233, 141);
-            this.tbCNPJ.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbCNPJ.Mask = "00. 000. 000/0000-00";
-            this.tbCNPJ.Name = "tbCNPJ";
-            this.tbCNPJ.Size = new System.Drawing.Size(254, 27);
-            this.tbCNPJ.TabIndex = 57;
-            // 
-            // tbCnh
-            // 
-            this.tbCnh.Location = new System.Drawing.Point(14, 346);
-            this.tbCnh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbCnh.Mask = "9999999999";
-            this.tbCnh.Name = "tbCnh";
-            this.tbCnh.Size = new System.Drawing.Size(286, 27);
-            this.tbCnh.TabIndex = 58;
-            // 
             // TelaCadastroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -319,7 +295,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbEndereco;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
@@ -334,6 +309,5 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.MaskedTextBox tbCNPJ;
         private System.Windows.Forms.MaskedTextBox tbCPF;
-        private System.Windows.Forms.MaskedTextBox tbCnh;
     }
 }

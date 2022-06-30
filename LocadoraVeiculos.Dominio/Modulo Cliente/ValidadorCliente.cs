@@ -32,15 +32,12 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
 
             RuleFor(x => x.Telefone)
                .Telefone()
-               //.MaximumLength(16).WithMessage("'Telefone' formato incorreto")
-               //.NotEmpty().WithMessage("'Telefone' formato incorreto")
-               //.NotNull().WithMessage("'Telefone' formato incorreto")
                .NotEqual("(  )      -");
 
-            RuleFor(x => x.Cnh)
-                .NotNull().NotEmpty()
-                .MaximumLength(12)
-                .WithMessage("'CNH' inválido.");
+            //RuleFor(x => x.Cnh)
+            //    .NotNull().NotEmpty()
+            //    .MaximumLength(12)
+            //    .WithMessage("'CNH' inválido.");
 
         }
     }

@@ -49,7 +49,7 @@ namespace LocadoraAutomoveis.WinFormsApp
            // var servicoTaxa = new ServicoTaxa(repositorioFuncionario);
 
             controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
-            controladores.Add("Cliente", new ControladorCliente());
+            controladores.Add("Cliente", new ControladorCliente(servicoCliente));
             controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo());
             controladores.Add("Taxa", new ControladorTaxa());
         }

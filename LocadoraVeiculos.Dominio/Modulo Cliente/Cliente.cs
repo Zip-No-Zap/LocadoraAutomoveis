@@ -18,18 +18,16 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public string Cnpj { get; set; }
-        public string Cnh { get; set; }
         public string Email { get; set; }   
         public string Endereco { get; set; }
         public string Telefone { get; set; }
 
         public Cliente (string nome, string cpf, string cnpj,
-            string cnh, string email, string endereco, string telefone)
+            string email, string endereco, string telefone)
         {
             Nome = nome;
             Cpf = cpf;
             Cnpj = cnpj;
-            Cnh = cnh;
             Email = email;
             Endereco = endereco;
             Telefone = telefone;
@@ -59,7 +57,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
                 Id == cliente.Id &&
                 Nome == cliente.Nome &&
                 Cpf == cliente.Cpf &&
-                Cnh == cliente.Cnh &&
                 Cnpj == cliente.Cnpj &&
                 Email == cliente.Email &&
                 Endereco == cliente.Endereco &&
@@ -72,7 +69,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
             hash.Add(Id);
             hash.Add(Nome);
             hash.Add(Cpf);
-            hash.Add(Cnh);
             hash.Add(Cnpj);
             hash.Add(Email);
             hash.Add(Endereco);
