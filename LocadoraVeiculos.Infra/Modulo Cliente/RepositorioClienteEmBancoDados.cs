@@ -1,10 +1,5 @@
-﻿using FluentValidation.Results;
-using LocadoraVeiculos.Dominio.Modulo_Cliente;
+﻿using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 {
