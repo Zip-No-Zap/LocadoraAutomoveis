@@ -1,4 +1,5 @@
 ﻿using LocadoraAutomoveis.Aplicacao.Modulo_Funcionario;
+using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
@@ -44,8 +45,8 @@ namespace LocadoraAutomoveis.WinFormsApp
 
             //var servicoCliente = new ServicoCliente(repositorioFuncionario);
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
-           // var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioFuncionario);
-           // var servicoTaxa = new ServicoTaxa(repositorioFuncionario);
+            //var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioFuncionario);
+            var servicoTaxa = new ServicoTaxa(repositorioTaxa);
 
             controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
             controladores.Add("Cliente", new ControladorCliente());

@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
 
         public RepositorioGrupoVeiculoBancoDadosTests()
         {
-            Db.ExecutarSql("DELETE FROM TBGRUPOVEICULO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
+            DbTests.ExecutarSql("DELETE FROM TBGRUPOVEICULO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
             repoGrupoVeiculo = new();
         }
 

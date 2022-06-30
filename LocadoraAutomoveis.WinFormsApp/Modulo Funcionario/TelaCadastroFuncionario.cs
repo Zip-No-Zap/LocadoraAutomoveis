@@ -2,7 +2,6 @@
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using System;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using Microsoft.VisualBasic;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
