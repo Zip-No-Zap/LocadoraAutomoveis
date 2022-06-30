@@ -9,7 +9,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 {
     public class ControladorCliente : ControladorBase
     {
-        RepositorioClienteEmBancoDados repoCliente;
+        readonly RepositorioClienteEmBancoDados repoCliente;
         ClienteControl tabelaClientes;
 
         public ControladorCliente()
@@ -19,10 +19,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
         public override void Inserir()
         {
-            TelaCadastroCliente tela = new();
-            tela.Cliente = new();
+            TelaCadastroCliente tela = new()
+            {
+                Cliente = new()
 
-            tela.GravarRegistro = repoCliente.Inserir;
+                //GravarRegistro = repoCliente.Inserir;
+            };
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -43,11 +45,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
                 return;
             }
 
-            TelaCadastroCliente tela = new();
+            TelaCadastroCliente tela = new()
+            {
+                Cliente = Selecionado,
 
-             tela.Cliente = Selecionado;
-
-            tela.GravarRegistro = repoCliente.Editar;
+                //GravarRegistro = repoCliente.Editar
+            };
 
             DialogResult resultado = tela.ShowDialog();
 
