@@ -13,7 +13,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         public ControladorFuncionario(ServicoFuncionario servicoFuncionario)
         {
-            this.servicoFuncionario = servicoFuncionario; 
+            this.servicoFuncionario = servicoFuncionario;
         }
          
         public override void Inserir()
