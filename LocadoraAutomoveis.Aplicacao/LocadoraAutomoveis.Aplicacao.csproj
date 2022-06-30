@@ -6,8 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Compartilhado\" />
-    <Folder Include="Modulo Cliente\" />
-    <Folder Include="Modulo Taxa\" />
+    <Folder Include="Modulo GrupoVeiculo\" />
   </ItemGroup>
 
   <ItemGroup>

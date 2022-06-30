@@ -1,10 +1,5 @@
-﻿using FluentValidation.Results;
-using LocadoraVeiculos.Dominio.Modulo_Cliente;
+﻿using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 {
@@ -17,7 +12,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                                                         [CNPJ],   
                                                         [ENDERECO],
                                                         [TIPOCLIENTE],
-                                                        [CNH],
                                                         [EMAIL],
                                                         [TELEFONE]  
                                                    )
@@ -28,7 +22,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                                                         @CNPJ,   
                                                         @ENDERECO,
                                                         @TIPOCLIENTE,
-                                                        @CNH,
                                                         @EMAIL,
                                                         @TELEFONE
 
@@ -41,7 +34,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                                                         [CNPJ] = @CNPJ,
                                                         [ENDERECO] = @ENDERECO,
                                                         [TIPOCLIENTE] = @TIPOCLIENTE,
-                                                        [CNH] = @CNH,
                                                         [EMAIL] = @EMAIL,
                                                         [TELEFONE] = @TELEFONE
 
@@ -52,25 +44,5 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
         protected override string Sql_selecao_por_id => @"SELECT * FROM TBCLIENTE";
 
         protected override string Sql_selecao_todos => @"SELECT * FROM TBCLIENTE";
-
-
-        protected override bool VerificarDuplicidade(Cliente entidade)
-        {
-            var clientes = SelecionarTodos();
-
-            foreach (Cliente c in clientes)
-            {
-                if (entidade.Cpf != "-" && c.Cpf == entidade.Cpf  ) 
-                    return true;
-
-                if (entidade.Cnpj != "-" && c.Cnpj == entidade.Cnpj)
-                    return true;
-
-                if (c.Cnh == entidade.Cnh) 
-                    return true;
-            }
-
-            return false;
-        }
     }
 }

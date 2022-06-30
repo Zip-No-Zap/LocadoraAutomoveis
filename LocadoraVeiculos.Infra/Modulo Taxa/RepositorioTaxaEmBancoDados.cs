@@ -34,20 +34,5 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
         protected override string Sql_selecao_por_id => @"SELECT * FROM TBTAXA WHERE ID = @ID";
 
         protected override string Sql_selecao_todos => @"SELECT * FROM TBTAXA";
-
-        protected override bool VerificarDuplicidade(Taxa entidade)
-        {
-            var taxas = SelecionarTodos();
-
-            foreach (Taxa t in taxas)
-            {
-                if (t.Descricao == entidade.Descricao)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
     }
 }

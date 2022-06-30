@@ -32,7 +32,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
                 tbNome.Text = cliente.Nome;
                 tbEndereco.Text = cliente.Endereco;
-                tbCnh.Text = cliente.Cnh;
                 tbEmail.Text = cliente.Email;
                 tbTelefone.Text = cliente.Telefone;
 
@@ -66,7 +65,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
         {
             cliente.Nome = tbNome.Text;
             cliente.Endereco = tbEndereco.Text;
-            cliente.Cnh = tbCnh.Text;
             cliente.Telefone = tbTelefone.Text;
             cliente.Email = tbEmail.Text;
 
@@ -87,7 +85,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
             if (resultadoValidacao == null)
             {
-                MessageBox.Show("Tentativa de inserir 'CPF', 'CNPJ' ou 'CNH' duplicado", "Aviso");
+                MessageBox.Show("Tentativa de inserir 'CPF' ou 'CNPJ' duplicado", "Aviso");
                 return;
             }
 
@@ -128,7 +126,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
                 e.Handled = true;
             }
 
-            if (! (char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) ))
+            if (! (char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar)))
             {
                 e.Handled = true;
             }

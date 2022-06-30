@@ -1,10 +1,5 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
 {
@@ -62,6 +57,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
             //arrange
             var clientePessoaFisica = InstanciarClientePessoaFisica();
             var clientePessoaJuridica = InstanciarClientePessoaJuridica();
+            clientePessoaFisica.Cpf = null;
             clientePessoaFisica.Email = "email@";
             clientePessoaJuridica.Email = "email.com";
 
@@ -97,6 +93,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
         {
             //arrange
             var clientePessoaJuridica = InstanciarClientePessoaJuridica();
+            clientePessoaJuridica.Cpf = null;
             clientePessoaJuridica.Cnpj = "234224709709709870988709709870987980";
 
             ValidadorCliente validador = new ValidadorCliente();
@@ -109,8 +106,9 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
 
         }
 
-        [TestMethod]
-       private Cliente InstanciarClientePessoaFisica()
+        #region privates
+
+        private Cliente InstanciarClientePessoaFisica()
         {
 
             return new Cliente()
@@ -118,7 +116,6 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
                 Nome = "Ana",
                 Cpf = "12345678985",
                 Cnpj = "",
-                Cnh = "123123123123",
                 Email = "anabeatriz@gmail.com",
                 Endereco = "Lages - SC",
                 Telefone = "11923121231",
@@ -133,12 +130,13 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
                 Nome = "Ana",
                 Cpf = "",
                 Cnpj = "11155599988877",
-                Cnh = "123123123123",
                 Email = "anabeatriz@gmail.com",
                 Endereco = "Lages - SC",
                 Telefone = "(11)92312-1231",
                 //TipoCliente = EnumTipoCliente.PessoaJuridica
             };
         }
+
+        #endregion
     }
 }

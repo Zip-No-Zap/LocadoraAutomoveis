@@ -1,6 +1,6 @@
-﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+﻿using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa;
 using System.Collections.Generic;
 
 using System.Windows.Forms;
@@ -9,12 +9,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 {
     public class ControladorTaxa : ControladorBase
     {
-        RepositorioTaxaEmBancoDados repoTaxa;
+        ServicoTaxa servicoTaxa;
         TaxaControl tabelaTaxas;
 
-        public ControladorTaxa()
+        public ControladorTaxa(ServicoTaxa servicoTaxa)
         {
-            repoTaxa = new();
+            this.servicoTaxa = servicoTaxa;
         }
 
         public override void Inserir()
@@ -22,7 +22,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
             TelaCadastroTaxa tela = new();
             tela.Taxa = new();
 
-          //  tela.GravarRegistro = repoTaxa.Inserir;
+            tela.GravarRegistro = servicoTaxa.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -47,7 +47,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
             tela.Taxa = Selecionado;
 
-         //   tela.GravarRegistro = repoTaxa.Editar;
+            tela.GravarRegistro = servicoTaxa.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -73,7 +73,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
             if (resultado == DialogResult.OK)
             {
-                repoTaxa.Excluir(Selecionado);
+                servicoTaxa.Excluir(Selecionado);
 
                 CarregarTaxas();
             }
@@ -96,7 +96,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
         private void CarregarTaxas()
         {
-            List<Taxa> Taxas = repoTaxa.SelecionarTodos();
+            List<Taxa> Taxas = servicoTaxa.SelecionarTodos();
 
             tabelaTaxas.AtualizarRegistros(Taxas);
 
@@ -107,7 +107,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
         {
             var numero = tabelaTaxas.ObtemNumerTaxaSelecionado();
 
-            return repoTaxa.SelecionarPorId(numero);
+            return servicoTaxa.SelecionarPorId(numero);
         }
 
     }

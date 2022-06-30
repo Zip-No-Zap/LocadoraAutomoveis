@@ -2,7 +2,6 @@
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using System;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using Microsoft.VisualBasic;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
@@ -163,7 +162,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
                 e.Handled = true;
             }
 
-            if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar)))
+            if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar)))
             {
                 e.Handled = true;
             }

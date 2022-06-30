@@ -103,7 +103,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
                 e.Handled = true;
             }
 
-            if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar)))
+            if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar)))
             {
                 e.Handled = true;
             }

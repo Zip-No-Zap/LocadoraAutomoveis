@@ -1,4 +1,5 @@
-﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+﻿using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using System.Collections.Generic;
@@ -9,21 +10,21 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 {
     public class ControladorCliente : ControladorBase
     {
-        readonly RepositorioClienteEmBancoDados repoCliente;
+        readonly ServicoCliente servicoCliente;
         ClienteControl tabelaClientes;
 
-        public ControladorCliente()
+        public ControladorCliente(ServicoCliente servicoCliente)
         {
-            repoCliente = new();
+            this.servicoCliente = servicoCliente;
         }
 
         public override void Inserir()
         {
             TelaCadastroCliente tela = new()
             {
-                Cliente = new()
+                Cliente = new(),
 
-                //GravarRegistro = repoCliente.Inserir;
+                GravarRegistro = servicoCliente.Inserir
             };
 
             DialogResult resultado = tela.ShowDialog();
@@ -49,7 +50,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             {
                 Cliente = Selecionado,
 
-                //GravarRegistro = repoCliente.Editar
+                //GravarRegistro = servicoCliente.Editar
             };
 
             DialogResult resultado = tela.ShowDialog();
@@ -76,7 +77,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
             if (resultado == DialogResult.OK)
             {
-                repoCliente.Excluir(Selecionado);
+                servicoCliente.Excluir(Selecionado);
 
                 CarregarClientes();
             }
@@ -99,7 +100,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
         private void CarregarClientes()
         {
-            List<Cliente> clientes = repoCliente.SelecionarTodos();
+            List<Cliente> clientes = servicoCliente.SelecionarTodos();
 
             tabelaClientes.AtualizarRegistros(clientes);
 
@@ -110,7 +111,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
         {
             var numero = tabelaClientes.ObtemNumerClienteSelecionado();
 
-            return repoCliente.SelecionarPorId(numero);
+            return servicoCliente.SelecionarPorId(numero);
         }
     }
 }
