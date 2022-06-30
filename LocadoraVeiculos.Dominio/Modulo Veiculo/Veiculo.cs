@@ -9,6 +9,23 @@ namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
 {
     public class Veiculo : EntidadeBase<Veiculo>
     {
+        public Veiculo()
+        {
+
+        }
+
+        public Veiculo(string modelo, string placa, string cor, int ano, string tipoCombustivel, int capacidade, string status, int quilometragem)
+        {
+            Modelo = modelo;
+            Placa = placa;
+            Cor = cor;
+            Ano = ano;
+            TipoCombustivel = tipoCombustivel;
+            CapacidadeTanque = capacidade;
+            StatusVeiculo = status;
+            QuilometragemAtual = quilometragem;
+
+        }
         public string Modelo { get; set; }
 
         public string Placa { get; set; }
@@ -21,7 +38,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
 
         public int CapacidadeTanque { get; set; }
 
-        public GrupoVeiculo GrupoPercentente { get; set; }
+        public GrupoVeiculo GrupoPertencente { get; set; }
 
         public string StatusVeiculo { get; set; }
 
