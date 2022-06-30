@@ -17,7 +17,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
             cmd.Parameters.AddWithValue("CNPJ", entidade.Cnpj);
             cmd.Parameters.AddWithValue("ENDERECO", entidade.Endereco);
             cmd.Parameters.AddWithValue("TIPOCLIENTE", entidade.TipoCliente);
-            cmd.Parameters.AddWithValue("CNH", entidade.Cnh);
             cmd.Parameters.AddWithValue("EMAIL", entidade.Email);
             cmd.Parameters.AddWithValue("TELEFONE", entidade.Telefone);
         }
@@ -39,12 +38,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                 string cnpj = leitor["CNPJ"].ToString();
                 string endereco = leitor["ENDERECO"].ToString();
                 string tipoCliente = leitor["TIPOCLIENTE"].ToString();
-                string cnh = leitor["CNH"].ToString();
                 string email = leitor["EMAIL"].ToString();
                 string telefone = leitor["TELEFONE"].ToString();
 
 
-                Cliente cliente = new Cliente(nome, cpf, cnpj, cnh, email, endereco, telefone)
+                Cliente cliente = new Cliente(nome, cpf, cnpj, email, endereco, telefone)
                 {
                     Id = id
                 };
@@ -67,11 +65,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                 string cnpj = leitor["CNPJ"].ToString();
                 string endereco = leitor["ENDERECO"].ToString();
                 string tipoCliente = leitor["TIPOCLIENTE"].ToString();
-                string cnh = leitor["CNH"].ToString();
                 string email = leitor["EMAIL"].ToString();
                 string telefone = leitor["TELEFONE"].ToString();
 
-                cliente = new Cliente(nome, cpf, cnpj, cnh, email, endereco, telefone)
+                cliente = new Cliente(nome, cpf, cnpj, email, endereco, telefone)
                 {
                     Id = id
                 };

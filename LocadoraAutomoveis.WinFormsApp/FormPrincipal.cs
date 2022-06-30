@@ -1,5 +1,5 @@
-﻿using LocadoraAutomoveis.Aplicacao.Modulo_Funcionario;
-using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
+﻿using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
+using LocadoraAutomoveis.Aplicacao.Modulo_Funcionario;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
@@ -43,15 +43,15 @@ namespace LocadoraAutomoveis.WinFormsApp
             var repositorioTaxa = new RepositorioTaxaEmBancoDados();
 
 
-            //var servicoCliente = new ServicoCliente(repositorioFuncionario);
+            var servicoCliente = new ServicoCliente(repositorioCliente);
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
-            //var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioFuncionario);
-            var servicoTaxa = new ServicoTaxa(repositorioTaxa);
+           // var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioFuncionario);
+           // var servicoTaxa = new ServicoTaxa(repositorioFuncionario);
 
             controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
-            controladores.Add("Cliente", new ControladorCliente());
+            controladores.Add("Cliente", new ControladorCliente(servicoCliente));
             controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo());
-            controladores.Add("Taxa", new ControladorTaxa(servicoTaxa));
+            controladores.Add("Taxa", new ControladorTaxa());
         }
 
         public static FormPrincipal Instancia
@@ -59,6 +59,8 @@ namespace LocadoraAutomoveis.WinFormsApp
             get;
             private set;
         }
+
+
 
         private void HabilitarBotoesToolStrip()
         {
