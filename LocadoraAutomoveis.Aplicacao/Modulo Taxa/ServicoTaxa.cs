@@ -72,7 +72,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
         private bool DescricaoDuplicado(Taxa taxa)
         {
             repositorioTaxa.Sql_selecao_por_parametro = @"SELECT * FROM TBTAXA WHERE DESCRICAO = @DESCRICAO";
-            repositorioTaxa.PropriedadeValidar = "nome";
+
+            repositorioTaxa.PropriedadeValidar = "descricao";
 
             var TaxaEncontrado = repositorioTaxa.SelecionarPorParametro(repositorioTaxa.PropriedadeValidar, taxa);
 

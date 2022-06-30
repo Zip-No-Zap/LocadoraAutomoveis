@@ -51,7 +51,7 @@ namespace LocadoraAutomoveis.WinFormsApp
             controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
             controladores.Add("Cliente", new ControladorCliente());
             controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo());
-            controladores.Add("Taxa", new ControladorTaxa());
+            controladores.Add("Taxa", new ControladorTaxa(servicoTaxa));
         }
 
         public static FormPrincipal Instancia
@@ -59,8 +59,6 @@ namespace LocadoraAutomoveis.WinFormsApp
             get;
             private set;
         }
-
-
 
         private void HabilitarBotoesToolStrip()
         {

@@ -12,9 +12,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
         ServicoTaxa servicoTaxa;
         TaxaControl tabelaTaxas;
 
-        public ControladorTaxa()
+        public ControladorTaxa(ServicoTaxa servicoTaxa)
         {
-
+            this.servicoTaxa = servicoTaxa;
         }
 
         public override void Inserir()
@@ -47,7 +47,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
             tela.Taxa = Selecionado;
 
-         //   tela.GravarRegistro = repoTaxa.Editar;
+            tela.GravarRegistro = servicoTaxa.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
