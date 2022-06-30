@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculos.Dominio.ModuloCondutor
+namespace LocadoraVeiculos.Dominio.Modulo_Condutor
 {
     public class Condutor : EntidadeBase<Condutor>
     {
