@@ -1,4 +1,5 @@
-﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+﻿using LocadoraAutomoveis.Aplicacao.Modulo_Funcionario;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using System;
@@ -9,12 +10,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 {
     public class ControladorFuncionario : ControladorBase
     {
-        RepositorioFuncionarioEmBancoDados repoFuncionario;
+        readonly RepositorioFuncionarioEmBancoDados repoFuncionario;
         FuncionarioControl tabelaFuncionarios;
+        readonly ServicoFuncionario servicoFuncionario;
 
-        public ControladorFuncionario()
+        public ControladorFuncionario(ServicoFuncionario servicoFuncionario)
         {
             repoFuncionario = new();
+            this.servicoFuncionario = servicoFuncionario;
         }
 
         public override void Inserir()
