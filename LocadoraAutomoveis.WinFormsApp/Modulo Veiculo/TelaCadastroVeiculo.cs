@@ -16,5 +16,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         {
             InitializeComponent();
         }
+
+      
     }
 }
