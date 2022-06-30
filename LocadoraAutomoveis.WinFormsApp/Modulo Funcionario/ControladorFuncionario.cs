@@ -10,13 +10,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 {
     public class ControladorFuncionario : ControladorBase
     {
-        readonly RepositorioFuncionarioEmBancoDados repoFuncionario;
+        //readonly RepositorioFuncionarioEmBancoDados repoFuncionario;
         readonly ServicoFuncionario servicoFuncionario;
         FuncionarioControl tabelaFuncionarios;
 
         public ControladorFuncionario(ServicoFuncionario servicoFuncionario)
         {
-          //  this.repoFuncionario = repoFuncionario;//logo será deletado
             this.servicoFuncionario = servicoFuncionario; 
         }
 
@@ -50,7 +49,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
             tela.Funcionario = Selecionado;
 
-            tela.GravarRegistro = repoFuncionario.Editar;
+         //   tela.GravarRegistro = servicoFuncionario.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -76,7 +75,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
             if (resultado == DialogResult.OK)
             {
-                repoFuncionario.Excluir(Selecionado);
+            //    servicoFuncionario.Excluir(Selecionado);
 
                 CarregarFuncionarios();
             }
@@ -99,7 +98,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void CarregarFuncionarios()
         {
-            List<Funcionario> funcionarios = repoFuncionario.SelecionarTodos();
+            List<Funcionario> funcionarios = servicoFuncionario.SelecionarTodos();
 
             tabelaFuncionarios.AtualizarRegistros(funcionarios);
 
@@ -110,7 +109,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         {
             var numero = tabelaFuncionarios.ObtemNumerFuncionarioSelecionado();
 
-            return repoFuncionario.SelecionarPorId(numero);
+            return servicoFuncionario.SelecionarPorId(numero);
         }
 
     }

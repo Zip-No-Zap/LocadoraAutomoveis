@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using System;
+using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 {
@@ -23,6 +24,16 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
                 repositorioFuncionario.Inserir(funcionario);
 
             return resultadoValidacao;
+        }
+
+        public List<Funcionario> SelecionarTodos()
+        {
+            return repositorioFuncionario.SelecionarTodos();
+        }
+
+        public Funcionario SelecionarPorId(int id)
+        {
+            return repositorioFuncionario.SelecionarPorId(id);
         }
 
         public ValidationResult Validar(Funcionario funcionario)
