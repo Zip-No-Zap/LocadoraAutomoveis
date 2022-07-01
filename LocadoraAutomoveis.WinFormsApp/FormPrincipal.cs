@@ -178,5 +178,11 @@ namespace LocadoraAutomoveis.WinFormsApp
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
             HabilitarBotoesToolStrip();
         }
+
+        private void planoDeCobrançaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            HabilitarBotoesToolStrip();
+        }
     }
 }
