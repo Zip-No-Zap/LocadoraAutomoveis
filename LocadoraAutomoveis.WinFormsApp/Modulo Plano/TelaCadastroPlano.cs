@@ -1,4 +1,6 @@
 ﻿using FluentValidation.Results;
+using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
+using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
 using Microsoft.VisualBasic;
 using System;
@@ -108,6 +110,31 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             }
 
             return e;
+        }
+
+        private void btnAddGrupo_Click(object sender, EventArgs e)
+        {
+            var controladorGrupo = new ControladorGrupoVeiculo();
+
+            controladorGrupo.Inserir();
+
+            ObterItensGrupoVeiculo();
+        }
+
+        private void ObterItensGrupoVeiculo()
+        {
+            ////var servicoGrupo = new ServicoGrupo();
+            ////var nomes = servicoGrupo.SelecionarTodos();
+
+            //foreach (GrupoVeiculo gv in nomes)
+            //{
+            //    cbGrupo.Items.Add(gv.Nome);
+            //}
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
