@@ -1,16 +1,19 @@
 ﻿using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
 using LocadoraAutomoveis.Aplicacao.Modulo_Funcionario;
 using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
 using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
 using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.WinFormsApp.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Taxa;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
+using LocadoraVeiculos.Infra.BancoDados.Modulo_Plano;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa;
 using System;
 using System.Collections.Generic;
@@ -43,18 +46,19 @@ namespace LocadoraAutomoveis.WinFormsApp
             var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
             var repositorioGrupoVeiculo = new RepositorioGrupoVeiculoEmBancoDados();
             var repositorioTaxa = new RepositorioTaxaEmBancoDados();
-
+            var repositoriPlano = new RepositorioPlanoEmBancoDados();
 
             var servicoCliente = new ServicoCliente(repositorioCliente);
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
             var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioGrupoVeiculo);
-           // var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioFuncionario);
             var servicoTaxa = new ServicoTaxa(repositorioTaxa);
+            var servicoPlano = new ServicoPlano(repositoriPlano);
 
             controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
             controladores.Add("Cliente", new ControladorCliente(servicoCliente));
             controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo(servicoGrupoVeiculo));
             controladores.Add("Taxa", new ControladorTaxa(servicoTaxa));
+            controladores.Add("Plano de Cobrança", new ControladorPlano(servicoPlano));
         }
 
         public static FormPrincipal Instancia
@@ -62,8 +66,6 @@ namespace LocadoraAutomoveis.WinFormsApp
             get;
             private set;
         }
-
-
 
         private void HabilitarBotoesToolStrip()
         {
