@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
+using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -27,30 +28,31 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
        
         public override Condutor ConverterRegistro(SqlDataReader leitor)
         {
-            Condutor condutor = null;
             
-            if (leitor.Read())
-            {
-                var id = Convert.ToInt32(leitor["CONDUTOR_ID"]);
-                var nome =Convert.ToString(leitor["CONDUTOR_NOME"]);
-                var cpf = Convert.ToString(leitor["CONDUTOR_CPF"]);
-                var cnh = Convert.ToString(leitor["CONDUTOR_CNH"]);
-                var vencimentoCnh = Convert.ToDateTime(leitor["CONDUTOR_VENCIMENTOCNH"]);
-                var email = Convert.ToString(leitor["CONDUTOR_EMAIL"].ToString());
-                var telefone = Convert.ToString(leitor["CONDUTOR_TELEFONE"]);
-                var endereco = Convert.ToString(leitor["CONDUTOR_ENDERECO"]);
+            var id = Convert.ToInt32(leitor["CONDUTOR_ID"]);
+            var nome =Convert.ToString(leitor["CONDUTOR_NOME"]);
+            var cpf = Convert.ToString(leitor["CONDUTOR_CPF"]);
+            var cnh = Convert.ToString(leitor["CONDUTOR_CNH"]);
+            var vencimentoCnh = Convert.ToDateTime(leitor["CONDUTOR_VENCIMENTOCNH"]);
+            var email = Convert.ToString(leitor["CONDUTOR_EMAIL"].ToString());
+            var telefone = Convert.ToString(leitor["CONDUTOR_TELEFONE"]);
+            var endereco = Convert.ToString(leitor["CONDUTOR_ENDERECO"]);
                 
-                condutor.Id = id;
-                condutor.Nome = nome;
-                condutor.Cpf = cpf;
-                condutor.Cnh = cnh;
-                condutor.VencimentoCnh = vencimentoCnh;
-                condutor.Email = email;
-                condutor.Telefone = telefone;
-                condutor.Endereco = endereco;
-            }
+            Condutor condutor = new Condutor();
+
+            condutor.Id = id;
+            condutor.Nome = nome;
+            condutor.Cpf = cpf;
+            condutor.Cnh = cnh;
+            condutor.VencimentoCnh = vencimentoCnh;
+            condutor.Email = email;
+            condutor.Telefone = telefone;
+            condutor.Endereco = endereco;
+            
+            condutor.Cliente = new MapeadorCliente().ConverterRegistro(leitor);
 
             return condutor;
+
 
         }
         public override void DefinirParametroValidacao(string campoBd, Condutor entidade, SqlCommand cmd)

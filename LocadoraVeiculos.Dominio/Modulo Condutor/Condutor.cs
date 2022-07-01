@@ -32,6 +32,10 @@ namespace LocadoraVeiculos.Dominio.Modulo_Condutor
             VencimentoCnh = vencimentoCnh;
         }
 
+        public Condutor()
+        {
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Condutor condutor &&

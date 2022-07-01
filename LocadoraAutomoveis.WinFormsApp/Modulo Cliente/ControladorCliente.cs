@@ -50,7 +50,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             {
                 Cliente = Selecionado,
 
-                //GravarRegistro = servicoCliente.Editar
+                GravarRegistro = servicoCliente.Editar
             };
 
             DialogResult resultado = tela.ShowDialog();
