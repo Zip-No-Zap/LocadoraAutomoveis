@@ -1,10 +1,8 @@
 ﻿using FluentValidation.Results;
-using LocadoraVeiculos.Dominio.Modulo_Funcionario;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using System;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
-using Microsoft.VisualBasic;
-using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 {
@@ -71,37 +69,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e = ImpedirNumerosECharsEspeciaisTextBox(e);
+            e = ValidadorCampos.ImpedirNumeroECharsEspeciaisTextBox(e);
         }
-
 
         private void tbNome_Leave(object sender, EventArgs e)
         {
-            ImpedirTextoMenorDois(tbNomeGrupoVeiculo.Text);
-        }
-
-        private void ImpedirTextoMenorDois(string texto)
-        {
-           if(texto.Length < 2)
-            {
-                MessageBox.Show("Campo 'Nome' não aceita menos que dois caracteres", "Aviso", MessageBoxButtons.OK);
-
-                return;
-            }
-        }
-        private static KeyPressEventArgs ImpedirNumerosECharsEspeciaisTextBox(KeyPressEventArgs e)
-        {
-            if ((Strings.Asc(e.KeyChar) >= 48 & Strings.Asc(e.KeyChar) <= 57))
-            {
-                e.Handled = true;
-            }
-
-            if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-
-            return e;
+            ValidadorCampos.ImpedirTextoMenorDois(tbNomeGrupoVeiculo.Text);
         }
     }
 }

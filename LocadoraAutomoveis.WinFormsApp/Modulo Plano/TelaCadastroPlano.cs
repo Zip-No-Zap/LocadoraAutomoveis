@@ -27,8 +27,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             {
                 plano = value;
 
-                //tbNome.Text = plano.Nome;
-                //tbSalario.Text = plano.Salario.ToString();
+                if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
+                {
+                    tbValorDiario_Diario.Text = plano.ValorDiario.ToString();
+                }
+                
+
+                //tbDescricao.Text = plano.Nome;
+                //tbValordiario.Text = plano.Salario.ToString();
                 //tbData.Text = plano.DataAdmissao.ToString();
                 //tbCidade.Text = plano.Cidade;
                 //cbUF.Text = plano.Estado;

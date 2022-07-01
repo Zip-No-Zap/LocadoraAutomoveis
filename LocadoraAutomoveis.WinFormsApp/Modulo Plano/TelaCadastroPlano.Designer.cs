@@ -33,7 +33,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.cbGrupo = new System.Windows.Forms.ComboBox();
             this.lblGrupo = new System.Windows.Forms.Label();
-            this.btnAddGrupo = new System.Windows.Forms.Button();
             this.tabControlPlano = new System.Windows.Forms.TabControl();
             this.tabPageDiario = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
@@ -113,19 +112,6 @@
             this.lblGrupo.Size = new System.Drawing.Size(123, 25);
             this.lblGrupo.TabIndex = 1;
             this.lblGrupo.Text = "Grupo Veículo";
-            // 
-            // btnAddGrupo
-            // 
-            this.btnAddGrupo.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAddGrupo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnAddGrupo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddGrupo.Location = new System.Drawing.Point(343, 56);
-            this.btnAddGrupo.Name = "btnAddGrupo";
-            this.btnAddGrupo.Size = new System.Drawing.Size(112, 34);
-            this.btnAddGrupo.TabIndex = 2;
-            this.btnAddGrupo.Text = "Adicionar";
-            this.btnAddGrupo.UseVisualStyleBackColor = false;
-            this.btnAddGrupo.Click += new System.EventHandler(this.btnAddGrupo_Click);
             // 
             // tabControlPlano
             // 
@@ -326,7 +312,6 @@
             this.ClientSize = new System.Drawing.Size(467, 588);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControlPlano);
-            this.Controls.Add(this.btnAddGrupo);
             this.Controls.Add(this.lblGrupo);
             this.Controls.Add(this.cbGrupo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -355,7 +340,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox cbGrupo;
         private System.Windows.Forms.Label lblGrupo;
-        private System.Windows.Forms.Button btnAddGrupo;
         private System.Windows.Forms.TabControl tabControlPlano;
         private System.Windows.Forms.TabPage tabPageDiario;
         private System.Windows.Forms.TabPage tabPageLivre;

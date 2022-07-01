@@ -62,6 +62,15 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
             }
         }
 
+        public static void ImpedirTextoMenorDois(string texto)
+        {
+            if (texto.Length < 2)
+            {
+                MessageBox.Show("Campo 'Nome' não aceita menos que dois caracteres", "Aviso", MessageBoxButtons.OK);
 
-}
+                return;
+            }
+        }
+
+    }
 }
