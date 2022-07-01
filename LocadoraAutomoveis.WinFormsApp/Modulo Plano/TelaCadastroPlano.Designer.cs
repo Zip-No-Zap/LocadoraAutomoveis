@@ -229,7 +229,7 @@
             // 
             this.btnLimpar.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpar.Location = new System.Drawing.Point(135, 14);
+            this.btnLimpar.Location = new System.Drawing.Point(135, 16);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(112, 59);
             this.btnLimpar.TabIndex = 9;
@@ -241,7 +241,7 @@
             this.btnOK.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(17, 14);
+            this.btnOK.Location = new System.Drawing.Point(17, 16);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(112, 59);
             this.btnOK.TabIndex = 8;
