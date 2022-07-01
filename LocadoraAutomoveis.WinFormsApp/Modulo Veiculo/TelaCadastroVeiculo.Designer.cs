@@ -58,64 +58,72 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 49);
+            this.label1.Location = new System.Drawing.Point(30, 82);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 15);
+            this.label1.Size = new System.Drawing.Size(74, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Modelo";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 129);
+            this.label2.Location = new System.Drawing.Point(31, 215);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 15);
+            this.label2.Size = new System.Drawing.Size(52, 25);
             this.label2.TabIndex = 1;
             this.label2.Text = "Placa";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 210);
+            this.label3.Location = new System.Drawing.Point(31, 350);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(26, 15);
+            this.label3.Size = new System.Drawing.Size(40, 25);
             this.label3.TabIndex = 2;
             this.label3.Text = "Cor";
             // 
             // txbModelo
             // 
-            this.txbModelo.Location = new System.Drawing.Point(22, 67);
+            this.txbModelo.Location = new System.Drawing.Point(31, 112);
+            this.txbModelo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbModelo.Name = "txbModelo";
-            this.txbModelo.Size = new System.Drawing.Size(213, 23);
+            this.txbModelo.Size = new System.Drawing.Size(303, 31);
             this.txbModelo.TabIndex = 3;
             // 
             // txbPlaca
             // 
-            this.txbPlaca.Location = new System.Drawing.Point(22, 147);
+            this.txbPlaca.Location = new System.Drawing.Point(31, 245);
+            this.txbPlaca.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbPlaca.Name = "txbPlaca";
-            this.txbPlaca.Size = new System.Drawing.Size(213, 23);
+            this.txbPlaca.Size = new System.Drawing.Size(303, 31);
             this.txbPlaca.TabIndex = 4;
             // 
             // txbCor
             // 
-            this.txbCor.Location = new System.Drawing.Point(22, 228);
+            this.txbCor.Location = new System.Drawing.Point(31, 380);
+            this.txbCor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbCor.Name = "txbCor";
-            this.txbCor.Size = new System.Drawing.Size(213, 23);
+            this.txbCor.Size = new System.Drawing.Size(303, 31);
             this.txbCor.TabIndex = 5;
             // 
             // txbAno
             // 
-            this.txbAno.Location = new System.Drawing.Point(22, 325);
+            this.txbAno.Location = new System.Drawing.Point(31, 542);
+            this.txbAno.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbAno.Name = "txbAno";
-            this.txbAno.Size = new System.Drawing.Size(213, 23);
+            this.txbAno.Size = new System.Drawing.Size(303, 31);
             this.txbAno.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 307);
+            this.label4.Location = new System.Drawing.Point(31, 512);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 15);
+            this.label4.Size = new System.Drawing.Size(45, 25);
             this.label4.TabIndex = 6;
             this.label4.Text = "Ano";
             // 
@@ -127,58 +135,65 @@
             "Diesel",
             "Gás",
             "Álcool"});
-            this.cmbTipoCombustivel.Location = new System.Drawing.Point(22, 400);
+            this.cmbTipoCombustivel.Location = new System.Drawing.Point(31, 667);
+            this.cmbTipoCombustivel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbTipoCombustivel.Name = "cmbTipoCombustivel";
-            this.cmbTipoCombustivel.Size = new System.Drawing.Size(212, 23);
+            this.cmbTipoCombustivel.Size = new System.Drawing.Size(301, 33);
             this.cmbTipoCombustivel.TabIndex = 8;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 382);
+            this.label5.Location = new System.Drawing.Point(31, 637);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 15);
+            this.label5.Size = new System.Drawing.Size(151, 25);
             this.label5.TabIndex = 9;
             this.label5.Text = "Tipo Combustível";
             // 
             // txbCapacidadeTanque
             // 
-            this.txbCapacidadeTanque.Location = new System.Drawing.Point(21, 471);
+            this.txbCapacidadeTanque.Location = new System.Drawing.Point(30, 785);
+            this.txbCapacidadeTanque.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbCapacidadeTanque.Name = "txbCapacidadeTanque";
-            this.txbCapacidadeTanque.Size = new System.Drawing.Size(213, 23);
+            this.txbCapacidadeTanque.Size = new System.Drawing.Size(303, 31);
             this.txbCapacidadeTanque.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 453);
+            this.label6.Location = new System.Drawing.Point(31, 755);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 15);
+            this.label6.Size = new System.Drawing.Size(165, 25);
             this.label6.TabIndex = 10;
             this.label6.Text = "Capacidade Tanque";
             // 
             // txbQuilometragemAtual
             // 
-            this.txbQuilometragemAtual.Location = new System.Drawing.Point(301, 471);
+            this.txbQuilometragemAtual.Location = new System.Drawing.Point(430, 785);
+            this.txbQuilometragemAtual.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbQuilometragemAtual.Name = "txbQuilometragemAtual";
-            this.txbQuilometragemAtual.Size = new System.Drawing.Size(213, 23);
+            this.txbQuilometragemAtual.Size = new System.Drawing.Size(303, 31);
             this.txbQuilometragemAtual.TabIndex = 13;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(301, 453);
+            this.label7.Location = new System.Drawing.Point(430, 755);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(122, 15);
+            this.label7.Size = new System.Drawing.Size(183, 25);
             this.label7.TabIndex = 12;
             this.label7.Text = "Quilometragem Atual";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(301, 382);
+            this.label8.Location = new System.Drawing.Point(430, 637);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(39, 15);
+            this.label8.Size = new System.Drawing.Size(60, 25);
             this.label8.TabIndex = 15;
             this.label8.Text = "Status";
             // 
@@ -191,41 +206,47 @@
             "Disponível",
             "Em Manutenção",
             "Indisponível"});
-            this.cmbStatus.Location = new System.Drawing.Point(301, 400);
+            this.cmbStatus.Location = new System.Drawing.Point(430, 667);
+            this.cmbStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(212, 23);
+            this.cmbStatus.Size = new System.Drawing.Size(301, 33);
             this.cmbStatus.TabIndex = 14;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(300, 307);
+            this.label9.Location = new System.Drawing.Point(429, 512);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(106, 15);
+            this.label9.Size = new System.Drawing.Size(158, 25);
             this.label9.TabIndex = 17;
             this.label9.Text = "Grupo Pertencente";
             // 
             // cmbGrupoVeiculo
             // 
             this.cmbGrupoVeiculo.FormattingEnabled = true;
-            this.cmbGrupoVeiculo.Location = new System.Drawing.Point(300, 325);
+            this.cmbGrupoVeiculo.Location = new System.Drawing.Point(429, 542);
+            this.cmbGrupoVeiculo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
-            this.cmbGrupoVeiculo.Size = new System.Drawing.Size(212, 23);
+            this.cmbGrupoVeiculo.Size = new System.Drawing.Size(301, 33);
             this.cmbGrupoVeiculo.TabIndex = 16;
             // 
             // pbFoto
             // 
-            this.pbFoto.Location = new System.Drawing.Point(301, 67);
+            this.pbFoto.Location = new System.Drawing.Point(430, 112);
+            this.pbFoto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbFoto.Name = "pbFoto";
-            this.pbFoto.Size = new System.Drawing.Size(212, 184);
+            this.pbFoto.Size = new System.Drawing.Size(303, 307);
+            this.pbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbFoto.TabIndex = 18;
             this.pbFoto.TabStop = false;
             // 
             // btnAdicionarFoto
             // 
-            this.btnAdicionarFoto.Location = new System.Drawing.Point(300, 257);
+            this.btnAdicionarFoto.Location = new System.Drawing.Point(429, 428);
+            this.btnAdicionarFoto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdicionarFoto.Name = "btnAdicionarFoto";
-            this.btnAdicionarFoto.Size = new System.Drawing.Size(211, 33);
+            this.btnAdicionarFoto.Size = new System.Drawing.Size(301, 55);
             this.btnAdicionarFoto.TabIndex = 19;
             this.btnAdicionarFoto.Text = "Adicionar foto";
             this.btnAdicionarFoto.UseVisualStyleBackColor = true;
@@ -234,18 +255,20 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(301, 49);
+            this.label10.Location = new System.Drawing.Point(430, 82);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(85, 15);
+            this.label10.Size = new System.Drawing.Size(129, 25);
             this.label10.TabIndex = 20;
             this.label10.Text = "Adicionar Foto";
             // 
             // btnOk
             // 
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(21, 547);
+            this.btnOk.Location = new System.Drawing.Point(30, 912);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(84, 42);
+            this.btnOk.Size = new System.Drawing.Size(120, 70);
             this.btnOk.TabIndex = 21;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
@@ -253,9 +276,10 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(111, 547);
+            this.btnLimpar.Location = new System.Drawing.Point(159, 912);
+            this.btnLimpar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(84, 42);
+            this.btnLimpar.Size = new System.Drawing.Size(120, 70);
             this.btnLimpar.TabIndex = 22;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
@@ -267,9 +291,9 @@
             // 
             // TelaCadastroVeiculo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(525, 601);
+            this.ClientSize = new System.Drawing.Size(750, 1002);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.label10);
@@ -293,6 +317,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastroVeiculo";
