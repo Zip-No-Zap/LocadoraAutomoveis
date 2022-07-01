@@ -1,6 +1,8 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,6 +49,22 @@ namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
 
         public byte[] Foto { get; set; }
 
+        public Bitmap Imagem {
+
+            get 
+            { 
+                if(Foto != null) 
+                { 
+                    using(var stream = new MemoryStream(Foto))
+                    {
+                    return new Bitmap(stream);
+                    }
+
+                }
+
+                return null;
+            }
+        }
 
 
     }
