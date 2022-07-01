@@ -152,7 +152,7 @@
             // tbValorKmRodado_Diario
             // 
             this.tbValorKmRodado_Diario.Location = new System.Drawing.Point(17, 143);
-            this.tbValorKmRodado_Diario.Mask = "R$";
+            this.tbValorKmRodado_Diario.Mask = "$";
             this.tbValorKmRodado_Diario.Name = "tbValorKmRodado_Diario";
             this.tbValorKmRodado_Diario.Size = new System.Drawing.Size(230, 31);
             this.tbValorKmRodado_Diario.TabIndex = 2;
@@ -171,7 +171,7 @@
             // tbValorDiario_Diario
             // 
             this.tbValorDiario_Diario.Location = new System.Drawing.Point(17, 51);
-            this.tbValorDiario_Diario.Mask = "R$";
+            this.tbValorDiario_Diario.Mask = "$";
             this.tbValorDiario_Diario.Name = "tbValorDiario_Diario";
             this.tbValorDiario_Diario.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Diario.TabIndex = 0;
@@ -202,7 +202,7 @@
             // tbValorDiario_Livre
             // 
             this.tbValorDiario_Livre.Location = new System.Drawing.Point(17, 51);
-            this.tbValorDiario_Livre.Mask = "R$";
+            this.tbValorDiario_Livre.Mask = "$";
             this.tbValorDiario_Livre.Name = "tbValorDiario_Livre";
             this.tbValorDiario_Livre.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Livre.TabIndex = 2;
@@ -255,7 +255,7 @@
             // tbKmRodado_Controlado
             // 
             this.tbKmRodado_Controlado.Location = new System.Drawing.Point(17, 143);
-            this.tbKmRodado_Controlado.Mask = "R$";
+            this.tbKmRodado_Controlado.Mask = "$";
             this.tbKmRodado_Controlado.Name = "tbKmRodado_Controlado";
             this.tbKmRodado_Controlado.Size = new System.Drawing.Size(230, 31);
             this.tbKmRodado_Controlado.TabIndex = 6;
@@ -274,7 +274,7 @@
             // tbValorDiario_Controlado
             // 
             this.tbValorDiario_Controlado.Location = new System.Drawing.Point(17, 51);
-            this.tbValorDiario_Controlado.Mask = "R$";
+            this.tbValorDiario_Controlado.Mask = "$";
             this.tbValorDiario_Controlado.Name = "tbValorDiario_Controlado";
             this.tbValorDiario_Controlado.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Controlado.TabIndex = 4;

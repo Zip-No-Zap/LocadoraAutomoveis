@@ -110,7 +110,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void ObterItensGrupoVeiculo()
         {
-            var servicoGrupo = new ServicoGrupoVeiculo();
+            var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
 
             var nomes = servicoGrupo.SelecionarTodos();
 
