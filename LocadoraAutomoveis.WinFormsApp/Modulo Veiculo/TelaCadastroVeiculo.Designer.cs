@@ -47,10 +47,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.cmbGrupoVeiculo = new System.Windows.Forms.ComboBox();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAdicionarFoto = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -121,6 +122,11 @@
             // cmbTipoCombustivel
             // 
             this.cmbTipoCombustivel.FormattingEnabled = true;
+            this.cmbTipoCombustivel.Items.AddRange(new object[] {
+            "Gásolina",
+            "Diesel",
+            "Gás",
+            "Álcool"});
             this.cmbTipoCombustivel.Location = new System.Drawing.Point(22, 400);
             this.cmbTipoCombustivel.Name = "cmbTipoCombustivel";
             this.cmbTipoCombustivel.Size = new System.Drawing.Size(212, 23);
@@ -179,6 +185,12 @@
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
+            "Alugado",
+            "Reservado",
+            "Disponível",
+            "Em Manutenção",
+            "Indisponível"});
             this.cmbStatus.Location = new System.Drawing.Point(301, 400);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(212, 23);
@@ -209,14 +221,15 @@
             this.pbFoto.TabIndex = 18;
             this.pbFoto.TabStop = false;
             // 
-            // button1
+            // btnAdicionarFoto
             // 
-            this.button1.Location = new System.Drawing.Point(300, 257);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(211, 33);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAdicionarFoto.Location = new System.Drawing.Point(300, 257);
+            this.btnAdicionarFoto.Name = "btnAdicionarFoto";
+            this.btnAdicionarFoto.Size = new System.Drawing.Size(211, 33);
+            this.btnAdicionarFoto.TabIndex = 19;
+            this.btnAdicionarFoto.Text = "Adicionar foto";
+            this.btnAdicionarFoto.UseVisualStyleBackColor = true;
+            this.btnAdicionarFoto.Click += new System.EventHandler(this.btnAdicionarFoto_Click);
             // 
             // label10
             // 
@@ -236,6 +249,7 @@
             this.btnOk.TabIndex = 21;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnLimpar
             // 
@@ -245,6 +259,11 @@
             this.btnLimpar.TabIndex = 22;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // TelaCadastroVeiculo
             // 
@@ -254,7 +273,7 @@
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAdicionarFoto);
             this.Controls.Add(this.pbFoto);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cmbGrupoVeiculo);
@@ -306,9 +325,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cmbGrupoVeiculo;
         private System.Windows.Forms.PictureBox pbFoto;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAdicionarFoto;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnLimpar;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

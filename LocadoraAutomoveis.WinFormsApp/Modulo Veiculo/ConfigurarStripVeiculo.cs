@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 {
-    public class ConfiguracaoStripVeiculo : ConfiguracaoToolStripBase
+    public class ConfigurarStripVeiculo : ConfiguracaoToolStripBase
     {
         public override string TipoCadastro => "Cadastro de veiculo";
 
