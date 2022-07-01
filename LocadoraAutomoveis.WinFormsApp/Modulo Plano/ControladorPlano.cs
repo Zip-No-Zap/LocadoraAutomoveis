@@ -1,11 +1,7 @@
 ﻿using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
@@ -15,17 +11,19 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
         ServicoPlano servicoPlano;
         PlanoControl tabelaPlanos;
 
-        public ControladorPlano(ServicoPlano servicoPlano)//TODO : terminar o ControladorPlano
+        public ControladorPlano(ServicoPlano servicoPlano)
         {
             this.servicoPlano = servicoPlano;
         }
 
         public override void Inserir()
         {
-            TelaCadastroPlano tela = new();
-            tela.Plano = new();
+            TelaCadastroPlano tela = new()
+            {
+                Plano = new(),
 
-            tela.GravarRegistro = servicoPlano.Inserir;
+                GravarRegistro = servicoPlano.Inserir
+            };
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -41,16 +39,17 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
             if (Selecionado == null)
             {
-                MessageBox.Show("Selecione uma Plano primeiro",
+                MessageBox.Show("Selecione um plano primeiro",
                 "Edição de Planos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            TelaCadastroPlano tela = new();
+            TelaCadastroPlano tela = new()
+            {
+                Plano = Selecionado,
 
-            tela.Plano = Selecionado;
-
-            tela.GravarRegistro = servicoPlano.Editar;
+                GravarRegistro = servicoPlano.Editar
+            };
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -66,12 +65,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
             if (Selecionado == null)
             {
-                MessageBox.Show("Selecione uma Plano primeiro",
+                MessageBox.Show("Selecione um plano primeiro",
                 "Exclusão de Planos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir a Plano?",
+            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o plano?",
                 "Exclusão de Plano", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.OK)

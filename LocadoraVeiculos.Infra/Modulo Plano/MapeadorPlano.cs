@@ -20,7 +20,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
 
         public override void DefinirParametroValidacao(string campoBd, Plano entidade, SqlCommand cmd)
         {
-          
+            cmd.Parameters.AddWithValue(campoBd.ToUpper(), entidade.Descricao);
         }
 
         public override List<Plano> LerTodos(SqlDataReader leitor)
@@ -31,24 +31,30 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
             {
                 int id = Convert.ToInt32(leitor["ID"]);
                 string descricao = leitor["DESCRICAO"].ToString();
-                string valorDiario = leitor["VALORDIARIO"].ToString();
-                string valorPorKm = leitor["VALORPORKM"].ToString();
-                double limiteQuilometragem = Convert.ToInt32(leitor["LIMITEQUILOMETRAGEM"]);
+                float valorDiario = float.Parse(leitor["VALORDIARIO"].ToString());
+                float valorPorKm = float.Parse(leitor["VALORPORKM"].ToString());
+                int limiteQuilometragem = Convert.ToInt32(leitor["LIMITEQUILOMETRAGEM"]);
 
                 int grupo_id = Convert.ToInt32(leitor["GRUPO_ID"]);
                 string grupo_nome = leitor["GRUPO_NOME"].ToString();
 
-
-                Plano funcionario = new()
+                Plano plano = new()
                 {
                     Id = id,
-                    Cidade = cidade,
-                    Estado = estado,
-                    Perfil = perfil
+                    Descricao = descricao,
+                    ValorDiario = valorDiario,
+                    ValorPorKm = valorPorKm,
+                    LimiteQuilometragem = limiteQuilometragem,
 
-                };
+                    Grupo = new()
+                    {
+                        Id = grupo_id,
+                        Nome = grupo_nome,
+                    }
+                   
+               };
 
-                planos.Add(funcionario);
+                planos.Add(plano);
             }
 
             return planos;
@@ -56,7 +62,37 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
 
         public override Plano LerUnico(SqlDataReader leitor)
         {
-            throw new NotImplementedException();
+            Plano plano = null;
+
+            if (leitor.Read())
+            {
+                int id = Convert.ToInt32(leitor["ID"]);
+                string descricao = leitor["DESCRICAO"].ToString();
+                float valorDiario = float.Parse(leitor["VALORDIARIO"].ToString());
+                float valorPorKm = float.Parse(leitor["VALORPORKM"].ToString());
+                int limiteQuilometragem = Convert.ToInt32(leitor["LIMITEQUILOMETRAGEM"]);
+
+                int grupo_id = Convert.ToInt32(leitor["GRUPO_ID"]);
+                string grupo_nome = leitor["GRUPO_NOME"].ToString();
+
+                plano = new()
+                {
+                    Id = id,
+                    Descricao = descricao,
+                    ValorDiario = valorDiario,
+                    ValorPorKm = valorPorKm,
+                    LimiteQuilometragem = limiteQuilometragem,
+
+                    Grupo = new()
+                    {
+                        Id = grupo_id,
+                        Nome = grupo_nome,
+                    }
+
+                };
+            }
+
+            return plano;
         }
     }
 }
