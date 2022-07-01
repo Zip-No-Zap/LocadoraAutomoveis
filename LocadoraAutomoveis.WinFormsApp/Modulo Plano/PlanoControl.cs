@@ -22,7 +22,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "NomeGrupo", HeaderText = "Grupo"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Descricao", HeaderText = "Descricao"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Descricao", HeaderText = "Descrição"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "ValorDiario", HeaderText = "Valor Diário"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "ValorPorKm", HeaderText = "Valor por Km Rodado"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "LimiteQuilometragem", HeaderText = "Limite Quilometragem"},

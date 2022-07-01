@@ -93,12 +93,6 @@
             // 
             this.cbGrupo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGrupo.FormattingEnabled = true;
-            this.cbGrupo.Items.AddRange(new object[] {
-            "Econômico",
-            "Esportivo",
-            "PCD",
-            "UBER",
-            "USV"});
             this.cbGrupo.Location = new System.Drawing.Point(16, 56);
             this.cbGrupo.Name = "cbGrupo";
             this.cbGrupo.Size = new System.Drawing.Size(321, 33);
@@ -171,7 +165,7 @@
             // tbValorDiario_Diario
             // 
             this.tbValorDiario_Diario.Location = new System.Drawing.Point(17, 51);
-            this.tbValorDiario_Diario.Mask = "$";
+            this.tbValorDiario_Diario.Mask = "$ 0000";
             this.tbValorDiario_Diario.Name = "tbValorDiario_Diario";
             this.tbValorDiario_Diario.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Diario.TabIndex = 0;
