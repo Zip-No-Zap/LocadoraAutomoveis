@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
             cmd.Parameters.AddWithValue("DESCRICAO", entidade.Descricao);
             cmd.Parameters.AddWithValue("VALORDIARIO", entidade.ValorDiario);
             cmd.Parameters.AddWithValue("VALORPORKM", entidade.ValorPorKm);
-            cmd.Parameters.AddWithValue("LIMITEQUILOOMETRAGEM", entidade.LimiteQuilometragem);
+            cmd.Parameters.AddWithValue("LIMITEQUILOMETRAGEM", entidade.LimiteQuilometragem);
             cmd.Parameters.AddWithValue("GRUPO_ID", entidade.Grupo.Id);
         }
 

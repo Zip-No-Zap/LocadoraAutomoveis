@@ -2,11 +2,8 @@
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Plano;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
 {
@@ -24,67 +21,67 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         }
 
         [TestMethod]
-        public void Deve_inserir_funcionario()
+        public void Deve_inserir_plano()
         {
             //arrange
-            Plano funcionario = InstanciarPlano();
+            Plano plano = InstanciarPlano();
 
             //action
-            repoPlano.Inserir(funcionario);
+            repoPlano.Inserir(plano);
 
             //assert
-            var resultado = repoPlano.SelecionarPorId(funcionario.Id);
+            var resultado = repoPlano.SelecionarPorId(plano.Id);
 
             Assert.IsNotNull(resultado);
         }
 
         [TestMethod]
-        public void Deve_editar_funcionario()
+        public void Deve_editar_plano()
         {
             //arrange
-            var funcionario = InstanciarPlano();
-            repoPlano.Inserir(funcionario);
+            var plano = InstanciarPlano();
+            repoPlano.Inserir(plano);
            
-            Plano funcionarioSelecionado = repoPlano.SelecionarPorId(funcionario.Id);
+            Plano planoSelecionado = repoPlano.SelecionarPorId(plano.Id);
 
-            funcionarioSelecionado.Nome = "Foi alterado no teste";
-            funcionarioSelecionado.Salario = 9000;
+            planoSelecionado.Descricao = "Foi alterado no teste";
+            planoSelecionado.ValorDiario = 9000;
 
             //action
-            repoPlano.Editar(funcionarioSelecionado);
+            repoPlano.Editar(planoSelecionado);
 
             //assert
-            var resultado = repoPlano.SelecionarPorId(funcionarioSelecionado.Id);
+            var resultado = repoPlano.SelecionarPorId(planoSelecionado.Id);
 
-            Assert.AreEqual(funcionarioSelecionado, resultado);
+            Assert.AreEqual(planoSelecionado, resultado);
         }
 
         [TestMethod]
-        public void Deve_excluir_funcionario()
+        public void Deve_excluir_plano()
         {
             //arrange
-            var funcionario = InstanciarPlano();
+            var plano = InstanciarPlano();
 
-            repoPlano.Inserir(funcionario);
+            repoPlano.Inserir(plano);
 
             //action
-            repoPlano.Excluir(funcionario);
+            repoPlano.Excluir(plano);
 
             //assert
-            var resultado = repoPlano.SelecionarPorId(funcionario.Id);
+            var resultado = repoPlano.SelecionarPorId(plano.Id);
 
             Assert.IsNull(resultado);
         }
 
         [TestMethod]
-        public void Deve_selecionarTodos_funcionario()
+        public void Deve_selecionarTodos_plano()
         {
             //arrange
-            var func1 = InstanciarPlano();
-            var func2 = InstanciarPlano2();
+            var plano1 = InstanciarPlano();
+            var plano2 = InstanciarPlano2();
 
-            repoPlano.Inserir(func1); 
-            repoPlano.Inserir(func2); 
+            repoPlano.Inserir(plano1); 
+            repoPlano.Inserir(plano2); 
 
             //action
             var resultado = repoPlano.SelecionarTodos();
@@ -98,12 +95,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         public void Deve_selecionar_unico()
         {
             //arrange
-            var func1 = InstanciarPlano();
+            var plano1 = InstanciarPlano();
 
-            repoPlano.Inserir(func1);
+            repoPlano.Inserir(plano1);
 
             //action
-            var resultado = repoPlano.SelecionarPorId(func1.Id);
+            var resultado = repoPlano.SelecionarPorId(plano1.Id);
 
             //assert
             Assert.AreNotEqual(null, resultado);
@@ -113,7 +110,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
 
         Plano InstanciarPlano()
         {
-            return = new()
+            return new()
             {
                 Descricao = "Livre", // Diário e Controlado
                 ValorDiario = 120,
@@ -129,7 +126,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
 
         Plano InstanciarPlano2()
         {
-            return = new()
+            return new()
             {
                 Descricao = "Controlado", // Diário e Livre
                 ValorDiario = 250,
