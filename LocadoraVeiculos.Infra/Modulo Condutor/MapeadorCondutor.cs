@@ -62,7 +62,37 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
 
         public override List<Condutor> LerTodos(SqlDataReader leitor)
         {
-            throw new NotImplementedException();
+            List<Condutor> condutores = new();
+
+            while (leitor.Read())
+            {
+                var id = Convert.ToInt32(leitor["CONDUTOR_ID"]);
+                var nome = Convert.ToString(leitor["CONDUTOR_NOME"]);
+                var cpf = Convert.ToString(leitor["CONDUTOR_CPF"]);
+                var cnh = Convert.ToString(leitor["CONDUTOR_CNH"]);
+                var vencimentoCnh = Convert.ToDateTime(leitor["CONDUTOR_VENCIMENTOCNH"]);
+                var email = Convert.ToString(leitor["CONDUTOR_EMAIL"].ToString());
+                var telefone = Convert.ToString(leitor["CONDUTOR_TELEFONE"]);
+                var endereco = Convert.ToString(leitor["CONDUTOR_ENDERECO"]);
+                
+                Condutor condutor = new Condutor();
+                condutor.Id = id;
+                condutor.Nome = nome;
+                condutor.Cpf = cpf;
+                condutor.Cnh = cnh;
+                condutor.VencimentoCnh = vencimentoCnh;
+                condutor.Email = email;
+                condutor.Telefone = telefone;
+                condutor.Endereco = endereco;
+
+                condutor.Cliente = new MapeadorCliente().ConverterRegistro(leitor);
+
+                condutores.Add(condutor);
+
+            }
+
+            return condutores;
+
         }
 
     }
