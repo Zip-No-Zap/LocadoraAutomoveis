@@ -41,18 +41,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbValorDiario_Diario = new System.Windows.Forms.MaskedTextBox();
             this.tabPageLivre = new System.Windows.Forms.TabPage();
-            this.tabPageControlado = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnLimpar = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.tbValorDiario_Livre = new System.Windows.Forms.MaskedTextBox();
+            this.tabPageControlado = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbLimiteQuilometragem = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tbKmRodado_Controlado = new System.Windows.Forms.MaskedTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tbValorDiario_Controlado = new System.Windows.Forms.MaskedTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbLimiteQuilometragem = new System.Windows.Forms.MaskedTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLimpar = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
             this.tabControlPlano.SuspendLayout();
             this.tabPageDiario.SuspendLayout();
             this.tabPageLivre.SuspendLayout();
@@ -117,6 +117,7 @@
             // btnAddGrupo
             // 
             this.btnAddGrupo.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnAddGrupo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnAddGrupo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddGrupo.Location = new System.Drawing.Point(343, 56);
             this.btnAddGrupo.Name = "btnAddGrupo";
@@ -200,54 +201,6 @@
             this.tabPageLivre.Text = "Livre";
             this.tabPageLivre.UseVisualStyleBackColor = true;
             // 
-            // tabPageControlado
-            // 
-            this.tabPageControlado.Controls.Add(this.label7);
-            this.tabPageControlado.Controls.Add(this.tbLimiteQuilometragem);
-            this.tabPageControlado.Controls.Add(this.label5);
-            this.tabPageControlado.Controls.Add(this.tbKmRodado_Controlado);
-            this.tabPageControlado.Controls.Add(this.label6);
-            this.tabPageControlado.Controls.Add(this.tbValorDiario_Controlado);
-            this.tabPageControlado.Location = new System.Drawing.Point(4, 34);
-            this.tabPageControlado.Name = "tabPageControlado";
-            this.tabPageControlado.Size = new System.Drawing.Size(435, 299);
-            this.tabPageControlado.TabIndex = 2;
-            this.tabPageControlado.Text = "Controlado";
-            this.tabPageControlado.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel1.Controls.Add(this.btnLimpar);
-            this.panel1.Controls.Add(this.btnOK);
-            this.panel1.Location = new System.Drawing.Point(16, 480);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(435, 91);
-            this.panel1.TabIndex = 4;
-            // 
-            // btnLimpar
-            // 
-            this.btnLimpar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpar.Location = new System.Drawing.Point(135, 16);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(112, 59);
-            this.btnLimpar.TabIndex = 9;
-            this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = false;
-            // 
-            // btnOK
-            // 
-            this.btnOK.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(17, 16);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(112, 59);
-            this.btnOK.TabIndex = 8;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = false;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -265,6 +218,39 @@
             this.tbValorDiario_Livre.Name = "tbValorDiario_Livre";
             this.tbValorDiario_Livre.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Livre.TabIndex = 2;
+            // 
+            // tabPageControlado
+            // 
+            this.tabPageControlado.Controls.Add(this.label7);
+            this.tabPageControlado.Controls.Add(this.tbLimiteQuilometragem);
+            this.tabPageControlado.Controls.Add(this.label5);
+            this.tabPageControlado.Controls.Add(this.tbKmRodado_Controlado);
+            this.tabPageControlado.Controls.Add(this.label6);
+            this.tabPageControlado.Controls.Add(this.tbValorDiario_Controlado);
+            this.tabPageControlado.Location = new System.Drawing.Point(4, 34);
+            this.tabPageControlado.Name = "tabPageControlado";
+            this.tabPageControlado.Size = new System.Drawing.Size(435, 299);
+            this.tabPageControlado.TabIndex = 2;
+            this.tabPageControlado.Text = "Controlado";
+            this.tabPageControlado.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(14, 206);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(167, 21);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Limite Quilometragem";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // tbLimiteQuilometragem
+            // 
+            this.tbLimiteQuilometragem.Location = new System.Drawing.Point(17, 234);
+            this.tbLimiteQuilometragem.Name = "tbLimiteQuilometragem";
+            this.tbLimiteQuilometragem.Size = new System.Drawing.Size(230, 31);
+            this.tbLimiteQuilometragem.TabIndex = 8;
             // 
             // label5
             // 
@@ -302,23 +288,38 @@
             this.tbValorDiario_Controlado.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Controlado.TabIndex = 4;
             // 
-            // label7
+            // panel1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(14, 206);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(167, 21);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Limite Quilometragem";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.Controls.Add(this.btnLimpar);
+            this.panel1.Controls.Add(this.btnOK);
+            this.panel1.Location = new System.Drawing.Point(16, 480);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(435, 91);
+            this.panel1.TabIndex = 4;
             // 
-            // tbLimiteQuilometragem
+            // btnLimpar
             // 
-            this.tbLimiteQuilometragem.Location = new System.Drawing.Point(17, 234);
-            this.tbLimiteQuilometragem.Name = "tbLimiteQuilometragem";
-            this.tbLimiteQuilometragem.Size = new System.Drawing.Size(230, 31);
-            this.tbLimiteQuilometragem.TabIndex = 8;
+            this.btnLimpar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpar.Location = new System.Drawing.Point(135, 16);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(112, 59);
+            this.btnLimpar.TabIndex = 9;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = false;
+            // 
+            // btnOK
+            // 
+            this.btnOK.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Location = new System.Drawing.Point(17, 16);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(112, 59);
+            this.btnOK.TabIndex = 8;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = false;
             // 
             // TelaCadastroPlano
             // 
