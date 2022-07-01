@@ -106,15 +106,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             FormPrincipal.Instancia.AtualizarRodape("");
         }
 
-        private void btnAddGrupo_Click(object sender, EventArgs e)
-        {
-            var controladorGrupo = new ControladorGrupoVeiculo();
-
-            controladorGrupo.Inserir();
-
-            ObterItensGrupoVeiculo();
-        }
-
         private void ObterItensGrupoVeiculo()
         {
             ////var servicoGrupo = new ServicoGrupo();
