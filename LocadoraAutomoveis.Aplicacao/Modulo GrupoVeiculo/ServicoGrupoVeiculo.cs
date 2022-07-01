@@ -14,6 +14,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
         readonly RepositorioGrupoVeiculoEmBancoDados repositorioGrupoVeiculo;
         ValidadorGrupoVeiculo validadorGrupoVeiculo;
 
+
         public ServicoGrupoVeiculo(RepositorioGrupoVeiculoEmBancoDados repositorioGrupoVeiculo)
         {
             this.repositorioGrupoVeiculo = repositorioGrupoVeiculo;

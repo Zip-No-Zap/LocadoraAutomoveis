@@ -19,9 +19,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 
         protected override string Sql_edicao => @"UPDATE [TBGRUPOVEICULO] SET 
 
-                                                    [NOMEGRUPO] = @NOMEGRUPO    
-                                               WHERE
-                                                    ID = @ID";
+                                                         [NOMEGRUPO] = @NOMEGRUPO    
+                                                  WHERE
+                                                          ID = @ID";
 
         protected override string Sql_exclusao => @"DELETE FROM TBGRUPOVEICULO WHERE ID = @ID;";
 
