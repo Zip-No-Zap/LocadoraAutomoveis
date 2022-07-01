@@ -23,6 +23,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
             cmd.Parameters.AddWithValue("STATUS", entidade.StatusVeiculo);
             cmd.Parameters.AddWithValue("QUILOMETRAGEMATUAL", entidade.QuilometragemAtual);
             cmd.Parameters.AddWithValue("GRUPOVEICULO_ID", entidade.GrupoPertencente);
+            cmd.Parameters.AddWithValue("FOTO", entidade.Foto);
         }
 
         public override void DefinirParametroValidacao(string campoBd, Veiculo entidade, SqlCommand cmd)
@@ -46,8 +47,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                 string status = leitor["STATUS"].ToString();
                 int quilometragem = Convert.ToInt32(leitor["QUILOMETRAGEMATUAL"]);
                 int grupoVeiculo = Convert.ToInt32(leitor["GRUPOVEICULO_ID"]);
+                string foto = leitor["FOTO"].ToString();
 
-                Veiculo veiculo = new(modelo, placa, cor, ano, tipoCombustivel, capacidade, status, quilometragem)
+                Veiculo veiculo = new(modelo, placa, cor, ano, tipoCombustivel, capacidade, status, quilometragem, foto)
                 {
                     Id = id
                 };
@@ -74,8 +76,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                 string status = leitor["STATUS"].ToString();
                 int quilometragem = Convert.ToInt32(leitor["QUILOMETRAGEMATUAL"]);
                 int grupoVeiculo = Convert.ToInt32(leitor["GRUPOVEICULO_ID"]);
+                string foto = leitor["FOTO"].ToString();
 
-                veiculo = new Veiculo(modelo, placa, cor, ano, tipoCombustivel, capacidade, status, quilometragem)
+                veiculo = new Veiculo(modelo, placa, cor, ano, tipoCombustivel, capacidade, status, quilometragem, foto)
                 {
                     Id = id,
                     Placa = placa,
@@ -84,7 +87,8 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                     TipoCombustivel=tipoCombustivel,
                     CapacidadeTanque = capacidade,
                     StatusVeiculo = status,
-                    QuilometragemAtual = quilometragem
+                    QuilometragemAtual = quilometragem,
+                    Foto = foto
                 };
             }
 

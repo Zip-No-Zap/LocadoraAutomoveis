@@ -18,6 +18,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
             RuleFor(x => x.GrupoPertencente).NotEmpty().WithMessage("'GrupoPercentente' não pode ser vazio");
             RuleFor(x => x.StatusVeiculo).NotEmpty().WithMessage("'StatusVeiculo' não pode ser vazio");
             RuleFor(x => x.QuilometragemAtual).NotEmpty().WithMessage("'QuilometragemAtual' não pode ser vazio");
+            RuleFor(x => x.Foto).NotEmpty().WithMessage("'Foto' não pode ser vazio");
 
         }
     }

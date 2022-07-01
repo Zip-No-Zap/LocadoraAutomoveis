@@ -14,7 +14,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
 
         }
 
-        public Veiculo(string modelo, string placa, string cor, int ano, string tipoCombustivel, int capacidade, string status, int quilometragem)
+        public Veiculo(string modelo, string placa, string cor, int ano, string tipoCombustivel, int capacidade, string status, int quilometragem, string foto)
         {
             Modelo = modelo;
             Placa = placa;
@@ -24,6 +24,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
             CapacidadeTanque = capacidade;
             StatusVeiculo = status;
             QuilometragemAtual = quilometragem;
+            Foto = foto;
 
         }
         public string Modelo { get; set; }
@@ -43,6 +44,8 @@ namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
         public string StatusVeiculo { get; set; }
 
         public int QuilometragemAtual { get; set; }
+
+        public string Foto { get; set; }
 
 
     }
