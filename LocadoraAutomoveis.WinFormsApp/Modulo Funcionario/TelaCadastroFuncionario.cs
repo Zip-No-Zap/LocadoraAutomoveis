@@ -1,8 +1,8 @@
 ﻿using FluentValidation.Results;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using System;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 {
@@ -95,22 +95,22 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e = ImpedirNumeroECharsEspeciaisTexBox(e);
+            e = ValidadorCampos.ImpedirNumeroECharsEspeciaisTextBox(e);
         }
 
         private void tbCidade_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e = ImpedirNumeroECharsEspeciaisTexBox(e);
+            e = ValidadorCampos.ImpedirNumeroECharsEspeciaisTextBox(e);
         }
 
         private void tbSalario_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ImpedirLetrasCharEspeciais(e);
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
         }
 
         private void tbData_Leave(object sender, EventArgs e)
         {
-            if (VerificarDataAdmissao(tbData.Text) == false)
+            if (ValidadorCampos.ValidarCampoData(tbData.Text) == false)
             {
                 MessageBox.Show("Data em formato incorreto", "Aviso");
             }
@@ -133,45 +133,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             }
         }
 
-        private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != ',')
-            {
-                e.Handled = true;
-            }
-        }
-
-        private bool VerificarDataAdmissao(string data)
-        {
-            DateTime date = new(); 
-
-            if (DateTime.TryParse(data, out date) == false)
-                return false;
-
-            return true;
-        }
-
-        private static KeyPressEventArgs ImpedirNumeroECharsEspeciaisTexBox(KeyPressEventArgs e)
-        {
-            if ((Strings.Asc(e.KeyChar) >= 48 & Strings.Asc(e.KeyChar) <= 57))
-            {
-                e.Handled = true;
-            }
-
-            if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-
-            return e;
-        }
-
         private void tbLogin_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!((e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z')))
-            {
-                e.Handled = true;
-            }
+            ValidadorCampos.ValidarCampoLogin(e);
         }
     }
 }
