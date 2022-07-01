@@ -32,7 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.cbGrupo = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblGrupo = new System.Windows.Forms.Label();
+            this.btnAddGrupo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -63,38 +64,55 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(47, 34);
             this.button1.TabIndex = 2;
-            this.button1.Text = "...";
             this.button1.UseVisualStyleBackColor = false;
             // 
             // cbGrupo
             // 
             this.cbGrupo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGrupo.FormattingEnabled = true;
-            this.cbGrupo.Location = new System.Drawing.Point(12, 341);
+            this.cbGrupo.Items.AddRange(new object[] {
+            "Econômico",
+            "Esportivo",
+            "PCD",
+            "UBER",
+            "USV"});
+            this.cbGrupo.Location = new System.Drawing.Point(12, 67);
             this.cbGrupo.Name = "cbGrupo";
             this.cbGrupo.Size = new System.Drawing.Size(321, 33);
             this.cbGrupo.TabIndex = 0;
             // 
-            // label2
+            // lblGrupo
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 300);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Grupo Veículo";
+            this.lblGrupo.AutoSize = true;
+            this.lblGrupo.Location = new System.Drawing.Point(12, 39);
+            this.lblGrupo.Name = "lblGrupo";
+            this.lblGrupo.Size = new System.Drawing.Size(123, 25);
+            this.lblGrupo.TabIndex = 1;
+            this.lblGrupo.Text = "Grupo Veículo";
+            // 
+            // btnAddGrupo
+            // 
+            this.btnAddGrupo.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnAddGrupo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddGrupo.Location = new System.Drawing.Point(339, 67);
+            this.btnAddGrupo.Name = "btnAddGrupo";
+            this.btnAddGrupo.Size = new System.Drawing.Size(112, 34);
+            this.btnAddGrupo.TabIndex = 2;
+            this.btnAddGrupo.Text = "Adicionar";
+            this.btnAddGrupo.UseVisualStyleBackColor = false;
             // 
             // TelaCadastroPlano
             // 
-            this.ClientSize = new System.Drawing.Size(1053, 560);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(1064, 681);
+            this.Controls.Add(this.btnAddGrupo);
+            this.Controls.Add(this.lblGrupo);
             this.Controls.Add(this.cbGrupo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "TelaCadastroPlano";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Planos";
+            this.Text = "Plano de Cobrança";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,6 +124,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox cbGrupo;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblGrupo;
+        private System.Windows.Forms.Button btnAddGrupo;
     }
 }
