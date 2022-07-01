@@ -2,13 +2,6 @@
 using LocadoraVeiculos.Dominio.Modulo_Plano;
 using Microsoft.VisualBasic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
@@ -94,21 +87,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             FormPrincipal.Instancia.AtualizarRodape("");
         }
 
-        private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e = ImpedirNumeroECharsEspeciaisTexBox(e);
-        }
-
-        private void tbCidade_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e = ImpedirNumeroECharsEspeciaisTexBox(e);
-        }
-
-        private void tbSalario_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ImpedirLetrasCharEspeciais(e);
-        }
-  
         private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != ',')
