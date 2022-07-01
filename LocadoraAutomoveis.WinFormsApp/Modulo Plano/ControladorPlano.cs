@@ -1,10 +1,12 @@
 ﻿using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_Plano;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 {
@@ -13,7 +15,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
         ServicoPlano servicoPlano;
         PlanoControl tabelaPlanos;
 
-        public ControladorPlano(ServicoPlano servicoPlano)
+        public ControladorPlano(ServicoPlano servicoPlano)//TODO : terminar o ControladorPlano
         {
             this.servicoPlano = servicoPlano;
         }
