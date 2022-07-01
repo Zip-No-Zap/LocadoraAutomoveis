@@ -68,4 +68,7 @@
     <None Include="Scripts\TBGRUPOVEICULO.sql" />
     <None Include="Scripts\TBTAXA.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="dbo\Tables\TBCONDUTOR.sql" />
+  </ItemGroup>
 </Project>
