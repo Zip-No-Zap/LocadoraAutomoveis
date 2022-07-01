@@ -24,7 +24,35 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
 
             cmd.Parameters.AddWithValue("CLIENTE_ID", entidade.Cliente.Id);
         }
+       
+        public override Condutor ConverterRegistro(SqlDataReader leitor)
+        {
+            Condutor condutor = null;
+            
+            if (leitor.Read())
+            {
+                var id = Convert.ToInt32(leitor["CONDUTOR_ID"]);
+                var nome =Convert.ToString(leitor["CONDUTOR_NOME"]);
+                var cpf = Convert.ToString(leitor["CONDUTOR_CPF"]);
+                var cnh = Convert.ToString(leitor["CONDUTOR_CNH"]);
+                var vencimentoCnh = Convert.ToDateTime(leitor["CONDUTOR_VENCIMENTOCNH"]);
+                var email = Convert.ToString(leitor["CONDUTOR_EMAIL"].ToString());
+                var telefone = Convert.ToString(leitor["CONDUTOR_TELEFONE"]);
+                var endereco = Convert.ToString(leitor["CONDUTOR_ENDERECO"]);
+                
+                condutor.Id = id;
+                condutor.Nome = nome;
+                condutor.Cpf = cpf;
+                condutor.Cnh = cnh;
+                condutor.VencimentoCnh = vencimentoCnh;
+                condutor.Email = email;
+                condutor.Telefone = telefone;
+                condutor.Endereco = endereco;
+            }
 
+            return condutor;
+
+        }
         public override void DefinirParametroValidacao(string campoBd, Condutor entidade, SqlCommand cmd)
         {
             throw new NotImplementedException();
@@ -35,9 +63,5 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
             throw new NotImplementedException();
         }
 
-        public override Condutor ConverterRegistro(SqlDataReader leitor)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
