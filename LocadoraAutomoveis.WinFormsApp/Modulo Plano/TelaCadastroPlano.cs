@@ -30,17 +30,18 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
                 if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
                 {
                     tbValorDiario_Diario.Text = plano.ValorDiario.ToString();
+                    tbValorKmRodado_Diario.Text = plano.ValorPorKm.ToString();
                 }
-                
-
-                //tbDescricao.Text = plano.Nome;
-                //tbValordiario.Text = plano.Salario.ToString();
-                //tbData.Text = plano.DataAdmissao.ToString();
-                //tbCidade.Text = plano.Cidade;
-                //cbUF.Text = plano.Estado;
-                //tbLogin.Text = plano.Login;
-                //tbSenha.Text = plano.Senha;
-                //cbPerfil.Text = plano.Perfil;
+                else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[1])
+                {
+                    tbValorDiario_Livre.Text = plano.ValorDiario.ToString();
+                }
+                else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[2])
+                {
+                    tbValorDiario_Controlado.Text = plano.ValorDiario.ToString();
+                    tbKmRodado_Controlado.Text = plano.ValorPorKm.ToString();
+                    tbLimiteQuilometragem.Text = plano.LimiteQuilometragem.ToString();
+                }
             }
         }
 
@@ -56,14 +57,21 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //plano.Nome = tbNome.Text;
-            //plano.Salario = float.Parse(tbSalario.Text);
-            //plano.DataAdmissao = Convert.ToDateTime(tbData.Text);
-            //plano.Cidade = tbCidade.Text;
-            //plano.Estado = cbUF.Text;
-            //plano.Login = tbLogin.Text;
-            //plano.Senha = tbSenha.Text;
-            //plano.Perfil = cbPerfil.Text;
+            if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
+            {
+                plano.ValorDiario = float.Parse(tbValorDiario_Diario.Text);
+                plano.ValorPorKm = float.Parse(tbValorKmRodado_Diario.Text);
+            }
+            else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[1])
+            {
+                plano.ValorDiario = float.Parse(tbValorDiario_Livre.Text);
+            }
+            else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[2])
+            {
+                plano.ValorDiario = float.Parse(tbValorDiario_Controlado.Text);
+                plano.ValorPorKm = float.Parse(tbKmRodado_Controlado.Text);
+                plano.LimiteQuilometragem = Convert.ToInt32(tbLimiteQuilometragem.Text);
+            }
 
             ValidationResult resultadoValidacao = GravarRegistro(plano);
 
@@ -80,42 +88,22 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            //tbNome.Clear();
-            //tbSalario.Clear();
-            //tbData.Text = "01/01/1753";
-            //tbCidade.Clear();
-            //tbLogin.Clear();
-            //tbSenha.Clear();
+            if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
+            {
+                LimparCamposDiario();
+            }
+            else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[1])
+            {
+                LimparCampoLivre();
+            }
+            else
 
-            //tbNome.Focus();
+                LimparCamposControlado();
         }
 
         private void TelaCadasrtoPlano_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
-        }
-
-        private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != ',')
-            {
-                e.Handled = true;
-            }
-        }
-
-        private static KeyPressEventArgs ImpedirNumeroECharsEspeciaisTexBox(KeyPressEventArgs e)
-        {
-            if ((Strings.Asc(e.KeyChar) >= 48 & Strings.Asc(e.KeyChar) <= 57))
-            {
-                e.Handled = true;
-            }
-
-            if (!(char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-
-            return e;
         }
 
         private void btnAddGrupo_Click(object sender, EventArgs e)

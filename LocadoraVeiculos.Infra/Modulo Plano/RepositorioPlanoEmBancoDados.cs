@@ -60,20 +60,20 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
 
         protected override string Sql_selecao_todos => @"SELECT 
             
-                                                        PLANO.[ID]
-                                                        PLANO.[GRUPO_ID]
-                                                        PLANO.[DESCRICAO]
-                                                        PLANO.[VALORDIARIO]
-                                                        PLANO.[VALORPORKM]
-                                                        PLANO.[LIMITEKILOMETRAGEM]
+                                                            PLANO.[ID]
+                                                            PLANO.[GRUPO_ID]
+                                                            PLANO.[DESCRICAO]
+                                                            PLANO.[VALORDIARIO]
+                                                            PLANO.[VALORPORKM]
+                                                            PLANO.[LIMITEKILOMETRAGEM]
 
-                                                        GRUPO.[NOME] AS GRUPO_NOME
+                                                            GRUPO.[NOME] AS GRUPO_NOME
                          
-                                                    FROM TBPLANO AS PLANO
+                                                        FROM TBPLANO AS PLANO
 
-                                                        INNER JOIN TBGRUPOVEICULO AS GRUPO 
+                                                            INNER JOIN TBGRUPOVEICULO AS GRUPO 
 
-                                                        ON PLANO.GRUPO_ID = GRUPO.ID";
+                                                            ON PLANO.GRUPO_ID = GRUPO.ID";
 
     }
 }
