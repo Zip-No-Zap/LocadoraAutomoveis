@@ -127,8 +127,6 @@ namespace LocadoraVeiculos.BancoDados.Tests
         }
 
 
-
-
         #endregion
     }
 }

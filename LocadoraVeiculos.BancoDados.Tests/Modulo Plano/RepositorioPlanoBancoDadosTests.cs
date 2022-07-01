@@ -1,5 +1,7 @@
-﻿using LocadoraVeiculos.Dominio.Modulo_Plano;
+﻿using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
+using LocadoraVeiculos.Dominio.Modulo_Plano;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
+using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Plano;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,12 +14,15 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
     {
 
        RepositorioPlanoEmBancoDados repoPlano;
+        RepositorioGrupoVeiculoEmBancoDados repoGrupo;
 
         public RepositorioPlanoBancoDadosTests()
         {
             repoPlano = new();
+            repoGrupo = new();
 
             ResetarBancoDados();
+            ResetarBancoDadosGrupo();
         }
 
         [TestMethod]
@@ -25,8 +30,10 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         {
             //arrange
             Plano plano = InstanciarPlano();
+            var grupo = InstanciarGrupoVeiculo();
 
             //action
+            repoGrupo.Inserir(grupo);
             repoPlano.Inserir(plano);
 
             //assert
@@ -115,10 +122,11 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
                 Descricao = "Livre", // Diário e Controlado
                 ValorDiario = 120,
                 ValorPorKm = 150,
-                LimiteQuilometragem = 150,
+                LimiteQuilometragem = 450,
 
                 Grupo = new()
                 {
+                    Id = 1,
                     Nome = "Econômico"
                 }
             };
@@ -135,6 +143,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
 
                 Grupo = new()
                 {
+                    Id = 1,
                     Nome = "Uber"
                 }
             };
@@ -145,9 +154,21 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
             DbTests.ExecutarSql("DELETE FROM TBPLANO; DBCC CHECKIDENT (TBPLANO, RESEED, 0)");
         }
 
+        void ResetarBancoDadosGrupo()
+        {
+            DbTests.ExecutarSql("DELETE FROM TBGRUPOVEICULO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
+        }
+
+        GrupoVeiculo InstanciarGrupoVeiculo()
+        {
+            return new GrupoVeiculo()
+            {
+                Nome = "Uber"
+            };
+        }
 
         #endregion
 
-      
+
     }
 }

@@ -38,17 +38,17 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
 
         protected override string Sql_exclusao => @"DELETE FROM TBPLANO WHERE ID = @ID";
 
-        protected override string Sql_selecao_por_id => 
+        protected override string Sql_selecao_por_id =>
                                                         @"SELECT 
             
-                                                            PLANO.[ID]
-                                                            PLANO.[GRUPO_ID]
-                                                            PLANO.[DESCRICAO]
-                                                            PLANO.[VALORDIARIO]
-                                                            PLANO.[VALORPORKM]
-                                                            PLANO.[LIMITEKILOMETRAGEM]
+                                                            PLANO.[ID],
+                                                            PLANO.[GRUPO_ID],
+                                                            PLANO.[DESCRICAO],
+                                                            PLANO.[VALORDIARIO],
+                                                            PLANO.[VALORPORKM],
+                                                            PLANO.[LIMITEQUILOMETRAGEM],
 
-                                                            GRUPO.[NOME] AS GRUPO_NOME
+                                                            GRUPO.[NOMEGRUPO] AS GRUPO_NOME
                          
                                                         FROM TBPLANO AS PLANO
 
@@ -56,18 +56,18 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
 
                                                             ON PLANO.GRUPO_ID = GRUPO.ID
 
-                                                        WHERE ID = @ID";
+                                                        WHERE PLANO.ID = @ID";
 
         protected override string Sql_selecao_todos => @"SELECT 
             
-                                                            PLANO.[ID]
-                                                            PLANO.[GRUPO_ID]
-                                                            PLANO.[DESCRICAO]
-                                                            PLANO.[VALORDIARIO]
-                                                            PLANO.[VALORPORKM]
-                                                            PLANO.[LIMITEKILOMETRAGEM]
+                                                            PLANO.[ID],
+                                                            PLANO.[GRUPO_ID],
+                                                            PLANO.[DESCRICAO],
+                                                            PLANO.[VALORDIARIO],
+                                                            PLANO.[VALORPORKM],
+                                                            PLANO.[LIMITEKILOMETRAGEM],
 
-                                                            GRUPO.[NOME] AS GRUPO_NOME
+                                                            GRUPO.[NOMEGRUPO] AS GRUPO_NOME
                          
                                                         FROM TBPLANO AS PLANO
 
