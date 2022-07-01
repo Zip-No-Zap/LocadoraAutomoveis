@@ -65,12 +65,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
             ValidationResult resultadoValidacao = GravarRegistro(funcionario);
 
-            if (resultadoValidacao == null)
-            {
-                MessageBox.Show("Tentativa de inserir 'Nome', 'Login' duplicado", "Aviso");
-                return;
-            }
-
             if (resultadoValidacao.IsValid == false)
             {
                 string erro = resultadoValidacao.Errors[0].ErrorMessage;
@@ -130,6 +124,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             }
 
         }
+
         private void tbCidade_Leave(object sender, EventArgs e)
         {
             if (tbCidade.Text.Length < 2)
@@ -137,6 +132,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
                 tbCidade.Clear();
             }
         }
+
         private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != ',')
