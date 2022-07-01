@@ -1,4 +1,6 @@
 ﻿using FluentValidation.Results;
+using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
@@ -108,13 +110,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void ObterItensGrupoVeiculo()
         {
-            ////var servicoGrupo = new ServicoGrupo();
-            ////var nomes = servicoGrupo.SelecionarTodos();
+            var servicoGrupo = new ServicoGrupoVeiculo();
 
-            //foreach (GrupoVeiculo gv in nomes)
-            //{
-            //    cbGrupo.Items.Add(gv.Nome);
-            //}
+            var nomes = servicoGrupo.SelecionarTodos();
+
+            foreach (GrupoVeiculo gv in nomes)
+            {
+               cbGrupo.Items.Add(gv.Nome);
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -142,6 +145,26 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             tbValorDiario_Controlado.Clear();
             tbKmRodado_Controlado.Clear();
             tbLimiteQuilometragem.Clear();
+        }
+
+        private void TelaCadastroPlano_Load(object sender, EventArgs e)
+        {
+            ObterItensGrupoVeiculo();
+        }
+
+        private void tbValorDiario_Diario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void tbValorDiario_Livre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void tbValorDiario_Controlado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
         }
     }
 }

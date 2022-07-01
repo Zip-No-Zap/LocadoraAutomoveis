@@ -156,6 +156,7 @@
             this.tbValorKmRodado_Diario.Name = "tbValorKmRodado_Diario";
             this.tbValorKmRodado_Diario.Size = new System.Drawing.Size(230, 31);
             this.tbValorKmRodado_Diario.TabIndex = 2;
+            this.tbValorKmRodado_Diario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValorDiario_Diario_KeyPress);
             // 
             // label2
             // 
@@ -174,6 +175,7 @@
             this.tbValorDiario_Diario.Name = "tbValorDiario_Diario";
             this.tbValorDiario_Diario.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Diario.TabIndex = 0;
+            this.tbValorDiario_Diario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValorDiario_Diario_KeyPress);
             // 
             // tabPageLivre
             // 
@@ -204,6 +206,7 @@
             this.tbValorDiario_Livre.Name = "tbValorDiario_Livre";
             this.tbValorDiario_Livre.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Livre.TabIndex = 2;
+            this.tbValorDiario_Livre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValorDiario_Livre_KeyPress);
             // 
             // tabPageControlado
             // 
@@ -237,6 +240,7 @@
             this.tbLimiteQuilometragem.Name = "tbLimiteQuilometragem";
             this.tbLimiteQuilometragem.Size = new System.Drawing.Size(230, 31);
             this.tbLimiteQuilometragem.TabIndex = 8;
+            this.tbLimiteQuilometragem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValorDiario_Controlado_KeyPress);
             // 
             // label5
             // 
@@ -255,6 +259,7 @@
             this.tbKmRodado_Controlado.Name = "tbKmRodado_Controlado";
             this.tbKmRodado_Controlado.Size = new System.Drawing.Size(230, 31);
             this.tbKmRodado_Controlado.TabIndex = 6;
+            this.tbKmRodado_Controlado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValorDiario_Controlado_KeyPress);
             // 
             // label6
             // 
@@ -273,6 +278,7 @@
             this.tbValorDiario_Controlado.Name = "tbValorDiario_Controlado";
             this.tbValorDiario_Controlado.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Controlado.TabIndex = 4;
+            this.tbValorDiario_Controlado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValorDiario_Controlado_KeyPress);
             // 
             // panel1
             // 
@@ -320,6 +326,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Plano de Cobrança";
+            this.Load += new System.EventHandler(this.TelaCadastroPlano_Load);
             this.tabControlPlano.ResumeLayout(false);
             this.tabPageDiario.ResumeLayout(false);
             this.tabPageDiario.PerformLayout();
