@@ -65,8 +65,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 
             var resultadoValidacao = validadorVeiculo.Validate(veiculo);
 
-            if (ModeloDuplicado(veiculo))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Modelo", "'Modelo' duplicado"));
+            if (PlacaDuplicada(veiculo))
+                resultadoValidacao.Errors.Add(new ValidationFailure("Placa", "'Placa' duplicada"));
 
 
             return resultadoValidacao;
@@ -75,16 +75,16 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 
         #region privates
 
-        private bool ModeloDuplicado(Veiculo grupoVeiculo)
+        private bool PlacaDuplicada(Veiculo veiculo)
         {
-            repositorioVeiculo.Sql_selecao_por_parametro = @"SELECT * FROM TBVEICULO WHERE MODELO = @MODELO";
-            repositorioVeiculo.PropriedadeValidar = "nome";
+            repositorioVeiculo.Sql_selecao_por_parametro = @"SELECT * FROM TBVEICULO WHERE PLACA = @PLACA";
+            repositorioVeiculo.PropriedadeValidar = "Placa";
 
-            var funcionarioEncontrado = repositorioVeiculo.SelecionarPorParametro(repositorioVeiculo.PropriedadeValidar, grupoVeiculo);
+            var funcionarioEncontrado = repositorioVeiculo.SelecionarPorParametro(repositorioVeiculo.PropriedadeValidar, veiculo);
 
             return funcionarioEncontrado != null &&
-                   funcionarioEncontrado.Modelo.Equals(grupoVeiculo.Modelo) &&
-                  !funcionarioEncontrado.Id.Equals(grupoVeiculo.Id);
+                   funcionarioEncontrado.Placa.Equals(veiculo.Placa) &&
+                  !funcionarioEncontrado.Id.Equals(veiculo.Id);
         }
 
         #endregion

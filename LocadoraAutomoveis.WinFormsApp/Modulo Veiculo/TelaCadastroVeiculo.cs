@@ -40,7 +40,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 cmbGrupoVeiculo.SelectedItem = veiculo.GrupoPertencente;
                 cmbStatus.SelectedItem = veiculo.StatusVeiculo;
                 txbQuilometragemAtual.Text = veiculo.QuilometragemAtual.ToString();
-                pbFoto.ImageLocation = veiculo.Foto;
             }
         }
         public TelaCadastroVeiculo()

@@ -47,7 +47,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                 string status = leitor["STATUS"].ToString();
                 int quilometragem = Convert.ToInt32(leitor["QUILOMETRAGEMATUAL"]);
                 int grupoVeiculo = Convert.ToInt32(leitor["GRUPOVEICULO_ID"]);
-                string foto = leitor["FOTO"].ToString();
+                byte[] foto = (byte[])leitor["FOTO"];
 
                 Veiculo veiculo = new(modelo, placa, cor, ano, tipoCombustivel, capacidade, status, quilometragem, foto)
                 {
@@ -76,7 +76,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                 string status = leitor["STATUS"].ToString();
                 int quilometragem = Convert.ToInt32(leitor["QUILOMETRAGEMATUAL"]);
                 int grupoVeiculo = Convert.ToInt32(leitor["GRUPOVEICULO_ID"]);
-                string foto = leitor["FOTO"].ToString();
+                byte[] foto = (byte[])leitor["FOTO"];
 
                 veiculo = new Veiculo(modelo, placa, cor, ano, tipoCombustivel, capacidade, status, quilometragem, foto)
                 {
