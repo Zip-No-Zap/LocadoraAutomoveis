@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
 {
     public class MapeadorTaxa : MapeadorBase<Taxa>
     {
-        public override void DefinirParametros(Taxa entidade, SqlCommand cmd)
+        public override void ConfigurarParametros(Taxa entidade, SqlCommand cmd)
         {
             cmd.Parameters.AddWithValue("ID", entidade.Id);
             cmd.Parameters.AddWithValue("DESCRICAO", entidade.Descricao);

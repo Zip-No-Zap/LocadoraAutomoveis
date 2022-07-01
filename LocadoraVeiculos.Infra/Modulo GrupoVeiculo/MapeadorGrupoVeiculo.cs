@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 {
     public class MapeadorGrupoVeiculo : MapeadorBase<GrupoVeiculo>
     {
-        public override void DefinirParametros(GrupoVeiculo entidade, SqlCommand cmd)
+        public override void ConfigurarParametros(GrupoVeiculo entidade, SqlCommand cmd)
         {
             cmd.Parameters.AddWithValue("ID", entidade.Id);
             cmd.Parameters.AddWithValue("NOMEGRUPO", entidade.Nome);

@@ -11,7 +11,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
 {
     public class MapeadorVeiculo : MapeadorBase<Veiculo>
     {
-        public override void DefinirParametros(Veiculo entidade, SqlCommand cmd)
+        public override void ConfigurarParametros(Veiculo entidade, SqlCommand cmd)
         {
             throw new NotImplementedException();
         }

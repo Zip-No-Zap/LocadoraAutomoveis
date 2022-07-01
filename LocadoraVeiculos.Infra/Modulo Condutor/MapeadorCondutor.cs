@@ -11,7 +11,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
 {
     public class MapeadorCondutor : MapeadorBase<Condutor>
     {
-        public override void DefinirParametros(Condutor entidade, SqlCommand cmd)
+        public override void ConfigurarParametros(Condutor entidade, SqlCommand cmd)
         {
             cmd.Parameters.AddWithValue("ID", entidade.Id);
             cmd.Parameters.AddWithValue("NOME", entidade.Nome);

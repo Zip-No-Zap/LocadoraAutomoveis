@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 {
     public class MapeadorCliente : MapeadorBase<Cliente>
     {
-        public override void DefinirParametros(Cliente entidade, SqlCommand cmd)
+        public override void ConfigurarParametros(Cliente entidade, SqlCommand cmd)
         {
             cmd.Parameters.AddWithValue("ID", entidade.Id);
             cmd.Parameters.AddWithValue("NOME", entidade.Nome);
