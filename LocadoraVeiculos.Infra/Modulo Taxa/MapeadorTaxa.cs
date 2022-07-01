@@ -47,7 +47,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
             return taxas;
         }
 
-        public override Taxa LerUnico(SqlDataReader leitor)
+        public override Taxa ConverterRegistro(SqlDataReader leitor)
         {
             Taxa taxa = null;
 

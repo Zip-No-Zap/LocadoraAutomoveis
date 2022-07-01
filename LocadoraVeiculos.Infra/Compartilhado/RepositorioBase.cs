@@ -55,7 +55,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             SqlDataReader leitor = cmdSelecao.ExecuteReader();
 
-            var selecionado = mapeador.LerUnico(leitor);
+            var selecionado = mapeador.ConverterRegistro(leitor);
 
             conexaoBancoDados.DesconectarBancoDados();
 
@@ -91,7 +91,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             SqlDataReader leitor = cmd_Selecao.ExecuteReader();
 
-            var selecionado = mapeador.LerUnico(leitor);
+            var selecionado = mapeador.ConverterRegistro(leitor);
 
             conexaoBancoDados.DesconectarBancoDados();
 

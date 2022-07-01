@@ -26,7 +26,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
             throw new NotImplementedException();
         }
 
-        public override Veiculo LerUnico(SqlDataReader leitor)
+        public override Veiculo ConverterRegistro(SqlDataReader leitor)
         {
             throw new NotImplementedException();
         }

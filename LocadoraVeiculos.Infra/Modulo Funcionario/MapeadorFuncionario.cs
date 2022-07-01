@@ -58,7 +58,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
             return funcionarios;
         }
 
-        public override Funcionario LerUnico(SqlDataReader leitor)
+        public override Funcionario ConverterRegistro(SqlDataReader leitor)
         {
             Funcionario funcionario = null;
 

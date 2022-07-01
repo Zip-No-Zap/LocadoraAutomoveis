@@ -40,7 +40,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
             return gruposVeiculos;
         }
 
-        public override GrupoVeiculo LerUnico(SqlDataReader leitor)
+        public override GrupoVeiculo ConverterRegistro(SqlDataReader leitor)
         {
             GrupoVeiculo grupo = null;
 

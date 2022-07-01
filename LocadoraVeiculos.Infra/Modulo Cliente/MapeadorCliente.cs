@@ -53,7 +53,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
             return clientes;
         }
 
-        public override Cliente LerUnico(SqlDataReader leitor)
+        public override Cliente ConverterRegistro(SqlDataReader leitor)
         {
             Cliente cliente = null;
 

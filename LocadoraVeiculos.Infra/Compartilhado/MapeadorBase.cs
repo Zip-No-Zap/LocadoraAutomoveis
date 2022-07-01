@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
     {
         public abstract List<T> LerTodos(SqlDataReader leitor);
 
-        public abstract T LerUnico(SqlDataReader leitor);
+        public abstract T ConverterRegistro(SqlDataReader leitor);
 
         public abstract void DefinirParametros(T entidade, SqlCommand cmd);
 

@@ -13,7 +13,16 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
     {
         public override void DefinirParametros(Condutor entidade, SqlCommand cmd)
         {
-            throw new NotImplementedException();
+            cmd.Parameters.AddWithValue("ID", entidade.Id);
+            cmd.Parameters.AddWithValue("NOME", entidade.Nome);
+            cmd.Parameters.AddWithValue("CPF", entidade.Cpf);
+            cmd.Parameters.AddWithValue("ENDERECO", entidade.Endereco);
+            cmd.Parameters.AddWithValue("EMAIL", entidade.Email);
+            cmd.Parameters.AddWithValue("TELEFONE", entidade.Telefone);
+            cmd.Parameters.AddWithValue("CNH", entidade.Cnh);
+            cmd.Parameters.AddWithValue("VENCIMENTOCNH", entidade.VencimentoCnh);
+
+            cmd.Parameters.AddWithValue("CLIENTE_ID", entidade.Cliente.Id);
         }
 
         public override void DefinirParametroValidacao(string campoBd, Condutor entidade, SqlCommand cmd)
@@ -26,7 +35,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
             throw new NotImplementedException();
         }
 
-        public override Condutor LerUnico(SqlDataReader leitor)
+        public override Condutor ConverterRegistro(SqlDataReader leitor)
         {
             throw new NotImplementedException();
         }
