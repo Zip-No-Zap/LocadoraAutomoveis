@@ -1,5 +1,7 @@
 ﻿using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
 using LocadoraAutomoveis.Aplicacao.Modulo_Funcionario;
+using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
@@ -45,13 +47,14 @@ namespace LocadoraAutomoveis.WinFormsApp
 
             var servicoCliente = new ServicoCliente(repositorioCliente);
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
+            var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioGrupoVeiculo);
            // var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioFuncionario);
-           // var servicoTaxa = new ServicoTaxa(repositorioFuncionario);
+            var servicoTaxa = new ServicoTaxa(repositorioTaxa);
 
             controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
             controladores.Add("Cliente", new ControladorCliente(servicoCliente));
-            controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo());
-            controladores.Add("Taxa", new ControladorTaxa());
+            controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo(servicoGrupoVeiculo));
+            controladores.Add("Taxa", new ControladorTaxa(servicoTaxa));
         }
 
         public static FormPrincipal Instancia

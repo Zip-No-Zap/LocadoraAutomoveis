@@ -140,7 +140,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
 
         void ResetarBancoDados()
         {
-            Db.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBFUNCIONARIO, RESEED, 0)");
+            DbTests.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBFUNCIONARIO, RESEED, 0)");
         }
 
 

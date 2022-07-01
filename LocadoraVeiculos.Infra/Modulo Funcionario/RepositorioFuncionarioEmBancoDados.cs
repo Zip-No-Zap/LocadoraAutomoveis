@@ -62,25 +62,5 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
             get => @"SELECT * FROM TBFUNCIONARIO";
         }
 
-
-        protected override bool VerificarDuplicidade(Funcionario entidade)
-        {
-            var funcs = SelecionarTodos();
-
-            foreach (Funcionario f in funcs)
-            {
-                if (f.Login == entidade.Login)
-                {
-                    return true;
-                }
-
-                if(f.Nome == entidade.Nome)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-    }
+     }
 }

@@ -125,7 +125,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
 
         void ResetarBancoDados()
         {
-            Db.ExecutarSql("DELETE FROM TBTAXA; DBCC CHECKIDENT (TBTAXA, RESEED, 0)");
+            DbTests.ExecutarSql("DELETE FROM TBTAXA; DBCC CHECKIDENT (TBTAXA, RESEED, 0)");
         }
         #endregion
     }

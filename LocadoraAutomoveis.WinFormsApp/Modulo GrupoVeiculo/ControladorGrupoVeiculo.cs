@@ -1,4 +1,5 @@
-﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+﻿using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
@@ -13,12 +14,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 {
     public class ControladorGrupoVeiculo : ControladorBase
     {
-        RepositorioGrupoVeiculoEmBancoDados repoGrupoVeiculo;
+        readonly ServicoGrupoVeiculo servicoFuncionario;
         GrupoVeiculoControl tabelaGrupoVeiculo;
 
-        public ControladorGrupoVeiculo()
+        public ControladorGrupoVeiculo(ServicoGrupoVeiculo servicoFuncionario)
         {
-            repoGrupoVeiculo = new();
+            this.servicoFuncionario = servicoFuncionario;
         }
 
         public override void Inserir()
@@ -82,7 +83,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 
             if (resultado == DialogResult.OK)
             {
-                repoGrupoVeiculo.Excluir(Selecionado);
+                servicoFuncionario.Excluir(Selecionado);
 
                 CarregarGruposVeiculos();
             }
@@ -105,7 +106,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 
         private void CarregarGruposVeiculos()
         {
-            List<GrupoVeiculo> grupos = repoGrupoVeiculo.SelecionarTodos();
+            List<GrupoVeiculo> grupos = servicoFuncionario.SelecionarTodos();
 
             tabelaGrupoVeiculo.AtualizarRegistros(grupos);
 
@@ -116,7 +117,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
         {
             var numero = tabelaGrupoVeiculo.ObtemNumeroGrupoVeiculoSelecionado();
 
-            return repoGrupoVeiculo.SelecionarPorId(numero);
+            return servicoFuncionario.SelecionarPorId(numero);
         }
     }
 }

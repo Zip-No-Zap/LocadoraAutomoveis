@@ -98,12 +98,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             return selecionado;
         }
 
-        #region abstracts
-
-        protected abstract bool VerificarDuplicidade(T entidade);
-
-       #endregion
-
         #region privates
 
         private void InserirRegistroBancoDados(T entidade)

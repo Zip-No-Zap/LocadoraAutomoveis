@@ -128,7 +128,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
 
         void ResetarBancoDados()
         {
-            Db.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)");
+            DbTests.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)");
         }
 
     }
