@@ -36,14 +36,28 @@
             this.btnAddGrupo = new System.Windows.Forms.Button();
             this.tabControlPlano = new System.Windows.Forms.TabControl();
             this.tabPageDiario = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbValorKmRodado_Diario = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbValorDiario_Diario = new System.Windows.Forms.MaskedTextBox();
             this.tabPageLivre = new System.Windows.Forms.TabPage();
             this.tabPageControlado = new System.Windows.Forms.TabPage();
-            this.tbValorDiario = new System.Windows.Forms.MaskedTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLimpar = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbValorDiario_Livre = new System.Windows.Forms.MaskedTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbKmRodado_Controlado = new System.Windows.Forms.MaskedTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbValorDiario_Controlado = new System.Windows.Forms.MaskedTextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbLimiteQuilometragem = new System.Windows.Forms.MaskedTextBox();
             this.tabControlPlano.SuspendLayout();
             this.tabPageDiario.SuspendLayout();
+            this.tabPageLivre.SuspendLayout();
+            this.tabPageControlado.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -120,80 +134,196 @@
             this.tabControlPlano.Location = new System.Drawing.Point(12, 128);
             this.tabControlPlano.Name = "tabControlPlano";
             this.tabControlPlano.SelectedIndex = 0;
-            this.tabControlPlano.Size = new System.Drawing.Size(975, 489);
+            this.tabControlPlano.Size = new System.Drawing.Size(443, 337);
             this.tabControlPlano.TabIndex = 3;
             // 
             // tabPageDiario
             // 
             this.tabPageDiario.Controls.Add(this.label3);
-            this.tabPageDiario.Controls.Add(this.maskedTextBox1);
+            this.tabPageDiario.Controls.Add(this.tbValorKmRodado_Diario);
             this.tabPageDiario.Controls.Add(this.label2);
-            this.tabPageDiario.Controls.Add(this.tbValorDiario);
+            this.tabPageDiario.Controls.Add(this.tbValorDiario_Diario);
             this.tabPageDiario.Location = new System.Drawing.Point(4, 34);
             this.tabPageDiario.Name = "tabPageDiario";
             this.tabPageDiario.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDiario.Size = new System.Drawing.Size(967, 451);
+            this.tabPageDiario.Size = new System.Drawing.Size(435, 299);
             this.tabPageDiario.TabIndex = 0;
             this.tabPageDiario.Text = "Diário";
             this.tabPageDiario.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(14, 115);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(159, 21);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Valor por Km Rodado";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // tbValorKmRodado_Diario
+            // 
+            this.tbValorKmRodado_Diario.Location = new System.Drawing.Point(17, 143);
+            this.tbValorKmRodado_Diario.Mask = "R$";
+            this.tbValorKmRodado_Diario.Name = "tbValorKmRodado_Diario";
+            this.tbValorKmRodado_Diario.Size = new System.Drawing.Size(230, 31);
+            this.tbValorKmRodado_Diario.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(14, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 21);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Valor Diário";
+            // 
+            // tbValorDiario_Diario
+            // 
+            this.tbValorDiario_Diario.Location = new System.Drawing.Point(17, 51);
+            this.tbValorDiario_Diario.Mask = "R$";
+            this.tbValorDiario_Diario.Name = "tbValorDiario_Diario";
+            this.tbValorDiario_Diario.Size = new System.Drawing.Size(230, 31);
+            this.tbValorDiario_Diario.TabIndex = 0;
+            // 
             // tabPageLivre
             // 
+            this.tabPageLivre.Controls.Add(this.label4);
+            this.tabPageLivre.Controls.Add(this.tbValorDiario_Livre);
             this.tabPageLivre.Location = new System.Drawing.Point(4, 34);
             this.tabPageLivre.Name = "tabPageLivre";
             this.tabPageLivre.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLivre.Size = new System.Drawing.Size(967, 451);
+            this.tabPageLivre.Size = new System.Drawing.Size(435, 299);
             this.tabPageLivre.TabIndex = 1;
             this.tabPageLivre.Text = "Livre";
             this.tabPageLivre.UseVisualStyleBackColor = true;
             // 
             // tabPageControlado
             // 
+            this.tabPageControlado.Controls.Add(this.label7);
+            this.tabPageControlado.Controls.Add(this.tbLimiteQuilometragem);
+            this.tabPageControlado.Controls.Add(this.label5);
+            this.tabPageControlado.Controls.Add(this.tbKmRodado_Controlado);
+            this.tabPageControlado.Controls.Add(this.label6);
+            this.tabPageControlado.Controls.Add(this.tbValorDiario_Controlado);
             this.tabPageControlado.Location = new System.Drawing.Point(4, 34);
             this.tabPageControlado.Name = "tabPageControlado";
-            this.tabPageControlado.Size = new System.Drawing.Size(967, 451);
+            this.tabPageControlado.Size = new System.Drawing.Size(435, 299);
             this.tabPageControlado.TabIndex = 2;
             this.tabPageControlado.Text = "Controlado";
             this.tabPageControlado.UseVisualStyleBackColor = true;
             // 
-            // tbValorDiario
+            // panel1
             // 
-            this.tbValorDiario.Location = new System.Drawing.Point(19, 77);
-            this.tbValorDiario.Mask = "R$";
-            this.tbValorDiario.Name = "tbValorDiario";
-            this.tbValorDiario.Size = new System.Drawing.Size(230, 31);
-            this.tbValorDiario.TabIndex = 0;
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.Controls.Add(this.btnLimpar);
+            this.panel1.Controls.Add(this.btnOK);
+            this.panel1.Location = new System.Drawing.Point(16, 480);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(435, 91);
+            this.panel1.TabIndex = 4;
             // 
-            // label2
+            // btnLimpar
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Valor Diário";
+            this.btnLimpar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLimpar.Location = new System.Drawing.Point(135, 14);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(112, 59);
+            this.btnLimpar.TabIndex = 9;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = false;
             // 
-            // label3
+            // btnOK
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 141);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 25);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Valor Diário";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.btnOK.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Location = new System.Drawing.Point(17, 14);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(112, 59);
+            this.btnOK.TabIndex = 8;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = false;
             // 
-            // maskedTextBox1
+            // label4
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(19, 169);
-            this.maskedTextBox1.Mask = "R$";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(230, 31);
-            this.maskedTextBox1.TabIndex = 2;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(14, 23);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(92, 21);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Valor Diário";
+            // 
+            // tbValorDiario_Livre
+            // 
+            this.tbValorDiario_Livre.Location = new System.Drawing.Point(17, 51);
+            this.tbValorDiario_Livre.Mask = "R$";
+            this.tbValorDiario_Livre.Name = "tbValorDiario_Livre";
+            this.tbValorDiario_Livre.Size = new System.Drawing.Size(230, 31);
+            this.tbValorDiario_Livre.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(14, 115);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(159, 21);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Valor por Km Rodado";
+            // 
+            // tbKmRodado_Controlado
+            // 
+            this.tbKmRodado_Controlado.Location = new System.Drawing.Point(17, 143);
+            this.tbKmRodado_Controlado.Mask = "R$";
+            this.tbKmRodado_Controlado.Name = "tbKmRodado_Controlado";
+            this.tbKmRodado_Controlado.Size = new System.Drawing.Size(230, 31);
+            this.tbKmRodado_Controlado.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(14, 23);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(92, 21);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Valor Diário";
+            // 
+            // tbValorDiario_Controlado
+            // 
+            this.tbValorDiario_Controlado.Location = new System.Drawing.Point(17, 51);
+            this.tbValorDiario_Controlado.Mask = "R$";
+            this.tbValorDiario_Controlado.Name = "tbValorDiario_Controlado";
+            this.tbValorDiario_Controlado.Size = new System.Drawing.Size(230, 31);
+            this.tbValorDiario_Controlado.TabIndex = 4;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(14, 206);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(167, 21);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Limite Quilometragem";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // tbLimiteQuilometragem
+            // 
+            this.tbLimiteQuilometragem.Location = new System.Drawing.Point(17, 234);
+            this.tbLimiteQuilometragem.Name = "tbLimiteQuilometragem";
+            this.tbLimiteQuilometragem.Size = new System.Drawing.Size(230, 31);
+            this.tbLimiteQuilometragem.TabIndex = 8;
             // 
             // TelaCadastroPlano
             // 
-            this.ClientSize = new System.Drawing.Size(1008, 681);
+            this.ClientSize = new System.Drawing.Size(467, 588);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControlPlano);
             this.Controls.Add(this.btnAddGrupo);
             this.Controls.Add(this.lblGrupo);
@@ -207,6 +337,11 @@
             this.tabControlPlano.ResumeLayout(false);
             this.tabPageDiario.ResumeLayout(false);
             this.tabPageDiario.PerformLayout();
+            this.tabPageLivre.ResumeLayout(false);
+            this.tabPageLivre.PerformLayout();
+            this.tabPageControlado.ResumeLayout(false);
+            this.tabPageControlado.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,8 +360,19 @@
         private System.Windows.Forms.TabPage tabPageLivre;
         private System.Windows.Forms.TabPage tabPageControlado;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox tbValorKmRodado_Diario;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MaskedTextBox tbValorDiario;
+        private System.Windows.Forms.MaskedTextBox tbValorDiario_Diario;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnLimpar;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.MaskedTextBox tbValorDiario_Livre;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.MaskedTextBox tbLimiteQuilometragem;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.MaskedTextBox tbKmRodado_Controlado;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.MaskedTextBox tbValorDiario_Controlado;
     }
 }

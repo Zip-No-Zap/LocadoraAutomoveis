@@ -136,5 +136,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
         {
 
         }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
