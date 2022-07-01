@@ -1,4 +1,5 @@
-﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+﻿using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +11,30 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 {
     public class ControladorVeiculo : ControladorBase
     {
+        readonly ServicoVeiculo servicoVeiculo;
         VeiculoControl tabelaVeiculos;
 
-        public ControladorVeiculo()
+        public ControladorVeiculo(ServicoVeiculo servicoVeiculo)
         {
-
+            this.servicoVeiculo = servicoVeiculo;
         }
 
         public override void Inserir()
         {
-            throw new NotImplementedException();
+            TelaCadastroVeiculo tela = new()
+            {
+                Veiculo = new(),
+                GravarRegistro = servicoVeiculo.Inserir
+            };
+
+            DialogResult resultado = tela.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                CarregarVeiculos();
+            }
         }
+
 
 
         public override void Editar()
@@ -41,6 +55,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         }
 
         public override UserControl ObtemListagem()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CarregarVeiculos()
         {
             throw new NotImplementedException();
         }
