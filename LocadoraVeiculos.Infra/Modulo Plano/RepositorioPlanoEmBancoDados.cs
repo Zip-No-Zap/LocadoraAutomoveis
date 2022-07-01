@@ -65,7 +65,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
                                                             PLANO.[DESCRICAO],
                                                             PLANO.[VALORDIARIO],
                                                             PLANO.[VALORPORKM],
-                                                            PLANO.[LIMITEKILOMETRAGEM],
+                                                            PLANO.[LIMITEQUILOMETRAGEM],
 
                                                             GRUPO.[NOMEGRUPO] AS GRUPO_NOME
                          

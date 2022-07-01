@@ -32,8 +32,9 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
             Plano plano = InstanciarPlano();
             var grupo = InstanciarGrupoVeiculo();
 
-            //action
             repoGrupo.Inserir(grupo);
+
+            //action
             repoPlano.Inserir(plano);
 
             //assert
@@ -47,6 +48,9 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         {
             //arrange
             var plano = InstanciarPlano();
+            var grupo = InstanciarGrupoVeiculo();
+
+            repoGrupo.Inserir(grupo);
             repoPlano.Inserir(plano);
            
             Plano planoSelecionado = repoPlano.SelecionarPorId(plano.Id);
@@ -60,7 +64,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
             //assert
             var resultado = repoPlano.SelecionarPorId(planoSelecionado.Id);
 
-            Assert.AreEqual(planoSelecionado, resultado);
+            Assert.AreEqual(planoSelecionado.Descricao, resultado.Descricao);
+            Assert.AreEqual(planoSelecionado.ValorDiario, resultado.ValorDiario);
         }
 
         [TestMethod]
@@ -68,7 +73,9 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         {
             //arrange
             var plano = InstanciarPlano();
+            var grupo = InstanciarGrupoVeiculo();
 
+            repoGrupo.Inserir(grupo);
             repoPlano.Inserir(plano);
 
             //action
@@ -86,7 +93,9 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
             //arrange
             var plano1 = InstanciarPlano();
             var plano2 = InstanciarPlano2();
+            var grupo = InstanciarGrupoVeiculo();
 
+            repoGrupo.Inserir(grupo);
             repoPlano.Inserir(plano1); 
             repoPlano.Inserir(plano2); 
 
@@ -103,7 +112,9 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         {
             //arrange
             var plano1 = InstanciarPlano();
+            var grupo = InstanciarGrupoVeiculo();
 
+            repoGrupo.Inserir(grupo);
             repoPlano.Inserir(plano1);
 
             //action
