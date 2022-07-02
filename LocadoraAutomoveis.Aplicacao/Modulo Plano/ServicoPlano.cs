@@ -76,8 +76,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
         #region privates
         private bool PlanoDiarioDuplicado(Plano plano)
         {
-            repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE VALORDIARIO_DIARIO = @VALORDIARIO_DIARIO";
-            repositorioPlano.PropriedadeDominioAValidar = "ValorDiario_Diario";
+            repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE VALORDIARIO_DIARIO = @VALORDIARIODIARIO";
+            repositorioPlano.PropriedadeDominioAValidar = "VALORDIARIODIARIO";
 
             var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeDominioAValidar, plano);
 
@@ -90,8 +90,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
         private bool PlanoLivreDuplicado(Plano plano)
         {
-            repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE VALORDIARIO_LIVRE = @VALORDIARIO_LIVRE";
-            repositorioPlano.PropriedadeDominioAValidar = "ValorDiario_Livre";
+            repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE VALORDIARIO_LIVRE = @VALORDIARIOLIVRE";
+            repositorioPlano.PropriedadeDominioAValidar = "VALORDIARIOLIVRE";
 
             var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeDominioAValidar, plano);
 
@@ -103,8 +103,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
         private bool PlanoControladoDuplicado(Plano plano)
         {
-            repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE VALORDIARIO_CONTROLADO = @VALORDIARIO_CONTROLADO";
-            repositorioPlano.PropriedadeDominioAValidar = "ValorDiario_Controlado";
+            repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE VALORDIARIO_CONTROLADO = @VALORDIARIOCONTROLADO";
+            repositorioPlano.PropriedadeDominioAValidar = "VALORDIARIOCONTROLADO";
 
             var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeDominioAValidar, plano);
 

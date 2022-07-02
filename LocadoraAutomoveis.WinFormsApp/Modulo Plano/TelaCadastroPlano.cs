@@ -27,6 +27,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             {
                 plano = value;
 
+                cbGrupo.Text = plano.Grupo.Nome;
+
                 if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
                 {
                     tbValorDiario_Diario.Text = plano.ValorDiario_Diario.ToString();
@@ -108,6 +110,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void btnOK_Click_1(object sender, EventArgs e)
         {
+            plano.Grupo.Nome = cbGrupo.Text; 
+
             plano.ValorDiario_Diario = float.Parse(tbValorDiario_Diario.Text);
             plano.ValorPorKm_Diario = float.Parse(tbValorKmRodado_Diario.Text);
 
@@ -117,7 +121,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             plano.ValorPorKm_Controlado = float.Parse(tbKmRodado_Controlado.Text);
             plano.LimiteQuilometragem_Controlado = Convert.ToInt32(tbLimiteQuilometragem.Text);
         
-
             ValidationResult resultadoValidacao = GravarRegistro(plano);
 
             if (resultadoValidacao.IsValid == false)

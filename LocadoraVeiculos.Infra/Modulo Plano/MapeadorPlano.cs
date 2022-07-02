@@ -21,14 +21,12 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
             cmd.Parameters.AddWithValue("LIMITEQUILOMETRAGEM_CONTROLADO", entidade.LimiteQuilometragem_Controlado);
 
             cmd.Parameters.AddWithValue("GRUPO_ID", entidade.Grupo.Id);
-            cmd.Parameters.AddWithValue("GRUPO_NOME", entidade.Grupo.Id);
+            cmd.Parameters.AddWithValue("GRUPO_NOME", entidade.Grupo.Nome);
         }
 
         public override void DefinirParametroValidacao(string campoBancoDados, Plano entidade, SqlCommand cmd)
         {
             cmd.Parameters.AddWithValue(campoBancoDados.ToUpper(), entidade.ValorDiario_Diario);
-            cmd.Parameters.AddWithValue(campoBancoDados.ToUpper(), entidade.ValorDiario_Livre);
-            cmd.Parameters.AddWithValue(campoBancoDados.ToUpper(), entidade.ValorDiario_Controlado);
         }
 
         public override List<Plano> LerTodos(SqlDataReader leitor)

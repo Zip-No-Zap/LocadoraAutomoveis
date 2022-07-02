@@ -354,7 +354,6 @@
             this.btnOK.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Enabled = false;
             this.btnOK.Location = new System.Drawing.Point(17, 16);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(112, 59);
