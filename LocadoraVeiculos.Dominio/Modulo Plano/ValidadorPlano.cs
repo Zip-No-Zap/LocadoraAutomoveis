@@ -15,7 +15,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Plano
                 .NotEmpty().WithMessage("'Valor Diário' categoria: Diário, inválido");
 
             RuleFor(x => x.ValorPorKm_Diario)
-                .GreaterThan(0).WithMessage("'Valor por Quilômetro' categoria: Diário, inválido")
+                .GreaterThan(0).WithMessage("'Valor por Km Rodado' categoria: Diário, inválido")
                 .NotEmpty().WithMessage("'Valor por Quilômetro' categoria: Diário, inválido");
 
             RuleFor(x => x.ValorDiario_Livre)
@@ -27,7 +27,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Plano
             .NotEmpty().WithMessage("'Valor Diário' categoria: Controlado, inválido");
 
             RuleFor(x => x.ValorPorKm_Controlado)
-                .GreaterThan(0).WithMessage("'Valor por Quilômetro' categoria: Controlado, inválido")
+                .GreaterThan(0).WithMessage("'Valor por Km Rodado' categoria: Controlado, inválido")
                 .NotEmpty().WithMessage("'Valor por Quilômetro' categoria: Controlado, inválido");
 
             RuleFor(x => x.LimiteQuilometragem_Controlado)

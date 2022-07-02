@@ -44,7 +44,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
             var resultado = valida.Validate(plano);
 
             //assert
-            Assert.AreEqual("'Valor Diário' inválido", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("'Valor Diário' categoria: Diário, inválido", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -61,7 +61,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
             var resultado = valida.Validate(plano);
 
             //assert
-            Assert.AreEqual("'Valor por Quilômetro' inválido", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("'Valor por Km Rodado' categoria: Diário, inválido", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -78,7 +78,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
             var resultado = valida.Validate(plano);
 
             //assert
-            Assert.AreEqual("'Limite de Quilometragem' inválido", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("'Limite de Quilometragem' categoria: Controlado, inválido", resultado.Errors[0].ErrorMessage);
         }
 
         #region privates
