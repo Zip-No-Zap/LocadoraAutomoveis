@@ -95,7 +95,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
                 int grupo_id = Convert.ToInt32(leitor["GRUPO_ID"]);
                 string grupo_nome = leitor["GRUPO_NOME"].ToString();
 
-                Plano plano = new()
+                plano = new()
                 {
                     Id = id,
                     ValorDiario_Diario = valorDiario_Diario,

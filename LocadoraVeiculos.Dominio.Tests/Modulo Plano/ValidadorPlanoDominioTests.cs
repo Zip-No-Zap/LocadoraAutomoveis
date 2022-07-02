@@ -13,23 +13,6 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
         }
 
         [TestMethod]
-        public void Nao_deve_permitir_descricao_menos_dois_char()
-        {
-            //arrange
-            var plano = InstanciarPlano();
-
-            plano.Descricao = "l";
-
-            ValidadorPlano valida = new();
-
-            //action
-            var resultado = valida.Validate(plano);
-
-            //assert
-            Assert.AreEqual("'Descrição' não permite menos de 2 caracteres", resultado.Errors[0].ErrorMessage);
-        }
-        
-        [TestMethod]
         public void Nao_deve_permitir_valor_diario_menor_um()
         {
             //arrange

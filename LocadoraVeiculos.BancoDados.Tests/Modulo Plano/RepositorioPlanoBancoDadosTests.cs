@@ -30,9 +30,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         {
             //arrange
             Plano plano = InstanciarPlano();
-            var grupo = InstanciarGrupoVeiculo();
-
-            repoGrupo.Inserir(grupo);
+           
+            repoGrupo.Inserir(plano.Grupo);
 
             //action
             repoPlano.Inserir(plano);
@@ -48,9 +47,9 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         {
             //arrange
             var plano = InstanciarPlano();
-            var grupo = InstanciarGrupoVeiculo();
+         
 
-            repoGrupo.Inserir(grupo);
+            repoGrupo.Inserir(plano.Grupo);
             repoPlano.Inserir(plano);
            
             Plano planoSelecionado = repoPlano.SelecionarPorId(plano.Id);
@@ -71,9 +70,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         {
             //arrange
             var plano = InstanciarPlano();
-            var grupo = InstanciarGrupoVeiculo();
-
-            repoGrupo.Inserir(grupo);
+         
+            repoGrupo.Inserir(plano.Grupo);
             repoPlano.Inserir(plano);
 
             //action
@@ -91,9 +89,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
             //arrange
             var plano1 = InstanciarPlano();
             var plano2 = InstanciarPlano2();
-            var grupo = InstanciarGrupoVeiculo();
-
-            repoGrupo.Inserir(grupo);
+        
+            repoGrupo.Inserir(plano1.Grupo);
             repoPlano.Inserir(plano1); 
             repoPlano.Inserir(plano2); 
 
@@ -109,14 +106,13 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         public void Deve_selecionar_unico()
         {
             //arrange
-            var plano1 = InstanciarPlano();
-            var grupo = InstanciarGrupoVeiculo();
+            var plano = InstanciarPlano();
 
-            repoGrupo.Inserir(grupo);
-            repoPlano.Inserir(plano1);
+            repoGrupo.Inserir(plano.Grupo);
+            repoPlano.Inserir(plano);
 
             //action
-            var resultado = repoPlano.SelecionarPorId(plano1.Id);
+            var resultado = repoPlano.SelecionarPorId(plano.Id);
 
             //assert
             Assert.AreNotEqual(null, resultado);
@@ -128,7 +124,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         {
             return new()
             {
-                Grupo = new(),
+                Grupo = InstanciarGrupoVeiculo(),
                 ValorDiario_Diario = 50,
                 ValorPorKm_Diario = 35,
 
@@ -144,7 +140,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         {
             return new()
             {
-                Grupo = new(),
+                Grupo = InstanciarGrupoVeiculo(),
                 ValorDiario_Diario = 550,
                 ValorPorKm_Diario = 535,
 
@@ -170,7 +166,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         {
             return new GrupoVeiculo()
             {
-                Nome = "Uber"
+                Nome = "GrupoTeste"
             };
         }
 

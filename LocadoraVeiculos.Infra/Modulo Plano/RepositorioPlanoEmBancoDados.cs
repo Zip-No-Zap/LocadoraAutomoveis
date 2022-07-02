@@ -63,7 +63,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
                                                
                                                             PLANO.[VALORDIARIO_CONTROLADO],
                                                             PLANO.[VALORPORKM_CONTROLADO],
-                                                            PLANO.[LIMITEQUILOMETRAGEM_CONTROLADO]
+                                                            PLANO.[LIMITEQUILOMETRAGEM_CONTROLADO],
                                                             
                                                             GRUPO.[NOMEGRUPO] AS GRUPO_NOME
                          
@@ -86,7 +86,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
                                                
                                                             PLANO.[VALORDIARIO_CONTROLADO],
                                                             PLANO.[VALORPORKM_CONTROLADO],
-                                                            PLANO.[LIMITEQUILOMETRAGEM_CONTROLADO]
+                                                            PLANO.[LIMITEQUILOMETRAGEM_CONTROLADO],
 
                                                             GRUPO.[NOMEGRUPO] AS GRUPO_NOME
                          
