@@ -91,6 +91,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
             var plano2 = InstanciarPlano2();
         
             repoGrupo.Inserir(plano1.Grupo);
+            plano2.Grupo = plano1.Grupo;
             repoPlano.Inserir(plano1); 
             repoPlano.Inserir(plano2); 
 
