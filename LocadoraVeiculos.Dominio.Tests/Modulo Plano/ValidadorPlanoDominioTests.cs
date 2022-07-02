@@ -87,7 +87,6 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
             return new Plano()
             {
                 Grupo = new(),
-                Descricao = "Livre",
                 ValorDiario_Diario = 50,
                 ValorPorKm_Diario = 35,
 

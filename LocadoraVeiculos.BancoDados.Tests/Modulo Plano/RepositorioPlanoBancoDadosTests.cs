@@ -55,8 +55,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
            
             Plano planoSelecionado = repoPlano.SelecionarPorId(plano.Id);
 
-            planoSelecionado.Descricao = "Foi alterado no teste";
-            planoSelecionado.ValorDiario = 9000;
+            planoSelecionado.ValorDiario_Diario = 9000;
 
             //action
             repoPlano.Editar(planoSelecionado);
@@ -64,8 +63,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
             //assert
             var resultado = repoPlano.SelecionarPorId(planoSelecionado.Id);
 
-            Assert.AreEqual(planoSelecionado.Descricao, resultado.Descricao);
-            Assert.AreEqual(planoSelecionado.ValorDiario, resultado.ValorDiario);
+            Assert.AreEqual(planoSelecionado.ValorDiario_Diario, resultado.ValorDiario_Diario);
         }
 
         [TestMethod]
@@ -130,16 +128,15 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         {
             return new()
             {
-                Descricao = "Livre", // Diário e Controlado
-                ValorDiario = 120,
-                ValorPorKm = 150,
-                LimiteQuilometragem = 450,
+                Grupo = new(),
+                ValorDiario_Diario = 50,
+                ValorPorKm_Diario = 35,
 
-                Grupo = new()
-                {
-                    Id = 1,
-                    Nome = "Econômico"
-                }
+                ValorDiario_Livre = 30,
+
+                ValorDiario_Controlado = 20,
+                ValorPorKm_Controlado = 130,
+                LimiteQuilometragem_Controlado = 200
             };
         }
 
@@ -147,16 +144,15 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
         {
             return new()
             {
-                Descricao = "Controlado", // Diário e Livre
-                ValorDiario = 250,
-                ValorPorKm = 300,
-                LimiteQuilometragem = 265,
+                Grupo = new(),
+                ValorDiario_Diario = 550,
+                ValorPorKm_Diario = 535,
 
-                Grupo = new()
-                {
-                    Id = 1,
-                    Nome = "Uber"
-                }
+                ValorDiario_Livre = 530,
+
+                ValorDiario_Controlado = 520,
+                ValorPorKm_Controlado = 330,
+                LimiteQuilometragem_Controlado = 500
             };
         }
 
