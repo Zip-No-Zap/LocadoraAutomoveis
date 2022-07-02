@@ -1,10 +1,8 @@
 ﻿using FluentValidation.Results;
 using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
-using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
-using Microsoft.VisualBasic;
 using System;
 using System.Windows.Forms;
 
@@ -88,29 +86,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             ObterItensGrupoVeiculo();
 
             VerificarPlanosCadastrados();
-        }
-
-        private void VerificarPlanosCadastrados()
-        {
-            bool n = false;
-
-            while (true)
-            {
-                if (tbValorDiario_Livre.Text != "0" && tbValorKmRodado_Diario.Text != "0")
-                    n = true;
-
-                if (tbValorDiario_Livre.Text != "0")
-                    n = true;
-
-                if (tbValorDiario_Controlado.Text != "0" && tbKmRodado_Controlado.Text != "0" && tbLimiteQuilometragem.Text != "0")
-                    n = true;
-
-                if (n)
-                {
-                    btnOK.Enabled = true;
-                    break;
-                }
-            }
         }
 
         private void TelaCadastroPlano_FormClosing(object sender, FormClosingEventArgs e)

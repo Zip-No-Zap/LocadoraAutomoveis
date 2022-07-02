@@ -10,29 +10,42 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
                                                 @"INSERT INTO TBPLANO
                                                 (
                                                         [GRUPO_ID],
-                                                        [DESCRICAO],
-                                                        [VALORDIARIO],
-                                                        [VALORPORKM],
-                                                        [LIMITEQUILOMETRAGEM]
+                                                        [VALORDIARIO_DIARIO],
+                                                        [VALORPORKM_DIARIO],
+
+                                                        [VALORDIARIO_LIVRE],
+                                                        
+                                                        [VALORDIARIO_CONTROLADO],
+                                                        [VALORPORKM_CONTROLADO],
+                                                        [LIMITEQUILOMETRAGEM_CONTROLADO]
                                                 )
                                                 VALUES
                                                 (
                                                         @GRUPO_ID,
-                                                        @DESCRICAO,
-                                                        @VALORDIARIO,
-                                                        @VALORPORKM,
-                                                        @LIMITEQUILOMETRAGEM
+                                                        @VALORDIARIO_DIARIO,
+                                                        @VALORPORKM_DIARIO,
+
+                                                        @VALORDIARIO_LIVRE,
+
+                                                        @VALORDIARIO_CONTROLADO,
+                                                        @VALORPORKM_CONTROLADO,
+                                                        @LIMITEQUILOMETRAGEM_CONTROLADO
                     
                                                 ) SELECT SCOPE_IDENTITY(); ";
 
         protected override string Sql_edicao =>
                                                 @"UPDATE [TBPLANO] SET 
                                                                                     
-                                                         [GRUPO_ID] = @GRUPO_ID,  
-                                                         [DESCRICAO] = @DESCRICAO,
-                                                         [VALORDIARIO] = @VALORDIARIO,
-                                                         [VALORPORKM] = @VALORPORKM,
-                                                         [LIMITEQUILOMETRAGEM] = @LIMITEQUILOMETRAGEM  
+                                                         [GRUPO_ID] = @GRUPO_ID,
+                                                         [VALORDIARIO_DIARIO] = @VALORDIARIO_DIARIO,
+                                                         [VALORPORKM_DIARIO] = @VALORPORKM_DIARIO,
+
+                                                         [VALORDIARIO_LIVRE] = @VALORDIARIO_LIVRE,
+                                                        
+                                                         [VALORDIARIO_CONTROLADO] = @VALORDIARIO_CONTROLADO,
+                                                         [VALORPORKM_CONTROLADO] = @VALORPORKM_CONTROLADO,
+                                                         [LIMITEQUILOMETRAGEM_CONTROLADO] = @LIMITEQUILOMETRAGEM_CONTROLADO
+                                                            
                                                   WHERE
                                                           ID = @ID";
 
@@ -43,11 +56,15 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
             
                                                             PLANO.[ID],
                                                             PLANO.[GRUPO_ID],
-                                                            PLANO.[DESCRICAO],
-                                                            PLANO.[VALORDIARIO],
-                                                            PLANO.[VALORPORKM],
-                                                            PLANO.[LIMITEQUILOMETRAGEM],
-
+                                                            PLANO.[VALORDIARIO_DIARIO],
+                                                            PLANO.[VALORPORKM_DIARIO],
+                                                 
+                                                            PLANO.[VALORDIARIO_LIVRE],
+                                               
+                                                            PLANO.[VALORDIARIO_CONTROLADO],
+                                                            PLANO.[VALORPORKM_CONTROLADO],
+                                                            PLANO.[LIMITEQUILOMETRAGEM_CONTROLADO]
+                                                            
                                                             GRUPO.[NOMEGRUPO] AS GRUPO_NOME
                          
                                                         FROM TBPLANO AS PLANO
@@ -62,10 +79,14 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
             
                                                             PLANO.[ID],
                                                             PLANO.[GRUPO_ID],
-                                                            PLANO.[DESCRICAO],
-                                                            PLANO.[VALORDIARIO],
-                                                            PLANO.[VALORPORKM],
-                                                            PLANO.[LIMITEQUILOMETRAGEM],
+                                                            PLANO.[VALORDIARIO_DIARIO],
+                                                            PLANO.[VALORPORKM_DIARIO],
+                                                 
+                                                            PLANO.[VALORDIARIO_LIVRE],
+                                               
+                                                            PLANO.[VALORDIARIO_CONTROLADO],
+                                                            PLANO.[VALORPORKM_CONTROLADO],
+                                                            PLANO.[LIMITEQUILOMETRAGEM_CONTROLADO]
 
                                                             GRUPO.[NOMEGRUPO] AS GRUPO_NOME
                          

@@ -35,7 +35,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
             //arrange
             var plano = InstanciarPlano();
 
-            plano.ValorDiario = 0;
+            plano.ValorDiario_Diario = 0;
 
             ValidadorPlano valida = new();
 
@@ -52,7 +52,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
             //arrange
             var plano = InstanciarPlano();
 
-            plano.ValorPorKm = 0;
+            plano.ValorPorKm_Diario = 0;
 
             ValidadorPlano valida = new();
 
@@ -69,7 +69,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
             //arrange
             var plano = InstanciarPlano();
 
-            plano.LimiteQuilometragem = 0;
+            plano.LimiteQuilometragem_Controlado = 0;
 
             ValidadorPlano valida = new();
 
@@ -88,9 +88,14 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
             {
                 Grupo = new(),
                 Descricao = "Livre",
-                ValorDiario = 50,
-                LimiteQuilometragem = 200,
-                ValorPorKm = 30
+                ValorDiario_Diario = 50,
+                ValorPorKm_Diario = 35,
+
+                ValorDiario_Livre = 30,
+
+                ValorDiario_Controlado = 20,
+                ValorPorKm_Controlado = 130,
+                LimiteQuilometragem_Controlado = 200
             };
         }
 
