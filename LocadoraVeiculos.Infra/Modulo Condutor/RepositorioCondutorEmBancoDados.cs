@@ -47,7 +47,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
 					[EMAIL] = @EMAIL,
 					[ENDERECO] = @ENDERECO,
 					[TELEFONE] = @TELEFONE,
-					[CLIENTE_ID] = @CONDUTOR_ID
+					[CLIENTE_ID] = @CLIENTE_ID
 				WHERE
 					[ID] = @ID";
 
@@ -110,9 +110,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
             ON
                 CLIENTE.ID = CONDUTOR.CLIENTE_ID";
 
-        protected override bool VerificarDuplicidade(Condutor entidade)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
+﻿namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 {
     partial class CondutorControl
     {

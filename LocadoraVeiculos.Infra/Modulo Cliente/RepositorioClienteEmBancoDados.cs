@@ -72,23 +72,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                 [EMAIL] CLIENTE_EMAIL,
                 [TELEFONE] CLIENTE_TELEFONE
             FROM 
-                [TBCLIENTE]";
-
-
-        protected override bool VerificarDuplicidade(Cliente entidade)
-        {
-            var clientes = SelecionarTodos();
-
-            foreach (Cliente c in clientes)
-            {
-                if (entidade.Cpf != "-" && c.Cpf == entidade.Cpf  ) 
-                    return true;
-
-                if (entidade.Cnpj != "-" && c.Cnpj == entidade.Cnpj)
-                    return true;
-            }
-
-            return false;
-        }
+                [TBCLIENTE]";      
     }
 }

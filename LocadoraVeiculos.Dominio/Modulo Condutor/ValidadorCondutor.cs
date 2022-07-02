@@ -17,8 +17,8 @@ namespace LocadoraVeiculos.Dominio.Modulo_Condutor
                 .NotNull().WithMessage("Campo 'Nome' é obrigatório.")
                 .NotEmpty().WithMessage("Campo 'Nome' é obrigatótio.");
 
-            RuleFor(x => x.Cpf)
-             .Cpf();
+            RuleFor(x => x.Cpf).MaximumLength(14).WithMessage("'CPF' inválido.");
+
 
             RuleFor(x => x.Endereco)
               .NotNull().WithMessage("Campo 'Endereço' é obrigatório.")

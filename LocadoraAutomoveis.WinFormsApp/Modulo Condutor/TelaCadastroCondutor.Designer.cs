@@ -101,6 +101,7 @@
             // cmbClientes
             // 
             this.cmbClientes.DisplayMember = "Nome";
+            this.cmbClientes.Enabled = false;
             this.cmbClientes.FormattingEnabled = true;
             this.cmbClientes.Location = new System.Drawing.Point(14, 41);
             this.cmbClientes.Name = "cmbClientes";

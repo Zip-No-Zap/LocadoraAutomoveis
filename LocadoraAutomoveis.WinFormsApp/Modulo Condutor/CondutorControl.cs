@@ -3,7 +3,7 @@ using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
+namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 {
     public partial class CondutorControl : UserControl
     {
@@ -34,7 +34,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             return colunas;
         }
 
-        public int ObtemNumerFuncionarioSelecionado()
+        public int ObtemNumerCondutorSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }
