@@ -93,17 +93,13 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void btnLimpar_Click_1(object sender, EventArgs e)
         {
-            if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
-            {
-                LimparCamposDiario();
-            }
-            else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[1])
-            {
-                LimparCampoLivre();
-            }
-            else
+            LimparCamposDiario();
 
-                LimparCamposControlado();
+            LimparCampoLivre();
+
+            LimparCamposControlado();
+
+            tbValorDiario_Diario.Focus();
         }
 
         private void btnOK_Click_1(object sender, EventArgs e)
