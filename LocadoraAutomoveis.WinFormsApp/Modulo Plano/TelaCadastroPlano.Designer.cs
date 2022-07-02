@@ -165,6 +165,7 @@
             this.tbValorKmRodado_Diario.Name = "tbValorKmRodado_Diario";
             this.tbValorKmRodado_Diario.Size = new System.Drawing.Size(230, 31);
             this.tbValorKmRodado_Diario.TabIndex = 5;
+            this.tbValorKmRodado_Diario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValorKmRodado_Diario_KeyPress);
             // 
             // tbValorDiario_Diario
             // 
@@ -172,6 +173,7 @@
             this.tbValorDiario_Diario.Name = "tbValorDiario_Diario";
             this.tbValorDiario_Diario.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Diario.TabIndex = 4;
+            this.tbValorDiario_Diario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValorDiario_Diario_KeyPress);
             // 
             // label3
             // 
@@ -222,6 +224,7 @@
             this.tbValorDiario_Livre.Name = "tbValorDiario_Livre";
             this.tbValorDiario_Livre.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Livre.TabIndex = 5;
+            this.tbValorDiario_Livre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValorDiario_Livre_KeyPress);
             // 
             // label4
             // 
@@ -276,6 +279,7 @@
             this.tbKmRodado_Controlado.Name = "tbKmRodado_Controlado";
             this.tbKmRodado_Controlado.Size = new System.Drawing.Size(230, 31);
             this.tbKmRodado_Controlado.TabIndex = 12;
+            this.tbKmRodado_Controlado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbKmRodado_Controlado_KeyPress);
             // 
             // tbValorDiario_Controlado
             // 
@@ -283,6 +287,7 @@
             this.tbValorDiario_Controlado.Name = "tbValorDiario_Controlado";
             this.tbValorDiario_Controlado.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Controlado.TabIndex = 10;
+            this.tbValorDiario_Controlado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValorDiario_Controlado_KeyPress);
             // 
             // label7
             // 
@@ -300,6 +305,7 @@
             this.tbLimiteQuilometragem.Name = "tbLimiteQuilometragem";
             this.tbLimiteQuilometragem.Size = new System.Drawing.Size(230, 31);
             this.tbLimiteQuilometragem.TabIndex = 8;
+            this.tbLimiteQuilometragem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbLimiteQuilometragem_KeyPress);
             // 
             // label5
             // 
@@ -348,6 +354,7 @@
             this.btnOK.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Enabled = false;
             this.btnOK.Location = new System.Drawing.Point(17, 16);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(112, 59);

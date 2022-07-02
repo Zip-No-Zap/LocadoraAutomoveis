@@ -114,16 +114,19 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             {
                 plano.ValorDiario = float.Parse(tbValorDiario_Diario.Text);
                 plano.ValorPorKm = float.Parse(tbValorKmRodado_Diario.Text);
+                plano.Descricao = "Diário";
             }
             else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[1])
             {
                 plano.ValorDiario = float.Parse(tbValorDiario_Livre.Text);
+                plano.Descricao = "Livre";
             }
             else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[2])
             {
                 plano.ValorDiario = float.Parse(tbValorDiario_Controlado.Text);
                 plano.ValorPorKm = float.Parse(tbKmRodado_Controlado.Text);
                 plano.LimiteQuilometragem = Convert.ToInt32(tbLimiteQuilometragem.Text);
+                plano.Descricao = "Controlado";
             }
 
             ValidationResult resultadoValidacao = GravarRegistro(plano);
@@ -136,6 +139,36 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
                 DialogResult = DialogResult.None;
             }
+        }
+
+        private void tbValorDiario_Diario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void tbValorKmRodado_Diario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void tbValorDiario_Livre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void tbValorDiario_Controlado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void tbKmRodado_Controlado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void tbLimiteQuilometragem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
         }
     }
 }
