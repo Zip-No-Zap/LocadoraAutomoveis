@@ -77,9 +77,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
         private bool PlanoDiarioDuplicado(Plano plano)
         {
             repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE VALORDIARIO_DIARIO = @VALORDIARIO_DIARIO";
-            repositorioPlano.PropriedadeValidar = "ValorDiario_Diario";
+            repositorioPlano.PropriedadeDominioAValidar = "ValorDiario_Diario";
 
-            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeValidar, plano);
+            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeDominioAValidar, plano);
 
             return planoEncontrado != null &&
                    planoEncontrado.ValorDiario_Diario.Equals(plano.ValorDiario_Diario) &&
@@ -91,9 +91,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
         private bool PlanoLivreDuplicado(Plano plano)
         {
             repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE VALORDIARIO_LIVRE = @VALORDIARIO_LIVRE";
-            repositorioPlano.PropriedadeValidar = "ValorDiario_Livre";
+            repositorioPlano.PropriedadeDominioAValidar = "ValorDiario_Livre";
 
-            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeValidar, plano);
+            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeDominioAValidar, plano);
 
             return planoEncontrado != null &&
                    planoEncontrado.ValorDiario_Livre.Equals(plano.ValorDiario_Livre) &&
@@ -104,9 +104,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
         private bool PlanoControladoDuplicado(Plano plano)
         {
             repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE VALORDIARIO_CONTROLADO = @VALORDIARIO_CONTROLADO";
-            repositorioPlano.PropriedadeValidar = "ValorDiario_Controlado";
+            repositorioPlano.PropriedadeDominioAValidar = "ValorDiario_Controlado";
 
-            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeValidar, plano);
+            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeDominioAValidar, plano);
 
             return planoEncontrado != null &&
                    planoEncontrado.ValorDiario_Controlado.Equals(plano.ValorDiario_Controlado) &&

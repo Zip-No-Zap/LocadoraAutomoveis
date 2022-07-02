@@ -13,6 +13,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
         public abstract void DefinirParametros(T entidade, SqlCommand cmd);
 
-        public abstract void DefinirParametroValidacao(string campoBd, T entidade, SqlCommand cmd);
+        public abstract void DefinirParametroValidacao(string campoBancoDados, T entidade, SqlCommand cmd);
     }
 }

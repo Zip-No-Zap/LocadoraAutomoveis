@@ -73,9 +73,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
         {
             repositorioTaxa.Sql_selecao_por_parametro = @"SELECT * FROM TBTAXA WHERE DESCRICAO = @DESCRICAO";
 
-            repositorioTaxa.PropriedadeValidar = "descricao";
+            repositorioTaxa.PropriedadeDominioAValidar = "descricao";
 
-            var TaxaEncontrado = repositorioTaxa.SelecionarPorParametro(repositorioTaxa.PropriedadeValidar, taxa);
+            var TaxaEncontrado = repositorioTaxa.SelecionarPorParametro(repositorioTaxa.PropriedadeDominioAValidar, taxa);
 
             return TaxaEncontrado != null &&
                    TaxaEncontrado.Descricao.Equals(taxa.Descricao) &&
