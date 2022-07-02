@@ -31,17 +31,17 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
                 if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
                 {
-                    tbValorDiario_Diario.Text = plano.ValorDiario.ToString();
-                    tbValorKmRodado_Diario.Text = plano.ValorPorKm.ToString();
+                    tbValorDiario_Diariokk.Text = plano.ValorDiario.ToString();
+                    tbValorKmRodado_Diariofff.Text = plano.ValorPorKm.ToString();
                 }
                 else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[1])
                 {
-                    tbValorDiario_Livre.Text = plano.ValorDiario.ToString();
+                    tbValorDiario_Livrekk.Text = plano.ValorDiario.ToString();
                 }
                 else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[2])
                 {
                     tbValorDiario_Controlado.Text = plano.ValorDiario.ToString();
-                    tbKmRodado_Controlado.Text = plano.ValorPorKm.ToString();
+                    ddd.Text = plano.ValorPorKm.ToString();
                     tbLimiteQuilometragem.Text = plano.LimiteQuilometragem.ToString();
                 }
             }
@@ -61,17 +61,17 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
         {
             if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
             {
-                plano.ValorDiario = float.Parse(tbValorDiario_Diario.Text);
-                plano.ValorPorKm = float.Parse(tbValorKmRodado_Diario.Text);
+                plano.ValorDiario = float.Parse(tbValorDiario_Diariokk.Text);
+                plano.ValorPorKm = float.Parse(tbValorKmRodado_Diariofff.Text);
             }
             else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[1])
             {
-                plano.ValorDiario = float.Parse(tbValorDiario_Livre.Text);
+                plano.ValorDiario = float.Parse(tbValorDiario_Livrekk.Text);
             }
             else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[2])
             {
                 plano.ValorDiario = float.Parse(tbValorDiario_Controlado.Text);
-                plano.ValorPorKm = float.Parse(tbKmRodado_Controlado.Text);
+                plano.ValorPorKm = float.Parse(ddd.Text);
                 plano.LimiteQuilometragem = Convert.ToInt32(tbLimiteQuilometragem.Text);
             }
 
@@ -132,18 +132,18 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void LimparCamposDiario()
         {
-            tbValorDiario_Diario.Clear();
-            tbValorKmRodado_Diario.Clear();
+            tbValorDiario_Diariokk.Clear();
+            tbValorKmRodado_Diariofff.Clear();
         }
 
         private void LimparCampoLivre()
         {
-            tbValorDiario_Livre.Clear();
+            tbValorDiario_Livrekk.Clear();
         }
         private void LimparCamposControlado()
         {
             tbValorDiario_Controlado.Clear();
-            tbKmRodado_Controlado.Clear();
+            ddd.Clear();
             tbLimiteQuilometragem.Clear();
         }
 
@@ -165,6 +165,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
         private void tbValorDiario_Controlado_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
