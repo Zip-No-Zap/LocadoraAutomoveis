@@ -7,9 +7,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Plano
     {
         public ValidadorPlano()
         {
-            RuleFor(x => x.Descricao)
-                .MinimumLength(2).WithMessage("'Descrição' não permite menos de 2 caracteres");
-
             RuleFor(x => x.ValorDiario_Diario)
                 .GreaterThan(0).WithMessage("'Valor Diário' inválido");
             RuleFor(x => x.ValorPorKm_Diario)
