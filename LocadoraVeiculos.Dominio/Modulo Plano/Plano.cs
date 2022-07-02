@@ -6,8 +6,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Plano
     {
         public GrupoVeiculo Grupo { get; set; }
 
-        public string Descricao { get; set; }
-
         public float ValorDiario_Diario { get; set; }
         public float ValorPorKm_Diario { get; set; }
 

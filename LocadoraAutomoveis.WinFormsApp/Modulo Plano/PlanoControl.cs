@@ -21,11 +21,13 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             var colunas = new DataGridViewColumn[]
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "NomeGrupo", HeaderText = "Grupo"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Descricao", HeaderText = "Descrição"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "ValorDiario", HeaderText = "Valor Diário"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "ValorPorKm", HeaderText = "Valor por Km Rodado"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "LimiteQuilometragem", HeaderText = "Limite Quilometragem"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "NomeGrupo", HeaderText = "Grupo Veículo"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "ValorDiario_Diario", HeaderText = "Plano Diário: Valor Diário"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "ValorPorKm_Diário", HeaderText = "Plano Diário: Valor por Km Rodado"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "ValorDiario_Livre", HeaderText = "Plano Livre: Valor por Km Rodado"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "ValorDiario_Controlado", HeaderText = "Plano Controlado: Valor Diário"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "ValorPorKm_Controlado", HeaderText = "Plano Controlado: Valor por Km Rodado"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "LimiteQuilometragem_Controlado", HeaderText = "Plano Controlado: Limite Quilometragem"},
             };
 
             return colunas;

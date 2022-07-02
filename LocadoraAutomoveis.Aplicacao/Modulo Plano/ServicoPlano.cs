@@ -61,26 +61,56 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
             var resultadoValidacao = validadorPlano.Validate(plano);
 
-            if (PlanoDuplicado(plano))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Plano", "'Plano' duplicado"));
+            if (PlanoDiarioDuplicado(plano))
+                resultadoValidacao.Errors.Add(new ValidationFailure("ValorDiario_Diario", "''Valor Diário' do Plano Diário' duplicado"));
+
+            if (PlanoLivreDuplicado(plano))
+                resultadoValidacao.Errors.Add(new ValidationFailure("ValorDiario_Livre", "''Valor Diário' do Plano Livre' duplicado"));
+
+            if (PlanoControladoDuplicado(plano))
+                resultadoValidacao.Errors.Add(new ValidationFailure("ValorDiario_Controlado", "''Valor Diário' do Plano Controaldo' duplicado"));
 
             return resultadoValidacao;
         }
 
         #region privates
-        private bool PlanoDuplicado(Plano plano)
+        private bool PlanoDiarioDuplicado(Plano plano)
         {
-            repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE DESCRICAO = @DESCRICAO";
-            repositorioPlano.PropriedadeValidar = "Descricao";
+            repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE VALORDIARIO_DIARIO = @VALORDIARIO_DIARIO";
+            repositorioPlano.PropriedadeValidar = "ValorDiario_Diario";
 
             var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeValidar, plano);
 
             return planoEncontrado != null &&
-                   planoEncontrado.Descricao.Equals(plano.Descricao) &&
+                   planoEncontrado.ValorDiario_Diario.Equals(plano.ValorDiario_Diario) &&
                    planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&
-                   planoEncontrado.ValorPorKm.Equals(plano.ValorPorKm) &&
-                   planoEncontrado.LimiteQuilometragem.Equals(plano.LimiteQuilometragem) &&
-                   planoEncontrado.ValorDiario.Equals(plano.ValorDiario) &&
+                   planoEncontrado.ValorPorKm_Diario.Equals(plano.ValorPorKm_Diario) &&
+                  !planoEncontrado.Id.Equals(plano.Id);
+        }
+
+        private bool PlanoLivreDuplicado(Plano plano)
+        {
+            repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE VALORDIARIO_LIVRE = @VALORDIARIO_LIVRE";
+            repositorioPlano.PropriedadeValidar = "ValorDiario_Livre";
+
+            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeValidar, plano);
+
+            return planoEncontrado != null &&
+                   planoEncontrado.ValorDiario_Livre.Equals(plano.ValorDiario_Livre) &&
+                   planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&
+                  !planoEncontrado.Id.Equals(plano.Id);
+        }
+
+        private bool PlanoControladoDuplicado(Plano plano)
+        {
+            repositorioPlano.Sql_selecao_por_parametro = @"SELECT * FROM TBPLANO WHERE VALORDIARIO_CONTROLADO = @VALORDIARIO_CONTROLADO";
+            repositorioPlano.PropriedadeValidar = "ValorDiario_Controlado";
+
+            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeValidar, plano);
+
+            return planoEncontrado != null &&
+                   planoEncontrado.ValorDiario_Controlado.Equals(plano.ValorDiario_Controlado) &&
+                   planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&
                   !planoEncontrado.Id.Equals(plano.Id);
         }
 
