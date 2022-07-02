@@ -99,6 +99,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
             LimparCamposControlado();
 
+            cbGrupo.SelectedIndex = - 1;
+
             tbValorDiario_Diario.Focus();
         }
 
@@ -190,12 +192,15 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void ObterIdGrupoVeiculoj()
         {
-            var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
-            var grupos = servicoGrupo.SelecionarTodos();
+            if (cbGrupo.SelectedIndex != -1) 
+            {
+                var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
+                var grupos = servicoGrupo.SelecionarTodos();
 
-            var grupoEncontrado = grupos.Find(g => g.Nome.Equals(cbGrupo.SelectedItem.ToString()));
+                var grupoEncontrado = grupos.Find(g => g.Nome.Equals(cbGrupo.SelectedItem.ToString()));
 
-            lblIDGrupo.Text = grupoEncontrado.Id.ToString();
+                lblIDGrupo.Text = grupoEncontrado.Id.ToString();
+            }
         }
     }
 }
