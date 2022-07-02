@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 {
-    public partial class TelaCadastroPlano : Form 
+    public partial class TelaCadastroPlano : Form
     {
         private Plano plano;
 
@@ -52,12 +52,63 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             InitializeComponent();
         }
 
-        private void TelaCadasrtoPlano_Load(object sender, EventArgs e)
+        private void ObterItensGrupoVeiculo()
+        {
+            var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
+
+            var nomes = servicoGrupo.SelecionarTodos();
+
+            foreach (GrupoVeiculo gv in nomes)
+            {
+                cbGrupo.Items.Add(gv.Nome);
+            }
+        }
+
+         private void LimparCamposDiario()
+        {
+            tbValorDiario_Diario.Clear();
+            tbValorKmRodado_Diario.Clear();
+        }
+
+        private void LimparCampoLivre()
+        {
+            tbValorDiario_Livre.Clear();
+        }
+        private void LimparCamposControlado()
+        {
+            tbValorDiario_Controlado.Clear();
+            tbKmRodado_Controlado.Clear();
+            tbLimiteQuilometragem.Clear();
+        }
+
+        private void TelaCadastroPlano_Load(object sender, EventArgs e)
+        {
+            FormPrincipal.Instancia.AtualizarRodape("");
+
+            ObterItensGrupoVeiculo();
+        }
+
+        private void TelaCadastroPlano_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
+        private void btnLimpar_Click_1(object sender, EventArgs e)
+        {
+            if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
+            {
+                LimparCamposDiario();
+            }
+            else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[1])
+            {
+                LimparCampoLivre();
+            }
+            else
+
+                LimparCamposControlado();
+        }
+
+        private void btnOK_Click_1(object sender, EventArgs e)
         {
             if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
             {
@@ -85,92 +136,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
                 DialogResult = DialogResult.None;
             }
-
         }
-
-        private void btnLimpar_Click(object sender, EventArgs e)
-        {
-            if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
-            {
-                LimparCamposDiario();
-            }
-            else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[1])
-            {
-                LimparCampoLivre();
-            }
-            else
-
-                LimparCamposControlado();
-        }
-
-        private void TelaCadasrtoPlano_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            FormPrincipal.Instancia.AtualizarRodape("");
-        }
-
-        private void ObterItensGrupoVeiculo()
-        {
-            var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
-
-            var nomes = servicoGrupo.SelecionarTodos();
-
-            foreach (GrupoVeiculo gv in nomes)
-            {
-               cbGrupo.Items.Add(gv.Nome);
-            }
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LimparCamposDiario()
-        {
-            tbValorDiario_Diario.Clear();
-            tbValorKmRodado_Diario.Clear();
-        }
-
-        private void LimparCampoLivre()
-        {
-            tbValorDiario_Livre.Clear();
-        }
-        private void LimparCamposControlado()
-        {
-            tbValorDiario_Controlado.Clear();
-            tbKmRodado_Controlado.Clear();
-            tbLimiteQuilometragem.Clear();
-        }
-
-        private void TelaCadastroPlano_Load(object sender, EventArgs e)
-        {
-            ObterItensGrupoVeiculo();
-        }
-
-        private void tbValorDiario_Diario_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
-        }
-
-        private void tbValorDiario_Livre_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
-        }
-
-        private void tbValorDiario_Controlado_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }
