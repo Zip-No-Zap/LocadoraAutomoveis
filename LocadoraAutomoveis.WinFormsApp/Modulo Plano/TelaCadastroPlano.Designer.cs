@@ -52,7 +52,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControlPlano.SuspendLayout();
             this.tabPageDiario.SuspendLayout();
             this.tabPageLivre.SuspendLayout();
@@ -121,6 +125,8 @@
             // 
             // tabPageDiario
             // 
+            this.tabPageDiario.Controls.Add(this.label12);
+            this.tabPageDiario.Controls.Add(this.label11);
             this.tabPageDiario.Controls.Add(this.tbValorKmRodado_Diario);
             this.tabPageDiario.Controls.Add(this.tbValorDiario_Diario);
             this.tabPageDiario.Controls.Add(this.label3);
@@ -135,14 +141,14 @@
             // 
             // tbValorKmRodado_Diario
             // 
-            this.tbValorKmRodado_Diario.Location = new System.Drawing.Point(17, 140);
+            this.tbValorKmRodado_Diario.Location = new System.Drawing.Point(52, 139);
             this.tbValorKmRodado_Diario.Name = "tbValorKmRodado_Diario";
             this.tbValorKmRodado_Diario.Size = new System.Drawing.Size(230, 31);
             this.tbValorKmRodado_Diario.TabIndex = 5;
             // 
             // tbValorDiario_Diario
             // 
-            this.tbValorDiario_Diario.Location = new System.Drawing.Point(17, 48);
+            this.tbValorDiario_Diario.Location = new System.Drawing.Point(52, 47);
             this.tbValorDiario_Diario.Name = "tbValorDiario_Diario";
             this.tbValorDiario_Diario.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Diario.TabIndex = 4;
@@ -151,7 +157,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(14, 116);
+            this.label3.Location = new System.Drawing.Point(49, 115);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(159, 21);
             this.label3.TabIndex = 3;
@@ -162,7 +168,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(14, 24);
+            this.label2.Location = new System.Drawing.Point(49, 23);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 21);
             this.label2.TabIndex = 1;
@@ -170,6 +176,7 @@
             // 
             // tabPageLivre
             // 
+            this.tabPageLivre.Controls.Add(this.label10);
             this.tabPageLivre.Controls.Add(this.tbValorDiario_Livre);
             this.tabPageLivre.Controls.Add(this.label4);
             this.tabPageLivre.Location = new System.Drawing.Point(4, 34);
@@ -182,7 +189,7 @@
             // 
             // tbValorDiario_Livre
             // 
-            this.tbValorDiario_Livre.Location = new System.Drawing.Point(17, 46);
+            this.tbValorDiario_Livre.Location = new System.Drawing.Point(52, 47);
             this.tbValorDiario_Livre.Name = "tbValorDiario_Livre";
             this.tbValorDiario_Livre.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Livre.TabIndex = 5;
@@ -191,7 +198,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(14, 22);
+            this.label4.Location = new System.Drawing.Point(49, 23);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 21);
             this.label4.TabIndex = 3;
@@ -199,6 +206,8 @@
             // 
             // tabPageControlado
             // 
+            this.tabPageControlado.Controls.Add(this.label9);
+            this.tabPageControlado.Controls.Add(this.label8);
             this.tabPageControlado.Controls.Add(this.tbKmRodado_Controlado);
             this.tabPageControlado.Controls.Add(this.tbValorDiario_Controlado);
             this.tabPageControlado.Controls.Add(this.label7);
@@ -214,14 +223,14 @@
             // 
             // tbKmRodado_Controlado
             // 
-            this.tbKmRodado_Controlado.Location = new System.Drawing.Point(17, 140);
+            this.tbKmRodado_Controlado.Location = new System.Drawing.Point(52, 139);
             this.tbKmRodado_Controlado.Name = "tbKmRodado_Controlado";
             this.tbKmRodado_Controlado.Size = new System.Drawing.Size(230, 31);
             this.tbKmRodado_Controlado.TabIndex = 12;
             // 
             // tbValorDiario_Controlado
             // 
-            this.tbValorDiario_Controlado.Location = new System.Drawing.Point(17, 48);
+            this.tbValorDiario_Controlado.Location = new System.Drawing.Point(52, 47);
             this.tbValorDiario_Controlado.Name = "tbValorDiario_Controlado";
             this.tbValorDiario_Controlado.Size = new System.Drawing.Size(230, 31);
             this.tbValorDiario_Controlado.TabIndex = 10;
@@ -230,7 +239,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(14, 207);
+            this.label7.Location = new System.Drawing.Point(49, 206);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(167, 21);
             this.label7.TabIndex = 9;
@@ -239,7 +248,7 @@
             // 
             // tbLimiteQuilometragem
             // 
-            this.tbLimiteQuilometragem.Location = new System.Drawing.Point(17, 231);
+            this.tbLimiteQuilometragem.Location = new System.Drawing.Point(52, 230);
             this.tbLimiteQuilometragem.Name = "tbLimiteQuilometragem";
             this.tbLimiteQuilometragem.Size = new System.Drawing.Size(230, 31);
             this.tbLimiteQuilometragem.TabIndex = 8;
@@ -249,7 +258,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(14, 116);
+            this.label5.Location = new System.Drawing.Point(49, 115);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(159, 21);
             this.label5.TabIndex = 7;
@@ -259,7 +268,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(14, 24);
+            this.label6.Location = new System.Drawing.Point(49, 23);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 21);
             this.label6.TabIndex = 5;
@@ -297,19 +306,61 @@
             this.btnOK.TabIndex = 8;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click_1);
             // 
-            // maskedTextBox1
+            // label8
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(298, 114);
-            this.maskedTextBox1.Mask = "$ 000.00";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(150, 31);
-            this.maskedTextBox1.TabIndex = 5;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(23, 57);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 21);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "R$";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(23, 149);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(29, 21);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "R$";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.Location = new System.Drawing.Point(23, 57);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(29, 21);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "R$";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label11.Location = new System.Drawing.Point(22, 57);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(29, 21);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "R$";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label12.Location = new System.Drawing.Point(22, 149);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(29, 21);
+            this.label12.TabIndex = 15;
+            this.label12.Text = "R$";
             // 
             // TelaCadastroPlano
             // 
             this.ClientSize = new System.Drawing.Size(467, 588);
-            this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControlPlano);
             this.Controls.Add(this.lblGrupo);
@@ -360,6 +411,10 @@
         private System.Windows.Forms.TextBox tbValorDiario_Livre;
         private System.Windows.Forms.TextBox tbKmRodado_Controlado;
         private System.Windows.Forms.TextBox tbValorDiario_Controlado;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
     }
 }
