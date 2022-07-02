@@ -13,8 +13,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
     public class RepositorioPlanoBancoDadosTests
     {
 
-       RepositorioPlanoEmBancoDados repoPlano;
-        RepositorioGrupoVeiculoEmBancoDados repoGrupo;
+       readonly RepositorioGrupoVeiculoEmBancoDados repoGrupo;
+       readonly RepositorioPlanoEmBancoDados repoPlano;
 
         public RepositorioPlanoBancoDadosTests()
         {

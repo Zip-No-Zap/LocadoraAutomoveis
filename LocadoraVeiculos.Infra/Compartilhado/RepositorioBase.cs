@@ -143,11 +143,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             conexaoBancoDados.DesconectarBancoDados();
         }
 
-        private ValidationResult Validar(T entidade)
-        {
-            return new Tvalidador().Validate(entidade);
-        }
-
         #endregion
     }
 }
