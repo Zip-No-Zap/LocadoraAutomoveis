@@ -1,11 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
 {
@@ -78,8 +74,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
 
         private bool NomeDuplicado(GrupoVeiculo grupoVeiculo)
         {
-            repositorioGrupoVeiculo.Sql_selecao_por_parametro = @"SELECT * FROM TBGRUPOVEICULO WHERE NOME = @NOME";
-            repositorioGrupoVeiculo.PropriedadeValidar = "nome";
+            repositorioGrupoVeiculo.Sql_selecao_por_parametro = @"SELECT * FROM TBGRUPOVEICULO WHERE NOMEGRUPO = @NOME";
+            repositorioGrupoVeiculo.PropriedadeValidar = "Nome";
 
             var funcionarioEncontrado = repositorioGrupoVeiculo.SelecionarPorParametro(repositorioGrupoVeiculo.PropriedadeValidar, grupoVeiculo);
 
