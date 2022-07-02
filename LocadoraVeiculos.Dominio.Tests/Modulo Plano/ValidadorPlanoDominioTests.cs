@@ -5,11 +5,29 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
 {
     [TestClass]
-    public class MyTestClass
+    public class ValidadorPlanoDominioTests
     {
-        public MyTestClass()
+        public ValidadorPlanoDominioTests()
         {
 
+        }
+
+        [TestMethod]
+        public void Nao_deve_permitir_nome_grupo_vazio()
+        {
+            //arrange
+            var plano = InstanciarPlano();
+            plano.Grupo.Nome = "";
+
+            plano.ValorDiario_Diario = 0;
+
+            ValidadorPlano valida = new();
+
+            //action
+            var resultado = valida.Validate(plano);
+
+            //assert
+            Assert.AreEqual("'Grupo Veículo' é obrigatório", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]

@@ -27,9 +27,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             {
                 plano = value;
 
-                lblID.Text = plano.Id.ToString();
-                cbGrupo.Text = plano.Grupo.Nome;
-
                 if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
                 {
                     tbValorDiario_Diario.Text = plano.ValorDiario_Diario.ToString();
@@ -111,7 +108,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void btnOK_Click_1(object sender, EventArgs e)
         {
-            plano.Grupo.Id = int.Parse(lblID.Text);
+            ImputarZeroCamposVazios();
+
+            if(!string.IsNullOrEmpty(cbGrupo.Text))
+                plano.Grupo.Id = int.Parse(lblIDGrupo.Text);
+
             plano.Grupo.Nome = cbGrupo.Text; 
 
             plano.ValorDiario_Diario = float.Parse(tbValorDiario_Diario.Text);
@@ -133,6 +134,27 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
                 DialogResult = DialogResult.None;
             }
+        }
+
+        private void ImputarZeroCamposVazios()
+        {
+            if (tbKmRodado_Controlado.Text == "")
+                tbKmRodado_Controlado.Text = "0";
+
+            if (tbValorDiario_Controlado.Text == "")
+                tbValorDiario_Controlado.Text = "0";
+
+            if (tbLimiteQuilometragem.Text == "")
+                tbLimiteQuilometragem.Text = "0";
+
+            if (tbValorDiario_Livre.Text == "")
+                tbValorDiario_Livre.Text = "0";
+
+            if (tbValorKmRodado_Diario.Text == "")
+                tbValorKmRodado_Diario.Text = "0";
+
+            if (tbValorDiario_Diario.Text == "")
+                tbValorDiario_Diario.Text = "0";
         }
 
         private void tbValorDiario_Diario_KeyPress(object sender, KeyPressEventArgs e)
@@ -163,6 +185,21 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
         private void tbLimiteQuilometragem_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void cbGrupo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObterIdGrupoVeiculoj();
+        }
+
+        private void ObterIdGrupoVeiculoj()
+        {
+            var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
+            var grupos = servicoGrupo.SelecionarTodos();
+
+            var grupoEncontrado = grupos.Find(g => g.Nome.Equals(cbGrupo.SelectedItem.ToString()));
+
+            lblIDGrupo.Text = grupoEncontrado.Id.ToString();
         }
     }
 }

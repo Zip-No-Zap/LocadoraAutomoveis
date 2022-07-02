@@ -1,11 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocadoraVeiculos.Dominio.Tests.Modulo_GrupoVeiculo
 {
@@ -28,13 +24,12 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_GrupoVeiculo
         }
 
         #region instancia de grupo
+
         GrupoVeiculo InstanciarGrupoVeiculo()
         {
-            return new GrupoVeiculo()
+            return new GrupoVeiculo("Uber")
             {
                 Id = 1,
-                Nome = "Uber"
-
             };
         }
 

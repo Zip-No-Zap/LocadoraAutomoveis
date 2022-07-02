@@ -35,14 +35,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
             return resultadoValidacao;
         }
 
-        public ValidationResult Excluir(Plano plano)
+        public void Excluir(Plano plano)
         {
-            var resultadoValidacao = Validar(plano);
-
-            if (resultadoValidacao.IsValid)
-                repositorioPlano.Excluir(plano);
-
-            return resultadoValidacao;
+            repositorioPlano.Excluir(plano);
         }
 
         public List<Plano> SelecionarTodos()
