@@ -20,10 +20,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
         {
             TelaCadastroPlano tela = new()
             {
-                Plano = new(),
-
+                Plano = new()
+                {
+                    Grupo = new(null)
+                },
+                
                 GravarRegistro = servicoPlano.Inserir
             };
+
 
             DialogResult resultado = tela.ShowDialog();
 

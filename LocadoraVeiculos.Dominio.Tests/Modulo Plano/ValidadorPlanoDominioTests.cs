@@ -69,7 +69,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
         {
             return new Plano()
             {
-                Grupo = new(),
+                Grupo = new("Uber"),
                 ValorDiario_Diario = 50,
                 ValorPorKm_Diario = 35,
 

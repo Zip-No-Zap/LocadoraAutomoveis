@@ -21,7 +21,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
         public override void Inserir()
         {
             TelaCadastroGrupoVeiculo tela = new();
-            tela.GrupoVeiculo = new();
+            tela.GrupoVeiculo = new(null);
 
             tela.GravarRegistro = servicoGrupoVeiculo.Inserir;
 

@@ -60,10 +60,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
                     ValorPorKm_Controlado = valorPorKm_Controlado,
                     LimiteQuilometragem_Controlado = limiteQuilometragem_Controlado,
 
-                    Grupo = new()
+                    Grupo = new(grupo_nome)
                     {
                         Id = grupo_id,
-                        Nome = grupo_nome,
                     }
                    
                };
@@ -105,10 +104,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
                     ValorPorKm_Controlado = valorPorKm_Controlado,
                     LimiteQuilometragem_Controlado = limiteQuilometragem_Controlado,
 
-                    Grupo = new()
+                    Grupo = new(grupo_nome)
                     {
                         Id = grupo_id,
-                        Nome = grupo_nome,
                     }
 
                 };

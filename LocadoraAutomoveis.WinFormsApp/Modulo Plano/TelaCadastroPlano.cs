@@ -27,6 +27,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             {
                 plano = value;
 
+                lblID.Text = plano.Id.ToString();
                 cbGrupo.Text = plano.Grupo.Nome;
 
                 if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
@@ -110,6 +111,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void btnOK_Click_1(object sender, EventArgs e)
         {
+            plano.Grupo.Id = int.Parse(lblID.Text);
             plano.Grupo.Nome = cbGrupo.Text; 
 
             plano.ValorDiario_Diario = float.Parse(tbValorDiario_Diario.Text);

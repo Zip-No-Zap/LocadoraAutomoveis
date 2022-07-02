@@ -165,9 +165,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
 
         GrupoVeiculo InstanciarGrupoVeiculo()
         {
-            return new GrupoVeiculo()
+            return new GrupoVeiculo("GrupoTeste")
             {
-                Nome = "GrupoTeste"
             };
         }
 
