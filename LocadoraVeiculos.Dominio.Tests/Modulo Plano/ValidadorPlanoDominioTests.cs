@@ -48,7 +48,24 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
         }
 
         [TestMethod]
-        public void Nao_deve_permitir_valor_por_km_menor_um()
+        public void Nao_deve_permitir_valor_diario_vazio()
+        {
+            //arrange
+            var plano = InstanciarPlano();
+
+            plano.ValorDiario_Diario = 0;
+
+            ValidadorPlano valida = new();
+
+            //action
+            var resultado = valida.Validate(plano);
+
+            //assert
+            Assert.AreEqual("'Valor Diário' categoria: Diário, inválido", resultado.Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
+        public void Nao_deve_permitir_valor_por_km_rodado_diario_vazio()
         {
             //arrange
             var plano = InstanciarPlano();
@@ -65,7 +82,75 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
         }
 
         [TestMethod]
+        public void Nao_deve_permitir_valor_diario_categoria_livre_vazio()
+        {
+            //arrange
+            var plano = InstanciarPlano();
+
+            plano.ValorDiario_Livre = 0;
+
+            ValidadorPlano valida = new();
+
+            //action
+            var resultado = valida.Validate(plano);
+
+            //assert
+            Assert.AreEqual("'Valor Diário' categoria: Livre, inválido", resultado.Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
+        public void Nao_deve_permitir_valor_por_km_contorlado_menor_um()
+        {
+            //arrange
+            var plano = InstanciarPlano();
+
+            plano.ValorPorKm_Diario = 0;
+
+            ValidadorPlano valida = new();
+
+            //action
+            var resultado = valida.Validate(plano);
+
+            //assert
+            Assert.AreEqual("'Valor por Km Rodado' categoria: Diário, inválido", resultado.Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
+        public void Nao_deve_permitir_valor_por_km_contorlado_vazio()
+        {
+            //arrange
+            var plano = InstanciarPlano();
+
+            plano.ValorPorKm_Controlado = 0;
+
+            ValidadorPlano valida = new();
+
+            //action
+            var resultado = valida.Validate(plano);
+
+            //assert
+            Assert.AreEqual("'Valor por Km Rodado' categoria: Controlado, inválido", resultado.Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
         public void Nao_deve_permitir_limite_quilometragem_menor_um()
+        {
+            //arrange
+            var plano = InstanciarPlano();
+
+            plano.LimiteQuilometragem_Controlado = 0;
+
+            ValidadorPlano valida = new();
+
+            //action
+            var resultado = valida.Validate(plano);
+
+            //assert
+            Assert.AreEqual("'Limite de Quilometragem' categoria: Controlado, inválido", resultado.Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
+        public void Nao_deve_permitir_limite_quilometragem_vazio()
         {
             //arrange
             var plano = InstanciarPlano();
