@@ -99,12 +99,12 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
         }
 
         [TestMethod]
-        public void Nao_deve_permitir_valor_por_km_contorlado_menor_um()
+        public void Nao_deve_permitir_valor_por_km_controlado_menor_um()
         {
             //arrange
             var plano = InstanciarPlano();
 
-            plano.ValorPorKm_Diario = 0;
+            plano.ValorPorKm_Controlado = 0;
 
             ValidadorPlano valida = new();
 
@@ -112,11 +112,28 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Plano
             var resultado = valida.Validate(plano);
 
             //assert
-            Assert.AreEqual("'Valor por Km Rodado' categoria: Diário, inválido", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("'Valor por Km Rodado' categoria: Controlado, inválido", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
-        public void Nao_deve_permitir_valor_por_km_contorlado_vazio()
+        public void Nao_deve_permitir_valor_diario_controlado_vazio()
+        {
+            //arrange
+            var plano = InstanciarPlano();
+
+            plano.ValorDiario_Controlado = 0;
+
+            ValidadorPlano valida = new();
+
+            //action
+            var resultado = valida.Validate(plano);
+
+            //assert
+            Assert.AreEqual("'Valor Diário' categoria: Controlado, inválido", resultado.Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
+        public void Nao_deve_permitir_valor_por_km_controlado_vazio()
         {
             //arrange
             var plano = InstanciarPlano();
