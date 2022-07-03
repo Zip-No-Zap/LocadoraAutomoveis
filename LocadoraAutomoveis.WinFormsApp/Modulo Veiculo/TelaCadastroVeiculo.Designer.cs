@@ -130,6 +130,7 @@
             // 
             // cmbTipoCombustivel
             // 
+            this.cmbTipoCombustivel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoCombustivel.FormattingEnabled = true;
             this.cmbTipoCombustivel.Items.AddRange(new object[] {
             "Gásolina",
@@ -200,6 +201,7 @@
             // 
             // cmbStatus
             // 
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Items.AddRange(new object[] {
             "Alugado",
@@ -225,12 +227,14 @@
             // 
             // cmbGrupoVeiculo
             // 
+            this.cmbGrupoVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGrupoVeiculo.FormattingEnabled = true;
             this.cmbGrupoVeiculo.Location = new System.Drawing.Point(429, 542);
             this.cmbGrupoVeiculo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
             this.cmbGrupoVeiculo.Size = new System.Drawing.Size(301, 33);
             this.cmbGrupoVeiculo.TabIndex = 16;
+            this.cmbGrupoVeiculo.SelectedIndexChanged += new System.EventHandler(this.cmbGrupoVeiculo_SelectedIndexChanged);
             // 
             // pbFoto
             // 
@@ -264,6 +268,7 @@
             // 
             // btnOk
             // 
+            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.Location = new System.Drawing.Point(30, 912);
             this.btnOk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -276,6 +281,7 @@
             // 
             // btnLimpar
             // 
+            this.btnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLimpar.Location = new System.Drawing.Point(159, 912);
             this.btnLimpar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLimpar.Name = "btnLimpar";

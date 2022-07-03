@@ -2,12 +2,9 @@
 using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 {
@@ -41,8 +38,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             }
         }
 
-
-
         public override void Editar()
         {
             Veiculo Selecionado = ObtemVeiculoSelecionado();
@@ -70,8 +65,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             }
         }
 
-
-
         public override void Excluir()
         {
             Veiculo Selecionado = ObtemVeiculoSelecionado();
@@ -94,8 +87,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 CarregarVeiculos();
             }
         }
-
-
 
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()
         {

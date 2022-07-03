@@ -4,14 +4,10 @@ using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 {
@@ -42,7 +38,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 txbAno.Text = veiculo.Ano.ToString();
                 cmbTipoCombustivel.Text = veiculo.TipoCombustivel;
                 txbCapacidadeTanque.Text = veiculo.CapacidadeTanque.ToString();
-                cmbGrupoVeiculo.SelectedItem = veiculo.GrupoPertencente;
                 cmbStatus.Text = veiculo.StatusVeiculo;
                 txbQuilometragemAtual.Text = veiculo.QuilometragemAtual.ToString();
                 pbFoto.Image = veiculo.Imagem;
@@ -59,13 +54,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             if (!string.IsNullOrEmpty(cmbGrupoVeiculo.Text))
                 veiculo.GrupoPertencente.Id = int.Parse(lblIDGrupo.Text);
 
+            veiculo.GrupoPertencente.Nome = cmbGrupoVeiculo.Text;
+
             veiculo.Modelo = txbModelo.Text;
             veiculo.Placa = txbPlaca.Text;
             veiculo.Cor = txbCor.Text;
             veiculo.Ano = Convert.ToInt32(txbAno.Text);
             veiculo.TipoCombustivel = cmbTipoCombustivel.Text;
             veiculo.CapacidadeTanque = Convert.ToInt32(txbCapacidadeTanque.Text);
-            veiculo.GrupoPertencente = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
             veiculo.StatusVeiculo = cmbStatus.Text;
             veiculo.QuilometragemAtual = Convert.ToInt32(txbQuilometragemAtual.Text);
             veiculo.Foto = imagemSelecionada;
@@ -131,7 +127,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
         private void TelaCadastroVeiculo_Load(object sender, EventArgs e)
         {
-            ObterIdGrupoVeiculoj();
+            ObterItensGrupoVeiculo();
         }
 
         private void ObterIdGrupoVeiculoj()
@@ -144,6 +140,23 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 var grupoEncontrado = grupos.Find(g => g.Nome.Equals(cmbGrupoVeiculo.SelectedItem.ToString()));
 
                 lblIDGrupo.Text = grupoEncontrado.Id.ToString();
+            }
+        }
+
+        private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObterIdGrupoVeiculoj();
+        }
+
+        private void ObterItensGrupoVeiculo()
+        {
+            var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
+
+            var nomes = servicoGrupo.SelecionarTodos();
+
+            foreach (GrupoVeiculo gv in nomes)
+            {
+                cmbGrupoVeiculo.Items.Add(gv.Nome);
             }
         }
     }

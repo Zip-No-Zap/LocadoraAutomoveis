@@ -68,13 +68,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                                                             V.[STATUS],
                                                             V.[QUILOMETRAGEMATUAL],
                                                             V.[FOTO],
-                                                            V.[GRUPOVEICULO_ID],
+                                                            V.[IDGRUPOVEICULO],
                                                             GV.[NOMEGRUPO]
 
                                                         FROM TBVEICULO AS V
                                                         INNER JOIN TBGRUPOVEICULO AS GV
 
-                                                            ON V.GRUPOVEICULO_ID = GV.ID
+                                                            ON V.IDGRUPOVEICULO = GV.ID
 
                                                             WHERE V.ID = @ID";
 
@@ -90,13 +90,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                                                             V.[STATUS],
                                                             V.[QUILOMETRAGEMATUAL],
                                                             V.[FOTO],
-                                                            V.[GRUPOVEICULO_ID],
+                                                            V.[IDGRUPOVEICULO],
                                                             GV.[NOMEGRUPO]
 
                                                         FROM TBVEICULO AS V
                                                         INNER JOIN TBGRUPOVEICULO AS GV
 
-                                                            ON V.GRUPOVEICULO_ID = GV.ID";
+                                                            ON V.IDGRUPOVEICULO = GV.ID";
 
     }
 }
