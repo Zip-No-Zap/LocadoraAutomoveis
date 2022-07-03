@@ -156,7 +156,6 @@
             this.toolStripPrincipal.Name = "toolStripPrincipal";
             this.toolStripPrincipal.Size = new System.Drawing.Size(1831, 33);
             this.toolStripPrincipal.TabIndex = 3;
-            this.toolStripPrincipal.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripPrincipal_ItemClicked);
             // 
             // btnInserir
             // 
