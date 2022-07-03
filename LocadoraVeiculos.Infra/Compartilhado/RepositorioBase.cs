@@ -21,7 +21,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
         protected abstract string Sql_selecao_por_id  {get;}
         protected abstract string Sql_selecao_todos { get; }
         public  string Sql_selecao_por_parametro { get; set; }
-        public  string PropriedadeDominioAValidar { get; set; } 
+        public  string PropriedadeDominioAValidarParametro { get; set; } 
 
         public RepositorioBase()
         {

@@ -78,9 +78,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
         private bool PlacaDuplicada(Veiculo veiculo)
         {
             repositorioVeiculo.Sql_selecao_por_parametro = @"SELECT * FROM TBVEICULO WHERE PLACA = @PLACA";
-            repositorioVeiculo.PropriedadeDominioAValidar = "Placa";
+            repositorioVeiculo.PropriedadeDominioAValidarParametro = "Placa";
 
-            var funcionarioEncontrado = repositorioVeiculo.SelecionarPorParametro(repositorioVeiculo.PropriedadeDominioAValidar, veiculo);
+            var funcionarioEncontrado = repositorioVeiculo.SelecionarPorParametro(repositorioVeiculo.PropriedadeDominioAValidarParametro, veiculo);
 
             return funcionarioEncontrado != null &&
                    funcionarioEncontrado.Placa.Equals(veiculo.Placa) &&

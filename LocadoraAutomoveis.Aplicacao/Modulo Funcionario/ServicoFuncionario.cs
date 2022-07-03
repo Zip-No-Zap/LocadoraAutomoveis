@@ -76,9 +76,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
         private bool LoginDuplicado(Funcionario funcionario)
         {
             repositorioFuncionario.Sql_selecao_por_parametro = @"SELECT * FROM TBFUNCIONARIO WHERE LOGIN = @LOGIN";
-            repositorioFuncionario.PropriedadeDominioAValidar = "login";
+            repositorioFuncionario.PropriedadeDominioAValidarParametro = "login";
 
-            var funcionarioEncontrado = repositorioFuncionario.SelecionarPorParametro(repositorioFuncionario.PropriedadeDominioAValidar, funcionario);
+            var funcionarioEncontrado = repositorioFuncionario.SelecionarPorParametro(repositorioFuncionario.PropriedadeDominioAValidarParametro, funcionario);
 
             return funcionarioEncontrado != null &&
                    funcionarioEncontrado.Login.Equals(funcionario.Login) &&
@@ -88,9 +88,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
         private bool NomeDuplicado(Funcionario funcionario)
         {
             repositorioFuncionario.Sql_selecao_por_parametro = @"SELECT * FROM TBFUNCIONARIO WHERE NOME = @NOME";
-            repositorioFuncionario.PropriedadeDominioAValidar = "nome";
+            repositorioFuncionario.PropriedadeDominioAValidarParametro = "nome";
 
-            var funcionarioEncontrado = repositorioFuncionario.SelecionarPorParametro(repositorioFuncionario.PropriedadeDominioAValidar, funcionario);
+            var funcionarioEncontrado = repositorioFuncionario.SelecionarPorParametro(repositorioFuncionario.PropriedadeDominioAValidarParametro, funcionario);
 
             return funcionarioEncontrado != null && 
                    funcionarioEncontrado.Nome.Equals(funcionario.Nome) && 

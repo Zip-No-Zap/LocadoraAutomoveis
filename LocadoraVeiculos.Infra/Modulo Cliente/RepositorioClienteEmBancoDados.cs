@@ -41,7 +41,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 		                                                ID = @ID";
 
         protected override string Sql_exclusao => @"DELETE FROM TBCLIENTE WHERE ID = @ID;";
-        protected override string Sql_selecao_por_id => @"SELECT * FROM TBCLIENTE";
+        protected override string Sql_selecao_por_id => @"SELECT * FROM TBCLIENTE WHERE ID = @ID";
 
         protected override string Sql_selecao_todos => @"SELECT * FROM TBCLIENTE";
     }

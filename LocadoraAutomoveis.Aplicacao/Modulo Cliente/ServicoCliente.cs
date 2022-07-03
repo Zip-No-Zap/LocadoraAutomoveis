@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
@@ -32,14 +33,18 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
             var resultadoValidacao = validadorCliente.Validate(cliente);
 
-            //if (NomeDuplicado(funcionario))
-            //    resultadoValidacao.Errors.Add(new ValidationFailure("Nome", "'Nome' duplicado"));
+            if (NomeDuplicado(cliente))
+                resultadoValidacao.Errors.Add(new ValidationFailure("Nome", "'Nome' duplicado"));
 
-            //if (LoginDuplicado(funcionario))
-            //    resultadoValidacao.Errors.Add(new ValidationFailure("Login", "'Login' duplicado"));
+            if (CpfDuplicado(cliente))
+                resultadoValidacao.Errors.Add(new ValidationFailure("Cpf", "'Cpf' duplicado"));
+
+            if (CnpjDuplicado(cliente))
+                resultadoValidacao.Errors.Add(new ValidationFailure("Cnpj", "'Cnpj' duplicado"));
 
             return resultadoValidacao;
         }
+
         public ValidationResult Editar(Cliente cliente)
         {
             var resultadoValidacao = Validar(cliente);
@@ -70,6 +75,47 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             return repositorioCliente.SelecionarPorId(id);
         }
 
+        #region privates
+
+        private bool NomeDuplicado(Cliente cliente)
+        {
+            repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE NOME = @NOME";
+            repositorioCliente.PropriedadeDominioAValidarParametro = "Nome";
+
+            var clienteEncontrado = repositorioCliente.SelecionarPorParametro(repositorioCliente.PropriedadeDominioAValidarParametro, cliente);
+
+            return clienteEncontrado != null &&
+                   clienteEncontrado.Nome.Equals(cliente.Nome) &&
+                  !clienteEncontrado.Id.Equals(cliente.Id);
+        }
+
+        private bool CnpjDuplicado(Cliente cliente)
+        {
+            repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE CNPJ = @CNPJ";
+            repositorioCliente.PropriedadeDominioAValidarParametro = "Cnpj";
+
+            var clienteEncontrado = repositorioCliente.SelecionarPorParametro(repositorioCliente.PropriedadeDominioAValidarParametro, cliente);
+
+            return clienteEncontrado != null &&
+                   clienteEncontrado.Cnpj != "-" &&
+                   clienteEncontrado.Cnpj.Equals(cliente.Cnpj) &&
+                  !clienteEncontrado.Id.Equals(cliente.Id);
+        }
+
+        private bool CpfDuplicado(Cliente cliente)
+        {
+            repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE CPF = @CPF";
+            repositorioCliente.PropriedadeDominioAValidarParametro = "Cpf";
+
+            var clienteEncontrado = repositorioCliente.SelecionarPorParametro(repositorioCliente.PropriedadeDominioAValidarParametro, cliente);
+
+            return clienteEncontrado != null &&
+                   clienteEncontrado.Cpf != "-" &&
+                   clienteEncontrado.Cpf.Equals(cliente.Cpf) &&
+                  !clienteEncontrado.Id.Equals(cliente.Id);
+        }
+
+        #endregion
 
     }
 }

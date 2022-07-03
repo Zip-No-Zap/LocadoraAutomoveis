@@ -1,7 +1,6 @@
 ﻿using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using System.Collections.Generic;
 
 using System.Windows.Forms;
@@ -50,7 +49,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             {
                 Cliente = Selecionado,
 
-                //GravarRegistro = servicoCliente.Editar
+                GravarRegistro = servicoCliente.Editar
             };
 
             DialogResult resultado = tela.ShowDialog();

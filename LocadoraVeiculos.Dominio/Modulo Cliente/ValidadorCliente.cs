@@ -15,10 +15,12 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
                 .NotEmpty().WithMessage("Campo 'Nome' é obrigatótio.");
 
             RuleFor(x => x.Cpf)
-              .MaximumLength(14).WithMessage("'CPF' inválido.");
+              .MaximumLength(14).WithMessage("'CPF' inválido.")
+              .NotEqual("   .   .   -").WithMessage("'CPF' inválido.");
 
             RuleFor(x => x.Cnpj)
-              .MaximumLength(14).WithMessage("'CNPJ' inválido.");
+              .MaximumLength(18).WithMessage("'CNPJ' inválido.")
+              .NotEqual("  .   .   / -").WithMessage("'CNPJ' inválido.");
 
             RuleFor(x => x.Endereco)
               .NotNull().WithMessage("Campo 'Endereço' é obrigatório.")
@@ -31,12 +33,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
             RuleFor(x => x.Telefone)
                .Telefone()
                .NotEqual("(  )      -");
-
-            //RuleFor(x => x.Cnh)
-            //    .NotNull().NotEmpty()
-            //    .MaximumLength(12)
-            //    .WithMessage("'CNH' inválido.");
-
         }
     }
 }

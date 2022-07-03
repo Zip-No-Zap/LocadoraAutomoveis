@@ -201,7 +201,7 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.tbEndereco);
             this.panel2.Location = new System.Drawing.Point(22, 13);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(635, 413);
             this.panel2.TabIndex = 52;
@@ -210,7 +210,7 @@
             // 
             this.tbCNPJ.Location = new System.Drawing.Point(291, 176);
             this.tbCNPJ.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbCNPJ.Mask = "00. 000. 000/0000-00";
+            this.tbCNPJ.Mask = "00,000,000/0000-00";
             this.tbCNPJ.Name = "tbCNPJ";
             this.tbCNPJ.Size = new System.Drawing.Size(316, 31);
             this.tbCNPJ.TabIndex = 57;
@@ -219,7 +219,7 @@
             // 
             this.tbCPF.Location = new System.Drawing.Point(290, 139);
             this.tbCPF.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbCPF.Mask = "000.000.000-00";
+            this.tbCPF.Mask = "000,000,000-00";
             this.tbCPF.Name = "tbCPF";
             this.tbCPF.Size = new System.Drawing.Size(316, 31);
             this.tbCPF.TabIndex = 56;
@@ -228,7 +228,7 @@
             // 
             this.rdbPessoaJuridica.AutoSize = true;
             this.rdbPessoaJuridica.Location = new System.Drawing.Point(26, 178);
-            this.rdbPessoaJuridica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdbPessoaJuridica.Margin = new System.Windows.Forms.Padding(4);
             this.rdbPessoaJuridica.Name = "rdbPessoaJuridica";
             this.rdbPessoaJuridica.Size = new System.Drawing.Size(154, 29);
             this.rdbPessoaJuridica.TabIndex = 55;
@@ -241,7 +241,7 @@
             // 
             this.rdbPessoaFisica.AutoSize = true;
             this.rdbPessoaFisica.Location = new System.Drawing.Point(26, 140);
-            this.rdbPessoaFisica.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdbPessoaFisica.Margin = new System.Windows.Forms.Padding(4);
             this.rdbPessoaFisica.Name = "rdbPessoaFisica";
             this.rdbPessoaFisica.Size = new System.Drawing.Size(138, 29);
             this.rdbPessoaFisica.TabIndex = 54;

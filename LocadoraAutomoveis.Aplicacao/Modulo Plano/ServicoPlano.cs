@@ -86,9 +86,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
                                                             ON PLANO.GRUPO_ID = GRUPO.ID WHERE VALORDIARIO_DIARIO = @VALORDIARIODIARIO";
 
-            repositorioPlano.PropriedadeDominioAValidar = "VALORDIARIODIARIO";
+            repositorioPlano.PropriedadeDominioAValidarParametro = "VALORDIARIODIARIO";
 
-            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeDominioAValidar, plano);
+            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeDominioAValidarParametro, plano);
 
             return planoEncontrado != null &&
                    planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&
