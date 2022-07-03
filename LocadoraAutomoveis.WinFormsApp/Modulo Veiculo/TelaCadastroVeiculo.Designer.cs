@@ -52,6 +52,7 @@
             this.btnOk = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.lblIDGrupo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -288,11 +289,24 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // lblIDGrupo
+            // 
+            this.lblIDGrupo.AutoSize = true;
+            this.lblIDGrupo.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblIDGrupo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblIDGrupo.Location = new System.Drawing.Point(430, 580);
+            this.lblIDGrupo.Name = "lblIDGrupo";
+            this.lblIDGrupo.Size = new System.Drawing.Size(120, 25);
+            this.lblIDGrupo.TabIndex = 23;
+            this.lblIDGrupo.Text = "pegaIDGrupo";
+            this.lblIDGrupo.Visible = false;
+            // 
             // TelaCadastroVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(750, 1002);
+            this.Controls.Add(this.lblIDGrupo);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.label10);
@@ -322,6 +336,7 @@
             this.Name = "TelaCadastroVeiculo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TelaCadastroVeiculo";
+            this.Load += new System.EventHandler(this.TelaCadastroVeiculo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -354,5 +369,6 @@
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label lblIDGrupo;
     }
 }

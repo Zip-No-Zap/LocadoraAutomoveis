@@ -55,7 +55,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             }
         }
 
-         private void LimparCamposDiario()
+        private void LimparCamposDiario()
         {
             tbValorDiario_Diario.Clear();
             tbValorKmRodado_Diario.Clear();
