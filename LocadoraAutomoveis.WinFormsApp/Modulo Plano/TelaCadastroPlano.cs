@@ -27,21 +27,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             {
                 plano = value;
 
-                if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[0])
-                {
-                    tbValorDiario_Diario.Text = plano.ValorDiario_Diario.ToString();
-                    tbValorKmRodado_Diario.Text = plano.ValorPorKm_Diario.ToString();
-                }
-                else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[1])
-                {
-                    tbValorDiario_Livre.Text = plano.ValorDiario_Livre.ToString();
-                }
-                else if (tabControlPlano.SelectedTab == tabControlPlano.TabPages[2])
-                {
-                    tbValorDiario_Controlado.Text = plano.ValorDiario_Controlado.ToString();
-                    tbKmRodado_Controlado.Text = plano.ValorPorKm_Controlado.ToString();
-                    tbLimiteQuilometragem.Text = plano.LimiteQuilometragem_Controlado.ToString();
-                }
+                tbValorDiario_Diario.Text = plano.ValorDiario_Diario.ToString();
+                tbValorKmRodado_Diario.Text = plano.ValorPorKm_Diario.ToString();
+
+                tbValorDiario_Livre.Text = plano.ValorDiario_Livre.ToString();
+
+                tbValorDiario_Controlado.Text = plano.ValorDiario_Controlado.ToString();
+                tbKmRodado_Controlado.Text = plano.ValorPorKm_Controlado.ToString();
+                tbLimiteQuilometragem.Text = plano.LimiteQuilometragem_Controlado.ToString();
             }
         }
 
