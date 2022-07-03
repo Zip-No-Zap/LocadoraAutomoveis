@@ -48,7 +48,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                                                     [QUILOMETRAGEMATUAL] = @QUILOMETRAGEMATUAL,
                                                     [FOTO] = @FOTO,
                                                     [IDGRUPOVEICULO] = @IDGRUPOVEICULO  
+
                                                   WHERE
+
                                                     ID = @ID";
 
 
@@ -73,6 +75,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                                                         INNER JOIN TBGRUPOVEICULO AS GV
 
                                                             ON V.GRUPOVEICULO_ID = GV.ID
+
                                                             WHERE V.ID = @ID";
 
         protected override string Sql_selecao_todos => @"SELECT  
@@ -92,7 +95,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
 
                                                         FROM TBVEICULO AS V
                                                         INNER JOIN TBGRUPOVEICULO AS GV
-
 
                                                             ON V.GRUPOVEICULO_ID = GV.ID";
 
