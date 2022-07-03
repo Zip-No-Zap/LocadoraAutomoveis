@@ -26,7 +26,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
             TelaCadastroVeiculo tela = new(grupos)
             {
-                Veiculo = new(),
+                Veiculo = new()
+                {
+                    GrupoPertencente = new(null),
+                },
+
                 GravarRegistro = servicoVeiculo.Inserir
             };
 

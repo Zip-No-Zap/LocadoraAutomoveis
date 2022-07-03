@@ -242,6 +242,7 @@
             this.pbFoto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbFoto.Name = "pbFoto";
             this.pbFoto.Size = new System.Drawing.Size(303, 307);
+            this.pbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbFoto.TabIndex = 18;
             this.pbFoto.TabStop = false;
             // 

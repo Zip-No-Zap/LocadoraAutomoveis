@@ -34,10 +34,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 new DataGridViewTextBoxColumn { DataPropertyName = "Ano", HeaderText = "Ano"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "TipoCombustivel", HeaderText = "Tipo Combustível"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "CapacidadeTanque", HeaderText = "Capacidade"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "GrupoPertencente", HeaderText = "Grupo"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "NomeGrupo", HeaderText = "Grupo"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "StatusVeiculo", HeaderText = "Status"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "QuilometragemAtual", HeaderText = "Quilometragem Atual"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Foto", HeaderText = "Foto"},
+                //new DataGridViewTextBoxColumn { DataPropertyName = "Foto", HeaderText = "Foto"},
             };
 
             return colunas;
