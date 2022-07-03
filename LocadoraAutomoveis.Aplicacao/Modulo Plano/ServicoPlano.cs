@@ -84,11 +84,13 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
                                                             INNER JOIN TBGRUPOVEICULO AS GRUPO 
 
-                                                            ON PLANO.GRUPO_ID = GRUPO.ID WHERE VALORDIARIO_DIARIO = @VALORDIARIODIARIO";
+                                                            ON PLANO.GRUPO_ID = GRUPO.ID 
+                                            
+                                                        WHERE VALORDIARIO_DIARIO = @VALORDIARIODIARIO";
 
-            repositorioPlano.PropriedadeDominioAValidarParametro = "VALORDIARIODIARIO";
+            repositorioPlano.PropriedadeParametro = "VALORDIARIODIARIO";
 
-            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeDominioAValidarParametro, plano);
+            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeParametro, plano);
 
             return planoEncontrado != null &&
                    planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&

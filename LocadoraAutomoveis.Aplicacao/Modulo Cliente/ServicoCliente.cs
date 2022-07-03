@@ -79,10 +79,10 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
         private bool NomeDuplicado(Cliente cliente)
         {
-            repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE NOME = @NOME";
-            repositorioCliente.PropriedadeDominioAValidarParametro = "Nome";
+            repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE NOME = @NOMECLIENTE";
+            repositorioCliente.PropriedadeParametro = "NOMECLIENTE";
 
-            var clienteEncontrado = repositorioCliente.SelecionarPorParametro(repositorioCliente.PropriedadeDominioAValidarParametro, cliente);
+            var clienteEncontrado = repositorioCliente.SelecionarPorParametro(repositorioCliente.PropriedadeParametro, cliente);
 
             return clienteEncontrado != null &&
                    clienteEncontrado.Nome.Equals(cliente.Nome) &&
@@ -91,10 +91,10 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
         private bool CnpjDuplicado(Cliente cliente)
         {
-            repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE CNPJ = @CNPJ";
-            repositorioCliente.PropriedadeDominioAValidarParametro = "Cnpj";
+            repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE CNPJ = @CNPJCLIENTE";
+            repositorioCliente.PropriedadeParametro = "CNPJCLIENTE";
 
-            var clienteEncontrado = repositorioCliente.SelecionarPorParametro(repositorioCliente.PropriedadeDominioAValidarParametro, cliente);
+            var clienteEncontrado = repositorioCliente.SelecionarPorParametro(repositorioCliente.PropriedadeParametro, cliente);
 
             return clienteEncontrado != null &&
                    clienteEncontrado.Cnpj != "-" &&
@@ -104,10 +104,10 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
         private bool CpfDuplicado(Cliente cliente)
         {
-            repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE CPF = @CPF";
-            repositorioCliente.PropriedadeDominioAValidarParametro = "Cpf";
+            repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE CPF = @CPFCLIENTE";
+            repositorioCliente.PropriedadeParametro = "CPFCLIENTE";
 
-            var clienteEncontrado = repositorioCliente.SelecionarPorParametro(repositorioCliente.PropriedadeDominioAValidarParametro, cliente);
+            var clienteEncontrado = repositorioCliente.SelecionarPorParametro(repositorioCliente.PropriedadeParametro, cliente);
 
             return clienteEncontrado != null &&
                    clienteEncontrado.Cpf != "-" &&

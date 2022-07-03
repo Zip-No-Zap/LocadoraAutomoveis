@@ -75,9 +75,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
         private bool NomeDuplicado(GrupoVeiculo grupoVeiculo)
         {
             repositorioGrupoVeiculo.Sql_selecao_por_parametro = @"SELECT * FROM TBGRUPOVEICULO WHERE NOMEGRUPO = @NOME";
-            repositorioGrupoVeiculo.PropriedadeDominioAValidarParametro = "Nome";
+            repositorioGrupoVeiculo.PropriedadeParametro = "Nome";
 
-            var funcionarioEncontrado = repositorioGrupoVeiculo.SelecionarPorParametro(repositorioGrupoVeiculo.PropriedadeDominioAValidarParametro, grupoVeiculo);
+            var funcionarioEncontrado = repositorioGrupoVeiculo.SelecionarPorParametro(repositorioGrupoVeiculo.PropriedadeParametro, grupoVeiculo);
 
             return funcionarioEncontrado != null &&
                    funcionarioEncontrado.Nome.Equals(grupoVeiculo.Nome) &&
