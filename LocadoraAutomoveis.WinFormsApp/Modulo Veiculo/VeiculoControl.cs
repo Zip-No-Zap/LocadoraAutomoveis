@@ -37,9 +37,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 new DataGridViewTextBoxColumn { DataPropertyName = "NomeGrupo", HeaderText = "Grupo"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "StatusVeiculo", HeaderText = "Status"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "QuilometragemAtual", HeaderText = "Quilometragem Atual"},
-                new DataGridViewImageColumn { DataPropertyName = "Foto", HeaderText = "Foto", ImageLayout = DataGridViewImageCellLayout.Stretch}
+                new DataGridViewImageColumn { DataPropertyName = "Foto", HeaderText = "Foto", ImageLayout = DataGridViewImageCellLayout.Stretch, Width = 50}
 
-                
             };
 
             return colunas;

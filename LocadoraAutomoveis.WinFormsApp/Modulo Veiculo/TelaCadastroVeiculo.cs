@@ -114,6 +114,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             if (txbAno.Text == "")
                 txbAno.Text = "0";
 
+            if (txbCapacidadeTanque.Text == "")
+                txbCapacidadeTanque.Text = "0";
+
             if (txbQuilometragemAtual.Text == "")
                 txbQuilometragemAtual.Text = "0";
         }
