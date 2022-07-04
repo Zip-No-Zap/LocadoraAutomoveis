@@ -243,12 +243,13 @@
             this.cmbGrupoVeiculo.Location = new System.Drawing.Point(393, 345);
             this.cmbGrupoVeiculo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
-            this.cmbGrupoVeiculo.Size = new System.Drawing.Size(301, 33);
+            this.cmbGrupoVeiculo.Size = new System.Drawing.Size(300, 33);
             this.cmbGrupoVeiculo.TabIndex = 16;
             this.cmbGrupoVeiculo.SelectedIndexChanged += new System.EventHandler(this.cmbGrupoVeiculo_SelectedIndexChanged);
             // 
             // pbFoto
             // 
+            this.pbFoto.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pbFoto.Location = new System.Drawing.Point(393, 63);
             this.pbFoto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbFoto.Name = "pbFoto";
@@ -260,10 +261,10 @@
             // btnAdicionarFoto
             // 
             this.btnAdicionarFoto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdicionarFoto.Location = new System.Drawing.Point(392, 247);
+            this.btnAdicionarFoto.Location = new System.Drawing.Point(393, 247);
             this.btnAdicionarFoto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdicionarFoto.Name = "btnAdicionarFoto";
-            this.btnAdicionarFoto.Size = new System.Drawing.Size(303, 44);
+            this.btnAdicionarFoto.Size = new System.Drawing.Size(300, 44);
             this.btnAdicionarFoto.TabIndex = 19;
             this.btnAdicionarFoto.Text = "Adicionar foto";
             this.btnAdicionarFoto.UseVisualStyleBackColor = true;
