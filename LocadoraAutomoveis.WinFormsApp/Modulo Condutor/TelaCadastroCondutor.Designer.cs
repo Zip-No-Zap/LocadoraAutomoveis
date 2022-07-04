@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbClienteECondutor = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbClientes = new System.Windows.Forms.ComboBox();
             this.tbCnh = new System.Windows.Forms.MaskedTextBox();
@@ -55,7 +55,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.cbClienteECondutor);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.cmbClientes);
             this.panel1.Controls.Add(this.tbCnh);
@@ -77,15 +77,16 @@
             this.panel1.Size = new System.Drawing.Size(485, 372);
             this.panel1.TabIndex = 0;
             // 
-            // checkBox1
+            // cbClienteECondutor
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(245, 43);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(166, 24);
-            this.checkBox1.TabIndex = 90;
-            this.checkBox1.Text = "Cliente é o condutor";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbClienteECondutor.AutoSize = true;
+            this.cbClienteECondutor.Enabled = false;
+            this.cbClienteECondutor.Location = new System.Drawing.Point(245, 43);
+            this.cbClienteECondutor.Name = "cbClienteECondutor";
+            this.cbClienteECondutor.Size = new System.Drawing.Size(166, 24);
+            this.cbClienteECondutor.TabIndex = 90;
+            this.cbClienteECondutor.Text = "Cliente é o condutor";
+            this.cbClienteECondutor.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -100,13 +101,15 @@
             // 
             // cmbClientes
             // 
+            this.cmbClientes.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.cmbClientes.DisplayMember = "Nome";
-            this.cmbClientes.Enabled = false;
+            this.cmbClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbClientes.FormattingEnabled = true;
             this.cmbClientes.Location = new System.Drawing.Point(14, 41);
             this.cmbClientes.Name = "cmbClientes";
             this.cmbClientes.Size = new System.Drawing.Size(218, 28);
             this.cmbClientes.TabIndex = 88;
+            this.cmbClientes.SelectedIndexChanged += new System.EventHandler(this.cmbClientes_SelectedIndexChanged);
             // 
             // tbCnh
             // 
@@ -286,8 +289,11 @@
             this.ClientSize = new System.Drawing.Size(532, 513);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "TelaCadastroCondutor";
-            this.Text = "TelaCadastroCondutor";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Cadastro de Condutor";
             this.Load += new System.EventHandler(this.TelaCadastroCondutor_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -299,7 +305,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbClienteECondutor;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbClientes;
         private System.Windows.Forms.MaskedTextBox tbCnh;

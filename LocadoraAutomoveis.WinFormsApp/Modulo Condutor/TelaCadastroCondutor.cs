@@ -83,5 +83,15 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
                 DialogResult = DialogResult.None;
             }
         }
+
+        private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cliente clienteSelecionado = (Cliente)cmbClientes.SelectedItem;
+            if(clienteSelecionado.TipoCliente == EnumTipoCliente.PessoaFisica)
+                cbClienteECondutor.Enabled = true;
+            else
+                cbClienteECondutor.Enabled = false;
+        }
+
     }
 }
