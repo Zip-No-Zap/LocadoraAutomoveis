@@ -127,6 +127,7 @@
             this.txbAno.Size = new System.Drawing.Size(303, 31);
             this.txbAno.TabIndex = 7;
             this.txbAno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbAno_KeyPress);
+            this.txbAno.Leave += new System.EventHandler(this.txbAno_Leave);
             // 
             // label4
             // 
@@ -261,6 +262,7 @@
             // 
             // btnAdicionarFoto
             // 
+            this.btnAdicionarFoto.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAdicionarFoto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdicionarFoto.Location = new System.Drawing.Point(393, 247);
             this.btnAdicionarFoto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -268,7 +270,7 @@
             this.btnAdicionarFoto.Size = new System.Drawing.Size(302, 44);
             this.btnAdicionarFoto.TabIndex = 19;
             this.btnAdicionarFoto.Text = "Adicionar foto";
-            this.btnAdicionarFoto.UseVisualStyleBackColor = true;
+            this.btnAdicionarFoto.UseVisualStyleBackColor = false;
             this.btnAdicionarFoto.Click += new System.EventHandler(this.btnAdicionarFoto_Click);
             // 
             // label10

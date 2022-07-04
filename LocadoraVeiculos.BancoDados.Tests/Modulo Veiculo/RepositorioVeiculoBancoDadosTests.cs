@@ -1,12 +1,8 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
+using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
 {
@@ -14,10 +10,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
     public class RepositorioVeiculoBancoDadosTests
     {
         RepositorioVeiculoEmBancoDados repoVeiculo;
+        RepositorioGrupoVeiculoEmBancoDados repoGrupo;
 
         public RepositorioVeiculoBancoDadosTests()
         {
             repoVeiculo = new();
+            repoGrupo = new();
             ResetarBancoDados();
         }
 
@@ -26,7 +24,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
         {
             //arrange
             var veiculo = InstanciarVeiculo();
-            veiculo.Modelo = "Audio A8";
+            repoGrupo.Inserir(veiculo.GrupoPertencente);
 
             //action
             repoVeiculo.Inserir(veiculo);
@@ -41,7 +39,9 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
         public void Deve_editar_veiculo()
         {
             //arrange
-            var veiculo = InstanciarVeiculo(); 
+            var veiculo = InstanciarVeiculo();
+
+            repoGrupo.Inserir(veiculo.GrupoPertencente);
 
             repoVeiculo.Inserir(veiculo);
 
@@ -119,6 +119,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
                 GrupoPertencente = new("Esportivos"),
                 StatusVeiculo = "Disponível",
                 QuilometragemAtual = 10000,
+                Foto = new byte[] {   }
             };
         }
 

@@ -137,15 +137,15 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             FormPrincipal.Instancia.AtualizarRodape("");
         }
 
-        //private void CarregarGrupos(List<GrupoVeiculo> grupos)
-        //{
-        //    cmbGrupoVeiculo.Items.Clear();
+        public static bool ValidarCampoData(string data)
+        {
+            DateTime date = new();
 
-        //    foreach (var item in grupos)
-        //    {
-        //        cmbGrupoVeiculo.Items.Add(item);
-        //    }
-        //}
+            if (DateTime.TryParse(data, out date) == false && data.Length != 4)
+                return false;
+
+            return true;
+        }
 
         private void TelaCadastroVeiculo_Load(object sender, EventArgs e)
         {
@@ -232,6 +232,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         private void txbCor_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidadorCampos.ValidadorCorVeiculo(e);
+        }
+
+        private void txbAno_Leave(object sender, EventArgs e)
+        {
+            if (!ValidarCampoData(txbAno.Text))
+                txbAno.Clear();
         }
     }
 }
