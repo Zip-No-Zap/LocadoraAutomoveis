@@ -77,7 +77,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
                 var email = Convert.ToString(leitor["CONDUTOR_EMAIL"].ToString());
                 var telefone = Convert.ToString(leitor["CONDUTOR_TELEFONE"]);
                 var endereco = Convert.ToString(leitor["CONDUTOR_ENDERECO"]);
-                
+
                 Condutor condutor = new Condutor();
                 condutor.Id = id;
                 condutor.Nome = nome;

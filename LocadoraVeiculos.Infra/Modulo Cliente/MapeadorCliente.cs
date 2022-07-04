@@ -44,9 +44,19 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                     Email = email,
                     Endereco = endereco, 
                     Telefone = telefone, 
-                    TipoCliente = (EnumTipoCliente) tipoCliente,
-                    
                 };
+
+                switch (tipoCliente)
+                {
+                    case 0:
+                        cliente.TipoCliente = EnumTipoCliente.PessoaFisica;
+                        break;
+                    case 1:
+                        cliente.TipoCliente = EnumTipoCliente.PessoaJuridica;
+
+                        break;
+                   
+                }
             }
 
             return cliente;
