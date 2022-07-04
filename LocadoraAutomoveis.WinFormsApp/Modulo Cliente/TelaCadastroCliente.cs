@@ -83,12 +83,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             
             var resultadoValidacao = GravarRegistro(cliente);
 
-            if (resultadoValidacao == null)
-            {
-                MessageBox.Show("Tentativa de inserir 'CPF' ou 'CNPJ' duplicado", "Aviso");
-                return;
-            }
-
+            
             if (resultadoValidacao.IsValid == false)
             {
                 string erro = resultadoValidacao.Errors[0].ErrorMessage;

@@ -24,7 +24,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
         {
             TelaCadastroCondutor tela = new(servicoCliente.SelecionarTodos())
             {
-                Condutor = new(),
+                Condutor = new() { Cliente = new()},
 
                 GravarRegistro = servicoCondutor.Inserir
             };

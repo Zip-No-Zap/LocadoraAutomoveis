@@ -209,7 +209,7 @@
             // 
             this.tbCNPJ.Location = new System.Drawing.Point(233, 141);
             this.tbCNPJ.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbCNPJ.Mask = "00.000.000/0000-00";
+            this.tbCNPJ.Mask = "00,000,000/0000-00";
             this.tbCNPJ.Name = "tbCNPJ";
             this.tbCNPJ.Size = new System.Drawing.Size(254, 27);
             this.tbCNPJ.TabIndex = 57;
@@ -218,7 +218,7 @@
             // 
             this.tbCPF.Location = new System.Drawing.Point(232, 111);
             this.tbCPF.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbCPF.Mask = "000.000.000-00";
+            this.tbCPF.Mask = "000,000,000-00";
             this.tbCPF.Name = "tbCPF";
             this.tbCPF.Size = new System.Drawing.Size(254, 27);
             this.tbCPF.TabIndex = 56;

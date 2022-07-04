@@ -28,7 +28,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
                 new DataGridViewTextBoxColumn { DataPropertyName = "Telefone", HeaderText = "Telefone"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Cnh", HeaderText = "CNH"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "VencimentoCnh", HeaderText = "Vencimento CNH"},
-
+                new DataGridViewTextBoxColumn { DataPropertyName = "Cliente", HeaderText = "Cliente"}
             };
 
             return colunas;
@@ -39,9 +39,17 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
             return grid.SelecionarNumero<int>();
         }
 
-        public void AtualizarRegistros(List<Condutor> condutor)
+        public void AtualizarRegistros(List<Condutor> condutores)
         {
-            grid.DataSource = condutor;
+
+            grid.Rows.Clear();
+
+            foreach (var condutor in condutores)
+            {
+                grid.Rows.Add(condutor.Id, condutor.Nome, condutor.Cpf,
+                    condutor.Email, condutor.Endereco, condutor.Telefone,
+                    condutor.Cnh, condutor.VencimentoCnh, condutor.Cliente.Nome);
+            }
         }
     }
 }

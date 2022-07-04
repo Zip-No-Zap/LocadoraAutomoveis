@@ -31,7 +31,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                 var cpf = Convert.ToString(leitor["CLIENTE_CPF"]);
                 var cnpj = Convert.ToString(leitor["CLIENTE_CNPJ"]);
                 var endereco = Convert.ToString(leitor["CLIENTE_ENDERECO"]);
-                var tipoCliente = Convert.ToString(leitor["CLIENTE_TIPOCLIENTE"]);
+                var tipoCliente = Convert.ToInt16(leitor["CLIENTE_TIPOCLIENTE"]);
                 var email = Convert.ToString(leitor["CLIENTE_EMAIL"]);
                 var telefone = Convert.ToString(leitor["CLIENTE_TELEFONE"]);
 
@@ -43,7 +43,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                     Cnpj = cnpj,
                     Email = email,
                     Endereco = endereco, 
-                    Telefone = telefone
+                    Telefone = telefone, 
+                    TipoCliente = (EnumTipoCliente) tipoCliente,
+                    
                 };
             }
 
@@ -56,21 +58,31 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 
         public override List<Cliente> LerTodos(SqlDataReader leitor)
         {
-            List<Cliente> clientes = new();
+            List<Cliente> clientes = new List<Cliente>();
 
             while (leitor.Read())
             {
                 var id = Convert.ToInt32(leitor["CLIENTE_ID"]);
                 var nome = Convert.ToString(leitor["CLIENTE_NOME"]);
-                var cpf = Convert.ToString(leitor["CLIENTE_CPF"]);
+                string cpf = Convert.ToString(leitor["CLIENTE_CPF"]);
                 var cnpj = Convert.ToString(leitor["CLIENTE_CNPJ"]);
                 var endereco = Convert.ToString(leitor["CLIENTE_ENDERECO"]);
-                var tipoCliente = Convert.ToString(leitor["CLIENTE_TIPOCLIENTE"]);
+                int tipoCliente = Convert.ToInt32(leitor["CLIENTE_TIPOCLIENTE"]);
                 var email = Convert.ToString(leitor["CLIENTE_EMAIL"]);
                 var telefone = Convert.ToString(leitor["CLIENTE_TELEFONE"]);
-
-
                 Cliente cliente = new Cliente();
+
+                switch (tipoCliente)
+                {
+                    case 0:
+                        cliente.TipoCliente = EnumTipoCliente.PessoaFisica;
+                        break;
+                    case 1:
+                        cliente.TipoCliente = EnumTipoCliente.PessoaJuridica;
+                        break;
+                        
+                }
+
                 cliente.Id = id;
                 cliente.Nome = nome;
                 cliente.Cpf = cpf;
