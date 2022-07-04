@@ -95,7 +95,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Veiculo
             ValidationResult resultado = validaVeiculo.Validate(veiculo);
 
             //assert
-            Assert.AreEqual("'TipoCombustivel' não pode ser vazio", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("'Tipo Combustivel' não pode ser vazio", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -112,7 +112,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Veiculo
             ValidationResult resultado = validaVeiculo.Validate(veiculo);
 
             //assert
-            Assert.AreEqual("'CapacidadeTanque' não pode ser vazio", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("'Capacidade Tanque' não pode ser vazio", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -129,7 +129,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Veiculo
             ValidationResult resultado = validaVeiculo.Validate(veiculo);
 
             //assert
-            Assert.AreEqual("'GrupoPertencente' não pode ser vazio", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("'Grupo Pertencente' não pode ser vazio", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -146,7 +146,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Veiculo
             ValidationResult resultado = validaVeiculo.Validate(veiculo);
 
             //assert
-            Assert.AreEqual("'StatusVeiculo' não pode ser vazio", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("'Status Veiculo' não pode ser vazio", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -163,8 +163,26 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Veiculo
             ValidationResult resultado = validaVeiculo.Validate(veiculo);
 
             //assert
-            Assert.AreEqual("'QuilometragemAtual' não pode ser vazio", resultado.Errors[0].ErrorMessage);
+            Assert.AreEqual("'Quilometragem Atual' não pode ser vazio", resultado.Errors[0].ErrorMessage);
         }
+
+        [TestMethod]
+
+        public void foto_nao_pode_ser_vazio()
+        {
+            var veiculo = InstanciarVeiculo();
+
+            veiculo.Foto = null;
+
+            ValidadorVeiculo validaVeiculo = new();
+
+            //action
+            ValidationResult resultado = validaVeiculo.Validate(veiculo);
+
+            //assert
+            Assert.AreEqual("'Foto' não pode ser vazio", resultado.Errors[0].ErrorMessage);
+        }
+
 
         #region Instancia de Veiculo
 
