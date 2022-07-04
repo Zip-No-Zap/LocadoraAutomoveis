@@ -120,22 +120,24 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             FormPrincipal.Instancia.AtualizarRodape("");
         }
 
-        private void CarregarGrupos(List<GrupoVeiculo> grupos)
-        {
-            cmbGrupoVeiculo.Items.Clear();
+        //private void CarregarGrupos(List<GrupoVeiculo> grupos)
+        //{
+        //    cmbGrupoVeiculo.Items.Clear();
 
-            foreach (var item in grupos)
-            {
-                cmbGrupoVeiculo.Items.Add(item);
-            }
-        }
+        //    foreach (var item in grupos)
+        //    {
+        //        cmbGrupoVeiculo.Items.Add(item);
+        //    }
+        //}
 
         private void TelaCadastroVeiculo_Load(object sender, EventArgs e)
         {
+            FormPrincipal.Instancia.AtualizarRodape("");
+
             ObterItensGrupoVeiculo();
         }
 
-        private void ObterIdGrupoVeiculoj()
+        private void ObterIdGrupoVeiculo()
         {
             if (cmbGrupoVeiculo.SelectedIndex != -1)
             {
@@ -150,7 +152,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
         private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ObterIdGrupoVeiculoj();
+            ObterIdGrupoVeiculo();
         }
 
         private void ObterItensGrupoVeiculo()//TODO : Obter itens grupo dever ser feito pelo controlador
@@ -195,9 +197,15 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             ValidadorCampos.ImpedirLetrasCharEspeciais(e);
         }
 
-        private void txbCor_TextChanged(object sender, EventArgs e)
+        private void TelaCadastroVeiculo_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-
+            FormPrincipal.Instancia.AtualizarRodape("");
         }
+
+        private void cmbGrupoVeiculo_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            ObterIdGrupoVeiculo();
+        }
+    
     }
 }

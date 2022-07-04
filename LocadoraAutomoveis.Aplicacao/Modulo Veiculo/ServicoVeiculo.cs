@@ -35,14 +35,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
             return resultadoValidacao;
         }
 
-        public ValidationResult Excluir(Veiculo veiculo)
+        public void Excluir(Veiculo veiculo)
         {
-            var resultadoValidacao = Validar(veiculo);
-
-            if (resultadoValidacao.IsValid)
-                repositorioVeiculo.Excluir(veiculo);
-
-            return resultadoValidacao;
+            repositorioVeiculo.Excluir(veiculo);
         }
 
         public List<Veiculo> SelecionarTodos()
@@ -61,11 +56,11 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 
             var resultadoValidacao = validadorVeiculo.Validate(veiculo);
 
-            if (PlacaDuplicada(veiculo))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Placa", "'Placa' duplicada"));
-
             if (ModeloDuplicado(veiculo))
                 resultadoValidacao.Errors.Add(new ValidationFailure("Modelo", "'Modelo' duplicado"));
+
+            if (PlacaDuplicada(veiculo))
+                resultadoValidacao.Errors.Add(new ValidationFailure("Placa", "'Placa' duplicada"));
 
             return resultadoValidacao;
         }
@@ -95,7 +90,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 
                                                                 ON V.IDGRUPOVEICULO = GV.ID
 
-                                                            WHERE PLACA = @PLACAVEICULO";
+                                                            WHERE V.PLACA = @PLACAVEICULO";
 
             repositorioVeiculo.PropriedadeParametro = "PLACAVEICULO";
 
@@ -128,14 +123,14 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 
                                                                     ON V.IDGRUPOVEICULO = GV.ID
 
-                                                                WHERE MODELO = @MODELOVEICULO";
+                                                                WHERE V.MODELO = @MODELOVEICULO";
 
             repositorioVeiculo.PropriedadeParametro = "MODELOVEICULO";
 
             var veiculoEncontrado = repositorioVeiculo.SelecionarPorParametro(repositorioVeiculo.PropriedadeParametro, veiculo);
 
             return veiculoEncontrado != null &&
-                   veiculoEncontrado.Placa.Equals(veiculo.Placa) &&
+                   veiculoEncontrado.Modelo.Equals(veiculo.Modelo) &&
                   !veiculoEncontrado.Id.Equals(veiculo.Id);
         }
 

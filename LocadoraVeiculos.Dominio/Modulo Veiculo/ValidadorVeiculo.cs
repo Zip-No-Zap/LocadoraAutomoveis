@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using LocadoraVeiculos.Dominio.Compartilhado;
-using System;
 
 
 namespace LocadoraVeiculos.Dominio.Modulo_Veiculo

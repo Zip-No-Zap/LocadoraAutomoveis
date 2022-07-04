@@ -180,10 +180,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void cbGrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ObterIdGrupoVeiculoj();
+            ObterIdGrupoVeiculo();
         }
 
-        private void ObterIdGrupoVeiculoj()
+        private void ObterIdGrupoVeiculo()
         {
             if (cbGrupo.SelectedIndex != -1) 
             {

@@ -26,9 +26,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
             cmd.Parameters.AddWithValue("NOMEGRUPO", entidade.GrupoPertencente.Nome);
         }
 
-        public override void DefinirParametroValidacao(string campoBancoDados, Veiculo entidade, SqlCommand cmd)
+        public override void DefinirParametroValidacao(string parametro, Veiculo entidade, SqlCommand cmd)
         {
-            cmd.Parameters.AddWithValue(campoBancoDados.ToUpper(), entidade.Modelo);
+            cmd.Parameters.AddWithValue(parametro.ToUpper(), entidade.Modelo);
         }
 
         public override List<Veiculo> LerTodos(SqlDataReader leitor)

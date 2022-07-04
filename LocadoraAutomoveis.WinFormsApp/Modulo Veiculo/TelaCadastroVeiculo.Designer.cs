@@ -115,7 +115,6 @@
             this.txbCor.Name = "txbCor";
             this.txbCor.Size = new System.Drawing.Size(303, 31);
             this.txbCor.TabIndex = 5;
-            this.txbCor.TextChanged += new System.EventHandler(this.txbCor_TextChanged);
             // 
             // txbAno
             // 
@@ -245,7 +244,7 @@
             this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
             this.cmbGrupoVeiculo.Size = new System.Drawing.Size(300, 33);
             this.cmbGrupoVeiculo.TabIndex = 16;
-            this.cmbGrupoVeiculo.SelectedIndexChanged += new System.EventHandler(this.cmbGrupoVeiculo_SelectedIndexChanged);
+            this.cmbGrupoVeiculo.SelectedIndexChanged += new System.EventHandler(this.cmbGrupoVeiculo_SelectedIndexChanged_1);
             // 
             // pbFoto
             // 
@@ -370,6 +369,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Veículo";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaCadastroVeiculo_FormClosing_1);
             this.Load += new System.EventHandler(this.TelaCadastroVeiculo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.panel1.ResumeLayout(false);
