@@ -79,7 +79,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             return funcionarios;
         }
 
-        public T SelecionarPorParametro(string propriedade, T entidade)
+        public T SelecionarPorParametro(string parametroPropriedade, T entidade)
         {
             Tmapeador mapeador = new();
 
@@ -87,7 +87,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             SqlCommand cmd_Selecao = new(Sql_selecao_por_parametro, conexaoBancoDados.conexao);
 
-            mapeador.DefinirParametroValidacao(propriedade, entidade, cmd_Selecao);
+            mapeador.DefinirParametroValidacao(parametroPropriedade, entidade, cmd_Selecao);
 
             SqlDataReader leitor = cmd_Selecao.ExecuteReader();
 

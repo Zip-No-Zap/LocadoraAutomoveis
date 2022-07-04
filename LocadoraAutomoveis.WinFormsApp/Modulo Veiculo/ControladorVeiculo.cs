@@ -2,12 +2,9 @@
 using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 {
@@ -27,9 +24,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         {
             var grupos = servicoGrupoVeiculo.SelecionarTodos();
 
-            TelaCadastroVeiculo tela = new(grupos)
+            TelaCadastroVeiculo tela = new()
             {
-                Veiculo = new(),
+                Veiculo = new()
+                {
+                    GrupoPertencente = new(null),
+
+                },
+
                 GravarRegistro = servicoVeiculo.Inserir
             };
 
@@ -40,8 +42,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 CarregarVeiculos();
             }
         }
-
-
 
         public override void Editar()
         {
@@ -56,7 +56,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
             var grupos = servicoGrupoVeiculo.SelecionarTodos();
 
-            TelaCadastroVeiculo tela = new(grupos);
+            TelaCadastroVeiculo tela = new();
 
             tela.Veiculo = Selecionado;
 
@@ -69,8 +69,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 CarregarVeiculos();
             }
         }
-
-
 
         public override void Excluir()
         {
@@ -94,8 +92,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 CarregarVeiculos();
             }
         }
-
-
 
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()
         {

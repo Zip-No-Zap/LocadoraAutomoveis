@@ -3,9 +3,7 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
 {
@@ -22,13 +20,15 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
             cmd.Parameters.AddWithValue("CAPACIDADETANQUE", entidade.CapacidadeTanque);
             cmd.Parameters.AddWithValue("STATUS", entidade.StatusVeiculo);
             cmd.Parameters.AddWithValue("QUILOMETRAGEMATUAL", entidade.QuilometragemAtual);
-            cmd.Parameters.AddWithValue("GRUPOVEICULO_ID", entidade.GrupoPertencente);
             cmd.Parameters.AddWithValue("FOTO", entidade.Foto);
+
+            cmd.Parameters.AddWithValue("IDGRUPOVEICULO", entidade.GrupoPertencente.Id);
+            cmd.Parameters.AddWithValue("NOMEGRUPO", entidade.GrupoPertencente.Nome);
         }
 
-        public override void DefinirParametroValidacao(string campoBd, Veiculo entidade, SqlCommand cmd)
+        public override void DefinirParametroValidacao(string parametro, Veiculo entidade, SqlCommand cmd)
         {
-            cmd.Parameters.AddWithValue(campoBd.ToUpper(), entidade.Modelo);
+            cmd.Parameters.AddWithValue(parametro.ToUpper(), entidade.Placa);
         }
 
         public override List<Veiculo> LerTodos(SqlDataReader leitor)
@@ -46,12 +46,19 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                 int capacidade = Convert.ToInt32(leitor["CAPACIDADETANQUE"]);
                 string status = leitor["STATUS"].ToString();
                 int quilometragem = Convert.ToInt32(leitor["QUILOMETRAGEMATUAL"]);
-                int grupoVeiculo = Convert.ToInt32(leitor["GRUPOVEICULO_ID"]);
+
+                int grupoVeiculoID = Convert.ToInt32(leitor["IDGRUPOVEICULO"]);
+                string grupoVeiculoNome = (leitor["NOMEGRUPO"]).ToString();
+
                 byte[] foto = (byte[])leitor["FOTO"];
 
                 Veiculo veiculo = new(modelo, placa, cor, ano, tipoCombustivel, capacidade, status, quilometragem, foto)
                 {
-                    Id = id
+                    Id = id,
+                    GrupoPertencente = new(grupoVeiculoNome)
+                    {
+                        Id = grupoVeiculoID,
+                    },
                 };
 
                 veiculos.Add(veiculo);
@@ -75,20 +82,19 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                 int capacidade = Convert.ToInt32(leitor["CAPACIDADETANQUE"]);
                 string status = leitor["STATUS"].ToString();
                 int quilometragem = Convert.ToInt32(leitor["QUILOMETRAGEMATUAL"]);
-                int grupoVeiculo = Convert.ToInt32(leitor["GRUPOVEICULO_ID"]);
+
+                int grupoVeiculoID = Convert.ToInt32(leitor["IDGRUPOVEICULO"]);
+                string grupoVeiculoNome = (leitor["NOMEGRUPO"]).ToString();
+
                 byte[] foto = (byte[])leitor["FOTO"];
 
-                veiculo = new Veiculo(modelo, placa, cor, ano, tipoCombustivel, capacidade, status, quilometragem, foto)
+                veiculo = new(modelo, placa, cor, ano, tipoCombustivel, capacidade, status, quilometragem, foto)
                 {
                     Id = id,
-                    Placa = placa,
-                    Cor = cor,
-                    Ano = ano,
-                    TipoCombustivel=tipoCombustivel,
-                    CapacidadeTanque = capacidade,
-                    StatusVeiculo = status,
-                    QuilometragemAtual = quilometragem,
-                    Foto = foto
+                    GrupoPertencente = new(grupoVeiculoNome)
+                    {
+                        Id = grupoVeiculoID,
+                    },
                 };
             }
 

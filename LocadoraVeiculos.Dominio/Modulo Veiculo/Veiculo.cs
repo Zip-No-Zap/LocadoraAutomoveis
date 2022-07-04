@@ -66,6 +66,14 @@ namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
             }
         }
 
+        public string NomeGrupo 
+        {
+            get
+            {
+                return GrupoPertencente.Nome;
+            }
+        }
+
 
     }
 }

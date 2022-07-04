@@ -55,7 +55,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             }
         }
 
-         private void LimparCamposDiario()
+        private void LimparCamposDiario()
         {
             tbValorDiario_Diario.Clear();
             tbValorKmRodado_Diario.Clear();
@@ -180,10 +180,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void cbGrupo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ObterIdGrupoVeiculoj();
+            ObterIdGrupoVeiculo();
         }
 
-        private void ObterIdGrupoVeiculoj()
+        private void ObterIdGrupoVeiculo()
         {
             if (cbGrupo.SelectedIndex != -1) 
             {
