@@ -29,6 +29,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 Veiculo = new()
                 {
                     GrupoPertencente = new(null),
+
                 },
 
                 GravarRegistro = servicoVeiculo.Inserir

@@ -4,7 +4,6 @@ using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -41,9 +40,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 txbCapacidadeTanque.Text = veiculo.CapacidadeTanque.ToString();
                 cmbStatus.Text = veiculo.StatusVeiculo;
                 txbQuilometragemAtual.Text = veiculo.QuilometragemAtual.ToString();
+                
                 pbFoto.Image = veiculo.Imagem;
 
                 cmbGrupoVeiculo.Text = veiculo.GrupoPertencente.Nome;
+
+                imagemSelecionada = veiculo.Foto;
             }
         }
         public TelaCadastroVeiculo()
@@ -67,6 +69,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             veiculo.CapacidadeTanque = Convert.ToInt32(txbCapacidadeTanque.Text);
             veiculo.StatusVeiculo = cmbStatus.Text;
             veiculo.QuilometragemAtual = Convert.ToInt32(txbQuilometragemAtual.Text);
+
             veiculo.Foto = imagemSelecionada;
 
             ValidationResult resultadoValidacao = GravarRegistro(veiculo);
@@ -105,6 +108,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
         private void btnAdicionarFoto_Click(object sender, EventArgs e)
         {
+            imagemSelecionada = veiculo.Foto;
 
             if(openFileDialog1.ShowDialog() == DialogResult.OK)
             {
