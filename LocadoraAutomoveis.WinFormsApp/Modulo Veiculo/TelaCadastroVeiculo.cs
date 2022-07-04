@@ -56,6 +56,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            ImputarZeroCamposVazios();
+
             if (!string.IsNullOrEmpty(cmbGrupoVeiculo.Text))
                 veiculo.GrupoPertencente.Id = int.Parse(lblIDGrupo.Text);
 
@@ -105,6 +107,16 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
             txbModelo.Focus();
         }
+
+        private void ImputarZeroCamposVazios()
+        {
+            if (txbAno.Text == "")
+                txbAno.Text = "0";
+
+            if (txbQuilometragemAtual.Text == "")
+                txbQuilometragemAtual.Text = "0";
+        }
+
 
         private void btnAdicionarFoto_Click(object sender, EventArgs e)
         {
