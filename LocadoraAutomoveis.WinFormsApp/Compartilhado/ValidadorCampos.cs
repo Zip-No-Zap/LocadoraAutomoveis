@@ -1,10 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
 {
@@ -76,9 +73,37 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
         {
             if (texto.Length < 2)
             {
-                MessageBox.Show("Campo 'Nome' não aceita menos que dois caracteres", "Aviso", MessageBoxButtons.OK);
-
                 return;
+            }
+        }
+
+        public static void ValidadorAno(KeyPressEventArgs e)
+        {
+            string caracteresPermitidos = "0123456789";
+
+            if (!(caracteresPermitidos.Contains(e.KeyChar.ToString().ToUpper()) || char.IsControl(e.KeyChar)))
+            {
+                e.Handled = true;
+            }
+        }
+
+        public static void ValidadorPlacaVeiculo(KeyPressEventArgs e)
+        {
+            string caracteresPermitidos = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            if (!(caracteresPermitidos.Contains(e.KeyChar.ToString().ToUpper()) || char.IsControl(e.KeyChar)))
+            {
+                e.Handled = true;
+            }
+        }
+
+        public static void ValidadorCorVeiculo(KeyPressEventArgs e)
+        {
+            string caracteresPermitidos = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
+
+            if (!(caracteresPermitidos.Contains(e.KeyChar.ToString().ToUpper()) || char.IsControl(e.KeyChar)))
+            {
+                e.Handled = true;
             }
         }
 

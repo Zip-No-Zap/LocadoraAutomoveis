@@ -56,6 +56,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            ImputarZeroCamposVazios();
+
             if (!string.IsNullOrEmpty(cmbGrupoVeiculo.Text))
                 veiculo.GrupoPertencente.Id = int.Parse(lblIDGrupo.Text);
 
@@ -96,15 +98,29 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             txbPlaca.Clear();
             txbCor.Clear();
             txbAno.Clear();
-            cmbGrupoVeiculo.Items.Clear();
             txbCapacidadeTanque.Clear();
-            cmbGrupoVeiculo.Items.Clear();
-            cmbStatus.Items.Clear();
             txbQuilometragemAtual.Clear();
             pbFoto.Image = null;
 
+            cmbGrupoVeiculo.SelectedIndex = -1;
+            cmbStatus.SelectedIndex = -1;
+            cmbTipoCombustivel.SelectedIndex = -1;
+
             txbModelo.Focus();
         }
+
+        private void ImputarZeroCamposVazios()
+        {
+            if (txbAno.Text == "")
+                txbAno.Text = "0";
+
+            if (txbCapacidadeTanque.Text == "")
+                txbCapacidadeTanque.Text = "0";
+
+            if (txbQuilometragemAtual.Text == "")
+                txbQuilometragemAtual.Text = "0";
+        }
+
 
         private void btnAdicionarFoto_Click(object sender, EventArgs e)
         {
@@ -124,15 +140,15 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             FormPrincipal.Instancia.AtualizarRodape("");
         }
 
-        //private void CarregarGrupos(List<GrupoVeiculo> grupos)
-        //{
-        //    cmbGrupoVeiculo.Items.Clear();
+        public static bool ValidarCampoData(string data)
+        {
+            DateTime date = new();
 
-        //    foreach (var item in grupos)
-        //    {
-        //        cmbGrupoVeiculo.Items.Add(item);
-        //    }
-        //}
+            if (DateTime.TryParse(data, out date) == false && data.Length != 4)
+                return false;
+
+            return true;
+        }
 
         private void TelaCadastroVeiculo_Load(object sender, EventArgs e)
         {
@@ -198,7 +214,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
         private void txbAno_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+            ValidadorCampos.ValidadorAno(e);
         }
 
         private void TelaCadastroVeiculo_FormClosing_1(object sender, FormClosingEventArgs e)
@@ -210,6 +226,21 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         {
             ObterIdGrupoVeiculo();
         }
-    
+
+        private void txbPlaca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ValidadorPlacaVeiculo(e);
+        }
+
+        private void txbCor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ValidadorCorVeiculo(e);
+        }
+
+        private void txbAno_Leave(object sender, EventArgs e)
+        {
+            if (!ValidarCampoData(txbAno.Text))
+                txbAno.Clear();
+        }
     }
 }

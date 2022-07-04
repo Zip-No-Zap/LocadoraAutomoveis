@@ -3,11 +3,6 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
 {
@@ -15,12 +10,12 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
     public class RepositorioVeiculoBancoDadosTests
     {
         RepositorioVeiculoEmBancoDados repoVeiculo;
-        RepositorioGrupoVeiculoEmBancoDados repoGrupoVeiculo;
+        RepositorioGrupoVeiculoEmBancoDados repoGrupo;
 
         public RepositorioVeiculoBancoDadosTests()
         {
             repoVeiculo = new();
-            repoGrupoVeiculo = new();
+            repoGrupo = new();
             ResetarBancoDados();
         }
 
@@ -29,9 +24,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
         {
             //arrange
             var veiculo = InstanciarVeiculo();
-            veiculo.Modelo = "Audio A8";
-
-            repoGrupoVeiculo.Inserir(veiculo.GrupoPertencente);
+            repoGrupo.Inserir(veiculo.GrupoPertencente);
 
             //action
             repoVeiculo.Inserir(veiculo);
@@ -48,8 +41,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
             //arrange
             var veiculo = InstanciarVeiculo();
 
-
-            repoGrupoVeiculo.Inserir(veiculo.GrupoPertencente);
+            repoGrupo.Inserir(veiculo.GrupoPertencente);
 
             repoVeiculo.Inserir(veiculo);
 
@@ -70,9 +62,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
             //arrange
             var veiculo = InstanciarVeiculo();
 
-
-            repoGrupoVeiculo.Inserir(veiculo.GrupoPertencente);
-
             repoVeiculo.Inserir(veiculo);
 
             //action
@@ -91,11 +80,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
             var veiculo1 = InstanciarVeiculo();
             var veiculo2 = InstanciarVeiculo2();
 
-
-            repoGrupoVeiculo.Inserir(veiculo1.GrupoPertencente);
-
-            repoGrupoVeiculo.Inserir(veiculo2.GrupoPertencente);
-
             repoVeiculo.Inserir(veiculo1);
             repoVeiculo.Inserir(veiculo2);
 
@@ -112,8 +96,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
             //arrange
             var veiculo1 = InstanciarVeiculo();
 
-            repoGrupoVeiculo.Inserir(veiculo1.GrupoPertencente);
-
             repoVeiculo.Inserir(veiculo1);
 
             //action
@@ -126,8 +108,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
         #region privados
         Veiculo InstanciarVeiculo()
         {
-
-
             return new Veiculo()
             {
                 Modelo = "Lamborghini Gallardo",
@@ -139,8 +119,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
                 GrupoPertencente = new("Esportivos"),
                 StatusVeiculo = "Disponível",
                 QuilometragemAtual = 10000,
-                Foto = new byte[] { }
-
+                Foto = new byte[] {   }
             };
         }
 
@@ -157,7 +136,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
                 GrupoPertencente = new("Esportivos"),
                 StatusVeiculo = "Disponível",
                 QuilometragemAtual = 1000,
-                Foto = new byte[] { }
             };
         }
 
