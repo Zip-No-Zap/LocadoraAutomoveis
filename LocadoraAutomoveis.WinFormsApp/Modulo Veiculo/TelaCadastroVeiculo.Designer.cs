@@ -116,6 +116,7 @@
             this.txbCor.Name = "txbCor";
             this.txbCor.Size = new System.Drawing.Size(303, 31);
             this.txbCor.TabIndex = 5;
+            this.txbCor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCor_KeyPress);
             // 
             // txbAno
             // 

@@ -215,5 +215,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         {
             ValidadorCampos.ValidadorPlacaVeiculo(e);
         }
+
+        private void txbCor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ValidadorCorVeiculo(e);
+        }
     }
 }
