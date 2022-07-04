@@ -18,8 +18,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Condutor
         public string Cnh { get; set; }
         public DateTime VencimentoCnh { get { return _dateVemcimentoCnh.Date; } set { _dateVemcimentoCnh = value; } }
 
-        public string NomeCliente { get { return Cliente.Nome; } }
-
         private DateTime _dateVemcimentoCnh;
 
         public Condutor()
@@ -38,8 +36,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Condutor
             Cnh = cnh;
             VencimentoCnh = vencimentoCnh;
         }
-
-        
+sss        
         public override bool Equals(object obj)
         {
             return obj is Condutor condutor &&
