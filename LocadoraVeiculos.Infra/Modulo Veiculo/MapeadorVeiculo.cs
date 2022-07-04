@@ -3,9 +3,7 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
 {
@@ -28,9 +26,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
             cmd.Parameters.AddWithValue("NOMEGRUPO", entidade.GrupoPertencente.Nome);
         }
 
-        public override void DefinirParametroValidacao(string campoBd, Veiculo entidade, SqlCommand cmd)
+        public override void DefinirParametroValidacao(string campoBancoDados, Veiculo entidade, SqlCommand cmd)
         {
-            cmd.Parameters.AddWithValue(campoBd.ToUpper(), entidade.Modelo);
+            cmd.Parameters.AddWithValue(campoBancoDados.ToUpper(), entidade.Modelo);
         }
 
         public override List<Veiculo> LerTodos(SqlDataReader leitor)

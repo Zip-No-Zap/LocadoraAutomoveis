@@ -1,11 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 {
@@ -68,23 +64,79 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
             if (PlacaDuplicada(veiculo))
                 resultadoValidacao.Errors.Add(new ValidationFailure("Placa", "'Placa' duplicada"));
 
+            if (ModeloDuplicado(veiculo))
+                resultadoValidacao.Errors.Add(new ValidationFailure("Modelo", "'Modelo' duplicado"));
 
             return resultadoValidacao;
         }
-
 
         #region privates
 
         private bool PlacaDuplicada(Veiculo veiculo)
         {
-            repositorioVeiculo.Sql_selecao_por_parametro = @"SELECT * FROM TBVEICULO WHERE PLACA = @PLACAVEICULO";
+            repositorioVeiculo.Sql_selecao_por_parametro = @"SELECT  
+
+                                                                V.[ID],
+                                                                V.[MODELO], 
+                                                                V.[PLACA], 
+                                                                V.[COR], 
+                                                                V.[ANO],
+                                                                V.[TIPOCOMBUSTIVEL],
+                                                                V.[CAPACIDADETANQUE],
+                                                                V.[STATUS],
+                                                                V.[QUILOMETRAGEMATUAL],
+                                                                V.[FOTO],
+                                                                V.[IDGRUPOVEICULO],
+
+                                                                GV.[NOMEGRUPO]
+
+                                                            FROM TBVEICULO AS V
+                                                            INNER JOIN TBGRUPOVEICULO AS GV
+
+                                                                ON V.IDGRUPOVEICULO = GV.ID
+
+                                                            WHERE PLACA = @PLACAVEICULO";
+
             repositorioVeiculo.PropriedadeParametro = "PLACAVEICULO";
 
-            var funcionarioEncontrado = repositorioVeiculo.SelecionarPorParametro(repositorioVeiculo.PropriedadeParametro, veiculo);
+            var veiculoEncontrado = repositorioVeiculo.SelecionarPorParametro(repositorioVeiculo.PropriedadeParametro, veiculo);
 
-            return funcionarioEncontrado != null &&
-                   funcionarioEncontrado.Placa.Equals(veiculo.Placa) &&
-                  !funcionarioEncontrado.Id.Equals(veiculo.Id);
+            return veiculoEncontrado != null &&
+                   veiculoEncontrado.Placa.Equals(veiculo.Placa) &&
+                  !veiculoEncontrado.Id.Equals(veiculo.Id);
+        }
+
+        private bool ModeloDuplicado(Veiculo veiculo)
+        {
+            repositorioVeiculo.Sql_selecao_por_parametro = @"SELECT  
+                                                                    V.[ID],
+                                                                    V.[MODELO], 
+                                                                    V.[PLACA], 
+                                                                    V.[COR], 
+                                                                    V.[ANO],
+                                                                    V.[TIPOCOMBUSTIVEL],
+                                                                    V.[CAPACIDADETANQUE],
+                                                                    V.[STATUS],
+                                                                    V.[QUILOMETRAGEMATUAL],
+                                                                    V.[FOTO],
+                                                                    V.[IDGRUPOVEICULO],
+
+                                                                    GV.[NOMEGRUPO]
+
+                                                                FROM TBVEICULO AS V
+                                                                INNER JOIN TBGRUPOVEICULO AS GV
+
+                                                                    ON V.IDGRUPOVEICULO = GV.ID
+
+                                                                WHERE MODELO = @MODELOVEICULO";
+
+            repositorioVeiculo.PropriedadeParametro = "MODELOVEICULO";
+
+            var veiculoEncontrado = repositorioVeiculo.SelecionarPorParametro(repositorioVeiculo.PropriedadeParametro, veiculo);
+
+            return veiculoEncontrado != null &&
+                   veiculoEncontrado.Placa.Equals(veiculo.Placa) &&
+                  !veiculoEncontrado.Id.Equals(veiculo.Id);
         }
 
         #endregion

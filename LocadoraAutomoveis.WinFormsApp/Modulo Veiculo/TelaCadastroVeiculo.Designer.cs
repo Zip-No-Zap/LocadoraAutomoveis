@@ -253,7 +253,7 @@
             this.pbFoto.Location = new System.Drawing.Point(393, 63);
             this.pbFoto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbFoto.Name = "pbFoto";
-            this.pbFoto.Size = new System.Drawing.Size(300, 174);
+            this.pbFoto.Size = new System.Drawing.Size(302, 174);
             this.pbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbFoto.TabIndex = 18;
             this.pbFoto.TabStop = false;
@@ -264,7 +264,7 @@
             this.btnAdicionarFoto.Location = new System.Drawing.Point(393, 247);
             this.btnAdicionarFoto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdicionarFoto.Name = "btnAdicionarFoto";
-            this.btnAdicionarFoto.Size = new System.Drawing.Size(300, 44);
+            this.btnAdicionarFoto.Size = new System.Drawing.Size(302, 44);
             this.btnAdicionarFoto.TabIndex = 19;
             this.btnAdicionarFoto.Text = "Adicionar foto";
             this.btnAdicionarFoto.UseVisualStyleBackColor = true;
