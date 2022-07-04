@@ -190,5 +190,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         {
             ValidadorCampos.ImpedirLetrasCharEspeciais(e);
         }
+
+        private void txbCor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         {
             var grupos = servicoGrupoVeiculo.SelecionarTodos();
 
-            TelaCadastroVeiculo tela = new(grupos)
+            TelaCadastroVeiculo tela = new()
             {
                 Veiculo = new()
                 {
@@ -55,7 +55,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
             var grupos = servicoGrupoVeiculo.SelecionarTodos();
 
-            TelaCadastroVeiculo tela = new(grupos);
+            TelaCadastroVeiculo tela = new();
 
             tela.Veiculo = Selecionado;
 
