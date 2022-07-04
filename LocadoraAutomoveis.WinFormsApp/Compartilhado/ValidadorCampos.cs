@@ -43,6 +43,16 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
             }
         }
 
+        public static void PermitirApenasLetrasNumero(KeyPressEventArgs e)
+        {
+            string caracteresPermitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+            if (!(caracteresPermitidos.Contains(e.KeyChar.ToString().ToUpper()) || char.IsControl(e.KeyChar)))
+            {
+                e.Handled = true;
+            }
+        }
+
         public static bool ValidarCampoData(string data)
         {
             DateTime date = new();

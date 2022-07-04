@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using System;
@@ -43,10 +44,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 pbFoto.Image = veiculo.Imagem;
             }
         }
-        public TelaCadastroVeiculo(List<GrupoVeiculo> grupos)
+        public TelaCadastroVeiculo()
         {
             InitializeComponent();
-            CarregarGrupos(grupos);
+           // CarregarGrupos(grupos);
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -148,7 +149,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             ObterIdGrupoVeiculoj();
         }
 
-        private void ObterItensGrupoVeiculo()
+        private void ObterItensGrupoVeiculo()//TODO : Obter itens grupo dever ser feito pelo controlador
         {
             var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
 
@@ -158,6 +159,36 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             {
                 cmbGrupoVeiculo.Items.Add(gv.Nome);
             }
+        }
+
+        private void txbAno_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void txbModelo_Leave(object sender, EventArgs e)
+        {
+            ValidadorCampos.ImpedirTextoMenorDois(txbModelo.Text);
+        }
+
+        private void txbCapacidadeTanque_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void txbQuilometragemAtual_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void txbModelo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.PermitirApenasLetrasNumero(e);
+        }
+
+        private void txbAno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
         }
     }
 }

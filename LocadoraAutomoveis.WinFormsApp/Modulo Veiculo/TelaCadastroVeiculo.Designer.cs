@@ -53,13 +53,15 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lblIDGrupo = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 82);
+            this.label1.Location = new System.Drawing.Point(30, 33);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 25);
@@ -69,7 +71,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 215);
+            this.label2.Location = new System.Drawing.Point(31, 166);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 25);
@@ -79,7 +81,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 350);
+            this.label3.Location = new System.Drawing.Point(31, 301);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 25);
@@ -88,15 +90,18 @@
             // 
             // txbModelo
             // 
-            this.txbModelo.Location = new System.Drawing.Point(31, 112);
+            this.txbModelo.Location = new System.Drawing.Point(31, 63);
             this.txbModelo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbModelo.Name = "txbModelo";
             this.txbModelo.Size = new System.Drawing.Size(303, 31);
             this.txbModelo.TabIndex = 3;
+            this.txbModelo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbModelo_KeyPress);
+            this.txbModelo.Leave += new System.EventHandler(this.txbModelo_Leave);
             // 
             // txbPlaca
             // 
-            this.txbPlaca.Location = new System.Drawing.Point(31, 245);
+            this.txbPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txbPlaca.Location = new System.Drawing.Point(31, 196);
             this.txbPlaca.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbPlaca.Name = "txbPlaca";
             this.txbPlaca.Size = new System.Drawing.Size(303, 31);
@@ -104,7 +109,7 @@
             // 
             // txbCor
             // 
-            this.txbCor.Location = new System.Drawing.Point(31, 380);
+            this.txbCor.Location = new System.Drawing.Point(31, 331);
             this.txbCor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbCor.Name = "txbCor";
             this.txbCor.Size = new System.Drawing.Size(303, 31);
@@ -112,16 +117,18 @@
             // 
             // txbAno
             // 
-            this.txbAno.Location = new System.Drawing.Point(31, 542);
+            this.txbAno.Location = new System.Drawing.Point(31, 493);
             this.txbAno.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbAno.MaxLength = 7;
             this.txbAno.Name = "txbAno";
             this.txbAno.Size = new System.Drawing.Size(303, 31);
             this.txbAno.TabIndex = 7;
+            this.txbAno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbAno_KeyPress);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(31, 512);
+            this.label4.Location = new System.Drawing.Point(31, 463);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 25);
@@ -137,7 +144,7 @@
             "Diesel",
             "Gás",
             "Álcool"});
-            this.cmbTipoCombustivel.Location = new System.Drawing.Point(31, 667);
+            this.cmbTipoCombustivel.Location = new System.Drawing.Point(31, 628);
             this.cmbTipoCombustivel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbTipoCombustivel.Name = "cmbTipoCombustivel";
             this.cmbTipoCombustivel.Size = new System.Drawing.Size(301, 33);
@@ -146,7 +153,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 637);
+            this.label5.Location = new System.Drawing.Point(31, 598);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(151, 25);
@@ -155,16 +162,17 @@
             // 
             // txbCapacidadeTanque
             // 
-            this.txbCapacidadeTanque.Location = new System.Drawing.Point(30, 785);
+            this.txbCapacidadeTanque.Location = new System.Drawing.Point(30, 746);
             this.txbCapacidadeTanque.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbCapacidadeTanque.Name = "txbCapacidadeTanque";
             this.txbCapacidadeTanque.Size = new System.Drawing.Size(303, 31);
             this.txbCapacidadeTanque.TabIndex = 11;
+            this.txbCapacidadeTanque.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbCapacidadeTanque_KeyPress);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(31, 755);
+            this.label6.Location = new System.Drawing.Point(31, 716);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(165, 25);
@@ -173,16 +181,17 @@
             // 
             // txbQuilometragemAtual
             // 
-            this.txbQuilometragemAtual.Location = new System.Drawing.Point(430, 785);
+            this.txbQuilometragemAtual.Location = new System.Drawing.Point(392, 746);
             this.txbQuilometragemAtual.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbQuilometragemAtual.Name = "txbQuilometragemAtual";
             this.txbQuilometragemAtual.Size = new System.Drawing.Size(303, 31);
             this.txbQuilometragemAtual.TabIndex = 13;
+            this.txbQuilometragemAtual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbQuilometragemAtual_KeyPress);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(430, 755);
+            this.label7.Location = new System.Drawing.Point(392, 716);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(183, 25);
@@ -192,7 +201,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(430, 637);
+            this.label8.Location = new System.Drawing.Point(392, 598);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 25);
@@ -209,7 +218,7 @@
             "Disponível",
             "Em Manutenção",
             "Indisponível"});
-            this.cmbStatus.Location = new System.Drawing.Point(430, 667);
+            this.cmbStatus.Location = new System.Drawing.Point(392, 628);
             this.cmbStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(301, 33);
@@ -218,7 +227,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(429, 512);
+            this.label9.Location = new System.Drawing.Point(392, 463);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(158, 25);
@@ -229,7 +238,7 @@
             // 
             this.cmbGrupoVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGrupoVeiculo.FormattingEnabled = true;
-            this.cmbGrupoVeiculo.Location = new System.Drawing.Point(429, 542);
+            this.cmbGrupoVeiculo.Location = new System.Drawing.Point(392, 493);
             this.cmbGrupoVeiculo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
             this.cmbGrupoVeiculo.Size = new System.Drawing.Size(301, 33);
@@ -238,20 +247,20 @@
             // 
             // pbFoto
             // 
-            this.pbFoto.Location = new System.Drawing.Point(430, 112);
+            this.pbFoto.Location = new System.Drawing.Point(393, 63);
             this.pbFoto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbFoto.Name = "pbFoto";
-            this.pbFoto.Size = new System.Drawing.Size(303, 307);
+            this.pbFoto.Size = new System.Drawing.Size(300, 307);
             this.pbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbFoto.TabIndex = 18;
             this.pbFoto.TabStop = false;
             // 
             // btnAdicionarFoto
             // 
-            this.btnAdicionarFoto.Location = new System.Drawing.Point(429, 428);
+            this.btnAdicionarFoto.Location = new System.Drawing.Point(392, 379);
             this.btnAdicionarFoto.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdicionarFoto.Name = "btnAdicionarFoto";
-            this.btnAdicionarFoto.Size = new System.Drawing.Size(301, 55);
+            this.btnAdicionarFoto.Size = new System.Drawing.Size(303, 55);
             this.btnAdicionarFoto.TabIndex = 19;
             this.btnAdicionarFoto.Text = "Adicionar foto";
             this.btnAdicionarFoto.UseVisualStyleBackColor = true;
@@ -260,7 +269,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(430, 82);
+            this.label10.Location = new System.Drawing.Point(393, 33);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(129, 25);
@@ -269,27 +278,29 @@
             // 
             // btnOk
             // 
+            this.btnOk.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(30, 912);
+            this.btnOk.Location = new System.Drawing.Point(19, 14);
             this.btnOk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(120, 70);
             this.btnOk.TabIndex = 21;
             this.btnOk.Text = "OK";
-            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnLimpar
             // 
+            this.btnLimpar.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnLimpar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLimpar.Location = new System.Drawing.Point(159, 912);
+            this.btnLimpar.Location = new System.Drawing.Point(147, 14);
             this.btnLimpar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(120, 70);
             this.btnLimpar.TabIndex = 22;
             this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // openFileDialog1
@@ -301,21 +312,31 @@
             this.lblIDGrupo.AutoSize = true;
             this.lblIDGrupo.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.lblIDGrupo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblIDGrupo.Location = new System.Drawing.Point(430, 580);
+            this.lblIDGrupo.Location = new System.Drawing.Point(393, 531);
             this.lblIDGrupo.Name = "lblIDGrupo";
             this.lblIDGrupo.Size = new System.Drawing.Size(120, 25);
             this.lblIDGrupo.TabIndex = 23;
             this.lblIDGrupo.Text = "pegaIDGrupo";
             this.lblIDGrupo.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.btnOk);
+            this.panel1.Controls.Add(this.btnLimpar);
+            this.panel1.Location = new System.Drawing.Point(30, 825);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(665, 102);
+            this.panel1.TabIndex = 24;
+            // 
             // TelaCadastroVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 1002);
+            this.ClientSize = new System.Drawing.Size(725, 948);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblIDGrupo);
-            this.Controls.Add(this.btnLimpar);
-            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnAdicionarFoto);
             this.Controls.Add(this.pbFoto);
@@ -337,14 +358,17 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaCadastroVeiculo";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TelaCadastroVeiculo";
+            this.Text = "Cadastro de Veículo";
             this.Load += new System.EventHandler(this.TelaCadastroVeiculo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -377,5 +401,6 @@
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label lblIDGrupo;
+        private System.Windows.Forms.Panel panel1;
     }
 }
