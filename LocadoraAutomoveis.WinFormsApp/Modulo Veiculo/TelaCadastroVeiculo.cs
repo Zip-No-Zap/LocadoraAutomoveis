@@ -198,7 +198,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
         private void txbAno_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+            ValidadorCampos.ValidadorAno(e);
         }
 
         private void TelaCadastroVeiculo_FormClosing_1(object sender, FormClosingEventArgs e)
@@ -210,6 +210,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         {
             ObterIdGrupoVeiculo();
         }
-    
+
+        private void txbPlaca_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ValidadorPlacaVeiculo(e);
+        }
     }
 }

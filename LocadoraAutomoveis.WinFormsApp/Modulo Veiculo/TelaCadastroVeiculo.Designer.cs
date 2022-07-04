@@ -107,6 +107,7 @@
             this.txbPlaca.Name = "txbPlaca";
             this.txbPlaca.Size = new System.Drawing.Size(303, 31);
             this.txbPlaca.TabIndex = 4;
+            this.txbPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPlaca_KeyPress);
             // 
             // txbCor
             // 
