@@ -71,7 +71,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 121);
+            this.label2.Location = new System.Drawing.Point(31, 128);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 25);
@@ -81,7 +81,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 212);
+            this.label3.Location = new System.Drawing.Point(31, 224);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 25);
@@ -101,15 +101,16 @@
             // txbPlaca
             // 
             this.txbPlaca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txbPlaca.Location = new System.Drawing.Point(31, 151);
+            this.txbPlaca.Location = new System.Drawing.Point(31, 158);
             this.txbPlaca.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbPlaca.MaxLength = 7;
             this.txbPlaca.Name = "txbPlaca";
             this.txbPlaca.Size = new System.Drawing.Size(303, 31);
             this.txbPlaca.TabIndex = 4;
             // 
             // txbCor
             // 
-            this.txbCor.Location = new System.Drawing.Point(31, 242);
+            this.txbCor.Location = new System.Drawing.Point(31, 254);
             this.txbCor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbCor.Name = "txbCor";
             this.txbCor.Size = new System.Drawing.Size(303, 31);
@@ -120,7 +121,7 @@
             // 
             this.txbAno.Location = new System.Drawing.Point(31, 345);
             this.txbAno.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txbAno.MaxLength = 7;
+            this.txbAno.MaxLength = 4;
             this.txbAno.Name = "txbAno";
             this.txbAno.Size = new System.Drawing.Size(303, 31);
             this.txbAno.TabIndex = 7;
@@ -141,7 +142,7 @@
             this.cmbTipoCombustivel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoCombustivel.FormattingEnabled = true;
             this.cmbTipoCombustivel.Items.AddRange(new object[] {
-            "Gásolina",
+            "Gasolina",
             "Diesel",
             "Gás",
             "Álcool"});

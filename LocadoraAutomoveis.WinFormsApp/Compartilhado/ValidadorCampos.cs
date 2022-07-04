@@ -43,9 +43,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
             }
         }
 
-        public static void PermitirApenasLetrasNumero(KeyPressEventArgs e)
+        public static void ImpedirCharEspeciais(KeyPressEventArgs e)
         {
-            string caracteresPermitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            string caracteresPermitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .-";
 
             if (!(caracteresPermitidos.Contains(e.KeyChar.ToString().ToUpper()) || char.IsControl(e.KeyChar)))
             {

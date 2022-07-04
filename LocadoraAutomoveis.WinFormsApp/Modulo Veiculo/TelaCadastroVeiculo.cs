@@ -42,6 +42,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 cmbStatus.Text = veiculo.StatusVeiculo;
                 txbQuilometragemAtual.Text = veiculo.QuilometragemAtual.ToString();
                 pbFoto.Image = veiculo.Imagem;
+
+                cmbGrupoVeiculo.Text = veiculo.GrupoPertencente.Nome;
             }
         }
         public TelaCadastroVeiculo()
@@ -97,6 +99,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             cmbStatus.Items.Clear();
             txbQuilometragemAtual.Clear();
             pbFoto.Image = null;
+
+            txbModelo.Focus();
         }
 
         private void btnAdicionarFoto_Click(object sender, EventArgs e)
@@ -183,7 +187,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
         private void txbModelo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ValidadorCampos.PermitirApenasLetrasNumero(e);
+            ValidadorCampos.ImpedirCharEspeciais(e);
         }
 
         private void txbAno_KeyPress(object sender, KeyPressEventArgs e)
