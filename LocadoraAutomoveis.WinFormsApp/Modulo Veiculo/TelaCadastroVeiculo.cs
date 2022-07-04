@@ -98,12 +98,13 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             txbPlaca.Clear();
             txbCor.Clear();
             txbAno.Clear();
-            cmbGrupoVeiculo.Items.Clear();
             txbCapacidadeTanque.Clear();
-            cmbGrupoVeiculo.Items.Clear();
-            cmbStatus.Items.Clear();
             txbQuilometragemAtual.Clear();
             pbFoto.Image = null;
+
+            cmbGrupoVeiculo.SelectedIndex = -1;
+            cmbStatus.SelectedIndex = -1;
+            cmbTipoCombustivel.SelectedIndex = -1;
 
             txbModelo.Focus();
         }
