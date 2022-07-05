@@ -142,12 +142,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
                 tbEndereco.Enabled = false;
                 
             }
-        }
-
-
-
-
-
-        
+        }       
     }
 }
