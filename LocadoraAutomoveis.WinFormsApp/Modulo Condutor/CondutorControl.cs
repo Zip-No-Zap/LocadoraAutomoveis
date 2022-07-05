@@ -48,7 +48,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
             {
                 grid.Rows.Add(condutor.Id, condutor.Nome, condutor.Cpf,
                     condutor.Email, condutor.Endereco, condutor.Telefone,
-                    condutor.Cnh, condutor.VencimentoCnh, condutor.Cliente.Nome);
+                    condutor.Cnh, condutor.VencimentoCnh.ToShortDateString(), condutor.Cliente.Nome);
             }
         }
     }

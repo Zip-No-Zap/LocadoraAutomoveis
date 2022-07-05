@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using System;
@@ -39,6 +40,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
                 tbEmail.Text = condutor.Email;
                 tbTelefone.Text = condutor.Telefone;
                 tbCnh.Text = condutor.Cnh;
+                tbCpf.Text = condutor.Cpf;
                 txtDataVencimentoCnh.Value = condutor.VencimentoCnh;
                 cmbClientes.SelectedItem = condutor.Cliente;
             }
@@ -142,6 +144,30 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
                 tbEndereco.Enabled = false;
                 
             }
-        }       
+        }
+
+        private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirNumeroECharsEspeciaisTextBox(e);
+        }
+
+        private void tbEmail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ValidarCampoEmail(e);
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            tbCpf.Clear();
+            tbCnh.Clear();
+            tbNome.Text = "";
+            tbEmail.Text = "";
+            tbEndereco.Text = "";
+            tbTelefone.Text = "";
+            cbClienteECondutor.Checked = false;
+            cmbClientes.SelectedIndex = -1;
+
+            tbNome.Focus();
+        }
     }
 }

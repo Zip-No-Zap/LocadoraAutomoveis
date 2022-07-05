@@ -8,7 +8,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
 {
     public class MapeadorPlano : MapeadorBase<Plano>
     {
-        public override void DefinirParametros(Plano entidade, SqlCommand cmd)
+        public override void ConfigurarParametros(Plano entidade, SqlCommand cmd)
         {
             cmd.Parameters.AddWithValue("ID", entidade.Id);
             cmd.Parameters.AddWithValue("VALORDIARIO_DIARIO", entidade.ValorDiario_Diario);
@@ -73,7 +73,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
             return planos;
         }
 
-        public override Plano LerUnico(SqlDataReader leitor)
+        public override Plano ConverterRegistro(SqlDataReader leitor)
         {
             Plano plano = null;
 

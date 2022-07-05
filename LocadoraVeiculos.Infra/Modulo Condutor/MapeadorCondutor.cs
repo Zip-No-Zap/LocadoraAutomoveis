@@ -60,7 +60,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
         }
         public override void DefinirParametroValidacao(string campoBd, Condutor entidade, SqlCommand cmd)
         {
-            throw new NotImplementedException();
+            cmd.Parameters.AddWithValue(campoBd.ToUpper(), entidade.Cnh);
         }
 
         public override List<Condutor> LerTodos(SqlDataReader leitor)

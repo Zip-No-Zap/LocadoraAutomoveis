@@ -12,7 +12,8 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
         {
             RuleFor(x => x.Nome)
                 .NotNull().WithMessage("Campo 'Nome' é obrigatório.")
-                .NotEmpty().WithMessage("Campo 'Nome' é obrigatótio.");
+                .NotEmpty().WithMessage("Campo 'Nome' é obrigatótio.")
+                .MinimumLength(2).WithMessage("Campo 'Nome' é inválido.");
 
             When(x => x.TipoCliente == EnumTipoCliente.PessoaJuridica, () =>
             {

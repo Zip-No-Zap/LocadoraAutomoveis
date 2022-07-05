@@ -76,7 +76,5 @@ namespace LocadoraVeiculos.Dominio.Modulo_Cliente
             hash.Add(TipoCliente);
             return hash.ToHashCode();
         }
-
-        public string DocumentoDuplicado { get; set; }
     }
 }

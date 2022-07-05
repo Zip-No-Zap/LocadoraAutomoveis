@@ -61,7 +61,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
         }
         public override void DefinirParametroValidacao(string campoBd, Cliente entidade, SqlCommand cmd)
         {
-            cmd.Parameters.AddWithValue(campoBancoDados.ToUpper(), entidade.Nome);
+            cmd.Parameters.AddWithValue(campoBd.ToUpper(), entidade.Nome);
         }
 
         public override List<Cliente> LerTodos(SqlDataReader leitor)

@@ -11,6 +11,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
         public abstract T ConverterRegistro(SqlDataReader leitor);
 
+
         public abstract void ConfigurarParametros(T entidade, SqlCommand cmd);
 
         public abstract void DefinirParametroValidacao(string campoBancoDados, T entidade, SqlCommand cmd);

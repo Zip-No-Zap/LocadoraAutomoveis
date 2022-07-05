@@ -155,7 +155,7 @@
             // 
             this.tbCpf.Location = new System.Drawing.Point(15, 148);
             this.tbCpf.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbCpf.Mask = "000.000.000-00";
+            this.tbCpf.Mask = "000,000,000-00";
             this.tbCpf.Name = "tbCpf";
             this.tbCpf.Size = new System.Drawing.Size(224, 27);
             this.tbCpf.TabIndex = 83;
@@ -198,6 +198,7 @@
             this.tbNome.Name = "tbNome";
             this.tbNome.Size = new System.Drawing.Size(454, 27);
             this.tbNome.TabIndex = 74;
+            this.tbNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNome_KeyPress);
             // 
             // tbEmail
             // 
@@ -206,6 +207,7 @@
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(452, 27);
             this.tbEmail.TabIndex = 76;
+            this.tbEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEmail_KeyPress);
             // 
             // label9
             // 
@@ -269,6 +271,7 @@
             this.btnLimpar.TabIndex = 8;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnOK
             // 
@@ -291,6 +294,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "TelaCadastroCondutor";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
