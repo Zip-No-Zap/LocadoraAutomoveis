@@ -187,11 +187,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             }
         }
 
-        private void txbAno_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-
+     
         private void txbModelo_Leave(object sender, EventArgs e)
         {
             ValidadorCampos.ImpedirTextoMenorDois(txbModelo.Text);

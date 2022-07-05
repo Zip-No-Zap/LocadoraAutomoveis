@@ -1,12 +1,6 @@
 ﻿using FluentValidation.Results;
-using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Dominio.Tests.Modulo_Veiculo
 {
@@ -183,6 +177,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Veiculo
                 GrupoPertencente = new("Esportivos"),
                 StatusVeiculo = "Disponível",
                 QuilometragemAtual = 10000,
+                Foto = new byte[] { }
 
             };
         }
