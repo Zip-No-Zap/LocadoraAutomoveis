@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 {
     public class MapeadorFuncionario : MapeadorBase<Funcionario>
     {
-        public override void DefinirParametros(Funcionario entidade, SqlCommand cmd)
+        public override void ConfigurarParametros(Funcionario entidade, SqlCommand cmd)
         {
             cmd.Parameters.AddWithValue("ID", entidade.Id);
             cmd.Parameters.AddWithValue("NOME", entidade.Nome);
@@ -58,7 +58,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
             return funcionarios;
         }
 
-        public override Funcionario LerUnico(SqlDataReader leitor)
+        public override Funcionario ConverterRegistro(SqlDataReader leitor)
         {
             Funcionario funcionario = null;
 

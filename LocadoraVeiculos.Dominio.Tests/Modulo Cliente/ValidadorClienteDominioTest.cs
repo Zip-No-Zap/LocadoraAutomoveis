@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
             //arrange
             var clientePessoaFisica = InstanciarClientePessoaFisica();
             var clientePessoaJuridica = InstanciarClientePessoaJuridica();
-            clientePessoaFisica.Cpf = null;
+           // clientePessoaFisica.Cpf = null;
             clientePessoaFisica.Email = "email@";
             clientePessoaJuridica.Email = "email.com";
 
@@ -93,7 +93,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
         {
             //arrange
             var clientePessoaJuridica = InstanciarClientePessoaJuridica();
-            clientePessoaJuridica.Cpf = null;
+           // clientePessoaJuridica.Cpf = null;
             clientePessoaJuridica.Cnpj = "234224709709709870988709709870987980";
 
             ValidadorCliente validador = new ValidadorCliente();
@@ -114,13 +114,12 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
             return new Cliente()
             {
                 Nome = "Ana",
-                Cpf = "12345678985",
+                Cpf = "123.456.789-85",
                 Cnpj = "",
                 Email = "anabeatriz@gmail.com",
                 Endereco = "Lages - SC",
                 Telefone = "11923121231",
-                TipoCliente = EnumTipoCliente.PessoaFisica
-
+                TipoCliente = (EnumTipoCliente) 0
             };
         }
         private Cliente InstanciarClientePessoaJuridica()
@@ -133,7 +132,7 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
                 Email = "anabeatriz@gmail.com",
                 Endereco = "Lages - SC",
                 Telefone = "(11)92312-1231",
-                //TipoCliente = EnumTipoCliente.PessoaJuridica
+                TipoCliente = (EnumTipoCliente)1
             };
         }
 

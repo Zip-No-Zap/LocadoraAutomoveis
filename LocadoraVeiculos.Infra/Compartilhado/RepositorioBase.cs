@@ -55,7 +55,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             SqlDataReader leitor = cmdSelecao.ExecuteReader();
 
-            var selecionado = mapeador.LerUnico(leitor);
+            var selecionado = mapeador.ConverterRegistro(leitor);
 
             conexaoBancoDados.DesconectarBancoDados();
 
@@ -91,7 +91,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             SqlDataReader leitor = cmd_Selecao.ExecuteReader();
 
-            var selecionado = mapeador.LerUnico(leitor);
+            var selecionado = mapeador.ConverterRegistro(leitor);
 
             conexaoBancoDados.DesconectarBancoDados();
 
@@ -108,7 +108,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             SqlCommand cmd_Insercao = new(Sql_insercao, conexaoBancoDados.conexao);
 
-            mapeador.DefinirParametros(entidade, cmd_Insercao);
+            mapeador.ConfigurarParametros(entidade, cmd_Insercao);
 
             entidade.Id = Convert.ToInt32(cmd_Insercao.ExecuteScalar());
 
@@ -123,7 +123,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             SqlCommand cmd_Edicao = new(Sql_edicao, conexaoBancoDados.conexao);
 
-            mapeador.DefinirParametros(entidade, cmd_Edicao);
+            mapeador.ConfigurarParametros(entidade, cmd_Edicao);
 
             cmd_Edicao.ExecuteNonQuery();
 

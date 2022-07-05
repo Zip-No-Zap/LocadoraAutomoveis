@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
 {
     public class MapeadorVeiculo : MapeadorBase<Veiculo>
     {
-        public override void DefinirParametros(Veiculo entidade, SqlCommand cmd)
+        public override void ConfigurarParametros(Veiculo entidade, SqlCommand cmd)
         {
             cmd.Parameters.AddWithValue("ID", entidade.Id);
             cmd.Parameters.AddWithValue("MODELO", entidade.Modelo);
@@ -67,7 +67,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
             return veiculos;
         }
 
-        public override Veiculo LerUnico(SqlDataReader leitor)
+        public override Veiculo ConverterRegistro(SqlDataReader leitor)
         {
             Veiculo veiculo = null;
 

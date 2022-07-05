@@ -9,7 +9,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 {
     public class MapeadorGrupoVeiculo : MapeadorBase<GrupoVeiculo>
     {
-        public override void DefinirParametros(GrupoVeiculo entidade, SqlCommand cmd)
+        public override void ConfigurarParametros(GrupoVeiculo entidade, SqlCommand cmd)
         {
             cmd.Parameters.AddWithValue("ID", entidade.Id);
             cmd.Parameters.AddWithValue("NOMEGRUPO", entidade.Nome);
@@ -40,7 +40,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
             return gruposVeiculos;
         }
 
-        public override GrupoVeiculo LerUnico(SqlDataReader leitor)
+        public override GrupoVeiculo ConverterRegistro(SqlDataReader leitor)
         {
             GrupoVeiculo grupo = null;
 

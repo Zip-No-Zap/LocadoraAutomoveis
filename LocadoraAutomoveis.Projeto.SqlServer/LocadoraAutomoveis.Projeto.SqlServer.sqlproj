@@ -72,4 +72,7 @@
     <Build Include="dbo\Tables\FK_TBVEICULO_TBGRUPOVEICULO.sql" />
     <None Include="Scripts\TBVEICULO.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="dbo\Tables\TBCONDUTOR.sql" />
+  </ItemGroup>
 </Project>

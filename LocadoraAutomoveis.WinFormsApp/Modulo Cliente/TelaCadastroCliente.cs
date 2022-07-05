@@ -1,5 +1,4 @@
 ﻿using FluentValidation.Results;
-using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using Microsoft.VisualBasic;
@@ -84,6 +83,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             
             var resultadoValidacao = GravarRegistro(cliente);
 
+            
             if (resultadoValidacao.IsValid == false)
             {
                 string erro = resultadoValidacao.Errors[0].ErrorMessage;
@@ -107,12 +107,28 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             tbCPF.Enabled = false;
             tbCNPJ.Enabled = true;
         }
-   
+
+        
         private void tbNome_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e = ValidadorCampos.ImpedirNumeroECharsEspeciaisTextBox(e);
+            e = ImpedirNumeroECharsEspeciaisTextBox(e);
         }
- 
+
+        private static KeyPressEventArgs ImpedirNumeroECharsEspeciaisTextBox(KeyPressEventArgs e)
+        {
+            if ((Strings.Asc(e.KeyChar) >= 48 & Strings.Asc(e.KeyChar) <= 57))
+            {
+                e.Handled = true;
+            }
+
+            if (! (char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar) || char.IsWhiteSpace(e.KeyChar)))
+            {
+                e.Handled = true;
+            }
+
+            return e;
+        }
+
         private void TelaCadastroCliente_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
@@ -124,19 +140,28 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
         }
 
+
+        private static void ImpedirLetrasCharEspeciais(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
+        }
+
         private void tbCPF_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+            ImpedirLetrasCharEspeciais(e);
         }
 
         private void tbCNPJ_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+            ImpedirLetrasCharEspeciais(e);
         }
 
         private void tbCnh_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+            ImpedirLetrasCharEspeciais(e);
         }
 
         private void tbNome_Leave(object sender, EventArgs e)
@@ -149,7 +174,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
         private void tbEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ValidadorCampos.ValidarCampoEmail(e);
+            string caracteresPermitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_@.";
+
+            if (! ( caracteresPermitidos.Contains( e.KeyChar.ToString().ToUpper())  || char.IsControl(e.KeyChar) ) )
+            {
+                e.Handled = true;
+            }
         }
     }
 }
