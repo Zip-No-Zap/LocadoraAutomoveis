@@ -36,7 +36,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Condutor
             Cnh = cnh;
             VencimentoCnh = vencimentoCnh;
         }
-sss        
         public override bool Equals(object obj)
         {
             return obj is Condutor condutor &&

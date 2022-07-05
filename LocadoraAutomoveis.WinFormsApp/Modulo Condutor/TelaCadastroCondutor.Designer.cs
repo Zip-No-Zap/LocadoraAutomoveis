@@ -87,6 +87,7 @@
             this.cbClienteECondutor.TabIndex = 90;
             this.cbClienteECondutor.Text = "Cliente é o condutor";
             this.cbClienteECondutor.UseVisualStyleBackColor = true;
+            this.cbClienteECondutor.CheckedChanged += new System.EventHandler(this.cbClienteECondutor_CheckedChanged);
             // 
             // label5
             // 

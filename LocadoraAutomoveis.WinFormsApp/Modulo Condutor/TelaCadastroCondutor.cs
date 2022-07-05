@@ -87,11 +87,67 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
         private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             Cliente clienteSelecionado = (Cliente)cmbClientes.SelectedItem;
-            if(clienteSelecionado.TipoCliente == EnumTipoCliente.PessoaFisica)
+            if (clienteSelecionado.TipoCliente == EnumTipoCliente.PessoaFisica)
                 cbClienteECondutor.Enabled = true;
             else
+            {
                 cbClienteECondutor.Enabled = false;
+                cbClienteECondutor.Checked = false;
+
+                tbNome.Text = "";
+                tbCpf.Text = "";
+                tbEmail.Text = "";
+                tbEndereco.Text = "";
+                tbTelefone.Text = "";
+            }
         }
 
+        private void cbClienteECondutor_CheckedChanged(object sender, EventArgs e)
+        {
+            CarregarDoCondutor();
+        }
+
+        private void CarregarDoCondutor()
+        {
+            //obter o nome do cliente selecionado 
+            Cliente clienteSelecionado = (Cliente)cmbClientes.SelectedItem;
+
+            if(cbClienteECondutor.Checked == false)
+            {
+                tbNome.Text = "";
+                tbCpf.Text = "";
+                tbEmail.Text = "";
+                tbEndereco.Text = "";
+                tbTelefone.Text = "";
+
+                tbNome.Enabled = true;
+                tbCpf.Enabled = true;
+                tbTelefone.Enabled = true;
+                tbEmail.Enabled = true;
+                tbEndereco.Enabled = true;
+            }
+            else
+            {
+
+                tbNome.Text = clienteSelecionado.Nome;
+                tbCpf.Text = clienteSelecionado.Cpf;
+                tbEmail.Text = clienteSelecionado.Email;
+                tbEndereco.Text = clienteSelecionado.Endereco;
+                tbTelefone.Text = clienteSelecionado.Telefone;
+
+                tbNome.Enabled = false;
+                tbCpf.Enabled = false;
+                tbTelefone.Enabled = false;
+                tbEmail.Enabled = false;
+                tbEndereco.Enabled = false;
+                
+            }
+        }
+
+
+
+
+
+        
     }
 }
