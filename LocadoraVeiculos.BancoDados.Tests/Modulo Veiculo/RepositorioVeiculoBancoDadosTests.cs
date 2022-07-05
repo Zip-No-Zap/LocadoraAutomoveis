@@ -136,6 +136,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
                 GrupoPertencente = new("Esportivos"),
                 StatusVeiculo = "Disponível",
                 QuilometragemAtual = 1000,
+                Foto = new byte[] { }
             };
         }
 

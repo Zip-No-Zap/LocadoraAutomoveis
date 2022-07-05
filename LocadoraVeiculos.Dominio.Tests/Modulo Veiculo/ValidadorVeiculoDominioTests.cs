@@ -31,6 +31,22 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Veiculo
         }
 
         [TestMethod]
+        public void modelo_no_minimo_dois_caracteres()
+        {
+            var veiculo = InstanciarVeiculo();
+
+            veiculo.Modelo = "a";
+
+            ValidadorVeiculo validaVeiculo = new();
+
+            //action
+            ValidationResult resultado = validaVeiculo.Validate(veiculo);
+
+            //assert
+            Assert.AreEqual("'Modelo' inválido, mínimo 2 caracteres", resultado.Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
 
         public void placa_nao_pode_ser_vazio()
         {
@@ -45,6 +61,22 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Veiculo
 
             //assert
             Assert.AreEqual("'Placa' não pode ser vazio", resultado.Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
+        public void placa_no_minimo_sete_caracteres()
+        {
+            var veiculo = InstanciarVeiculo();
+
+            veiculo.Placa = "MAB20";
+
+            ValidadorVeiculo validaVeiculo = new();
+
+            //action
+            ValidationResult resultado = validaVeiculo.Validate(veiculo);
+
+            //assert
+            Assert.AreEqual("'Placa' inválido", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
@@ -164,6 +196,23 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Veiculo
 
             //assert
             Assert.AreEqual("'Quilometragem Atual' não pode ser vazio", resultado.Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
+
+        public void quilometragem_nao_pode_ser_menor_que_zero()
+        {
+            var veiculo = InstanciarVeiculo();
+
+            veiculo.QuilometragemAtual = -1000;
+
+            ValidadorVeiculo validaVeiculo = new();
+
+            //action
+            ValidationResult resultado = validaVeiculo.Validate(veiculo);
+
+            //assert
+            Assert.AreEqual("'Quilometragem Atual' inválido", resultado.Errors[0].ErrorMessage);
         }
 
         [TestMethod]
