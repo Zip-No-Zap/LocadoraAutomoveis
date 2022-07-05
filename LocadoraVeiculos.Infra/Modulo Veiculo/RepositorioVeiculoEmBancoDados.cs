@@ -17,6 +17,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                                                         [CAPACIDADETANQUE],
                                                         [STATUS],
                                                         [QUILOMETRAGEMATUAL],
+                                                        [FOTO],
                                                         [IDGRUPOVEICULO]
                                                                         
                                                     )
@@ -30,6 +31,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                                                         @CAPACIDADETANQUE,
                                                         @STATUS,
                                                         @QUILOMETRAGEMATUAL,
+                                                        @FOTO,
                                                         @IDGRUPOVEICULO
 
                                                     );SELECT SCOPE_IDENTITY();";
@@ -44,8 +46,11 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                                                     [CAPACIDADETANQUE] = @CAPACIDADETANQUE,
                                                     [STATUS] = @STATUS,
                                                     [QUILOMETRAGEMATUAL] = @QUILOMETRAGEMATUAL,
+                                                    [FOTO] = @FOTO,
                                                     [IDGRUPOVEICULO] = @IDGRUPOVEICULO  
+
                                                   WHERE
+
                                                     ID = @ID";
 
 
@@ -62,12 +67,15 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                                                             V.[CAPACIDADETANQUE],
                                                             V.[STATUS],
                                                             V.[QUILOMETRAGEMATUAL],
-                                                            V.[GRUPOVEICULO_ID]
+                                                            V.[FOTO],
+                                                            V.[IDGRUPOVEICULO],
+                                                            GV.[NOMEGRUPO]
 
                                                         FROM TBVEICULO AS V
                                                         INNER JOIN TBGRUPOVEICULO AS GV
 
-                                                            ON V.GRUPOVEICULO_ID = GV.ID
+                                                            ON V.IDGRUPOVEICULO = GV.ID
+
                                                             WHERE V.ID = @ID";
 
         protected override string Sql_selecao_todos => @"SELECT  
@@ -81,12 +89,14 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                                                             V.[CAPACIDADETANQUE],
                                                             V.[STATUS],
                                                             V.[QUILOMETRAGEMATUAL],
-                                                            V.[GRUPOVEICULO_ID]
+                                                            V.[FOTO],
+                                                            V.[IDGRUPOVEICULO],
+                                                            GV.[NOMEGRUPO]
 
                                                         FROM TBVEICULO AS V
                                                         INNER JOIN TBGRUPOVEICULO AS GV
 
-                                                            ON V.GRUPOVEICULO_ID = GV.ID";
+                                                            ON V.IDGRUPOVEICULO = GV.ID";
 
     }
 }

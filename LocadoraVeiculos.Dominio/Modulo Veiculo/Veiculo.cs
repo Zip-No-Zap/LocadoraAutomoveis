@@ -1,11 +1,6 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
 {
@@ -63,6 +58,14 @@ namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
                 }
 
                 return null;
+            }
+        }
+
+        public string NomeGrupo 
+        {
+            get
+            {
+                return GrupoPertencente.Nome;
             }
         }
 

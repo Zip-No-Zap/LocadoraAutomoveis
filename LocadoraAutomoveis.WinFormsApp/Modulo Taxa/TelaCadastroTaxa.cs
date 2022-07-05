@@ -55,12 +55,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
             ValidationResult resultadoValidacao = GravarRegistro(taxa);
 
-            if(resultadoValidacao == null)
-            {
-                MessageBox.Show("Tentativa de inserir descrição duplicada","Aviso");
-                return;
-            }
-
             if (resultadoValidacao.IsValid == false)
             {
                 string erro = resultadoValidacao.Errors[0].ErrorMessage;
@@ -69,7 +63,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
                 DialogResult = DialogResult.None;
             }
-
         }
         private void tbDescricao_Leave(object sender, EventArgs e)
         {

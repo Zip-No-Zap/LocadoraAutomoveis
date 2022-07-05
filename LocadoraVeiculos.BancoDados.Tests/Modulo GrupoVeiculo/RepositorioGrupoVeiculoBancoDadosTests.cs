@@ -110,23 +110,19 @@ namespace LocadoraVeiculos.BancoDados.Tests
 
         GrupoVeiculo InstanciarGrupoVeiculo()
         {
-            return new GrupoVeiculo()
+            return new GrupoVeiculo("Econômico")
             {
-                Nome = "Uber"
   
             };
         }
 
         GrupoVeiculo InstanciarGrupoVeiculo2()
         {
-            return new GrupoVeiculo()
+            return new GrupoVeiculo("Esportivo")
             {
-                Nome = "Uber22"
 
             };
         }
-
-
 
 
         #endregion

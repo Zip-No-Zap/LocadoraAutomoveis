@@ -10,11 +10,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo
     {
         public string Nome { get; set; }
 
-        public GrupoVeiculo()
-        {
-
-        }
-        
+             
         public GrupoVeiculo(string nome)
         {
             Nome = nome;

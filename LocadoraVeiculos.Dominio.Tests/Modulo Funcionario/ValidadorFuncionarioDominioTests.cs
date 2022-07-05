@@ -2,10 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
 {
@@ -21,8 +18,10 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
 
             ValidadorFuncionario validaFuncionario = new();
 
+            //action
             ValidationResult resultado = validaFuncionario.Validate(funcionario);
 
+            //assert
             Assert.AreEqual("'Nome' não pode ser vazio", resultado.Errors[0].ErrorMessage);
         }
 
@@ -35,8 +34,10 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
 
             ValidadorFuncionario validaFuncionario = new();
 
+            //action
             ValidationResult resultado = validaFuncionario.Validate(funcionario);
 
+            //assert
             Assert.AreEqual("'Salário' não pode ser vazio", resultado.Errors[0].ErrorMessage);
         }
 
@@ -49,8 +50,10 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
 
             ValidadorFuncionario validaFuncionario = new();
 
+            //action
             ValidationResult resultado = validaFuncionario.Validate(funcionario);
 
+            //assert
             Assert.AreEqual("'Login' não pode ser vazio", resultado.Errors[0].ErrorMessage);
         }
 
@@ -63,8 +66,10 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
 
             ValidadorFuncionario validaFuncionario = new();
 
+            //action
             ValidationResult resultado = validaFuncionario.Validate(funcionario);
 
+            //assert
             Assert.AreEqual("'Senha' não pode ser vazio", resultado.Errors[0].ErrorMessage);
         }
 
@@ -77,8 +82,10 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
 
             ValidadorFuncionario validaFuncionario = new();
 
+            //action
             ValidationResult resultado = validaFuncionario.Validate(funcionario);
 
+            //assert
             Assert.AreEqual("'Cidade' não pode ser vazio", resultado.Errors[0].ErrorMessage);
         }
 
@@ -91,8 +98,10 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
 
             ValidadorFuncionario validaFuncionario = new();
 
+            //action
             ValidationResult resultado = validaFuncionario.Validate(funcionario);
 
+            //assert
             Assert.AreEqual("'Estado' não pode ser vazio", resultado.Errors[0].ErrorMessage);
         }
 

@@ -2,32 +2,28 @@
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 {
     public class ControladorGrupoVeiculo : ControladorBase
     {
-        readonly ServicoGrupoVeiculo servicoFuncionario;
+        readonly ServicoGrupoVeiculo servicoGrupoVeiculo;
         GrupoVeiculoControl tabelaGrupoVeiculo;
 
-        public ControladorGrupoVeiculo(ServicoGrupoVeiculo servicoFuncionario)
+        public ControladorGrupoVeiculo(ServicoGrupoVeiculo servicoGrupoVeiculo)
         {
-            this.servicoFuncionario = servicoFuncionario;
+            this.servicoGrupoVeiculo = servicoGrupoVeiculo;
         }
 
         public override void Inserir()
         {
             TelaCadastroGrupoVeiculo tela = new();
-            tela.GrupoVeiculo = new();
+            tela.GrupoVeiculo = new(null);
 
-           // tela.GravarRegistro = repoGrupoVeiculo.Inserir;
+            tela.GravarRegistro = servicoGrupoVeiculo.Inserir;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -36,7 +32,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
                 CarregarGruposVeiculos();
             }
         }
-
 
 
         public override void Editar()
@@ -45,7 +40,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 
             if (Selecionado == null)
             {
-                MessageBox.Show("Selecione um Grupo primeiro",
+                MessageBox.Show("Selecione um grupo primeiro",
                 "Edição de Grupo Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -54,7 +49,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 
             tela.GrupoVeiculo = Selecionado;
 
-           // tela.GravarRegistro = repoGrupoVeiculo.Editar;
+            tela.GravarRegistro = servicoGrupoVeiculo.Editar;
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -63,7 +58,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
                 CarregarGruposVeiculos();
             }
         }
-
 
 
         public override void Excluir()
@@ -73,17 +67,17 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 
             if (Selecionado == null)
             {
-                MessageBox.Show("Selecione um Grupo primeiro",
+                MessageBox.Show("Selecione um grupo primeiro",
                 "Exclusão de Grupo Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o Grupo?",
+            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o grupo?",
                 "Exclusão de Grupo Veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.OK)
             {
-                servicoFuncionario.Excluir(Selecionado);
+                servicoGrupoVeiculo.Excluir(Selecionado);
 
                 CarregarGruposVeiculos();
             }
@@ -106,7 +100,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 
         private void CarregarGruposVeiculos()
         {
-            List<GrupoVeiculo> grupos = servicoFuncionario.SelecionarTodos();
+            List<GrupoVeiculo> grupos = servicoGrupoVeiculo.SelecionarTodos();
 
             tabelaGrupoVeiculo.AtualizarRegistros(grupos);
 
@@ -117,7 +111,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
         {
             var numero = tabelaGrupoVeiculo.ObtemNumeroGrupoVeiculoSelecionado();
 
-            return servicoFuncionario.SelecionarPorId(numero);
+            return servicoGrupoVeiculo.SelecionarPorId(numero);
         }
     }
 }

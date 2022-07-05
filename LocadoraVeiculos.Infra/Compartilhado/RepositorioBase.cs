@@ -21,7 +21,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
         protected abstract string Sql_selecao_por_id  {get;}
         protected abstract string Sql_selecao_todos { get; }
         public  string Sql_selecao_por_parametro { get; set; }
-        public  string PropriedadeValidar { get; set; } 
+        public  string PropriedadeParametro { get; set; } 
 
         public RepositorioBase()
         {
@@ -79,7 +79,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             return funcionarios;
         }
 
-        public T SelecionarPorParametro(string propriedade, T entidade)
+        public T SelecionarPorParametro(string parametroPropriedade, T entidade)
         {
             Tmapeador mapeador = new();
 
@@ -87,7 +87,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             SqlCommand cmd_Selecao = new(Sql_selecao_por_parametro, conexaoBancoDados.conexao);
 
-            mapeador.DefinirParametroValidacao(propriedade, entidade, cmd_Selecao);
+            mapeador.DefinirParametroValidacao(parametroPropriedade, entidade, cmd_Selecao);
 
             SqlDataReader leitor = cmd_Selecao.ExecuteReader();
 
@@ -141,11 +141,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             cmd_Exclusao.ExecuteNonQuery();
 
             conexaoBancoDados.DesconectarBancoDados();
-        }
-
-        private ValidationResult Validar(T entidade)
-        {
-            return new Tvalidador().Validate(entidade);
         }
 
         #endregion
