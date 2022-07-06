@@ -26,46 +26,86 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             if (resultadoValidacao.IsValid)
             {
                 repositorioFuncionario.Inserir(funcionario);
-                Log.Logger.Debug("Funcionário inserido com sucesso. {@funcionario}", funcionario);
+                Log.Logger.Information("Funcionário inserido com sucesso. {@funcionario}", funcionario);
             }
 
             else
                 foreach (var erro in resultadoValidacao.Errors)
-                    Log.Logger.Warning("Falha ao tentar inserir Funcionário! {FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir Funcionário. {FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
 
         public ValidationResult Editar(Funcionario funcionario)
         {
-            Log.Logger.Information("Tentando editar Funcionário... {@funcionario}", funcionario);
+            Log.Logger.Debug("Tentando editar Funcionário... {@funcionario}", funcionario);
 
             var resultadoValidacao = Validar(funcionario);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioFuncionario.Editar(funcionario);
+                Log.Logger.Information("Funcionário editado com sucesso. {@funcionario}", funcionario);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar editar Funcionário. {FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
 
         public ValidationResult Excluir(Funcionario funcionario)
         {
+            Log.Logger.Debug("Tentando excluir Funcionário... {@funcionario}", funcionario);
+
             var resultadoValidacao = Validar(funcionario);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioFuncionario.Excluir(funcionario);
+                Log.Logger.Information("Funcionário excluído com sucesso. {@funcionario}", funcionario);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar excluir Funcionário. {FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
 
         public List<Funcionario> SelecionarTodos()
         {
-            return repositorioFuncionario.SelecionarTodos();
+            Log.Logger.Debug("Tentando obter todos os funcionários... ");
+
+            var funcionarios = repositorioFuncionario.SelecionarTodos();
+
+            if (funcionarios.Count > 0)
+            {
+                Log.Logger.Information("Todos os funcionários foram obtidos com sucesso. {FuncionarioCount}", funcionarios.Count);
+                return funcionarios;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter todos os funcionários. {FuncionariosCount} -> ", funcionarios.Count);
+                return funcionarios;
+            }
         }
 
         public Funcionario SelecionarPorId(int id)
         {
-            return repositorioFuncionario.SelecionarPorId(id);
+            Log.Logger.Debug("Tentando obter um funcionários... ");
+
+            var funcionario = repositorioFuncionario.SelecionarPorId(id);
+
+            if (funcionario != null)
+            {
+                Log.Logger.Information("Funcionário foi obtido com sucesso... ", funcionario.Nome);
+                return funcionario;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter um funcionário. {Funcionario} -> ", funcionario.Nome);
+                return funcionario;
+            }
         }
 
         public ValidationResult Validar(Funcionario funcionario)
