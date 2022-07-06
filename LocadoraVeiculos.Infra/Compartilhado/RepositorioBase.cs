@@ -23,7 +23,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
         public  string Sql_selecao_por_parametro { get; set; }
         public  string PropriedadeParametro { get; set; }
 
-        public string PropriedadeValidar { get; set; }
+        public string propriedadeValidar = "";
+
+        
 
         public RepositorioBase()
         {
@@ -89,7 +91,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             SqlCommand cmd_Selecao = new(Sql_selecao_por_parametro, conexaoBancoDados.conexao);
 
-            mapeador.DefinirParametroValidacao(parametroPropriedade, entidade, cmd_Selecao, PropriedadeValidar.ToUpper());
+            mapeador.DefinirParametroValidacao(parametroPropriedade, entidade, cmd_Selecao, propriedadeValidar.ToUpper());
 
             SqlDataReader leitor = cmd_Selecao.ExecuteReader();
 

@@ -2,18 +2,24 @@
 using LocadoraAutomoveis.Aplicacao.Modulo_Condutor;
 using LocadoraAutomoveis.Aplicacao.Modulo_Funcionario;
 using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
 using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
+using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Condutor;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
 using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.WinFormsApp.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Taxa;
+using LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
+using LocadoraVeiculos.Infra.BancoDados.Modulo_Plano;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa;
+using LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -46,20 +52,24 @@ namespace LocadoraAutomoveis.WinFormsApp
             var repositorioGrupoVeiculo = new RepositorioGrupoVeiculoEmBancoDados();
             var repositorioTaxa = new RepositorioTaxaEmBancoDados();
             var repositorioCondutor = new RepositorioCondutorEmBancoDados();
-
+            var repositorioVeículo = new RepositorioVeiculoEmBancoDados();
+            var repositorioPlano = new RepositorioPlanoEmBancoDados();
 
             var servicoCliente = new ServicoCliente(repositorioCliente);
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
             var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioGrupoVeiculo);
-           // var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioFuncionario);
             var servicoTaxa = new ServicoTaxa(repositorioTaxa);
             var servicoCondutor = new ServicoCondutor(repositorioCondutor);
+            var servicoVeiculo = new ServicoVeiculo(repositorioVeículo);
+            var servicoPlano = new ServicoPlano(repositorioPlano);
 
             controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
             controladores.Add("Cliente", new ControladorCliente(servicoCliente));
             controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo(servicoGrupoVeiculo));
             controladores.Add("Taxa", new ControladorTaxa(servicoTaxa));
             controladores.Add("Condutor", new ControladorCondutor(servicoCondutor, servicoCliente));
+            controladores.Add("Veículo", new ControladorVeiculo(servicoVeiculo, servicoGrupoVeiculo));
+            controladores.Add("Plano de Cobrança", new ControladorPlano(servicoPlano));
         }
 
         public static FormPrincipal Instancia
@@ -67,8 +77,6 @@ namespace LocadoraAutomoveis.WinFormsApp
             get;
             private set;
         }
-
-
 
         private void HabilitarBotoesToolStrip()
         {
@@ -183,6 +191,18 @@ namespace LocadoraAutomoveis.WinFormsApp
         }
 
         private void condutorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            HabilitarBotoesToolStrip();
+        }
+
+        private void veículoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
+            HabilitarBotoesToolStrip();
+        }
+
+        private void planoDeCobrançaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
             HabilitarBotoesToolStrip();

@@ -8,8 +8,10 @@ namespace LocadoraVeiculos.Dominio.Modulo_Plano
         public ValidadorPlano()
         {
             RuleFor(x => x.Grupo.Nome)
-                .NotEmpty().WithMessage("'Grupo Veículo' é obrigatório");
-
+                .NotEmpty().WithMessage("'Grupo Veículo' é obrigatório")
+                .NotNull().WithMessage("'Grupo Veículo' é obrigatório")
+                .MinimumLength(2).WithErrorCode("'Grupo Veículo' inválido");
+               
             RuleFor(x => x.ValorDiario_Diario)
                 .GreaterThan(0).WithMessage("'Valor Diário' categoria: Diário, inválido")
                 .NotEmpty().WithMessage("'Valor Diário' categoria: Diário, inválido");

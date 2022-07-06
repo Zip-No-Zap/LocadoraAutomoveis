@@ -106,7 +106,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
                 WHERE CONDUTOR.CNH = @CNHCONDUTOR";
 
             repositorioCondutor.PropriedadeParametro = "CNHCONDUTOR";
-            repositorioCondutor.PropriedadeValidar = "Cnh";
+            repositorioCondutor.propriedadeValidar = "Cnh";
 
             var condutorEncontrado = repositorioCondutor.SelecionarPorParametro(repositorioCondutor.PropriedadeParametro, condutor);
 
@@ -147,7 +147,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
                 WHERE CONDUTOR.CPF = @CNHCONDUTOR";
 
             repositorioCondutor.PropriedadeParametro = "CPFCONDUTOR";
-            repositorioCondutor.PropriedadeValidar = "Cpf";
+            repositorioCondutor.propriedadeValidar = "Cpf";
 
             var condutorEncontrado = repositorioCondutor.SelecionarPorParametro(repositorioCondutor.PropriedadeParametro, condutor);
 
@@ -188,7 +188,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
                 WHERE CONDUTOR.NOME = @NOMECONDUTOR";
 
             repositorioCondutor.PropriedadeParametro = "NOMECONDUTOR";
-            repositorioCondutor.PropriedadeValidar = "Nome";
+            repositorioCondutor.propriedadeValidar = "Nome";
 
             var condutorEncontrado = repositorioCondutor.SelecionarPorParametro(repositorioCondutor.PropriedadeParametro, condutor);
 

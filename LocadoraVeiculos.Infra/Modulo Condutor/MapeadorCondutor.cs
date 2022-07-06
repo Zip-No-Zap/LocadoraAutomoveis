@@ -1,12 +1,10 @@
-﻿using LocadoraVeiculos.Dominio.Modulo_Condutor;
+﻿using LocadoraVeiculos.Dominio.Modulo_Cliente;
+using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
 {
@@ -31,7 +29,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
             Condutor condutor = null;
             if (leitor.Read())
             {
-
                 var id = Convert.ToInt32(leitor["CONDUTOR_ID"]);
                 var nome = Convert.ToString(leitor["CONDUTOR_NOME"]);
                 var cpf = Convert.ToString(leitor["CONDUTOR_CPF"]);
@@ -56,8 +53,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
             }
 
             return condutor;
-
-
         }
         public override void DefinirParametroValidacao(string campoBd, Condutor entidade, SqlCommand cmd, string propriedade)
         {
@@ -95,6 +90,31 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
                 var telefone = Convert.ToString(leitor["CONDUTOR_TELEFONE"]);
                 var endereco = Convert.ToString(leitor["CONDUTOR_ENDERECO"]);
 
+                int clienteId = Convert.ToInt32(leitor["CLIENTE_ID"]);
+                string clienteNome = Convert.ToString(leitor["CLIENTE_NOME"]);
+                string clienteCpf = Convert.ToString(leitor["CLIENTE_CPF"]);
+                string clienteCnpj = Convert.ToString(leitor["CLIENTE_CNPJ"]);
+                string clienteEndereco = Convert.ToString(leitor["CLIENTE_ENDERECO"]);
+                int clienteTipo = Convert.ToInt32(leitor["CLIENTE_TIPOCLIENTE"]);
+                string clienteEmail = Convert.ToString(leitor["CLIENTE_EMAIL"]);
+                string clienteTelefone = Convert.ToString(leitor["CLIENTE_TELEFONE"]);
+
+                EnumTipoCliente enumcliente = 0;
+
+                switch (clienteTipo)
+                {
+                    case 0:
+                        enumcliente = EnumTipoCliente.PessoaFisica;
+                        break;
+
+                    case 1:
+                        enumcliente = EnumTipoCliente.PessoaJuridica;
+                        break;
+
+                    default:
+                        break;
+                }
+
                 Condutor condutor = new Condutor();
                 condutor.Id = id;
                 condutor.Nome = nome;
@@ -105,15 +125,22 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
                 condutor.Telefone = telefone;
                 condutor.Endereco = endereco;
 
-                condutor.Cliente = new MapeadorCliente().ConverterRegistro(leitor);
+                condutor.Cliente = new()
+                {
+                    Id = clienteId,
+                    Nome = clienteNome,
+                    Cpf = clienteCpf,
+                    Cnpj = clienteCnpj,
+                    Endereco = clienteEndereco,
+                    TipoCliente = enumcliente,
+                    Email = clienteEmail,
+                    Telefone = clienteTelefone
+                };
 
                 condutores.Add(condutor);
-
             }
 
             return condutores;
-
         }
-
     }
 }
