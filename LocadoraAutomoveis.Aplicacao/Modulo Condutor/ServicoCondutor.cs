@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor;
+using Serilog;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
@@ -17,36 +18,78 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 
         public ValidationResult Inserir(Condutor condutor)
         {
+            Log.Logger.Debug("Tentando inserir Condutor... {@condutor}", condutor);
             var resultadoValidacao = Validar(condutor);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioCondutor.Inserir(condutor);
+                Log.Logger.Information("Condutor inserido com sucesso. {@condutor}", condutor);
+            }
 
             return resultadoValidacao;
         }
 
         public ValidationResult Editar(Condutor condutor)
         {
+            Log.Logger.Debug("Tentando editar Condutor... {@condutor}", condutor);
             var resultadoValidacao = Validar(condutor);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioCondutor.Editar(condutor);
+                Log.Logger.Information("Condutor editado com sucesso. {@condutor}", condutor);
+            }
 
             return resultadoValidacao;
         }
 
         public void Excluir(Condutor condutor)
         {
-             repositorioCondutor.Excluir(condutor);
+            Log.Logger.Debug("Tentando excluir Condutor... {@condutor}", condutor);
+            repositorioCondutor.Excluir(condutor);
+
+            var condutorExcluido = SelecionarPorId(condutor.Id);
+
+            if (condutorExcluido == null)
+                Log.Logger.Information("Condutor excluído com sucesso. {@condutor} -> ", condutor);
+            else
+                Log.Logger.Warning("Falha ao excluir Condutor. {Condutor} -> Motivo: {erro}", condutor);
         }
 
         public List<Condutor> SelecionarTodos()
         {
-            return repositorioCondutor.SelecionarTodos();
+            Log.Logger.Debug("Tentando obter todos Condutor...");
+
+            var condutores = repositorioCondutor.SelecionarTodos();
+
+            if (condutores.Count > 0)
+            {
+                Log.Logger.Information("Todos os condutores foram obtidos com sucesso. {CondutorCount}", condutores.Count);
+                return condutores;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter todos Condutor. {CondutorsCount} -> ", condutores.Count);
+                return condutores;
+            }
         }
         public Condutor SelecionarPorId(int id)
         {
-            return repositorioCondutor.SelecionarPorId(id);
+            Log.Logger.Debug("Tentando obter um condutor...");
+
+            var condutor = repositorioCondutor.SelecionarPorId(id);
+
+            if (condutor != null)
+            {
+                Log.Logger.Information("Condutor foi obtido com sucesso.", condutor.Nome);
+                return condutor;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter um condutor. {Condutor} -> ", condutor.Nome);
+                return condutor;
+            }
         }
 
 
