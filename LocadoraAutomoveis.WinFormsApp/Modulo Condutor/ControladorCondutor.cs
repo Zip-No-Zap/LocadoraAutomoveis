@@ -2,7 +2,6 @@
 using LocadoraAutomoveis.Aplicacao.Modulo_Condutor;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -24,7 +23,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
         {
             TelaCadastroCondutor tela = new(servicoCliente.SelecionarTodos())
             {
-                Condutor = new() { Cliente = new()},
+                Condutor = new() 
+                { 
+                    Cliente = new() 
+                },
 
                 GravarRegistro = servicoCondutor.Inserir
             };

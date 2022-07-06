@@ -36,7 +36,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
                 tbCnh.Text = condutor.Cnh;
                 tbCpf.Text = condutor.Cpf;
                 txtDataVencimentoCnh.Value = condutor.VencimentoCnh;
-                cmbClientes.SelectedItem = condutor.Cliente;
+                
+                if(condutor.Cliente != null)
+                    cmbClientes.SelectedItem = condutor.Cliente;
+                else
+                    cmbClientes.SelectedIndex = -1;
             }
         }
 
@@ -64,7 +68,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
             condutor.Endereco = tbEndereco.Text;
             condutor.Cnh = tbCnh.Text;
             condutor.VencimentoCnh = txtDataVencimentoCnh.Value;
-            condutor.Cliente = (Cliente)cmbClientes.SelectedItem;
+
+            if (condutor.Cliente != null)
+                condutor.Cliente = (Cliente)cmbClientes.SelectedItem;
+            else
+            {
+                var novoClienteVazio = new Cliente() { Nome = "" };
+                condutor.Cliente = novoClienteVazio;
+            }
 
             var resultadoValidacao = GravarRegistro(condutor);
 

@@ -15,7 +15,8 @@ namespace LocadoraVeiculos.Dominio.Modulo_Condutor
         public ValidadorCondutor()
         {
             RuleFor(x => x.Cliente.Nome)
-                .NotEmpty().WithMessage("Campo 'Cliente', é obrigatório");
+                .NotEmpty().WithMessage("Campo 'Cliente', é obrigatório")
+                .NotNull().WithMessage("Campo 'Cliente', é obrigatório");
 
             RuleFor(x => x.Nome)
                 .NotNull().WithMessage("Campo 'Nome' é obrigatório.")
