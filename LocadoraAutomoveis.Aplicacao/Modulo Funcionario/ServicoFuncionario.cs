@@ -19,21 +19,27 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 
         public ValidationResult Inserir(Funcionario funcionario)
         {
-            Log.Logger.Information("Tentando inserir Funcionário... {@funcionario}", funcionario);
+            Log.Logger.Debug("Tentando inserir Funcionário... {@funcionario}", funcionario);
 
             var resultadoValidacao = Validar(funcionario);
 
-            if(resultadoValidacao.IsValid)
+            if (resultadoValidacao.IsValid)
+            {
                 repositorioFuncionario.Inserir(funcionario);
+                Log.Logger.Debug("Funcionário inserido com sucesso. {@funcionario}", funcionario);
+            }
+
             else
                 foreach (var erro in resultadoValidacao.Errors)
-                      Log.Logger.Warning("Falha ao tentar inserir Funcionário! {FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir Funcionário! {FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
 
         public ValidationResult Editar(Funcionario funcionario)
         {
+            Log.Logger.Information("Tentando editar Funcionário... {@funcionario}", funcionario);
+
             var resultadoValidacao = Validar(funcionario);
 
             if (resultadoValidacao.IsValid)
