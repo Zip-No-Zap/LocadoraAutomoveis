@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
+using Serilog;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
@@ -18,41 +19,89 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
 
         public ValidationResult Inserir(GrupoVeiculo grupoVeiculo)
         {
+            Log.Logger.Debug("Tentando inserir Grupo de Veículo... {@grupo}", grupoVeiculo);
             var resultadoValidacao = Validar(grupoVeiculo);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioGrupoVeiculo.Inserir(grupoVeiculo);
+                Log.Logger.Information("Grupo de Veículo inserido com sucesso. {@grupo}", grupoVeiculo);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar inserir Grupo de Veículo. {GrupoNome} -> Motivo: {erro}", grupoVeiculo.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
 
         public ValidationResult Editar(GrupoVeiculo grupoVeiculo)
         {
+            Log.Logger.Debug("Tentando editar Grupo de Veículo... {@grupo}", grupoVeiculo);
             var resultadoValidacao = Validar(grupoVeiculo);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioGrupoVeiculo.Editar(grupoVeiculo);
+                Log.Logger.Information("Grupo de Veículo editado com sucesso. {@grupo}", grupoVeiculo);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar editar Grupo de Veículo. {GrupoNome} -> Motivo: {erro}", grupoVeiculo.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
 
         public ValidationResult Excluir(GrupoVeiculo grupoVeiculo)
         {
+            Log.Logger.Debug("Tentando excluir Grupo de Veículo... {@grupo}", grupoVeiculo);
             var resultadoValidacao = Validar(grupoVeiculo);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioGrupoVeiculo.Excluir(grupoVeiculo);
+                Log.Logger.Information("Grupo de Veículo excluído com sucesso. {@grupo}", grupoVeiculo);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar excluir Grupo de Veículo. {GrupoNome} -> Motivo: {erro}", grupoVeiculo.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
 
         public List<GrupoVeiculo> SelecionarTodos()
         {
-            return repositorioGrupoVeiculo.SelecionarTodos();
+            Log.Logger.Debug("Tentando obter todos Grupo de Veículo...");
+
+            var grupos = repositorioGrupoVeiculo.SelecionarTodos();
+
+            if (grupos.Count > 0)
+            {
+                Log.Logger.Information("Todos os grupos foram obtidos com sucesso. {GrupoCount}", grupos.Count);
+                return grupos;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter todos os grupos. {GrupoCount} -> ", grupos.Count);
+                return grupos;
+            }
         }
 
         public GrupoVeiculo SelecionarPorId(int id)
         {
+            Log.Logger.Debug("Tentando obter um Grupo de Veículo...");
+
+            var grupo = repositorioGrupoVeiculo.SelecionarPorId(id);
+
+            if (grupo != null)
+            {
+                Log.Logger.Information("Grupo foi obtido com sucesso.", grupo.Nome);
+                return grupo;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter um grupo. {grupo} -> ", grupo.Nome);
+                return grupo;
+            }
             return repositorioGrupoVeiculo.SelecionarPorId(id);
         }
 
