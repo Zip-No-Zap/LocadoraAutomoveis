@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Plano;
+using Serilog;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
@@ -17,37 +18,86 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
         public ValidationResult Inserir(Plano plano)
         {
+            Log.Logger.Debug("Tentando inserir Plano... {@plano}", plano);
             var resultadoValidacao = Validar(plano);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioPlano.Inserir(plano);
+                Log.Logger.Information("Plano inserido com sucesso. {@plano}", plano);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                     Log.Logger.Warning("Falha ao tentar inserir Plano. {Plano} -> Motivo: {erro}", erro.ErrorMessage);
 
             return resultadoValidacao;
         }
 
         public ValidationResult Editar(Plano plano)
         {
+            Log.Logger.Debug("Tentando editar Plano... {@plano}", plano);
             var resultadoValidacao = Validar(plano);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioPlano.Editar(plano);
+                Log.Logger.Information("Plano editado com sucesso. {@plano}", plano);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar editar Plano. {Plano} -> Motivo: {erro}", erro.ErrorMessage);
+
 
             return resultadoValidacao;
         }
 
         public void Excluir(Plano plano)
         {
+            Log.Logger.Debug("Tentando excluir Plano... {@plano}", plano);
             repositorioPlano.Excluir(plano);
+
+            var planoExcluido = SelecionarPorId(plano.Id);
+
+            if (planoExcluido == null)
+                Log.Logger.Information("Plano excluído com sucesso. {@plano} -> ", plano);
+            else
+                Log.Logger.Warning("Falha ao excluir Plano. {Plano} -> Motivo: {erro}", plano);
         }
 
         public List<Plano> SelecionarTodos()
         {
-            return repositorioPlano.SelecionarTodos();
+            Log.Logger.Debug("Tentando obter todos Plano...");
+
+            var planos = repositorioPlano.SelecionarTodos();
+
+            if (planos.Count > 0)
+            {
+                Log.Logger.Information("Todos os planos foram obtidos com sucesso. {PlanoCount}", planos.Count);
+                return planos;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter todos Plano. {PlanosCount} -> ", planos.Count);
+                return planos;
+            }
         }
 
         public Plano SelecionarPorId(int id)
         {
-            return repositorioPlano.SelecionarPorId(id);
+            Log.Logger.Debug("Tentando obter um plano...");
+
+            var plano = repositorioPlano.SelecionarPorId(id);
+
+            if (plano != null)
+            {
+                Log.Logger.Information("Plano foi obtido com sucesso.", plano);
+                return plano;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter um plano. {Plano} -> ", plano);
+                return plano;
+            }
         }
 
         public ValidationResult Validar(Plano plano)

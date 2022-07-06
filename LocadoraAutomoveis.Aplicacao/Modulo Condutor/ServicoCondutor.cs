@@ -26,6 +26,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
                 repositorioCondutor.Inserir(condutor);
                 Log.Logger.Information("Condutor inserido com sucesso. {@condutor}", condutor);
             }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar inserir Condutor. {CondutorNome} -> Motivo: {erro}", condutor.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -40,6 +43,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
                 repositorioCondutor.Editar(condutor);
                 Log.Logger.Information("Condutor editado com sucesso. {@condutor}", condutor);
             }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar editar Condutor. {CondutorNome} -> Motivo: {erro}", condutor.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
