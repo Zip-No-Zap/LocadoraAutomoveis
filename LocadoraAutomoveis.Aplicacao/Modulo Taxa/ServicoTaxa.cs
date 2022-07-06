@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa;
+using Serilog;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
@@ -17,10 +18,17 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
 
         public ValidationResult Inserir(Taxa taxa)
         {
+            Log.Logger.Debug("Tentando inserir Taxa... {@taxa}", taxa);
             var resultadoValidacao = Validar(taxa);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioTaxa.Inserir(taxa);
+                Log.Logger.Information("Taxa inserida com sucesso. {@taxa}", taxa);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar inserir Taxa. {TaxaDescricao} -> Motivo: {erro}", taxa.Descricao, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -30,7 +38,13 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             var resultadoValidacao = Validar(taxa);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioTaxa.Editar(taxa);
+                Log.Logger.Information("Taxa editada com sucesso. {@taxa}", taxa);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar editar Taxa. {TaxaDescricao} -> Motivo: {erro}", taxa.Descricao, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -40,19 +54,51 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             var resultadoValidacao = Validar(taxa);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioTaxa.Excluir(taxa);
+                Log.Logger.Information("Taxa excluída com sucesso. {@taxa}", taxa);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar excluir Taxa. {TaxaDescricao} -> Motivo: {erro}", taxa.Descricao, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
 
         public List<Taxa> SelecionarTodos()
         {
-            return repositorioTaxa.SelecionarTodos();
+            Log.Logger.Debug("Tentando obter todos as taxas...");
+
+            var taxas = repositorioTaxa.SelecionarTodos();
+
+            if (taxas.Count > 0)
+            {
+                Log.Logger.Information("Todos as taxas foram obtidas com sucesso. {TaxaCount}", taxas.Count);
+                return taxas;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter todos as taxas. {TaxaCount} -> ", taxas.Count);
+                return taxas;
+            }
         }
 
         public Taxa SelecionarPorId(int id)
         {
-            return repositorioTaxa.SelecionarPorId(id);
+            Log.Logger.Debug("Tentando obter uma taxa...");
+
+            var taxa = repositorioTaxa.SelecionarPorId(id);
+
+            if (taxa != null)
+            {
+                Log.Logger.Information("Taxa foi obtida com sucesso.", taxa.Descricao);
+                return taxa;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter uma taxa. {Taxa} -> ", taxa.Descricao);
+                return taxa;
+            }
         }
 
         public ValidationResult Validar(Taxa taxa)
