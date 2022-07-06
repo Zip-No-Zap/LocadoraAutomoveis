@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo;
+using Serilog;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
@@ -17,37 +18,86 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 
         public ValidationResult Inserir(Veiculo veiculo)
         {
+            Log.Logger.Debug("Tentando inserir Veículo... {@veiculo}", veiculo);
             var resultadoValidacao = Validar(veiculo);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioVeiculo.Inserir(veiculo);
+                Log.Logger.Information("Veículo inserido com sucesso. {@veiculo}", veiculo);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar inserir Veículo. {VeiculoModelo} -> Motivo: {erro}", veiculo.Modelo, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
 
         public ValidationResult Editar(Veiculo veiculo)
         {
+            Log.Logger.Debug("Tentando editar Veículo... {@veiculo}", veiculo);
             var resultadoValidacao = Validar(veiculo);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioVeiculo.Editar(veiculo);
+                Log.Logger.Information("Veículo editado com sucesso. {@veiculo}", veiculo);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar editar Veículo. {VeiculoModelo} -> Motivo: {erro}", veiculo.Modelo, erro.ErrorMessage);
+
 
             return resultadoValidacao;
         }
 
         public void Excluir(Veiculo veiculo)
         {
+            Log.Logger.Debug("Tentando excluir Veículo... {@veiculo}", veiculo);
             repositorioVeiculo.Excluir(veiculo);
+
+            var veiculoExcluido = SelecionarPorId(veiculo.Id);
+
+            if (veiculoExcluido == null)
+                Log.Logger.Information("Veiculo excluído com sucesso. {@veiculo} -> ", veiculo);
+            else
+                Log.Logger.Warning("Falha ao excluír Veículo. {Veiculo} -> Motivo: {erro}", veiculo);
         }
 
         public List<Veiculo> SelecionarTodos()
         {
-            return repositorioVeiculo.SelecionarTodos();
+            Log.Logger.Debug("Tentando obter todos Veiculo...");
+
+            var veiculos = repositorioVeiculo.SelecionarTodos();
+
+            if (veiculos.Count > 0)
+            {
+                Log.Logger.Information("Todos os veiculos foram obtidos com sucesso. {VeiculosCount}", veiculos.Count);
+                return veiculos;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter todos Veiculo. {VeiculosCount} -> ", veiculos.Count);
+                return veiculos;
+            }
         }
 
         public Veiculo SelecionarPorId(int id)
         {
-            return repositorioVeiculo.SelecionarPorId(id);
+            Log.Logger.Debug("Tentando obter um veiculo...");
+
+            var veiculo = repositorioVeiculo.SelecionarPorId(id);
+
+            if (veiculo != null)
+            {
+                Log.Logger.Information("Veículo foi obtido com sucesso.", veiculo.Modelo);
+                return veiculo;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter um veículo. {Veiculo} -> ", veiculo.Modelo);
+                return veiculo;
+            }
         }
 
         public ValidationResult Validar(Veiculo veiculo)
