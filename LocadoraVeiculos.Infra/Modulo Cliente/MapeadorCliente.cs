@@ -24,42 +24,44 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
         {
             Cliente cliente = null;
 
-            var id = Convert.ToInt32(leitor["CLIENTE_ID"]);
-            var nome = Convert.ToString(leitor["CLIENTE_NOME"]);
-            var cpf = Convert.ToString(leitor["CLIENTE_CPF"]);
-            var cnpj = Convert.ToString(leitor["CLIENTE_CNPJ"]);
-            var endereco = Convert.ToString(leitor["CLIENTE_ENDERECO"]);
-            var tipoCliente = Convert.ToInt16(leitor["CLIENTE_TIPOCLIENTE"]);
-            var email = Convert.ToString(leitor["CLIENTE_EMAIL"]);
-            var telefone = Convert.ToString(leitor["CLIENTE_TELEFONE"]);
-
-            cliente = new Cliente()
+            if (leitor.Read())
             {
-                Id = id,
-                Nome = nome, 
-                Cpf = cpf, 
-                Cnpj = cnpj,
-                Email = email,
-                Endereco = endereco, 
-                Telefone = telefone, 
-            };
+                var id = Convert.ToInt32(leitor["CLIENTE_ID"]);
+                var nome = Convert.ToString(leitor["CLIENTE_NOME"]);
+                var cpf = Convert.ToString(leitor["CLIENTE_CPF"]);
+                var cnpj = Convert.ToString(leitor["CLIENTE_CNPJ"]);
+                var endereco = Convert.ToString(leitor["CLIENTE_ENDERECO"]);
+                var tipoCliente = Convert.ToInt16(leitor["CLIENTE_TIPOCLIENTE"]);
+                var email = Convert.ToString(leitor["CLIENTE_EMAIL"]);
+                var telefone = Convert.ToString(leitor["CLIENTE_TELEFONE"]);
 
-            switch (tipoCliente)
-            {
-                case 0:
-                    cliente.TipoCliente = EnumTipoCliente.PessoaFisica;
-                    break;
-                case 1:
-                    cliente.TipoCliente = EnumTipoCliente.PessoaJuridica;
+                cliente = new Cliente()
+                {
+                    Id = id,
+                    Nome = nome,
+                    Cpf = cpf,
+                    Cnpj = cnpj,
+                    Email = email,
+                    Endereco = endereco,
+                    Telefone = telefone,
+                };
 
-                    break;
-                   
+                switch (tipoCliente)
+                {
+                    case 0:
+                        cliente.TipoCliente = EnumTipoCliente.PessoaFisica;
+                        break;
+                    case 1:
+                        cliente.TipoCliente = EnumTipoCliente.PessoaJuridica;
+
+                        break;
+
+                }
             }
-            
 
             return cliente;
         }
-        public override void DefinirParametroValidacao(string campoBd, Cliente entidade, SqlCommand cmd)
+        public override void DefinirParametroValidacao(string campoBd, Cliente entidade, SqlCommand cmd, string propiedade)
         {
             cmd.Parameters.AddWithValue(campoBd.ToUpper(), entidade.Nome);
         }

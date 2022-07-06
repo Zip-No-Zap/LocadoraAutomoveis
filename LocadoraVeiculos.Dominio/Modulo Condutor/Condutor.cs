@@ -16,13 +16,13 @@ namespace LocadoraVeiculos.Dominio.Modulo_Condutor
         public string Endereco { get; set; }
         public string Telefone { get; set; }
         public string Cnh { get; set; }
-        public DateTime VencimentoCnh { get { return _dateVemcimentoCnh.Date; } set { _dateVemcimentoCnh = value; } }
+        public DateTime VencimentoCnh { get { return _dateVencimentoCnh.Date; } set { _dateVencimentoCnh = value; } }
 
-        private DateTime _dateVemcimentoCnh;
+        private DateTime _dateVencimentoCnh;
 
         public Condutor()
         {
-            _dateVemcimentoCnh = DateTime.Now;
+            _dateVencimentoCnh = DateTime.Now;
         }
         public Condutor(Cliente cliente, string nome, string cpf, string email, 
             string endereco, string telefone, string cnh, DateTime vencimentoCnh)

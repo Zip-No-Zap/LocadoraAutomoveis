@@ -59,7 +59,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
             FROM 
                 [TBCLIENTE]
             WHERE 
-                [ID] = @ID";
+                ID = @ID";
 
         protected override string Sql_selecao_todos => 
             @"SELECT 

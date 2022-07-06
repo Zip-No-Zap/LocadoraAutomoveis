@@ -22,7 +22,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
             cmd.Parameters.AddWithValue("PERFIL", entidade.Perfil);
         }
 
-        public override void DefinirParametroValidacao(string campoBancoDados, Funcionario entidade, SqlCommand cmd)
+        public override void DefinirParametroValidacao(string campoBancoDados, Funcionario entidade, SqlCommand cmd, string propiedade)
         {
             cmd.Parameters.AddWithValue(campoBancoDados.ToUpper(), entidade.Nome);
         }

@@ -17,7 +17,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
             cmd.Parameters.AddWithValue("VALOR", entidade.Valor);
         }
 
-        public override void DefinirParametroValidacao(string campoBd, Taxa entidade, SqlCommand cmd)
+        public override void DefinirParametroValidacao(string campoBd, Taxa entidade, SqlCommand cmd, string propiedade)
         {
             cmd.Parameters.AddWithValue(campoBd.ToUpper(), entidade.Descricao);
         }

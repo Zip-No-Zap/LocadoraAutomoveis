@@ -13,7 +13,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
 
         public RepositorioClienteEmBancoDadosTest()
         {
-            repositorioCliente = new RepositorioClienteEmBancoDados();
+            repositorioCliente = new();
             ResetarBancoDados();
         }
         [TestMethod]

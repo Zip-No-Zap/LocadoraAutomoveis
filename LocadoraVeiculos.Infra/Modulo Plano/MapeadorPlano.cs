@@ -24,7 +24,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
             cmd.Parameters.AddWithValue("GRUPO_NOME", entidade.Grupo.Nome);
         }
 
-        public override void DefinirParametroValidacao(string campoBancoDados, Plano entidade, SqlCommand cmd)
+        public override void DefinirParametroValidacao(string campoBancoDados, Plano entidade, SqlCommand cmd, string propiedade)
         {
             cmd.Parameters.AddWithValue(campoBancoDados.ToUpper(), entidade.ValorDiario_Diario);
         }
