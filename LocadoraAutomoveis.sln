@@ -29,7 +29,11 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LocadoraAutomoveis.Projeto.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2- Aplicacao", "2- Aplicacao", "{230C9C24-ADBE-48B9-A4C6-0254D91D7E10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraAutomoveis.Aplicacao", "LocadoraAutomoveis.Aplicacao\LocadoraAutomoveis.Aplicacao.csproj", "{576E5194-3B4C-4C4C-8609-EF1D68DF19EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraAutomoveis.Aplicacao", "LocadoraAutomoveis.Aplicacao\LocadoraAutomoveis.Aplicacao.csproj", "{576E5194-3B4C-4C4C-8609-EF1D68DF19EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logs", "Logs", "{1FF14C83-8C01-46AB-A317-636BC5A42F7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraAutomoveis.Infra.Logs", "LocadoraAutomoveis.Infra.Logs\LocadoraAutomoveis.Infra.Logs.csproj", "{ED05FBC8-5020-4B9D-91A8-5ECE08033D13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +71,10 @@ Global
 		{576E5194-3B4C-4C4C-8609-EF1D68DF19EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{576E5194-3B4C-4C4C-8609-EF1D68DF19EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{576E5194-3B4C-4C4C-8609-EF1D68DF19EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED05FBC8-5020-4B9D-91A8-5ECE08033D13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED05FBC8-5020-4B9D-91A8-5ECE08033D13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED05FBC8-5020-4B9D-91A8-5ECE08033D13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED05FBC8-5020-4B9D-91A8-5ECE08033D13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +89,8 @@ Global
 		{A6D6C49A-A1E0-48A5-8C81-B4E84922ACAB} = {6E1B342C-6AF1-483A-A306-9511F75814FE}
 		{A21788AF-86B6-4D62-9C5F-A5B9955E0262} = {0B17407B-D3BC-455C-9EDE-049302331B8F}
 		{576E5194-3B4C-4C4C-8609-EF1D68DF19EB} = {230C9C24-ADBE-48B9-A4C6-0254D91D7E10}
+		{1FF14C83-8C01-46AB-A317-636BC5A42F7D} = {0B17407B-D3BC-455C-9EDE-049302331B8F}
+		{ED05FBC8-5020-4B9D-91A8-5ECE08033D13} = {1FF14C83-8C01-46AB-A317-636BC5A42F7D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFB22DCF-72CE-4820-99D4-D5A13699E51E}
