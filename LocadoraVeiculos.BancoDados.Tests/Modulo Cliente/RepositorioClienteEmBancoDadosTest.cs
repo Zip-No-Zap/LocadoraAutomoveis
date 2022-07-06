@@ -14,7 +14,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
         public RepositorioClienteEmBancoDadosTest()
         {
             repositorioCliente = new();
-            ResetarBancoDados();
+            ResetarBancoDadosCondutor();
+            ResetarBancoDadosCliente();
         }
         [TestMethod]
         public void Deve_inserir_cliente()
@@ -126,9 +127,14 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             };
         }
 
-        void ResetarBancoDados()
+        void ResetarBancoDadosCliente()
         {
             DbTests.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)");
+        }
+
+        void ResetarBancoDadosCondutor()
+        {
+            DbTests.ExecutarSql("DELETE FROM TBCONDUTOR; DBCC CHECKIDENT (TBCONDUTOR, RESEED, 0)");
         }
 
     }

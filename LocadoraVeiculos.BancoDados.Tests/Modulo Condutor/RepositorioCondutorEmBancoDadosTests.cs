@@ -1,13 +1,9 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
+using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Condutor
 {
@@ -20,6 +16,9 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Condutor
         {
             repositorioCondutor = new();
             repositorioCliente = new();
+
+            ResetarBancoDadosCondutor();
+            ResetarBancoDadosCliente();
         }
 
         [TestMethod]
@@ -71,6 +70,9 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Condutor
             Assert.IsNull(resultado);
         }
 
+
+        #region privates
+
         private Condutor InstanciarCondutor()
         {
             Cliente cliente = new Cliente()
@@ -96,5 +98,17 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Condutor
 
             };
         }
+
+        private void ResetarBancoDadosCondutor()
+        {
+            DbTests.ExecutarSql("DELETE FROM TBCONDUTOR; DBCC CHECKIDENT (TBCONDUTOR, RESEED, 0)");
+        }
+
+        private void ResetarBancoDadosCliente()
+        {
+            DbTests.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)");
+        }
+
+        #endregion
     }
 }

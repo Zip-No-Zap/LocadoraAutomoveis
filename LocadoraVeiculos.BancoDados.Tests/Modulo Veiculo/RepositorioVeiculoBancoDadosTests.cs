@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
 {
+
     [TestClass]
     public class RepositorioVeiculoBancoDadosTests
     {
@@ -16,7 +17,9 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
         {
             repoVeiculo = new();
             repoGrupo = new();
-            ResetarBancoDados();
+            ResetarBancoDadosPlano();
+            ResetarBancoDadosVeiculo();
+            ResetarBancoDadosGrupo();
         }
 
         [TestMethod]
@@ -62,6 +65,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
             //arrange
             var veiculo = InstanciarVeiculo();
 
+            repoGrupo.Inserir(veiculo.GrupoPertencente);
             repoVeiculo.Inserir(veiculo);
 
             //action
@@ -80,6 +84,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
             var veiculo1 = InstanciarVeiculo();
             var veiculo2 = InstanciarVeiculo2();
 
+            repoGrupo.Inserir(veiculo1.GrupoPertencente);
             repoVeiculo.Inserir(veiculo1);
             repoVeiculo.Inserir(veiculo2);
 
@@ -96,6 +101,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
             //arrange
             var veiculo1 = InstanciarVeiculo();
 
+            repoGrupo.Inserir(veiculo1.GrupoPertencente);
             repoVeiculo.Inserir(veiculo1);
 
             //action
@@ -116,7 +122,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
                 Ano = 2019,
                 TipoCombustivel = "Gásolina",
                 CapacidadeTanque = 45,
-                GrupoPertencente = new("Esportivos"),
+                GrupoPertencente = new("Esportivos") { Id = 1 },
                 StatusVeiculo = "Disponível",
                 QuilometragemAtual = 10000,
                 Foto = new byte[] {   }
@@ -133,16 +139,26 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
                 Ano = 2020,
                 TipoCombustivel = "Gásolina",
                 CapacidadeTanque = 50,
-                GrupoPertencente = new("Esportivos"),
+                GrupoPertencente = new("Esportivos") { Id = 1 },
                 StatusVeiculo = "Disponível",
                 QuilometragemAtual = 1000,
                 Foto = new byte[] { }
             };
         }
 
-        void ResetarBancoDados()
+        void ResetarBancoDadosVeiculo()
         {
             DbTests.ExecutarSql("DELETE FROM TBVEICULO; DBCC CHECKIDENT (TBVEICULO, RESEED, 0)");
+        }
+
+        void ResetarBancoDadosGrupo()
+        {
+            DbTests.ExecutarSql("DELETE FROM TBGRUPOVEICULO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
+        }
+
+        void ResetarBancoDadosPlano()
+        {
+            DbTests.ExecutarSql("DELETE FROM TBPLANO; DBCC CHECKIDENT (TBPLANO, RESEED, 0)");
         }
         #endregion
     }

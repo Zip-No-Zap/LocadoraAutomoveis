@@ -14,8 +14,8 @@ namespace LocadoraVeiculos.BancoDados.Tests
 
         public RepositorioGrupoVeiculoBancoDadosTests()
         {
-            DbTests.ExecutarSql("DELETE FROM TBGRUPOVEICULO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
-            repoGrupoVeiculo = new();
+            ResetarBancoVeiculo();
+            ResetarBancoGrupo();
         }
 
         [TestMethod]
@@ -124,6 +124,16 @@ namespace LocadoraVeiculos.BancoDados.Tests
             };
         }
 
+        private void ResetarBancoVeiculo()
+        {
+            DbTests.ExecutarSql("DELETE FROM TBVEICULO; DBCC CHECKIDENT (TBVEICULO, RESEED, 0)");
+        }
+
+        private void ResetarBancoGrupo()
+        {
+            DbTests.ExecutarSql("DELETE FROM TBGRUPOVEICULO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
+            repoGrupoVeiculo = new();
+        }
 
         #endregion
     }
