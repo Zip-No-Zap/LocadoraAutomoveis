@@ -54,13 +54,30 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
 
                 condutor.Cliente = new MapeadorCliente().ConverterRegistro(leitor);
             }
+
             return condutor;
 
 
         }
-        public override void DefinirParametroValidacao(string campoBd, Condutor entidade, SqlCommand cmd)
+        public override void DefinirParametroValidacao(string campoBd, Condutor entidade, SqlCommand cmd, string propriedade)
         {
-            cmd.Parameters.AddWithValue(campoBd.ToUpper(), entidade.Cnh);
+            switch (propriedade)
+            {
+                case "NOME":
+                    cmd.Parameters.AddWithValue(campoBd.ToUpper(), entidade.Nome);
+                    break;
+
+                case "CPF":
+                    cmd.Parameters.AddWithValue(campoBd.ToUpper(), entidade.Cpf);
+                    break;
+
+                case "CNH":
+                    cmd.Parameters.AddWithValue(campoBd.ToUpper(), entidade.Cnh);
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         public override List<Condutor> LerTodos(SqlDataReader leitor)
