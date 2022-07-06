@@ -92,7 +92,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 
         public Funcionario SelecionarPorId(int id)
         {
-            Log.Logger.Debug("Tentando obter um funcionários... ");
+            Log.Logger.Debug("Tentando obter um funcionário... ");
 
             var funcionario = repositorioFuncionario.SelecionarPorId(id);
 

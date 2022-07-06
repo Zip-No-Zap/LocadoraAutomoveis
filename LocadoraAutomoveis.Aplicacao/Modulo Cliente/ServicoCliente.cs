@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
+using Serilog;
 using System;
 using System.Collections.Generic;
 
@@ -11,14 +12,14 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
         readonly RepositorioClienteEmBancoDados repositorioCliente;
         ValidadorCliente validadorCliente;
 
-        public ServicoCliente(RepositorioClienteEmBancoDados reopositorioCliente)
+        public ServicoCliente(RepositorioClienteEmBancoDados repositorioCliente)
         {
-            this.repositorioCliente = reopositorioCliente;
-
+            this.repositorioCliente = repositorioCliente;
         }
 
         public ValidationResult Inserir(Cliente cliente)
         {
+            Log.Logger.Debug("Tentando inserir Cliente... {@cliente}", cliente);
             var resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
@@ -27,26 +28,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             return resultadoValidacao;
         }
 
-        private ValidationResult Validar(Cliente cliente)
-        {
-            validadorCliente = new ValidadorCliente();
-
-            var resultadoValidacao = validadorCliente.Validate(cliente);
-
-            if (NomeDuplicado(cliente))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Nome", "'Nome' duplicado"));
-
-            if (CpfDuplicado(cliente))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Cpf", "'Cpf' duplicado"));
-
-            if (CnpjDuplicado(cliente))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Cnpj", "'Cnpj' duplicado"));
-
-            return resultadoValidacao;
-        }
-
         public ValidationResult Editar(Cliente cliente)
         {
+            Log.Logger.Debug("Tentando editar Cliente... {@cliente}", cliente);
             var resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
@@ -57,6 +41,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
         public ValidationResult Excluir(Cliente cliente)
         {
+            Log.Logger.Debug("Tentando excluir Cliente... {@cliente}", cliente);
             var resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
@@ -67,12 +52,37 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
         public List<Cliente> SelecionarTodos()
         {
-            return repositorioCliente.SelecionarTodos();
+            Log.Logger.Debug("Tentando obter todos os clientes...");
+            
+            var clientes = repositorioCliente.SelecionarTodos();
+
+            if (clientes.Count > 0)
+            {
+                Log.Logger.Information("Todos os clientes foram obtidos com sucesso. {ClienteCount}", clientes.Count);
+                return clientes;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter todos os clientes. {ClienteCount} -> ", clientes.Count);
+                return clientes;
+            }
         }
 
         public Cliente SelecionarPorId(int id)
         {
-            return repositorioCliente.SelecionarPorId(id);
+            Log.Logger.Debug("Tentando obter um cliente... ");
+            var cliente =  repositorioCliente.SelecionarPorId(id);
+
+            if (cliente != null)
+            {
+                Log.Logger.Information("Cliente foi obtido com sucesso... ", cliente.Nome);
+                return cliente;
+            }
+            else
+            {
+                Log.Logger.Warning("Falha ao tentar obter um cliente. {Cliente} -> ", cliente.Nome);
+                return cliente;
+            }
         }
 
         #region privates
@@ -113,6 +123,24 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
                    clienteEncontrado.Cpf != "-" &&
                    clienteEncontrado.Cpf.Equals(cliente.Cpf) &&
                   !clienteEncontrado.Id.Equals(cliente.Id);
+        }
+
+        private ValidationResult Validar(Cliente cliente)
+        {
+            validadorCliente = new ValidadorCliente();
+
+            var resultadoValidacao = validadorCliente.Validate(cliente);
+
+            if (NomeDuplicado(cliente))
+                resultadoValidacao.Errors.Add(new ValidationFailure("Nome", "'Nome' duplicado"));
+
+            if (CpfDuplicado(cliente))
+                resultadoValidacao.Errors.Add(new ValidationFailure("Cpf", "'Cpf' duplicado"));
+
+            if (CnpjDuplicado(cliente))
+                resultadoValidacao.Errors.Add(new ValidationFailure("Cnpj", "'Cnpj' duplicado"));
+
+            return resultadoValidacao;
         }
 
         #endregion
