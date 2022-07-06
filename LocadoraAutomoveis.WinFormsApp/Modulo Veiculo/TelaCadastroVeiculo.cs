@@ -181,13 +181,15 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
             var nomes = servicoGrupo.SelecionarTodos();
 
-            foreach (GrupoVeiculo gv in nomes)
+            if (nomes != null)
             {
-                cmbGrupoVeiculo.Items.Add(gv.Nome);
+                foreach (GrupoVeiculo gv in nomes)
+                {
+                    cmbGrupoVeiculo.Items.Add(gv.Nome);
+                }
             }
         }
-
-     
+    
         private void txbModelo_Leave(object sender, EventArgs e)
         {
             ValidadorCampos.ImpedirTextoMenorDois(txbModelo.Text);

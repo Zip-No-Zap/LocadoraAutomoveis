@@ -49,9 +49,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
             var nomes = servicoGrupo.SelecionarTodos();
 
-            foreach (GrupoVeiculo gv in nomes)
+            if (nomes != null)
             {
-                cbGrupo.Items.Add(gv.Nome);
+                foreach (GrupoVeiculo gv in nomes)
+                {
+                    cbGrupo.Items.Add(gv.Nome);
+                }
             }
         }
 

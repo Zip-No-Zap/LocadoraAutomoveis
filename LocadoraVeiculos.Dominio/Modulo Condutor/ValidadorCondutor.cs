@@ -14,6 +14,9 @@ namespace LocadoraVeiculos.Dominio.Modulo_Condutor
     {
         public ValidadorCondutor()
         {
+            RuleFor(x => x.Cliente.Nome)
+                .NotEmpty().WithMessage("Campo 'Cliente', é obrigatório");
+
             RuleFor(x => x.Nome)
                 .NotNull().WithMessage("Campo 'Nome' é obrigatório.")
                 .NotEmpty().WithMessage("Campo 'Nome' é obrigatótio.")
@@ -28,7 +31,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Condutor
                             context.AddFailure("'CPF' inválido.");
                     }
                 });
-
 
             RuleFor(x => x.Telefone)
                .Telefone()

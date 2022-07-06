@@ -19,7 +19,6 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
         {
             var resultadoValidacao = Validar(condutor);
 
-
             if (resultadoValidacao.IsValid)
                 repositorioCondutor.Inserir(condutor);
 
@@ -86,8 +85,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 				CONDUTOR.[EMAIL]CONDUTOR_EMAIL,
 				CONDUTOR.[ENDERECO] CONDUTOR_ENDERECO,
 				CONDUTOR.[TELEFONE] CONDUTOR_TELEFONE,
+				CONDUTOR.[CLIENTE_ID] CONDUTOR_CLIENTE_ID,
 		
-				CLIENTE.[ID] CLIENTE_ID,
 				CLIENTE.[NOME] CLIENTE_NOME,
 				CLIENTE.[CPF] CLIENTE_CPF,
 				CLIENTE.[CNPJ] CLIENTE_CNPJ,
@@ -127,8 +126,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 				CONDUTOR.[EMAIL]CONDUTOR_EMAIL,
 				CONDUTOR.[ENDERECO] CONDUTOR_ENDERECO,
 				CONDUTOR.[TELEFONE] CONDUTOR_TELEFONE,
+				CONDUTOR.[CLIENTE_ID] CONDUTOR_CLIENTE_ID,
 		
-				CLIENTE.[ID] CLIENTE_ID,
 				CLIENTE.[NOME] CLIENTE_NOME,
 				CLIENTE.[CPF] CLIENTE_CPF,
 				CLIENTE.[CNPJ] CLIENTE_CNPJ,
@@ -144,7 +143,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
                     CLIENTE.ID = CONDUTOR.CLIENTE_ID
 
 
-                WHERE CONDUTOR.CPF = @CNHCONDUTOR";
+                WHERE CONDUTOR.CPF = @CPFCONDUTOR";
 
             repositorioCondutor.PropriedadeParametro = "CPFCONDUTOR";
             repositorioCondutor.propriedadeValidar = "Cpf";
@@ -168,8 +167,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 				CONDUTOR.[EMAIL]CONDUTOR_EMAIL,
 				CONDUTOR.[ENDERECO] CONDUTOR_ENDERECO,
 				CONDUTOR.[TELEFONE] CONDUTOR_TELEFONE,
+				CONDUTOR.[CLIENTE_ID] CONDUTOR_CLIENTE_ID,
 		
-				CLIENTE.[ID] CLIENTE_ID,
 				CLIENTE.[NOME] CLIENTE_NOME,
 				CLIENTE.[CPF] CLIENTE_CPF,
 				CLIENTE.[CNPJ] CLIENTE_CNPJ,

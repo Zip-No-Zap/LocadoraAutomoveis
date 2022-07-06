@@ -4,12 +4,6 @@ using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
@@ -46,8 +40,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
             }
         }
 
-        
-        
         private void TelaCadastroCondutor_Load(object sender, EventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
@@ -111,10 +103,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 
         private void CarregarDoCondutor()
         {
-            //obter o nome do cliente selecionado 
             Cliente clienteSelecionado = (Cliente)cmbClientes.SelectedItem;
 
-            if(cbClienteECondutor.Checked == false)
+            if(clienteSelecionado != null && cbClienteECondutor.Checked == false)
             {
                 tbNome.Text = "";
                 tbCpf.Text = "";

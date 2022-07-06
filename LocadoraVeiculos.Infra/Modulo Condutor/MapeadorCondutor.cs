@@ -90,7 +90,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
                 var telefone = Convert.ToString(leitor["CONDUTOR_TELEFONE"]);
                 var endereco = Convert.ToString(leitor["CONDUTOR_ENDERECO"]);
 
-                int clienteId = Convert.ToInt32(leitor["CLIENTE_ID"]);
+                int clienteId = Convert.ToInt32(leitor["CONDUTOR_CLIENTE_ID"]);
                 string clienteNome = Convert.ToString(leitor["CLIENTE_NOME"]);
                 string clienteCpf = Convert.ToString(leitor["CLIENTE_CPF"]);
                 string clienteCnpj = Convert.ToString(leitor["CLIENTE_CNPJ"]);
@@ -98,22 +98,6 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
                 int clienteTipo = Convert.ToInt32(leitor["CLIENTE_TIPOCLIENTE"]);
                 string clienteEmail = Convert.ToString(leitor["CLIENTE_EMAIL"]);
                 string clienteTelefone = Convert.ToString(leitor["CLIENTE_TELEFONE"]);
-
-                EnumTipoCliente enumcliente = 0;
-
-                switch (clienteTipo)
-                {
-                    case 0:
-                        enumcliente = EnumTipoCliente.PessoaFisica;
-                        break;
-
-                    case 1:
-                        enumcliente = EnumTipoCliente.PessoaJuridica;
-                        break;
-
-                    default:
-                        break;
-                }
 
                 Condutor condutor = new Condutor();
                 condutor.Id = id;
@@ -132,10 +116,23 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
                     Cpf = clienteCpf,
                     Cnpj = clienteCnpj,
                     Endereco = clienteEndereco,
-                    TipoCliente = enumcliente,
                     Email = clienteEmail,
                     Telefone = clienteTelefone
                 };
+
+                switch (clienteTipo)
+                {
+                    case 0:
+                        condutor.Cliente.TipoCliente = EnumTipoCliente.PessoaFisica;
+                        break;
+
+                    case 1:
+                        condutor.Cliente.TipoCliente = EnumTipoCliente.PessoaJuridica;
+                        break;
+
+                    default:
+                        break;
+                }
 
                 condutores.Add(condutor);
             }
