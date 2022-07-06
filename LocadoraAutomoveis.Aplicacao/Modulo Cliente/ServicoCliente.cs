@@ -2,7 +2,6 @@
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using Serilog;
-using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
@@ -23,7 +22,13 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             var resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioCliente.Inserir(cliente);
+                Log.Logger.Information("Cliente inserido com sucesso. {@cliente}", cliente);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                Log.Logger.Warning("Falha ao tentar inserir Cliente. {ClienteNome} -> Motivo: {erro}", cliente.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -34,7 +39,13 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             var resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioCliente.Editar(cliente);
+                Log.Logger.Information("Cliente editado com sucesso. {@cliente}", cliente);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar editar Cliente. {ClienteNome} -> Motivo: {erro}", cliente.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -45,7 +56,13 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             var resultadoValidacao = Validar(cliente);
 
             if (resultadoValidacao.IsValid)
+            {
                 repositorioCliente.Excluir(cliente);
+                Log.Logger.Information("Cliente excluir com sucesso. {@cliente}", cliente);
+            }
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                    Log.Logger.Warning("Falha ao tentar excluir Cliente. {ClienteNome} -> Motivo: {erro}", cliente.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }

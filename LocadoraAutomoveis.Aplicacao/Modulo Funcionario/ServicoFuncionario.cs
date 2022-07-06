@@ -2,7 +2,6 @@
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using Serilog;
-using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
@@ -28,7 +27,6 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
                 repositorioFuncionario.Inserir(funcionario);
                 Log.Logger.Information("Funcionário inserido com sucesso. {@funcionario}", funcionario);
             }
-
             else
                 foreach (var erro in resultadoValidacao.Errors)
                     Log.Logger.Warning("Falha ao tentar inserir Funcionário. {FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
