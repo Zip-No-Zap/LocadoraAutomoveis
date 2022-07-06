@@ -72,7 +72,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 
         public List<Funcionario> SelecionarTodos()
         {
-            Log.Logger.Debug("Tentando obter todos os funcionários... ");
+            Log.Logger.Debug("Tentando obter todos os funcionários...");
 
             var funcionarios = repositorioFuncionario.SelecionarTodos();
 
@@ -90,13 +90,13 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 
         public Funcionario SelecionarPorId(int id)
         {
-            Log.Logger.Debug("Tentando obter um funcionário... ");
+            Log.Logger.Debug("Tentando obter um funcionário...");
 
             var funcionario = repositorioFuncionario.SelecionarPorId(id);
 
             if (funcionario != null)
             {
-                Log.Logger.Information("Funcionário foi obtido com sucesso... ", funcionario.Nome);
+                Log.Logger.Information("Funcionário foi obtido com sucesso.", funcionario.Nome);
                 return funcionario;
             }
             else

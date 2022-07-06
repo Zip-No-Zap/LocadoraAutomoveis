@@ -87,12 +87,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
         public Cliente SelecionarPorId(int id)
         {
-            Log.Logger.Debug("Tentando obter um cliente... ");
+            Log.Logger.Debug("Tentando obter um cliente...");
             var cliente =  repositorioCliente.SelecionarPorId(id);
 
             if (cliente != null)
             {
-                Log.Logger.Information("Cliente foi obtido com sucesso... ", cliente.Nome);
+                Log.Logger.Information("Cliente foi obtido com sucesso.", cliente.Nome);
                 return cliente;
             }
             else
