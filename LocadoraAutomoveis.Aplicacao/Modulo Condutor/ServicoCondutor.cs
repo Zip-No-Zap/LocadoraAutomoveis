@@ -60,10 +60,10 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
                 resultadoValidacao.Errors.Add(new ValidationFailure("Nome", "'Nome' duplicado"));
 
             if (CpfDuplicado(condutor))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Cpf", "'Cpf' duplicado"));
+                resultadoValidacao.Errors.Add(new ValidationFailure("Cpf", "'CPF' duplicado"));
 
             if (CnhDuplicada(condutor))
-                resultadoValidacao.Errors.Add(new ValidationFailure("Cnh", "'Cnh' duplicada"));
+                resultadoValidacao.Errors.Add(new ValidationFailure("Cnh", "'CNH' duplicada"));
 
 
             return resultadoValidacao;

@@ -68,11 +68,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
             condutor.Endereco = tbEndereco.Text;
             condutor.Cnh = tbCnh.Text;
             condutor.VencimentoCnh = txtDataVencimentoCnh.Value;
-
-            if (condutor.Cliente != null)
-                condutor.Cliente = (Cliente)cmbClientes.SelectedItem;
-            else
-            {
+            condutor.Cliente = (Cliente)cmbClientes.SelectedItem;
+            
+            if (condutor.Cliente == null)
+            { 
                 var novoClienteVazio = new Cliente() { Nome = "" };
                 condutor.Cliente = novoClienteVazio;
             }
@@ -92,7 +91,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
         private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             Cliente clienteSelecionado = (Cliente)cmbClientes.SelectedItem;
-            if (clienteSelecionado.TipoCliente == EnumTipoCliente.PessoaFisica)
+
+            if (clienteSelecionado != null && clienteSelecionado.TipoCliente == EnumTipoCliente.PessoaFisica)
                 cbClienteECondutor.Enabled = true;
             else
             {
