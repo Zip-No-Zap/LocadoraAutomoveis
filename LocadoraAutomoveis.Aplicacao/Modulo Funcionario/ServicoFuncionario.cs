@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
+using Serilog;
 using System;
 using System.Collections.Generic;
 
@@ -18,10 +19,15 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 
         public ValidationResult Inserir(Funcionario funcionario)
         {
+            Log.Logger.Information("Tentando inserir Funcionário... {@funcionario}", funcionario);
+
             var resultadoValidacao = Validar(funcionario);
 
             if(resultadoValidacao.IsValid)
                 repositorioFuncionario.Inserir(funcionario);
+            else
+                foreach (var erro in resultadoValidacao.Errors)
+                      Log.Logger.Warning("Falha ao tentar inserir Funcionário! {FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }

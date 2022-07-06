@@ -63,7 +63,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
 
         public static void ValidarCampoLogin(KeyPressEventArgs e)
         {
-            if (!((e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z')))
+            if (!((e.KeyChar >= 'a' && e.KeyChar <= 'z') || (e.KeyChar >= 'A' && e.KeyChar <= 'Z') || char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
             }
