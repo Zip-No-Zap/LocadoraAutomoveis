@@ -88,12 +88,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 
             if (condutor != null)
             {
-                Log.Logger.Information("Condutor foi obtido com sucesso.", condutor.Nome);
+                Log.Logger.Information("Condutor foi obtido com sucesso.");
                 return condutor;
             }
             else
             {
-                Log.Logger.Warning("Falha ao tentar obter um condutor. {Condutor} -> ", condutor.Nome);
+                Log.Logger.Warning("Falha ao tentar obter um condutor. {Condutor}");
                 return condutor;
             }
         }

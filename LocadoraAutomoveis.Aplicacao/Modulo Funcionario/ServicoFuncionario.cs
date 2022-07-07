@@ -96,12 +96,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 
             if (funcionario != null)
             {
-                Log.Logger.Information("Funcionário foi obtido com sucesso.", funcionario.Nome);
+                Log.Logger.Information("Funcionário foi obtido com sucesso.");
                 return funcionario;
             }
             else
             {
-                Log.Logger.Warning("Falha ao tentar obter um funcionário. {Funcionario} -> ", funcionario.Nome);
+                Log.Logger.Warning("Falha ao tentar obter um funcionário. {Funcionario}");
                 return funcionario;
             }
         }

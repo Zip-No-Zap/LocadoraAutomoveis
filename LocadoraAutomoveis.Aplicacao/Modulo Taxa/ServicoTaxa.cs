@@ -91,12 +91,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
 
             if (taxa != null)
             {
-                Log.Logger.Information("Taxa foi obtida com sucesso.", taxa.Descricao);
+                Log.Logger.Information("Taxa foi obtida com sucesso.");
                 return taxa;
             }
             else
             {
-                Log.Logger.Warning("Falha ao tentar obter uma taxa. {Taxa} -> ", taxa.Descricao);
+                Log.Logger.Warning("Falha ao tentar obter uma taxa. {Taxa}");
                 return taxa;
             }
         }

@@ -94,12 +94,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
 
             if (grupo != null)
             {
-                Log.Logger.Information("Grupo foi obtido com sucesso.", grupo.Nome);
+                Log.Logger.Information("Grupo foi obtido com sucesso.");
                 return grupo;
             }
             else
             {
-                Log.Logger.Warning("Falha ao tentar obter um grupo. {grupo} -> ", grupo.Nome);
+                Log.Logger.Warning("Falha ao tentar obter um grupo. {grupo}");
                 return grupo;
             }
             return repositorioGrupoVeiculo.SelecionarPorId(id);

@@ -90,12 +90,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 
             if (veiculo != null)
             {
-                Log.Logger.Information("Veículo foi obtido com sucesso.", veiculo.Modelo);
+                Log.Logger.Information("Veículo foi obtido com sucesso.");
                 return veiculo;
             }
             else
             {
-                Log.Logger.Warning("Falha ao tentar obter um veículo. {Veiculo} -> ", veiculo.Modelo);
+                Log.Logger.Warning("Falha ao tentar obter um veículo. {Veiculo}");
                 return veiculo;
             }
         }

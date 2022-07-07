@@ -75,12 +75,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
             if (clientes.Count > 0)
             {
-                Log.Logger.Information("Todos os clientes foram obtidos com sucesso. {ClienteCount}", clientes.Count);
+                Log.Logger.Information("Todos os clientes foram obtidos com sucesso. {ClienteCount}");
                 return clientes;
             }
             else
             {
-                Log.Logger.Warning("Falha ao tentar obter todos os clientes. {ClienteCount} -> ", clientes.Count);
+                Log.Logger.Warning("Falha ao tentar obter todos os clientes. {ClienteCount}");
                 return clientes;
             }
         }

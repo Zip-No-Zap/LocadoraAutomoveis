@@ -90,12 +90,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
             if (plano != null)
             {
-                Log.Logger.Information("Plano foi obtido com sucesso.", plano);
+                Log.Logger.Information("Plano foi obtido com sucesso.");
                 return plano;
             }
             else
             {
-                Log.Logger.Warning("Falha ao tentar obter um plano. {Plano} -> ", plano);
+                Log.Logger.Warning("Falha ao tentar obter um plano. {Plano}");
                 return plano;
             }
         }
