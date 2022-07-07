@@ -109,6 +109,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
 
             //assert
             Assert.AreNotEqual(null, resultado);
+
+            ResetarBancoDadosVeiculo();
         }
 
         #region privados
