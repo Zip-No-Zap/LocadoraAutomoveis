@@ -46,6 +46,12 @@
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.lblToolStripPrincipal = new System.Windows.Forms.ToolStripLabel();
+            this.locaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrarRetiradaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrarDevoluçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configurarPreçosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.combustívelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.taxaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPrincipal.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStripPrincipal.SuspendLayout();
@@ -55,7 +61,8 @@
             // 
             this.menuPrincipal.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cadastroToolStripMenuItem});
+            this.cadastroToolStripMenuItem,
+            this.locaçãoToolStripMenuItem});
             this.menuPrincipal.Location = new System.Drawing.Point(0, 0);
             this.menuPrincipal.Name = "menuPrincipal";
             this.menuPrincipal.Size = new System.Drawing.Size(1798, 33);
@@ -71,7 +78,8 @@
             this.taxaToolStripMenuItem,
             this.condutorToolStripMenuItem,
             this.veículoToolStripMenuItem,
-            this.planoDeCobrançaToolStripMenuItem});
+            this.planoDeCobrançaToolStripMenuItem,
+            this.configurarPreçosToolStripMenuItem});
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(99, 29);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
@@ -79,49 +87,49 @@
             // clienteToolStripMenuItem
             // 
             this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
-            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(263, 34);
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.clienteToolStripMenuItem.Text = "Cliente";
             this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
             // 
             // funcionarioToolStripMenuItem
             // 
             this.funcionarioToolStripMenuItem.Name = "funcionarioToolStripMenuItem";
-            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(263, 34);
+            this.funcionarioToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.funcionarioToolStripMenuItem.Text = "Funcionário";
             this.funcionarioToolStripMenuItem.Click += new System.EventHandler(this.funcionarioToolStripMenuItem_Click);
             // 
             // grupoDeVeículoToolStripMenuItem
             // 
             this.grupoDeVeículoToolStripMenuItem.Name = "grupoDeVeículoToolStripMenuItem";
-            this.grupoDeVeículoToolStripMenuItem.Size = new System.Drawing.Size(263, 34);
+            this.grupoDeVeículoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.grupoDeVeículoToolStripMenuItem.Text = "Grupo de Veículo";
             this.grupoDeVeículoToolStripMenuItem.Click += new System.EventHandler(this.grupoDeVeículoToolStripMenuItem_Click);
             // 
             // taxaToolStripMenuItem
             // 
             this.taxaToolStripMenuItem.Name = "taxaToolStripMenuItem";
-            this.taxaToolStripMenuItem.Size = new System.Drawing.Size(263, 34);
+            this.taxaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.taxaToolStripMenuItem.Text = "Taxa";
             this.taxaToolStripMenuItem.Click += new System.EventHandler(this.taxaToolStripMenuItem_Click);
             // 
             // condutorToolStripMenuItem
             // 
             this.condutorToolStripMenuItem.Name = "condutorToolStripMenuItem";
-            this.condutorToolStripMenuItem.Size = new System.Drawing.Size(263, 34);
+            this.condutorToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.condutorToolStripMenuItem.Text = "Condutor";
             this.condutorToolStripMenuItem.Click += new System.EventHandler(this.condutorToolStripMenuItem_Click);
             // 
             // veículoToolStripMenuItem
             // 
             this.veículoToolStripMenuItem.Name = "veículoToolStripMenuItem";
-            this.veículoToolStripMenuItem.Size = new System.Drawing.Size(263, 34);
+            this.veículoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.veículoToolStripMenuItem.Text = "Veículo";
             this.veículoToolStripMenuItem.Click += new System.EventHandler(this.veículoToolStripMenuItem_Click);
             // 
             // planoDeCobrançaToolStripMenuItem
             // 
             this.planoDeCobrançaToolStripMenuItem.Name = "planoDeCobrançaToolStripMenuItem";
-            this.planoDeCobrançaToolStripMenuItem.Size = new System.Drawing.Size(263, 34);
+            this.planoDeCobrançaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.planoDeCobrançaToolStripMenuItem.Text = "Plano de Cobrança";
             this.planoDeCobrançaToolStripMenuItem.Click += new System.EventHandler(this.planoDeCobrançaToolStripMenuItem_Click);
             // 
@@ -151,6 +159,7 @@
             this.panelPrincipal.Name = "panelPrincipal";
             this.panelPrincipal.Size = new System.Drawing.Size(1786, 714);
             this.panelPrincipal.TabIndex = 2;
+            this.panelPrincipal.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPrincipal_Paint);
             // 
             // toolStripPrincipal
             // 
@@ -199,6 +208,49 @@
             this.lblToolStripPrincipal.Size = new System.Drawing.Size(83, 28);
             this.lblToolStripPrincipal.Text = "Cadastro";
             // 
+            // locaçãoToolStripMenuItem
+            // 
+            this.locaçãoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrarRetiradaToolStripMenuItem,
+            this.registrarDevoluçãoToolStripMenuItem});
+            this.locaçãoToolStripMenuItem.Name = "locaçãoToolStripMenuItem";
+            this.locaçãoToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
+            this.locaçãoToolStripMenuItem.Text = "Locação";
+            // 
+            // registrarRetiradaToolStripMenuItem
+            // 
+            this.registrarRetiradaToolStripMenuItem.Name = "registrarRetiradaToolStripMenuItem";
+            this.registrarRetiradaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.registrarRetiradaToolStripMenuItem.Text = "Retirada";
+            this.registrarRetiradaToolStripMenuItem.Click += new System.EventHandler(this.registrarRetiradaToolStripMenuItem_Click);
+            // 
+            // registrarDevoluçãoToolStripMenuItem
+            // 
+            this.registrarDevoluçãoToolStripMenuItem.Name = "registrarDevoluçãoToolStripMenuItem";
+            this.registrarDevoluçãoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.registrarDevoluçãoToolStripMenuItem.Text = "Devolução";
+            // 
+            // configurarPreçosToolStripMenuItem
+            // 
+            this.configurarPreçosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.combustívelToolStripMenuItem,
+            this.taxaToolStripMenuItem1});
+            this.configurarPreçosToolStripMenuItem.Name = "configurarPreçosToolStripMenuItem";
+            this.configurarPreçosToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.configurarPreçosToolStripMenuItem.Text = "Configurar Preços";
+            // 
+            // combustívelToolStripMenuItem
+            // 
+            this.combustívelToolStripMenuItem.Name = "combustívelToolStripMenuItem";
+            this.combustívelToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.combustívelToolStripMenuItem.Text = "Combustível";
+            // 
+            // taxaToolStripMenuItem1
+            // 
+            this.taxaToolStripMenuItem1.Name = "taxaToolStripMenuItem1";
+            this.taxaToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
+            this.taxaToolStripMenuItem1.Text = "Taxa";
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -246,5 +298,11 @@
         private System.Windows.Forms.ToolStripMenuItem condutorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem veículoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem planoDeCobrançaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem locaçãoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registrarRetiradaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registrarDevoluçãoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configurarPreçosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem combustívelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem taxaToolStripMenuItem1;
     }
 }

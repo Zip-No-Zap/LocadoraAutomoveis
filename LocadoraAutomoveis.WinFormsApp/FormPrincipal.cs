@@ -207,5 +207,15 @@ namespace LocadoraAutomoveis.WinFormsApp
             ConfigurarTelaPrincipal((ToolStripMenuItem)sender);
             HabilitarBotoesToolStrip();
         }
+
+        private void registrarRetiradaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelPrincipal_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
