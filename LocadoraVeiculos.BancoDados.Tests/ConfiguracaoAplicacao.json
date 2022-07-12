@@ -12,7 +12,7 @@
     "DiretorioSaida": "C:\\temp\\Logs\\ViaJson\\"
   },
 
-  "ConectionStrings": {
+  "ConnectionStrings": {
     "SqlServer" : "Data Source=(localDB)\\MSSqlLocalDB;Initial Catalog=LocadoraAutomoveisDBTests;Integrated Security=True"
   }
 }

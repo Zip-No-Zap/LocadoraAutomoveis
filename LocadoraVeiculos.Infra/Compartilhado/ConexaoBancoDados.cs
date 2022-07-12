@@ -14,6 +14,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
         public ConexaoBancoDados()
         {
             var configuracao = new ConfigurationBuilder()
+
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("ConfiguracaoAplicacao.json")
                 .Build();
