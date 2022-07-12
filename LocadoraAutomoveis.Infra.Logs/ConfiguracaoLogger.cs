@@ -9,15 +9,18 @@ namespace LocadoraAutomoveis.Infra.Logs
         public static void CriarLogger()
         {
             var configuracao = new ConfigurationBuilder()
-                                                        //.SetBasePath(Directory.GetCurrentDirectory())
-                                                        //.AddJsonFile("ConfiguracaoAplicacao.json")
+                                                        .SetBasePath(Directory.GetCurrentDirectory())
+                                                        .AddJsonFile("ConfiguracaoAplicacao.json")
                                                         .Build();
 
-            var result = configuracao.GetSection("nome").Value;
+            var diretorioSaida = configuracao
+                .GetSection("ConfiguracaoLogs")
+                .GetSection("DiretorioSaida")
+                .Value;
 
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()   
-                .WriteTo.File(@"C:\temp\Logs\Log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File(diretorioSaida + "Log.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
         }
     }

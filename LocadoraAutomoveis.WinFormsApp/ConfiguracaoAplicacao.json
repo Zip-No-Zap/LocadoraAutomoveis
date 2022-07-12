@@ -8,5 +8,7 @@
     "**/platforms"
   ],
 
-  "nome":  "William"
+  "ConfiguracaoLogs": {
+    "DiretorioSaida": "C:\\temp\\Logs\\ViaJson"
+  }, 
 }
