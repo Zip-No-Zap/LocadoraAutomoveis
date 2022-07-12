@@ -1,5 +1,4 @@
-﻿using FluentValidation.Results;
-using LocadoraVeiculos.Dominio;
+﻿using LocadoraVeiculos.Dominio;
 using LocadoraVeiculos.Dominio.Compartilhado;
 using System;
 using System.Collections.Generic;

@@ -17,14 +17,13 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
                 .AddJsonFile("ArquivoConfiguracao")
                 .Build();
 
-            ConectarBancoDados();   
+            conexao.ConnectionString = configuracao.GetConnectionString("SqlServer");
+            //@"Data Source=(localDB)\MSSqlLocalDB;Initial Catalog=LocadoraAutomoveisDb;Integrated Security=True";
         }
 
         public void ConectarBancoDados()
         {
             conexao = new();
-
-            conexao.ConnectionString = @"Data Source=(localDB)\MSSqlLocalDB;Initial Catalog=LocadoraAutomoveisDb;Integrated Security=True";
 
             conexao.Open();
         }
