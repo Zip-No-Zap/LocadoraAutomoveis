@@ -33,7 +33,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 
             while (leitor.Read())
             {
-                int id = Convert.ToInt32(leitor["ID"]);
+                var id = Guid.Parse(leitor["ID"].ToString());
                 string nome = leitor["NOME"].ToString();
                 string login = leitor["LOGIN"].ToString();
                 string senha = leitor["SENHA"].ToString();
@@ -64,7 +64,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
 
             if (leitor.Read())
             {
-                int id = Convert.ToInt32(leitor["ID"]);
+                var id = Guid.Parse(leitor["ID"].ToString());
                 string nome = leitor["NOME"].ToString();
                 string login = leitor["LOGIN"].ToString();
                 string senha = leitor["SENHA"].ToString();

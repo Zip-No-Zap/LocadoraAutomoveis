@@ -113,7 +113,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 
             mapeador.ConfigurarParametros(entidade, cmd_Insercao);
 
-            entidade.Id = Convert.ToInt32(cmd_Insercao.ExecuteScalar());
+            cmd_Insercao.ExecuteNonQuery();
 
             conexaoBancoDados.DesconectarBancoDados();
         }

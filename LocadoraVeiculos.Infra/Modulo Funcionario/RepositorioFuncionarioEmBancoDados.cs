@@ -11,6 +11,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
         {
             get => @"INSERT INTO TBFUNCIONARIO 
                                     (
+                                            [ID],
                                             [NOME],    
                                             [LOGIN],
                                             [SENHA],
@@ -22,6 +23,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                                     )
                                     VALUES
                                     (
+                                            @ID,
                                             @NOME,
                                             @LOGIN,
                                             @SENHA,
@@ -31,7 +33,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario
                                             @ESTADO,
                                             @PERFIL
 
-                                    );SELECT SCOPE_IDENTITY();";
+                                    );";
         }
         protected override string Sql_edicao
         {

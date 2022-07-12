@@ -5,9 +5,10 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 {
     public class RepositorioClienteEmBancoDados : RepositorioBase<Cliente, MapeadorCliente, ValidadorCliente>
     {
-        protected override string Sql_insercao => 
+        protected override string Sql_insercao =>
             @"INSERT INTO TBCLIENTE 
             (
+                [ID], 
                 [NOME],    
                 [CPF],
                 [CNPJ],   
@@ -18,6 +19,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
             )
             VALUES
             (
+                @ID,
                 @NOME,    
                 @CPF,
                 @CNPJ,   
@@ -26,7 +28,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
                 @EMAIL,
                 @TELEFONE
 
-            );SELECT SCOPE_IDENTITY();";
+            );";
 
         protected override string Sql_edicao => 
             @"UPDATE [TBCLIENTE] 

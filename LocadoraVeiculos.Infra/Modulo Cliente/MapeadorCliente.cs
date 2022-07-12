@@ -26,7 +26,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 
             if (leitor.Read())
             {
-                var id = Convert.ToInt32(leitor["CLIENTE_ID"]);
+                var id = Guid.Parse(leitor["CLIENTE_ID"].ToString());
                 var nome = Convert.ToString(leitor["CLIENTE_NOME"]);
                 var cpf = Convert.ToString(leitor["CLIENTE_CPF"]);
                 var cnpj = Convert.ToString(leitor["CLIENTE_CNPJ"]);
@@ -72,7 +72,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente
 
             while (leitor.Read())
             {
-                var id = Convert.ToInt32(leitor["CLIENTE_ID"]);
+                var id = Guid.Parse(leitor["CLIENTE_ID"].ToString());
                 var nome = Convert.ToString(leitor["CLIENTE_NOME"]);
                 string cpf = Convert.ToString(leitor["CLIENTE_CPF"]);
                 var cnpj = Convert.ToString(leitor["CLIENTE_CNPJ"]);

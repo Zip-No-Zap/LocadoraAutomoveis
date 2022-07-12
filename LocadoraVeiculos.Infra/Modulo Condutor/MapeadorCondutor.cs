@@ -29,7 +29,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
             Condutor condutor = null;
             if (leitor.Read())
             {
-                var id = Convert.ToInt32(leitor["CONDUTOR_ID"]);
+                var id = Guid.Parse(leitor["CONDUTOR_ID"].ToString());
                 var nome = Convert.ToString(leitor["CONDUTOR_NOME"]);
                 var cpf = Convert.ToString(leitor["CONDUTOR_CPF"]);
                 var cnh = Convert.ToString(leitor["CONDUTOR_CNH"]);
@@ -81,7 +81,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
 
             while (leitor.Read())
             {
-                var id = Convert.ToInt32(leitor["CONDUTOR_ID"]);
+                var id = Guid.Parse(leitor["CONDUTOR_ID"].ToString());
                 var nome = Convert.ToString(leitor["CONDUTOR_NOME"]);
                 var cpf = Convert.ToString(leitor["CONDUTOR_CPF"]);
                 var cnh = Convert.ToString(leitor["CONDUTOR_CNH"]);
