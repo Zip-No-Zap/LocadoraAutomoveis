@@ -9,6 +9,6 @@
   ],
 
   "ConfiguracaoLogs": {
-    "DiretorioSaida": "C:\\temp\\Logs\\ViaJson"
+    "DiretorioSaida": "C:\\temp\\Logs\\ViaJson\\"
   }, 
 }

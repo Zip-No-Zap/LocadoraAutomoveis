@@ -1,6 +1,6 @@
-﻿using FluentValidation.Results;
+﻿using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
-
+using System.IO;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 {
@@ -8,6 +8,17 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
     {
         public SqlConnection conexao;
         public string sql;
+
+
+        public ConexaoBancoDados()
+        {
+            var configuracao = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ArquivoConfiguracao")
+                .Build();
+
+            ConectarBancoDados();   
+        }
 
         public void ConectarBancoDados()
         {
