@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo;
 using Serilog;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
@@ -82,7 +83,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
             }
         }
 
-        public Veiculo SelecionarPorId(int id)
+        public Veiculo SelecionarPorId(Guid id)
         {
             Log.Logger.Debug("Tentando obter um veiculo...");
 

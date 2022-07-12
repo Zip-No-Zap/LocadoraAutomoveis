@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using Serilog;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
@@ -29,7 +30,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             }
             else
                 foreach (var erro in resultadoValidacao.Errors)
-                    Log.Logger.Warning("Falha ao tentar inserir Funcionário. {FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir Funcionário. {FuncionarioId} -> Motivo: {erro}", funcionario.Id, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -47,7 +48,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             }
             else
                 foreach (var erro in resultadoValidacao.Errors)
-                    Log.Logger.Warning("Falha ao tentar editar Funcionário. {FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar Funcionário. {FuncionarioId} -> Motivo: {erro}", funcionario.Id, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -65,7 +66,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             }
             else
                 foreach (var erro in resultadoValidacao.Errors)
-                    Log.Logger.Warning("Falha ao tentar excluir Funcionário. {FuncionarioNome} -> Motivo: {erro}", funcionario.Nome, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar excluir Funcionário. {FuncionarioId} -> Motivo: {erro}", funcionario.Id, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -88,7 +89,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             }
         }
 
-        public Funcionario SelecionarPorId(int id)
+        public Funcionario SelecionarPorId(Guid id)
         {
             Log.Logger.Debug("Tentando obter um funcionário...");
 

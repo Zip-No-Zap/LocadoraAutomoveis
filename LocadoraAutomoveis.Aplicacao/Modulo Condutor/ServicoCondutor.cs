@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor;
 using Serilog;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
@@ -28,7 +29,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
             }
             else
                 foreach (var erro in resultadoValidacao.Errors)
-                    Log.Logger.Warning("Falha ao tentar inserir Condutor. {CondutorNome} -> Motivo: {erro}", condutor.Nome, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar inserir Condutor. {CondutorId} -> Motivo: {erro}", condutor.Id, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -45,7 +46,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
             }
             else
                 foreach (var erro in resultadoValidacao.Errors)
-                    Log.Logger.Warning("Falha ao tentar editar Condutor. {CondutorNome} -> Motivo: {erro}", condutor.Nome, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar Condutor. {CondutorId} -> Motivo: {erro}", condutor.Id, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -80,7 +81,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
                 return condutores;
             }
         }
-        public Condutor SelecionarPorId(int id)
+        public Condutor SelecionarPorId(Guid id)
         {
             Log.Logger.Debug("Tentando obter um condutor...");
 
