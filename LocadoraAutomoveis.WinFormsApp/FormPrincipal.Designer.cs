@@ -38,6 +38,11 @@
             this.condutorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.veículoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planoDeCobrançaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configurarPreçosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.combustívelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.locaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrarRetiradaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrarDevoluçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.lblStatusPrincipal = new System.Windows.Forms.ToolStripLabel();
             this.panelPrincipal = new System.Windows.Forms.Panel();
@@ -46,12 +51,6 @@
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.lblToolStripPrincipal = new System.Windows.Forms.ToolStripLabel();
-            this.locaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registrarRetiradaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registrarDevoluçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configurarPreçosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.combustívelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.taxaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPrincipal.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStripPrincipal.SuspendLayout();
@@ -133,6 +132,42 @@
             this.planoDeCobrançaToolStripMenuItem.Text = "Plano de Cobrança";
             this.planoDeCobrançaToolStripMenuItem.Click += new System.EventHandler(this.planoDeCobrançaToolStripMenuItem_Click);
             // 
+            // configurarPreçosToolStripMenuItem
+            // 
+            this.configurarPreçosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.combustívelToolStripMenuItem});
+            this.configurarPreçosToolStripMenuItem.Name = "configurarPreçosToolStripMenuItem";
+            this.configurarPreçosToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.configurarPreçosToolStripMenuItem.Text = "Configurar Preços";
+            // 
+            // combustívelToolStripMenuItem
+            // 
+            this.combustívelToolStripMenuItem.Name = "combustívelToolStripMenuItem";
+            this.combustívelToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.combustívelToolStripMenuItem.Text = "Combustível";
+            // 
+            // locaçãoToolStripMenuItem
+            // 
+            this.locaçãoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrarRetiradaToolStripMenuItem,
+            this.registrarDevoluçãoToolStripMenuItem});
+            this.locaçãoToolStripMenuItem.Name = "locaçãoToolStripMenuItem";
+            this.locaçãoToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
+            this.locaçãoToolStripMenuItem.Text = "Locação";
+            // 
+            // registrarRetiradaToolStripMenuItem
+            // 
+            this.registrarRetiradaToolStripMenuItem.Name = "registrarRetiradaToolStripMenuItem";
+            this.registrarRetiradaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.registrarRetiradaToolStripMenuItem.Text = "Locação";
+            this.registrarRetiradaToolStripMenuItem.Click += new System.EventHandler(this.registrarRetiradaToolStripMenuItem_Click);
+            // 
+            // registrarDevoluçãoToolStripMenuItem
+            // 
+            this.registrarDevoluçãoToolStripMenuItem.Name = "registrarDevoluçãoToolStripMenuItem";
+            this.registrarDevoluçãoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.registrarDevoluçãoToolStripMenuItem.Text = "Devolução";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -208,49 +243,6 @@
             this.lblToolStripPrincipal.Size = new System.Drawing.Size(83, 28);
             this.lblToolStripPrincipal.Text = "Cadastro";
             // 
-            // locaçãoToolStripMenuItem
-            // 
-            this.locaçãoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.registrarRetiradaToolStripMenuItem,
-            this.registrarDevoluçãoToolStripMenuItem});
-            this.locaçãoToolStripMenuItem.Name = "locaçãoToolStripMenuItem";
-            this.locaçãoToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
-            this.locaçãoToolStripMenuItem.Text = "Locação";
-            // 
-            // registrarRetiradaToolStripMenuItem
-            // 
-            this.registrarRetiradaToolStripMenuItem.Name = "registrarRetiradaToolStripMenuItem";
-            this.registrarRetiradaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.registrarRetiradaToolStripMenuItem.Text = "Retirada";
-            this.registrarRetiradaToolStripMenuItem.Click += new System.EventHandler(this.registrarRetiradaToolStripMenuItem_Click);
-            // 
-            // registrarDevoluçãoToolStripMenuItem
-            // 
-            this.registrarDevoluçãoToolStripMenuItem.Name = "registrarDevoluçãoToolStripMenuItem";
-            this.registrarDevoluçãoToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.registrarDevoluçãoToolStripMenuItem.Text = "Devolução";
-            // 
-            // configurarPreçosToolStripMenuItem
-            // 
-            this.configurarPreçosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.combustívelToolStripMenuItem,
-            this.taxaToolStripMenuItem1});
-            this.configurarPreçosToolStripMenuItem.Name = "configurarPreçosToolStripMenuItem";
-            this.configurarPreçosToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.configurarPreçosToolStripMenuItem.Text = "Configurar Preços";
-            // 
-            // combustívelToolStripMenuItem
-            // 
-            this.combustívelToolStripMenuItem.Name = "combustívelToolStripMenuItem";
-            this.combustívelToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.combustívelToolStripMenuItem.Text = "Combustível";
-            // 
-            // taxaToolStripMenuItem1
-            // 
-            this.taxaToolStripMenuItem1.Name = "taxaToolStripMenuItem1";
-            this.taxaToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
-            this.taxaToolStripMenuItem1.Text = "Taxa";
-            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -303,6 +295,5 @@
         private System.Windows.Forms.ToolStripMenuItem registrarDevoluçãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configurarPreçosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem combustívelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem taxaToolStripMenuItem1;
     }
 }

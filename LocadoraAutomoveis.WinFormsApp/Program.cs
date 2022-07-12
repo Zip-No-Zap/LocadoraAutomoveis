@@ -1,5 +1,7 @@
 using LocadoraAutomoveis.Infra.Logs;
+using Microsoft.Extensions.Configuration;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp
