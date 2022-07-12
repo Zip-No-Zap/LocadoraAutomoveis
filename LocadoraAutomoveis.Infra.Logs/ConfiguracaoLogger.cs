@@ -9,9 +9,9 @@ namespace LocadoraAutomoveis.Infra.Logs
         public static void CriarLogger()
         {
             var configuracao = new ConfigurationBuilder()
-                                                        .SetBasePath(Directory.GetCurrentDirectory())
-                                                        .AddJsonFile("ConfiguracaoAplicacao.json")
-                                                        .Build();
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
 
             var diretorioSaida = configuracao
                 .GetSection("ConfiguracaoLogs")

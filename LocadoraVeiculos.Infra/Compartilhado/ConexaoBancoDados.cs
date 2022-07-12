@@ -8,24 +8,24 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
     {
         public SqlConnection conexao;
         public string sql;
+        private readonly string endereco;
 
 
         public ConexaoBancoDados()
         {
             var configuracao = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("ArquivoConfiguracao")
+                .AddJsonFile("ConfiguracaoAplicacao.json")
                 .Build();
 
-            conexao.ConnectionString = configuracao.GetConnectionString("SqlServer");
-            //@"Data Source=(localDB)\MSSqlLocalDB;Initial Catalog=LocadoraAutomoveisDb;Integrated Security=True";
+            endereco = configuracao.GetConnectionString("SqlServer");
         }
 
         public void ConectarBancoDados()
         {
-            conexao = new();
-
-            conexao.Open();
+           conexao = new();
+           conexao.ConnectionString = endereco;
+           conexao.Open();
         }
 
         public void DesconectarBancoDados()
