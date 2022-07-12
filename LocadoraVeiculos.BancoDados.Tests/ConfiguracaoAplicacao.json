@@ -13,6 +13,7 @@
   },
 
   "ConectionString": {
-    "SqlServer": "Data Source=(localDB)\\MSSqlLocalDB;Initial Catalog=LocadoraAutomoveisDb;Integrated Security=True"
+    "SqlServer": "Data Source=(localDB)\\MSSqlLocalDB;Initial Catalog=LocadoraAutomoveisDbTests;Integrated Security=True"
+
   },
 }
