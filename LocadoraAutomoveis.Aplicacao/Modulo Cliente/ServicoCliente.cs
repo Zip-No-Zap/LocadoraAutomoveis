@@ -29,7 +29,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             }
             else
                 foreach (var erro in resultadoValidacao.Errors)
-                Log.Logger.Warning("Falha ao tentar inserir Cliente. {ClienteNome} -> Motivo: {erro}", cliente.Nome, erro.ErrorMessage);
+                Log.Logger.Warning("Falha ao tentar inserir Cliente. {ClienteId} -> Motivo: {erro}", cliente.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -46,7 +46,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             }
             else
                 foreach (var erro in resultadoValidacao.Errors)
-                    Log.Logger.Warning("Falha ao tentar editar Cliente. {ClienteNome} -> Motivo: {erro}", cliente.Nome, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar editar Cliente. {ClienteId} -> Motivo: {erro}", cliente.Nome, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -63,7 +63,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             }
             else
                 foreach (var erro in resultadoValidacao.Errors)
-                    Log.Logger.Warning("Falha ao tentar excluir Cliente. {ClienteNome} -> Motivo: {erro}", cliente.Nome, erro.ErrorMessage);
+                    Log.Logger.Warning("Falha ao tentar excluir Cliente. {ClienteId} -> Motivo: {erro}", cliente.Id, erro.ErrorMessage);
 
             return resultadoValidacao;
         }
@@ -93,12 +93,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
             if (cliente != null)
             {
-                Log.Logger.Information("Cliente foi obtido com sucesso.", cliente.Nome);
+                Log.Logger.Information("Cliente foi obtido com sucesso.", cliente.Id);
                 return cliente;
             }
             else
             {
-                Log.Logger.Warning("Falha ao tentar obter um cliente. {Cliente} -> ", cliente.Nome);
+                Log.Logger.Warning("Falha ao tentar obter um cliente. {Cliente} -> ", cliente.Id);
                 return cliente;
             }
         }

@@ -7,7 +7,6 @@
     [EMAIL]         NCHAR (100)      NOT NULL,
     [ENDERECO]      VARCHAR (150)    NOT NULL,
     [TELEFONE]      VARCHAR (20)     NOT NULL,
-    [CLIENTE_ID]    INT              NOT NULL,
-    CONSTRAINT [PK_TBCONDUTOR_1] PRIMARY KEY CLUSTERED ([ID] ASC)
+    [CLIENTE_ID]    INT              NOT NULL
 );
 

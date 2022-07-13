@@ -3,16 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>LocadoraAutomoveis.Projeto.SQLServer</Name>
+    <Name>LocadoraVeiculos.Projeto.SQLServer.Tests</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{a21788af-86b6-4d62-9c5f-a5b9955e0262}</ProjectGuid>
+    <ProjectGuid>{2bfd0ba1-a2c8-44dd-8879-569bd462d7b6}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>LocadoraAutomoveis.Projeto.SQLServer</RootNamespace>
-    <AssemblyName>LocadoraAutomoveis.Projeto.SQLServer</AssemblyName>
+    <RootNamespace>LocadoraVeiculos.Projeto.SQLServer.Tests</RootNamespace>
+    <AssemblyName>LocadoraVeiculos.Projeto.SQLServer.Tests</AssemblyName>
     <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -62,10 +62,10 @@
     <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\TBPLANO.sql" />
-    <Build Include="dbo\Tables\TBVEICULO.sql" />
-    <Build Include="dbo\Tables\TBTAXA.sql" />
     <Build Include="dbo\Tables\TBGRUPOVEICULO.sql" />
+    <Build Include="dbo\Tables\TBPLANO.sql" />
+    <Build Include="dbo\Tables\TBTAXA.sql" />
+    <Build Include="dbo\Tables\TBVEICULO.sql" />
     <Build Include="dbo\Tables\TBCLIENTE.sql" />
     <Build Include="dbo\Tables\TBCONDUTOR.sql" />
     <Build Include="dbo\Tables\TBFUNCIONARIO.sql" />

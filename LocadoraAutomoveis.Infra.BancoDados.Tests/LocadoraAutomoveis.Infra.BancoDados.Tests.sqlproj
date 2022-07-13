@@ -3,17 +3,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>LocadoraAutomoveis.Projeto.SQLServer</Name>
+    <Name>LocadoraAutomoveis.Infra.BancoDados.Tests</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{a21788af-86b6-4d62-9c5f-a5b9955e0262}</ProjectGuid>
+    <ProjectGuid>{9c8ab3c5-fd2e-49b7-abd8-36e2a4b37f40}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>LocadoraAutomoveis.Projeto.SQLServer</RootNamespace>
-    <AssemblyName>LocadoraAutomoveis.Projeto.SQLServer</AssemblyName>
-    <ModelCollation>1033,CI</ModelCollation>
+    <RootNamespace>LocadoraAutomoveis.Infra.BancoDados.Tests</RootNamespace>
+    <AssemblyName>LocadoraAutomoveis.Infra.BancoDados.Tests</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -22,8 +22,6 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
-    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -58,16 +56,5 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="dbo\" />
-    <Folder Include="dbo\Tables\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="dbo\Tables\TBPLANO.sql" />
-    <Build Include="dbo\Tables\TBVEICULO.sql" />
-    <Build Include="dbo\Tables\TBTAXA.sql" />
-    <Build Include="dbo\Tables\TBGRUPOVEICULO.sql" />
-    <Build Include="dbo\Tables\TBCLIENTE.sql" />
-    <Build Include="dbo\Tables\TBCONDUTOR.sql" />
-    <Build Include="dbo\Tables\TBFUNCIONARIO.sql" />
   </ItemGroup>
 </Project>
