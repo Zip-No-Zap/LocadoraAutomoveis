@@ -107,6 +107,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
                 FormPrincipal.Instancia.AtualizarRodape($"Visualizando {clientes.Count} cliente(s)");
             }
+            else
+            {
+                MessageBox.Show("Falha no sistema ao tentar selecionar todos os clientes",
+               "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private Cliente ObtemClienteSelecionado()

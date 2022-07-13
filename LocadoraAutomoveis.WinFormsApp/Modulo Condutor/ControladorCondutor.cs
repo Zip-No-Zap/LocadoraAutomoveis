@@ -123,6 +123,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 
                 FormPrincipal.Instancia.AtualizarRodape($"Visualizando {condutores.Count} condutor(es)");
             }
+            else
+            {
+                MessageBox.Show("Falha no sistema ao tentar selecionar todos os condutores",
+               "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     }

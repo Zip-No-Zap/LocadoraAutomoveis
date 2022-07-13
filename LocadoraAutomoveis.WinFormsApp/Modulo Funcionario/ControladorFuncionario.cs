@@ -104,6 +104,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
                 FormPrincipal.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionario(s)");
             }
+            else
+            {
+                MessageBox.Show("Falha no sistema ao tentar selecionar todos os funcionários",
+               "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private Funcionario ObtemFuncionarioSelecionado()
