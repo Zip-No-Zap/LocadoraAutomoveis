@@ -82,7 +82,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
             }
         }
 
-        public Plano SelecionarPorId(int id)
+        public Plano SelecionarPorId(Guid id)
         {
             Log.Logger.Debug("Tentando obter um plano...");
 

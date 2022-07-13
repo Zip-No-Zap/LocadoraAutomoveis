@@ -105,7 +105,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             ImputarZeroCamposVazios();
 
             if(!string.IsNullOrEmpty(cbGrupo.Text))
-                plano.Grupo.Id = int.Parse(lblIDGrupo.Text);
+                plano.Grupo.Id = Guid.Parse(lblIDGrupo.Text);
 
             plano.Grupo.Nome = cbGrupo.Text; 
 
