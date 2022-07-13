@@ -1,5 +1,6 @@
 ﻿using GeradorTestes.WinApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -33,9 +34,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             return colunas;
         }
 
-        public int ObtemNumerPlanoSelecionado()
+        public Guid ObtemNumerPlanoSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarNumero<Guid>();
         }
 
         public void AtualizarRegistros(List<Plano> registro)
