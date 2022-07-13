@@ -73,9 +73,19 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 
         public List<Funcionario> SelecionarTodos()
         {
+            List<Funcionario> funcionarios = new();
+
             Log.Logger.Debug("Tentando obter todos os funcionários...");
 
-            var funcionarios = repositorioFuncionario.SelecionarTodos();
+            try
+            {
+               funcionarios = repositorioFuncionario.SelecionarTodos();
+            }
+            catch(Exception ex)
+            {
+                string msgErro = "falha no sistema ao tentar selecioanr todos os funcionários";
+                Log.Logger.Error(ex, msgErro);
+            }
 
             if (funcionarios.Count > 0)
             {

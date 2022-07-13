@@ -70,9 +70,19 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
         public List<Cliente> SelecionarTodos()
         {
+            List<Cliente> clientes = new();
+
             Log.Logger.Debug("Tentando obter todos os clientes...");
-            
-            var clientes = repositorioCliente.SelecionarTodos();
+
+            try
+            {
+                 clientes = repositorioCliente.SelecionarTodos();
+            }
+            catch(Exception ex)
+            {
+                string msgErro = "falha no sistema ao tentar selecioanr todos os clientes";
+                Log.Logger.Error(ex, msgErro);
+            }
 
             if (clientes.Count > 0)
             {

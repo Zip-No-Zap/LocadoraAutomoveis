@@ -52,7 +52,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
                 { 
                     using(var stream = new MemoryStream(Foto))
                     {
-                    return new Bitmap(stream);
+                         return new Bitmap(stream);
                     }
 
                 }

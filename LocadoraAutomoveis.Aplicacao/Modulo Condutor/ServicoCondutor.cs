@@ -66,9 +66,19 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 
         public List<Condutor> SelecionarTodos()
         {
+            List<Condutor> condutores = new();
+
             Log.Logger.Debug("Tentando obter todos Condutor...");
 
-            var condutores = repositorioCondutor.SelecionarTodos();
+            try
+            {
+                condutores = repositorioCondutor.SelecionarTodos();
+            }
+            catch(Exception ex)
+            {
+                string msgErro = "falha no sistema ao tentar selecioanr todos os condutores";
+                Log.Logger.Error(ex, msgErro);
+            }
 
             if (condutores.Count > 0)
             {

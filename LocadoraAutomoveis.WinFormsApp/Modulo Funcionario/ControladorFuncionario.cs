@@ -98,9 +98,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         {
             List<Funcionario> funcionarios = servicoFuncionario.SelecionarTodos();
 
-            tabelaFuncionarios.AtualizarRegistros(funcionarios);
+            if (funcionarios != null)
+            {
+                tabelaFuncionarios.AtualizarRegistros(funcionarios);
 
-            FormPrincipal.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionario(s)");
+                FormPrincipal.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionario(s)");
+            }
         }
 
         private Funcionario ObtemFuncionarioSelecionado()

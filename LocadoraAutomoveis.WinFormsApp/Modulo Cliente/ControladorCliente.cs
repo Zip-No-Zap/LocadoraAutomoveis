@@ -101,9 +101,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
         {
             List<Cliente> clientes = servicoCliente.SelecionarTodos();
 
-            tabelaClientes.AtualizarRegistros(clientes);
+            if (clientes != null)
+            {
+                tabelaClientes.AtualizarRegistros(clientes);
 
-            FormPrincipal.Instancia.AtualizarRodape($"Visualizando {clientes.Count} cliente(s)");
+                FormPrincipal.Instancia.AtualizarRodape($"Visualizando {clientes.Count} cliente(s)");
+            }
         }
 
         private Cliente ObtemClienteSelecionado()

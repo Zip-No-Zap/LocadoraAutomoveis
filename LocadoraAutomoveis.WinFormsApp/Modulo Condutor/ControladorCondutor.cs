@@ -117,9 +117,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
         {
             List<Condutor> condutores = servicoCondutor.SelecionarTodos();
 
-            tabelaCondutor.AtualizarRegistros(condutores);
+            if (condutores != null)
+            {
+                tabelaCondutor.AtualizarRegistros(condutores);
 
-            FormPrincipal.Instancia.AtualizarRodape($"Visualizando {condutores.Count} condutor(es)");
+                FormPrincipal.Instancia.AtualizarRodape($"Visualizando {condutores.Count} condutor(es)");
+            }
         }
 
     }
