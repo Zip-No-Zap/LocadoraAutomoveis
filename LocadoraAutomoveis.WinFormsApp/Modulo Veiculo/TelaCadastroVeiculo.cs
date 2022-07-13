@@ -59,7 +59,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             ImputarZeroCamposVazios();
 
             if (!string.IsNullOrEmpty(cmbGrupoVeiculo.Text))
-                veiculo.GrupoPertencente.Id = int.Parse(lblIDGrupo.Text);
+                veiculo.GrupoPertencente.Id = Guid.Parse(lblIDGrupo.Text);
 
             veiculo.GrupoPertencente.Nome = cmbGrupoVeiculo.Text;
 

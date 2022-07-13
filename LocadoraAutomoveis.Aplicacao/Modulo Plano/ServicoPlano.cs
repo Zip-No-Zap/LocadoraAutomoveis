@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_Plano;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Plano;
 using Serilog;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
@@ -82,7 +83,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
             }
         }
 
-        public Plano SelecionarPorId(int id)
+        public Plano SelecionarPorId(Guid id)
         {
             Log.Logger.Debug("Tentando obter um plano...");
 

@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor;
 using Serilog;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
@@ -80,7 +81,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
                 return condutores;
             }
         }
-        public Condutor SelecionarPorId(int id)
+        public Condutor SelecionarPorId(Guid id)
         {
             Log.Logger.Debug("Tentando obter um condutor...");
 

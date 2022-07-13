@@ -8,17 +8,19 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
     {
         protected override string Sql_insercao => @"INSERT INTO TBTAXA
                                                    (
+                                                        [ID],
                                                         [DESCRICAO],    
                                                         [TIPO],
                                                         [VALOR]
                                                    )
                                                    VALUES
                                                    (
+                                                        @ID,
                                                         @DESCRICAO,
                                                         @TIPO,
                                                         @VALOR
 
-                                                   );SELECT SCOPE_IDENTITY();";
+                                                   )";
 
         protected override string Sql_edicao => @"UPDATE [TBTAXA] SET 
 

@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
 using Serilog;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
@@ -86,7 +87,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
             }
         }
 
-        public GrupoVeiculo SelecionarPorId(int id)
+        public GrupoVeiculo SelecionarPorId(Guid id)
         {
             Log.Logger.Debug("Tentando obter um Grupo de Veículo...");
 

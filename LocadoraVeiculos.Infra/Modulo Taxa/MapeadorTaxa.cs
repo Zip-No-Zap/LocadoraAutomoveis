@@ -28,7 +28,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
 
             while (leitor.Read())
             {
-                int id = Convert.ToInt32(leitor["ID"]);
+                var id = Guid.Parse(leitor["ID"].ToString());
                 string descricao = leitor["DESCRICAO"].ToString();
                 string tipo = leitor["TIPO"].ToString();
                 float valor = (float)leitor["VALOR"];
@@ -53,7 +53,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa
 
             if (leitor.Read())
             {
-                int id = Convert.ToInt32(leitor["ID"]);
+                var id = Guid.Parse(leitor["ID"].ToString());
                 string descricao = leitor["DESCRICAO"].ToString();
                 string tipo = leitor["TIPO"].ToString();
                 float valor = (float)leitor["VALOR"];

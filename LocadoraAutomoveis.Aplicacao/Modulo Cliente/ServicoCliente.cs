@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using Serilog;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
@@ -85,7 +86,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             }
         }
 
-        public Cliente SelecionarPorId(int id)
+        public Cliente SelecionarPorId(Guid id)
         {
             Log.Logger.Debug("Tentando obter um cliente...");
             var cliente =  repositorioCliente.SelecionarPorId(id);

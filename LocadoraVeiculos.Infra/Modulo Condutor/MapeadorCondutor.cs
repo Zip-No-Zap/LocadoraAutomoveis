@@ -90,7 +90,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor
                 var telefone = Convert.ToString(leitor["CONDUTOR_TELEFONE"]);
                 var endereco = Convert.ToString(leitor["CONDUTOR_ENDERECO"]);
 
-                int clienteId = Convert.ToInt32(leitor["CONDUTOR_CLIENTE_ID"]);
+                var clienteId = Guid.Parse(leitor["CONDUTOR_CLIENTE_ID"].ToString());
                 string clienteNome = Convert.ToString(leitor["CLIENTE_NOME"]);
                 string clienteCpf = Convert.ToString(leitor["CLIENTE_CPF"]);
                 string clienteCnpj = Convert.ToString(leitor["CLIENTE_CNPJ"]);

@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using Serilog;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
@@ -88,7 +89,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             }
         }
 
-        public Funcionario SelecionarPorId(int id)
+        public Funcionario SelecionarPorId(Guid id)
         {
             Log.Logger.Debug("Tentando obter um funcionário...");
 
