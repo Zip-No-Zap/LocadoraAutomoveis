@@ -2,6 +2,7 @@
 using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -32,12 +33,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
                 },
 
-                GravarRegistro = servicoVeiculo.Inserir
             };
 
-            DialogResult resultado = tela.ShowDialog();
+            tela.GravarRegistro = servicoVeiculo.Inserir;
 
-            if (resultado == DialogResult.OK)
+
+            if (tela.ShowDialog() == DialogResult.OK)
             {
                 CarregarVeiculos();
             }
@@ -45,16 +46,26 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
         public override void Editar()
         {
-            Veiculo Selecionado = ObtemVeiculoSelecionado();
+            var id = tabelaVeiculos.ObtemNumeroVeiculoSelecionado();
 
-            if (Selecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um Veiculo primeiro",
+                MessageBox.Show("Selecione um veiculo primeiro",
                 "Edição de Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            var grupos = servicoGrupoVeiculo.SelecionarTodos();
+
+            var resultado = servicoVeiculo.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var Selecionado = resultado.Value;
 
             TelaCadastroVeiculo tela = new();
 
@@ -62,34 +73,49 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
             tela.GravarRegistro = servicoVeiculo.Editar;
 
-            DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
             {
                 CarregarVeiculos();
             }
         }
 
+
         public override void Excluir()
         {
-            Veiculo Selecionado = ObtemVeiculoSelecionado();
+            var id = tabelaVeiculos.ObtemNumeroVeiculoSelecionado();
 
-
-            if (Selecionado == null)
+            if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um Veiculo primeiro",
-                "Exclusão de Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione um veiculo primeiro",
+                    "Exclusão de Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o Veiculo?",
-                "Exclusão de Veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if (resultado == DialogResult.OK)
+            var resultado = servicoVeiculo.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
             {
-                servicoVeiculo.Excluir(Selecionado);
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Exclusão de Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                CarregarVeiculos();
+            var Selecionado = resultado.Value;
+
+
+            if (MessageBox.Show("Deseja realmente excluir o veiculo?",
+            "Exclusão de Veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                var resultadoExclusao = servicoVeiculo.Excluir(Selecionado);
+
+                if (resultadoExclusao.IsSuccess)
+                    CarregarVeiculos();
+
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message, "Exclusão de Veiculo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -110,18 +136,26 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
         private void CarregarVeiculos()
         {
-            List<Veiculo> veiculos = servicoVeiculo.SelecionarTodos();
+            var resultado = servicoVeiculo.SelecionarTodos();
 
-            tabelaVeiculos.AtualizarRegistros(veiculos);
+            if (resultado.IsSuccess)
+            {
+                List<Veiculo> veiculos = resultado.Value;
 
-            FormPrincipal.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} Veiculo(s)");
+                tabelaVeiculos.AtualizarRegistros(veiculos);
+
+                FormPrincipal.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} Veiculo(s)");
+            }
+
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private Veiculo ObtemVeiculoSelecionado()
-        {
-            var numero = tabelaVeiculos.ObtemNumeroVeiculoSelecionado();
-
-            return servicoVeiculo.SelecionarPorId(numero);
-        }
     }
 }
+
+
+
+
