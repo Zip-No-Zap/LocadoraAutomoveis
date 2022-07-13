@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_Plano;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Plano;
 using Serilog;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano

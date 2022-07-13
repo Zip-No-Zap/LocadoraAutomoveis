@@ -7,7 +7,6 @@
     [nome]         VARCHAR (150)    NOT NULL,
     [perfil]       VARCHAR (50)     NOT NULL,
     [cidade]       VARCHAR (70)     NOT NULL,
-    [estado]       VARCHAR (50)     NOT NULL,
-    CONSTRAINT [PK_TBFUNCIONARIO_1] PRIMARY KEY CLUSTERED ([Id] ASC)
+    [estado]       VARCHAR (50)     NOT NULL
 );
 
