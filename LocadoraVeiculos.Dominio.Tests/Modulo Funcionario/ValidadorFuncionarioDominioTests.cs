@@ -152,7 +152,6 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_Funcionario
         {
             return new Funcionario()
             {
-                Id = 1,
                 Nome = "Joao Kleber",
                 Salario = 2.400,
                 Login = "jojo124",

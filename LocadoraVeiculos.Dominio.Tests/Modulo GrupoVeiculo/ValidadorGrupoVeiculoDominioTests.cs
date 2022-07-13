@@ -29,7 +29,6 @@ namespace LocadoraVeiculos.Dominio.Tests.Modulo_GrupoVeiculo
         {
             return new GrupoVeiculo("Uber")
             {
-                Id = 1,
             };
         }
 

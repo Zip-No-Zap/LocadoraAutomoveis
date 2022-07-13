@@ -46,7 +46,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
             ExcluirRegistroBancoDados(entidade);
         }
 
-        public T SelecionarPorId(int id)
+        public T SelecionarPorId(Guid id)
         {
             Tmapeador mapeador = new();
 

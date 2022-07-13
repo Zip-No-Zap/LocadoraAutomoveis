@@ -7,8 +7,9 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
 {
     public class RepositorioVeiculoEmBancoDados : RepositorioBase<Veiculo, MapeadorVeiculo, ValidadorVeiculo>
     {
-        protected override string Sql_insercao => @"INSERT INTO TBVEICULO 
+        protected override string Sql_insercao => @"INSERT INTO [TBVEICULO]
                                                     (
+                                                        [ID],
                                                         [MODELO],
                                                         [PLACA],
                                                         [COR],
@@ -23,6 +24,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                                                     )
                                                     VALUES
                                                     (
+                                                        @ID,
                                                         @MODELO,
                                                         @PLACA,
                                                         @COR,
@@ -34,7 +36,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                                                         @FOTO,
                                                         @IDGRUPOVEICULO
 
-                                                    );SELECT SCOPE_IDENTITY();";
+                                                    );";
 
         protected override string Sql_edicao => @"UPDATE [TBVEICULO] SET 
 
@@ -54,49 +56,51 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                                                     ID = @ID";
 
 
-        protected override string Sql_exclusao => @"DELETE FROM TBVEICULO WHERE ID = @ID;";
+        protected override string Sql_exclusao => @"DELETE FROM [TBVEICULO] WHERE ID = @ID;";
 
         protected override string Sql_selecao_por_id => @"SELECT  
 
-                                                            V.[ID],
-                                                            V.[MODELO], 
-                                                            V.[PLACA], 
-                                                            V.[COR], 
-                                                            V.[ANO],
-                                                            V.[TIPOCOMBUSTIVEL],
-                                                            V.[CAPACIDADETANQUE],
-                                                            V.[STATUS],
-                                                            V.[QUILOMETRAGEMATUAL],
-                                                            V.[FOTO],
-                                                            V.[IDGRUPOVEICULO],
-                                                            GV.[NOMEGRUPO]
+                                                            VEICULO.[ID] VEICULO_ID,
+                                                            VEICULO.[MODELO] VEICULO_MODELO, 
+                                                            VEICULO.[PLACA] VEICULO_PLACA, 
+                                                            VEICULO.[COR] VEICULO_COR, 
+                                                            VEICULO.[ANO] VEICULO_ANO,
+                                                            VEICULO.[TIPOCOMBUSTIVEL] VEICULO_TIPOCOMBUSTIVEL,
+                                                            VEICULO.[CAPACIDADETANQUE] VEICULO_CAPACIDADETANQUE,
+                                                            VEICULO.[STATUS] VEICULO_STATUS,
+                                                            VEICULO.[QUILOMETRAGEMATUAL] VEICULO_QUILOMETRAGEMATUAL,
+                                                            VEICULO.[FOTO] VEICULO_FOTO,
+                                                            VEICULO.[IDGRUPOVEICULO] VEICULO_IDGRUPOVEICULO,
 
-                                                        FROM TBVEICULO AS V
-                                                        INNER JOIN TBGRUPOVEICULO AS GV
+                                                            GRUPOVEICULO.[NOMEGRUPO] GRUPO_NOME
 
-                                                            ON V.IDGRUPOVEICULO = GV.ID
+                                                        FROM TBVEICULO AS VEICULO
+                                                        INNER JOIN TBGRUPOVEICULO AS GRUPOVEICULO
+
+                                                            ON VEICULO.IDGRUPOVEICULO = GRUPOVEICULO.ID
 
                                                             WHERE V.ID = @ID";
 
         protected override string Sql_selecao_todos => @"SELECT  
 
-                                                            V.[ID],
-                                                            V.[MODELO], 
-                                                            V.[PLACA], 
-                                                            V.[COR], 
-                                                            V.[ANO],
-                                                            V.[TIPOCOMBUSTIVEL],
-                                                            V.[CAPACIDADETANQUE],
-                                                            V.[STATUS],
-                                                            V.[QUILOMETRAGEMATUAL],
-                                                            V.[FOTO],
-                                                            V.[IDGRUPOVEICULO],
-                                                            GV.[NOMEGRUPO]
+                                                            VEICULO.[ID] VEICULO_ID,
+                                                            VEICULO.[MODELO] VEICULO_MODELO, 
+                                                            VEICULO.[PLACA] VEICULO_PLACA, 
+                                                            VEICULO.[COR] VEICULO_COR, 
+                                                            VEICULO.[ANO] VEICULO_ANO,
+                                                            VEICULO.[TIPOCOMBUSTIVEL] VEICULO_TIPOCOMBUSTIVEL,
+                                                            VEICULO.[CAPACIDADETANQUE] VEICULO_CAPACIDADETANQUE,
+                                                            VEICULO.[STATUS] VEICULO_STATUS,
+                                                            VEICULO.[QUILOMETRAGEMATUAL] VEICULO_QUILOMETRAGEMATUAL,
+                                                            VEICULO.[FOTO] VEICULO_FOTO,
+                                                            VEICULO.[IDGRUPOVEICULO] VEICULO_IDGRUPOVEICULO,
 
-                                                        FROM TBVEICULO AS V
-                                                        INNER JOIN TBGRUPOVEICULO AS GV
+                                                            GRUPOVEICULO.[NOMEGRUPO] GRUPO_NOME
 
-                                                            ON V.IDGRUPOVEICULO = GV.ID";
+                                                        FROM [TBVEICULO] AS VEICULO
+                                                        INNER JOIN [TBGRUPOVEICULO] AS GRUPOVEICULO
+
+                                                            ON VEICULO.IDGRUPOVEICULO = GRUPOVEICULO.ID";
 
     }
 }

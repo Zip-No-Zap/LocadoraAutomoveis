@@ -26,8 +26,8 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 
             while (leitor.Read())
             {
-                int id = Convert.ToInt32(leitor["ID"]);
-                string nome = leitor["NOMEGRUPO"].ToString();
+                var id = Guid.Parse(leitor["GRUPO_ID"].ToString());
+                string nome = leitor["GRUPO_NOME"].ToString();
 
                 GrupoVeiculo grupoVeiculo = new (nome)
                 {
@@ -46,8 +46,8 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 
             if (leitor.Read())
             {
-                int id = Convert.ToInt32(leitor["ID"]);
-                string nome = leitor["NOMEGRUPO"].ToString();
+                var id = Guid.Parse(leitor["GRUPO_ID"].ToString());
+                string nome = leitor["GRUPO_NOME"].ToString();
 
 
                 grupo = new GrupoVeiculo(nome)

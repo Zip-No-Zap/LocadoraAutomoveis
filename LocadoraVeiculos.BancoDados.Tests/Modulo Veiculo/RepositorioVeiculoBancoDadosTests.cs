@@ -124,7 +124,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
                 Ano = 2019,
                 TipoCombustivel = "Gásolina",
                 CapacidadeTanque = 45,
-                GrupoPertencente = new("Esportivos") { Id = 1 },
+                GrupoPertencente = new("Esportivos"),
                 StatusVeiculo = "Disponível",
                 QuilometragemAtual = 10000,
                 Foto = new byte[] {   }
@@ -141,7 +141,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
                 Ano = 2020,
                 TipoCombustivel = "Gásolina",
                 CapacidadeTanque = 50,
-                GrupoPertencente = new("Esportivos") { Id = 1 },
+                GrupoPertencente = new("Esportivos"),
                 StatusVeiculo = "Disponível",
                 QuilometragemAtual = 1000,
                 Foto = new byte[] { }

@@ -9,13 +9,15 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
     {
         protected override string Sql_insercao => @"INSERT INTO TBGRUPOVEICULO 
                                                     (
+                                                        [ID],  
                                                         [NOMEGRUPO]   
                                                     )
                                                     VALUES
                                                     (
+                                                        @ID,
                                                         @NOMEGRUPO
 
-                                                    );SELECT SCOPE_IDENTITY();";
+                                                    );";
 
         protected override string Sql_edicao => @"UPDATE [TBGRUPOVEICULO] SET 
 
@@ -25,8 +27,20 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
 
         protected override string Sql_exclusao => @"DELETE FROM TBGRUPOVEICULO WHERE ID = @ID;";
 
-        protected override string Sql_selecao_por_id => @"SELECT * FROM TBGRUPOVEICULO WHERE ID = @ID";
+        protected override string Sql_selecao_por_id => @"SELECT 
+                                                    [ID] GRUPO_ID,
+                                                    [NOMEGRUPO] GRUPO_NOME
+                                                    FROM 
+                                                        [TBGRUPOVEICULO] 
+                                                    WHERE 
+                                                        ID = @ID";
 
-        protected override string Sql_selecao_todos => @"SELECT * FROM TBGRUPOVEICULO";
+        protected override string Sql_selecao_todos => @"SELECT 
+                                                    [ID] GRUPO_ID,
+                                                    [NOME] GRUPO_NOME    
+                                                FROM 
+                                                    [TBCLIENTE]";
+
+
     }
 }

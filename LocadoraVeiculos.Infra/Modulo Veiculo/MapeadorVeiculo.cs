@@ -37,7 +37,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
 
             while (leitor.Read())
             {
-                int id = Convert.ToInt32(leitor["ID"]);
+                var id = Guid.Parse(leitor["VEICULO_ID"].ToString());
                 string modelo = leitor["MODELO"].ToString();
                 string placa = leitor["PLACA"].ToString();
                 string cor = leitor["COR"].ToString();
@@ -47,7 +47,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                 string status = leitor["STATUS"].ToString();
                 int quilometragem = Convert.ToInt32(leitor["QUILOMETRAGEMATUAL"]);
 
-                int grupoVeiculoID = Convert.ToInt32(leitor["IDGRUPOVEICULO"]);
+                var idGrupoVeiculo = Guid.Parse(leitor["VEICULO_IDGRUPOVEICULO"].ToString());
                 string grupoVeiculoNome = (leitor["NOMEGRUPO"]).ToString();
 
                 byte[] foto = (byte[])leitor["FOTO"];
@@ -57,7 +57,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                     Id = id,
                     GrupoPertencente = new(grupoVeiculoNome)
                     {
-                        Id = grupoVeiculoID,
+                        Id = idGrupoVeiculo,
                     },
                 };
 
@@ -73,7 +73,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
 
             if (leitor.Read())
             {
-                int id = Convert.ToInt32(leitor["ID"]);
+                var id = Guid.Parse(leitor["VEICULO_ID"].ToString());
                 string modelo = leitor["MODELO"].ToString();
                 string placa = leitor["PLACA"].ToString();
                 string cor = leitor["COR"].ToString();
@@ -83,7 +83,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                 string status = leitor["STATUS"].ToString();
                 int quilometragem = Convert.ToInt32(leitor["QUILOMETRAGEMATUAL"]);
 
-                int grupoVeiculoID = Convert.ToInt32(leitor["IDGRUPOVEICULO"]);
+                var idGrupoVeiculo = Guid.Parse(leitor["VEICULO_IDGRUPOVEICULO"].ToString());
                 string grupoVeiculoNome = (leitor["NOMEGRUPO"]).ToString();
 
                 byte[] foto = (byte[])leitor["FOTO"];
@@ -93,7 +93,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
                     Id = id,
                     GrupoPertencente = new(grupoVeiculoNome)
                     {
-                        Id = grupoVeiculoID,
+                        Id = idGrupoVeiculo,
                     },
                 };
             }
