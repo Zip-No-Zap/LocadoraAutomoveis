@@ -16,7 +16,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
         {
             repoFunc = new();
 
-            ResetarBancoDados();
+           // ResetarBancoDados();
         }
 
         [TestMethod]

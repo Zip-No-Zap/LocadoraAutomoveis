@@ -6,6 +6,7 @@
     [tipoCliente] VARCHAR (50)     NOT NULL,
     [email]       VARCHAR (50)     NOT NULL,
     [telefone]    VARCHAR (30)     NOT NULL,
-    [nome]        VARCHAR (150)    NOT NULL
+    [nome]        VARCHAR (150)    NOT NULL,
+    CONSTRAINT [PK_TBCLIENTE] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 

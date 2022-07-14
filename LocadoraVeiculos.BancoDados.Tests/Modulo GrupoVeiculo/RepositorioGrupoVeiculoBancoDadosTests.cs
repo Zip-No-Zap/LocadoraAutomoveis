@@ -14,8 +14,10 @@ namespace LocadoraVeiculos.BancoDados.Tests
 
         public RepositorioGrupoVeiculoBancoDadosTests()
         {
-            ResetarBancoVeiculo();
-            ResetarBancoGrupo();
+            repoGrupoVeiculo = new();
+
+           // ResetarBancoVeiculo();
+           // ResetarBancoGrupo();
         }
 
         [TestMethod]
