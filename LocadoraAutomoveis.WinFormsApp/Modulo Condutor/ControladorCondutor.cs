@@ -3,6 +3,7 @@ using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
 using LocadoraAutomoveis.Aplicacao.Modulo_Condutor;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -42,55 +43,78 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 
         public override void Editar()
         {
-            Condutor Selecionado = ObtemCondutorSelecionado();
+            Condutor selecionado = null;
 
-            if (Selecionado == null)
+            Result<Condutor> resultadoResult = ObtemCondutorSelecionado();
+
+            if (resultadoResult.IsSuccess)
             {
-                MessageBox.Show("Selecione um condutor primeiro",
-                "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                selecionado = resultadoResult.Value;
+
+                if (selecionado.Id == Guid.Empty)
+                {
+                    MessageBox.Show("Selecione um condutor primeiro",
+                    "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                TelaCadastroCondutor tela = new(servicoCliente.SelecionarTodos())
+                {
+                    Condutor = selecionado,
+
+                    GravarRegistro = servicoCondutor.Editar
+                };
+
+                DialogResult resultado = tela.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    CarregarCondutores();
+                }
+            }
+            else if (resultadoResult.IsFailed)
+            {
+                MessageBox.Show(resultadoResult.Errors[0].Message,
+                   "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            TelaCadastroCondutor tela = new(servicoCliente.SelecionarTodos())
-            {
-                Condutor = Selecionado,
-
-                GravarRegistro = servicoCondutor.Editar
-            };
-
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
-            {
-                CarregarCondutores();
-            }
-
         }
         public override void Excluir()
         {
-            Condutor selecionado = ObtemCondutorSelecionado();
+            Condutor selecionado = null;
 
-            if (selecionado == null)
+            Result<Condutor> resultadoResult = ObtemCondutorSelecionado();
+
+            if (resultadoResult.IsSuccess)
             {
-                MessageBox.Show("Selecione um Condutor primeiro",
-                "Exclusão de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                selecionado = resultadoResult.Value;
+
+                if (selecionado.Id == Guid.Empty)
+                {
+                    MessageBox.Show("Selecione um Condutor primeiro",
+                    "Exclusão de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                DialogResult resultado = MessageBox.Show("Deseja realmente excluir o Condutor?",
+                    "Exclusão de Condutor", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.OK)
+                {
+                    servicoCondutor.Excluir(selecionado);
+
+                    CarregarCondutores();
+                }
+            }
+            else if (resultadoResult.IsFailed)
+            {
+                MessageBox.Show(resultadoResult.Errors[0].Message,
+                   "Excluir de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o Condutor?",
-                "Exclusão de Condutor", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-            if (resultado == DialogResult.OK)
-            {
-                servicoCondutor.Excluir(selecionado);
-
-                CarregarCondutores();
-            }
-
         }
 
-
-        private Condutor ObtemCondutorSelecionado()
+        private Result<Condutor> ObtemCondutorSelecionado()
         {
             var numero = tabelaCondutor.ObtemNumerCondutorSelecionado();
 

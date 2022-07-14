@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
@@ -11,7 +12,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
     public partial class TelaCadastroCondutor : Form
     {
         private Condutor condutor;
-        public TelaCadastroCondutor(List<Cliente> clientes)
+        public TelaCadastroCondutor(Result< List<Cliente> > clientes)
         {
             InitializeComponent();
 
