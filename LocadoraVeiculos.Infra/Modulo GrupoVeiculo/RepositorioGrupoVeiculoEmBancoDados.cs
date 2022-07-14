@@ -28,18 +28,18 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo
         protected override string Sql_exclusao => @"DELETE FROM TBGRUPOVEICULO WHERE ID = @ID;";
 
         protected override string Sql_selecao_por_id => @"SELECT 
-                                                    [ID] GRUPO_ID,
-                                                    [NOMEGRUPO] GRUPO_NOME
-                                                    FROM 
-                                                        [TBGRUPOVEICULO] 
-                                                    WHERE 
-                                                        ID = @ID";
+                                                        [ID] GRUPO_ID,
+                                                        [NOMEGRUPO] GRUPO_NOME
+                                                        FROM 
+                                                            [TBGRUPOVEICULO] 
+                                                        WHERE 
+                                                            ID = @ID";
 
         protected override string Sql_selecao_todos => @"SELECT 
-                                                    [ID] GRUPO_ID,
-                                                    [NOME] GRUPO_NOME    
-                                                FROM 
-                                                    [TBCLIENTE]";
+                                                            [ID] GRUPO_ID,
+                                                            [NOMEGRUPO] GRUPO_NOME    
+                                                        FROM 
+                                                            [TBGRUPOVEICULO]";
 
 
     }

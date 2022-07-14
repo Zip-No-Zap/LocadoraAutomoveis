@@ -17,8 +17,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Condutor
             repositorioCondutor = new();
             repositorioCliente = new();
 
-            ResetarBancoDadosCondutor();
-            ResetarBancoDadosCliente();
+            //ResetarBancoDadosCondutor();
+            //ResetarBancoDadosCliente();
         }
 
         [TestMethod]
