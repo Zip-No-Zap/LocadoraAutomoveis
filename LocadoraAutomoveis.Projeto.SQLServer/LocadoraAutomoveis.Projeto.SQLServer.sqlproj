@@ -63,11 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\TBCLIENTE.sql" />
-    <Build Include="dbo\Tables\TBCONDUTOR.sql" />
     <Build Include="dbo\Tables\TBFUNCIONARIO.sql" />
     <Build Include="dbo\Tables\TBTAXA.sql" />
-    <Build Include="dbo\Tables\TBVEICULO.sql" />
-    <Build Include="dbo\Tables\TBPLANO.sql" />
     <Build Include="dbo\Tables\TBGRUPOVEICULO.sql" />
+    <Build Include="dbo\Tables\TBCONDUTOR.sql" />
+    <Build Include="dbo\Tables\TBPLANO.sql" />
+    <Build Include="dbo\Tables\TBVEICULO.sql" />
   </ItemGroup>
 </Project>
