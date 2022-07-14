@@ -33,10 +33,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             return colunas;
         }
 
-        public int ObtemNumerClienteSelecionado()
-        {
-            return grid.SelecionarNumero<int>();
-        }
+        public Guid ObtemNumerClienteSelecionado() => grid.SelecionarNumero<Guid>();
 
         public void AtualizarRegistros(List<Cliente> registros)
         {

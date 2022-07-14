@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa;
 using Serilog;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
@@ -83,7 +84,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             }
         }
 
-        public Taxa SelecionarPorId(int id)
+        public Taxa SelecionarPorId(Guid id)
         {
             Log.Logger.Debug("Tentando obter uma taxa...");
 

@@ -9,6 +9,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
         protected override string Sql_insercao =>
                                                 @"INSERT INTO TBPLANO
                                                 (
+                                                        [ID],
                                                         [GRUPO_ID],
                                                         [VALORDIARIO_DIARIO],
                                                         [VALORPORKM_DIARIO],
@@ -21,6 +22,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
                                                 )
                                                 VALUES
                                                 (
+                                                        @ID,
                                                         @GRUPO_ID,
                                                         @VALORDIARIO_DIARIO,
                                                         @VALORPORKM_DIARIO,
@@ -31,7 +33,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
                                                         @VALORPORKM_CONTROLADO,
                                                         @LIMITEQUILOMETRAGEM_CONTROLADO
                     
-                                                ) SELECT SCOPE_IDENTITY(); ";
+                                                )";
 
         protected override string Sql_edicao =>
                                                 @"UPDATE [TBPLANO] SET 

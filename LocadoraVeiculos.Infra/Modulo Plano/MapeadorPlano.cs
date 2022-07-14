@@ -35,7 +35,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
 
             while (leitor.Read())
             {
-                int id = Convert.ToInt32(leitor["ID"]);
+                var id = Guid.Parse(leitor["ID"].ToString());
                 float valorDiario_Diario = float.Parse(leitor["VALORDIARIO_DIARIO"].ToString());
                 float valorPorKm_Diario = float.Parse(leitor["VALORPORKM_DIARIO"].ToString());
 
@@ -45,7 +45,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
                 float valorPorKm_Controlado = float.Parse(leitor["VALORPORKM_CONTROLADO"].ToString());
                 int limiteQuilometragem_Controlado = Convert.ToInt32(leitor["LIMITEQUILOMETRAGEM_CONTROLADO"]);
 
-                int grupo_id = Convert.ToInt32(leitor["GRUPO_ID"]);
+                var grupo_id = Guid.Parse(leitor["GRUPO_ID"].ToString());
                 string grupo_nome = leitor["GRUPO_NOME"].ToString();
 
                 Plano plano = new()
@@ -79,7 +79,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
 
             if (leitor.Read())
             {
-                int id = Convert.ToInt32(leitor["ID"]);
+                var id = Guid.Parse(leitor["ID"].ToString());
                 float valorDiario_Diario = float.Parse(leitor["VALORDIARIO_DIARIO"].ToString());
                 float valorPorKm_Diario = float.Parse(leitor["VALORPORKM_DIARIO"].ToString());
 
@@ -89,7 +89,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Plano
                 float valorPorKm_Controlado = float.Parse(leitor["VALORPORKM_CONTROLADO"].ToString());
                 int limiteQuilometragem_Controlado = Convert.ToInt32(leitor["LIMITEQUILOMETRAGEM_CONTROLADO"]);
 
-                int grupo_id = Convert.ToInt32(leitor["GRUPO_ID"]);
+                var grupo_id = Guid.Parse(leitor["GRUPO_ID"].ToString());
                 string grupo_nome = leitor["GRUPO_NOME"].ToString();
 
                 plano = new()
