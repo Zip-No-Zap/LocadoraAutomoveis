@@ -2,6 +2,7 @@
 using LocadoraAutomoveis.Aplicacao.Modulo_Funcionario;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -35,48 +36,74 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         public override void Editar()
         {
-            Funcionario Selecionado = ObtemFuncionarioSelecionado();
+            Funcionario Selecionado = null;
 
-            if (Selecionado == null)
+            Result<Funcionario> resultadoResult = ObtemFuncionarioSelecionado();
+
+            if (resultadoResult.IsSuccess)
             {
-                MessageBox.Show("Selecione um funcionario primeiro",
-                "Edição de Funcionarios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                Selecionado = resultadoResult.Value;
+
+                if (Selecionado.Id == Guid.Empty)
+                {
+                    MessageBox.Show("Selecione um funcionário primeiro",
+                    "Edição de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                TelaCadastroFuncionario tela = new();
+
+                tela.Funcionario = Selecionado;
+
+                tela.GravarRegistro = servicoFuncionario.Editar;
+
+                DialogResult resultado = tela.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    CarregarFuncionarios();
+                }
             }
-
-            TelaCadastroFuncionario tela = new();
-
-            tela.Funcionario = Selecionado;
-
-            tela.GravarRegistro = servicoFuncionario.Editar;
-
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
+            else if (resultadoResult.IsFailed)
             {
-                CarregarFuncionarios();
+                MessageBox.Show(resultadoResult.Errors[0].Message,
+                   "Edição de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
         public override void Excluir()
         {
-            Funcionario Selecionado = ObtemFuncionarioSelecionado();
+            Funcionario Selecionado = null;
 
-            if (Selecionado == null)
+            Result<Funcionario> resultadoResult = ObtemFuncionarioSelecionado();
+
+            if (resultadoResult.IsSuccess)
             {
-                MessageBox.Show("Selecione um Funcionario primeiro",
-                "Exclusão de Funcionarios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                Selecionado = resultadoResult.Value;
+
+                if (Selecionado.Id == Guid.Empty)
+                {
+                    MessageBox.Show("Selecione um funcionário primeiro",
+                    "Exclusão de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                DialogResult resultado = MessageBox.Show("Deseja realmente excluir o funcionário?",
+                    "Exclusão de Funcionário", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.OK)
+                {
+                    servicoFuncionario.Excluir(Selecionado);
+
+                    CarregarFuncionarios();
+                }
             }
-
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o Funcionario?",
-                "Exclusão de Funcionario", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-            if (resultado == DialogResult.OK)
+            else if (resultadoResult.IsFailed)
             {
-                servicoFuncionario.Excluir(Selecionado);
-
-                CarregarFuncionarios();
+                MessageBox.Show(resultadoResult.Errors[0].Message,
+                   "Exclusão de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
@@ -113,7 +140,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             }
         }
 
-        private Funcionario ObtemFuncionarioSelecionado()
+        private Result<Funcionario> ObtemFuncionarioSelecionado()
         {
             var numero = tabelaFuncionarios.ObtemNumerFuncionarioSelecionado();
 
