@@ -74,7 +74,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
                 return;
             }
         }
-
+        
         public override void Excluir()
         {
             Cliente selecionado = null;
