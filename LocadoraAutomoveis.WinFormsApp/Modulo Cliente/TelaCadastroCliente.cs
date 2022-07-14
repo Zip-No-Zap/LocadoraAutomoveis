@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using Microsoft.VisualBasic;
@@ -11,7 +12,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
     {
         private Cliente cliente;
 
-        public Func<Cliente, ValidationResult> GravarRegistro
+        public Func<Cliente, Result<Cliente>> GravarRegistro
         {
             get; set;
         }
@@ -84,9 +85,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             var resultadoValidacao = GravarRegistro(cliente);
 
             
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsSuccess == false)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
                 FormPrincipal.Instancia.AtualizarRodape(erro);
 

@@ -2,6 +2,7 @@
 using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
 using LocadoraAutomoveis.Aplicacao.Modulo_Condutor;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using System;
 using System.Collections.Generic;
@@ -23,33 +24,42 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
         }
         public override void Inserir()
         {
-            TelaCadastroCondutor tela = new(servicoCliente.SelecionarTodos())
+            Result<List<Cliente>> resultadoResult = servicoCliente.SelecionarTodos();
+
+            if (resultadoResult.IsSuccess)
             {
-                Condutor = new() 
-                { 
-                    Cliente = new() 
-                },
+                List<Cliente> clientes = resultadoResult.Value;
 
-                GravarRegistro = servicoCondutor.Inserir
-            };
+                TelaCadastroCondutor tela = new(clientes)
+                {
+                    Condutor = new(),
 
-            DialogResult resultado = tela.ShowDialog();
+                    GravarRegistro = servicoCondutor.Inserir
+                };
 
-            if (resultado == DialogResult.OK)
-            {
-                CarregarCondutores();
+                DialogResult resultado = tela.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    CarregarCondutores();
+                }
             }
         }
 
         public override void Editar()
         {
             Condutor selecionado = null;
+            List<Cliente> selecionadoClientes = null; 
 
             Result<Condutor> resultadoResult = ObtemCondutorSelecionado();
 
-            if (resultadoResult.IsSuccess)
+            Result<List<Cliente>> resultadocliente = servicoCliente.SelecionarTodos();
+
+            if (resultadoResult.IsSuccess && resultadocliente.IsSuccess)
             {
                 selecionado = resultadoResult.Value;
+
+                selecionadoClientes = resultadocliente.Value;
 
                 if (selecionado.Id == Guid.Empty)
                 {
@@ -58,7 +68,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
                     return;
                 }
 
-                TelaCadastroCondutor tela = new(servicoCliente.SelecionarTodos())
+                TelaCadastroCondutor tela = new(selecionadoClientes)
                 {
                     Condutor = selecionado,
 

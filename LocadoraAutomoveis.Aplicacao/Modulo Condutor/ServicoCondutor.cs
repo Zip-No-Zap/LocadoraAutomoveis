@@ -5,6 +5,7 @@ using LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 {
@@ -15,63 +16,104 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 
         public ServicoCondutor(RepositorioCondutorEmBancoDados repositorioCondutor)
         {
-            this.repositorioCondutor = repositorioCondutor; 
+            this.repositorioCondutor = repositorioCondutor;
         }
 
-        public ValidationResult Inserir(Condutor condutor)
+        public Result<Condutor> Inserir(Condutor condutor)
         {
             Log.Logger.Debug("Tentando inserir Condutor... {@condutor}", condutor);
+
             var resultadoValidacao = Validar(condutor);
 
-            if (resultadoValidacao.IsValid)
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar inserir Condutor. {CondutorId} -> Motivo: {erro}", condutor.Id, erro.Message);
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
             {
                 repositorioCondutor.Inserir(condutor);
                 Log.Logger.Information("Condutor inserido com sucesso. {@condutor}", condutor);
+                return Result.Ok(condutor);
             }
-            else
-                foreach (var erro in resultadoValidacao.Errors)
-                    Log.Logger.Warning("Falha ao tentar inserir Condutor. {CondutorId} -> Motivo: {erro}", condutor.Id, erro.ErrorMessage);
+            catch (Exception ex)
+            {
+                string msgErro = "Falha ao tentar inserir Condutor.";
+                Log.Logger.Error(ex, msgErro + "{CondutorId}", condutor.Id);
+                return Result.Fail(msgErro);
+            }
 
             return resultadoValidacao;
         }
 
-        public ValidationResult Editar(Condutor condutor)
+        public Result<Condutor> Editar(Condutor condutor)
         {
             Log.Logger.Debug("Tentando editar Condutor... {@condutor}", condutor);
+
             var resultadoValidacao = Validar(condutor);
 
-            if (resultadoValidacao.IsValid)
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (var erro in resultadoValidacao.Errors)
+                {
+                    Log.Logger.Warning("Falha ao tentar editar Condutor. {CondutorId} -> Motivo: {erro}", condutor.Id, erro.Message);
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
             {
                 repositorioCondutor.Editar(condutor);
-                Log.Logger.Information("Condutor editado com sucesso. {@condutor}", condutor);
-            }
-            else
-                foreach (var erro in resultadoValidacao.Errors)
-                    Log.Logger.Warning("Falha ao tentar editar Condutor. {CondutorId} -> Motivo: {erro}", condutor.Id, erro.ErrorMessage);
 
-            return resultadoValidacao;
+                Log.Logger.Information("Condutor editado com sucesso. {@condutor}", condutor);
+
+                return Result.Ok(condutor);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha ao tentar editar Condutor";
+
+                Log.Logger.Error(ex, msgErro + "{CondutorId}", condutor.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public void Excluir(Condutor condutor)
+        public Result Excluir(Condutor condutor)
         {
             Log.Logger.Debug("Tentando excluir Condutor... {@condutor}", condutor);
-            repositorioCondutor.Excluir(condutor);
 
-            var condutorExcluido = SelecionarPorId(condutor.Id);
+            try
+            {
+                repositorioCondutor.Excluir(condutor);
 
-            if (condutorExcluido == null)
-                Log.Logger.Information("Condutor excluído com sucesso. {@condutor} -> ", condutor);
-            else
-                Log.Logger.Warning("Falha ao excluir Condutor. {Condutor} -> Motivo: {erro}", condutor);
+                Log.Logger.Information("Condutor excluído com sucesso. {@condutor}", condutor);
+
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha ao tentar excluir Condutor.";
+
+                Log.Logger.Error(ex, msgErro + "{CondutorId}", condutor.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public Result< List<Condutor> > SelecionarTodos()
+        public Result<List<Condutor>> SelecionarTodos()
         {
             try
             {
-                return Result.Ok( repositorioCondutor.SelecionarTodos() );
+                return Result.Ok(repositorioCondutor.SelecionarTodos());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string msgErro = "Falha no sistema ao tentar selecionar todos os condutores";
                 Log.Logger.Error(ex, msgErro);
@@ -79,6 +121,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
                 return Result.Fail(msgErro);
             }
         }
+
         public Result<Condutor> SelecionarPorId(Guid id)
         {
             try
@@ -94,14 +137,20 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
                 return Result.Fail(msgErro);
             }
         }
-    }
 
-
-        public ValidationResult Validar(Condutor condutor)
+        public Result Validar(Condutor condutor)
         {
-            validadorCondutor = new ValidadorCondutor();
+
+            var validadorCondutor = new ValidadorCondutor();
 
             var resultadoValidacao = validadorCondutor.Validate(condutor);
+
+            List<Error> erros = new List<Error>(); //FluentResult
+
+            foreach (ValidationFailure item in resultadoValidacao.Errors) //FluentValidation 
+            {
+                erros.Add(new Error(item.ErrorMessage));
+            }
 
             if (NomeDuplicado(condutor))
                 resultadoValidacao.Errors.Add(new ValidationFailure("Nome", "'Nome' duplicado"));
@@ -112,13 +161,14 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
             if (CnhDuplicada(condutor))
                 resultadoValidacao.Errors.Add(new ValidationFailure("Cnh", "'CNH' duplicada"));
 
+            if (erros.Any())
+                return Result.Fail(erros);
 
-            return resultadoValidacao;
+            return Result.Ok();
         }
 
-
         #region Métodos privados
-            
+
 
         private bool CnhDuplicada(Condutor condutor)
         {

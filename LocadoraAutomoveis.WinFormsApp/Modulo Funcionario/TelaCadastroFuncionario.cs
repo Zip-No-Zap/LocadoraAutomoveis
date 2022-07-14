@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using System;
@@ -10,7 +11,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
     {
         private Funcionario funcionario;
 
-        public Func<Funcionario, ValidationResult> GravarRegistro
+        public Func<Funcionario, Result<Funcionario>> GravarRegistro
         {
             get; set;
         }
@@ -63,11 +64,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
             funcionario.Senha = tbSenha.Text;
             funcionario.Perfil = cbPerfil.Text;
 
-            ValidationResult resultadoValidacao = GravarRegistro(funcionario);
+            Result<Funcionario> resultadoValidacao = GravarRegistro(funcionario);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsSuccess == false)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
                 FormPrincipal.Instancia.AtualizarRodape(erro);
 

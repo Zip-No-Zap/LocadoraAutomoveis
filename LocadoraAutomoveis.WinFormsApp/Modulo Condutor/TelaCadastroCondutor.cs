@@ -12,13 +12,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
     public partial class TelaCadastroCondutor : Form
     {
         private Condutor condutor;
-        public TelaCadastroCondutor(Result< List<Cliente> > clientes)
+
+        public TelaCadastroCondutor(List<Cliente> clientes)
         {
             InitializeComponent();
 
             CarregarClientes(clientes);
         }
-        public Func<Condutor, ValidationResult> GravarRegistro
+        public Func<Condutor, Result<Condutor>> GravarRegistro
         {
             get; set;
         }
@@ -79,9 +80,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 
             var resultadoValidacao = GravarRegistro(condutor);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsSuccess == false)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
                 FormPrincipal.Instancia.AtualizarRodape(erro);
 
