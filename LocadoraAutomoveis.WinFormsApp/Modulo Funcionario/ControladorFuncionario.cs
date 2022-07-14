@@ -1,4 +1,5 @@
-﻿using LocadoraAutomoveis.Aplicacao.Modulo_Funcionario;
+﻿using FluentResults;
+using LocadoraAutomoveis.Aplicacao.Modulo_Funcionario;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using System.Collections.Generic;
@@ -96,18 +97,19 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         private void CarregarFuncionarios()
         {
-            List<Funcionario> funcionarios = servicoFuncionario.SelecionarTodos();
+            Result< List<Funcionario> > resultado = servicoFuncionario.SelecionarTodos();
 
-            if (funcionarios != null)
+            if (resultado.IsSuccess)
             {
+                List<Funcionario> funcionarios = resultado.Value;
+
                 tabelaFuncionarios.AtualizarRegistros(funcionarios);
 
-                FormPrincipal.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionario(s)");
+                FormPrincipal.Instancia.AtualizarRodape($"Visualizando {funcionarios.Count} funcionário(s)");
             }
-            else
+            else if (resultado.IsFailed)
             {
-                MessageBox.Show("Falha no sistema ao tentar selecionar todos os funcionários",
-               "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(resultado.Errors[0].Message,"Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

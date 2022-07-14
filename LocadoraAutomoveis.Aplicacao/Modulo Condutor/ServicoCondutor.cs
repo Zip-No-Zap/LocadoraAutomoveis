@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor;
 using Serilog;
@@ -64,50 +65,36 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
                 Log.Logger.Warning("Falha ao excluir Condutor. {Condutor} -> Motivo: {erro}", condutor);
         }
 
-        public List<Condutor> SelecionarTodos()
+        public Result< List<Condutor> > SelecionarTodos()
         {
-            List<Condutor> condutores = new();
-
-            Log.Logger.Debug("Tentando obter todos Condutor...");
-
             try
             {
-                condutores = repositorioCondutor.SelecionarTodos();
+                return Result.Ok( repositorioCondutor.SelecionarTodos() );
             }
             catch(Exception ex)
             {
-                string msgErro = "falha no sistema ao tentar selecioanr todos os condutores";
+                string msgErro = "Falha no sistema ao tentar selecionar todos os condutores";
                 Log.Logger.Error(ex, msgErro);
-            }
 
-            if (condutores.Count > 0)
-            {
-                Log.Logger.Information("Todos os condutores foram obtidos com sucesso. {CondutorCount}", condutores.Count);
-                return condutores;
-            }
-            else
-            {
-                Log.Logger.Warning("Falha ao tentar obter todos Condutor. {CondutorsCount} -> ", condutores.Count);
-                return condutores;
+                return Result.Fail(msgErro);
             }
         }
-        public Condutor SelecionarPorId(Guid id)
+        public Result<Condutor> SelecionarPorId(Guid id)
         {
-            Log.Logger.Debug("Tentando obter um condutor...");
-
-            var condutor = repositorioCondutor.SelecionarPorId(id);
-
-            if (condutor != null)
+            try
             {
-                Log.Logger.Information("Condutor foi obtido com sucesso.");
-                return condutor;
+                return Result.Ok(repositorioCondutor.SelecionarPorId(id));
             }
-            else
+            catch (Exception ex)
             {
-                Log.Logger.Warning("Falha ao tentar obter um condutor. {Condutor}");
-                return condutor;
+                string msgErro = "Falha no sistema ao tentar selecionar condutor";
+
+                Log.Logger.Error(ex, msgErro + "{condutorId}", id);
+
+                return Result.Fail(msgErro);
             }
         }
+    }
 
 
         public ValidationResult Validar(Condutor condutor)

@@ -1,9 +1,11 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using Serilog;
 using System;
 using System.Collections.Generic;
+
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 {
@@ -71,49 +73,35 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             return resultadoValidacao;
         }
 
-        public List<Funcionario> SelecionarTodos()
+        public Result< List<Funcionario> > SelecionarTodos()
         {
-            List<Funcionario> funcionarios = new();
-
-            Log.Logger.Debug("Tentando obter todos os funcionários...");
-
             try
             {
-               funcionarios = repositorioFuncionario.SelecionarTodos();
+               return Result.Ok( repositorioFuncionario.SelecionarTodos() );
             }
             catch(Exception ex)
             {
-                string msgErro = "falha no sistema ao tentar selecioanr todos os funcionários";
-                Log.Logger.Error(ex, msgErro);
-            }
+                string msgErro = "Falha no sistema ao tentar selecionar todos os funcionários";
 
-            if (funcionarios.Count > 0)
-            {
-                Log.Logger.Information("Todos os funcionários foram obtidos com sucesso. {FuncionarioCount}", funcionarios.Count);
-                return funcionarios;
-            }
-            else
-            {
-                Log.Logger.Warning("Falha ao tentar obter todos os funcionários. {FuncionariosCount} -> ", funcionarios.Count);
-                return funcionarios;
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
             }
         }
 
-        public Funcionario SelecionarPorId(Guid id)
+        public Result<Funcionario> SelecionarPorId(Guid id)
         {
-            Log.Logger.Debug("Tentando obter um funcionário...");
-
-            var funcionario = repositorioFuncionario.SelecionarPorId(id);
-
-            if (funcionario != null)
+            try
             {
-                Log.Logger.Information("Funcionário foi obtido com sucesso.");
-                return funcionario;
+                return Result.Ok(repositorioFuncionario.SelecionarPorId(id));
             }
-            else
+            catch (Exception ex)
             {
-                Log.Logger.Warning("Falha ao tentar obter um funcionário. {Funcionario}");
-                return funcionario;
+                string msgErro = "Falha no sistema ao tentar selecionar funcionário";
+
+                Log.Logger.Error(ex, msgErro + "{FuncionarioId}", id);
+
+                return Result.Fail(msgErro);
             }
         }
 

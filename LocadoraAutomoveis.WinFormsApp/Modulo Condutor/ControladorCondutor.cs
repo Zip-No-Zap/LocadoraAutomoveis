@@ -1,4 +1,5 @@
-﻿using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
+﻿using FluentResults;
+using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
 using LocadoraAutomoveis.Aplicacao.Modulo_Condutor;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
@@ -115,18 +116,19 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 
         private void CarregarCondutores()
         {
-            List<Condutor> condutores = servicoCondutor.SelecionarTodos();
+            Result<List<Condutor>> resultado = servicoCondutor.SelecionarTodos();
 
-            if (condutores != null)
+            if (resultado.IsSuccess)
             {
+                List<Condutor> condutores = resultado.Value;
+
                 tabelaCondutor.AtualizarRegistros(condutores);
 
                 FormPrincipal.Instancia.AtualizarRodape($"Visualizando {condutores.Count} condutor(es)");
             }
             else
             {
-                MessageBox.Show("Falha no sistema ao tentar selecionar todos os condutores",
-               "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(resultado.Errors[0].Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

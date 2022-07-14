@@ -1,4 +1,5 @@
-﻿using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
+﻿using FluentResults;
+using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using System.Collections.Generic;
@@ -99,18 +100,19 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
         private void CarregarClientes()
         {
-            List<Cliente> clientes = servicoCliente.SelecionarTodos();
+            Result<List<Cliente>> resultado = servicoCliente.SelecionarTodos();
 
-            if (clientes != null)
+            if (resultado.IsSuccess)
             {
+                List<Cliente> clientes = resultado.Value;
+
                 tabelaClientes.AtualizarRegistros(clientes);
 
                 FormPrincipal.Instancia.AtualizarRodape($"Visualizando {clientes.Count} cliente(s)");
             }
             else
             {
-                MessageBox.Show("Falha no sistema ao tentar selecionar todos os clientes",
-               "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(resultado.Errors[0].Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

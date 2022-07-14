@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using Serilog;
@@ -68,50 +69,37 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             return resultadoValidacao;
         }
 
-        public List<Cliente> SelecionarTodos()
+        public Result< List<Cliente> > SelecionarTodos()
         {
-            List<Cliente> clientes = new();
-
-            Log.Logger.Debug("Tentando obter todos os clientes...");
-
             try
             {
-                 clientes = repositorioCliente.SelecionarTodos();
+                 return Result.Ok( repositorioCliente.SelecionarTodos() );
             }
             catch(Exception ex)
             {
                 string msgErro = "falha no sistema ao tentar selecioanr todos os clientes";
                 Log.Logger.Error(ex, msgErro);
-            }
 
-            if (clientes.Count > 0)
-            {
-                Log.Logger.Information("Todos os clientes foram obtidos com sucesso. {ClienteCount}");
-                return clientes;
+                return Result.Fail(msgErro);
             }
-            else
-            {
-                Log.Logger.Warning("Falha ao tentar obter todos os clientes. {ClienteCount}");
-                return clientes;
-            }
-        }
+         }
 
-        public Cliente SelecionarPorId(Guid id)
+        public Result<Cliente> SelecionarPorId(Guid id)
         {
-            Log.Logger.Debug("Tentando obter um cliente...");
-            var cliente =  repositorioCliente.SelecionarPorId(id);
-
-            if (cliente != null)
+            try
             {
-                Log.Logger.Information("Cliente foi obtido com sucesso.", cliente.Id);
-                return cliente;
+                return Result.Ok(repositorioCliente.SelecionarPorId(id));
             }
-            else
+            catch (Exception ex)
             {
-                Log.Logger.Warning("Falha ao tentar obter um cliente. {Cliente} -> ", cliente.Id);
-                return cliente;
+                string msgErro = "Falha no sistema ao tentar selecionar cliente";
+
+                Log.Logger.Error(ex, msgErro + "{ClienteId}", id);
+
+                return Result.Fail(msgErro);
             }
         }
+    }
 
         #region privates
 
