@@ -2,6 +2,7 @@
 using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
+using System;
 using System.Collections.Generic;
 
 using System.Windows.Forms;
@@ -37,49 +38,75 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
         public override void Editar()
         {
-            Cliente Selecionado = ObtemClienteSelecionado();
+            Cliente selecionado = null;
 
-            if (Selecionado == null)
+            Result<Cliente> resultadoResult = ObtemClienteSelecionado();
+
+            if (resultadoResult.IsSuccess)
             {
-                MessageBox.Show("Selecione um cliente primeiro",
-                "Edição de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                selecionado = resultadoResult.Value;
+
+                if (selecionado.Id == Guid.Empty)
+                {
+                    MessageBox.Show("Selecione um cliente primeiro",
+                    "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                TelaCadastroCliente tela = new()
+                {
+                    Cliente = selecionado,
+
+                    GravarRegistro = servicoCliente.Editar
+                };
+
+                DialogResult resultado = tela.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    CarregarClientes();
+                }
             }
-
-            TelaCadastroCliente tela = new()
+            else if (resultadoResult.IsFailed)
             {
-                Cliente = Selecionado,
-
-                GravarRegistro = servicoCliente.Editar
-            };
-
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
-            {
-                CarregarClientes();
+                MessageBox.Show(resultadoResult.Errors[0].Message,
+                   "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
         public override void Excluir()
         {
-            Cliente Selecionado = ObtemClienteSelecionado();
+            Cliente selecionado = null;
 
-            if (Selecionado == null)
+            Result<Cliente> resultadoResult = ObtemClienteSelecionado();
+
+            if (resultadoResult.IsSuccess)
             {
-                MessageBox.Show("Selecione um cliente primeiro",
-                "Exclusão de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
+                selecionado = resultadoResult.Value;
+
+                if (selecionado.Id == Guid.Empty)
+                {
+                    MessageBox.Show("Selecione um cliente primeiro",
+                    "Exclusão de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+
+                DialogResult resultado = MessageBox.Show("Deseja realmente excluir o cliente?",
+                    "Exclusão de Cliente", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.OK)
+                {
+                    servicoCliente.Excluir(selecionado);
+
+                    CarregarClientes();
+                }
             }
-
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o cliente?",
-                "Exclusão de Cliente", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-            if (resultado == DialogResult.OK)
+            else if (resultadoResult.IsFailed)
             {
-                servicoCliente.Excluir(Selecionado);
-
-                CarregarClientes();
+                MessageBox.Show(resultadoResult.Errors[0].Message,
+                   "Excluir de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
@@ -116,7 +143,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
             }
         }
 
-        private Cliente ObtemClienteSelecionado()
+        private Result<Cliente> ObtemClienteSelecionado()
         {
             var numero = tabelaClientes.ObtemNumerClienteSelecionado();
 
