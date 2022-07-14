@@ -21,8 +21,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
             repoPlano = new();
             repoGrupo = new();
 
-            ResetarBancoDados();
-            ResetarBancoDadosGrupo();
+            //ResetarBancoDados();
+            //ResetarBancoDadosGrupo();
         }
 
         [TestMethod]

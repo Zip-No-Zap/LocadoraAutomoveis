@@ -79,7 +79,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
 
                                                             ON VEICULO.IDGRUPOVEICULO = GRUPOVEICULO.ID
 
-                                                            WHERE V.ID = @ID";
+                                                            WHERE VEICULO.ID = @ID";
 
         protected override string Sql_selecao_todos => @"SELECT  
 

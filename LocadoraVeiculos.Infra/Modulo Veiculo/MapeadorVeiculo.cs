@@ -38,19 +38,19 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
             while (leitor.Read())
             {
                 var id = Guid.Parse(leitor["VEICULO_ID"].ToString());
-                string modelo = leitor["MODELO"].ToString();
-                string placa = leitor["PLACA"].ToString();
-                string cor = leitor["COR"].ToString();
-                int ano = Convert.ToInt32(leitor["ANO"]);
-                string tipoCombustivel = leitor["TIPOCOMBUSTIVEL"].ToString();
-                int capacidade = Convert.ToInt32(leitor["CAPACIDADETANQUE"]);
-                string status = leitor["STATUS"].ToString();
-                int quilometragem = Convert.ToInt32(leitor["QUILOMETRAGEMATUAL"]);
+                string modelo = leitor["VEICULO_MODELO"].ToString();
+                string placa = leitor["VEICULO_PLACA"].ToString();
+                string cor = leitor["VEICULO_COR"].ToString();
+                int ano = Convert.ToInt32(leitor["VEICULO_ANO"]);
+                string tipoCombustivel = leitor["VEICULO_TIPOCOMBUSTIVEL"].ToString();
+                int capacidade = Convert.ToInt32(leitor["VEICULO_CAPACIDADETANQUE"]);
+                string status = leitor["VEICULO_STATUS"].ToString();
+                int quilometragem = Convert.ToInt32(leitor["VEICULO_QUILOMETRAGEMATUAL"]);
 
                 var idGrupoVeiculo = Guid.Parse(leitor["VEICULO_IDGRUPOVEICULO"].ToString());
-                string grupoVeiculoNome = (leitor["NOMEGRUPO"]).ToString();
+                string grupoVeiculoNome = (leitor["GRUPO_NOME"]).ToString();
 
-                byte[] foto = (byte[])leitor["FOTO"];
+                byte[] foto = (byte[])leitor["VEICULO_FOTO"];
 
                 Veiculo veiculo = new(modelo, placa, cor, ano, tipoCombustivel, capacidade, status, quilometragem, foto)
                 {
@@ -74,19 +74,19 @@ namespace LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo
             if (leitor.Read())
             {
                 var id = Guid.Parse(leitor["VEICULO_ID"].ToString());
-                string modelo = leitor["MODELO"].ToString();
-                string placa = leitor["PLACA"].ToString();
-                string cor = leitor["COR"].ToString();
-                int ano = Convert.ToInt32(leitor["ANO"]);
-                string tipoCombustivel = leitor["TIPOCOMBUSTIVEL"].ToString();
-                int capacidade = Convert.ToInt32(leitor["CAPACIDADETANQUE"]);
-                string status = leitor["STATUS"].ToString();
-                int quilometragem = Convert.ToInt32(leitor["QUILOMETRAGEMATUAL"]);
+                string modelo = leitor["VEICULO_MODELO"].ToString();
+                string placa = leitor["VEICULO_PLACA"].ToString();
+                string cor = leitor["VEICULO_COR"].ToString();
+                int ano = Convert.ToInt32(leitor["VEICULO_ANO"]);
+                string tipoCombustivel = leitor["VEICULO_TIPOCOMBUSTIVEL"].ToString();
+                int capacidade = Convert.ToInt32(leitor["VEICULO_CAPACIDADETANQUE"]);
+                string status = leitor["VEICULO_STATUS"].ToString();
+                int quilometragem = Convert.ToInt32(leitor["VEICULO_QUILOMETRAGEMATUAL"]);
 
                 var idGrupoVeiculo = Guid.Parse(leitor["VEICULO_IDGRUPOVEICULO"].ToString());
-                string grupoVeiculoNome = (leitor["NOMEGRUPO"]).ToString();
+                string grupoVeiculoNome = (leitor["GRUPO_NOME"]).ToString();
 
-                byte[] foto = (byte[])leitor["FOTO"];
+                byte[] foto = (byte[])leitor["VEICULO_FOTO"];
 
                 veiculo = new(modelo, placa, cor, ano, tipoCombustivel, capacidade, status, quilometragem, foto)
                 {

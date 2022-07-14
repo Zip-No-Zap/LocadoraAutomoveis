@@ -14,7 +14,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
         public RepositorioTaxaBancoDadosTests()
         {
             repoTaxa = new();
-            ResetarBancoDados();
+
+            //ResetarBancoDados();
         }
 
         [TestMethod]

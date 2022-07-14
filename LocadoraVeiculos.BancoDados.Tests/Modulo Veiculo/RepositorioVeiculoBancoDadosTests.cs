@@ -17,9 +17,10 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
         {
             repoVeiculo = new();
             repoGrupo = new();
-            ResetarBancoDadosPlano();
-            ResetarBancoDadosVeiculo();
-            ResetarBancoDadosGrupo();
+
+            //ResetarBancoDadosPlano();
+            //ResetarBancoDadosVeiculo();
+            //ResetarBancoDadosGrupo();
         }
 
         [TestMethod]
@@ -109,8 +110,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
 
             //assert
             Assert.AreNotEqual(null, resultado);
-
-            ResetarBancoDadosVeiculo();
         }
 
         #region privados
