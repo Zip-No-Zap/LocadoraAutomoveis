@@ -45,11 +45,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         {
             grupoVeiculo.Nome = tbNomeGrupoVeiculo.Text;
 
-            ValidationResult resultadoValidacao = GravarRegistro(grupoVeiculo);
+            var resultadoValidacao = GravarRegistro(grupoVeiculo);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
                 FormPrincipal.Instancia.AtualizarRodape(erro);
 

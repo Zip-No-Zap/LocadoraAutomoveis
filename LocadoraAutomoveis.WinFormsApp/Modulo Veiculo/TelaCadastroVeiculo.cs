@@ -78,7 +78,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
             veiculo.Foto = imagemSelecionada;
 
-            ValidationResult resultadoValidacao = GravarRegistro(veiculo);
+            var resultadoValidacao = GravarRegistro(veiculo);
 
             if (resultadoValidacao == null)
             {
@@ -86,9 +86,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 return;
             }
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsFailed)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
                 FormPrincipal.Instancia.AtualizarRodape(erro);
 
@@ -166,7 +166,13 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             if (cmbGrupoVeiculo.SelectedIndex != -1)
             {
                 var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
-                var grupos = servicoGrupo.SelecionarTodos();
+
+                var gruposResult = servicoGrupo.SelecionarTodos();
+
+                List<GrupoVeiculo> grupos = null;
+
+                if (gruposResult.IsSuccess)
+                    grupos = gruposResult.Value;
 
                 var grupoEncontrado = grupos.Find(g => g.Nome.Equals(cmbGrupoVeiculo.SelectedItem.ToString()));
 
@@ -183,7 +189,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         {
             var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
 
-            var nomes = servicoGrupo.SelecionarTodos();
+            var nomesResult = servicoGrupo.SelecionarTodos();
+
+            List<GrupoVeiculo> nomes = null;
+
+            if (nomesResult.IsSuccess)
+                nomes = nomesResult.Value;
 
             if (nomes != null)
             {

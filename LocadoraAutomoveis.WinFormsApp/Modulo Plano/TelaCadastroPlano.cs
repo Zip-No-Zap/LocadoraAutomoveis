@@ -4,6 +4,7 @@ using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
@@ -47,9 +48,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
         {
             var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
 
-            var nomes = servicoGrupo.SelecionarTodos();
+            var nomesResult = servicoGrupo.SelecionarTodos();
 
-            if (nomes != null)
+            List<GrupoVeiculo> nomes = null;
+
+            if (nomesResult.IsSuccess)
+                nomes = nomesResult.Value;
+
+            if (nomes.Count != 0)
             {
                 foreach (GrupoVeiculo gv in nomes)
                 {
@@ -191,7 +197,13 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             if (cbGrupo.SelectedIndex != -1) 
             {
                 var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
-                var grupos = servicoGrupo.SelecionarTodos();
+
+                var gruposResult = servicoGrupo.SelecionarTodos();
+
+                List<GrupoVeiculo> grupos = null;
+
+                if (gruposResult.IsSuccess)
+                    grupos = gruposResult.Value;
 
                 var grupoEncontrado = grupos.Find(g => g.Nome.Equals(cbGrupo.SelectedItem.ToString()));
 
