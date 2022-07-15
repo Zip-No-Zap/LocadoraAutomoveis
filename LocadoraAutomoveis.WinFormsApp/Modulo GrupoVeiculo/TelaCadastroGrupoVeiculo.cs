@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using System;
@@ -10,7 +11,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
     {
         private GrupoVeiculo grupoVeiculo;
 
-        public Func<GrupoVeiculo, ValidationResult> GravarRegistro
+        public Func<GrupoVeiculo, Result<GrupoVeiculo>> GravarRegistro
         {
             get; set;
         }

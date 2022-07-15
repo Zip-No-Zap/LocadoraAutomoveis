@@ -1,9 +1,11 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -15,9 +17,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
     {
         private Veiculo veiculo;
 
+        private List<GrupoVeiculo> grupos;
+
         private byte[] imagemSelecionada;
 
-        public Func<Veiculo, ValidationResult> GravarRegistro
+        public Func<Veiculo, Result<Veiculo>> GravarRegistro
         {
             get; set;
         }
