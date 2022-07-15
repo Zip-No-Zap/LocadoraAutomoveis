@@ -30,7 +30,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
             return colunas;
         }
 
-        public Guid ObtemNumerTaxaSelecionado()
+        public Guid ObtemNumeroTaxaSelecionado()
         {
             return grid.SelecionarNumero<Guid>();
         }

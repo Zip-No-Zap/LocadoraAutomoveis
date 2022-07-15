@@ -1,6 +1,8 @@
-﻿using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
+﻿using FluentResults;
+using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
+using System;
 using System.Collections.Generic;
 
 using System.Windows.Forms;
@@ -30,18 +32,31 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
             {
                 CarregarTaxas();
             }
+
         }
 
         public override void Editar()
         {
-            Taxa Selecionado = ObtemTaxaSelecionado();
+            var id = tabelaTaxas.ObtemNumeroTaxaSelecionado();
 
-            if (Selecionado == null)
+            if (id == Guid.Empty)
             {
                 MessageBox.Show("Selecione uma taxa primeiro",
-                "Edição de Taxas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    "Edição de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
+
+            var resultado = servicoTaxa.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var Selecionado = resultado.Value;
 
             TelaCadastroTaxa tela = new();
 
@@ -49,34 +64,44 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
             tela.GravarRegistro = servicoTaxa.Editar;
 
-            DialogResult resultado = tela.ShowDialog();
 
-            if (resultado == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
             {
                 CarregarTaxas();
             }
+            
         }
 
         public override void Excluir()
         {
-            Taxa Selecionado = ObtemTaxaSelecionado();
+            var id = tabelaTaxas.ObtemNumeroTaxaSelecionado();
 
-            if (Selecionado == null)
+            if (id == Guid.Empty)
             {
                 MessageBox.Show("Selecione uma taxa primeiro",
-                "Exclusão de taxas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Exclusão de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir a taxa?",
-                "Exclusão de Taxa", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if (resultado == DialogResult.OK)
+            var resultado = servicoTaxa.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Exclusão de Taxa", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var Selecionado = resultado.Value;
+
+            if (MessageBox.Show("Deseja realmente excluir a taxa?",
+            "Exclusão de Taxa", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 servicoTaxa.Excluir(Selecionado);
-
                 CarregarTaxas();
             }
+        
         }
 
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()
@@ -96,16 +121,26 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
         private void CarregarTaxas()
         {
-            List<Taxa> Taxas = servicoTaxa.SelecionarTodos();
+            Result<List<Taxa>> resultado = servicoTaxa.SelecionarTodos();
 
-            tabelaTaxas.AtualizarRegistros(Taxas);
+            if (resultado.IsSuccess)
+            {
+                List<Taxa> plano = resultado.Value;
 
-            FormPrincipal.Instancia.AtualizarRodape($"Visualizando {Taxas.Count} Taxa(s)");
+                tabelaTaxas.AtualizarRegistros(plano);
+
+                FormPrincipal.Instancia.AtualizarRodape($"Visualizando {plano.Count} taxa(s)");
+            }
+            else if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
-        private Taxa ObtemTaxaSelecionado()
+        private Result<Taxa> ObtemTaxaSelecionado()
         {
-            var numero = tabelaTaxas.ObtemNumerTaxaSelecionado();
+            var numero = tabelaTaxas.ObtemNumeroTaxaSelecionado();
 
             return servicoTaxa.SelecionarPorId(numero);
         }

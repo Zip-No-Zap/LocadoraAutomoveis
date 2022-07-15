@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
@@ -13,7 +14,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
     {
         private Plano plano;
 
-        public Func<Plano, ValidationResult> GravarRegistro
+        public Func<Plano, Result<Plano>> GravarRegistro
         {
             get; set;
         }
@@ -124,11 +125,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             plano.ValorPorKm_Controlado = float.Parse(tbKmRodado_Controlado.Text);
             plano.LimiteQuilometragem_Controlado = Convert.ToInt32(tbLimiteQuilometragem.Text);
         
-            ValidationResult resultadoValidacao = GravarRegistro(plano);
+            Result <Plano> resultadoValidacao = GravarRegistro(plano);
 
-            if (resultadoValidacao.IsValid == false)
+            
+            if (resultadoValidacao.IsSuccess == false)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
                 FormPrincipal.Instancia.AtualizarRodape(erro);
 

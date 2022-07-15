@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using Microsoft.VisualBasic;
 using System;
@@ -10,7 +11,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
     {
         private Taxa taxa;
 
-        public Func<Taxa, ValidationResult> GravarRegistro
+        public Func<Taxa, Result<Taxa>> GravarRegistro
         {
             get; set;
         }
@@ -53,11 +54,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
             taxa.Tipo = cbTipo.Text;
             taxa.Valor = float.Parse(tbValor.Text);
 
-            ValidationResult resultadoValidacao = GravarRegistro(taxa);
+            Result<Taxa> resultadoValidacao = GravarRegistro(taxa);
 
-            if (resultadoValidacao.IsValid == false)
+            if (resultadoValidacao.IsSuccess == false)
             {
-                string erro = resultadoValidacao.Errors[0].ErrorMessage;
+                string erro = resultadoValidacao.Errors[0].Message;
 
                 FormPrincipal.Instancia.AtualizarRodape(erro);
 

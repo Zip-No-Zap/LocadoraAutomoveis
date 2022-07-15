@@ -1,6 +1,8 @@
-﻿using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
+﻿using FluentResults;
+using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -39,25 +41,35 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         public override void Editar()
         {
-            Plano Selecionado = ObtemPlanoSelecionado();
+            var id = tabelaPlanos.ObtemNumeroPlanoSelecionado();
 
-            if (Selecionado == null)
+            if (id == Guid.Empty)
             {
                 MessageBox.Show("Selecione um plano primeiro",
-                "Edição de Planos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    "Edição de Plano", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            TelaCadastroPlano tela = new()
+
+            var resultado = servicoPlano.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
             {
-                Plano = Selecionado,
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Plano", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                GravarRegistro = servicoPlano.Editar
-            };
+            var Selecionado = resultado.Value;
 
-            DialogResult resultado = tela.ShowDialog();
+            TelaCadastroPlano tela = new();
 
-            if (resultado == DialogResult.OK)
+            tela.Plano = Selecionado;
+
+            tela.GravarRegistro = servicoPlano.Editar;
+
+
+            if (tela.ShowDialog() == DialogResult.OK)
             {
                 CarregarPlanos();
             }
@@ -65,26 +77,35 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         public override void Excluir()
         {
-            Plano Selecionado = ObtemPlanoSelecionado();
+            var id = tabelaPlanos.ObtemNumeroPlanoSelecionado();
 
-            if (Selecionado == null)
+            if (id == Guid.Empty)
             {
                 MessageBox.Show("Selecione um plano primeiro",
-                "Exclusão de Planos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                "Exclusão de Plano", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show("Deseja realmente excluir o plano?",
-                "Exclusão de Plano", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if (resultado == DialogResult.OK)
+            var resultado = servicoPlano.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Exclusão de Plano", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var Selecionado = resultado.Value;
+
+
+            if (MessageBox.Show("Deseja realmente excluir o plano?",
+            "Exclusão de Plano", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 servicoPlano.Excluir(Selecionado);
-
                 CarregarPlanos();
             }
         }
-
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()
         {
             return new ConfiguracaoStripPlano();
@@ -102,16 +123,26 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 
         private void CarregarPlanos()
         {
-            List<Plano> Planos = servicoPlano.SelecionarTodos();
+            Result<List<Plano>> resultado = servicoPlano.SelecionarTodos();
 
-            tabelaPlanos.AtualizarRegistros(Planos);
+            if (resultado.IsSuccess)
+            {
+                List<Plano> plano = resultado.Value;
 
-            FormPrincipal.Instancia.AtualizarRodape($"Visualizando {Planos.Count} Plano(s)");
+                tabelaPlanos.AtualizarRegistros(plano);
+
+                FormPrincipal.Instancia.AtualizarRodape($"Visualizando {plano.Count} plano(s)");
+            }
+            else if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
-        private Plano ObtemPlanoSelecionado()
+        private Result<Plano> ObtemPlanoSelecionado()
         {
-            var numero = tabelaPlanos.ObtemNumerPlanoSelecionado();
+            var numero = tabelaPlanos.ObtemNumeroPlanoSelecionado();
 
             return servicoPlano.SelecionarPorId(numero);
         }
