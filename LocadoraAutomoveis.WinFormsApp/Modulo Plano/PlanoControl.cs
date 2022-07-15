@@ -34,7 +34,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             return colunas;
         }
 
-        public Guid ObtemNumerPlanoSelecionado()
+        public Guid ObtemNumeroPlanoSelecionado()
         {
             return grid.SelecionarNumero<Guid>();
         }

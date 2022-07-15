@@ -1,9 +1,11 @@
-﻿using FluentValidation.Results;
+﻿using FluentResults;
+using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Plano;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 {
@@ -17,100 +19,153 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
             this.repositorioPlano = repositorioPlano;
         }
 
-        public ValidationResult Inserir(Plano plano)
+        public Result<Plano> Inserir(Plano plano)
         {
             Log.Logger.Debug("Tentando inserir Plano... {@plano}", plano);
+
             var resultadoValidacao = Validar(plano);
 
-            if (resultadoValidacao.IsValid)
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (var erro in resultadoValidacao.Errors) {
+
+                    Log.Logger.Warning("Falha ao tentar inserir Plano. {plano} -> Motivo: {erro}", plano.Id, erro.Message);
+
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
             {
                 repositorioPlano.Inserir(plano);
                 Log.Logger.Information("Plano inserido com sucesso. {@plano}", plano);
-            }
-            else
-                foreach (var erro in resultadoValidacao.Errors)
-                     Log.Logger.Warning("Falha ao tentar inserir Plano. {Plano} -> Motivo: {erro}", erro.ErrorMessage);
 
-            return resultadoValidacao;
+
+                return Result.Ok(plano);
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha ao tentar inserir Plano";
+
+                Log.Logger.Error(ex, msgErro + "{PlanoId}", plano.Id);
+
+                return Result.Fail(msgErro);
+            }
         }
 
-        public ValidationResult Editar(Plano plano)
+        public Result<Plano> Editar(Plano plano)
         {
-            Log.Logger.Debug("Tentando editar Plano... {@plano}", plano);
-            var resultadoValidacao = Validar(plano);
+            Log.Logger.Debug("Tentando editar Plano... {@grupo}", plano);
+            
+            Result resultadoValidacao = Validar(plano);
 
-            if (resultadoValidacao.IsValid)
+            if (resultadoValidacao.IsFailed)
+            {
+                foreach (var erro in resultadoValidacao.Errors) {
+
+                    Log.Logger.Warning("Falha ao tentar editar Plano. {planoId} -> Motivo: {erro}", plano.Id, erro.Message);
+
+                }
+
+                return Result.Fail(resultadoValidacao.Errors);
+            }
+
+            try
             {
                 repositorioPlano.Editar(plano);
-                Log.Logger.Information("Plano editado com sucesso. {@plano}", plano);
+
+                Log.Logger.Information("Plano. {planoId} editado com sucesso", plano.Id);
+                
+
+                return Result.Ok(plano);
             }
-            else
-                foreach (var erro in resultadoValidacao.Errors)
-                    Log.Logger.Warning("Falha ao tentar editar Plano. {Plano} -> Motivo: {erro}", erro.ErrorMessage);
-
-
-            return resultadoValidacao;
-        }
-
-        public void Excluir(Plano plano)
-        {
-            Log.Logger.Debug("Tentando excluir Plano... {@plano}", plano);
-            repositorioPlano.Excluir(plano);
-
-            var planoExcluido = SelecionarPorId(plano.Id);
-
-            if (planoExcluido == null)
-                Log.Logger.Information("Plano excluído com sucesso. {@plano} -> ", plano);
-            else
-                Log.Logger.Warning("Falha ao excluir Plano. {Plano} -> Motivo: {erro}", plano);
-        }
-
-        public List<Plano> SelecionarTodos()
-        {
-            Log.Logger.Debug("Tentando obter todos Plano...");
-
-            var planos = repositorioPlano.SelecionarTodos();
-
-            if (planos.Count > 0)
+            catch(Exception ex)
             {
-                Log.Logger.Information("Todos os planos foram obtidos com sucesso. {PlanoCount}", planos.Count);
-                return planos;
-            }
-            else
-            {
-                Log.Logger.Warning("Falha ao tentar obter todos Plano. {PlanosCount} -> ", planos.Count);
-                return planos;
+                string msgErro = "Falha ao tentar editar Plano";
+
+                Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
+
+                return Result.Fail(msgErro);
             }
         }
 
-        public Plano SelecionarPorId(Guid id)
+        public Result Excluir(Plano plano)
         {
-            Log.Logger.Debug("Tentando obter um plano...");
+            Log.Logger.Debug("Tentando excluir Plano... {@grupo}", plano);
 
-            var plano = repositorioPlano.SelecionarPorId(id);
-
-            if (plano != null)
+            try
             {
-                Log.Logger.Information("Plano foi obtido com sucesso.");
-                return plano;
+                repositorioPlano.Excluir(plano);
+
+                Log.Logger.Information("plano {planoId} excluído com sucesso", plano.Id);
+
+                return Result.Ok();
             }
-            else
+            catch (Exception ex)
             {
-                Log.Logger.Warning("Falha ao tentar obter um plano. {Plano}");
-                return plano;
+                string msgErro = "Falha no sistema ao tentar excluir o Plano";
+
+                Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
+
+                return Result.Fail(msgErro);
+
             }
         }
 
-        public ValidationResult Validar(Plano plano)
+        public Result<List<Plano>> SelecionarTodos()
         {
+            try
+            {
+                return Result.Ok(repositorioPlano.SelecionarTodos());
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar todos os planos";
+
+                Log.Logger.Error(ex, msgErro);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result<Plano> SelecionarPorId(Guid id)
+        {
+            try
+            {
+                return Result.Ok(repositorioPlano.SelecionarPorId(id));
+            }
+            catch (Exception ex)
+            {
+                string msgErro = "Falha no sistema ao tentar selecionar o plano";
+
+                Log.Logger.Error(ex, msgErro + "{PlanoId}", id);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result Validar(Plano plano)
+        {
+
             validadorPlano = new ValidadorPlano();
 
             var resultadoValidacao = validadorPlano.Validate(plano);
 
-            if (PlanoDiarioDuplicado(plano))
-                resultadoValidacao.Errors.Add(new ValidationFailure("ValorDiario_Diario", "Plano de Cobrança duplicado"));
+            List<Error> erros = new List<Error>(); //FluentResult
 
-            return resultadoValidacao;
+            foreach (ValidationFailure item in resultadoValidacao.Errors) //FluentValidation
+            {
+                erros.Add(new Error(item.ErrorMessage));
+            }
+
+            if (PlanoDiarioDuplicado(plano))
+                erros.Add(new Error("Plano de Cobrança duplicado"));
+
+            if (erros.Any())
+                return Result.Fail(erros);
+
+            return Result.Ok();
         }
 
         #region privates
@@ -133,7 +188,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
                          
                                                         FROM TBPLANO AS PLANO
 
-                                                            INNER JOIN TBGRUPOVEICULO AS GRUPO 
+                                                            INNER JOIN TBplano AS GRUPO 
 
                                                             ON PLANO.GRUPO_ID = GRUPO.ID 
                                             
