@@ -185,7 +185,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             ObterIdGrupoVeiculo();
         }
 
-        private void ObterItensGrupoVeiculo()//TODO : Obter itens grupo dever ser feito pelo controlador
+        private void ObterItensGrupoVeiculo()//TODO : Obter itens grupo deve ser feito pelo controlador/serviço
         {
             var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
 
