@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraAutomoveis.WinFormsApp1
+namespace LocadoraAutomoveis.WinFormsApp
 {
     public partial class Form1 : Form
     {
