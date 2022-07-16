@@ -1,7 +1,4 @@
-using LocadoraAutomoveis.Infra.Logs;
-using Microsoft.Extensions.Configuration;
 using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp
@@ -12,10 +9,8 @@ namespace LocadoraAutomoveis.WinFormsApp
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+        static void Main()
         {
-            ConfiguracaoLogger.CriarLogger();
-
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

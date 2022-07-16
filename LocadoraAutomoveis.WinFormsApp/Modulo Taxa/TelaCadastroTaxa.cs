@@ -1,5 +1,4 @@
 ﻿using FluentResults;
-using FluentValidation.Results;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using Microsoft.VisualBasic;
 using System;
