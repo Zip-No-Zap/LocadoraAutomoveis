@@ -1,0 +1,18 @@
+{
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ],
+
+  "ConfiguracaoLogs": {
+    "DiretorioSaida": "C:\\temp\\Logs\\ViaJson\\"
+  },
+
+  "ConnectionStrings": {
+    "SqlServer": "Data Source=(localDB)\\MSSqlLocalDB;Initial Catalog=LocadoraAutomoveisDB;Integrated Security=True"
+  }
+}

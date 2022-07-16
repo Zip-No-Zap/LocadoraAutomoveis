@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraAutomoveis.WinFormsApp", "LocadoraAutomoveis.WinFormsApp\LocadoraAutomoveis.WinFormsApp.csproj", "{36EC600D-C5D1-47D0-9049-21E9915AA120}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1- Apresentacao", "1- Apresentacao", "{2FABA49A-C4EF-4DB6-BF8B-162213F39EDF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3- Dominio", "3- Dominio", "{BE43B0B9-BE62-456E-851C-F395FB15E81E}"
@@ -37,16 +35,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraAutomoveis.Infra.Lo
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "LocadoraVeiculos.Projeto.SQLServer.Tests", "LocadoraVeiculos.Projeto.SQLServer.Tests\LocadoraVeiculos.Projeto.SQLServer.Tests.sqlproj", "{2BFD0BA1-A2C8-44DD-8879-569BD462D7B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraAutomoveis.WinFormsApp", "LocadoraAutomoveis.WinFormsApp1\LocadoraAutomoveis.WinFormsApp.csproj", "{DDF4DBD8-9053-4C7C-9BF9-F4B43A37F11D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{36EC600D-C5D1-47D0-9049-21E9915AA120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36EC600D-C5D1-47D0-9049-21E9915AA120}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36EC600D-C5D1-47D0-9049-21E9915AA120}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{36EC600D-C5D1-47D0-9049-21E9915AA120}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1867B608-4AF5-4EC4-99F2-23B98E85CB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1867B608-4AF5-4EC4-99F2-23B98E85CB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1867B608-4AF5-4EC4-99F2-23B98E85CB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -83,12 +79,15 @@ Global
 		{2BFD0BA1-A2C8-44DD-8879-569BD462D7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BFD0BA1-A2C8-44DD-8879-569BD462D7B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2BFD0BA1-A2C8-44DD-8879-569BD462D7B6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DDF4DBD8-9053-4C7C-9BF9-F4B43A37F11D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF4DBD8-9053-4C7C-9BF9-F4B43A37F11D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF4DBD8-9053-4C7C-9BF9-F4B43A37F11D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF4DBD8-9053-4C7C-9BF9-F4B43A37F11D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{36EC600D-C5D1-47D0-9049-21E9915AA120} = {2FABA49A-C4EF-4DB6-BF8B-162213F39EDF}
 		{5C9453BC-143A-4E9B-AC18-99F43A5A7838} = {871F82CB-B93F-4A30-9D62-4F0945416941}
 		{6E1B342C-6AF1-483A-A306-9511F75814FE} = {871F82CB-B93F-4A30-9D62-4F0945416941}
 		{1867B608-4AF5-4EC4-99F2-23B98E85CB2A} = {BE43B0B9-BE62-456E-851C-F395FB15E81E}
@@ -100,6 +99,7 @@ Global
 		{1FF14C83-8C01-46AB-A317-636BC5A42F7D} = {0B17407B-D3BC-455C-9EDE-049302331B8F}
 		{ED05FBC8-5020-4B9D-91A8-5ECE08033D13} = {1FF14C83-8C01-46AB-A317-636BC5A42F7D}
 		{2BFD0BA1-A2C8-44DD-8879-569BD462D7B6} = {0B17407B-D3BC-455C-9EDE-049302331B8F}
+		{DDF4DBD8-9053-4C7C-9BF9-F4B43A37F11D} = {2FABA49A-C4EF-4DB6-BF8B-162213F39EDF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFB22DCF-72CE-4820-99D4-D5A13699E51E}
