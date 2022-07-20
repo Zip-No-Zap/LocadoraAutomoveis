@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
 {
-    public class ServiceLocatorManual
+    public class ServiceLocatorManual : IServiceLocator
     {
         private Dictionary<string, ControladorBase> controladores;
 
@@ -32,9 +32,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             InicializarControladores();
         }
 
-        public ControladorBase Get<T>()
+        public T Get<T>() where T : ControladorBase
         {
-            return controladores[ typeof(T).GetType().Name ];
+            return (T)controladores[typeof(T).GetType().Name];
         }
 
         private void InicializarControladores()

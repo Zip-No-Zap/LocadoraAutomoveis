@@ -15,9 +15,9 @@ namespace LocadoraAutomoveis.WinFormsApp
     public partial class FormPrincipal : Form
     {
         private ControladorBase controlador;
-        private ServiceLocatorManual serviceLocator = new();
+        private IServiceLocator serviceLocator;
 
-        public FormPrincipal()
+        public FormPrincipal(IServiceLocator serviceLocator)
         {
             InitializeComponent();
 
@@ -25,6 +25,8 @@ namespace LocadoraAutomoveis.WinFormsApp
 
             toolStripPrincipal.Text = string.Empty;
             lblToolStripPrincipal.Text = string.Empty;
+
+            this.serviceLocator = serviceLocator;
         }
 
         public static FormPrincipal Instancia

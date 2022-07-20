@@ -1,3 +1,4 @@
+using LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator;
 using System;
 using System.Windows.Forms;
 
@@ -14,7 +15,9 @@ namespace LocadoraAutomoveis.WinFormsApp
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormPrincipal());
+
+            var serviceLocatorAutofac = new ServiceLocatorComAutofac();
+            Application.Run(new FormPrincipal(serviceLocatorAutofac));
         }
     }
 }
