@@ -160,7 +160,6 @@
             this.registrarRetiradaToolStripMenuItem.Name = "registrarRetiradaToolStripMenuItem";
             this.registrarRetiradaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.registrarRetiradaToolStripMenuItem.Text = "Locação";
-            this.registrarRetiradaToolStripMenuItem.Click += new System.EventHandler(this.registrarRetiradaToolStripMenuItem_Click);
             // 
             // registrarDevoluçãoToolStripMenuItem
             // 
@@ -194,7 +193,6 @@
             this.panelPrincipal.Name = "panelPrincipal";
             this.panelPrincipal.Size = new System.Drawing.Size(1786, 714);
             this.panelPrincipal.TabIndex = 2;
-            this.panelPrincipal.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPrincipal_Paint);
             // 
             // toolStripPrincipal
             // 
