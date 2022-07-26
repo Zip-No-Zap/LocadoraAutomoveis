@@ -7,6 +7,7 @@ using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
 using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
 using LocadoraAutomoveis.Infra.Logs;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloCliente;
 using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
 using LocadoraAutomoveis.Infra.Orm.ModuloPlano;
 using LocadoraAutomoveis.Infra.Orm.ModuloTaxa;
@@ -47,26 +48,26 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
         {
             controladores = new Dictionary<string, ControladorBase>();
 
-            var repositorioCliente = new RepositorioClienteEmBancoDados();
+            //var repositorioCliente = new RepositorioClienteEmBancoDados();
             var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
             var repositorioGrupoVeiculo = new RepositorioGrupoVeiculoEmBancoDados();
-            var repositorioCondutor = new RepositorioCondutorEmBancoDados();
+            //var repositorioCondutor = new RepositorioCondutorEmBancoDados();
             var repositorioVeículo = new RepositorioVeiculoEmBancoDados();
             //var repositorioTaxa = new RepositorioTaxaEmBancoDados();
             //var repositorioPlano = new RepositorioPlanoEmBancoDados();
 
-            var servicoCliente = new ServicoCliente(repositorioCliente);
+            //var servicoCliente = new ServicoCliente(repositorioCliente);
             var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
             var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioGrupoVeiculo);
-            var servicoCondutor = new ServicoCondutor(repositorioCondutor);
+            //var servicoCondutor = new ServicoCondutor(repositorioCondutor);
             var servicoVeiculo = new ServicoVeiculo(repositorioVeículo);
             //var servicoTaxa = new ServicoTaxa(repositorioTaxa);
             //var servicoPlano = new ServicoPlano(repositorioPlano);
 
             controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
-            controladores.Add("Cliente", new ControladorCliente(servicoCliente));
+           // controladores.Add("Cliente", new ControladorCliente(servicoCliente));
             controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo(servicoGrupoVeiculo));
-            controladores.Add("Condutor", new ControladorCondutor(servicoCondutor, servicoCliente));
+            //controladores.Add("Condutor", new ControladorCondutor(servicoCondutor, servicoCliente));
             controladores.Add("Veículo", new ControladorVeiculo(servicoVeiculo, servicoGrupoVeiculo));
             //controladores.Add("Taxa", new ControladorTaxa(servicoTaxa));
             //controladores.Add("Plano de Cobrança", new ControladorPlano(servicoPlano));
@@ -82,17 +83,26 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             var connectionString = configuracao.GetConnectionString("SqlServer");
             var contextoDadosOrm = new LocadoraAutomoveisDbContext(connectionString);
             
-            //Plano
+            //repositorios
             var repositorioPlanoOrm = new RepositorioPlanoOrm(contextoDadosOrm);
-            var servicoPlanoOrm = new ServicoPlano(repositorioPlanoOrm, contextoDadosOrm);
-            controladores.Add("Plano de Cobrança", new ControladorPlano(servicoPlanoOrm));
-            //=============================================================================
-
-            //Taxa
             var repositorioTaxaOrm = new RepositorioTaxaOrm(contextoDadosOrm);
+            var repositorioClienteOrm = new RepositorioClienteOrm(contextoDadosOrm);
+            var repositorioCondutorOrm = new RepositorioCondutorOrm(contextoDadosOrm);
+
+            //serviços
+            var servicoPlanoOrm = new ServicoPlano(repositorioPlanoOrm, contextoDadosOrm);
             var servicoTaxaOrm = new ServicoTaxa(repositorioTaxaOrm, contextoDadosOrm);
-            controladores.Add("Taxa", new ControladorPlano(servicoTaxaOrm));
-            //=============================================================================
+            var servicoClienteOrm = new ServicoCliente(repositorioClienteOrm, contextoDadosOrm);
+            var servicoCondutorOrm = new ServicoCondutor(repositorioCondutorOrm, contextoDadosOrm);
+
+
+            //Plano
+            controladores.Add("Plano de Cobrança", new ControladorPlano(servicoPlanoOrm));
+            controladores.Add("Taxa", new ControladorTaxa(servicoTaxaOrm));
+            controladores.Add("Cliente", new ControladorCliente(servicoClienteOrm));
+            controladores.Add("Condutor", new ControladorCondutor(servicoCondutorOrm, servicoClienteOrm));
+
+            
         }
     }
 }
