@@ -1,5 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo;
 using Serilog;
@@ -11,12 +13,14 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 {
     public class ServicoVeiculo
     {
-        readonly RepositorioVeiculoEmBancoDados repositorioVeiculo;
+        readonly RepositorioVeiculoOrm repositorioVeiculo;
+        readonly IContextoPersistencia contextoPersistOrm;
         ValidadorVeiculo validadorVeiculo;
 
-        public ServicoVeiculo(RepositorioVeiculoEmBancoDados repositorioVeiculo)
+        public ServicoVeiculo(RepositorioVeiculoOrm repositorioVeiculo, IContextoPersistencia contextoPersistOrm)
         {
             this.repositorioVeiculo = repositorioVeiculo;
+            this.contextoPersistOrm = contextoPersistOrm;
         }
 
         public Result<Veiculo> Inserir(Veiculo veiculo)
@@ -121,7 +125,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
         {
             try
             {
-                return Result.Ok(repositorioVeiculo.SelecionarTodos());
+                return Result.Ok(repositorioVeiculo.SelecionarTodos(true));
             }
             catch (Exception ex)
             {
@@ -174,32 +178,32 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 
         private bool PlacaDuplicada(Veiculo veiculo)
         {
-            repositorioVeiculo.Sql_selecao_por_parametro = @"SELECT  
+            //repositorioVeiculo.Sql_selecao_por_parametro = @"SELECT  
 
-                                                                V.[ID],
-                                                                V.[MODELO], 
-                                                                V.[PLACA], 
-                                                                V.[COR], 
-                                                                V.[ANO],
-                                                                V.[TIPOCOMBUSTIVEL],
-                                                                V.[CAPACIDADETANQUE],
-                                                                V.[STATUS],
-                                                                V.[QUILOMETRAGEMATUAL],
-                                                                V.[FOTO],
-                                                                V.[IDGRUPOVEICULO],
+            //                                                    V.[ID],
+            //                                                    V.[MODELO], 
+            //                                                    V.[PLACA], 
+            //                                                    V.[COR], 
+            //                                                    V.[ANO],
+            //                                                    V.[TIPOCOMBUSTIVEL],
+            //                                                    V.[CAPACIDADETANQUE],
+            //                                                    V.[STATUS],
+            //                                                    V.[QUILOMETRAGEMATUAL],
+            //                                                    V.[FOTO],
+            //                                                    V.[IDGRUPOVEICULO],
 
-                                                                GV.[NOMEGRUPO]
+            //                                                    GV.[NOMEGRUPO]
 
-                                                            FROM TBVEICULO AS V
-                                                            INNER JOIN TBGRUPOVEICULO AS GV
+            //                                                FROM TBVEICULO AS V
+            //                                                INNER JOIN TBGRUPOVEICULO AS GV
 
-                                                                ON V.IDGRUPOVEICULO = GV.ID
+            //                                                    ON V.IDGRUPOVEICULO = GV.ID
 
-                                                            WHERE V.PLACA = @PLACAVEICULO";
+            //                                                WHERE V.PLACA = @PLACAVEICULO";
 
-            repositorioVeiculo.PropriedadeParametro = "PLACAVEICULO";
+            //repositorioVeiculo.PropriedadeParametro = "PLACAVEICULO";
 
-            var veiculoEncontrado = repositorioVeiculo.SelecionarPorParametro(repositorioVeiculo.PropriedadeParametro, veiculo);
+            var veiculoEncontrado = repositorioVeiculo.SelecionarPorPlaca(veiculo.Placa);
 
             return veiculoEncontrado != null &&
                    veiculoEncontrado.Placa.Equals(veiculo.Placa) &&
