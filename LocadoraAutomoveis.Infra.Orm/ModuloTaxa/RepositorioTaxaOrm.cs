@@ -1,6 +1,7 @@
 ﻿using LocadoraAutomoveis.Infra.Orm.Compartilhado;
-using LocadoraVeiculos.Dominio.Modulo_Plano;
+using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using LocadoraVeiculos.Infra.BancoDados;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,36 +10,45 @@ using System.Threading.Tasks;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloTaxa
 {
-    public class RepositorioTaxaOrm : RepositorioBaseOrm, IRepositorioOrmPlano
+    public class RepositorioTaxaOrm : IRepositorioOrmTaxa
     {
-        public void Editar(Plano registro)
+        private readonly LocadoraAutomoveisDbContext _dbContext;
+        private DbSet<Taxa> dbsetTaxas;
+
+        public RepositorioTaxaOrm(LocadoraAutomoveisDbContext dbContext)
         {
-            throw new NotImplementedException();
+            dbsetTaxas = dbContext.Set<Taxa>();
         }
 
-        public void Excluir(Plano registro)
+        public void Inserir(Taxa registro)
         {
-            throw new NotImplementedException();
+            dbsetTaxas.Add(registro);
         }
 
-        public void Inserir(Plano registro)
+        public void Editar(Taxa registro)
         {
-            throw new NotImplementedException();
+            dbsetTaxas.Update(registro);
         }
 
-        public Plano SelecionarPorId(Guid id)
+        public void Excluir(Taxa registro)
         {
-            throw new NotImplementedException();
+            dbsetTaxas.Remove(registro);
         }
 
-        public Plano SelecionarPorParametro(string valor)
+        public Taxa SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            //return dbsetTaxaes.Find(id); // uso de cache, não gera consulta no banco
+            return dbsetTaxas.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Plano> SelecionarTodos(bool verificador)
+        public List<Taxa> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return dbsetTaxas.ToList();
+        }
+
+        public Taxa SelecionarPorParametro(string valor)
+        {
+            return dbsetTaxas.FirstOrDefault(x => x.Descricao == valor);
         }
     }
 }

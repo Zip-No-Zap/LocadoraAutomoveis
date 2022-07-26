@@ -1,7 +1,8 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloTaxa;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,14 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
 {
     public class ServicoTaxa
     {
-        readonly RepositorioTaxaEmBancoDados repositorioTaxa;
+        readonly RepositorioTaxaOrm repositorioTaxa;
+        readonly IContextoPersistencia contextoPersistOrm;
         ValidadorTaxa validadorTaxa;
 
-        public ServicoTaxa(RepositorioTaxaEmBancoDados repositorioTaxa)
+        public ServicoTaxa(RepositorioTaxaOrm repositorioTaxa, IContextoPersistencia contextoPersistOrm)
         {
             this.repositorioTaxa = repositorioTaxa;
+            this.contextoPersistOrm = contextoPersistOrm;
         }
 
         public Result<Taxa> Inserir(Taxa taxa)
@@ -40,6 +43,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             try
             {
                 repositorioTaxa.Inserir(taxa);
+
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Taxa inserida com sucesso. {@taxa}", taxa);
 
 
@@ -77,6 +83,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             {
                 repositorioTaxa.Editar(taxa);
 
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Taxa. {taxaId} editado com sucesso", taxa.Id);
 
 
@@ -100,13 +108,15 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             {
                 repositorioTaxa.Excluir(taxa);
 
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("taxa {taxaId} excluída com sucesso", taxa.Id);
 
                 return Result.Ok();
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar excluir o Taxa";
+                string msgErro = "Falha no sistema ao tentar excluir Taxa";
 
                 Log.Logger.Error(ex, msgErro + "{taxa}", taxa.Id);
 
@@ -123,7 +133,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar todos as Taxas";
+                string msgErro = "Falha no sistema ao tentar selecionar todas as Taxas";
 
                 Log.Logger.Error(ex, msgErro);
 
@@ -174,11 +184,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
        
         private bool DescricaoDuplicado(Taxa taxa)
         {
-            repositorioTaxa.Sql_selecao_por_parametro = @"SELECT * FROM TBTAXA WHERE DESCRICAO = @DESCRICAOTAXA";
-
-            repositorioTaxa.PropriedadeParametro = "DESCRICAOTAXA";
-
-            var TaxaEncontrado = repositorioTaxa.SelecionarPorParametro(repositorioTaxa.PropriedadeParametro, taxa);
+            var TaxaEncontrado = repositorioTaxa.SelecionarPorParametro(taxa.Descricao);
 
             return TaxaEncontrado != null &&
                    TaxaEncontrado.Descricao.Equals(taxa.Descricao) &&
