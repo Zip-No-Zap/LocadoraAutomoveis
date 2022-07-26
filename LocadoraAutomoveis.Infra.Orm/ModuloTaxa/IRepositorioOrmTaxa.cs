@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LocadoraVeiculos.Dominio.Modulo_Taxa;
+using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
+
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloTaxa
 {
-    internal class IRepositorioOrmTaxa
+    public interface IRepositorioOrmTaxa : IRepositorioOrmBase<Taxa>
     {
+      
     }
 }

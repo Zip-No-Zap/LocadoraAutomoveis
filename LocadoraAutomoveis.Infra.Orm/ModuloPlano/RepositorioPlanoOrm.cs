@@ -13,17 +13,6 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloPlano
         private readonly LocadoraAutomoveisDbContext _dbContext;
         private DbSet<Plano> dbsetPlanos;
 
-        protected override string Sql_insercao => throw new NotImplementedException();
-
-        protected override string Sql_edicao => throw new NotImplementedException();
-
-        protected override string Sql_exclusao => throw new NotImplementedException();
-
-        protected override string Sql_selecao_por_id => throw new NotImplementedException();
-
-        protected override string Sql_selecao_todos => throw new NotImplementedException();
-
-
         public RepositorioPlanoOrm(LocadoraAutomoveisDbContext dbContext)
         {
             //_dbContext = dbContext;
