@@ -49,29 +49,28 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             controladores = new Dictionary<string, ControladorBase>();
 
             //var repositorioCliente = new RepositorioClienteEmBancoDados();
-            var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
-            var repositorioGrupoVeiculo = new RepositorioGrupoVeiculoEmBancoDados();
             //var repositorioCondutor = new RepositorioCondutorEmBancoDados();
-            var repositorioVeículo = new RepositorioVeiculoEmBancoDados();
             //var repositorioTaxa = new RepositorioTaxaEmBancoDados();
             //var repositorioPlano = new RepositorioPlanoEmBancoDados();
+            var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
+            var repositorioGrupoVeiculo = new RepositorioGrupoVeiculoEmBancoDados();
+            var repositorioVeículo = new RepositorioVeiculoEmBancoDados();
 
             //var servicoCliente = new ServicoCliente(repositorioCliente);
-            var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
-            var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioGrupoVeiculo);
             //var servicoCondutor = new ServicoCondutor(repositorioCondutor);
-            var servicoVeiculo = new ServicoVeiculo(repositorioVeículo);
             //var servicoTaxa = new ServicoTaxa(repositorioTaxa);
             //var servicoPlano = new ServicoPlano(repositorioPlano);
+            var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
+            var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioGrupoVeiculo);
+            var servicoVeiculo = new ServicoVeiculo(repositorioVeículo);
 
-            controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
-           // controladores.Add("Cliente", new ControladorCliente(servicoCliente));
-            controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo(servicoGrupoVeiculo));
+            // controladores.Add("Cliente", new ControladorCliente(servicoCliente));
             //controladores.Add("Condutor", new ControladorCondutor(servicoCondutor, servicoCliente));
-            controladores.Add("Veículo", new ControladorVeiculo(servicoVeiculo, servicoGrupoVeiculo));
             //controladores.Add("Taxa", new ControladorTaxa(servicoTaxa));
             //controladores.Add("Plano de Cobrança", new ControladorPlano(servicoPlano));
-
+            controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
+            controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo(servicoGrupoVeiculo));
+            controladores.Add("Veículo", new ControladorVeiculo(servicoVeiculo, servicoGrupoVeiculo));
 
 
             //RepositorioOrm - LocadoraAutomoveisOrmDB
@@ -96,7 +95,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             var servicoCondutorOrm = new ServicoCondutor(repositorioCondutorOrm, contextoDadosOrm);
 
 
-            //Plano
+            //controladores
             controladores.Add("Plano de Cobrança", new ControladorPlano(servicoPlanoOrm));
             controladores.Add("Taxa", new ControladorTaxa(servicoTaxaOrm));
             controladores.Add("Cliente", new ControladorCliente(servicoClienteOrm));
