@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloCliente
 {
@@ -14,35 +12,49 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCliente
         private readonly LocadoraAutomoveisDbContext _dbContext;
         private DbSet<Cliente> dbsetClientes;
 
+        public RepositorioClienteOrm(LocadoraAutomoveisDbContext dbContext)
+        {
+            dbsetClientes = dbContext.Set<Cliente>();
+        }
+
         public void Inserir(Cliente registro)
         {
-            throw new NotImplementedException();
+            dbsetClientes.Add(registro);
         }
 
         public void Editar(Cliente registro)
         {
-            throw new NotImplementedException();
+            dbsetClientes.Update(registro);
         }
 
         public void Excluir(Cliente registro)
         {
-            throw new NotImplementedException();
+            dbsetClientes.Remove(registro);
         }
 
-       
         public Cliente SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return dbsetClientes.FirstOrDefault(x => x.Id == id);
         }
 
-        public Cliente SelecionarPorParametro(string valor)
+        public List<Cliente> SelecionarTodos(bool verificador = false)
         {
-            throw new NotImplementedException();
+            return dbsetClientes.ToList();
         }
 
-        public List<Cliente> SelecionarTodos(bool verificador)
+        public Cliente SelecionarPorNome(string nome)
         {
-            throw new NotImplementedException();
+            return dbsetClientes.FirstOrDefault(x => x.Nome == nome);
+        }
+
+        public Cliente SelecionarPorCnpj(string cnpj)
+        {
+            return dbsetClientes.FirstOrDefault(x => x.Cnpj == cnpj);
+        }
+
+        public Cliente SelecionarPorCpf(string cpf)
+        {
+            return dbsetClientes.FirstOrDefault(x => x.Cpf == cpf);
         }
     }
 }

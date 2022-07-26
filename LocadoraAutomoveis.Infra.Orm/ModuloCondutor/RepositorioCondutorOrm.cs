@@ -39,5 +39,20 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
         {
             return dbsetCondutor.ToList();
         }
+
+        public Condutor SelecionarPorNome(string nome)
+        {
+            return dbsetCondutor.FirstOrDefault(x => x.Nome == nome);
+        }
+
+        public Condutor SelecionarPorCnh(string cnh)
+        {
+            return dbsetCondutor.FirstOrDefault(x => x.Cnh == cnh);
+        }
+
+        public Condutor SelecionarPorCpf(string cpf)
+        {
+            return dbsetCondutor.FirstOrDefault(x => x.Cpf == cpf);
+        }
     }
 }
