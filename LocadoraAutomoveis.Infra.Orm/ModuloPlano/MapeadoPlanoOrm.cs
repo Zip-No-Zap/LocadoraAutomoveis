@@ -9,7 +9,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
     {
         public void Configure(EntityTypeBuilder<Plano> builder)
         {
-            builder.ToTable("TBCONDUTOR");
+            builder.ToTable("TBPLANO");
             builder.Property(x => x.Id).ValueGeneratedNever();
             builder.HasOne(x => x.Grupo);
 
