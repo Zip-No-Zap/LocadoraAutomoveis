@@ -5,8 +5,10 @@ using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
 using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
 using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
+using LocadoraAutomoveis.Aplicacao.ModuloLocacao;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloFuncionario;
+using LocadoraAutomoveis.Infra.Orm.ModuloLocacao;
 using LocadoraAutomoveis.Infra.Orm.ModuloPlano;
 using LocadoraAutomoveis.Infra.Orm.ModuloTaxa;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
@@ -95,6 +97,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             var repositorioFuncionarioOrm = new RepositorioFuncionarioOrm(contextoDadosOrm);
             var servicoFuncionarioOrm = new ServicoFuncionario(repositorioFuncionarioOrm, contextoDadosOrm);
             controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionarioOrm));
+            //=============================================================================
+
+            //Locação
+            var repositorioLocacaoOrm = new RepositorioLocacaoOrm(contextoDadosOrm);
+            var servicoLocacaoOrm = new ServicoLocacao(repositorioLocacaoOrm, contextoDadosOrm);
+            controladores.Add("Locação", new ControladorLocacao(servicoLocacaoOrm));
             //=============================================================================
         }
     }

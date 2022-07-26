@@ -14,6 +14,5 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
         T SelecionarPorId(Guid id);
         List<T> SelecionarTodos(bool verificador);
 
-     
     }
 }

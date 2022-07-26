@@ -9,6 +9,5 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloFuncionario
         Funcionario SelecionarPorLogin(string valor);
 
         Funcionario SelecionarPorNome(string valor);
-
     }
 }

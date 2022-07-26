@@ -180,32 +180,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
         private bool PlanoDiarioDuplicado(Plano plano)
         {
-            //repositorioPlano.Sql_selecao_por_parametro = @"SELECT 
-          
-            //                                                PLANO.[ID],
-            //                                                PLANO.[GRUPO_ID],
-            //                                                PLANO.[VALORDIARIO_DIARIO],
-            //                                                PLANO.[VALORPORKM_DIARIO],
-                                                 
-            //                                                PLANO.[VALORDIARIO_LIVRE],
-                                               
-            //                                                PLANO.[VALORDIARIO_CONTROLADO],
-            //                                                PLANO.[VALORPORKM_CONTROLADO],
-            //                                                PLANO.[LIMITEQUILOMETRAGEM_CONTROLADO],
-                                                            
-            //                                                GRUPO.[NOMEGRUPO] AS GRUPO_NOME
-                         
-            //                                            FROM TBPLANO AS PLANO
-
-            //                                                INNER JOIN TBplano AS GRUPO 
-
-            //                                                ON PLANO.GRUPO_ID = GRUPO.ID 
-                                            
-            //                                            WHERE VALORDIARIO_DIARIO = @VALORDIARIODIARIO";
-
-            //repositorioPlano.PropriedadeParametro = "VALORDIARIODIARIO";
-
-            var planoEncontrado = repositorioPlano.SelecionarPorValor(plano.ValorDiario_Diario.ToString());
+            var planoEncontrado = repositorioPlano.SelecionarPorValor(plano.ValorDiario_Diario);
 
             return planoEncontrado != null &&
                    planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&
