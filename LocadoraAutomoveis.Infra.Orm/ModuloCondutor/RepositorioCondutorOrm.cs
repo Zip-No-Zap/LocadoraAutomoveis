@@ -3,41 +3,41 @@ using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
 {
     public class RepositorioCondutorOrm : IRepositorioOrmCondutor
     {
         private readonly LocadoraAutomoveisDbContext _dbContext;
-        private DbSet<Condutor> dbsetPlanos;
+        private DbSet<Condutor> dbsetCondutor;
 
+        public RepositorioCondutorOrm(LocadoraAutomoveisDbContext dbContext)
+        {
+            dbsetCondutor = dbContext.Set<Condutor>();
+        }
         public void Inserir(Condutor registro)
         {
-            throw new NotImplementedException();
+            dbsetCondutor.Add(registro);
         }
         public void Editar(Condutor registro)
         {
-            throw new NotImplementedException();
+            dbsetCondutor.Update(registro);
         }
 
         public void Excluir(Condutor registro)
         {
-            throw new NotImplementedException();
+            dbsetCondutor.Remove(registro);
         }
 
         public Condutor SelecionarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return dbsetCondutor.FirstOrDefault(x => x.Id == id);
         }
-
-        public Condutor SelecionarPorParametro(string valor)
+       
+        public List<Condutor> SelecionarTodos(bool incluir = false)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Condutor> SelecionarTodos(bool verificador)
-        {
-            throw new NotImplementedException();
+            return dbsetCondutor.ToList();
         }
     }
 }

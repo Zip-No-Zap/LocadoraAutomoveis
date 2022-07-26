@@ -1,6 +1,4 @@
-﻿
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using LocadoraVeiculos.Dominio;
 using System;
 
@@ -13,7 +11,5 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
         void Excluir(T registro);
         T SelecionarPorId(Guid id);
         List<T> SelecionarTodos(bool verificador);
-
-        T SelecionarPorParametro(string valor);
     }
 }
