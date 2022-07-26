@@ -64,9 +64,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
 
             //controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
             controladores.Add("Cliente", new ControladorCliente(servicoCliente));
-            controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo(servicoGrupoVeiculo));
+            //controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo(servicoGrupoVeiculo));
             controladores.Add("Condutor", new ControladorCondutor(servicoCondutor, servicoCliente));
-            controladores.Add("Veículo", new ControladorVeiculo(servicoVeiculo, servicoGrupoVeiculo));
+            //controladores.Add("Veículo", new ControladorVeiculo(servicoVeiculo, servicoGrupoVeiculo));
             //controladores.Add("Taxa", new ControladorTaxa(servicoTaxa));
             //controladores.Add("Plano de Cobrança", new ControladorPlano(servicoPlano));
 
