@@ -1,5 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
 using Serilog;
@@ -11,13 +13,15 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
 {
     public class ServicoGrupoVeiculo
     {
-        readonly RepositorioGrupoVeiculoEmBancoDados repositorioGrupoVeiculo;
+        readonly RepositorioGrupoVeiculoOrm repositorioGrupoVeiculo;
+        readonly IContextoPersistencia contextoPersistOrm;
         ValidadorGrupoVeiculo validadorGrupoVeiculo;
 
 
-        public ServicoGrupoVeiculo(RepositorioGrupoVeiculoEmBancoDados repositorioGrupoVeiculo)
+        public ServicoGrupoVeiculo(RepositorioGrupoVeiculoOrm repositorioGrupoVeiculo, IContextoPersistencia contextoPersistOrm)
         {
             this.repositorioGrupoVeiculo = repositorioGrupoVeiculo;
+            this.contextoPersistOrm = contextoPersistOrm;
         }
 
         public Result<GrupoVeiculo> Inserir(GrupoVeiculo grupoVeiculo)
@@ -177,14 +181,11 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
 
         private bool NomeDuplicado(GrupoVeiculo grupoVeiculo)
         {
-            repositorioGrupoVeiculo.Sql_selecao_por_parametro = @"SELECT * FROM TBGRUPOVEICULO WHERE NOMEGRUPO = @NOME";
-            repositorioGrupoVeiculo.PropriedadeParametro = "Nome";
+            var GrupoEncontrado = repositorioGrupoVeiculo.SelecionarPorNome(grupoVeiculo.Nome);
 
-            var funcionarioEncontrado = repositorioGrupoVeiculo.SelecionarPorParametro(repositorioGrupoVeiculo.PropriedadeParametro, grupoVeiculo);
-
-            return funcionarioEncontrado != null &&
-                   funcionarioEncontrado.Nome.Equals(grupoVeiculo.Nome) &&
-                  !funcionarioEncontrado.Id.Equals(grupoVeiculo.Id);
+            return GrupoEncontrado != null &&
+                   GrupoEncontrado.Nome.Equals(grupoVeiculo.Nome) &&
+                  !GrupoEncontrado.Id.Equals(grupoVeiculo.Id);
         }
 
         #endregion
