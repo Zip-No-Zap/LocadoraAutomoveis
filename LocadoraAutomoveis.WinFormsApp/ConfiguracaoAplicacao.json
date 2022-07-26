@@ -13,6 +13,6 @@
   },
 
   "ConnectionStrings": {
-    "SqlServer": "Data Source=(localDB)\\MSSqlLocalDB;Initial Catalog=LocadoraAutomoveisDB;Integrated Security=True"
+    "SqlServer": "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDB;Integrated Security=True"
   }
 }

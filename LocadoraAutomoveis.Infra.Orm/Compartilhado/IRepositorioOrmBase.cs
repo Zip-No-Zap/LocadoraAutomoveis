@@ -12,7 +12,7 @@ namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
         void Editar(T registro);
         void Excluir(T registro);
         T SelecionarPorId(Guid id);
-        List<T> SelecionarTodos();
+        List<T> SelecionarTodos(bool verificador);
 
         T SelecionarPorParametro(string valor);
     }

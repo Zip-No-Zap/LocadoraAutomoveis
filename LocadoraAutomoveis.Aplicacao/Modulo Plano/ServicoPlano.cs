@@ -125,7 +125,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
         {
             try
             {
-                return Result.Ok(repositorioPlano.SelecionarTodos());
+                return Result.Ok(repositorioPlano.SelecionarTodos(incluiGrupo:true));
             }
             catch (Exception ex)
             {
