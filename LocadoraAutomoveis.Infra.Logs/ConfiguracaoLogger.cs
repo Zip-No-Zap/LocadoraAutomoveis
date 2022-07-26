@@ -19,7 +19,8 @@ namespace LocadoraAutomoveis.Infra.Logs
                 .Value;
 
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()   
+                .MinimumLevel.Debug()
+                .WriteTo.Debug()
                 .WriteTo.File(diretorioSaida + "Log.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
         }

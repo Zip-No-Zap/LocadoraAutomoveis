@@ -1,7 +1,8 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloPlano;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Plano;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,14 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 {
     public class ServicoPlano
     {
-        readonly RepositorioPlanoEmBancoDados repositorioPlano;
+        readonly RepositorioPlanoOrm repositorioPlano;
+        readonly IContextoPersistencia contextoPersistOrm;
         ValidadorPlano validadorPlano;
 
-        public ServicoPlano(RepositorioPlanoEmBancoDados repositorioPlano)
+        public ServicoPlano(RepositorioPlanoOrm repositorioPlano, IContextoPersistencia contextoPersistOrm)
         {
             this.repositorioPlano = repositorioPlano;
+            this.contextoPersistOrm = contextoPersistOrm;
         }
 
         public Result<Plano> Inserir(Plano plano)
@@ -38,9 +41,11 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
             try
             {
-                repositorioPlano.Inserir(plano);
-                Log.Logger.Information("Plano inserido com sucesso. {@plano}", plano);
+                repositorioPlano.Inserir(plano);  // RepositorioPlanoOrm
 
+                contextoPersistOrm.GravarDados(); // LocadoraAutomoviesDbContext / SaveChanges()
+
+                Log.Logger.Information("Plano inserido com sucesso. {@plano}", plano);
 
                 return Result.Ok(plano);
             }
@@ -75,9 +80,10 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
             {
                 repositorioPlano.Editar(plano);
 
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Plano. {planoId} editado com sucesso", plano.Id);
                 
-
                 return Result.Ok(plano);
             }
             catch(Exception ex)
@@ -97,6 +103,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
             try
             {
                 repositorioPlano.Excluir(plano);
+
+                contextoPersistOrm.GravarDados();
 
                 Log.Logger.Information("plano {planoId} excluído com sucesso", plano.Id);
 
@@ -169,34 +177,35 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
         }
 
         #region privates
+
         private bool PlanoDiarioDuplicado(Plano plano)
         {
-            repositorioPlano.Sql_selecao_por_parametro = @"SELECT 
-            
-                                                            PLANO.[ID],
-                                                            PLANO.[GRUPO_ID],
-                                                            PLANO.[VALORDIARIO_DIARIO],
-                                                            PLANO.[VALORPORKM_DIARIO],
+            //repositorioPlano.Sql_selecao_por_parametro = @"SELECT 
+          
+            //                                                PLANO.[ID],
+            //                                                PLANO.[GRUPO_ID],
+            //                                                PLANO.[VALORDIARIO_DIARIO],
+            //                                                PLANO.[VALORPORKM_DIARIO],
                                                  
-                                                            PLANO.[VALORDIARIO_LIVRE],
+            //                                                PLANO.[VALORDIARIO_LIVRE],
                                                
-                                                            PLANO.[VALORDIARIO_CONTROLADO],
-                                                            PLANO.[VALORPORKM_CONTROLADO],
-                                                            PLANO.[LIMITEQUILOMETRAGEM_CONTROLADO],
+            //                                                PLANO.[VALORDIARIO_CONTROLADO],
+            //                                                PLANO.[VALORPORKM_CONTROLADO],
+            //                                                PLANO.[LIMITEQUILOMETRAGEM_CONTROLADO],
                                                             
-                                                            GRUPO.[NOMEGRUPO] AS GRUPO_NOME
+            //                                                GRUPO.[NOMEGRUPO] AS GRUPO_NOME
                          
-                                                        FROM TBPLANO AS PLANO
+            //                                            FROM TBPLANO AS PLANO
 
-                                                            INNER JOIN TBplano AS GRUPO 
+            //                                                INNER JOIN TBplano AS GRUPO 
 
-                                                            ON PLANO.GRUPO_ID = GRUPO.ID 
+            //                                                ON PLANO.GRUPO_ID = GRUPO.ID 
                                             
-                                                        WHERE VALORDIARIO_DIARIO = @VALORDIARIODIARIO";
+            //                                            WHERE VALORDIARIO_DIARIO = @VALORDIARIODIARIO";
 
-            repositorioPlano.PropriedadeParametro = "VALORDIARIODIARIO";
+            //repositorioPlano.PropriedadeParametro = "VALORDIARIODIARIO";
 
-            var planoEncontrado = repositorioPlano.SelecionarPorParametro(repositorioPlano.PropriedadeParametro, plano);
+            var planoEncontrado = repositorioPlano.SelecionarPorParametro(plano.ValorDiario_Diario.ToString());
 
             return planoEncontrado != null &&
                    planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&

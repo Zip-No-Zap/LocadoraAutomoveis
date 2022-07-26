@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor;
 using Serilog;
@@ -37,8 +38,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 
             try
             {
-                repositorioCondutor.Inserir(condutor);
-                Log.Logger.Information("Condutor inserido com sucesso. {@condutor}", condutor);
+                repositorioCondutor.Inserir(condutor); // RepositorioCondutorOrm
+
+                 Log.Logger.Information("Condutor inserido com sucesso. {@condutor}", condutor);
                 return Result.Ok(condutor);
             }
             catch (Exception ex)

@@ -1,3 +1,4 @@
+using LocadoraAutomoveis.Infra.Logs;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator;
 using System;
 using System.Windows.Forms;
@@ -12,6 +13,8 @@ namespace LocadoraAutomoveis.WinFormsApp
         [STAThread]
         static void Main()
         {
+            ConfiguracaoLogger.CriarLogger();
+
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
