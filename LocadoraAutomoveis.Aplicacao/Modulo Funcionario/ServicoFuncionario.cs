@@ -1,7 +1,8 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloFuncionario;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,14 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 {
     public class ServicoFuncionario
     {
-        readonly RepositorioFuncionarioEmBancoDados repositorioFuncionario;
+        readonly RepositorioFuncionarioOrm repositorioFuncionario;
+        readonly IContextoPersistencia contextoPersistOrm;
         ValidadorFuncionario validadorFuncionario;
 
-        public ServicoFuncionario(RepositorioFuncionarioEmBancoDados repositorioFuncionario)
+        public ServicoFuncionario(RepositorioFuncionarioOrm repositorioFuncionario, IContextoPersistencia contextoPersistOrm)
         {
             this.repositorioFuncionario = repositorioFuncionario;
+            this.contextoPersistOrm = contextoPersistOrm;
         }
 
         public Result<Funcionario> Inserir(Funcionario funcionario)
@@ -38,8 +41,13 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             try
             {
                 repositorioFuncionario.Inserir(funcionario);
+
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Funcionário inserido com sucesso. {@funcionario}", funcionario);
+
                 return Result.Ok(funcionario);
+
             }
             catch (Exception ex)
             {
@@ -70,6 +78,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             try
             {
                 repositorioFuncionario.Editar(funcionario);
+
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Funcionário editado com sucesso. {@funcionario}", funcionario);
 
                 return Result.Ok(funcionario);
@@ -92,6 +103,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             {
                 repositorioFuncionario.Excluir(funcionario);
 
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Funcionário excluído com sucesso. {@funcionario}", funcionario);
 
                 return Result.Ok();
@@ -110,7 +123,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
         {
             try
             {
-               return Result.Ok( repositorioFuncionario.SelecionarTodos() );
+                return Result.Ok( repositorioFuncionario.SelecionarTodos(false) );
             }
             catch(Exception ex)
             {
@@ -167,10 +180,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
         #region privates
         private bool LoginDuplicado(Funcionario funcionario)
         {
-            repositorioFuncionario.Sql_selecao_por_parametro = @"SELECT * FROM TBFUNCIONARIO WHERE LOGIN = @LOGINFUNCIONARIO";
-            repositorioFuncionario.PropriedadeParametro = "LOGINFUNCIONARIO";
-
-            var funcionarioEncontrado = repositorioFuncionario.SelecionarPorParametro(repositorioFuncionario.PropriedadeParametro, funcionario);
+            var funcionarioEncontrado = repositorioFuncionario.SelecionarPorParametroLogin(funcionario.Login);
 
             return funcionarioEncontrado != null &&
                    funcionarioEncontrado.Login.Equals(funcionario.Login) &&
@@ -179,10 +189,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 
         private bool NomeDuplicado(Funcionario funcionario)
         {
-            repositorioFuncionario.Sql_selecao_por_parametro = @"SELECT * FROM TBFUNCIONARIO WHERE NOME = @NOMEFUNCIOINARIO";
-            repositorioFuncionario.PropriedadeParametro = "NOMEFUNCIOINARIO";
-
-            var funcionarioEncontrado = repositorioFuncionario.SelecionarPorParametro(repositorioFuncionario.PropriedadeParametro, funcionario);
+            var funcionarioEncontrado = repositorioFuncionario.SelecionarPorParametro(funcionario.Nome);
 
             return funcionarioEncontrado != null && 
                    funcionarioEncontrado.Nome.Equals(funcionario.Nome) && 
