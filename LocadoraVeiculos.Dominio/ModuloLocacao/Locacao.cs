@@ -1,6 +1,4 @@
-﻿
-using LocadoraVeiculos.Dominio.Modulo_Cliente;
-using LocadoraVeiculos.Dominio.Modulo_Veiculo;
+﻿using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using System.Collections.Generic;
 using System;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
@@ -27,11 +25,11 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public string CondutorLocacao_Cnh => CondutorLocacao.Cnh.ToString();
         public string VeiculoLocacao_Modelo => VeiculoLocacao.Modelo;
         public string VeiculoLocacao_Grupo => VeiculoLocacao.GrupoPertencente.Nome;
-        public string PlanoLocacao_Descricao => 
+        public string DataLocacaoString => DataLocacao.ToShortDateString();
+        public string DataDevolucaoString => DataDevolucao.ToShortDateString();
+        public string PlanoLocacao_Descricao { get; set; } // recebe de acordo com check da tela
+        //=======================================================================================
        
-
-
-
         public Locacao(Condutor condutorLocacao, Veiculo veiculoLocacao, List<Taxa> itensTaxa, Plano plano, Guid veiculoLocacaoId, Guid clienteLocacaoId, DateTime dataLocacao, DateTime dataDevolucao)
         {
             CondutorLocacao = condutorLocacao;

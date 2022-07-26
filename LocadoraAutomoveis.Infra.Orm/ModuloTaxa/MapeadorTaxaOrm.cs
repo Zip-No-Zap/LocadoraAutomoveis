@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloTaxa
 {
-    public class MapeadoTaxaOrm : IEntityTypeConfiguration<Taxa>
+    public class MapeadorTaxaOrm : IEntityTypeConfiguration<Taxa>
     {
         public void Configure(EntityTypeBuilder<Taxa> builder)
         {

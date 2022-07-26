@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
 {
-    public class MapeadoPlanoOrm : IEntityTypeConfiguration<Plano>
+    public class MapeadorPlanoOrm : IEntityTypeConfiguration<Plano>
     {
         public void Configure(EntityTypeBuilder<Plano> builder)
         {
