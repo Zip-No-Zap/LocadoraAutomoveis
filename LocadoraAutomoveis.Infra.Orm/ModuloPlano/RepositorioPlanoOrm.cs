@@ -8,7 +8,7 @@ using LocadoraVeiculos.Infra.BancoDados;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloPlano
 {
-    public class RepositorioPlanoOrm : RepositorioBaseOrm, IRepositorioOrmPlano
+    public class RepositorioPlanoOrm : IRepositorioOrmPlano
     {
         private readonly LocadoraAutomoveisDbContext _dbContext;
         private DbSet<Plano> dbsetPlanos;
