@@ -48,17 +48,17 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
 
             var repositorioCliente = new RepositorioClienteEmBancoDados();
             //var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
-            var repositorioGrupoVeiculo = new RepositorioGrupoVeiculoEmBancoDados();
+            //var repositorioGrupoVeiculo = new RepositorioGrupoVeiculoEmBancoDados();
             var repositorioCondutor = new RepositorioCondutorEmBancoDados();
-            var repositorioVeículo = new RepositorioVeiculoEmBancoDados();
+            //var repositorioVeículo = new RepositorioVeiculoEmBancoDados();
             //var repositorioTaxa = new RepositorioTaxaEmBancoDados();
             //var repositorioPlano = new RepositorioPlanoEmBancoDados();
 
             var servicoCliente = new ServicoCliente(repositorioCliente);
             //var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
-            var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioGrupoVeiculo);
+            //var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioGrupoVeiculo);
             var servicoCondutor = new ServicoCondutor(repositorioCondutor);
-            var servicoVeiculo = new ServicoVeiculo(repositorioVeículo);
+            //var servicoVeiculo = new ServicoVeiculo(repositorioVeículo);
             //var servicoTaxa = new ServicoTaxa(repositorioTaxa);
             //var servicoPlano = new ServicoPlano(repositorioPlano);
 
