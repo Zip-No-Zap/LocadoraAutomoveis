@@ -1,4 +1,6 @@
-﻿using LocadoraVeiculos.Dominio.Modulo_Condutor;
+﻿using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_Condutor;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
@@ -6,6 +8,9 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
 {
     public class RepositorioCondutorOrm : IRepositorioOrmCondutor
     {
+        private readonly LocadoraAutomoveisDbContext _dbContext;
+        private DbSet<Condutor> dbsetPlanos;
+
         public void Inserir(Condutor registro)
         {
             throw new NotImplementedException();
