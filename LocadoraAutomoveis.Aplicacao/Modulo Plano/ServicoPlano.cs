@@ -205,7 +205,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
             //repositorioPlano.PropriedadeParametro = "VALORDIARIODIARIO";
 
-            var planoEncontrado = repositorioPlano.SelecionarPorParametro(plano.ValorDiario_Diario.ToString());
+            var planoEncontrado = repositorioPlano.SelecionarPorValor(plano.ValorDiario_Diario.ToString());
 
             return planoEncontrado != null &&
                    planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&

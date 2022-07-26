@@ -180,7 +180,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
         #region privates
         private bool LoginDuplicado(Funcionario funcionario)
         {
-            var funcionarioEncontrado = repositorioFuncionario.SelecionarPorParametroLogin(funcionario.Login);
+            var funcionarioEncontrado = repositorioFuncionario.SelecionarPorLogin(funcionario.Login);
 
             return funcionarioEncontrado != null &&
                    funcionarioEncontrado.Login.Equals(funcionario.Login) &&
@@ -189,7 +189,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 
         private bool NomeDuplicado(Funcionario funcionario)
         {
-            var funcionarioEncontrado = repositorioFuncionario.SelecionarPorParametro(funcionario.Nome);
+            var funcionarioEncontrado = repositorioFuncionario.SelecionarPorNome(funcionario.Nome);
 
             return funcionarioEncontrado != null && 
                    funcionarioEncontrado.Nome.Equals(funcionario.Nome) && 

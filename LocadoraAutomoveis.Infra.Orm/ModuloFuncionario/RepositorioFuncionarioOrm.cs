@@ -44,14 +44,14 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloFuncionario
             return dbsetFuncionarios.ToList();
         }
 
-        public Funcionario SelecionarPorParametro(string valor)
-        {
-            return dbsetFuncionarios.FirstOrDefault(x => x.Nome == valor);
-        }
-
-        public Funcionario SelecionarPorParametroLogin(string valor)
+        public Funcionario SelecionarPorLogin(string valor)
         {
             return dbsetFuncionarios.FirstOrDefault(x => x.Login == valor);
+        }
+
+        public Funcionario SelecionarPorNome(string valor)
+        {
+            return dbsetFuncionarios.FirstOrDefault(x => x.Nome == valor);
         }
     }
 }

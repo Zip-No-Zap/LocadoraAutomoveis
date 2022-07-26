@@ -48,9 +48,9 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloPlano
             return dbsetPlanos.ToList();
         }
 
-        public Plano SelecionarPorParametro(string valor)
+        public Plano SelecionarPorValor(float valor)
         {
-            return dbsetPlanos.FirstOrDefault(x => x.ValorDiario_Diario == float.Parse(valor));
+            return dbsetPlanos.FirstOrDefault(x => x.ValorDiario_Diario == valor);
         }
     }
 }

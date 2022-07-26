@@ -129,7 +129,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
         {
             try
             {
-                return Result.Ok(repositorioTaxa.SelecionarTodos());
+                return Result.Ok(repositorioTaxa.SelecionarTodos(false));
             }
             catch (Exception ex)
             {
@@ -184,7 +184,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
        
         private bool DescricaoDuplicado(Taxa taxa)
         {
-            var TaxaEncontrado = repositorioTaxa.SelecionarPorParametro(taxa.Descricao);
+            var TaxaEncontrado = repositorioTaxa.SelecionarPorDescricao(taxa.Descricao);
 
             return TaxaEncontrado != null &&
                    TaxaEncontrado.Descricao.Equals(taxa.Descricao) &&

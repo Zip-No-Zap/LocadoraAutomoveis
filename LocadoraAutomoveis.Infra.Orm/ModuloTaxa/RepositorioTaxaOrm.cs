@@ -39,12 +39,12 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloTaxa
             return dbsetTaxas.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Taxa> SelecionarTodos(bool incluir)
+        public List<Taxa> SelecionarTodos(bool incluir = false)
         {
             return dbsetTaxas.ToList();
         }
 
-        public Taxa SelecionarPorParametro(string valor)
+        public Taxa SelecionarPorDescricao(string valor)
         {
             return dbsetTaxas.FirstOrDefault(x => x.Descricao == valor);
         }
