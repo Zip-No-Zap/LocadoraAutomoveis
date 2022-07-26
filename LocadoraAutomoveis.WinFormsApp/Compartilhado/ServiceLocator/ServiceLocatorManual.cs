@@ -5,6 +5,7 @@ using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
 using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
 using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
+using LocadoraAutomoveis.Infra.Logs;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
 using LocadoraAutomoveis.Infra.Orm.ModuloPlano;
@@ -15,15 +16,15 @@ using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Taxa;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo;
-using LocadoraVeiculos.Infra.BancoDados;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Plano;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
+using System.IO;
 
 namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
 {
@@ -69,12 +70,22 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             controladores.Add("Veículo", new ControladorVeiculo(servicoVeiculo, servicoGrupoVeiculo));
             //controladores.Add("Plano de Cobrança", new ControladorPlano(servicoPlano));
 
+
+
             //RepositorioOrm - LocadoraAutomoveisOrmDB
+            var configuracao = new ConfigurationBuilder()
+                          .SetBasePath(Directory.GetCurrentDirectory())
+                          .AddJsonFile("ConfiguracaoAplicacao.json")
+                          .Build();
+
+            var connectionString = configuracao.GetConnectionString("SqlServer");
+            
             //Plano
-            var contextoDadosOrm = new LocadoraAutomoveisDbContext();
+            var contextoDadosOrm = new LocadoraAutomoveisDbContext(connectionString);
             var repositorioPlanoOrm = new RepositorioPlanoOrm(contextoDadosOrm);
             var servicoPlanoOrm = new ServicoPlano(repositorioPlanoOrm, contextoDadosOrm);
             controladores.Add("Plano de Cobrança", new ControladorPlano(servicoPlanoOrm));
+            //=============================================================================
         }
     }
 }

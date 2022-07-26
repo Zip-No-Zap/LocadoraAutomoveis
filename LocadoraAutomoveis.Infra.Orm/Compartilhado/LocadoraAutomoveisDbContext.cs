@@ -12,7 +12,7 @@ namespace LocadoraAutomoveis.Infra.Orm.Compartilhado
 
         public LocadoraAutomoveisDbContext(string connectionString)
         {
-            this.connectionString = connectionString;  // vem da classe LocadoraAutomoveisDbContextFactory
+            this.connectionString = connectionString;  // vem da classe ServiceLocatorManual
         }
 
         public void GravarDados()
