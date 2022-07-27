@@ -39,7 +39,7 @@ namespace LocadoraAutomoveis.Infra.Orm.Compartilhado
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) // configurar modelo de banco
         {
-            modelBuilder.ApplyConfigurationsFromAssembly( typeof(LocadoraAutomoveisDbContext).Assembly );
+            //modelBuilder.ApplyConfigurationsFromAssembly( typeof(LocadoraAutomoveisDbContext).Assembly );
 
             modelBuilder.ApplyConfiguration(new MapeadorGrupoVeiculoOrm());
 

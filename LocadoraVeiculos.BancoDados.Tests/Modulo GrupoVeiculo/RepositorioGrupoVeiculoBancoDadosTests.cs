@@ -1,11 +1,8 @@
-using FluentValidation.Results;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
-using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+
 
 namespace LocadoraVeiculos.BancoDados.Tests
 {
@@ -14,15 +11,12 @@ namespace LocadoraVeiculos.BancoDados.Tests
     {
         RepositorioGrupoVeiculoOrm repoGrupoVeiculo;
         LocadoraAutomoveisDbContext dbContext;
-        const string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDB;Integrated Security=True";
+        const string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDBTestes;Integrated Security=True";
 
         public RepositorioGrupoVeiculoBancoDadosTests()
         {
             dbContext = new(connectionString);
             repoGrupoVeiculo = new(dbContext);
-
-           // ResetarBancoVeiculo();
-           // ResetarBancoGrupo();
         }
 
         [TestMethod]
@@ -50,7 +44,6 @@ namespace LocadoraVeiculos.BancoDados.Tests
             repoGrupoVeiculo.Inserir(grupo);
 
             grupo.Nome = "Foi alterado no teste";
-            
 
             //action
             repoGrupoVeiculo.Editar(grupo);
@@ -68,7 +61,8 @@ namespace LocadoraVeiculos.BancoDados.Tests
         {
             //arrange
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
-
+            repoGrupoVeiculo.Inserir(grupo);
+            
             //action
             repoGrupoVeiculo.Excluir(grupo);
 

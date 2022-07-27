@@ -23,15 +23,21 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo
         public void Inserir(GrupoVeiculo registro)
         {
             dbsetGrupos.Add(registro);
+
+            _dbContext.SaveChanges();
         }
         public void Editar(GrupoVeiculo registro)
         {
             dbsetGrupos.Update(registro);
+
+            _dbContext.SaveChanges();
         }
 
         public void Excluir(GrupoVeiculo registro)
         {
             dbsetGrupos.Remove(registro);
+
+            _dbContext.SaveChanges();
         }
 
         public GrupoVeiculo SelecionarPorId(Guid id)
@@ -48,8 +54,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo
 
         public List<GrupoVeiculo> SelecionarTodos(bool verificador = false)
         {
-            var a = dbsetGrupos.ToList();
-            return a;
+            return dbsetGrupos.ToList();
         }
     }
 }
