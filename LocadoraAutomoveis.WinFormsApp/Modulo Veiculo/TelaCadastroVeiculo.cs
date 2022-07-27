@@ -1,6 +1,8 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
 using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
@@ -20,6 +22,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         private List<GrupoVeiculo> grupos;
 
         private byte[] imagemSelecionada;
+
+        private LocadoraAutomoveisDbContext dbContext;
+
+        private IContextoPersistencia contextoPersistencia;
 
         public Func<Veiculo, Result<Veiculo>> GravarRegistro
         {
@@ -165,7 +171,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         {
             if (cmbGrupoVeiculo.SelectedIndex != -1)
             {
-                var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
+                var servicoGrupo = new ServicoGrupoVeiculo(new RepositorioGrupoVeiculoOrm(dbContext), contextoPersistencia);
 
                 var gruposResult = servicoGrupo.SelecionarTodos();
 
@@ -187,7 +193,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
         private void ObterItensGrupoVeiculo()//TODO : Obter itens grupo deve ser feito pelo controlador/serviço
         {
-            var servicoGrupo = new ServicoGrupoVeiculo(new LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo.RepositorioGrupoVeiculoEmBancoDados());
+            var servicoGrupo = new ServicoGrupoVeiculo(new RepositorioGrupoVeiculoOrm(dbContext), contextoPersistencia);
 
             var nomesResult = servicoGrupo.SelecionarTodos();
 
