@@ -39,6 +39,8 @@
             this.cbCliente = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.label9 = new System.Windows.Forms.Label();
             this.cbItens = new System.Windows.Forms.ComboBox();
             this.tbGrupo = new System.Windows.Forms.TextBox();
@@ -56,19 +58,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnDetalhar = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.gbCondutor.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -89,7 +83,7 @@
             this.btnLimpar.Location = new System.Drawing.Point(209, 16);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(167, 65);
-            this.btnLimpar.TabIndex = 1;
+            this.btnLimpar.TabIndex = 9;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = false;
             // 
@@ -101,9 +95,10 @@
             this.btnOK.Margin = new System.Windows.Forms.Padding(6);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(167, 65);
-            this.btnOK.TabIndex = 0;
+            this.btnOK.TabIndex = 8;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // gbCondutor
             // 
@@ -204,6 +199,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Locação";
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Location = new System.Drawing.Point(667, 214);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(69, 36);
+            this.btnAdd.TabIndex = 6;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(441, 256);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(295, 101);
+            this.listView1.TabIndex = 14;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -221,7 +236,7 @@
             this.cbItens.Location = new System.Drawing.Point(441, 217);
             this.cbItens.Name = "cbItens";
             this.cbItens.Size = new System.Drawing.Size(220, 33);
-            this.cbItens.TabIndex = 7;
+            this.cbItens.TabIndex = 5;
             // 
             // tbGrupo
             // 
@@ -249,7 +264,6 @@
             this.label8.Size = new System.Drawing.Size(160, 21);
             this.label8.TabIndex = 8;
             this.label8.Text = "Quilometragem Atual";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // groupBox2
             // 
@@ -257,7 +271,7 @@
             this.groupBox2.Controls.Add(this.rdControlado);
             this.groupBox2.Controls.Add(this.rdLivre);
             this.groupBox2.Controls.Add(this.rdDiario);
-            this.groupBox2.Location = new System.Drawing.Point(24, 217);
+            this.groupBox2.Location = new System.Drawing.Point(24, 241);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(390, 93);
             this.groupBox2.TabIndex = 11;
@@ -292,7 +306,7 @@
             this.rdDiario.Location = new System.Drawing.Point(39, 36);
             this.rdDiario.Name = "rdDiario";
             this.rdDiario.Size = new System.Drawing.Size(87, 29);
-            this.rdDiario.TabIndex = 0;
+            this.rdDiario.TabIndex = 4;
             this.rdDiario.TabStop = true;
             this.rdDiario.Text = "Diário";
             this.rdDiario.UseVisualStyleBackColor = true;
@@ -314,7 +328,7 @@
             this.cbVeiculo.Margin = new System.Windows.Forms.Padding(6);
             this.cbVeiculo.Name = "cbVeiculo";
             this.cbVeiculo.Size = new System.Drawing.Size(474, 33);
-            this.cbVeiculo.TabIndex = 9;
+            this.cbVeiculo.TabIndex = 3;
             // 
             // label6
             // 
@@ -333,7 +347,7 @@
             this.dpDataDevolucao.MinDate = new System.DateTime(2022, 7, 25, 23, 59, 59, 0);
             this.dpDataDevolucao.Name = "dpDataDevolucao";
             this.dpDataDevolucao.Size = new System.Drawing.Size(222, 31);
-            this.dpDataDevolucao.TabIndex = 8;
+            this.dpDataDevolucao.TabIndex = 2;
             // 
             // dpDataLocacao
             // 
@@ -342,7 +356,7 @@
             this.dpDataLocacao.MinDate = new System.DateTime(2022, 7, 25, 23, 59, 59, 0);
             this.dpDataLocacao.Name = "dpDataLocacao";
             this.dpDataLocacao.Size = new System.Drawing.Size(222, 31);
-            this.dpDataLocacao.TabIndex = 7;
+            this.dpDataLocacao.TabIndex = 1;
             // 
             // label4
             // 
@@ -372,39 +386,13 @@
             this.btnDetalhar.Location = new System.Drawing.Point(15, 345);
             this.btnDetalhar.Name = "btnDetalhar";
             this.btnDetalhar.Size = new System.Drawing.Size(402, 59);
-            this.btnDetalhar.TabIndex = 8;
+            this.btnDetalhar.TabIndex = 7;
             this.btnDetalhar.Text = "Detalhar";
             this.btnDetalhar.UseVisualStyleBackColor = false;
-            // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(441, 256);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(295, 101);
-            this.listView1.TabIndex = 14;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Location = new System.Drawing.Point(667, 214);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(69, 36);
-            this.btnAdd.TabIndex = 9;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = false;
             // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox3.Controls.Add(this.textBox2);
-            this.groupBox3.Controls.Add(this.textBox3);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.comboBox1);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox3.Location = new System.Drawing.Point(15, 447);
@@ -412,51 +400,7 @@
             this.groupBox3.Size = new System.Drawing.Size(1196, 310);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Dados Condutor";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(24, 241);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(356, 31);
-            this.textBox2.TabIndex = 6;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(24, 163);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(356, 31);
-            this.textBox3.TabIndex = 1;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(24, 130);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(76, 21);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Condutor";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(24, 52);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(58, 21);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Cliente";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(24, 80);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(356, 33);
-            this.comboBox1.TabIndex = 0;
+            this.groupBox3.Text = "Detalhes da Locação";
             // 
             // TelaCadastroLocacao
             // 
@@ -475,6 +419,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Locação";
+            this.Load += new System.EventHandler(this.TelaCadastroLocacao_Load);
             this.panel1.ResumeLayout(false);
             this.gbCondutor.ResumeLayout(false);
             this.gbCondutor.PerformLayout();
@@ -482,8 +427,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -522,10 +465,5 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

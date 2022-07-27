@@ -12,10 +12,11 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
         {
             builder.ToTable("TBLOCACAO");
             builder.Property(x => x.Id).ValueGeneratedNever();
-            builder.Property(x => x.CondutorLocacao).HasColumnType("varchar(120)").IsRequired();
-            builder.Property(x => x.VeiculoLocacao).HasColumnType("varchar(150)").IsRequired();
-            builder.Property(x => x.PlanoLocacao).HasColumnType("varchar(50)").IsRequired();
-            builder.Property(x => x.ItensTaxa);
+            builder.HasOne(x => x.CondutorLocacao);
+            builder.HasOne(x => x.ClienteLocacao);
+            builder.HasOne(x => x.VeiculoLocacao);
+            builder.HasOne(x => x.PlanoLocacao);
+            builder.HasMany(x => x.ItensTaxa);
             builder.Property(x => x.DataLocacao).HasColumnType("float").IsRequired();
             builder.Property(x => x.DataDevolucao).HasColumnType("varchar(50)").IsRequired();
         }

@@ -1,11 +1,11 @@
-﻿using FluentResults;
-using FluentValidation.Results;
-using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using FluentResults;
+using System;
+
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 {
@@ -19,10 +19,12 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 
             CarregarClientes(clientes);
         }
+
         public Func<Condutor, Result<Condutor>> GravarRegistro
         {
             get; set;
         }
+
         public Condutor Condutor
         {
             get { return condutor; }

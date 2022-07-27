@@ -1,8 +1,8 @@
 ﻿using GeradorTestes.WinApp.Compartilhado;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System;
 
 namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 {
@@ -20,17 +20,14 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Modelo", HeaderText = "Modelo"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Placa", HeaderText = "Placa"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Cor", HeaderText = "Cor"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "Ano", HeaderText = "Ano"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "TipoCombustivel", HeaderText = "Tipo Combustível"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "CapacidadeTanque", HeaderText = "Capacidade"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "NomeGrupo", HeaderText = "Grupo"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "StatusVeiculo", HeaderText = "Status"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "QuilometragemAtual", HeaderText = "Quilometragem Atual"},
-                new DataGridViewImageColumn { DataPropertyName = "Foto", HeaderText = "Foto", ImageLayout = DataGridViewImageCellLayout.Stretch, Width = 50}
+                new DataGridViewTextBoxColumn { DataPropertyName = "ClienteLocacao_Nome", HeaderText = "Cliente"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "CondutorLocacao_Nome", HeaderText = "Condutor Nome"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "CondutorLocacao_Cnh", HeaderText = "Condutor CNH"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "VeiculoLocacao_Modelo", HeaderText = "Veículo"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "VeiculoLocacao_Grupo", HeaderText = "Grupo"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "DataLocacaoString", HeaderText = "Data Locação"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "DataDevolucaoString", HeaderText = "Data Devolução"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "PlanoLocacao_Descricao", HeaderText = "Plano"},
             };
 
             return colunas;

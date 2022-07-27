@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace GeradorTestes.Infra.Orm.Compartilhado
 {
-    public static class MigradorBancoDadosGeradorTeste
+    public static class MigradorBancoDadosLocadoraAutomoveis
     {
         public static void AtualizarBancoDados()
         {
