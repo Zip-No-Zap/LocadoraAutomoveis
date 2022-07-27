@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor;
 using Serilog;
@@ -12,10 +13,13 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 {
     public class ServicoCondutor
     {
-        readonly RepositorioCondutorEmBancoDados repositorioCondutor;
+        //readonly RepositorioCondutorEmBancoDados repositorioCondutor;
+        readonly RepositorioCondutorOrm repositorioCondutor;
+        readonly IContextoPersistencia contextoPersistOrm;
         ValidadorCondutor validadorCondutor;
 
-        public ServicoCondutor(RepositorioCondutorEmBancoDados repositorioCondutor)
+
+        public ServicoCondutor(RepositorioCondutorOrm repositorioCondutor, IContextoPersistencia contextoPersistOrm)
         {
             this.repositorioCondutor = repositorioCondutor;
         }
@@ -174,39 +178,39 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 
         private bool CnhDuplicada(Condutor condutor)
         {
-            repositorioCondutor.Sql_selecao_por_parametro =
-                @" SELECT
-				CONDUTOR.[ID] CONDUTOR_ID,
-				CONDUTOR.[NOME] CONDUTOR_NOME,
-				CONDUTOR.[CPF] CONDUTOR_CPF,
-				CONDUTOR.[CNH] CONDUTOR_CNH,
-				CONDUTOR.[VENCIMENTOCNH] CONDUTOR_VENCIMENTOCNH,
-				CONDUTOR.[EMAIL]CONDUTOR_EMAIL,
-				CONDUTOR.[ENDERECO] CONDUTOR_ENDERECO,
-				CONDUTOR.[TELEFONE] CONDUTOR_TELEFONE,
-				CONDUTOR.[CLIENTE_ID] CONDUTOR_CLIENTE_ID,
+    //        repositorioCondutor.Sql_selecao_por_parametro =
+    //            @" SELECT
+				//CONDUTOR.[ID] CONDUTOR_ID,
+				//CONDUTOR.[NOME] CONDUTOR_NOME,
+				//CONDUTOR.[CPF] CONDUTOR_CPF,
+				//CONDUTOR.[CNH] CONDUTOR_CNH,
+				//CONDUTOR.[VENCIMENTOCNH] CONDUTOR_VENCIMENTOCNH,
+				//CONDUTOR.[EMAIL]CONDUTOR_EMAIL,
+				//CONDUTOR.[ENDERECO] CONDUTOR_ENDERECO,
+				//CONDUTOR.[TELEFONE] CONDUTOR_TELEFONE,
+				//CONDUTOR.[CLIENTE_ID] CONDUTOR_CLIENTE_ID,
 		
-				CLIENTE.[NOME] CLIENTE_NOME,
-				CLIENTE.[CPF] CLIENTE_CPF,
-				CLIENTE.[CNPJ] CLIENTE_CNPJ,
-				CLIENTE.[ENDERECO] CLIENTE_ENDERECO,
-				CLIENTE.[TIPOCLIENTE] CLIENTE_TIPOCLIENTE,
-				CLIENTE.[EMAIL] CLIENTE_EMAIL,
-				CLIENTE.[TELEFONE] CLIENTE_TELEFONE
+				//CLIENTE.[NOME] CLIENTE_NOME,
+				//CLIENTE.[CPF] CLIENTE_CPF,
+				//CLIENTE.[CNPJ] CLIENTE_CNPJ,
+				//CLIENTE.[ENDERECO] CLIENTE_ENDERECO,
+				//CLIENTE.[TIPOCLIENTE] CLIENTE_TIPOCLIENTE,
+				//CLIENTE.[EMAIL] CLIENTE_EMAIL,
+				//CLIENTE.[TELEFONE] CLIENTE_TELEFONE
 
-			    FROM
-                    [TBCONDUTOR] AS CONDUTOR INNER JOIN 
-                    [TBCLIENTE] AS CLIENTE
-                ON
-                    CLIENTE.ID = CONDUTOR.CLIENTE_ID
+			 //   FROM
+    //                [TBCONDUTOR] AS CONDUTOR INNER JOIN 
+    //                [TBCLIENTE] AS CLIENTE
+    //            ON
+    //                CLIENTE.ID = CONDUTOR.CLIENTE_ID
 
 
-                WHERE CONDUTOR.CNH = @CNHCONDUTOR";
+    //            WHERE CONDUTOR.CNH = @CNHCONDUTOR";
 
-            repositorioCondutor.PropriedadeParametro = "CNHCONDUTOR";
-            repositorioCondutor.propriedadeValidar = "Cnh";
+    //        repositorioCondutor.PropriedadeParametro = "CNHCONDUTOR";
+    //        repositorioCondutor.propriedadeValidar = "Cnh";
 
-            var condutorEncontrado = repositorioCondutor.SelecionarPorParametro(repositorioCondutor.PropriedadeParametro, condutor);
+            var condutorEncontrado = repositorioCondutor.SelecionarPorCnh(condutor.Cnh);
 
             return condutorEncontrado != null &&
                    condutorEncontrado.Cnh.Equals(condutor.Cnh) &&
@@ -215,39 +219,39 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 
         private bool CpfDuplicado(Condutor condutor)
         {
-            repositorioCondutor.Sql_selecao_por_parametro =
-                @" SELECT
-				CONDUTOR.[ID] CONDUTOR_ID,
-				CONDUTOR.[NOME] CONDUTOR_NOME,
-				CONDUTOR.[CPF] CONDUTOR_CPF,
-				CONDUTOR.[CNH] CONDUTOR_CNH,
-				CONDUTOR.[VENCIMENTOCNH] CONDUTOR_VENCIMENTOCNH,
-				CONDUTOR.[EMAIL]CONDUTOR_EMAIL,
-				CONDUTOR.[ENDERECO] CONDUTOR_ENDERECO,
-				CONDUTOR.[TELEFONE] CONDUTOR_TELEFONE,
-				CONDUTOR.[CLIENTE_ID] CONDUTOR_CLIENTE_ID,
+    //        repositorioCondutor.Sql_selecao_por_parametro =
+    //            @" SELECT
+				//CONDUTOR.[ID] CONDUTOR_ID,
+				//CONDUTOR.[NOME] CONDUTOR_NOME,
+				//CONDUTOR.[CPF] CONDUTOR_CPF,
+				//CONDUTOR.[CNH] CONDUTOR_CNH,
+				//CONDUTOR.[VENCIMENTOCNH] CONDUTOR_VENCIMENTOCNH,
+				//CONDUTOR.[EMAIL]CONDUTOR_EMAIL,
+				//CONDUTOR.[ENDERECO] CONDUTOR_ENDERECO,
+				//CONDUTOR.[TELEFONE] CONDUTOR_TELEFONE,
+				//CONDUTOR.[CLIENTE_ID] CONDUTOR_CLIENTE_ID,
 		
-				CLIENTE.[NOME] CLIENTE_NOME,
-				CLIENTE.[CPF] CLIENTE_CPF,
-				CLIENTE.[CNPJ] CLIENTE_CNPJ,
-				CLIENTE.[ENDERECO] CLIENTE_ENDERECO,
-				CLIENTE.[TIPOCLIENTE] CLIENTE_TIPOCLIENTE,
-				CLIENTE.[EMAIL] CLIENTE_EMAIL,
-				CLIENTE.[TELEFONE] CLIENTE_TELEFONE
+				//CLIENTE.[NOME] CLIENTE_NOME,
+				//CLIENTE.[CPF] CLIENTE_CPF,
+				//CLIENTE.[CNPJ] CLIENTE_CNPJ,
+				//CLIENTE.[ENDERECO] CLIENTE_ENDERECO,
+				//CLIENTE.[TIPOCLIENTE] CLIENTE_TIPOCLIENTE,
+				//CLIENTE.[EMAIL] CLIENTE_EMAIL,
+				//CLIENTE.[TELEFONE] CLIENTE_TELEFONE
 
-			    FROM
-                    [TBCONDUTOR] AS CONDUTOR INNER JOIN 
-                    [TBCLIENTE] AS CLIENTE
-                ON
-                    CLIENTE.ID = CONDUTOR.CLIENTE_ID
+			 //   FROM
+    //                [TBCONDUTOR] AS CONDUTOR INNER JOIN 
+    //                [TBCLIENTE] AS CLIENTE
+    //            ON
+    //                CLIENTE.ID = CONDUTOR.CLIENTE_ID
 
 
-                WHERE CONDUTOR.CPF = @CPFCONDUTOR";
+    //            WHERE CONDUTOR.CPF = @CPFCONDUTOR";
 
-            repositorioCondutor.PropriedadeParametro = "CPFCONDUTOR";
-            repositorioCondutor.propriedadeValidar = "Cpf";
+    //        repositorioCondutor.PropriedadeParametro = "CPFCONDUTOR";
+    //        repositorioCondutor.propriedadeValidar = "Cpf";
 
-            var condutorEncontrado = repositorioCondutor.SelecionarPorParametro(repositorioCondutor.PropriedadeParametro, condutor);
+            var condutorEncontrado = repositorioCondutor.SelecionarPorCpf(condutor.Cpf);
 
             return condutorEncontrado != null &&
                    condutorEncontrado.Cpf.Equals(condutor.Cpf) &&
@@ -256,39 +260,39 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 
         private bool NomeDuplicado(Condutor condutor)
         {
-            repositorioCondutor.Sql_selecao_por_parametro =
-                @" SELECT
-				CONDUTOR.[ID] CONDUTOR_ID,
-				CONDUTOR.[NOME] CONDUTOR_NOME,
-				CONDUTOR.[CPF] CONDUTOR_CPF,
-				CONDUTOR.[CNH] CONDUTOR_CNH,
-				CONDUTOR.[VENCIMENTOCNH] CONDUTOR_VENCIMENTOCNH,
-				CONDUTOR.[EMAIL]CONDUTOR_EMAIL,
-				CONDUTOR.[ENDERECO] CONDUTOR_ENDERECO,
-				CONDUTOR.[TELEFONE] CONDUTOR_TELEFONE,
-				CONDUTOR.[CLIENTE_ID] CONDUTOR_CLIENTE_ID,
+    //        repositorioCondutor.Sql_selecao_por_parametro =
+    //            @" SELECT
+				//CONDUTOR.[ID] CONDUTOR_ID,
+				//CONDUTOR.[NOME] CONDUTOR_NOME,
+				//CONDUTOR.[CPF] CONDUTOR_CPF,
+				//CONDUTOR.[CNH] CONDUTOR_CNH,
+				//CONDUTOR.[VENCIMENTOCNH] CONDUTOR_VENCIMENTOCNH,
+				//CONDUTOR.[EMAIL]CONDUTOR_EMAIL,
+				//CONDUTOR.[ENDERECO] CONDUTOR_ENDERECO,
+				//CONDUTOR.[TELEFONE] CONDUTOR_TELEFONE,
+				//CONDUTOR.[CLIENTE_ID] CONDUTOR_CLIENTE_ID,
 		
-				CLIENTE.[NOME] CLIENTE_NOME,
-				CLIENTE.[CPF] CLIENTE_CPF,
-				CLIENTE.[CNPJ] CLIENTE_CNPJ,
-				CLIENTE.[ENDERECO] CLIENTE_ENDERECO,
-				CLIENTE.[TIPOCLIENTE] CLIENTE_TIPOCLIENTE,
-				CLIENTE.[EMAIL] CLIENTE_EMAIL,
-				CLIENTE.[TELEFONE] CLIENTE_TELEFONE
+				//CLIENTE.[NOME] CLIENTE_NOME,
+				//CLIENTE.[CPF] CLIENTE_CPF,
+				//CLIENTE.[CNPJ] CLIENTE_CNPJ,
+				//CLIENTE.[ENDERECO] CLIENTE_ENDERECO,
+				//CLIENTE.[TIPOCLIENTE] CLIENTE_TIPOCLIENTE,
+				//CLIENTE.[EMAIL] CLIENTE_EMAIL,
+				//CLIENTE.[TELEFONE] CLIENTE_TELEFONE
 
-			    FROM
-                    [TBCONDUTOR] AS CONDUTOR INNER JOIN 
-                    [TBCLIENTE] AS CLIENTE
-                ON
-                    CLIENTE.ID = CONDUTOR.CLIENTE_ID
+			 //   FROM
+    //                [TBCONDUTOR] AS CONDUTOR INNER JOIN 
+    //                [TBCLIENTE] AS CLIENTE
+    //            ON
+    //                CLIENTE.ID = CONDUTOR.CLIENTE_ID
 
 
-                WHERE CONDUTOR.NOME = @NOMECONDUTOR";
+    //            WHERE CONDUTOR.NOME = @NOMECONDUTOR";
 
-            repositorioCondutor.PropriedadeParametro = "NOMECONDUTOR";
-            repositorioCondutor.propriedadeValidar = "Nome";
+    //        repositorioCondutor.PropriedadeParametro = "NOMECONDUTOR";
+    //        repositorioCondutor.propriedadeValidar = "Nome";
 
-            var condutorEncontrado = repositorioCondutor.SelecionarPorParametro(repositorioCondutor.PropriedadeParametro, condutor);
+            var condutorEncontrado = repositorioCondutor.SelecionarPorNome(condutor.Nome);
 
             return condutorEncontrado != null &&
                    condutorEncontrado.Nome.Equals(condutor.Nome) &&

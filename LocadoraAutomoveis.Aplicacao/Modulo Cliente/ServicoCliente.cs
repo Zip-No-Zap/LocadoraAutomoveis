@@ -1,5 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
+using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloCliente;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
 using Serilog;
@@ -11,12 +13,18 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 {
     public class ServicoCliente
     {
-        readonly RepositorioClienteEmBancoDados repositorioCliente;
+        //readonly RepositorioClienteEmBancoDados repositorioCliente;
+
+        readonly RepositorioClienteOrm repositorioCliente;
+        readonly IContextoPersistencia contextoPersistOrm;
         ValidadorCliente validadorCliente;
 
-        public ServicoCliente(RepositorioClienteEmBancoDados repositorioCliente)
+
+        public ServicoCliente(RepositorioClienteOrm repositorioCliente, IContextoPersistencia contextoPersistOrm)
         {
             this.repositorioCliente = repositorioCliente;
+            this.contextoPersistOrm = contextoPersistOrm;
+
         }
 
         public Result<Cliente> Inserir(Cliente cliente)
@@ -148,10 +156,10 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
         private bool NomeDuplicado(Cliente cliente)
         {
-            repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE NOME = @NOMECLIENTE";
-            repositorioCliente.PropriedadeParametro = "NOMECLIENTE";
+           // repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE NOME = @NOMECLIENTE";
+           // repositorioCliente.PropriedadeParametro = "NOMECLIENTE";
 
-            var clienteEncontrado = repositorioCliente.SelecionarPorParametro(repositorioCliente.PropriedadeParametro, cliente);
+            var clienteEncontrado = repositorioCliente.SelecionarPorNome(cliente.Nome);
 
             return clienteEncontrado != null &&
                    clienteEncontrado.Nome.Equals(cliente.Nome) &&
@@ -160,10 +168,10 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
         private bool CnpjDuplicado(Cliente cliente)
         {
-            repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE CNPJ = @CNPJCLIENTE";
-            repositorioCliente.PropriedadeParametro = "CNPJCLIENTE";
+           // repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE CNPJ = @CNPJCLIENTE";
+           // repositorioCliente.PropriedadeParametro = "CNPJCLIENTE";
 
-            var clienteEncontrado = repositorioCliente.SelecionarPorParametro(repositorioCliente.PropriedadeParametro, cliente);
+            var clienteEncontrado = repositorioCliente.SelecionarPorCnpj(cliente.Cnpj);
 
             return clienteEncontrado != null &&
                    clienteEncontrado.Cnpj != "-" &&
@@ -173,10 +181,10 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
         private bool CpfDuplicado(Cliente cliente)
         {
-            repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE CPF = @CPFCLIENTE";
-            repositorioCliente.PropriedadeParametro = "CPFCLIENTE";
+            //repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE CPF = @CPFCLIENTE";
+            //repositorioCliente.PropriedadeParametro = "CPFCLIENTE";
 
-            var clienteEncontrado = repositorioCliente.SelecionarPorParametro(repositorioCliente.PropriedadeParametro, cliente);
+            var clienteEncontrado = repositorioCliente.SelecionarPorCpf(cliente.Cpf);
 
             return clienteEncontrado != null &&
                    clienteEncontrado.Cpf != "-" &&
