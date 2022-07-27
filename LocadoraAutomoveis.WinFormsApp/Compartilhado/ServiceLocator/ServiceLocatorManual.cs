@@ -8,9 +8,11 @@ using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
 using LocadoraAutomoveis.Aplicacao.ModuloLocacao;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloFuncionario;
+using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraAutomoveis.Infra.Orm.ModuloLocacao;
 using LocadoraAutomoveis.Infra.Orm.ModuloPlano;
 using LocadoraAutomoveis.Infra.Orm.ModuloTaxa;
+using LocadoraAutomoveis.Infra.Orm.ModuloVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Condutor;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
@@ -86,6 +88,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             var repositorioTaxaOrm = new RepositorioTaxaOrm(contextoDadosOrm);
             var repositorioFuncionarioOrm = new RepositorioFuncionarioOrm(contextoDadosOrm);
             var repositorioLocacaoOrm = new RepositorioLocacaoOrm(contextoDadosOrm);
+            var repositorioVeiculoOrm = new RepositorioVeiculoOrm(contextoDadosOrm);
+            var repositorioGrupoVeiculoOrm = new RepositorioGrupoVeiculoOrm(contextoDadosOrm);
             
             
             //serviços
@@ -93,6 +97,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             var servicoTaxaOrm = new ServicoTaxa(repositorioTaxaOrm, contextoDadosOrm);
             var servicoFuncionarioOrm = new ServicoFuncionario(repositorioFuncionarioOrm, contextoDadosOrm);
             var servicoLocacaoOrm = new ServicoLocacao(repositorioLocacaoOrm, contextoDadosOrm);
+            var servicoVeiculoOrm = new ServicoVeiculo(repositorioVeiculoOrm, contextoDadosOrm);
+            var servicoGrupoVeiculoOrm = new ServicoGrupoVeiculo(repositorioGrupoVeiculoOrm, contextoDadosOrm);
            
 
             //controladores
@@ -100,6 +106,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             controladores.Add("Taxa", new ControladorTaxa(servicoTaxaOrm));
             controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionarioOrm));
             controladores.Add("Locação", new ControladorLocacao(servicoLocacaoOrm));
+            controladores.Add("Veículo", new ControladorVeiculo(servicoVeiculoOrm, servicoGrupoVeiculoOrm));
+            controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo(servicoGrupoVeiculoOrm));
         }
     }
 }
