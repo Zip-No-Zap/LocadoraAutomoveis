@@ -34,7 +34,12 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public string PlanoLocacao_Descricao { get; set; } // recebe de acordo com check da tela
         //=======================================================================================
 
-        public Locacao(Condutor condutorLocacao, Veiculo veiculoLocacao, List<Taxa> itensTaxa, Plano plano, Guid veiculoLocacaoId, Guid clienteLocacaoId, DateTime dataLocacao, DateTime dataDevolucao, Cliente clienteLocacao)
+        public Locacao()
+        {
+
+        }
+
+        public Locacao(Condutor condutorLocacao, Veiculo veiculoLocacao, List<Taxa> itensTaxa, Plano plano, Guid veiculoLocacaoId, Guid clienteLocacaoId, DateTime dataLocacao, DateTime dataDevolucao, Cliente clienteLocacao) : base()
         {
             CondutorLocacao = condutorLocacao;
             VeiculoLocacao = veiculoLocacao;

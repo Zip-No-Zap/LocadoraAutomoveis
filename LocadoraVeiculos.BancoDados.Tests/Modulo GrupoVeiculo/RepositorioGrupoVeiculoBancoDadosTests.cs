@@ -14,11 +14,11 @@ namespace LocadoraVeiculos.BancoDados.Tests
     {
         RepositorioGrupoVeiculoOrm repoGrupoVeiculo;
         LocadoraAutomoveisDbContext dbContext;
-        const string connectionstring = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDBTestes;Integrated Security=True";
+        const string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDB;Integrated Security=True";
 
         public RepositorioGrupoVeiculoBancoDadosTests()
         {
-            dbContext = new(connectionstring);
+            dbContext = new(connectionString);
             repoGrupoVeiculo = new(dbContext);
 
            // ResetarBancoVeiculo();
@@ -35,7 +35,6 @@ namespace LocadoraVeiculos.BancoDados.Tests
             repoGrupoVeiculo.Inserir(grupo);
 
             //assert
-
             GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
 
             Assert.IsNotNull(grupoEncontrado);
@@ -84,10 +83,11 @@ namespace LocadoraVeiculos.BancoDados.Tests
         {
             //arrange
             GrupoVeiculo grupo1 = InstanciarGrupoVeiculo();
-            GrupoVeiculo grupo2 = InstanciarGrupoVeiculo2();
-
             repoGrupoVeiculo.Inserir(grupo1);
+            
+            GrupoVeiculo grupo2 = InstanciarGrupoVeiculo2();
             repoGrupoVeiculo.Inserir(grupo2);
+
 
             //action
             var grupos = repoGrupoVeiculo.SelecionarTodos();

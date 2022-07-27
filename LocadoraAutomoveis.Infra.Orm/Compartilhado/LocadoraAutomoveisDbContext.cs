@@ -41,9 +41,9 @@ namespace LocadoraAutomoveis.Infra.Orm.Compartilhado
         {
             modelBuilder.ApplyConfigurationsFromAssembly( typeof(LocadoraAutomoveisDbContext).Assembly );
 
-            //modelBuilder.ApplyConfiguration(new MapeadorGrupoVeiculoOrm());
+            modelBuilder.ApplyConfiguration(new MapeadorGrupoVeiculoOrm());
 
-            //modelBuilder.Ignore<Cliente>();  // cancela a criação automática das entidades relacionadas, do tipo informado
+            //modelBuilder.Ignore<Cliente>();   cancela a criação automática das entidades relacionadas, do tipo informado
             //modelBuilder.Ignore<Condutor>();
             //modelBuilder.Ignore<Funcionario>();
             //modelBuilder.Ignore<Taxa>();

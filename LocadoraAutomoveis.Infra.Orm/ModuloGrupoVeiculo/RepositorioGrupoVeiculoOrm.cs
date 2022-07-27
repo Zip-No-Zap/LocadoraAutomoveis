@@ -36,7 +36,9 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo
 
         public GrupoVeiculo SelecionarPorId(Guid id)
         {
-             return dbsetGrupos.FirstOrDefault(x => x.Id == id);
+            //return dbsetGrupos.FirstOrDefault(x => x.Id == id);
+            return dbsetGrupos.Find(id);
+
         }
 
         public GrupoVeiculo SelecionarPorNome(string grupoVeiculo)
@@ -46,7 +48,8 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo
 
         public List<GrupoVeiculo> SelecionarTodos(bool verificador = false)
         {
-            return dbsetGrupos.ToList();
+            var a = dbsetGrupos.ToList();
+            return a;
         }
     }
 }
