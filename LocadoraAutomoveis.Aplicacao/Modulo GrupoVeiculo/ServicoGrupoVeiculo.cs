@@ -3,7 +3,6 @@ using FluentValidation.Results;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
 using Serilog;
 using System;
 using System.Collections.Generic;

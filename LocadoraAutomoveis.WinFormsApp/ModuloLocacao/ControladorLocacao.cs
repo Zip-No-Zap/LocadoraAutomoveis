@@ -24,25 +24,15 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public override void Inserir()
         {
-            var grupos = servicoGrupoLocacao.SelecionarTodos();
+            //TODO : criar o inserir e editar do controlador locacao
 
-            TelaCadastroLocacao tela = new()
-            {
-                Locacao = new()
-                {
-                    GrupoPertencente = new(null),
-
-                },
-
-            };
-
-            tela.GravarRegistro = servicoLocacao.Inserir;
+            //tela.GravarRegistro = servicoLocacao.Inserir;
 
 
-            if (tela.ShowDialog() == DialogResult.OK)
-            {
-                CarregarLocacaos();
-            }
+            //if (tela.ShowDialog() == DialogResult.OK)
+            //{
+            //    CarregarLocacaos();
+            //}
         }
 
         public override void Editar()
@@ -68,7 +58,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             var Selecionado = resultado.Value;
 
-            TelaCadastroLocacao tela = new();
+            TelaCadastroLocacao tela = new(null, null, null, null);
 
             tela.Locacao = Selecionado;
 

@@ -1,4 +1,6 @@
 using FluentValidation.Results;
+using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
@@ -10,11 +12,14 @@ namespace LocadoraVeiculos.BancoDados.Tests
     [TestClass]
     public class RepositorioGrupoVeiculoBancoDadosTests
     {
-        RepositorioGrupoVeiculoEmBancoDados repoGrupoVeiculo;
+        RepositorioGrupoVeiculoOrm repoGrupoVeiculo;
+        LocadoraAutomoveisDbContext dbContext;
+        const string connectionstring = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDBTestes;Integrated Security=True";
 
         public RepositorioGrupoVeiculoBancoDadosTests()
         {
-            repoGrupoVeiculo = new();
+            dbContext = new(connectionstring);
+            repoGrupoVeiculo = new(dbContext);
 
            // ResetarBancoVeiculo();
            // ResetarBancoGrupo();
@@ -124,17 +129,6 @@ namespace LocadoraVeiculos.BancoDados.Tests
             {
 
             };
-        }
-
-        private void ResetarBancoVeiculo()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBVEICULO; DBCC CHECKIDENT (TBVEICULO, RESEED, 0)");
-        }
-
-        private void ResetarBancoGrupo()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBGRUPOVEICULO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
-            repoGrupoVeiculo = new();
         }
 
         #endregion

@@ -4,19 +4,19 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo
 {
     public class RepositorioGrupoVeiculoOrm : IRepositorioOrmGrupoVeiculo
     {
-        private readonly LocadoraAutomoveisDbContext _dbContext;
         private DbSet<GrupoVeiculo> dbsetGrupos;
+
+        private readonly LocadoraAutomoveisDbContext _dbContext;
 
         public RepositorioGrupoVeiculoOrm(LocadoraAutomoveisDbContext dbContext)
         {
-            //_dbContext = dbContext;
+            _dbContext = dbContext;
             dbsetGrupos = dbContext.Set<GrupoVeiculo>();
         }
 

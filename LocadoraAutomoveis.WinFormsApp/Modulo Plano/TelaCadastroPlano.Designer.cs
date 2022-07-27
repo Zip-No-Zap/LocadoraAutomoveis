@@ -103,7 +103,6 @@
             this.cbGrupo.Name = "cbGrupo";
             this.cbGrupo.Size = new System.Drawing.Size(321, 33);
             this.cbGrupo.TabIndex = 0;
-            this.cbGrupo.SelectedIndexChanged += new System.EventHandler(this.cbGrupo_SelectedIndexChanged);
             // 
             // lblGrupo
             // 

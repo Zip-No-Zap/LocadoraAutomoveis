@@ -1,4 +1,5 @@
 ﻿using FluentResults;
+using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
@@ -12,23 +13,23 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
     {
         ServicoPlano servicoPlano;
         PlanoControl tabelaPlanos;
+        readonly ServicoGrupoVeiculo servicoGrupoVeiculo;
 
-        public ControladorPlano(ServicoPlano servicoPlano)
+        public ControladorPlano(ServicoPlano servicoPlano, ServicoGrupoVeiculo servicoGrupoVeiculo)
         {
             this.servicoPlano = servicoPlano;
+            this.servicoGrupoVeiculo = servicoGrupoVeiculo;
         }
 
         public override void Inserir()
         {
-            TelaCadastroPlano tela = new()
-            {
-                Plano = new()
-                {
-                    Grupo = new(null)
-                },
-                
-                GravarRegistro = servicoPlano.Inserir
-            };
+            var grupos = servicoGrupoVeiculo.SelecionarTodos().Value;
+
+            var tela = new TelaCadastroPlano(grupos);
+
+            tela.Plano = new();
+
+            tela.GravarRegistro = servicoPlano.Inserir;
 
 
             DialogResult resultado = tela.ShowDialog();
@@ -42,6 +43,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
         public override void Editar()
         {
             var id = tabelaPlanos.ObtemNumeroPlanoSelecionado();
+            var grupos = servicoGrupoVeiculo.SelecionarTodos().Value;
 
             if (id == Guid.Empty)
             {
@@ -57,12 +59,13 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             {
                 MessageBox.Show(resultado.Errors[0].Message,
                     "Edição de Plano", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
 
             var Selecionado = resultado.Value;
 
-            TelaCadastroPlano tela = new();
+            TelaCadastroPlano tela = new(grupos);
 
             tela.Plano = Selecionado;
 
