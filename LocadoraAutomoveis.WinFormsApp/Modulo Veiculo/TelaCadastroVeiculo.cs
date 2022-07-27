@@ -58,10 +58,20 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 imagemSelecionada = veiculo.Foto;
             }
         }
-        public TelaCadastroVeiculo()
+        public TelaCadastroVeiculo(List<GrupoVeiculo> grupos)
         {
             InitializeComponent();
-           // CarregarGrupos(grupos);
+            CarregarGrupos(grupos);
+        }
+
+        private void CarregarGrupos(List<GrupoVeiculo> grupos)
+        {
+            cmbGrupoVeiculo.Items.Clear();
+
+            foreach (var item in grupos)
+            {
+                cmbGrupoVeiculo.Items.Add(item);
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
