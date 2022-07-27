@@ -26,16 +26,15 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
         {
             Result<List<Cliente>> resultadoResult = servicoCliente.SelecionarTodos();
 
+            var clientes = servicoCliente.SelecionarTodos().Value;
+
+            var tela = new TelaCadastroCondutor(clientes);
+
             if (resultadoResult.IsSuccess)
             {
-                List<Cliente> clientes = resultadoResult.Value;
+                tela.Condutor = new(); 
 
-                TelaCadastroCondutor tela = new(clientes)
-                {
-                    Condutor = new(),
-
-                    GravarRegistro = servicoCondutor.Inserir
-                };
+                tela.GravarRegistro = servicoCondutor.Inserir;
 
                 DialogResult resultado = tela.ShowDialog();
 

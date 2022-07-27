@@ -7,10 +7,13 @@ using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
 using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
 using LocadoraAutomoveis.Aplicacao.ModuloLocacao;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloCliente;
+using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
 using LocadoraAutomoveis.Infra.Orm.ModuloFuncionario;
 using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraAutomoveis.Infra.Orm.ModuloPlano;
 using LocadoraAutomoveis.Infra.Orm.ModuloTaxa;
+using LocadoraAutomoveis.Infra.Orm.ModuloVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Condutor;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
@@ -50,25 +53,25 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             //var repositorioCondutor = new RepositorioCondutorEmBancoDados();
             //var repositorioTaxa = new RepositorioTaxaEmBancoDados();
             //var repositorioPlano = new RepositorioPlanoEmBancoDados();
-            var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
-            var repositorioGrupoVeiculo = new RepositorioGrupoVeiculoEmBancoDados();
-            var repositorioVeículo = new RepositorioVeiculoEmBancoDados();
+            //var repositorioFuncionario = new RepositorioFuncionarioEmBancoDados();
+            //var repositorioGrupoVeiculo = new RepositorioGrupoVeiculoEmBancoDados();
+            //var repositorioVeículo = new RepositorioVeiculoEmBancoDados();
 
             //var servicoCliente = new ServicoCliente(repositorioCliente);
             //var servicoCondutor = new ServicoCondutor(repositorioCondutor);
             //var servicoTaxa = new ServicoTaxa(repositorioTaxa);
             //var servicoPlano = new ServicoPlano(repositorioPlano);
-            var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
-            var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioGrupoVeiculo);
-            var servicoVeiculo = new ServicoVeiculo(repositorioVeículo);
+            //var servicoFuncionario = new ServicoFuncionario(repositorioFuncionario);
+            //var servicoGrupoVeiculo = new ServicoGrupoVeiculo(repositorioGrupoVeiculo);
+            //var servicoVeiculo = new ServicoVeiculo(repositorioVeículo);
 
             // controladores.Add("Cliente", new ControladorCliente(servicoCliente));
             //controladores.Add("Condutor", new ControladorCondutor(servicoCondutor, servicoCliente));
             //controladores.Add("Taxa", new ControladorTaxa(servicoTaxa));
             //controladores.Add("Plano de Cobrança", new ControladorPlano(servicoPlano));
-            controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
-            controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo(servicoGrupoVeiculo));
-            controladores.Add("Veículo", new ControladorVeiculo(servicoVeiculo, servicoGrupoVeiculo));
+            //controladores.Add("Funcionário", new ControladorFuncionario(servicoFuncionario));
+            //controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo(servicoGrupoVeiculo));
+            //controladores.Add("Veículo", new ControladorVeiculo(servicoVeiculo, servicoGrupoVeiculo));
 
 
             //RepositorioOrm - LocadoraAutomoveisOrmDB
@@ -87,6 +90,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             var repositorioLocacaoOrm = new RepositorioLocacaoOrm(contextoDadosOrm);
             var repositorioVeiculoOrm = new RepositorioVeiculoOrm(contextoDadosOrm);
             var repositorioGrupoVeiculoOrm = new RepositorioGrupoVeiculoOrm(contextoDadosOrm);
+            var repositorioClienteOrm = new RepositorioClienteOrm(contextoDadosOrm);
+            var repositorioCondutorOrm = new RepositorioCondutorOrm(contextoDadosOrm);
             
             
             //serviços
@@ -96,6 +101,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             var servicoLocacaoOrm = new ServicoLocacao(repositorioLocacaoOrm, contextoDadosOrm);
             var servicoVeiculoOrm = new ServicoVeiculo(repositorioVeiculoOrm, contextoDadosOrm);
             var servicoGrupoVeiculoOrm = new ServicoGrupoVeiculo(repositorioGrupoVeiculoOrm, contextoDadosOrm);
+            var servicoClienteOrm = new ServicoCliente(repositorioClienteOrm, contextoDadosOrm);
+            var servicoCondutorOrm = new ServicoCondutor(repositorioCondutorOrm, contextoDadosOrm);
            
 
             //controladores
@@ -105,6 +112,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             controladores.Add("Locação", new ControladorLocacao(servicoLocacaoOrm));
             controladores.Add("Veículo", new ControladorVeiculo(servicoVeiculoOrm, servicoGrupoVeiculoOrm));
             controladores.Add("Grupo de Veículo", new ControladorGrupoVeiculo(servicoGrupoVeiculoOrm));
+            controladores.Add("Condutor", new ControladorCondutor(servicoCondutorOrm, servicoClienteOrm));
+            controladores.Add("Cliente", new ControladorCliente(servicoClienteOrm));
         }
     }
 }

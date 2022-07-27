@@ -42,6 +42,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         {
             var id = tabelaVeiculos.ObtemNumeroVeiculoSelecionado();
 
+            var grupos = servicoGrupoVeiculo.SelecionarTodos().Value;
+
+
             if (id == Guid.Empty)
             {
                 MessageBox.Show("Selecione um veiculo primeiro",
@@ -61,7 +64,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
             var Selecionado = resultado.Value;
 
-            TelaCadastroVeiculo tela = new();
+            TelaCadastroVeiculo tela = new(grupos);
 
             tela.Veiculo = Selecionado;
 
