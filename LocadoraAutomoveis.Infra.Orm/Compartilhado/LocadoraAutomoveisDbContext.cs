@@ -1,4 +1,5 @@
-﻿using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
+﻿using LocadoraAutomoveis.Infra.Orm.ModuloCliente;
+using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -42,6 +43,7 @@ namespace LocadoraAutomoveis.Infra.Orm.Compartilhado
             //modelBuilder.ApplyConfigurationsFromAssembly( typeof(LocadoraAutomoveisDbContext).Assembly );
 
             modelBuilder.ApplyConfiguration(new MapeadorGrupoVeiculoOrm());
+            modelBuilder.ApplyConfiguration(new MapeadorClienteOrm());
 
             //modelBuilder.Ignore<Cliente>();   cancela a criação automática das entidades relacionadas, do tipo informado
             //modelBuilder.Ignore<Condutor>();

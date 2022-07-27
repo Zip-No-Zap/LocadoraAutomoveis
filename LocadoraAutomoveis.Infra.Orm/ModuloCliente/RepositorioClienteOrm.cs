@@ -14,27 +14,34 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCliente
 
         public RepositorioClienteOrm(LocadoraAutomoveisDbContext dbContext)
         {
-            dbsetClientes = dbContext.Set<Cliente>();
+            _dbContext = dbContext;
+            dbsetClientes = _dbContext.Set<Cliente>();
         }
 
         public void Inserir(Cliente registro)
         {
             dbsetClientes.Add(registro);
+
+            _dbContext.SaveChanges();
         }
 
         public void Editar(Cliente registro)
         {
             dbsetClientes.Update(registro);
+
+            _dbContext.SaveChanges();
         }
 
         public void Excluir(Cliente registro)
         {
             dbsetClientes.Remove(registro);
+
+            _dbContext.SaveChanges();
         }
 
         public Cliente SelecionarPorId(Guid id)
         {
-            return dbsetClientes.FirstOrDefault(x => x.Id == id);
+            return dbsetClientes.Find(id);
         }
 
         public List<Cliente> SelecionarTodos(bool verificador = false)
