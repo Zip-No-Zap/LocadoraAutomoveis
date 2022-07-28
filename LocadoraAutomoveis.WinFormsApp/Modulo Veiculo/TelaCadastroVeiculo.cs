@@ -141,7 +141,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 txbQuilometragemAtual.Text = "0";
         }
 
-
         private void btnAdicionarFoto_Click(object sender, EventArgs e)
         {
             imagemSelecionada = veiculo.Foto;
@@ -175,45 +174,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             FormPrincipal.Instancia.AtualizarRodape("");
         }
 
-        private void ObterIdGrupoVeiculo()
-        {
-            if (cmbGrupoVeiculo.SelectedIndex != -1)
-            {
-                var servicoGrupo = new ServicoGrupoVeiculo(new RepositorioGrupoVeiculoOrm(dbContext), contextoPersistencia);
-
-                var gruposResult = servicoGrupo.SelecionarTodos();
-
-                List<GrupoVeiculo> grupos = null;
-
-                if (gruposResult.IsSuccess)
-                    grupos = gruposResult.Value;
-
-                var grupoEncontrado = grupos.Find(g => g.Nome.Equals(cmbGrupoVeiculo.SelectedItem.ToString()));
-
-                lblIDGrupo.Text = grupoEncontrado.Id.ToString();
-            }
-        }
-
-        private void ObterItensGrupoVeiculo()//TODO : Obter itens grupo deve ser feito pelo controlador/serviço
-        {
-            var servicoGrupo = new ServicoGrupoVeiculo(new RepositorioGrupoVeiculoOrm(dbContext), contextoPersistencia);
-
-            var nomesResult = servicoGrupo.SelecionarTodos();
-
-            List<GrupoVeiculo> nomes = null;
-
-            if (nomesResult.IsSuccess)
-                nomes = nomesResult.Value;
-
-            if (nomes != null)
-            {
-                foreach (GrupoVeiculo gv in nomes)
-                {
-                    cmbGrupoVeiculo.Items.Add(gv.Nome);
-                }
-            }
-        }
-    
         private void txbModelo_Leave(object sender, EventArgs e)
         {
             ValidadorCampos.ImpedirTextoMenorDois(txbModelo.Text);

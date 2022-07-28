@@ -20,7 +20,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID", Visible = false},
                 new DataGridViewTextBoxColumn { DataPropertyName = "ClienteLocacao_Nome", HeaderText = "Cliente"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "CondutorLocacao_Nome", HeaderText = "Condutor Nome"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "CondutorLocacao_Cnh", HeaderText = "Condutor CNH"},
