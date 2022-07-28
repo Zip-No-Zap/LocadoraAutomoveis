@@ -71,7 +71,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             }
         }
 
-
         public override void Excluir()
         {
             var id = tabelaLocacaos.ObtemNumeroLocacaoSelecionado();
