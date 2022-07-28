@@ -40,6 +40,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
         public T Get<T>() where T : ControladorBase
         {
             var tipo = typeof(T);
+
             return (T)controladores[tipo.Name];
         }
 
