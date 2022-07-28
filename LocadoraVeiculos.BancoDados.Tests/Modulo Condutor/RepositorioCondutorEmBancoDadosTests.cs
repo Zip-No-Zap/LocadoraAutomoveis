@@ -1,24 +1,27 @@
-﻿using LocadoraVeiculos.Dominio.Modulo_Cliente;
+﻿using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloCliente;
+using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
+using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
-using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+
 
 namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Condutor
 {
     [TestClass]
     public class RepositorioCondutorEmBancoDadosTests
     {
-        RepositorioCondutorEmBancoDados repositorioCondutor;
-        RepositorioClienteEmBancoDados repositorioCliente;
+        RepositorioCondutorOrm repositorioCondutor;
+        RepositorioClienteOrm repositorioCliente;
+        LocadoraAutomoveisDbContext dbContext;
+        const string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDBTestes;Integrated Security=True";
+
         public RepositorioCondutorEmBancoDadosTests()
         {
-            repositorioCondutor = new();
-            repositorioCliente = new();
-
-            //ResetarBancoDadosCondutor();
-            //ResetarBancoDadosCliente();
+            dbContext = new(connectionString);
+            repositorioCondutor = new(dbContext);
+            repositorioCliente = new(dbContext);
         }
 
         [TestMethod]
@@ -29,22 +32,27 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Condutor
 
             //action
             repositorioCondutor.Inserir(condutor);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repositorioCondutor.SelecionarPorId(condutor.Id);
 
             Assert.IsNotNull(resultado);
         }
+
         [TestMethod]
         public void Deve_editar_condutor()
         {
             //arrange
             Condutor condutor = InstanciarCondutor();
             repositorioCondutor.Inserir(condutor);
+            dbContext.SaveChanges();
+
+            condutor.Email = "biazinha@gmail.com";
 
             //action
-            condutor.Email = "biazinha@gmail.com";
             repositorioCondutor.Editar(condutor);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repositorioCondutor.SelecionarPorId(condutor.Id);
@@ -59,10 +67,11 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Condutor
             //arrange
             var condutor = InstanciarCondutor();
             repositorioCondutor.Inserir(condutor);
-           
+            dbContext.SaveChanges();
 
             //action
             repositorioCondutor.Excluir(condutor);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repositorioCondutor.SelecionarPorId(condutor.Id);
@@ -70,6 +79,38 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Condutor
             Assert.IsNull(resultado);
         }
 
+        [TestMethod]
+        public void Deve_selecionar_todos()
+        {
+            //arrange
+            var condutor = InstanciarCondutor();
+
+            repositorioCondutor.Inserir(condutor);
+            dbContext.SaveChanges();
+
+            //action
+            var resultado = repositorioCliente.SelecionarTodos();
+
+            //assert
+            Assert.AreNotEqual(0, resultado.Count);
+        }
+
+
+        [TestMethod]
+        public void Deve_selecionar_unico()
+        {
+            //arrange
+            var condutor = InstanciarCondutor();
+
+            repositorioCondutor.Inserir(condutor);
+            dbContext.SaveChanges();
+
+            //action
+            var resultado = repositorioCondutor.SelecionarPorId(condutor.Id);
+
+            //assert
+            Assert.AreNotEqual(null, resultado);
+        }
 
         #region privates
 
@@ -97,16 +138,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Condutor
                 Telefone = "(11)91234-5678"
 
             };
-        }
-
-        private void ResetarBancoDadosCondutor()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBCONDUTOR; DBCC CHECKIDENT (TBCONDUTOR, RESEED, 0)");
-        }
-
-        private void ResetarBancoDadosCliente()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)");
         }
 
         #endregion

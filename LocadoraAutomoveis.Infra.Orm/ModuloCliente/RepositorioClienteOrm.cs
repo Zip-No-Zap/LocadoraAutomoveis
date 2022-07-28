@@ -21,22 +21,16 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCliente
         public void Inserir(Cliente registro)
         {
             dbsetClientes.Add(registro);
-
-            _dbContext.SaveChanges();
         }
 
         public void Editar(Cliente registro)
         {
             dbsetClientes.Update(registro);
-
-            _dbContext.SaveChanges();
         }
 
         public void Excluir(Cliente registro)
         {
             dbsetClientes.Remove(registro);
-
-            _dbContext.SaveChanges();
         }
 
         public Cliente SelecionarPorId(Guid id)

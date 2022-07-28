@@ -14,7 +14,8 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
 
         public RepositorioCondutorOrm(LocadoraAutomoveisDbContext dbContext)
         {
-            dbsetCondutor = dbContext.Set<Condutor>();
+            _dbContext = dbContext;
+            dbsetCondutor = _dbContext.Set<Condutor>();
         }
         public void Inserir(Condutor registro)
         {
@@ -32,7 +33,8 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
 
         public Condutor SelecionarPorId(Guid id)
         {
-            return dbsetCondutor.FirstOrDefault(x => x.Id == id);
+            //dbsetCondutor.FirstOrDefault(x => x.Id == id);
+            return dbsetCondutor.Find(id);
         }
        
         public List<Condutor> SelecionarTodos(bool incluir = false)

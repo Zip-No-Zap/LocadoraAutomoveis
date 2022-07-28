@@ -27,6 +27,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
 
             //action
             repoGrupoVeiculo.Inserir(grupo);
+            dbContext.SaveChanges();
 
             //assert
             GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
@@ -47,6 +48,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
 
             //action
             repoGrupoVeiculo.Editar(grupo);
+            dbContext.SaveChanges();
 
             GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
 
@@ -65,6 +67,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
             
             //action
             repoGrupoVeiculo.Excluir(grupo);
+            dbContext.SaveChanges();
 
             //assert
             GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);

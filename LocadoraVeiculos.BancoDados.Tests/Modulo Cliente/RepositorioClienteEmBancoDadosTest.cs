@@ -30,6 +30,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
 
             //action
             repositorioCliente.Inserir(cliente);
+            dbContext.SaveChanges();
 
             //assert
             var selecionado = repositorioCliente.SelecionarPorId(cliente.Id);
@@ -47,6 +48,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
 
             //action
             repositorioCliente.Editar(cliente);
+            dbContext.SaveChanges();
 
             //assert
             var selecionado = repositorioCliente.SelecionarPorId(cliente.Id);
@@ -63,6 +65,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
 
             //action
             repositorioCliente.Excluir(clienteSelecionado);
+            dbContext.SaveChanges();
 
             //assert
             var selecionado = repositorioCliente.SelecionarPorId(clienteSelecionado.Id);
