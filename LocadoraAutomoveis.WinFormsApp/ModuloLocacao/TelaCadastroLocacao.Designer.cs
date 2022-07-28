@@ -73,7 +73,7 @@
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Location = new System.Drawing.Point(12, 790);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1199, 98);
+            this.panel1.Size = new System.Drawing.Size(1183, 98);
             this.panel1.TabIndex = 0;
             // 
             // btnLimpar
@@ -194,7 +194,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(434, 21);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(777, 383);
+            this.groupBox1.Size = new System.Drawing.Size(761, 383);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Locação";
@@ -203,7 +203,7 @@
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Location = new System.Drawing.Point(667, 214);
+            this.btnAdd.Location = new System.Drawing.Point(667, 234);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(69, 36);
             this.btnAdd.TabIndex = 6;
@@ -213,7 +213,7 @@
             // listView1
             // 
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(441, 256);
+            this.listView1.Location = new System.Drawing.Point(441, 276);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(295, 101);
             this.listView1.TabIndex = 14;
@@ -224,7 +224,7 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(441, 193);
+            this.label9.Location = new System.Drawing.Point(441, 213);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(118, 21);
             this.label9.TabIndex = 13;
@@ -233,7 +233,7 @@
             // cbItens
             // 
             this.cbItens.FormattingEnabled = true;
-            this.cbItens.Location = new System.Drawing.Point(441, 217);
+            this.cbItens.Location = new System.Drawing.Point(441, 237);
             this.cbItens.Name = "cbItens";
             this.cbItens.Size = new System.Drawing.Size(220, 33);
             this.cbItens.TabIndex = 5;
@@ -397,7 +397,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox3.Location = new System.Drawing.Point(15, 447);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1196, 310);
+            this.groupBox3.Size = new System.Drawing.Size(1180, 310);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Detalhes da Locação";
@@ -406,7 +406,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1234, 900);
+            this.ClientSize = new System.Drawing.Size(1209, 900);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnDetalhar);
             this.Controls.Add(this.groupBox1);
