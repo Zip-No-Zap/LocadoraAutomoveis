@@ -28,7 +28,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome do Grupo"},
-
             };
 
             return colunas;

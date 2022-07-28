@@ -130,7 +130,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
                 tabelaGrupoVeiculo.AtualizarRegistros(grupos);
 
                 FormPrincipal.Instancia.AtualizarRodape($"Visualizando {grupos.Count} grupo(s) de Veiculo(s)");
-
             }
 
             else

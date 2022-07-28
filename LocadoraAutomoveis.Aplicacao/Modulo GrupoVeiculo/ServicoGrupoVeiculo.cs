@@ -43,6 +43,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
             try
             {
                 repositorioGrupoVeiculo.Inserir(grupoVeiculo);
+
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Grupo de Veículo inserido com sucesso. {@grupo}", grupoVeiculo);
 
 
@@ -80,6 +83,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
             {
                 repositorioGrupoVeiculo.Editar(grupoVeiculo);
 
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Grupo de Veículo . {GrupoVeiculoId} editado com sucesso", grupoVeiculo.Id);
                 
 
@@ -102,6 +107,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
             try
             {
                 repositorioGrupoVeiculo.Excluir(grupoVeiculo);
+
+                contextoPersistOrm.GravarDados();
 
                 Log.Logger.Information("GrupoVeiculo {GrupoVeiculoId} excluído com sucesso", grupoVeiculo.Id);
 

@@ -45,6 +45,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
             {
                 repositorioVeiculo.Inserir(veiculo);
 
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Veículo inserido com sucesso. {@veiculo}", veiculo);
 
 
@@ -83,6 +85,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
             {
                 repositorioVeiculo.Editar(veiculo);
 
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Veículo . {VeiculoId} editado com sucesso", veiculo.Id);
 
 
@@ -105,6 +109,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
             try
             {
                 repositorioVeiculo.Excluir(veiculo);
+
+                contextoPersistOrm.GravarDados();
 
                 Log.Logger.Information("Veiculo {VeiculoId} excluído com sucesso", veiculo.Id);
 
