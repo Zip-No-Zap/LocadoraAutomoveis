@@ -1,7 +1,7 @@
-﻿using LocadoraVeiculos.Dominio.Modulo_Veiculo;
-using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo;
+﻿using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
+using LocadoraAutomoveis.Infra.Orm.ModuloVeiculo;
+using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
@@ -10,17 +10,16 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
     [TestClass]
     public class RepositorioVeiculoBancoDadosTests
     {
-        RepositorioVeiculoEmBancoDados repoVeiculo;
-        RepositorioGrupoVeiculoEmBancoDados repoGrupo;
+        readonly RepositorioGrupoVeiculoOrm repoGrupo;
+        readonly RepositorioVeiculoOrm repoVeiculo;
+        LocadoraAutomoveisDbContext dbContext;
+        const string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDBTestes;Integrated Security=True";
 
         public RepositorioVeiculoBancoDadosTests()
         {
-            repoVeiculo = new();
-            repoGrupo = new();
-
-            //ResetarBancoDadosPlano();
-            //ResetarBancoDadosVeiculo();
-            //ResetarBancoDadosGrupo();
+            dbContext = new(connectionString);
+            repoGrupo = new(dbContext);
+            repoVeiculo = new(dbContext);
         }
 
         [TestMethod]
@@ -29,9 +28,11 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
             //arrange
             var veiculo = InstanciarVeiculo();
             repoGrupo.Inserir(veiculo.GrupoPertencente);
+            dbContext.SaveChanges();
 
             //action
             repoVeiculo.Inserir(veiculo);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repoVeiculo.SelecionarPorId(veiculo.Id);
@@ -49,10 +50,13 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
 
             repoVeiculo.Inserir(veiculo);
 
+            dbContext.SaveChanges();
+
             veiculo.Modelo = "Tobata bimotor";
 
             //action
             repoVeiculo.Editar(veiculo);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repoVeiculo.SelecionarPorId(veiculo.Id);
@@ -68,9 +72,11 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
 
             repoGrupo.Inserir(veiculo.GrupoPertencente);
             repoVeiculo.Inserir(veiculo);
+            dbContext.SaveChanges();
 
             //action
             repoVeiculo.Excluir(veiculo);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repoVeiculo.SelecionarPorId(veiculo.Id);
@@ -88,9 +94,10 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
             repoGrupo.Inserir(veiculo1.GrupoPertencente);
             repoVeiculo.Inserir(veiculo1);
             repoVeiculo.Inserir(veiculo2);
+            dbContext.SaveChanges();
 
             //action
-            var resultado = repoVeiculo.SelecionarTodos();
+            var resultado = repoVeiculo.SelecionarTodos(true);
 
             //assert
             Assert.AreNotEqual(0, resultado.Count);
@@ -104,6 +111,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
 
             repoGrupo.Inserir(veiculo1.GrupoPertencente);
             repoVeiculo.Inserir(veiculo1);
+            dbContext.SaveChanges();
 
             //action
             var resultado = repoVeiculo.SelecionarPorId(veiculo1.Id);
@@ -113,6 +121,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
         }
 
         #region privados
+
         Veiculo InstanciarVeiculo()
         {
             return new Veiculo()
@@ -147,20 +156,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Veiculo
             };
         }
 
-        void ResetarBancoDadosVeiculo()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBVEICULO; DBCC CHECKIDENT (TBVEICULO, RESEED, 0)");
-        }
-
-        void ResetarBancoDadosGrupo()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBGRUPOVEICULO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
-        }
-
-        void ResetarBancoDadosPlano()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBPLANO; DBCC CHECKIDENT (TBPLANO, RESEED, 0)");
-        }
         #endregion
     }
 }
