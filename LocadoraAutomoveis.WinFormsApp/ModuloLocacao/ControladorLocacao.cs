@@ -28,7 +28,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             //tela.GravarRegistro = servicoLocacao.Inserir;
 
-
             //if (tela.ShowDialog() == DialogResult.OK)
             //{
             //    CarregarLocacaos();
@@ -81,7 +80,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     "Exclusão de Locacao", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
 
             var resultado = servicoLocacao.SelecionarPorId(id);
 
