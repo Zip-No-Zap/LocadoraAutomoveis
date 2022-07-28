@@ -57,7 +57,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.lblIDGrupo = new System.Windows.Forms.Label();
             this.tabControlPlano.SuspendLayout();
             this.tabPageDiario.SuspendLayout();
             this.tabPageLivre.SuspendLayout();
@@ -364,22 +363,9 @@
             this.btnOK.UseVisualStyleBackColor = false;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click_1);
             // 
-            // lblIDGrupo
-            // 
-            this.lblIDGrupo.AutoSize = true;
-            this.lblIDGrupo.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblIDGrupo.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.lblIDGrupo.Location = new System.Drawing.Point(343, 64);
-            this.lblIDGrupo.Name = "lblIDGrupo";
-            this.lblIDGrupo.Size = new System.Drawing.Size(121, 21);
-            this.lblIDGrupo.TabIndex = 5;
-            this.lblIDGrupo.Text = "receberIDGrupo";
-            this.lblIDGrupo.Visible = false;
-            // 
             // TelaCadastroPlano
             // 
             this.ClientSize = new System.Drawing.Size(467, 588);
-            this.Controls.Add(this.lblIDGrupo);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControlPlano);
             this.Controls.Add(this.lblGrupo);
@@ -436,6 +422,5 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label lblIDGrupo;
     }
 }

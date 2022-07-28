@@ -1,14 +1,14 @@
-﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado;
-using LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator;
-using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
-using LocadoraAutomoveis.WinFormsApp.Modulo_Condutor;
-using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
+﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator;
 using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
+using LocadoraAutomoveis.WinFormsApp.Modulo_Condutor;
+using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
+using LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Taxa;
-using LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo;
-using System;
 using System.Windows.Forms;
+using System;
 
 namespace LocadoraAutomoveis.WinFormsApp
 {

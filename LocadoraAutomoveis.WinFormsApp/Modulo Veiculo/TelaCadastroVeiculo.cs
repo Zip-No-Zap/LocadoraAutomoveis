@@ -53,7 +53,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 
                 pbFoto.Image = veiculo.Imagem;
 
-                cmbGrupoVeiculo.Text = veiculo.GrupoPertencente.Nome;
+                if (veiculo.GrupoPertencente != null)
+                    cmbGrupoVeiculo.SelectedItem = veiculo.GrupoPertencente;
+                else
+                    cmbGrupoVeiculo.SelectedIndex = -1;
 
                 imagemSelecionada = veiculo.Foto;
             }
@@ -78,10 +81,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         {
             ImputarZeroCamposVazios();
 
-            if (!string.IsNullOrEmpty(cmbGrupoVeiculo.Text))
-                veiculo.GrupoPertencente.Id = Guid.Parse(lblIDGrupo.Text);
-
-            veiculo.GrupoPertencente.Nome = cmbGrupoVeiculo.Text;
+            veiculo.GrupoPertencente = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
 
             veiculo.Modelo = txbModelo.Text;
             veiculo.Placa = txbPlaca.Text;
@@ -173,8 +173,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         private void TelaCadastroVeiculo_Load(object sender, EventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
-
-            ObterItensGrupoVeiculo();
         }
 
         private void ObterIdGrupoVeiculo()
@@ -194,11 +192,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
                 lblIDGrupo.Text = grupoEncontrado.Id.ToString();
             }
-        }
-
-        private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ObterIdGrupoVeiculo();
         }
 
         private void ObterItensGrupoVeiculo()//TODO : Obter itens grupo deve ser feito pelo controlador/serviço
@@ -249,11 +242,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         private void TelaCadastroVeiculo_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
-        }
-
-        private void cmbGrupoVeiculo_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            ObterIdGrupoVeiculo();
         }
 
         private void txbPlaca_KeyPress(object sender, KeyPressEventArgs e)

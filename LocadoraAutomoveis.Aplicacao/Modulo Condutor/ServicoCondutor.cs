@@ -16,7 +16,6 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
         //readonly RepositorioCondutorEmBancoDados repositorioCondutor;
         readonly RepositorioCondutorOrm repositorioCondutor;
         readonly IContextoPersistencia contextoPersistOrm;
-        ValidadorCondutor validadorCondutor;
 
 
         public ServicoCondutor(RepositorioCondutorOrm repositorioCondutor, IContextoPersistencia contextoPersistOrm)

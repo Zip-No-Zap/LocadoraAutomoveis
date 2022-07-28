@@ -16,7 +16,6 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
         readonly RepositorioClienteOrm repositorioCliente;
         readonly IContextoPersistencia contextoPersistOrm;
-        ValidadorCliente validadorCliente;
 
 
         public ServicoCliente(RepositorioClienteOrm repositorioCliente, IContextoPersistencia contextoPersistOrm)

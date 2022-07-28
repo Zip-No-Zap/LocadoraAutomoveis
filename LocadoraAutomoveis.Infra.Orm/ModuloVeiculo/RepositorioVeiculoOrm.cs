@@ -33,21 +33,16 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloVeiculo
             dbsetVeiculos.Remove(registro);
         }
 
-
-
         public Veiculo SelecionarPorId(Guid id)
         {
             return dbsetVeiculos.FirstOrDefault(x => x.Id == id);
         }
 
-
-
-        public List<Veiculo> SelecionarTodos(bool verificador)
+        public List<Veiculo> SelecionarTodos(bool incluir = true)
         {
-            if (verificador)
-                return dbsetVeiculos.Include(x => x.GrupoPertencente).ToList();
-
-            return dbsetVeiculos.ToList();
+              return dbsetVeiculos
+                .Include(x => x.GrupoPertencente)
+                .ToList();
         }
 
         public Veiculo SelecionarPorPlaca(string placa)

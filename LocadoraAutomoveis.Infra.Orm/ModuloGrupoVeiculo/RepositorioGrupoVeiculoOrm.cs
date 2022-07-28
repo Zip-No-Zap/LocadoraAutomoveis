@@ -17,7 +17,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo
         public RepositorioGrupoVeiculoOrm(LocadoraAutomoveisDbContext dbContext)
         {
             _dbContext = dbContext;
-            dbsetGrupos = dbContext.Set<GrupoVeiculo>();
+            dbsetGrupos = _dbContext.Set<GrupoVeiculo>();
         }
 
         public void Inserir(GrupoVeiculo registro)
