@@ -22,6 +22,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             // ResetarBancoDadosCondutor();
             // ResetarBancoDadosCliente();
         }
+
         [TestMethod]
         public void Deve_inserir_cliente()
         {
@@ -37,12 +38,14 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
 
             Assert.IsNotNull(selecionado);
         }
+
         [TestMethod]
         public void Deve_editar_cliente()
         {
             // arrange
             var cliente = InstanciarCliente();
             repositorioCliente.Inserir(cliente);
+            dbContext.SaveChanges();
 
             cliente.Nome = "Ana Beatriz editado pelo teste";
 
@@ -55,12 +58,15 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
 
             Assert.AreEqual(cliente.Nome, selecionado.Nome);
         }
+
         [TestMethod]
         public void Deve_excluir_cliente()
         {
             //arrange
             var cliente = InstanciarCliente();
             repositorioCliente.Inserir(cliente);
+            dbContext.SaveChanges();
+
             Cliente clienteSelecionado = repositorioCliente.SelecionarPorId(cliente.Id);
 
             //action
@@ -99,6 +105,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             var cliente1 = InstanciarCliente();
 
             repositorioCliente.Inserir(cliente1);
+            dbContext.SaveChanges();
+
 
             //action
             var resultado = repositorioCliente.SelecionarPorId(cliente1.Id);
@@ -113,6 +121,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             //arrange
             var cliente1 = InstanciarCliente();
             repositorioCliente.Inserir(cliente1);
+            dbContext.SaveChanges();
+
 
             //action
             var resultado = repositorioCliente.SelecionarPorNome(cliente1.Nome);
@@ -127,6 +137,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             //arrange
             var cliente1 = InstanciarCliente();
             repositorioCliente.Inserir(cliente1);
+            dbContext.SaveChanges();
 
             //action
             var resultado = repositorioCliente.SelecionarPorCpf(cliente1.Cpf);

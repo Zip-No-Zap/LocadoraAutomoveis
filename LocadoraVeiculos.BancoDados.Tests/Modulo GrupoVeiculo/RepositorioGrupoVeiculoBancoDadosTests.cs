@@ -43,6 +43,8 @@ namespace LocadoraVeiculos.BancoDados.Tests
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
 
             repoGrupoVeiculo.Inserir(grupo);
+            dbContext.SaveChanges();
+
 
             grupo.Nome = "Foi alterado no teste";
 
@@ -81,9 +83,12 @@ namespace LocadoraVeiculos.BancoDados.Tests
             //arrange
             GrupoVeiculo grupo1 = InstanciarGrupoVeiculo();
             repoGrupoVeiculo.Inserir(grupo1);
-            
+            dbContext.SaveChanges();
+
+
             GrupoVeiculo grupo2 = InstanciarGrupoVeiculo2();
             repoGrupoVeiculo.Inserir(grupo2);
+            dbContext.SaveChanges();
 
 
             //action
@@ -96,12 +101,12 @@ namespace LocadoraVeiculos.BancoDados.Tests
         [TestMethod]
         public void Deve_selecionar_por_id_grupo()
         {
-            
             //arrange
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
             grupo.Nome = "teste04";
 
             repoGrupoVeiculo.Inserir(grupo);
+            dbContext.SaveChanges();
 
             //action
             GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
