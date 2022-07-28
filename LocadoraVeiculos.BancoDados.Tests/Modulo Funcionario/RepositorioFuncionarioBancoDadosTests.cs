@@ -1,22 +1,24 @@
-using FluentValidation.Results;
+using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloFuncionario;
 using LocadoraVeiculos.Dominio.Modulo_Funcionario;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Funcionario;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+
 
 namespace LocadoraVeiculos.BancoDados.Tests
 {
     [TestClass]
     public class RepositorioFuncionarioBancoDadosTests
     {
-        RepositorioFuncionarioEmBancoDados repoFunc;
+        RepositorioFuncionarioOrm repoFunc;
+        LocadoraAutomoveisDbContext dbContext;
+        const string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDBTestes;Integrated Security=True";
 
         public RepositorioFuncionarioBancoDadosTests()
         {
-            repoFunc = new();
-
-           // ResetarBancoDados();
+            dbContext = new(connectionString);
+            repoFunc = new(dbContext);
         }
 
         [TestMethod]
@@ -27,6 +29,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
 
             //action
             repoFunc.Inserir(funcionario);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repoFunc.SelecionarPorId(funcionario.Id);
@@ -40,7 +43,8 @@ namespace LocadoraVeiculos.BancoDados.Tests
             //arrange
             var funcionario = InstanciarFuncionario();
             repoFunc.Inserir(funcionario);
-           
+            dbContext.SaveChanges();
+
             Funcionario funcionarioSelecionado = repoFunc.SelecionarPorId(funcionario.Id);
 
             funcionarioSelecionado.Nome = "Foi alterado no teste";
@@ -48,6 +52,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
 
             //action
             repoFunc.Editar(funcionarioSelecionado);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repoFunc.SelecionarPorId(funcionarioSelecionado.Id);
@@ -62,9 +67,11 @@ namespace LocadoraVeiculos.BancoDados.Tests
             var funcionario = InstanciarFuncionario();
 
             repoFunc.Inserir(funcionario);
+            dbContext.SaveChanges();
 
             //action
             repoFunc.Excluir(funcionario);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repoFunc.SelecionarPorId(funcionario.Id);
@@ -79,11 +86,12 @@ namespace LocadoraVeiculos.BancoDados.Tests
             var func1 = InstanciarFuncionario();
             var func2 = InstanciarFuncionario2();
 
-            repoFunc.Inserir(func1); 
-            repoFunc.Inserir(func2); 
+            repoFunc.Inserir(func1);
+            repoFunc.Inserir(func2);
+            dbContext.SaveChanges();
 
             //action
-            var resultado = repoFunc.SelecionarTodos();
+            var resultado = repoFunc.SelecionarTodos(false);
 
             //assert
             Assert.AreNotEqual(0, resultado.Count);
@@ -97,6 +105,7 @@ namespace LocadoraVeiculos.BancoDados.Tests
             var func1 = InstanciarFuncionario();
 
             repoFunc.Inserir(func1);
+            dbContext.SaveChanges();
 
             //action
             var resultado = repoFunc.SelecionarPorId(func1.Id);
@@ -137,12 +146,6 @@ namespace LocadoraVeiculos.BancoDados.Tests
                 Perfil = "Administrador"
             };
         }
-
-        void ResetarBancoDados()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBFUNCIONARIO; DBCC CHECKIDENT (TBFUNCIONARIO, RESEED, 0)");
-        }
-
 
         #endregion
     }

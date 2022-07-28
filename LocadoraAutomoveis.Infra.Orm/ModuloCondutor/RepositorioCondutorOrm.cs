@@ -33,8 +33,8 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
 
         public Condutor SelecionarPorId(Guid id)
         {
-            //dbsetCondutor.FirstOrDefault(x => x.Id == id);
-            return dbsetCondutor.Find(id);
+            return dbsetCondutor.FirstOrDefault(x => x.Id == id);
+            //return dbsetCondutor.Find(id); // busca no cache somente
         }
        
         public List<Condutor> SelecionarTodos(bool incluir = false)

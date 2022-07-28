@@ -36,8 +36,8 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo
 
         public GrupoVeiculo SelecionarPorId(Guid id)
         {
-            //return dbsetGrupos.FirstOrDefault(x => x.Id == id);
-            return dbsetGrupos.Find(id);
+            return dbsetGrupos.FirstOrDefault(x => x.Id == id);
+            //return dbsetGrupos.Find(id) // busca só no cache
 
         }
 

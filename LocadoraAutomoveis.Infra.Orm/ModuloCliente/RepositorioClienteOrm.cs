@@ -35,7 +35,8 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCliente
 
         public Cliente SelecionarPorId(Guid id)
         {
-            return dbsetClientes.Find(id);
+            //return dbsetClientes.Find(id);
+            return dbsetClientes.FirstOrDefault(x => x.Id == id);
         }
 
         public List<Cliente> SelecionarTodos(bool verificador = false)
