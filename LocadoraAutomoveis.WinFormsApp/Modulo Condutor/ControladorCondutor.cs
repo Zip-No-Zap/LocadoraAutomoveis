@@ -47,47 +47,42 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 
         public override void Editar()
         {
-            Condutor selecionado = null;
-            List<Cliente> selecionadoClientes = null; 
+            var id = tabelaCondutor.ObtemNumerCondutorSelecionado();
 
-            Result<Condutor> resultadoResult = ObtemCondutorSelecionado();
+            if (id == Guid.Empty)
+            {
+                MessageBox.Show("Selecione um condutor primeiro",
+                    "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var resultado = servicoCondutor.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var selecionado = resultado.Value;
 
             Result<List<Cliente>> resultadocliente = servicoCliente.SelecionarTodos();
 
-            if (resultadoResult.IsSuccess && resultadocliente.IsSuccess)
-            {
-                selecionado = resultadoResult.Value;
+            var selecionadoClientes = resultadocliente.Value;
 
-                selecionadoClientes = resultadocliente.Value;
+            TelaCadastroCondutor tela = new(selecionadoClientes);
 
-                if (selecionado.Id == Guid.Empty)
-                {
-                    MessageBox.Show("Selecione um condutor primeiro",
-                    "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+            tela.Condutor = selecionado;
 
-                TelaCadastroCondutor tela = new(selecionadoClientes)
-                {
-                    Condutor = selecionado,
+            tela.GravarRegistro = servicoCondutor.Editar;
 
-                    GravarRegistro = servicoCondutor.Editar
-                };
 
-                DialogResult resultado = tela.ShowDialog();
+            if (tela.ShowDialog() == DialogResult.OK)
 
-                if (resultado == DialogResult.OK)
-                {
-                    CarregarCondutores();
-                }
-            }
-            else if (resultadoResult.IsFailed)
-            {
-                MessageBox.Show(resultadoResult.Errors[0].Message,
-                   "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+                CarregarCondutores();
         }
+
         public override void Excluir()
         {
             Condutor selecionado = null;

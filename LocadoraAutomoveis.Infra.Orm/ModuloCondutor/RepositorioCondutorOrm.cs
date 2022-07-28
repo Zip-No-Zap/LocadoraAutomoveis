@@ -37,9 +37,11 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
             //return dbsetCondutor.Find(id); // busca no cache somente
         }
        
-        public List<Condutor> SelecionarTodos(bool incluir = false)
+        public List<Condutor> SelecionarTodos(bool incluir = true)
         {
-            return dbsetCondutor.ToList();
+            return dbsetCondutor
+                .Include(x => x.Cliente)
+                .ToList();
         }
 
         public Condutor SelecionarPorNome(string nome)

@@ -21,6 +21,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 
         public ServicoCondutor(RepositorioCondutorOrm repositorioCondutor, IContextoPersistencia contextoPersistOrm)
         {
+            this.contextoPersistOrm = contextoPersistOrm;
             this.repositorioCondutor = repositorioCondutor;
         }
 
@@ -44,7 +45,10 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
             {
                 repositorioCondutor.Inserir(condutor); // RepositorioCondutorOrm
 
-                 Log.Logger.Information("Condutor inserido com sucesso. {@condutor}", condutor);
+                contextoPersistOrm.GravarDados();
+
+                Log.Logger.Information("Condutor inserido com sucesso. {@condutor}", condutor);
+
                 return Result.Ok(condutor);
             }
             catch (Exception ex)
@@ -77,6 +81,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
             {
                 repositorioCondutor.Editar(condutor);
 
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Condutor editado com sucesso. {@condutor}", condutor);
 
                 return Result.Ok(condutor);
@@ -98,6 +104,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
             try
             {
                 repositorioCondutor.Excluir(condutor);
+
+                contextoPersistOrm.GravarDados();
 
                 Log.Logger.Information("Condutor excluído com sucesso. {@condutor}", condutor);
 

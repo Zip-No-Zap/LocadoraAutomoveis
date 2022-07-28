@@ -45,7 +45,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
                 return;
             }
 
-
             var resultado = servicoGrupoVeiculo.SelecionarPorId(id);
 
             if (resultado.IsFailed)
@@ -55,19 +54,18 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
                 return;
             }
 
-                var Selecionado = resultado.Value;
+                var selecionado = resultado.Value;
 
                 TelaCadastroGrupoVeiculo tela = new();
 
-                tela.GrupoVeiculo = Selecionado;
+                tela.GrupoVeiculo = selecionado;
 
                 tela.GravarRegistro = servicoGrupoVeiculo.Editar;
 
 
                 if (tela.ShowDialog() == DialogResult.OK)
-                {
+
                     CarregarGruposVeiculos();
-                }
         }
 
 
