@@ -1,5 +1,4 @@
 ﻿using FluentResults;
-using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
@@ -120,10 +119,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
         {
             ImputarZeroCamposVazios();
 
-            if(!string.IsNullOrEmpty(cbGrupo.Text))
-                plano.Grupo.Id = Guid.Parse(lblIDGrupo.Text);
-
-            plano.Grupo.Nome = cbGrupo.Text; 
+            plano.Grupo = (GrupoVeiculo)cbGrupo.SelectedItem;
 
             plano.ValorDiario_Diario = float.Parse(tbValorDiario_Diario.Text);
             plano.ValorPorKm_Diario = float.Parse(tbValorKmRodado_Diario.Text);
@@ -135,8 +131,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             plano.LimiteQuilometragem_Controlado = Convert.ToInt32(tbLimiteQuilometragem.Text);
         
             Result <Plano> resultadoValidacao = GravarRegistro(plano);
-
-            
+           
             if (resultadoValidacao.IsSuccess == false)
             {
                 string erro = resultadoValidacao.Errors[0].Message;
@@ -167,7 +162,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             if (tbValorDiario_Diario.Text == "")
                 tbValorDiario_Diario.Text = "0";
         }
-
         private void tbValorDiario_Diario_KeyPress(object sender, KeyPressEventArgs e)
         {
             ValidadorCampos.ImpedirLetrasCharEspeciais(e);

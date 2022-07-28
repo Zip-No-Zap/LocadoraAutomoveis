@@ -40,12 +40,11 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloPlano
             return dbsetPlanos.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Plano> SelecionarTodos(bool incluiGrupo)
+        public List<Plano> SelecionarTodos(bool incluiGrupo = true)
         {
-            if (incluiGrupo)
-                return dbsetPlanos.Include(x => x.Grupo).ToList();
-
-            return dbsetPlanos.ToList();
+            return dbsetPlanos
+                .Include(x => x.Grupo)
+                .ToList();
         }
 
         public Plano SelecionarPorValor(float valor)

@@ -33,7 +33,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
             }
         }
 
-
         public override void Editar()
         {
             var id = tabelaGrupoVeiculo.ObtemNumeroGrupoVeiculoSelecionado();
@@ -67,7 +66,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 
                     CarregarGruposVeiculos();
         }
-
 
         public override void Excluir()
         {

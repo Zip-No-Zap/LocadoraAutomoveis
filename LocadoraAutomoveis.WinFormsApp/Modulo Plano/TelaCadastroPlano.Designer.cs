@@ -97,6 +97,7 @@
             // 
             // cbGrupo
             // 
+            this.cbGrupo.DisplayMember = "Nome";
             this.cbGrupo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGrupo.FormattingEnabled = true;
             this.cbGrupo.Location = new System.Drawing.Point(16, 56);

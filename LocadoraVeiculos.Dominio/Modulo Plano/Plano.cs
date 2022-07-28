@@ -17,8 +17,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Plano
         public float ValorPorKm_Controlado { get; set; }
         public int LimiteQuilometragem_Controlado { get; set; }
 
-
-
         public string NomeGrupo
         {
             get
