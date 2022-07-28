@@ -1,6 +1,6 @@
-﻿using LocadoraVeiculos.Dominio.Modulo_Taxa;
-using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Taxa;
+﻿using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloTaxa;
+using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
@@ -9,13 +9,14 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
     [TestClass]
     public class RepositorioTaxaBancoDadosTests
     {
-        RepositorioTaxaEmBancoDados repoTaxa;
+        readonly RepositorioTaxaOrm repoTaxa;
+        LocadoraAutomoveisDbContext dbContext;
+        const string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDBTestes;Integrated Security=True";
 
         public RepositorioTaxaBancoDadosTests()
         {
-            repoTaxa = new();
-
-            //ResetarBancoDados();
+            dbContext = new(connectionString);
+            repoTaxa = new(dbContext);
         }
 
         [TestMethod]
@@ -27,6 +28,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
 
             //action
             repoTaxa.Inserir(taxa);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repoTaxa.SelecionarPorId(taxa.Id);
@@ -41,11 +43,15 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             var taxa = InstanciarTaxa();
 
             repoTaxa.Inserir(taxa);
+            dbContext.SaveChanges();
+
 
             taxa.Descricao = "alterado no teste";
 
             //action
             repoTaxa.Editar(taxa);
+            dbContext.SaveChanges();
+
 
             //assert
             var resultado = repoTaxa.SelecionarPorId(taxa.Id);
@@ -60,9 +66,13 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             var taxa = InstanciarTaxa();
 
             repoTaxa.Inserir(taxa);
+            dbContext.SaveChanges();
+
 
             //action
             repoTaxa.Excluir(taxa);
+            dbContext.SaveChanges();
+
 
             //assert
             var resultado = repoTaxa.SelecionarPorId(taxa.Id);
@@ -79,6 +89,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
 
             repoTaxa.Inserir(taxa1);
             repoTaxa.Inserir(taxa2);
+            dbContext.SaveChanges();
+
 
             //action
             var resultado = repoTaxa.SelecionarTodos();
@@ -94,6 +106,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             var taxa1 = InstanciarTaxa();
 
             repoTaxa.Inserir(taxa1);
+            dbContext.SaveChanges();
 
             //action
             var resultado = repoTaxa.SelecionarPorId(taxa1.Id);
@@ -101,7 +114,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             //assert
             Assert.AreNotEqual(null, resultado);
         }
-
 
         #region privados
         Taxa InstanciarTaxa()
@@ -124,10 +136,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Taxa
             };
         }
 
-        void ResetarBancoDados()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBTAXA; DBCC CHECKIDENT (TBTAXA, RESEED, 0)");
-        }
         #endregion
     }
 }
