@@ -34,7 +34,7 @@
             this.txtGrupoVeiculo = new System.Windows.Forms.TextBox();
             this.btnDetalhar = new System.Windows.Forms.Button();
             this.listTaxasAdicionais = new System.Windows.Forms.CheckedListBox();
-            this.tbKmAtual = new System.Windows.Forms.TextBox();
+            this.txtKmAtual = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbVeiculo = new System.Windows.Forms.ComboBox();
@@ -64,7 +64,7 @@
             this.groupBox1.Controls.Add(this.txtGrupoVeiculo);
             this.groupBox1.Controls.Add(this.btnDetalhar);
             this.groupBox1.Controls.Add(this.listTaxasAdicionais);
-            this.groupBox1.Controls.Add(this.tbKmAtual);
+            this.groupBox1.Controls.Add(this.txtKmAtual);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.cmbVeiculo);
@@ -141,14 +141,14 @@
             this.listTaxasAdicionais.Size = new System.Drawing.Size(579, 224);
             this.listTaxasAdicionais.TabIndex = 35;
             // 
-            // tbKmAtual
+            // txtKmAtual
             // 
-            this.tbKmAtual.Enabled = false;
-            this.tbKmAtual.Location = new System.Drawing.Point(336, 94);
-            this.tbKmAtual.Margin = new System.Windows.Forms.Padding(2);
-            this.tbKmAtual.Name = "tbKmAtual";
-            this.tbKmAtual.Size = new System.Drawing.Size(270, 27);
-            this.tbKmAtual.TabIndex = 9;
+            this.txtKmAtual.Enabled = false;
+            this.txtKmAtual.Location = new System.Drawing.Point(336, 94);
+            this.txtKmAtual.Margin = new System.Windows.Forms.Padding(2);
+            this.txtKmAtual.Name = "txtKmAtual";
+            this.txtKmAtual.Size = new System.Drawing.Size(270, 27);
+            this.txtKmAtual.TabIndex = 9;
             // 
             // label8
             // 
@@ -175,6 +175,8 @@
             // 
             // cmbVeiculo
             // 
+            this.cmbVeiculo.DisplayMember = "Modelo";
+            this.cmbVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVeiculo.FormattingEnabled = true;
             this.cmbVeiculo.Location = new System.Drawing.Point(26, 94);
             this.cmbVeiculo.Margin = new System.Windows.Forms.Padding(5);
@@ -256,12 +258,14 @@
             // 
             // cmbCondutor
             // 
+            this.cmbCondutor.DisplayMember = "Nome";
+            this.cmbCondutor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCondutor.FormattingEnabled = true;
-            this.cmbCondutor.Location = new System.Drawing.Point(341, 43);
+            this.cmbCondutor.Location = new System.Drawing.Point(340, 44);
             this.cmbCondutor.Margin = new System.Windows.Forms.Padding(2);
             this.cmbCondutor.Name = "cmbCondutor";
-            this.cmbCondutor.Size = new System.Drawing.Size(273, 28);
-            this.cmbCondutor.TabIndex = 7;
+            this.cmbCondutor.Size = new System.Drawing.Size(266, 28);
+            this.cmbCondutor.TabIndex = 4;
             // 
             // label2
             // 
@@ -287,6 +291,8 @@
             // 
             // cmbClientes
             // 
+            this.cmbClientes.DisplayMember = "Nome";
+            this.cmbClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbClientes.FormattingEnabled = true;
             this.cmbClientes.Location = new System.Drawing.Point(33, 44);
             this.cmbClientes.Margin = new System.Windows.Forms.Padding(2);
@@ -362,7 +368,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnDetalhar;
         private System.Windows.Forms.CheckedListBox listTaxasAdicionais;
-        private System.Windows.Forms.TextBox tbKmAtual;
+        private System.Windows.Forms.TextBox txtKmAtual;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbVeiculo;
@@ -372,7 +378,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox gbCondutor;
-        private System.Windows.Forms.ComboBox cmbCondutor;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbClientes;
@@ -382,5 +387,6 @@
         private System.Windows.Forms.TextBox txtGrupoVeiculo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbPlano;
+        private System.Windows.Forms.ComboBox cmbCondutor;
     }
 }

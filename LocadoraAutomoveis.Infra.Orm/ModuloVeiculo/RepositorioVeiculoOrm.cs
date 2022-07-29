@@ -35,7 +35,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloVeiculo
 
         public Veiculo SelecionarPorId(Guid id)
         {
-            return dbsetVeiculos.FirstOrDefault(x => x.Id == id);
+            return dbsetVeiculos.Include(x => x.GrupoPertencente).FirstOrDefault(x => x.Id == id);
         }
 
         public List<Veiculo> SelecionarTodos(bool incluir = true)

@@ -114,22 +114,35 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             var cliente = (Cliente)cmbClientes.SelectedItem;
-           
-            var condutoresCliente = condutores.FindAll(x => x.Cliente.Equals(cliente));
+
+            var condutoresCliente = condutores.FindAll(x => x.Cliente.Equals(cliente)).ToList();
 
             foreach (var item in condutoresCliente)
             {
-                cmbCondutor.Items.Add(condutoresCliente);
+                cmbCondutor.Items.Add(item);
             }
-
         }
 
 
         private void cmbVeiculo_SelectedIndexChanged(object sender, EventArgs e)
         {
+          
             var veiculo = (Veiculo)cmbVeiculo.SelectedItem;
 
+            foreach (var item in veiculos)
+            {
+                if (veiculo.Equals(item)){
+                    txtGrupoVeiculo.Text = item.GrupoPertencente.Nome;
+
+                }
+            }
+
+
+
             txtGrupoVeiculo.Text = veiculo.GrupoPertencente.Nome;
+
+            txtKmAtual.Text = veiculo.QuilometragemAtual.ToString();
+
         }
 
         private void cmbPlano_SelectedIndexChanged(object sender, EventArgs e)
@@ -178,6 +191,13 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
                 DialogResult = DialogResult.None;
             }
+
+        }
+
+       
+
+        private void txtCondutor_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
