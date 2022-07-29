@@ -106,7 +106,11 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        public override void FazerDevolucao()
+        {
+            // Implementar devolucao 
 
+        }
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()
         {
             return new ConfigurarStripLocacao();

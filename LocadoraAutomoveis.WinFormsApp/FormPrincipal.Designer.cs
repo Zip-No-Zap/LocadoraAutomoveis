@@ -50,8 +50,10 @@
             this.btnInserir = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnDevolucao = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.lblToolStripPrincipal = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.menuPrincipal.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStripPrincipal.SuspendLayout();
@@ -159,14 +161,15 @@
             // registrarRetiradaToolStripMenuItem
             // 
             this.registrarRetiradaToolStripMenuItem.Name = "registrarRetiradaToolStripMenuItem";
-            this.registrarRetiradaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.registrarRetiradaToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
             this.registrarRetiradaToolStripMenuItem.Text = "Locação";
             // 
             // registrarDevoluçãoToolStripMenuItem
             // 
             this.registrarDevoluçãoToolStripMenuItem.Name = "registrarDevoluçãoToolStripMenuItem";
-            this.registrarDevoluçãoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.registrarDevoluçãoToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
             this.registrarDevoluçãoToolStripMenuItem.Text = "Devolução";
+            this.registrarDevoluçãoToolStripMenuItem.Click += new System.EventHandler(this.registrarDevoluçãoToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -203,7 +206,9 @@
             this.btnInserir,
             this.btnEditar,
             this.btnExcluir,
-            this.toolStripButton1,
+            this.toolStripSeparator2,
+            this.btnDevolucao,
+            this.toolStripSeparator1,
             this.lblToolStripPrincipal});
             this.toolStripPrincipal.Location = new System.Drawing.Point(0, 28);
             this.toolStripPrincipal.Name = "toolStripPrincipal";
@@ -237,21 +242,32 @@
             this.btnExcluir.Size = new System.Drawing.Size(29, 28);
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            // 
+            // btnDevolucao
+            // 
+            this.btnDevolucao.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDevolucao.Enabled = false;
+            this.btnDevolucao.Image = ((System.Drawing.Image)(resources.GetObject("btnDevolucao.Image")));
+            this.btnDevolucao.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDevolucao.Name = "btnDevolucao";
+            this.btnDevolucao.Size = new System.Drawing.Size(29, 28);
+            this.btnDevolucao.Text = "toolStripButton1";
+            this.btnDevolucao.Click += new System.EventHandler(this.btnDevolucao_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            // 
             // lblToolStripPrincipal
             // 
             this.lblToolStripPrincipal.Name = "lblToolStripPrincipal";
             this.lblToolStripPrincipal.Size = new System.Drawing.Size(68, 28);
             this.lblToolStripPrincipal.Text = "Cadastro";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Enabled = false;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(29, 28);
-            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // FormPrincipal
             // 
@@ -302,9 +318,11 @@
         private System.Windows.Forms.ToolStripMenuItem planoDeCobrançaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem locaçãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registrarRetiradaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem registrarDevoluçãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configurarPreçosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem combustívelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton btnDevolucao;
+        private System.Windows.Forms.ToolStripMenuItem registrarDevoluçãoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

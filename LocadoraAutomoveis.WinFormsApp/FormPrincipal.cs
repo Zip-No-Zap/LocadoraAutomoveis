@@ -121,6 +121,11 @@ namespace LocadoraAutomoveis.WinFormsApp
             controlador.Excluir();
         }
 
+        private void btnDevolucao_Click(object sender, EventArgs e)
+        {
+            controlador.FazerDevolucao();
+        }
+
         private void funcionarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorFuncionario>());
@@ -162,5 +167,12 @@ namespace LocadoraAutomoveis.WinFormsApp
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorPlano>());
             HabilitarBotoesToolStrip();
         }
+
+        private void registrarDevoluçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+      
     }
 }
