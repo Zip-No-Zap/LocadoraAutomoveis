@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbPlano = new System.Windows.Forms.ComboBox();
+            this.txtGrupoVeiculo = new System.Windows.Forms.TextBox();
             this.btnDetalhar = new System.Windows.Forms.Button();
             this.listTaxasAdicionais = new System.Windows.Forms.CheckedListBox();
             this.tbKmAtual = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.rdControlado = new System.Windows.Forms.RadioButton();
-            this.rdLivre = new System.Windows.Forms.RadioButton();
-            this.rdDiario = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbVeiculo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -52,9 +51,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.txtGrupoVeiculo = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.gbCondutor.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,12 +59,13 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.cmbPlano);
             this.groupBox1.Controls.Add(this.txtGrupoVeiculo);
             this.groupBox1.Controls.Add(this.btnDetalhar);
             this.groupBox1.Controls.Add(this.listTaxasAdicionais);
             this.groupBox1.Controls.Add(this.tbKmAtual);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.cmbVeiculo);
             this.groupBox1.Controls.Add(this.label6);
@@ -86,6 +84,40 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Locação";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(337, 127);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 19);
+            this.label3.TabIndex = 38;
+            this.label3.Text = "Plano";
+            // 
+            // cmbPlano
+            // 
+            this.cmbPlano.FormattingEnabled = true;
+            this.cmbPlano.Items.AddRange(new object[] {
+            "Diário ",
+            "Livre ",
+            "Controlado"});
+            this.cmbPlano.Location = new System.Drawing.Point(337, 149);
+            this.cmbPlano.Margin = new System.Windows.Forms.Padding(5);
+            this.cmbPlano.Name = "cmbPlano";
+            this.cmbPlano.Size = new System.Drawing.Size(269, 28);
+            this.cmbPlano.TabIndex = 37;
+            this.cmbPlano.SelectedIndexChanged += new System.EventHandler(this.cmbPlano_SelectedIndexChanged);
+            // 
+            // txtGrupoVeiculo
+            // 
+            this.txtGrupoVeiculo.Enabled = false;
+            this.txtGrupoVeiculo.Location = new System.Drawing.Point(26, 148);
+            this.txtGrupoVeiculo.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGrupoVeiculo.Name = "txtGrupoVeiculo";
+            this.txtGrupoVeiculo.Size = new System.Drawing.Size(283, 27);
+            this.txtGrupoVeiculo.TabIndex = 36;
+            // 
             // btnDetalhar
             // 
             this.btnDetalhar.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -103,10 +135,10 @@
             // 
             this.listTaxasAdicionais.CheckOnClick = true;
             this.listTaxasAdicionais.FormattingEnabled = true;
-            this.listTaxasAdicionais.Location = new System.Drawing.Point(27, 268);
+            this.listTaxasAdicionais.Location = new System.Drawing.Point(27, 202);
             this.listTaxasAdicionais.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listTaxasAdicionais.Name = "listTaxasAdicionais";
-            this.listTaxasAdicionais.Size = new System.Drawing.Size(579, 158);
+            this.listTaxasAdicionais.Size = new System.Drawing.Size(579, 224);
             this.listTaxasAdicionais.TabIndex = 35;
             // 
             // tbKmAtual
@@ -115,7 +147,7 @@
             this.tbKmAtual.Location = new System.Drawing.Point(336, 94);
             this.tbKmAtual.Margin = new System.Windows.Forms.Padding(2);
             this.tbKmAtual.Name = "tbKmAtual";
-            this.tbKmAtual.Size = new System.Drawing.Size(268, 27);
+            this.tbKmAtual.Size = new System.Drawing.Size(270, 27);
             this.tbKmAtual.TabIndex = 9;
             // 
             // label8
@@ -129,57 +161,6 @@
             this.label8.Size = new System.Drawing.Size(141, 19);
             this.label8.TabIndex = 8;
             this.label8.Text = "Quilometragem Atual";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.groupBox2.Controls.Add(this.rdControlado);
-            this.groupBox2.Controls.Add(this.rdLivre);
-            this.groupBox2.Controls.Add(this.rdDiario);
-            this.groupBox2.Location = new System.Drawing.Point(27, 188);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(579, 74);
-            this.groupBox2.TabIndex = 11;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Plano";
-            // 
-            // rdControlado
-            // 
-            this.rdControlado.AutoSize = true;
-            this.rdControlado.Location = new System.Drawing.Point(192, 28);
-            this.rdControlado.Margin = new System.Windows.Forms.Padding(2);
-            this.rdControlado.Name = "rdControlado";
-            this.rdControlado.Size = new System.Drawing.Size(107, 24);
-            this.rdControlado.TabIndex = 2;
-            this.rdControlado.TabStop = true;
-            this.rdControlado.Text = "Controlado";
-            this.rdControlado.UseVisualStyleBackColor = true;
-            // 
-            // rdLivre
-            // 
-            this.rdLivre.AutoSize = true;
-            this.rdLivre.Location = new System.Drawing.Point(113, 28);
-            this.rdLivre.Margin = new System.Windows.Forms.Padding(2);
-            this.rdLivre.Name = "rdLivre";
-            this.rdLivre.Size = new System.Drawing.Size(63, 24);
-            this.rdLivre.TabIndex = 1;
-            this.rdLivre.TabStop = true;
-            this.rdLivre.Text = "Livre";
-            this.rdLivre.UseVisualStyleBackColor = true;
-            // 
-            // rdDiario
-            // 
-            this.rdDiario.AutoSize = true;
-            this.rdDiario.Location = new System.Drawing.Point(30, 28);
-            this.rdDiario.Margin = new System.Windows.Forms.Padding(2);
-            this.rdDiario.Name = "rdDiario";
-            this.rdDiario.Size = new System.Drawing.Size(72, 24);
-            this.rdDiario.TabIndex = 4;
-            this.rdDiario.TabStop = true;
-            this.rdDiario.Text = "Diário";
-            this.rdDiario.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -349,15 +330,7 @@
             this.btnOK.TabIndex = 8;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = false;
-            // 
-            // txtGrupoVeiculo
-            // 
-            this.txtGrupoVeiculo.Enabled = false;
-            this.txtGrupoVeiculo.Location = new System.Drawing.Point(26, 148);
-            this.txtGrupoVeiculo.Margin = new System.Windows.Forms.Padding(2);
-            this.txtGrupoVeiculo.Name = "txtGrupoVeiculo";
-            this.txtGrupoVeiculo.Size = new System.Drawing.Size(283, 27);
-            this.txtGrupoVeiculo.TabIndex = 36;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // TelaCadastroLocacao
             // 
@@ -377,8 +350,6 @@
             this.Load += new System.EventHandler(this.TelaCadastroLocacao_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.gbCondutor.ResumeLayout(false);
             this.gbCondutor.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -393,10 +364,6 @@
         private System.Windows.Forms.CheckedListBox listTaxasAdicionais;
         private System.Windows.Forms.TextBox tbKmAtual;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton rdControlado;
-        private System.Windows.Forms.RadioButton rdLivre;
-        private System.Windows.Forms.RadioButton rdDiario;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbVeiculo;
         private System.Windows.Forms.Label label6;
@@ -413,5 +380,7 @@
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.TextBox txtGrupoVeiculo;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbPlano;
     }
 }

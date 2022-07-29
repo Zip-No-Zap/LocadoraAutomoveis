@@ -57,7 +57,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             var Selecionado = resultado.Value;
 
-            TelaCadastroLocacao tela = new(null, null, null, null);
+            TelaCadastroLocacao tela = new(null, null, null, null, null);
 
             tela.Locacao = Selecionado;
 

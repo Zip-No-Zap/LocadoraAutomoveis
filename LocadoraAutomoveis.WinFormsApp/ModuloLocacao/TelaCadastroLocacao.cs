@@ -107,47 +107,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             FormPrincipal.Instancia.AtualizarRodape("");
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            locacao.ClienteLocacao = (Cliente)cmbClientes.SelectedItem;
-            if (locacao.ClienteLocacao == null)
-            {
-                var novoClienteVazio = new Cliente() { Nome= "" };
-                locacao.ClienteLocacao = novoClienteVazio;
-            }
-
-            locacao.CondutorLocacao = (Condutor)cmbCondutor.SelectedItem;
-            if (locacao.CondutorLocacao == null)
-            {
-                var novoClienteVazio = new Condutor();
-                locacao.CondutorLocacao = novoClienteVazio;
-            }
-
-
-            //condutor.Nome = tbNome.Text;
-            //condutor.Cpf = tbCpf.Text;
-            //condutor.Telefone = tbTelefone.Text;
-            //condutor.Email = tbEmail.Text;
-            //condutor.Endereco = tbEndereco.Text;
-            //condutor.Cnh = tbCnh.Text;
-            //condutor.VencimentoCnh = txtDataVencimentoCnh.Value;
-
-
-
-
-
-            var resultadoValidacao = GravarRegistro(locacao);
-
-            if (resultadoValidacao.IsSuccess == false)
-            {
-                string erro = resultadoValidacao.Errors[0].Message;
-
-                FormPrincipal.Instancia.AtualizarRodape(erro);
-
-                DialogResult = DialogResult.None;
-            }
-        }
-
+      
         private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             var cliente = (Cliente)cmbClientes.SelectedItem;
@@ -167,6 +127,55 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             var veiculo = (Veiculo)cmbVeiculo.SelectedItem;
 
             txtGrupoVeiculo.Text = veiculo.GrupoPertencente.Nome;
+        }
+
+        private void cmbPlano_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            locacao.PlanoLocacao_Descricao = cmbPlano.Text;
+            //switch (cmbPlano.SelectedIndex)
+            //{
+            //    case 0:
+            //        locacao.PlanoLocacao_Descricao = "Diário";
+            //        break;
+
+            //    case 1:
+            //        locacao.PlanoLocacao_Descricao = "Livre";
+            //        break;
+
+            //    case 2:
+            //        locacao.PlanoLocacao_Descricao = "Controlado";
+            //        break;
+            //}
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            locacao.ClienteLocacao = (Cliente)cmbClientes.SelectedItem;
+           
+            locacao.CondutorLocacao = (Condutor)cmbCondutor.SelectedItem;
+           
+            locacao.VeiculoLocacao = (Veiculo)cmbVeiculo.SelectedItem;
+
+           
+
+            locacao.PlanoLocacao_Descricao = cmbPlano.Text;
+
+
+
+
+
+
+            var resultadoValidacao = GravarRegistro(locacao);
+
+            if (resultadoValidacao.IsSuccess == false)
+            {
+                string erro = resultadoValidacao.Errors[0].Message;
+
+                FormPrincipal.Instancia.AtualizarRodape(erro);
+
+                DialogResult = DialogResult.None;
+            }
+
         }
     }
 }
