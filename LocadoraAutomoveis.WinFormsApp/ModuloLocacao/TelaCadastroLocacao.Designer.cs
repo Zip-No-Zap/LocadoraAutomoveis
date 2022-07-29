@@ -39,11 +39,11 @@
             this.cbCondutor_Cliente = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbGrupo = new System.Windows.Forms.ComboBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listItens = new System.Windows.Forms.ListView();
             this.label9 = new System.Windows.Forms.Label();
             this.cbItens = new System.Windows.Forms.ComboBox();
-            this.tbGrupo = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -176,11 +176,11 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox1.Controls.Add(this.cbGrupo);
             this.groupBox1.Controls.Add(this.btnAdd);
-            this.groupBox1.Controls.Add(this.listView1);
+            this.groupBox1.Controls.Add(this.listItens);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.cbItens);
-            this.groupBox1.Controls.Add(this.tbGrupo);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.groupBox2);
@@ -200,6 +200,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Locação";
             // 
+            // cbGrupo
+            // 
+            this.cbGrupo.FormattingEnabled = true;
+            this.cbGrupo.Location = new System.Drawing.Point(262, 150);
+            this.cbGrupo.Name = "cbGrupo";
+            this.cbGrupo.Size = new System.Drawing.Size(254, 33);
+            this.cbGrupo.TabIndex = 15;
+            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -211,14 +219,14 @@
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
             // 
-            // listView1
+            // listItens
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(441, 276);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(295, 101);
-            this.listView1.TabIndex = 14;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listItens.HideSelection = false;
+            this.listItens.Location = new System.Drawing.Point(441, 276);
+            this.listItens.Name = "listItens";
+            this.listItens.Size = new System.Drawing.Size(295, 101);
+            this.listItens.TabIndex = 14;
+            this.listItens.UseCompatibleStateImageBehavior = false;
             // 
             // label9
             // 
@@ -238,14 +246,6 @@
             this.cbItens.Name = "cbItens";
             this.cbItens.Size = new System.Drawing.Size(220, 33);
             this.cbItens.TabIndex = 5;
-            // 
-            // tbGrupo
-            // 
-            this.tbGrupo.Enabled = false;
-            this.tbGrupo.Location = new System.Drawing.Point(262, 154);
-            this.tbGrupo.Name = "tbGrupo";
-            this.tbGrupo.Size = new System.Drawing.Size(254, 31);
-            this.tbGrupo.TabIndex = 12;
             // 
             // textBox1
             // 
@@ -461,10 +461,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbItens;
-        private System.Windows.Forms.TextBox tbGrupo;
         private System.Windows.Forms.Button btnDetalhar;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listItens;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox cbGrupo;
     }
 }

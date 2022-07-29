@@ -1,11 +1,10 @@
-﻿
-
-
-using FluentResults;
+﻿using FluentResults;
 using LocadoraAutomoveis.Aplicacao.Modulo_Condutor;
+using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
+using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
 using LocadoraAutomoveis.Aplicacao.ModuloLocacao;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
-using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
 using System;
 using System.Collections.Generic;
@@ -17,21 +16,30 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
     {
         readonly ServicoLocacao servicoLocacao;
         readonly ServicoCondutor servicoCondutor;
+        readonly ServicoVeiculo servicoVeiculo;
+        readonly ServicoTaxa servicoTaxa;
+        readonly ServicoGrupoVeiculo servicoGrupo;
         LocacaoControl tabelaLocacaos;
 
-        public ControladorLocacao(ServicoLocacao servicoLocacao, ServicoCondutor servicoCondutor)
+        public ControladorLocacao(ServicoLocacao servicoLocacao, ServicoCondutor servicoCondutor, ServicoVeiculo servicoVeiculo, ServicoTaxa servicoTaxa, ServicoGrupoVeiculo servicoGrupo)
         {
             this.servicoLocacao = servicoLocacao;
             this.servicoCondutor = servicoCondutor;
+            this.servicoVeiculo = servicoVeiculo;
+            this.servicoTaxa = servicoTaxa;
+            this.servicoGrupo = servicoGrupo;
         }
 
         public override void Inserir()
         {
-            Result<List<Condutor>> resultadoResult = servicoCondutor.SelecionarTodos();
+            Result<List<Locacao>> resultadoResult = servicoLocacao.SelecionarTodos();
 
             var condutores = servicoCondutor.SelecionarTodos().Value;
+            var veiculos = servicoVeiculo.SelecionarTodos().Value;
+            var taxas = servicoTaxa.SelecionarTodos().Value;
+            var grupos = servicoGrupo.SelecionarTodos().Value;
 
-            var tela = new TelaCadastroLocacao(condutores, null, null);
+            var tela = new TelaCadastroLocacao(condutores, veiculos, taxas, grupos);
 
             if (resultadoResult.IsSuccess)
             {
@@ -46,15 +54,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     CarregarLocacoes();
                 }
             }
-
-            //TODO : criar o inserir e editar do controlador locacao
-
-            //tela.GravarRegistro = servicoLocacao.Inserir;
-
-            //if (tela.ShowDialog() == DialogResult.OK)
-            //{
-            //    CarregarLocacoes();
-            //}
         }
 
         public override void Editar()
@@ -63,11 +62,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um veiculo primeiro",
-                "Edição de Locacao", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Selecione uma locação primeiro",
+                "Edição de Locação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
 
             var resultado = servicoLocacao.SelecionarPorId(id);
 
@@ -78,11 +76,16 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 return;
             }
 
-            var Selecionado = resultado.Value;
+            var selecionado = resultado.Value;
 
-            TelaCadastroLocacao tela = new(null, null, null, null);
+            var condutores = servicoCondutor.SelecionarTodos().Value;
+            var veiculos = servicoVeiculo.SelecionarTodos().Value;
+            var taxas = servicoTaxa.SelecionarTodos().Value;
+            var grupos = servicoGrupo.SelecionarTodos().Value;
 
-            tela.Locacao = Selecionado;
+            TelaCadastroLocacao tela = new(condutores, veiculos, taxas, grupos);
+
+            tela.Locacao = selecionado;
 
             tela.GravarRegistro = servicoLocacao.Editar;
 
@@ -99,7 +102,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             if (id == Guid.Empty)
             {
-                MessageBox.Show("Selecione um veiculo primeiro",
+                MessageBox.Show("Selecione uma locação primeiro",
                     "Exclusão de Locacao", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -109,15 +112,14 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             if (resultado.IsFailed)
             {
                 MessageBox.Show(resultado.Errors[0].Message,
-                    "Exclusão de Locacao", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Exclusão de Locação", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             var Selecionado = resultado.Value;
 
-
-            if (MessageBox.Show("Deseja realmente excluir o veiculo?",
-            "Exclusão de Locacao", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show("Deseja realmente excluir a locação?",
+            "Exclusão de Locação", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 var resultadoExclusao = servicoLocacao.Excluir(Selecionado);
 
@@ -125,7 +127,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     CarregarLocacoes();
 
                 else
-                    MessageBox.Show(resultadoExclusao.Errors[0].Message, "Exclusão de Locacao",
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message, "Exclusão de Locação",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -151,18 +153,16 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             if (resultado.IsSuccess)
             {
-                List<Locacao> veiculos = resultado.Value;
+                List<Locacao> locacoes = resultado.Value;
 
-                tabelaLocacaos.AtualizarRegistros(veiculos);
+                tabelaLocacaos.AtualizarRegistros(locacoes);
 
-                FormPrincipal.Instancia.AtualizarRodape($"Visualizando {veiculos.Count} Locacao(s)");
+                FormPrincipal.Instancia.AtualizarRodape($"Visualizando {locacoes.Count} Locação(ões)");
             }
-
             else
             {
-                MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Locacao", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(resultado.Errors[0].Message, "Exclusão de Locação", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }
