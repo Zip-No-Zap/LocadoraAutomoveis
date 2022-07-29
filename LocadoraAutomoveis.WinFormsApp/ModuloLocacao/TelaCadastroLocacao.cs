@@ -68,6 +68,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 }
 
                 CarregarItensAdicionais(Locacao.ItensTaxa);
+
                     //tbNome.Text = condutor.Nome;
                     //tbCnh.Text = condutor.Cnh;
                     //tbEndereco.Text = condutor.Endereco;
