@@ -30,16 +30,16 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnDetalhar = new System.Windows.Forms.Button();
-            this.listAdicionais = new System.Windows.Forms.CheckedListBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.listTaxasAdicionais = new System.Windows.Forms.CheckedListBox();
+            this.cmbGrupoVeiculo = new System.Windows.Forms.ComboBox();
+            this.tbKmAtual = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rdControlado = new System.Windows.Forms.RadioButton();
             this.rdLivre = new System.Windows.Forms.RadioButton();
             this.rdDiario = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
-            this.cbVeiculo = new System.Windows.Forms.ComboBox();
+            this.cmbVeiculo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dpDataDevolucao = new System.Windows.Forms.DateTimePicker();
             this.dpDataLocacao = new System.Windows.Forms.DateTimePicker();
@@ -47,8 +47,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.gbCondutor = new System.Windows.Forms.GroupBox();
             this.cmbCondutor = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbVencimentoCnh = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbClientes = new System.Windows.Forms.ComboBox();
@@ -65,13 +63,13 @@
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox1.Controls.Add(this.btnDetalhar);
-            this.groupBox1.Controls.Add(this.listAdicionais);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.listTaxasAdicionais);
+            this.groupBox1.Controls.Add(this.cmbGrupoVeiculo);
+            this.groupBox1.Controls.Add(this.tbKmAtual);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.cbVeiculo);
+            this.groupBox1.Controls.Add(this.cmbVeiculo);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.dpDataDevolucao);
             this.groupBox1.Controls.Add(this.dpDataLocacao);
@@ -79,7 +77,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(38, 155);
+            this.groupBox1.Location = new System.Drawing.Point(38, 140);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -101,33 +99,33 @@
             this.btnDetalhar.Text = "Detalhar";
             this.btnDetalhar.UseVisualStyleBackColor = false;
             // 
-            // listAdicionais
+            // listTaxasAdicionais
             // 
-            this.listAdicionais.CheckOnClick = true;
-            this.listAdicionais.FormattingEnabled = true;
-            this.listAdicionais.Location = new System.Drawing.Point(27, 268);
-            this.listAdicionais.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.listAdicionais.Name = "listAdicionais";
-            this.listAdicionais.Size = new System.Drawing.Size(579, 158);
-            this.listAdicionais.TabIndex = 35;
+            this.listTaxasAdicionais.CheckOnClick = true;
+            this.listTaxasAdicionais.FormattingEnabled = true;
+            this.listTaxasAdicionais.Location = new System.Drawing.Point(27, 268);
+            this.listTaxasAdicionais.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listTaxasAdicionais.Name = "listTaxasAdicionais";
+            this.listTaxasAdicionais.Size = new System.Drawing.Size(579, 158);
+            this.listTaxasAdicionais.TabIndex = 35;
             // 
-            // comboBox1
+            // cmbGrupoVeiculo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(27, 93);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(282, 28);
-            this.comboBox1.TabIndex = 15;
+            this.cmbGrupoVeiculo.FormattingEnabled = true;
+            this.cmbGrupoVeiculo.Location = new System.Drawing.Point(27, 93);
+            this.cmbGrupoVeiculo.Margin = new System.Windows.Forms.Padding(5);
+            this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
+            this.cmbGrupoVeiculo.Size = new System.Drawing.Size(282, 28);
+            this.cmbGrupoVeiculo.TabIndex = 15;
             // 
-            // textBox1
+            // tbKmAtual
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(338, 147);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(268, 27);
-            this.textBox1.TabIndex = 9;
+            this.tbKmAtual.Enabled = false;
+            this.tbKmAtual.Location = new System.Drawing.Point(338, 147);
+            this.tbKmAtual.Margin = new System.Windows.Forms.Padding(2);
+            this.tbKmAtual.Name = "tbKmAtual";
+            this.tbKmAtual.Size = new System.Drawing.Size(268, 27);
+            this.tbKmAtual.TabIndex = 9;
             // 
             // label8
             // 
@@ -196,21 +194,21 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(32, 125);
+            this.label7.Location = new System.Drawing.Point(27, 125);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 19);
             this.label7.TabIndex = 10;
             this.label7.Text = "Veículo";
             // 
-            // cbVeiculo
+            // cmbVeiculo
             // 
-            this.cbVeiculo.FormattingEnabled = true;
-            this.cbVeiculo.Location = new System.Drawing.Point(33, 147);
-            this.cbVeiculo.Margin = new System.Windows.Forms.Padding(5);
-            this.cbVeiculo.Name = "cbVeiculo";
-            this.cbVeiculo.Size = new System.Drawing.Size(276, 28);
-            this.cbVeiculo.TabIndex = 3;
+            this.cmbVeiculo.FormattingEnabled = true;
+            this.cmbVeiculo.Location = new System.Drawing.Point(26, 147);
+            this.cmbVeiculo.Margin = new System.Windows.Forms.Padding(5);
+            this.cmbVeiculo.Name = "cmbVeiculo";
+            this.cmbVeiculo.Size = new System.Drawing.Size(283, 28);
+            this.cmbVeiculo.TabIndex = 3;
             // 
             // label6
             // 
@@ -269,8 +267,6 @@
             // 
             this.gbCondutor.BackColor = System.Drawing.SystemColors.ControlLight;
             this.gbCondutor.Controls.Add(this.cmbCondutor);
-            this.gbCondutor.Controls.Add(this.label3);
-            this.gbCondutor.Controls.Add(this.tbVencimentoCnh);
             this.gbCondutor.Controls.Add(this.label2);
             this.gbCondutor.Controls.Add(this.label1);
             this.gbCondutor.Controls.Add(this.cmbClientes);
@@ -280,7 +276,7 @@
             this.gbCondutor.Margin = new System.Windows.Forms.Padding(2);
             this.gbCondutor.Name = "gbCondutor";
             this.gbCondutor.Padding = new System.Windows.Forms.Padding(2);
-            this.gbCondutor.Size = new System.Drawing.Size(641, 127);
+            this.gbCondutor.Size = new System.Drawing.Size(641, 101);
             this.gbCondutor.TabIndex = 9;
             this.gbCondutor.TabStop = false;
             this.gbCondutor.Text = "Dados Condutor";
@@ -293,27 +289,6 @@
             this.cmbCondutor.Name = "cmbCondutor";
             this.cmbCondutor.Size = new System.Drawing.Size(273, 28);
             this.cmbCondutor.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(340, 72);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(147, 19);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Data Vencimento CNH";
-            // 
-            // tbVencimentoCnh
-            // 
-            this.tbVencimentoCnh.Enabled = false;
-            this.tbVencimentoCnh.Location = new System.Drawing.Point(341, 94);
-            this.tbVencimentoCnh.Margin = new System.Windows.Forms.Padding(2);
-            this.tbVencimentoCnh.Name = "tbVencimentoCnh";
-            this.tbVencimentoCnh.Size = new System.Drawing.Size(273, 27);
-            this.tbVencimentoCnh.TabIndex = 6;
             // 
             // label2
             // 
@@ -345,6 +320,7 @@
             this.cmbClientes.Name = "cmbClientes";
             this.cmbClientes.Size = new System.Drawing.Size(282, 28);
             this.cmbClientes.TabIndex = 0;
+            this.cmbClientes.SelectedIndexChanged += new System.EventHandler(this.cmbClientes_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -391,7 +367,7 @@
             this.Controls.Add(this.gbCondutor);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "TelaCadastroLocacao";
             this.ShowIcon = false;
@@ -413,16 +389,16 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnDetalhar;
-        private System.Windows.Forms.CheckedListBox listAdicionais;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckedListBox listTaxasAdicionais;
+        private System.Windows.Forms.ComboBox cmbGrupoVeiculo;
+        private System.Windows.Forms.TextBox tbKmAtual;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton rdControlado;
         private System.Windows.Forms.RadioButton rdLivre;
         private System.Windows.Forms.RadioButton rdDiario;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cbVeiculo;
+        private System.Windows.Forms.ComboBox cmbVeiculo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dpDataDevolucao;
         private System.Windows.Forms.DateTimePicker dpDataLocacao;
@@ -430,8 +406,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox gbCondutor;
         private System.Windows.Forms.ComboBox cmbCondutor;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbVencimentoCnh;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbClientes;
