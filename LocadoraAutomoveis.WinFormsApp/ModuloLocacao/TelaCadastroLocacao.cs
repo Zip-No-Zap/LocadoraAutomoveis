@@ -20,9 +20,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
     {
         private Locacao locacao;
 
-        public TelaCadastroLocacao(List<Cliente> clientes, List<Condutor> condutor, List<Veiculo> veiculos, List<Taxa> itensAdicionais)
+        public TelaCadastroLocacao(List<Condutor> condutores, List<Veiculo> veiculos, List<Taxa> itensAdicionais)
         {
             InitializeComponent();
+            CarregarCondutores(condutores);
         }
 
         public Func< Locacao, Result<Locacao> > GravarRegistro
@@ -84,6 +85,16 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 FormPrincipal.Instancia.AtualizarRodape(erro);
 
                 DialogResult = DialogResult.None;
+            }
+        }
+
+        private void CarregarCondutores(List<Condutor> condutores)
+        {
+            cbCondutor_Cliente.Items.Clear();
+
+            foreach (var item in condutores)
+            {
+                cbCondutor_Cliente.Items.Add(item);
             }
         }
     }

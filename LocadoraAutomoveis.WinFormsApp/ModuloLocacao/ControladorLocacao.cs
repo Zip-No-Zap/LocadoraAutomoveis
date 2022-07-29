@@ -1,8 +1,11 @@
 ﻿
 
 
+using FluentResults;
+using LocadoraAutomoveis.Aplicacao.Modulo_Condutor;
 using LocadoraAutomoveis.Aplicacao.ModuloLocacao;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
 using System;
 using System.Collections.Generic;
@@ -13,17 +16,37 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
     public class ControladorLocacao : ControladorBase
     {
         readonly ServicoLocacao servicoLocacao;
-        //readonly ServicoLocacao servicoGrupoLocacao;
+        readonly ServicoCondutor servicoCondutor;
         LocacaoControl tabelaLocacaos;
 
-        public ControladorLocacao(ServicoLocacao servicoLocacao) //ServicoLocacao servicoLocacao)
+        public ControladorLocacao(ServicoLocacao servicoLocacao, ServicoCondutor servicoCondutor)
         {
             this.servicoLocacao = servicoLocacao;
-            //this.servicoLocacao = servicoLocacao;
+            this.servicoCondutor = servicoCondutor;
         }
 
         public override void Inserir()
         {
+            Result<List<Condutor>> resultadoResult = servicoCondutor.SelecionarTodos();
+
+            var condutores = servicoCondutor.SelecionarTodos().Value;
+
+            var tela = new TelaCadastroLocacao(condutores, null, null);
+
+            if (resultadoResult.IsSuccess)
+            {
+                tela.Locacao = new();
+
+                tela.GravarRegistro = servicoLocacao.Inserir;
+
+                DialogResult resultado = tela.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    CarregarLocacoes();
+                }
+            }
+
             //TODO : criar o inserir e editar do controlador locacao
 
             //tela.GravarRegistro = servicoLocacao.Inserir;
@@ -66,7 +89,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                CarregarLocacaos();
+                CarregarLocacoes();
             }
         }
 
@@ -99,7 +122,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 var resultadoExclusao = servicoLocacao.Excluir(Selecionado);
 
                 if (resultadoExclusao.IsSuccess)
-                    CarregarLocacaos();
+                    CarregarLocacoes();
 
                 else
                     MessageBox.Show(resultadoExclusao.Errors[0].Message, "Exclusão de Locacao",
@@ -117,12 +140,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             if (tabelaLocacaos == null)
                 tabelaLocacaos = new LocacaoControl();
 
-            CarregarLocacaos();
+            CarregarLocacoes();
 
             return tabelaLocacaos;
         }
 
-        private void CarregarLocacaos()
+        private void CarregarLocacoes()
         {
             var resultado = servicoLocacao.SelecionarTodos();
 

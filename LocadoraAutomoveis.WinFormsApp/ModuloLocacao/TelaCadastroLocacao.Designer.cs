@@ -36,7 +36,7 @@
             this.tbCondutor = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbCliente = new System.Windows.Forms.ComboBox();
+            this.cbCondutor_Cliente = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -107,7 +107,7 @@
             this.gbCondutor.Controls.Add(this.tbCondutor);
             this.gbCondutor.Controls.Add(this.label2);
             this.gbCondutor.Controls.Add(this.label1);
-            this.gbCondutor.Controls.Add(this.cbCliente);
+            this.gbCondutor.Controls.Add(this.cbCondutor_Cliente);
             this.gbCondutor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbCondutor.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.gbCondutor.Location = new System.Drawing.Point(15, 21);
@@ -153,13 +153,14 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Cliente";
             // 
-            // cbCliente
+            // cbCondutor_Cliente
             // 
-            this.cbCliente.FormattingEnabled = true;
-            this.cbCliente.Location = new System.Drawing.Point(24, 80);
-            this.cbCliente.Name = "cbCliente";
-            this.cbCliente.Size = new System.Drawing.Size(356, 33);
-            this.cbCliente.TabIndex = 0;
+            this.cbCondutor_Cliente.DisplayMember = "Cliente.Nome";
+            this.cbCondutor_Cliente.FormattingEnabled = true;
+            this.cbCondutor_Cliente.Location = new System.Drawing.Point(24, 80);
+            this.cbCondutor_Cliente.Name = "cbCondutor_Cliente";
+            this.cbCondutor_Cliente.Size = new System.Drawing.Size(356, 33);
+            this.cbCondutor_Cliente.TabIndex = 0;
             // 
             // label3
             // 
@@ -440,7 +441,7 @@
         private System.Windows.Forms.GroupBox gbCondutor;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbCliente;
+        private System.Windows.Forms.ComboBox cbCondutor_Cliente;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbVencimentoCnh;
         private System.Windows.Forms.TextBox tbCondutor;

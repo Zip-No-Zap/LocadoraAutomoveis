@@ -19,6 +19,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
             builder.HasMany(x => x.ItensTaxa);
             builder.Property(x => x.DataLocacao).HasColumnType("date").IsRequired();
             builder.Property(x => x.DataDevolucao).HasColumnType("varchar(50)").IsRequired();
+            builder.Property(x => x.PlanoLocacao_Descricao).HasColumnType("varchar(20)").IsRequired();
         }
     }
 }
