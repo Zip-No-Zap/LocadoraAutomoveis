@@ -52,8 +52,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar inserir Condutor.";
+
                 Log.Logger.Error(ex, msgErro + "{CondutorId}", condutor.Id);
+
                 return Result.Fail(msgErro);
             }
 
@@ -88,6 +92,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar editar Condutor";
 
                 Log.Logger.Error(ex, msgErro + "{CondutorId}", condutor.Id);
@@ -112,6 +118,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar excluir Condutor.";
 
                 Log.Logger.Error(ex, msgErro + "{CondutorId}", condutor.Id);

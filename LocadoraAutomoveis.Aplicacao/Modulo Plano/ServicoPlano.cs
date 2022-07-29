@@ -51,6 +51,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar inserir Plano";
 
                 Log.Logger.Error(ex, msgErro + "{PlanoId}", plano.Id);
@@ -88,6 +90,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
             }
             catch(Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar editar Plano";
 
                 Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
@@ -112,12 +116,13 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar excluir o Plano";
 
                 Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
 
                 return Result.Fail(msgErro);
-
             }
         }
 

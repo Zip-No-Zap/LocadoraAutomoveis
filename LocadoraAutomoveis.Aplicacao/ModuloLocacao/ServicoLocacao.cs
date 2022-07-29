@@ -53,6 +53,8 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar inserir Locacao";
 
                 Log.Logger.Error(ex, msgErro + "{LocacaoId}", plano.Id);
@@ -91,6 +93,8 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar editar Locacao";
 
                 Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
@@ -115,12 +119,13 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar excluir o Locacao";
 
                 Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
 
                 return Result.Fail(msgErro);
-
             }
         }
 

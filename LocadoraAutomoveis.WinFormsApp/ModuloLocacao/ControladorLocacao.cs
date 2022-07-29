@@ -13,13 +13,13 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
     public class ControladorLocacao : ControladorBase
     {
         readonly ServicoLocacao servicoLocacao;
-        //readonly ServicoGrupoLocacao servicoGrupoLocacao;
+        //readonly ServicoLocacao servicoGrupoLocacao;
         LocacaoControl tabelaLocacaos;
 
-        public ControladorLocacao(ServicoLocacao servicoLocacao) //ServicoGrupoLocacao servicoGrupoLocacao)
+        public ControladorLocacao(ServicoLocacao servicoLocacao) //ServicoLocacao servicoLocacao)
         {
             this.servicoLocacao = servicoLocacao;
-            //this.servicoGrupoLocacao = servicoGrupoLocacao;
+            //this.servicoLocacao = servicoLocacao;
         }
 
         public override void Inserir()
@@ -30,7 +30,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             //if (tela.ShowDialog() == DialogResult.OK)
             //{
-            //    CarregarLocacaos();
+            //    CarregarLocacoes();
             //}
         }
 

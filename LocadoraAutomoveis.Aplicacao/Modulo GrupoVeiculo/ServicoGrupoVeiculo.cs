@@ -53,6 +53,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar inserir Grupo de Veículo";
 
                 Log.Logger.Error(ex, msgErro + "{GrupoVeiculoId}", grupoVeiculo.Id);
@@ -92,6 +94,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
             }
             catch(Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar editar Grupo de Veículo";
 
                 Log.Logger.Error(ex, msgErro + "{GrupoVeiculoId}", grupoVeiculo.Id);
@@ -116,6 +120,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar excluir o Grupo de Veiculo";
 
                 Log.Logger.Error(ex, msgErro + "{GrupoVeiculo}", grupoVeiculo.Id);

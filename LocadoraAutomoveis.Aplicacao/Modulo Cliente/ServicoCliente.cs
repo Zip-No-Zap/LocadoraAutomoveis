@@ -53,6 +53,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar inserir Cliente.";
 
                 Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
@@ -91,6 +93,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar editar Cliente";
 
                 Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
@@ -115,6 +119,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar excluir Cliente.";
 
                 Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);

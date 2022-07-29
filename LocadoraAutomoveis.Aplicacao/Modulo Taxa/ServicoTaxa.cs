@@ -53,6 +53,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar inserir Taxa";
 
                 Log.Logger.Error(ex, msgErro + "{taxaId}", taxa.Id);
@@ -92,6 +94,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar editar Taxa";
 
                 Log.Logger.Error(ex, msgErro + "{taxaId}", taxa.Id);
@@ -116,6 +120,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha no sistema ao tentar excluir Taxa";
 
                 Log.Logger.Error(ex, msgErro + "{taxa}", taxa.Id);

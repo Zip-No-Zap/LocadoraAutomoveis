@@ -51,8 +51,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar inserir Funcionário.";
+
                 Log.Logger.Error(ex, msgErro + "{FuncionarioId}",  funcionario.Id);
+
                 return Result.Fail(msgErro);
             }
 
@@ -87,6 +91,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar editar Funcionário";
 
                 Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.Id);
@@ -111,6 +117,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar excluir Funcionário.";
 
                 Log.Logger.Error(ex, msgErro + "{FuncionarioId}", funcionario.Id);

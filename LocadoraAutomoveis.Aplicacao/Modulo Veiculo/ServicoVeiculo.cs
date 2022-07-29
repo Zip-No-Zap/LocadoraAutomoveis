@@ -55,6 +55,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar inserir Veículo";
 
                 Log.Logger.Error(ex, msgErro + "{VeiculoId}", veiculo.Id);
@@ -94,6 +96,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar editar Veículo";
 
                 Log.Logger.Error(ex, msgErro + "{VeiculoId}", veiculo.Id);
