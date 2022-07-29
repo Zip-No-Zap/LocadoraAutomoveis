@@ -31,7 +31,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnDetalhar = new System.Windows.Forms.Button();
             this.listTaxasAdicionais = new System.Windows.Forms.CheckedListBox();
-            this.cmbGrupoVeiculo = new System.Windows.Forms.ComboBox();
             this.tbKmAtual = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -53,6 +52,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.txtGrupoVeiculo = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.gbCondutor.SuspendLayout();
@@ -62,9 +62,9 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox1.Controls.Add(this.txtGrupoVeiculo);
             this.groupBox1.Controls.Add(this.btnDetalhar);
             this.groupBox1.Controls.Add(this.listTaxasAdicionais);
-            this.groupBox1.Controls.Add(this.cmbGrupoVeiculo);
             this.groupBox1.Controls.Add(this.tbKmAtual);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.groupBox2);
@@ -109,19 +109,10 @@
             this.listTaxasAdicionais.Size = new System.Drawing.Size(579, 158);
             this.listTaxasAdicionais.TabIndex = 35;
             // 
-            // cmbGrupoVeiculo
-            // 
-            this.cmbGrupoVeiculo.FormattingEnabled = true;
-            this.cmbGrupoVeiculo.Location = new System.Drawing.Point(27, 93);
-            this.cmbGrupoVeiculo.Margin = new System.Windows.Forms.Padding(5);
-            this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
-            this.cmbGrupoVeiculo.Size = new System.Drawing.Size(282, 28);
-            this.cmbGrupoVeiculo.TabIndex = 15;
-            // 
             // tbKmAtual
             // 
             this.tbKmAtual.Enabled = false;
-            this.tbKmAtual.Location = new System.Drawing.Point(338, 147);
+            this.tbKmAtual.Location = new System.Drawing.Point(336, 94);
             this.tbKmAtual.Margin = new System.Windows.Forms.Padding(2);
             this.tbKmAtual.Name = "tbKmAtual";
             this.tbKmAtual.Size = new System.Drawing.Size(268, 27);
@@ -132,7 +123,7 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(337, 125);
+            this.label8.Location = new System.Drawing.Point(335, 72);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(141, 19);
@@ -194,7 +185,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(27, 125);
+            this.label7.Location = new System.Drawing.Point(26, 72);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 19);
@@ -204,17 +195,18 @@
             // cmbVeiculo
             // 
             this.cmbVeiculo.FormattingEnabled = true;
-            this.cmbVeiculo.Location = new System.Drawing.Point(26, 147);
+            this.cmbVeiculo.Location = new System.Drawing.Point(26, 94);
             this.cmbVeiculo.Margin = new System.Windows.Forms.Padding(5);
             this.cmbVeiculo.Name = "cmbVeiculo";
             this.cmbVeiculo.Size = new System.Drawing.Size(283, 28);
             this.cmbVeiculo.TabIndex = 3;
+            this.cmbVeiculo.SelectedIndexChanged += new System.EventHandler(this.cmbVeiculo_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(26, 71);
+            this.label6.Location = new System.Drawing.Point(25, 127);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 19);
@@ -358,6 +350,15 @@
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = false;
             // 
+            // txtGrupoVeiculo
+            // 
+            this.txtGrupoVeiculo.Enabled = false;
+            this.txtGrupoVeiculo.Location = new System.Drawing.Point(26, 148);
+            this.txtGrupoVeiculo.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGrupoVeiculo.Name = "txtGrupoVeiculo";
+            this.txtGrupoVeiculo.Size = new System.Drawing.Size(283, 27);
+            this.txtGrupoVeiculo.TabIndex = 36;
+            // 
             // TelaCadastroLocacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -390,7 +391,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnDetalhar;
         private System.Windows.Forms.CheckedListBox listTaxasAdicionais;
-        private System.Windows.Forms.ComboBox cmbGrupoVeiculo;
         private System.Windows.Forms.TextBox tbKmAtual;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -412,5 +412,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.TextBox txtGrupoVeiculo;
     }
 }

@@ -32,18 +32,18 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             InitializeComponent();
             CarregarClientes(clientes);
-            CarregarGrupos(grupos);
+            CarregarVeiculos(veiculos);
             this.condutores = condutores;
             this.veiculos = veiculos;
             this.taxas = taxasAdicionais;
         }
 
-        private void CarregarGrupos(List<GrupoVeiculo> grupos)
+        private void CarregarVeiculos(List<Veiculo> veiculos)
         {
-            cmbGrupoVeiculo.Items.Clear();
+            cmbVeiculo.Items.Clear();
 
-            foreach (var item in grupos)
-            cmbGrupoVeiculo.Items.Add(item);
+            foreach (var item in veiculos)
+                cmbVeiculo.Items.Add(item);
         }
 
         private void CarregarClientes(List<Cliente> clientes)
@@ -78,12 +78,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
                 dpDataLocacao.Value = locacao.DataLocacao;
                 dpDataDevolucao.Value = locacao.DataLocacao;
-               
-                if (locacao.VeiculoLocacao_Grupo != null)
-                    cmbGrupoVeiculo.SelectedItem = locacao.VeiculoLocacao_Grupo;
-                else
-                    cmbGrupoVeiculo.SelectedIndex = -1;
 
+                txtGrupoVeiculo.Text = locacao.VeiculoLocacao_Grupo ;
 
                 if (locacao.VeiculoLocacao != null)
                     cmbVeiculo.SelectedItem = locacao.VeiculoLocacao;
@@ -126,6 +122,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 var novoClienteVazio = new Condutor();
                 locacao.CondutorLocacao = novoClienteVazio;
             }
+
+
             //condutor.Nome = tbNome.Text;
             //condutor.Cpf = tbCpf.Text;
             //condutor.Telefone = tbTelefone.Text;
@@ -161,6 +159,14 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 cmbCondutor.Items.Add(condutoresCliente);
             }
 
+        }
+
+
+        private void cmbVeiculo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var veiculo = (Veiculo)cmbVeiculo.SelectedItem;
+
+            txtGrupoVeiculo.Text = veiculo.GrupoPertencente.Nome;
         }
     }
 }
