@@ -48,6 +48,12 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
         {
             return dbsetLocacaos.FirstOrDefault(x => x.CondutorLocacao.Cpf == valor);
         }
+
+        public void RegistrarDevolucao(Locacao locacao)
+        {
+
+            // fazer
+        }
     }
 
 }
