@@ -28,24 +28,23 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public TelaCadastroLocacao(List<Cliente> clientes, 
             List<Condutor> condutores, List<Veiculo> veiculos, 
-            List<Taxa> taxasAdicionais)
+            List<Taxa> taxasAdicionais, List<GrupoVeiculo> grupo)
         {
             InitializeComponent();
             CarregarClientes(clientes);
-            CarregarVeiculos(veiculos);
+            CarregarGrupoVeiculos(grupo);
             this.condutores = condutores;
             this.veiculos = veiculos;
             this.taxas = taxasAdicionais;
         }
 
-        private void CarregarVeiculos(List<Veiculo> veiculos)
+        private void CarregarGrupoVeiculos(List<GrupoVeiculo> grupo)
         {
             cmbVeiculo.Items.Clear();
 
-            foreach (var item in veiculos)
+            foreach (var item in grupo)
             {
-                cmbVeiculo.Items.Add(item);
-                item.GrupoPertencente = new();
+                cmbGrupoVeiculo.Items.Add(item);
             }
         }
 
@@ -94,11 +93,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     int i = 0;
                     foreach (var item in taxas)
                     {
-                        listTaxasAdicionais.Items.Add(item);
-
-                        //if(locacao.ItensTaxa.Contains(item))
-                        //    listTaxasAdicionais.SetItemChecked(i, true);
-
+                        listTaxasAdicionais.Items.Add(item.ToString());
                         i++;
                     }
                 }
@@ -126,21 +121,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private void cmbVeiculo_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
             var veiculo = (Veiculo)cmbVeiculo.SelectedItem;
-
-            foreach (var item in veiculos)
-            {
-                if (veiculo.Equals(item)){
-                    txtGrupoVeiculo.Text = item.GrupoPertencente.Nome;
-
-                }
-            }
-
-
-
-            txtGrupoVeiculo.Text = veiculo.GrupoPertencente.Nome;
-
             txtKmAtual.Text = veiculo.QuilometragemAtual.ToString();
 
         }
@@ -148,20 +129,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         private void cmbPlano_SelectedIndexChanged(object sender, EventArgs e)
         {
             locacao.PlanoLocacao_Descricao = cmbPlano.Text;
-            //switch (cmbPlano.SelectedIndex)
-            //{
-            //    case 0:
-            //        locacao.PlanoLocacao_Descricao = "Diário";
-            //        break;
-
-            //    case 1:
-            //        locacao.PlanoLocacao_Descricao = "Livre";
-            //        break;
-
-            //    case 2:
-            //        locacao.PlanoLocacao_Descricao = "Controlado";
-            //        break;
-            //}
+            
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -195,10 +163,18 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         }
 
        
-
-        private void txtCondutor_TextChanged(object sender, EventArgs e)
+        private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
+            foreach (var item in veiculos)
+            {
+                if(item.GrupoPertencente.Equals(grupo))
+                {
+                    cmbVeiculo.Items.Add(item);
 
+                }
+            }
         }
+       
     }
 }

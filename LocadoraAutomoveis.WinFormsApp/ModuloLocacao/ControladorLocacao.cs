@@ -20,16 +20,18 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         readonly ServicoVeiculo servicoVeiculo;
         readonly ServicoTaxa servicoTaxa;
         readonly ServicoCliente servicoCliente;
+        readonly ServicoGrupoVeiculo servicoGrupoVeiculo;
         LocacaoControl tabelaLocacaos;
 
         public ControladorLocacao(ServicoLocacao servicoLocacao, ServicoCondutor servicoCondutor,
-            ServicoVeiculo servicoVeiculo, ServicoTaxa servicoTaxa, ServicoCliente servicoCliente)
+            ServicoVeiculo servicoVeiculo, ServicoTaxa servicoTaxa, ServicoCliente servicoCliente, ServicoGrupoVeiculo servicoGrupo)
         {
             this.servicoLocacao = servicoLocacao;
             this.servicoCondutor = servicoCondutor;
             this.servicoVeiculo = servicoVeiculo;
             this.servicoTaxa = servicoTaxa;
             this.servicoCliente = servicoCliente;
+            this.servicoGrupoVeiculo = servicoGrupo;
         }
 
         public override void Inserir()
@@ -40,8 +42,9 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             var condutores = servicoCondutor.SelecionarTodos().Value;
             var veiculos = servicoVeiculo.SelecionarTodos().Value;
             var taxas = servicoTaxa.SelecionarTodos().Value;
+            var grupo = servicoGrupoVeiculo.SelecionarTodos().Value;
 
-            var tela = new TelaCadastroLocacao(clientes, condutores, veiculos, taxas);
+            var tela = new TelaCadastroLocacao(clientes, condutores, veiculos, taxas, grupo);
 
             if (resultadoResult.IsSuccess)
             {
@@ -84,8 +87,9 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             var veiculos = servicoVeiculo.SelecionarTodos().Value;
             var taxas = servicoTaxa.SelecionarTodos().Value;
             var clientes = servicoCliente.SelecionarTodos().Value;
+            var grupo = servicoGrupoVeiculo.SelecionarTodos().Value;
 
-            TelaCadastroLocacao tela = new(clientes, condutores, veiculos, taxas);
+            TelaCadastroLocacao tela = new(clientes, condutores, veiculos, taxas, grupo);
 
             tela.Locacao = selecionado;
 

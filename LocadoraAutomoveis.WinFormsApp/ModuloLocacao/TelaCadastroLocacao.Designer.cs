@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbGrupoVeiculo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbPlano = new System.Windows.Forms.ComboBox();
-            this.txtGrupoVeiculo = new System.Windows.Forms.TextBox();
             this.btnDetalhar = new System.Windows.Forms.Button();
             this.listTaxasAdicionais = new System.Windows.Forms.CheckedListBox();
             this.txtKmAtual = new System.Windows.Forms.TextBox();
@@ -59,9 +59,9 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox1.Controls.Add(this.cmbGrupoVeiculo);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cmbPlano);
-            this.groupBox1.Controls.Add(this.txtGrupoVeiculo);
             this.groupBox1.Controls.Add(this.btnDetalhar);
             this.groupBox1.Controls.Add(this.listTaxasAdicionais);
             this.groupBox1.Controls.Add(this.txtKmAtual);
@@ -84,6 +84,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Locação";
             // 
+            // cmbGrupoVeiculo
+            // 
+            this.cmbGrupoVeiculo.DisplayMember = "Nome";
+            this.cmbGrupoVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbGrupoVeiculo.FormattingEnabled = true;
+            this.cmbGrupoVeiculo.Location = new System.Drawing.Point(26, 93);
+            this.cmbGrupoVeiculo.Margin = new System.Windows.Forms.Padding(5);
+            this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
+            this.cmbGrupoVeiculo.Size = new System.Drawing.Size(283, 28);
+            this.cmbGrupoVeiculo.TabIndex = 39;
+            this.cmbGrupoVeiculo.SelectedIndexChanged += new System.EventHandler(this.cmbGrupoVeiculo_SelectedIndexChanged);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -97,6 +109,7 @@
             // 
             // cmbPlano
             // 
+            this.cmbPlano.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPlano.FormattingEnabled = true;
             this.cmbPlano.Items.AddRange(new object[] {
             "Diário ",
@@ -108,15 +121,6 @@
             this.cmbPlano.Size = new System.Drawing.Size(269, 28);
             this.cmbPlano.TabIndex = 37;
             this.cmbPlano.SelectedIndexChanged += new System.EventHandler(this.cmbPlano_SelectedIndexChanged);
-            // 
-            // txtGrupoVeiculo
-            // 
-            this.txtGrupoVeiculo.Enabled = false;
-            this.txtGrupoVeiculo.Location = new System.Drawing.Point(26, 148);
-            this.txtGrupoVeiculo.Margin = new System.Windows.Forms.Padding(2);
-            this.txtGrupoVeiculo.Name = "txtGrupoVeiculo";
-            this.txtGrupoVeiculo.Size = new System.Drawing.Size(283, 27);
-            this.txtGrupoVeiculo.TabIndex = 36;
             // 
             // btnDetalhar
             // 
@@ -133,6 +137,7 @@
             // 
             // listTaxasAdicionais
             // 
+            this.listTaxasAdicionais.AccessibleName = "";
             this.listTaxasAdicionais.CheckOnClick = true;
             this.listTaxasAdicionais.FormattingEnabled = true;
             this.listTaxasAdicionais.Location = new System.Drawing.Point(27, 202);
@@ -144,10 +149,10 @@
             // txtKmAtual
             // 
             this.txtKmAtual.Enabled = false;
-            this.txtKmAtual.Location = new System.Drawing.Point(336, 94);
+            this.txtKmAtual.Location = new System.Drawing.Point(29, 149);
             this.txtKmAtual.Margin = new System.Windows.Forms.Padding(2);
             this.txtKmAtual.Name = "txtKmAtual";
-            this.txtKmAtual.Size = new System.Drawing.Size(270, 27);
+            this.txtKmAtual.Size = new System.Drawing.Size(280, 27);
             this.txtKmAtual.TabIndex = 9;
             // 
             // label8
@@ -155,7 +160,7 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(335, 72);
+            this.label8.Location = new System.Drawing.Point(28, 127);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(141, 19);
@@ -166,7 +171,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(26, 72);
+            this.label7.Location = new System.Drawing.Point(337, 72);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 19);
@@ -178,10 +183,10 @@
             this.cmbVeiculo.DisplayMember = "Modelo";
             this.cmbVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVeiculo.FormattingEnabled = true;
-            this.cmbVeiculo.Location = new System.Drawing.Point(26, 94);
+            this.cmbVeiculo.Location = new System.Drawing.Point(333, 94);
             this.cmbVeiculo.Margin = new System.Windows.Forms.Padding(5);
             this.cmbVeiculo.Name = "cmbVeiculo";
-            this.cmbVeiculo.Size = new System.Drawing.Size(283, 28);
+            this.cmbVeiculo.Size = new System.Drawing.Size(273, 28);
             this.cmbVeiculo.TabIndex = 3;
             this.cmbVeiculo.SelectedIndexChanged += new System.EventHandler(this.cmbVeiculo_SelectedIndexChanged);
             // 
@@ -189,7 +194,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(25, 127);
+            this.label6.Location = new System.Drawing.Point(27, 72);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 19);
@@ -384,9 +389,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.TextBox txtGrupoVeiculo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbPlano;
         private System.Windows.Forms.ComboBox cmbCondutor;
+        private System.Windows.Forms.ComboBox cmbGrupoVeiculo;
     }
 }
