@@ -140,9 +140,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
            
             locacao.VeiculoLocacao = (Veiculo)cmbVeiculo.SelectedItem;
 
-           
+            switch (locacao.PlanoLocacao_Descricao) 
+            {
+            }
 
-            locacao.PlanoLocacao_Descricao = cmbPlano.Text;
 
 
 
