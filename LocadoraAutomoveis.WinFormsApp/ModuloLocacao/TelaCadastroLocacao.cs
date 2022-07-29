@@ -2,6 +2,7 @@
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
+using LocadoraVeiculos.Dominio.Modulo_Plano;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
@@ -21,13 +22,38 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
     {
         private Locacao locacao;
 
-        public TelaCadastroLocacao(List<Condutor> condutores, List<Veiculo> veiculos, List<Taxa> taxas, List<GrupoVeiculo> grupos)
+        List<Condutor> condutores;
+        List<Veiculo> veiculos;
+        List<Taxa> taxas;
+
+        public TelaCadastroLocacao(List<Cliente> clientes, 
+            List<Condutor> condutores, List<Veiculo> veiculos, 
+            List<Taxa> taxasAdicionais, List<GrupoVeiculo> grupo)
         {
             InitializeComponent();
-            CarregarCondutores(condutores);
-            CarregarVeiculos(veiculos);
-            CarregarTaxas(taxas);
-            CarregarGrupos(grupos);
+            CarregarClientes(clientes);
+            CarregarGrupoVeiculos(grupo);
+            this.condutores = condutores;
+            this.veiculos = veiculos;
+            this.taxas = taxasAdicionais;
+        }
+
+        private void CarregarGrupoVeiculos(List<GrupoVeiculo> grupo)
+        {
+            cmbVeiculo.Items.Clear();
+
+            foreach (var item in grupo)
+            {
+                cmbGrupoVeiculo.Items.Add(item);
+            }
+        }
+
+        private void CarregarClientes(List<Cliente> clientes)
+        {
+            cmbClientes.Items.Clear();
+
+            foreach (var item in clientes)
+                cmbClientes.Items.Add(item);
         }
 
         public Func< Locacao, Result<Locacao> > GravarRegistro
@@ -42,46 +68,35 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             {
                 locacao = value;
 
-                cbCondutor_Cliente.SelectedItem = locacao.CondutorLocacao.Cliente == null ? cbCondutor_Cliente.SelectedIndex = -1 : locacao.CondutorLocacao.Cliente;
-                cbVeiculo.SelectedItem = locacao.VeiculoLocacao == null ? cbVeiculo.SelectedIndex = -1 : locacao.VeiculoLocacao;
-                cbItens.SelectedItem = locacao.ItensTaxa == null ? cbItens.SelectedIndex = -1 : locacao.ItensTaxa;
+                if (locacao.ClienteLocacao != null)
+                    cmbClientes.SelectedItem = locacao.ClienteLocacao;
+                else
+                    cmbClientes.SelectedIndex = -1;
 
-                switch (locacao.PlanoLocacao_Descricao)
+                if (locacao.CondutorLocacao != null)
+                    cmbClientes.SelectedItem = locacao.CondutorLocacao;
+                else
+                    cmbClientes.SelectedIndex = -1;
+
+                dpDataLocacao.Value = locacao.DataLocacao;
+                dpDataDevolucao.Value = locacao.DataLocacao;
+
+                //txtGrupoVeiculo.Text = locacao.VeiculoLocacao.GrupoPertencente.Nome ;
+
+                if (locacao.VeiculoLocacao != null)
+                    cmbVeiculo.SelectedItem = locacao.VeiculoLocacao;
+                else
+                    cmbVeiculo.SelectedIndex = -1;
+
+                if (taxas != null)
                 {
-                    case "Diário":
-                        rdDiario.Checked = true;
-                        rdLivre.Checked = false;
-                        rdControlado.Checked = false;
-                        break;
-
-                    case "Livre":
-                        rdLivre.Checked = true;
-                        rdDiario.Checked = false;
-                        rdControlado.Checked = false;
-                        break;
-
-                    case "Controlado":
-                        rdControlado.Checked = true;
-                        rdDiario.Checked = false;
-                        rdLivre.Checked = false;
-                        break;
+                    int i = 0;
+                    foreach (var item in taxas)
+                    {
+                        listTaxasAdicionais.Items.Add(item.ToString());
+                        i++;
+                    }
                 }
-
-                CarregarItensAdicionais(Locacao.ItensTaxa);
-
-                    //tbNome.Text = condutor.Nome;
-                    //tbCnh.Text = condutor.Cnh;
-                    //tbEndereco.Text = condutor.Endereco;
-                    //tbEmail.Text = condutor.Email;
-                    //tbTelefone.Text = condutor.Telefone;
-                    //tbCnh.Text = condutor.Cnh;
-                    //tbCpf.Text = condutor.Cpf;
-                    //txtDataVencimentoCnh.Value = condutor.VencimentoCnh;
-
-                    //if (condutor.Cliente != null)
-                    //    cmbClientes.SelectedItem = condutor.Cliente;
-                    //else
-                    //    cmbClientes.SelectedIndex = -1;
             }
         }
 
@@ -90,22 +105,50 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             FormPrincipal.Instancia.AtualizarRodape("");
         }
 
+      
+        private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var cliente = (Cliente)cmbClientes.SelectedItem;
+
+            var condutoresCliente = condutores.FindAll(x => x.Cliente.Equals(cliente)).ToList();
+
+            foreach (var item in condutoresCliente)
+            {
+                cmbCondutor.Items.Add(item);
+            }
+        }
+
+
+        private void cmbVeiculo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var veiculo = (Veiculo)cmbVeiculo.SelectedItem;
+            txtKmAtual.Text = veiculo.QuilometragemAtual.ToString();
+
+        }
+
+        private void cmbPlano_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            locacao.PlanoLocacao_Descricao = cmbPlano.Text;
+            
+        }
+
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //condutor.Nome = tbNome.Text;
-            //condutor.Cpf = tbCpf.Text;
-            //condutor.Telefone = tbTelefone.Text;
-            //condutor.Email = tbEmail.Text;
-            //condutor.Endereco = tbEndereco.Text;
-            //condutor.Cnh = tbCnh.Text;
-            //condutor.VencimentoCnh = txtDataVencimentoCnh.Value;
-            //condutor.Cliente = (Cliente)cmbClientes.SelectedItem;
+            locacao.ClienteLocacao = (Cliente)cmbClientes.SelectedItem;
+           
+            locacao.CondutorLocacao = (Condutor)cmbCondutor.SelectedItem;
+           
+            locacao.VeiculoLocacao = (Veiculo)cmbVeiculo.SelectedItem;
 
-            //if (condutor.Cliente == null)
-            //{
-            //    var novoClienteVazio = new Cliente() { Nome = "" };
-            //    condutor.Cliente = novoClienteVazio;
-            //}
+            switch (locacao.PlanoLocacao_Descricao) 
+            {
+            }
+
+
+
+
+
+
 
             var resultadoValidacao = GravarRegistro(locacao);
 
@@ -117,56 +160,22 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
                 DialogResult = DialogResult.None;
             }
+
         }
 
-        private void CarregarItensAdicionais(List<Taxa> taxas)
+       
+        private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            listItens.Items.Clear();
-
-            foreach (var item in taxas)
-            {
-                listItens.Items.Add(item.Descricao + " - " + item.Valor + " - " + item.Tipo);
-            }
-        }
-
-        private void CarregarCondutores(List<Condutor> condutores)
-        {
-            cbCondutor_Cliente.Items.Clear();
-
-            foreach (var item in condutores)
-            {
-                cbCondutor_Cliente.Items.Add(item);
-            }
-        }
-
-        private void CarregarVeiculos(List<Veiculo> veiculos)
-        {
-            cbVeiculo.Items.Clear();
-
+            var grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
             foreach (var item in veiculos)
             {
-                cbVeiculo.Items.Add(item);
+                if(item.GrupoPertencente.Equals(grupo))
+                {
+                    cmbVeiculo.Items.Add(item);
+
+                }
             }
         }
-
-        private void CarregarTaxas(List<Taxa> taxas)
-        {
-            cbItens.Items.Clear();
-
-            foreach (var item in taxas)
-            {
-                cbItens.Items.Add(item);
-            }
-        }
-
-        private void CarregarGrupos(List<Taxa> grupos)
-        {
-            cbGrupo.Items.Clear();
-
-            foreach (var item in grupos)
-            {
-                cbGrupo.Items.Add(item);
-            }
-        }
+       
     }
 }

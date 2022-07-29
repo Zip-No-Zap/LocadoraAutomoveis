@@ -2,6 +2,7 @@
 using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
 using LocadoraAutomoveis.Infra.Orm.ModuloFuncionario;
 using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
+using LocadoraAutomoveis.Infra.Orm.ModuloLocacao;
 using LocadoraAutomoveis.Infra.Orm.ModuloTaxa;
 using LocadoraAutomoveis.Infra.Orm.ModuloVeiculo;
 using Microsoft.EntityFrameworkCore;
@@ -82,7 +83,8 @@ namespace LocadoraAutomoveis.Infra.Orm.Compartilhado
             modelBuilder.ApplyConfiguration(new MapeadorPlanoOrm());
             modelBuilder.ApplyConfiguration(new MapeadorTaxaOrm());
             modelBuilder.ApplyConfiguration(new MapeadorVeiculoOrm());
-
+            modelBuilder.ApplyConfiguration(new MapeadorLocacaoOrm());
+            
             //modelBuilder.Ignore<Cliente>();   cancela a criação automática das entidades relacionadas, do tipo informado
         }
     }

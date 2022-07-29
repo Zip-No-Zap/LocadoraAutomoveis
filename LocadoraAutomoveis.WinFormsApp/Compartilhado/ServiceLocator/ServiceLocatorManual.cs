@@ -63,33 +63,36 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             var repositorioPlanoOrm = new RepositorioPlanoOrm(contextoDadosOrm);
             var repositorioTaxaOrm = new RepositorioTaxaOrm(contextoDadosOrm);
             var repositorioFuncionarioOrm = new RepositorioFuncionarioOrm(contextoDadosOrm);
-            var repositorioLocacaoOrm = new RepositorioLocacaoOrm(contextoDadosOrm);
+            //var repositorioLocacaoOrm = new RepositorioLocacaoOrm(contextoDadosOrm);
             var repositorioVeiculoOrm = new RepositorioVeiculoOrm(contextoDadosOrm);
             var repositorioGrupoVeiculoOrm = new RepositorioGrupoVeiculoOrm(contextoDadosOrm);
             var repositorioClienteOrm = new RepositorioClienteOrm(contextoDadosOrm);
             var repositorioCondutorOrm = new RepositorioCondutorOrm(contextoDadosOrm);
+            var repositorioLocacaoOrm = new RepositorioLocacaoOrm(contextoDadosOrm);
             
             
             //serviços
             var servicoPlanoOrm = new ServicoPlano(repositorioPlanoOrm, contextoDadosOrm);
             var servicoTaxaOrm = new ServicoTaxa(repositorioTaxaOrm, contextoDadosOrm);
             var servicoFuncionarioOrm = new ServicoFuncionario(repositorioFuncionarioOrm, contextoDadosOrm);
-            var servicoLocacaoOrm = new ServicoLocacao(repositorioLocacaoOrm, contextoDadosOrm);
+            //var servicoLocacaoOrm = new ServicoLocacao(repositorioLocacaoOrm, contextoDadosOrm);
             var servicoVeiculoOrm = new ServicoVeiculo(repositorioVeiculoOrm, contextoDadosOrm);
             var servicoGrupoVeiculoOrm = new ServicoGrupoVeiculo(repositorioGrupoVeiculoOrm, contextoDadosOrm, repositorioPlanoOrm, repositorioVeiculoOrm);
             var servicoClienteOrm = new ServicoCliente(repositorioClienteOrm, contextoDadosOrm, repositorioCondutorOrm);
             var servicoCondutorOrm = new ServicoCondutor(repositorioCondutorOrm, contextoDadosOrm);
+            var servicoLocacaoOrm = new ServicoLocacao(repositorioLocacaoOrm, contextoDadosOrm);
            
 
             //controladores
             controladores.Add("ControladorPlano", new ControladorPlano(servicoPlanoOrm, servicoGrupoVeiculoOrm));
             controladores.Add("ControladorTaxa", new ControladorTaxa(servicoTaxaOrm));
             controladores.Add("ControladorFuncionario", new ControladorFuncionario(servicoFuncionarioOrm));
-            controladores.Add("Locação", new ControladorLocacao(servicoLocacaoOrm, servicoCondutorOrm, servicoVeiculoOrm, servicoTaxaOrm));
+            //controladores.Add("Locação", new ControladorLocacao(servicoLocacaoOrm));
             controladores.Add("ControladorVeiculo", new ControladorVeiculo(servicoVeiculoOrm, servicoGrupoVeiculoOrm));
             controladores.Add("ControladorGrupoVeiculo", new ControladorGrupoVeiculo(servicoGrupoVeiculoOrm));
             controladores.Add("ControladorCondutor", new ControladorCondutor(servicoCondutorOrm, servicoClienteOrm));
             controladores.Add("ControladorCliente", new ControladorCliente(servicoClienteOrm));
+            controladores.Add("ControladorLocacao", new ControladorLocacao(servicoLocacaoOrm, servicoCondutorOrm, servicoVeiculoOrm, servicoTaxaOrm, servicoClienteOrm, servicoGrupoVeiculoOrm));
             
         }
     }

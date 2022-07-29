@@ -8,9 +8,13 @@ namespace LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo
     {
         public string Nome { get; set; }
         
-        public GrupoVeiculo(string nome)
+        public GrupoVeiculo(string nome): base()
         {
             Nome = nome;
+        }
+
+        public GrupoVeiculo()
+        {
         }
 
         public override bool Equals(object obj)

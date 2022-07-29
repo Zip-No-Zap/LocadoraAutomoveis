@@ -39,14 +39,26 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
             return dbsetLocacaos.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Locacao> SelecionarTodos(bool incluir)
+        public List<Locacao> SelecionarTodos(bool incluir = true)
         {
-            return dbsetLocacaos.ToList();
+            return dbsetLocacaos
+                .Include(x => x.ClienteLocacao)
+                .Include(x => x.CondutorLocacao)
+                .Include(x => x.VeiculoLocacao)
+                .Include(x => x.PlanoLocacao)
+                .Include(x => x.ItensTaxa)
+                .ToList();
         }
 
         public Locacao SelecionarPorAlgo(string valor)
         {
             return dbsetLocacaos.FirstOrDefault(x => x.CondutorLocacao.Cpf == valor);
+        }
+
+        public void RegistrarDevolucao(Locacao locacao)
+        {
+
+            // fazer
         }
     }
 
