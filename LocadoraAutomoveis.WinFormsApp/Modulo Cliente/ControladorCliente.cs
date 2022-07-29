@@ -92,7 +92,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
                 if (resultado == DialogResult.OK)
                 {
-                    servicoCliente.Excluir(selecionado);
+                    var exclusaoResult = servicoCliente.Excluir(selecionado);
+
+                    if (exclusaoResult.IsFailed)
+                        MessageBox.Show("Não foi possível excluir este cliente!\n\n" + exclusaoResult.Errors[0], "Aviso");
 
                     CarregarClientes();
                 }

@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloCliente;
+using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using Serilog;
 using System;
@@ -15,14 +16,15 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
         //readonly RepositorioClienteEmBancoDados repositorioCliente;
 
         readonly RepositorioClienteOrm repositorioCliente;
+        readonly RepositorioCondutorOrm repositorioCondutor;
         readonly IContextoPersistencia contextoPersistOrm;
 
 
-        public ServicoCliente(RepositorioClienteOrm repositorioCliente, IContextoPersistencia contextoPersistOrm)
+        public ServicoCliente(RepositorioClienteOrm repositorioCliente, IContextoPersistencia contextoPersistOrm, RepositorioCondutorOrm repositorioCondutor)
         {
             this.repositorioCliente = repositorioCliente;
             this.contextoPersistOrm = contextoPersistOrm;
-
+            this.repositorioCondutor = repositorioCondutor;
         }
 
         public Result<Cliente> Inserir(Cliente cliente)
@@ -107,23 +109,35 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
         {
             Log.Logger.Debug("Tentando excluir Cliente... {@cliente}", cliente);
 
-            try
+            if (VerificarRelacionamento(cliente) == false)
             {
-                repositorioCliente.Excluir(cliente);
 
-                contextoPersistOrm.GravarDados();
+                try
+                {
+                    repositorioCliente.Excluir(cliente);
 
-                Log.Logger.Information("Cliente excluído com sucesso. {@cliente}", cliente);
+                    contextoPersistOrm.GravarDados();
 
-                return Result.Ok();
+                    Log.Logger.Information("Cliente excluído com sucesso. {@cliente}", cliente);
+
+                    return Result.Ok();
+                }
+                catch (Exception ex)
+                {
+                    contextoPersistOrm.DesfazerAlteracoes();
+
+                    string msgErro = "Falha ao tentar excluir Cliente.";
+
+                    Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
+
+                    return Result.Fail(msgErro);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                contextoPersistOrm.DesfazerAlteracoes();
+                string msgErro = "O cliente está relacionado à outra tabela e não pode ser excluído";
 
-                string msgErro = "Falha ao tentar excluir Cliente.";
-
-                Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
+                Log.Logger.Error(msgErro + "{GrupoVeiculo}", cliente.Id);
 
                 return Result.Fail(msgErro);
             }
@@ -221,8 +235,21 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
             return Result.Ok();
         }
+        private bool VerificarRelacionamento(Cliente cliente)
+        {
+            bool resultadoCondutor = false;
+              
+            var condutores = repositorioCondutor.SelecionarTodos();
+              
+            resultadoCondutor = condutores.Any(x => x.Cliente.Nome == cliente.Nome);
+           
+            if (resultadoCondutor == true)
+                return true;
+            else
+                return false;
+         }
 
-        #endregion
-    }
+         #endregion
+        }
     
 }

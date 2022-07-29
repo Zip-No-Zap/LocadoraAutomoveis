@@ -2,7 +2,11 @@
 using FluentValidation.Results;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
+using LocadoraAutomoveis.Infra.Orm.ModuloPlano;
+using LocadoraAutomoveis.Infra.Orm.ModuloVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
+using LocadoraVeiculos.Dominio.Modulo_Plano;
+using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -13,14 +17,18 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
     public class ServicoGrupoVeiculo
     {
         readonly RepositorioGrupoVeiculoOrm repositorioGrupoVeiculo;
+        readonly RepositorioVeiculoOrm repositorioVeiculo;
+        readonly RepositorioPlanoOrm repositorioPlano;
         readonly IContextoPersistencia contextoPersistOrm;
         ValidadorGrupoVeiculo validadorGrupoVeiculo;
 
 
-        public ServicoGrupoVeiculo(RepositorioGrupoVeiculoOrm repositorioGrupoVeiculo, IContextoPersistencia contextoPersistOrm)
+        public ServicoGrupoVeiculo(RepositorioGrupoVeiculoOrm repositorioGrupoVeiculo, IContextoPersistencia contextoPersistOrm, RepositorioPlanoOrm repositorioPlano, RepositorioVeiculoOrm repositorioVeiculo)
         {
             this.repositorioGrupoVeiculo = repositorioGrupoVeiculo;
             this.contextoPersistOrm = contextoPersistOrm;
+            this.repositorioVeiculo = repositorioVeiculo;
+            this.repositorioPlano = repositorioPlano;
         }
 
         public Result<GrupoVeiculo> Inserir(GrupoVeiculo grupoVeiculo)
@@ -108,26 +116,36 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
         {
             Log.Logger.Debug("Tentando excluir Grupo de Veículo... {@grupo}", grupoVeiculo);
 
-            try
+            if (VerificarRelacionamento(grupoVeiculo) == false)
             {
-                repositorioGrupoVeiculo.Excluir(grupoVeiculo);
+                try
+                {
+                    repositorioGrupoVeiculo.Excluir(grupoVeiculo);
 
-                contextoPersistOrm.GravarDados();
+                    contextoPersistOrm.GravarDados();
 
-                Log.Logger.Information("GrupoVeiculo {GrupoVeiculoId} excluído com sucesso", grupoVeiculo.Id);
+                    Log.Logger.Information("GrupoVeiculo {GrupoVeiculoId} excluído com sucesso", grupoVeiculo.Id);
 
-                return Result.Ok();
+                    return Result.Ok();
+                }
+                catch (Exception ex)
+                {
+                    contextoPersistOrm.DesfazerAlteracoes();
+
+                    string msgErro = "Falha no sistema ao tentar excluir o Grupo de Veiculo";
+
+                    Log.Logger.Error(ex, msgErro + "{GrupoVeiculo}", grupoVeiculo.Id);
+
+                    return Result.Fail(msgErro);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                contextoPersistOrm.DesfazerAlteracoes();
+                string msgErro = "O grupo está relacionado à outra tabela e não pode ser excluído";
 
-                string msgErro = "Falha no sistema ao tentar excluir o Grupo de Veiculo";
-
-                Log.Logger.Error(ex, msgErro + "{GrupoVeiculo}", grupoVeiculo.Id);
+                Log.Logger.Error(msgErro + "{GrupoVeiculo}", grupoVeiculo.Id);
 
                 return Result.Fail(msgErro);
-
             }
         }
 
@@ -198,6 +216,24 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
             return GrupoEncontrado != null &&
                    GrupoEncontrado.Nome.Equals(grupoVeiculo.Nome) &&
                   !GrupoEncontrado.Id.Equals(grupoVeiculo.Id);
+        }
+
+        private bool VerificarRelacionamento(GrupoVeiculo grupoVeiculo)
+        {
+            bool resultadoVeiculo;
+            bool resultadoPlano;
+            bool resultadoFinal = false;
+
+            var veiculos = repositorioVeiculo.SelecionarTodos();
+            var planos = repositorioPlano.SelecionarTodos();
+
+            resultadoVeiculo = veiculos.Any(x => x.GrupoPertencente.Nome == grupoVeiculo.Nome);
+            resultadoPlano = planos.Any(x => x.Grupo.Nome == grupoVeiculo.Nome);
+
+            if(resultadoVeiculo == true || resultadoPlano == true)
+                resultadoFinal = true;
+
+            return resultadoFinal;
         }
 
         #endregion

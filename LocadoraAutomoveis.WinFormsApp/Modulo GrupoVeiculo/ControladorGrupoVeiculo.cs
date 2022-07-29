@@ -94,7 +94,11 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
             if (MessageBox.Show("Deseja realmente excluir o grupo?",
             "Exclusão de Grupo Veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                servicoGrupoVeiculo.Excluir(Selecionado);
+                var exclusaoResult = servicoGrupoVeiculo.Excluir(Selecionado);
+
+                if (exclusaoResult.IsFailed)
+                    MessageBox.Show("Não foi possível excluir este grupo!\n\n" + exclusaoResult.Errors[0], "Aviso");
+
                 CarregarGruposVeiculos();
             }
         }
