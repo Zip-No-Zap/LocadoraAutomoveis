@@ -41,8 +41,6 @@
             this.configurarPreçosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.combustívelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.locaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registrarRetiradaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registrarDevoluçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.lblStatusPrincipal = new System.Windows.Forms.ToolStripLabel();
             this.panelPrincipal = new System.Windows.Forms.Panel();
@@ -151,25 +149,10 @@
             // 
             // locaçãoToolStripMenuItem
             // 
-            this.locaçãoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.registrarRetiradaToolStripMenuItem,
-            this.registrarDevoluçãoToolStripMenuItem});
             this.locaçãoToolStripMenuItem.Name = "locaçãoToolStripMenuItem";
             this.locaçãoToolStripMenuItem.Size = new System.Drawing.Size(78, 24);
             this.locaçãoToolStripMenuItem.Text = "Locação";
-            // 
-            // registrarRetiradaToolStripMenuItem
-            // 
-            this.registrarRetiradaToolStripMenuItem.Name = "registrarRetiradaToolStripMenuItem";
-            this.registrarRetiradaToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
-            this.registrarRetiradaToolStripMenuItem.Text = "Locação";
-            // 
-            // registrarDevoluçãoToolStripMenuItem
-            // 
-            this.registrarDevoluçãoToolStripMenuItem.Name = "registrarDevoluçãoToolStripMenuItem";
-            this.registrarDevoluçãoToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
-            this.registrarDevoluçãoToolStripMenuItem.Text = "Devolução";
-            this.registrarDevoluçãoToolStripMenuItem.Click += new System.EventHandler(this.registrarDevoluçãoToolStripMenuItem_Click);
+            this.locaçãoToolStripMenuItem.Click += new System.EventHandler(this.locacaoToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -255,7 +238,6 @@
             this.btnDevolucao.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDevolucao.Name = "btnDevolucao";
             this.btnDevolucao.Size = new System.Drawing.Size(29, 28);
-            this.btnDevolucao.Text = "toolStripButton1";
             this.btnDevolucao.Click += new System.EventHandler(this.btnDevolucao_Click);
             // 
             // toolStripSeparator1
@@ -317,11 +299,9 @@
         private System.Windows.Forms.ToolStripMenuItem veículoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem planoDeCobrançaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem locaçãoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem registrarRetiradaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configurarPreçosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem combustívelToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton btnDevolucao;
-        private System.Windows.Forms.ToolStripMenuItem registrarDevoluçãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }

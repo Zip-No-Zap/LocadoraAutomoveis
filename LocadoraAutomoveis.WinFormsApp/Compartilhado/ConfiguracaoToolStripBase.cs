@@ -16,10 +16,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
 
         public virtual string TooltipExcluir { get => "excluir registro selecionado"; }
 
+        public virtual string TooltipDevolucao { get => ""; }
+
         public virtual bool InserirHabilitado { get { return true; } }
 
         public virtual bool EditarHabilitado { get { return true; } }
 
         public virtual bool ExcluirHabilitado { get { return true; } }
+
+        public virtual bool DevolucaoHabilitado { get { return false; } }
     }
 }

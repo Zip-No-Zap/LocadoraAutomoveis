@@ -9,6 +9,7 @@ using LocadoraAutomoveis.WinFormsApp.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Taxa;
 using System.Windows.Forms;
 using System;
+using LocadoraAutomoveis.WinFormsApp.ModuloLocacao;
 
 namespace LocadoraAutomoveis.WinFormsApp
 {
@@ -40,6 +41,7 @@ namespace LocadoraAutomoveis.WinFormsApp
             btnInserir.Enabled = true;
             btnEditar.Enabled = true;
             btnExcluir.Enabled = true;
+            btnDevolucao.Enabled = false;
         }
 
         private void ConfigurarTelaPrincipal(ControladorBase control)
@@ -72,6 +74,7 @@ namespace LocadoraAutomoveis.WinFormsApp
             btnInserir.Enabled = configuracao.InserirHabilitado;
             btnEditar.Enabled = configuracao.EditarHabilitado;
             btnExcluir.Enabled = configuracao.ExcluirHabilitado;
+            btnDevolucao.Enabled = configuracao.DevolucaoHabilitado;
         }
 
         private void ConfigurarTooltips(ConfiguracaoToolStripBase configuracao)
@@ -79,6 +82,7 @@ namespace LocadoraAutomoveis.WinFormsApp
             btnInserir.ToolTipText = configuracao.TooltipInserir;
             btnEditar.ToolTipText = configuracao.TooltipEditar;
             btnExcluir.ToolTipText = configuracao.TooltipExcluir;
+            btnDevolucao.ToolTipText = configuracao.TooltipDevolucao;
         }
 
         private void ConfigurarListagem()
@@ -168,11 +172,11 @@ namespace LocadoraAutomoveis.WinFormsApp
             HabilitarBotoesToolStrip();
         }
 
-        private void registrarDevoluçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        
+        private void locacaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
+            HabilitarBotoesToolStrip();
         }
-
-      
     }
 }
