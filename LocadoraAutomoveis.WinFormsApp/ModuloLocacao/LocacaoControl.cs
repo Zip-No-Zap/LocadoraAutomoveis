@@ -21,14 +21,14 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             var colunas = new DataGridViewColumn[]
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID", Visible = false},
-                new DataGridViewTextBoxColumn { DataPropertyName = "ClienteLocacao_Nome", HeaderText = "Cliente"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "CondutorLocacao_Nome", HeaderText = "Condutor Nome"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "CondutorLocacao_Cnh", HeaderText = "Condutor CNH"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "VeiculoLocacao_Modelo", HeaderText = "Veículo"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "VeiculoLocacao_Grupo", HeaderText = "Grupo"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "DataLocacaoString", HeaderText = "Data Locação"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "DataDevolucaoString", HeaderText = "Data Devolução"},
-                new DataGridViewTextBoxColumn { DataPropertyName = "PlanoLocacao_Descricao", HeaderText = "Plano"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "ClienteLocacao", HeaderText = "Cliente"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "CondutorLocacao", HeaderText = "Condutor Nome"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "CondutorLocacao", HeaderText = "Condutor CNH"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "VeiculoLocacao", HeaderText = "Veículo"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "VeiculoLocacao", HeaderText = "Grupo"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "DataLocacao", HeaderText = "Data Locação"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "DataDevolucao", HeaderText = "Data Devolução"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "PlanoLocacao", HeaderText = "Plano"},
             };
 
             return colunas;
@@ -41,7 +41,15 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public void AtualizarRegistros(List<Locacao> registros)
         {
-            grid.DataSource = registros;
+            grid.Rows.Clear();
+
+            foreach (var registro in registros)
+            {
+                grid.Rows.Add(registro.Id, registro.ClienteLocacao.Nome,
+                    registro.CondutorLocacao.Nome, registro.CondutorLocacao_Cnh,
+                    registro.VeiculoLocacao.Modelo, registro.VeiculoLocacao.GrupoPertencente.Nome,
+                    registro.DataLocacao.ToShortDateString(), registro.DataDevolucaoString, registro);
+            }
         }
     }
 }

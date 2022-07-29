@@ -27,8 +27,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         List<Taxa> taxas;
 
         public TelaCadastroLocacao(List<Cliente> clientes, 
-            List<Condutor> condutores, List<GrupoVeiculo> grupos,
-            List<Veiculo> veiculos, List<Taxa> taxasAdicionais)
+            List<Condutor> condutores, List<Veiculo> veiculos, 
+            List<Taxa> taxasAdicionais)
         {
             InitializeComponent();
             CarregarClientes(clientes);
@@ -43,7 +43,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             cmbVeiculo.Items.Clear();
 
             foreach (var item in veiculos)
+            {
                 cmbVeiculo.Items.Add(item);
+                item.GrupoPertencente = new();
+            }
         }
 
         private void CarregarClientes(List<Cliente> clientes)
@@ -79,7 +82,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 dpDataLocacao.Value = locacao.DataLocacao;
                 dpDataDevolucao.Value = locacao.DataLocacao;
 
-                txtGrupoVeiculo.Text = locacao.VeiculoLocacao_Grupo ;
+                //txtGrupoVeiculo.Text = locacao.VeiculoLocacao.GrupoPertencente.Nome ;
 
                 if (locacao.VeiculoLocacao != null)
                     cmbVeiculo.SelectedItem = locacao.VeiculoLocacao;
@@ -93,8 +96,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     {
                         listTaxasAdicionais.Items.Add(item);
 
-                        if(locacao.ItensTaxa.Contains(item))
-                            listTaxasAdicionais.SetItemChecked(i, true);
+                        //if(locacao.ItensTaxa.Contains(item))
+                        //    listTaxasAdicionais.SetItemChecked(i, true);
 
                         i++;
                     }

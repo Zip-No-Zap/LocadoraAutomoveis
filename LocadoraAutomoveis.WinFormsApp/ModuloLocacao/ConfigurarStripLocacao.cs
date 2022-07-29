@@ -15,7 +15,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public override string TooltipDevolucao => "Registrar devolução";
 
-        public override bool DevolucaoHabilitado { get { return true; } }
+        public override bool DevolucaoHabilitado => true;
 
     }
 }

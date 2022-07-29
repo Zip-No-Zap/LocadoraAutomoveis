@@ -133,13 +133,13 @@ namespace LocadoraAutomoveis.WinFormsApp
         private void funcionarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorFuncionario>());
-            HabilitarBotoesToolStrip();
+            ConfigurarToolbox();
         }
 
         private void taxaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorTaxa>());
-            HabilitarBotoesToolStrip();
+            ConfigurarToolbox();
         }
 
         private void grupoDeVeículoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -151,32 +151,32 @@ namespace LocadoraAutomoveis.WinFormsApp
         private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorCliente>());
-            HabilitarBotoesToolStrip();
+            ConfigurarToolbox();
         }
 
         private void condutorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorCondutor>());
-            HabilitarBotoesToolStrip();
+            ConfigurarToolbox();
         }
 
         private void veículoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorVeiculo>());
-            HabilitarBotoesToolStrip();
+            ConfigurarToolbox();
         }
 
         private void planoDeCobrançaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorPlano>());
-            HabilitarBotoesToolStrip();
+            ConfigurarToolbox();
         }
 
         
         private void locacaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
-            HabilitarBotoesToolStrip();
+            ConfigurarToolbox();
         }
     }
 }
