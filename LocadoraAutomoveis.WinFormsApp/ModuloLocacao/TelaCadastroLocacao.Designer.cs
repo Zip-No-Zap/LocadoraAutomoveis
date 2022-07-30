@@ -416,12 +416,13 @@
             this.rtPDF.Size = new System.Drawing.Size(550, 668);
             this.rtPDF.TabIndex = 11;
             this.rtPDF.Text = "";
+            this.rtPDF.Visible = false;
             // 
             // TelaCadastroLocacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1428, 970);
+            this.ClientSize = new System.Drawing.Size(913, 970);
             this.Controls.Add(this.rtPDF);
             this.Controls.Add(this.gb);
             this.Controls.Add(this.gbCondutor);

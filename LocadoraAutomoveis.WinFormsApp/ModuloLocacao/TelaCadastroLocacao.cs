@@ -7,11 +7,11 @@ using LocadoraVeiculos.Dominio.Modulo_Plano;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
-using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
+using System;
 
 namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 {
@@ -202,14 +202,17 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             {
                 case "Diário":
                     listTaxasAdicionais.Items.Add("Plano " + Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: R$ " + planoSelecionado.ValorDiario_Diario + " - " + "Valor por Km Rodado: R$ " + planoSelecionado.ValorPorKm_Diario);
+                    listTaxasAdicionais.SetItemChecked(listTaxasAdicionais.Items.Count -1, true);
                     break;
 
                 case "Livre":
                     listTaxasAdicionais.Items.Add("Plano " + Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: R$ " + planoSelecionado.ValorDiario_Livre);
+                    listTaxasAdicionais.SetItemChecked(listTaxasAdicionais.Items.Count -1, true);
                     break;
 
                 case "Controlado":
                     listTaxasAdicionais.Items.Add("Plano " + Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: R$ " + planoSelecionado.ValorDiario_Controlado + " - " + "Valor por Km Rodado: R$ " + planoSelecionado.ValorPorKm_Controlado + "Limite de Quilometragem: " + planoSelecionado.LimiteQuilometragem_Controlado);
+                    listTaxasAdicionais.SetItemChecked(listTaxasAdicionais.Items.Count -1, true);
                     break;
 
                 default:
@@ -289,7 +292,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             string detalhe = 
             $"DETALHES DA LOCAÇÃO \n\n\r" +
             $"Tota Previsto: { locacao.TotalPrevisto.ToString() } \n\n\r" +
-            $"Data Locação: { dpDataLocacao.Text} \n\r " +
+            $"Data Locação: { dpDataLocacao.Text} \n\r" +
             $"Data Devolução: { dpDataDevolucao.Text} \n\n\r" +
             $"Cliente: { cmbClientes.Text} \n\r" +
             $"Condutor: { cmbCondutor.Text} \n\r" +
