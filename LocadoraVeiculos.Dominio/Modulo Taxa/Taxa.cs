@@ -28,7 +28,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Taxa
         }
         public override string ToString()
         {
-            return string.Format($"{Descricao} - Valor: R$ {Valor}");
+            return string.Format($"{Descricao} - Tipo: {Tipo} - Valor: R$ {Valor}");
         }
     }
 }

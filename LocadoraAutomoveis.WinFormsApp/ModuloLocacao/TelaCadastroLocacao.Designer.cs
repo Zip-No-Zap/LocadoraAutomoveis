@@ -38,6 +38,9 @@
             this.cmbClientes = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblTotalPrevisto = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cmbGrupoVeiculo = new System.Windows.Forms.ComboBox();
             this.cmbPlano = new System.Windows.Forms.ComboBox();
@@ -52,9 +55,6 @@
             this.dpDataLocacao = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.lblTotalPrevisto = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.gbCondutor.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -203,6 +203,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Locação";
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.lblTotalPrevisto);
+            this.panel2.Location = new System.Drawing.Point(657, 552);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(100, 34);
+            this.panel2.TabIndex = 43;
+            // 
+            // lblTotalPrevisto
+            // 
+            this.lblTotalPrevisto.AutoSize = true;
+            this.lblTotalPrevisto.Location = new System.Drawing.Point(40, 5);
+            this.lblTotalPrevisto.Name = "lblTotalPrevisto";
+            this.lblTotalPrevisto.Size = new System.Drawing.Size(46, 25);
+            this.lblTotalPrevisto.TabIndex = 41;
+            this.lblTotalPrevisto.Text = "0,00";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(490, 559);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(151, 25);
+            this.label10.TabIndex = 42;
+            this.label10.Text = "Total Previsto R$";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -233,8 +261,8 @@
             this.cmbPlano.Enabled = false;
             this.cmbPlano.FormattingEnabled = true;
             this.cmbPlano.Items.AddRange(new object[] {
-            "Diário ",
-            "Livre ",
+            "Diário",
+            "Livre",
             "Controlado"});
             this.cmbPlano.Location = new System.Drawing.Point(416, 198);
             this.cmbPlano.Margin = new System.Windows.Forms.Padding(6);
@@ -364,34 +392,6 @@
             this.label5.Size = new System.Drawing.Size(102, 21);
             this.label5.TabIndex = 1;
             this.label5.Text = "Data Locação";
-            // 
-            // lblTotalPrevisto
-            // 
-            this.lblTotalPrevisto.AutoSize = true;
-            this.lblTotalPrevisto.Location = new System.Drawing.Point(40, 5);
-            this.lblTotalPrevisto.Name = "lblTotalPrevisto";
-            this.lblTotalPrevisto.Size = new System.Drawing.Size(46, 25);
-            this.lblTotalPrevisto.TabIndex = 41;
-            this.lblTotalPrevisto.Text = "0,00";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(490, 559);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(151, 25);
-            this.label10.TabIndex = 42;
-            this.label10.Text = "Total Previsto R$";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.lblTotalPrevisto);
-            this.panel2.Location = new System.Drawing.Point(657, 552);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(100, 34);
-            this.panel2.TabIndex = 43;
             // 
             // TelaCadastroLocacao
             // 

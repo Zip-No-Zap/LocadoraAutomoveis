@@ -8,12 +8,7 @@ using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
@@ -52,14 +47,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             }
         }
 
-        private void CarregarClientes(List<Cliente> clientes)
-        {
-            cmbClientes.Items.Clear();
-
-            foreach (var item in clientes)
-                cmbClientes.Items.Add(item);
-        }
-
         public Func< Locacao, Result<Locacao> > GravarRegistro
         {
             get; set;
@@ -90,16 +77,43 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 else
                     cmbVeiculo.SelectedIndex = -1;
 
-                if (taxas != null)
+                CarregarItensAdicionais();
+            }
+        }
+
+        private void CarregarItensAdicionais()
+        {
+            if (taxas != null)
+            {
+                int i = 0;
+                foreach (var item in taxas)
                 {
-                    int i = 0;
-                    foreach (var item in taxas)
-                    {
-                        listTaxasAdicionais.Items.Add(item.ToString());
-                        i++;
-                    }
+                    listTaxasAdicionais.Items.Add(item.ToString());
+                    i++;
                 }
             }
+        }
+
+        private void CarregarClientes(List<Cliente> clientes)
+        {
+            cmbClientes.Items.Clear();
+
+            foreach (var item in clientes)
+                cmbClientes.Items.Add(item);
+        }
+        private GrupoVeiculo CarregarVeiculos()
+        {
+            var grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
+
+            foreach (var item in veiculos)
+            {
+                if (item.GrupoPertencente.Equals(grupo))
+                {
+                    cmbVeiculo.Items.Add(item);
+                }
+            }
+
+            return grupo;
         }
 
         private void TelaCadastroLocacao_Load(object sender, EventArgs e)
@@ -150,7 +164,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
                 DialogResult = DialogResult.None;
             }
-
         }
 
         private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
@@ -158,22 +171,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             GrupoVeiculo grupo = CarregarVeiculos();
 
             HabilitarPlanos(grupo);
-        }
-
-        private GrupoVeiculo CarregarVeiculos()
-        {
-            var grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
-
-            foreach (var item in veiculos)
-            {
-                if (item.GrupoPertencente.Equals(grupo))
-                {
-                    cmbVeiculo.Items.Add(item);
-
-                }
-            }
-
-            return grupo;
         }
 
         private bool VerificarSeGrupoTemPlano(GrupoVeiculo grupo)
@@ -228,7 +225,47 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
+            CalcularItensAdicionais();
 
+            CalcularPlanos();
+        }
+
+        private void CalcularItensAdicionais()
+        {
+            foreach (var item in listTaxasAdicionais.CheckedItems)
+            {
+                foreach (var t in taxas)
+                {
+                    if (item.Equals(t))
+                    {
+                        locacao.TotalPrevisto += t.Valor;
+                    }
+                }
+            }
+        }
+
+        private void CalcularPlanos()
+        {
+            var planoSelecionado = planos.Find(x => x.Grupo.Nome == cmbGrupoVeiculo.Text);
+
+            switch (locacao.PlanoLocacao_Descricao)
+            {
+                case "Diário":
+                    locacao.TotalPrevisto += planoSelecionado.ValorDiario_Diario;
+                    break;
+
+                case "Livre":
+                    locacao.TotalPrevisto += planoSelecionado.ValorDiario_Livre;
+                    break;
+
+                case "Controlado":
+                    locacao.TotalPrevisto += planoSelecionado.ValorDiario_Controlado;
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
+
 }
