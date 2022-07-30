@@ -5,6 +5,7 @@ using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
+using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 
 namespace LocadoraVeiculos.Dominio.ModuloLocacao
 {
@@ -15,6 +16,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public Veiculo VeiculoLocacao { get; set; }
         public List<Taxa> ItensTaxa { get; set; }
         public Plano PlanoLocacao { get; set; }
+        public GrupoVeiculo Grupo { get; set; }
 
         public Guid PlanoLocacaoId { get; set; }
         public Guid VeiculoLocacaoId { get; set; }
@@ -22,6 +24,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public Guid CondutorLocacaoId { get; set; }
         public DateTime DataLocacao { get { return DateTime.Today; } set { } }
         public DateTime DataDevolucao { get { return DateTime.Now ; } set { } }
+        public Double TotalPrevisto { get; set; }
 
         // para usar no LocacaoControl
         // public string ClienteLocacao_Nome => ClienteLocacao.Nome;

@@ -25,17 +25,21 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         List<Condutor> condutores;
         List<Veiculo> veiculos;
         List<Taxa> taxas;
+        List<GrupoVeiculo> grupos;
+        List<Plano> planos;
 
         public TelaCadastroLocacao(List<Cliente> clientes, 
             List<Condutor> condutores, List<Veiculo> veiculos, 
-            List<Taxa> taxasAdicionais, List<GrupoVeiculo> grupo)
+            List<Taxa> taxas, List<GrupoVeiculo> grupos, List<Plano> planos)
         {
             InitializeComponent();
             CarregarClientes(clientes);
-            CarregarGrupoVeiculos(grupo);
+            CarregarGrupoVeiculos(grupos);
             this.condutores = condutores;
             this.veiculos = veiculos;
-            this.taxas = taxasAdicionais;
+            this.taxas = taxas;
+            this.planos = planos;
+            this.grupos = grupos;
         }
 
         private void CarregarGrupoVeiculos(List<GrupoVeiculo> grupo)
@@ -81,8 +85,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 dpDataLocacao.Value = locacao.DataLocacao;
                 dpDataDevolucao.Value = locacao.DataLocacao;
 
-                //txtGrupoVeiculo.Text = locacao.VeiculoLocacao.GrupoPertencente.Nome ;
-
                 if (locacao.VeiculoLocacao != null)
                     cmbVeiculo.SelectedItem = locacao.VeiculoLocacao;
                 else
@@ -118,7 +120,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             }
         }
 
-
         private void cmbVeiculo_SelectedIndexChanged(object sender, EventArgs e)
         {
             var veiculo = (Veiculo)cmbVeiculo.SelectedItem;
@@ -128,8 +129,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private void cmbPlano_SelectedIndexChanged(object sender, EventArgs e)
         {
-            locacao.PlanoLocacao_Descricao = cmbPlano.Text;
-            
+            AdicionarPlanoAosItensAdicionais(cmbGrupoVeiculo.Text);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -139,16 +139,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             locacao.CondutorLocacao = (Condutor)cmbCondutor.SelectedItem;
            
             locacao.VeiculoLocacao = (Veiculo)cmbVeiculo.SelectedItem;
-
-            switch (locacao.PlanoLocacao_Descricao) 
-            {
-            }
-
-
-
-
-
-
 
             var resultadoValidacao = GravarRegistro(locacao);
 
@@ -163,19 +153,67 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         }
 
-       
         private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GrupoVeiculo grupo = CarregarVeiculos();
+
+            HabilitarPlanos(grupo);
+        }
+
+        private GrupoVeiculo CarregarVeiculos()
+        {
             var grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
+
             foreach (var item in veiculos)
             {
-                if(item.GrupoPertencente.Equals(grupo))
+                if (item.GrupoPertencente.Equals(grupo))
                 {
                     cmbVeiculo.Items.Add(item);
 
                 }
             }
+
+            return grupo;
         }
-       
+
+        private bool VerificarSeGrupoTemPlano(GrupoVeiculo grupo)
+        {
+            var grupoSelecionado = planos.Find(x => x.Grupo.Equals(grupo));
+
+            bool temPlano = grupoSelecionado != null;
+
+            return temPlano;
+        }
+
+        private void HabilitarPlanos(GrupoVeiculo grupo)
+        {
+            if (VerificarSeGrupoTemPlano(grupo))
+                cmbPlano.Enabled = true;
+        }
+
+        private void AdicionarPlanoAosItensAdicionais(string nomeGrupo)
+        {
+            Locacao.PlanoLocacao_Descricao = cmbPlano.Text;
+
+            var planoSelecionado = planos.Find(x => x.Grupo.Nome == nomeGrupo);
+
+            switch (cmbPlano.Text)
+            {
+                case "Dário":
+                    listTaxasAdicionais.Items.Add(Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: " + planoSelecionado.ValorDiario_Diario + " - " + "Valor por Km Rodado: " + planoSelecionado.ValorPorKm_Diario);
+                    break;
+
+                case "Livre":
+                    listTaxasAdicionais.Items.Add(Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: " + planoSelecionado.ValorDiario_Livre);
+                    break;
+
+                case "Controlado":
+                    listTaxasAdicionais.Items.Add(Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: " + planoSelecionado.ValorDiario_Controlado + " - " + "Valor por Km Rodado: " + planoSelecionado.ValorPorKm_Controlado + "Limite de Quilometragem: " + planoSelecionado.LimiteQuilometragem_Controlado);
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }
