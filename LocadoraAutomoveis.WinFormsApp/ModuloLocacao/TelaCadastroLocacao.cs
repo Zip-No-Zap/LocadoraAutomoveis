@@ -199,21 +199,31 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             switch (cmbPlano.Text)
             {
-                case "Dário":
-                    listTaxasAdicionais.Items.Add(Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: " + planoSelecionado.ValorDiario_Diario + " - " + "Valor por Km Rodado: " + planoSelecionado.ValorPorKm_Diario);
+                case "Diário":
+                    listTaxasAdicionais.Items.Add("Plano " + Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: R$ " + planoSelecionado.ValorDiario_Diario + " - " + "Valor por Km Rodado: R$ " + planoSelecionado.ValorPorKm_Diario);
                     break;
 
                 case "Livre":
-                    listTaxasAdicionais.Items.Add(Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: " + planoSelecionado.ValorDiario_Livre);
+                    listTaxasAdicionais.Items.Add("Plano " + Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: R$ " + planoSelecionado.ValorDiario_Livre);
                     break;
 
                 case "Controlado":
-                    listTaxasAdicionais.Items.Add(Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: " + planoSelecionado.ValorDiario_Controlado + " - " + "Valor por Km Rodado: " + planoSelecionado.ValorPorKm_Controlado + "Limite de Quilometragem: " + planoSelecionado.LimiteQuilometragem_Controlado);
+                    listTaxasAdicionais.Items.Add("Plano " + Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: R$ " + planoSelecionado.ValorDiario_Controlado + " - " + "Valor por Km Rodado: R$ " + planoSelecionado.ValorPorKm_Controlado + "Limite de Quilometragem: " + planoSelecionado.LimiteQuilometragem_Controlado);
                     break;
 
                 default:
                     break;
             }
         }
-    }
+
+        private void btnDesmarcar_Click(object sender, EventArgs e)
+        {
+            var itensChecados = listTaxasAdicionais.Items.Count;
+
+            for (int i = 0; i < itensChecados; i++)
+            {
+                listTaxasAdicionais.SetItemChecked(i, false);
+            }
+        }
+     }
 }
