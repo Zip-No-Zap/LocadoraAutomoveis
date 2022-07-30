@@ -45,10 +45,15 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             foreach (var registro in registros)
             {
-                grid.Rows.Add(registro.Id, registro.ClienteLocacao.Nome,
-                    registro.CondutorLocacao.Nome, registro.CondutorLocacao_Cnh,
-                    registro.VeiculoLocacao.Modelo, registro.VeiculoLocacao.GrupoPertencente.Nome,
-                    registro.DataLocacao.ToShortDateString(), registro.DataDevolucaoString, registro);
+                grid.Rows.Add(
+                    registro.Id, 
+                    registro.ClienteLocacao.Nome,
+                    registro.CondutorLocacao.Nome, 
+                    registro.CondutorLocacao_Cnh,
+                    registro.VeiculoLocacao.Modelo, 
+                    registro.VeiculoLocacao.GrupoPertencente.Nome,
+                    registro.DataLocacao.ToShortDateString(), 
+                    registro.DataDevolucaoString, registro);
             }
         }
     }

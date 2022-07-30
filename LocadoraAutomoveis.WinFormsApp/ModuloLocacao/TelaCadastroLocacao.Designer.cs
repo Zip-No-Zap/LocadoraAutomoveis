@@ -105,6 +105,7 @@
             // 
             this.btnOK.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Location = new System.Drawing.Point(30, 16);
             this.btnOK.Margin = new System.Windows.Forms.Padding(6);
             this.btnOK.Name = "btnOK";
@@ -413,7 +414,7 @@
             // 
             this.rtPDF.Location = new System.Drawing.Point(866, 30);
             this.rtPDF.Name = "rtPDF";
-            this.rtPDF.Size = new System.Drawing.Size(550, 668);
+            this.rtPDF.Size = new System.Drawing.Size(286, 668);
             this.rtPDF.TabIndex = 11;
             this.rtPDF.Text = "";
             this.rtPDF.Visible = false;

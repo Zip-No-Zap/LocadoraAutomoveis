@@ -149,10 +149,20 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         private void btnOK_Click(object sender, EventArgs e)
         {
             locacao.ClienteLocacao = (Cliente)cmbClientes.SelectedItem;
-
             locacao.CondutorLocacao = (Condutor)cmbCondutor.SelectedItem;
-
             locacao.VeiculoLocacao = (Veiculo)cmbVeiculo.SelectedItem;
+            locacao.Grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
+
+            foreach (var item in listTaxasAdicionais.CheckedItems)
+            {
+                if (item.ToString().Contains("Plano"))
+                    continue;
+                else
+                {
+                    var convertido = (Taxa)item;
+                    locacao.ItensTaxa.Add(convertido);
+                }
+            }
 
             var resultadoValidacao = GravarRegistro(locacao);
 
@@ -297,7 +307,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             $"Cliente: { cmbClientes.Text} \n\r" +
             $"Condutor: { cmbCondutor.Text} \n\r" +
             $"Grupo: { cmbGrupoVeiculo.Text} \n\r" +
-            $"Veículo: { cmbVeiculo.Text} \n\r" 
+            $"Veículo: { cmbVeiculo.Text} \n\r" +
+            $"Quilometragem Registrada: { txtKmAtual.Text} \n\r"
             ;
 
             rtPDF.Text = detalhe;

@@ -137,7 +137,7 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar todos os planos";
+                string msgErro = "Falha no sistema ao tentar selecionar todas as locações";
 
                 Log.Logger.Error(ex, msgErro);
 

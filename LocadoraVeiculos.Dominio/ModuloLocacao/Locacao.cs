@@ -24,6 +24,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public Guid CondutorLocacaoId { get; set; }
         public DateTime DataLocacao { get { return DateTime.Today; } set { } }
         public DateTime DataDevolucao { get { return DateTime.Now ; } set { } }
+        public DateTime DataDevolvidoDeFato { get { return DateTime.Now ; } set { } }
         public Double TotalPrevisto { get; set; }
 
         // para usar no LocacaoControl
