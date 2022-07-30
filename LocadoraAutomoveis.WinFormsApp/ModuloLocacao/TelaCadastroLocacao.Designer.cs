@@ -55,6 +55,7 @@
             this.dpDataLocacao = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnDesmarcar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.gbCondutor.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -65,6 +66,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.btnDesmarcar);
             this.panel1.Controls.Add(this.btnLimpar);
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Location = new System.Drawing.Point(48, 831);
@@ -393,6 +395,18 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Data Locação";
             // 
+            // btnDesmarcar
+            // 
+            this.btnDesmarcar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnDesmarcar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDesmarcar.Location = new System.Drawing.Point(391, 16);
+            this.btnDesmarcar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDesmarcar.Name = "btnDesmarcar";
+            this.btnDesmarcar.Size = new System.Drawing.Size(168, 65);
+            this.btnDesmarcar.TabIndex = 10;
+            this.btnDesmarcar.Text = "Desmarcar Itens";
+            this.btnDesmarcar.UseVisualStyleBackColor = false;
+            // 
             // TelaCadastroLocacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -449,5 +463,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblTotalPrevisto;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnDesmarcar;
     }
 }

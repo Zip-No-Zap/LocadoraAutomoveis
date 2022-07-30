@@ -236,11 +236,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             var checados = listTaxasAdicionais.CheckedItems;
 
-            foreach (Taxa item in checados)
+            foreach (var item in checados)
             {
-                var taxa = taxas.Find(x => x.Equals(item));
+                var taxa = taxas.Find(x => x.Descricao.Contains(item.ToString().Remove(15)));
 
-                locacao.TotalPrevisto += taxa.Valor;
+                if(taxa != null)
+                    locacao.TotalPrevisto += taxa.Valor;
             }
         }
 
