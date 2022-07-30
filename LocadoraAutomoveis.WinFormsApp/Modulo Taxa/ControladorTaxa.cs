@@ -83,7 +83,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
                 return;
             }
 
-
             var resultado = servicoTaxa.SelecionarPorId(id);
 
             if (resultado.IsFailed)
@@ -98,10 +97,13 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
             if (MessageBox.Show("Deseja realmente excluir a taxa?",
             "Exclusão de Taxa", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                servicoTaxa.Excluir(Selecionado);
+                var exclusaoResult = servicoTaxa.Excluir(Selecionado);
+
+                if (exclusaoResult.IsFailed)
+                    MessageBox.Show("Não foi possível excluir esta taxa!\n\n" + exclusaoResult.Errors[0], "Aviso");
+
                 CarregarTaxas();
             }
-        
         }
 
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()

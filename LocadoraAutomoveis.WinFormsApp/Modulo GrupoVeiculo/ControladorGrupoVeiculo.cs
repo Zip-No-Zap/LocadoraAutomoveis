@@ -90,7 +90,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 
             var Selecionado = resultado.Value;
 
-
             if (MessageBox.Show("Deseja realmente excluir o grupo?",
             "Exclusão de Grupo Veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {

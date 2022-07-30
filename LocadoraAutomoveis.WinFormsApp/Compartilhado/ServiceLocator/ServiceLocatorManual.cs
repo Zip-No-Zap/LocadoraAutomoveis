@@ -71,7 +71,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             
             //serviços
             var servicoPlanoOrm = new ServicoPlano(repositorioPlanoOrm, contextoDadosOrm);
-            var servicoTaxaOrm = new ServicoTaxa(repositorioTaxaOrm, contextoDadosOrm);
+            var servicoTaxaOrm = new ServicoTaxa(repositorioTaxaOrm, contextoDadosOrm, repositorioLocacaoOrm);
             var servicoFuncionarioOrm = new ServicoFuncionario(repositorioFuncionarioOrm, contextoDadosOrm);
             var servicoVeiculoOrm = new ServicoVeiculo(repositorioVeiculoOrm, contextoDadosOrm);
             var servicoGrupoVeiculoOrm = new ServicoGrupoVeiculo(repositorioGrupoVeiculoOrm, contextoDadosOrm, repositorioPlanoOrm, repositorioVeiculoOrm);
