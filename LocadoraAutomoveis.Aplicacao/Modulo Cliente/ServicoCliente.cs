@@ -3,28 +3,28 @@ using FluentValidation.Results;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloCliente;
 using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
+using LocadoraAutomoveis.Infra.Orm.ModuloLocacao;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
+using System.Collections.Generic;
 using Serilog;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 {
     public class ServicoCliente
     {
-        //readonly RepositorioClienteEmBancoDados repositorioCliente;
-
         readonly RepositorioClienteOrm repositorioCliente;
         readonly RepositorioCondutorOrm repositorioCondutor;
+        readonly RepositorioLocacaoOrm repositorioLocacao;
         readonly IContextoPersistencia contextoPersistOrm;
 
-
-        public ServicoCliente(RepositorioClienteOrm repositorioCliente, IContextoPersistencia contextoPersistOrm, RepositorioCondutorOrm repositorioCondutor)
+        public ServicoCliente(RepositorioClienteOrm repositorioCliente, IContextoPersistencia contextoPersistOrm, RepositorioCondutorOrm repositorioCondutor, RepositorioLocacaoOrm repositorioLocacao)
         {
             this.repositorioCliente = repositorioCliente;
             this.contextoPersistOrm = contextoPersistOrm;
             this.repositorioCondutor = repositorioCondutor;
+            this.repositorioLocacao = repositorioLocacao;
         }
 
         public Result<Cliente> Inserir(Cliente cliente)
@@ -137,7 +137,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             {
                 string msgErro = "O cliente está relacionado à outra tabela e não pode ser excluído";
 
-                Log.Logger.Error(msgErro + "{GrupoVeiculo}", cliente.Id);
+                Log.Logger.Error(msgErro + "{Cliente}", cliente.Id);
 
                 return Result.Fail(msgErro);
             }
@@ -175,7 +175,6 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             }
         }
 
-
         #region privates
 
         private bool NomeDuplicado(Cliente cliente)
@@ -195,7 +194,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             return clienteEncontrado != null &&
                    clienteEncontrado.Cnpj != "-" &&
                    clienteEncontrado.Cnpj.Equals(cliente.Cnpj) &&
-                  !clienteEncontrado.Id.Equals(cliente.Id);
+                   !clienteEncontrado.Id.Equals(cliente.Id);
         }
 
         private bool CpfDuplicado(Cliente cliente)
@@ -237,16 +236,20 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
         }
         private bool VerificarRelacionamento(Cliente cliente)
         {
-            bool resultadoCondutor = false;
+            bool resultadoCondutor;
+            bool resultadoLocacao;
+            bool resultadofinal = false;
               
             var condutores = repositorioCondutor.SelecionarTodos();
+            var locacoes = repositorioLocacao.SelecionarTodos();
               
             resultadoCondutor = condutores.Any(x => x.Cliente.Nome == cliente.Nome);
+            resultadoLocacao = locacoes.Any(x => x.ClienteLocacao.Nome == cliente.Nome);
            
-            if (resultadoCondutor == true)
-                return true;
-            else
-                return false;
+            if (resultadoCondutor == true || resultadoLocacao == true)
+                resultadofinal = true;
+            
+            return resultadofinal;
          }
 
          #endregion

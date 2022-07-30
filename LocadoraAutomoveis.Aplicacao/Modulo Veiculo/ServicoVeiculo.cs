@@ -3,24 +3,26 @@ using FluentValidation.Results;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Veiculo;
-using Serilog;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using Serilog;
+using System;
+using LocadoraAutomoveis.Infra.Orm.ModuloLocacao;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 {
     public class ServicoVeiculo
     {
         readonly RepositorioVeiculoOrm repositorioVeiculo;
+        readonly RepositorioLocacaoOrm repositorioLocacao;
         readonly IContextoPersistencia contextoPersistOrm;
         ValidadorVeiculo validadorVeiculo;
 
-        public ServicoVeiculo(RepositorioVeiculoOrm repositorioVeiculo, IContextoPersistencia contextoPersistOrm)
+        public ServicoVeiculo(RepositorioVeiculoOrm repositorioVeiculo, IContextoPersistencia contextoPersistOrm, RepositorioLocacaoOrm repositorioLocacao)
         {
             this.repositorioVeiculo = repositorioVeiculo;
             this.contextoPersistOrm = contextoPersistOrm;
+            this.repositorioLocacao = repositorioLocacao;
         }
 
         public Result<Veiculo> Inserir(Veiculo veiculo)
@@ -110,24 +112,34 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
         {
             Log.Logger.Debug("Tentando excluir Veículo... {@veiculo}", veiculo);
 
-            try
+            if (VerificarRelacionamento(veiculo) == false)
             {
-                repositorioVeiculo.Excluir(veiculo);
+                try
+                {
+                    repositorioVeiculo.Excluir(veiculo);
 
-                contextoPersistOrm.GravarDados();
+                    contextoPersistOrm.GravarDados();
 
-                Log.Logger.Information("Veiculo {VeiculoId} excluído com sucesso", veiculo.Id);
+                    Log.Logger.Information("Veiculo {VeiculoId} excluído com sucesso", veiculo.Id);
 
-                return Result.Ok();
+                    return Result.Ok();
+                }
+                catch (Exception ex)
+                {
+                    string msgErro = "Falha no sistema ao tentar excluir o Veiculo";
+
+                    Log.Logger.Error(ex, msgErro + "{VeiculoId}", veiculo.Id);
+
+                    return Result.Fail(msgErro);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                string msgErro = "Falha no sistema ao tentar excluir o Veiculo";
+                string msgErro = "O veículo está relacionado à outra tabela e não pode ser excluído";
 
-                Log.Logger.Error(ex, msgErro + "{VeiculoId}", veiculo.Id);
+                Log.Logger.Error(msgErro + "{Veiculo}", veiculo.Id);
 
                 return Result.Fail(msgErro);
-
             }
         }
 
@@ -188,31 +200,6 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 
         private bool PlacaDuplicada(Veiculo veiculo)
         {
-            //repositorioVeiculo.Sql_selecao_por_parametro = @"SELECT  
-
-            //                                                    V.[ID],
-            //                                                    V.[MODELO], 
-            //                                                    V.[PLACA], 
-            //                                                    V.[COR], 
-            //                                                    V.[ANO],
-            //                                                    V.[TIPOCOMBUSTIVEL],
-            //                                                    V.[CAPACIDADETANQUE],
-            //                                                    V.[STATUS],
-            //                                                    V.[QUILOMETRAGEMATUAL],
-            //                                                    V.[FOTO],
-            //                                                    V.[IDGRUPOVEICULO],
-
-            //                                                    GV.[NOMEGRUPO]
-
-            //                                                FROM TBVEICULO AS V
-            //                                                INNER JOIN TBGRUPOVEICULO AS GV
-
-            //                                                    ON V.IDGRUPOVEICULO = GV.ID
-
-            //                                                WHERE V.PLACA = @PLACAVEICULO";
-
-            //repositorioVeiculo.PropriedadeParametro = "PLACAVEICULO";
-
             var veiculoEncontrado = repositorioVeiculo.SelecionarPorPlaca(veiculo.Placa);
 
             return veiculoEncontrado != null &&
@@ -220,6 +207,16 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
                   !veiculoEncontrado.Id.Equals(veiculo.Id);
         }
 
+        private bool VerificarRelacionamento(Veiculo veiculo)
+        {
+            bool resultado = false;
+
+            var locacoes = repositorioLocacao.SelecionarTodos();
+
+            resultado = locacoes.Any(x => x.VeiculoLocacao.Equals(veiculo));
+
+            return resultado;
+        }
     }
 }
         

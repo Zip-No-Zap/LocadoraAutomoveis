@@ -76,7 +76,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             }
         }
 
-
         public override void Excluir()
         {
             var id = tabelaVeiculos.ObtemNumeroVeiculoSelecionado();
@@ -98,19 +97,21 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 return;
             }
 
-            var Selecionado = resultado.Value;
-
+            var selecionado = resultado.Value;
 
             if (MessageBox.Show("Deseja realmente excluir o veiculo?",
             "Exclusão de Veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                var resultadoExclusao = servicoVeiculo.Excluir(Selecionado);
+                var exclusaoResult = servicoVeiculo.Excluir(selecionado);
 
-                if (resultadoExclusao.IsSuccess)
+                if (exclusaoResult.IsFailed)
+                    MessageBox.Show("Não foi possível excluir este veículo!\n\n" + exclusaoResult.Errors[0], "Aviso");
+
+                if (exclusaoResult.IsSuccess)
                     CarregarVeiculos();
 
                 else
-                    MessageBox.Show(resultadoExclusao.Errors[0].Message, "Exclusão de Veiculo",
+                    MessageBox.Show(exclusaoResult.Errors[0].Message, "Exclusão de Veiculo",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
