@@ -228,19 +228,19 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             CalcularItensAdicionais();
 
             CalcularPlanos();
+
+            lblTotalPrevisto.Text = Locacao.TotalPrevisto.ToString();
         }
 
         private void CalcularItensAdicionais()
         {
-            foreach (var item in listTaxasAdicionais.CheckedItems)
+            var checados = listTaxasAdicionais.CheckedItems;
+
+            foreach (Taxa item in checados)
             {
-                foreach (var t in taxas)
-                {
-                    if (item.Equals(t))
-                    {
-                        locacao.TotalPrevisto += t.Valor;
-                    }
-                }
+                var taxa = taxas.Find(x => x.Equals(item));
+
+                locacao.TotalPrevisto += taxa.Valor;
             }
         }
 
