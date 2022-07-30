@@ -22,7 +22,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         List<Taxa> taxas;
         List<GrupoVeiculo> grupos;
         List<Plano> planos;
-
         public TelaCadastroLocacao(List<Cliente> clientes, 
             List<Condutor> condutores, List<Veiculo> veiculos, 
             List<Taxa> taxas, List<GrupoVeiculo> grupos, List<Plano> planos)
@@ -121,8 +120,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             FormPrincipal.Instancia.AtualizarRodape("");
         }
 
-      
-        private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
+         private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             var cliente = (Cliente)cmbClientes.SelectedItem;
 

@@ -172,11 +172,11 @@ namespace LocadoraAutomoveis.WinFormsApp
             ConfigurarToolbox();
         }
 
-        
-        private void locacaoToolStripMenuItem_Click(object sender, EventArgs e)
+         private void locacaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
             ConfigurarToolbox();
+            btnEditar.Enabled = false;
         }
     }
 }
