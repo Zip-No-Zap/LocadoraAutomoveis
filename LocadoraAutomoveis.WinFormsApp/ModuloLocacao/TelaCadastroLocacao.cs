@@ -225,5 +225,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 listTaxasAdicionais.SetItemChecked(i, false);
             }
         }
-     }
+
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

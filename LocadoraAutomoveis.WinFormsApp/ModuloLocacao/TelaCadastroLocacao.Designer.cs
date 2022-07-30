@@ -38,9 +38,10 @@
             this.cmbClientes = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.cmbGrupoVeiculo = new System.Windows.Forms.ComboBox();
             this.cmbPlano = new System.Windows.Forms.ComboBox();
-            this.btnDetalhar = new System.Windows.Forms.Button();
+            this.btnCalcular = new System.Windows.Forms.Button();
             this.listTaxasAdicionais = new System.Windows.Forms.CheckedListBox();
             this.txtKmAtual = new System.Windows.Forms.TextBox();
             this.lblQuilometragem = new System.Windows.Forms.Label();
@@ -51,10 +52,13 @@
             this.dpDataLocacao = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblTotalPrevisto = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.gbCondutor.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -85,7 +89,7 @@
             // 
             this.btnOK.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOK.Location = new System.Drawing.Point(32, 16);
+            this.btnOK.Location = new System.Drawing.Point(30, 16);
             this.btnOK.Margin = new System.Windows.Forms.Padding(6);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(168, 65);
@@ -171,11 +175,13 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox1.Controls.Add(this.panel2);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.cmbGrupoVeiculo);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cmbPlano);
-            this.groupBox1.Controls.Add(this.btnDetalhar);
+            this.groupBox1.Controls.Add(this.btnCalcular);
             this.groupBox1.Controls.Add(this.listTaxasAdicionais);
             this.groupBox1.Controls.Add(this.txtKmAtual);
             this.groupBox1.Controls.Add(this.lblQuilometragem);
@@ -196,6 +202,18 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Locação";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(32, 241);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(118, 21);
+            this.label8.TabIndex = 40;
+            this.label8.Text = "Itens Adicionais";
             // 
             // cmbGrupoVeiculo
             // 
@@ -225,18 +243,19 @@
             this.cmbPlano.TabIndex = 37;
             this.cmbPlano.SelectedIndexChanged += new System.EventHandler(this.cmbPlano_SelectedIndexChanged);
             // 
-            // btnDetalhar
+            // btnCalcular
             // 
-            this.btnDetalhar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDetalhar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDetalhar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnDetalhar.Location = new System.Drawing.Point(34, 540);
-            this.btnDetalhar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDetalhar.Name = "btnDetalhar";
-            this.btnDetalhar.Size = new System.Drawing.Size(176, 59);
-            this.btnDetalhar.TabIndex = 7;
-            this.btnDetalhar.Text = "Detalhar";
-            this.btnDetalhar.UseVisualStyleBackColor = false;
+            this.btnCalcular.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnCalcular.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCalcular.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCalcular.Location = new System.Drawing.Point(32, 539);
+            this.btnCalcular.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCalcular.Name = "btnCalcular";
+            this.btnCalcular.Size = new System.Drawing.Size(167, 47);
+            this.btnCalcular.TabIndex = 7;
+            this.btnCalcular.Text = "Calcular";
+            this.btnCalcular.UseVisualStyleBackColor = false;
+            this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
             // 
             // listTaxasAdicionais
             // 
@@ -346,17 +365,33 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Data Locação";
             // 
-            // label8
+            // lblTotalPrevisto
             // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(32, 241);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(118, 21);
-            this.label8.TabIndex = 40;
-            this.label8.Text = "Itens Adicionais";
+            this.lblTotalPrevisto.AutoSize = true;
+            this.lblTotalPrevisto.Location = new System.Drawing.Point(40, 5);
+            this.lblTotalPrevisto.Name = "lblTotalPrevisto";
+            this.lblTotalPrevisto.Size = new System.Drawing.Size(46, 25);
+            this.lblTotalPrevisto.TabIndex = 41;
+            this.lblTotalPrevisto.Text = "0,00";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(490, 559);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(151, 25);
+            this.label10.TabIndex = 42;
+            this.label10.Text = "Total Previsto R$";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.lblTotalPrevisto);
+            this.panel2.Location = new System.Drawing.Point(657, 552);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(100, 34);
+            this.panel2.TabIndex = 43;
             // 
             // TelaCadastroLocacao
             // 
@@ -379,6 +414,8 @@
             this.gbCondutor.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -386,7 +423,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnDetalhar;
+        private System.Windows.Forms.Button btnCalcular;
         private System.Windows.Forms.CheckedListBox listTaxasAdicionais;
         private System.Windows.Forms.TextBox txtKmAtual;
         private System.Windows.Forms.Label lblQuilometragem;
@@ -409,5 +446,8 @@
         private System.Windows.Forms.ComboBox cmbCondutor;
         private System.Windows.Forms.ComboBox cmbGrupoVeiculo;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblTotalPrevisto;
+        private System.Windows.Forms.Panel panel2;
     }
 }
