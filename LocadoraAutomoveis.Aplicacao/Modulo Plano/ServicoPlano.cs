@@ -33,7 +33,6 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
                 foreach (var erro in resultadoValidacao.Errors) {
 
                     Log.Logger.Warning("Falha ao tentar inserir Plano. {plano} -> Motivo: {erro}", plano.Id, erro.Message);
-
                 }
 
                 return Result.Fail(resultadoValidacao.Errors);
@@ -160,7 +159,6 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
         public Result Validar(Plano plano)
         {
-
             validadorPlano = new ValidadorPlano();
 
             var resultadoValidacao = validadorPlano.Validate(plano);
@@ -174,6 +172,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
             if (PlanoDiarioDuplicado(plano))
                 erros.Add(new Error("Plano de Cobrança duplicado"));
+
+            if (PlanoGrupoDuplicado(plano))
+                erros.Add(new Error("Grupoo do plano duplicado"));
 
             if (erros.Any())
                 return Result.Fail(erros);
@@ -201,6 +202,14 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
                   !planoEncontrado.Id.Equals(plano.Id);
         }
 
+        private bool PlanoGrupoDuplicado(Plano plano)
+        {
+            var planoEncontrado = repositorioPlano.SelecionarPorGrupo(plano.Grupo.Nome);
+
+            return planoEncontrado != null &&
+                   planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&
+                  !planoEncontrado.Id.Equals(plano.Id);
+        }
         #endregion
     }
 }

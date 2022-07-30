@@ -7,5 +7,6 @@ namespace LocadoraVeiculos.Infra.BancoDados
     public interface IRepositorioOrmPlano : IRepositorioOrmBase<Plano>
     {
         public Plano SelecionarPorValor(float valor);
+        public Plano SelecionarPorGrupo(string valor);
     }
 }
