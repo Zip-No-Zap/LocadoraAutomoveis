@@ -2,8 +2,8 @@
 using FluentValidation.Results;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
+using LocadoraAutomoveis.Infra.Orm.ModuloLocacao;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Condutor;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -13,15 +13,16 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 {
     public class ServicoCondutor
     {
-        //readonly RepositorioCondutorEmBancoDados repositorioCondutor;
         readonly RepositorioCondutorOrm repositorioCondutor;
+        readonly RepositorioLocacaoOrm repositorioLocacao;
         readonly IContextoPersistencia contextoPersistOrm;
 
 
-        public ServicoCondutor(RepositorioCondutorOrm repositorioCondutor, IContextoPersistencia contextoPersistOrm)
+        public ServicoCondutor(RepositorioCondutorOrm repositorioCondutor, IContextoPersistencia contextoPersistOrm, RepositorioLocacaoOrm repositorioLocacao)
         {
             this.contextoPersistOrm = contextoPersistOrm;
             this.repositorioCondutor = repositorioCondutor;
+            this.repositorioLocacao = repositorioLocacao;
         }
 
         public Result<Condutor> Inserir(Condutor condutor)
@@ -106,23 +107,35 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
         {
             Log.Logger.Debug("Tentando excluir Condutor... {@condutor}", condutor);
 
-            try
+            if (VerificarRelacionamento(condutor) == false)
             {
-                repositorioCondutor.Excluir(condutor);
 
-                contextoPersistOrm.GravarDados();
+                try
+                {
+                    repositorioCondutor.Excluir(condutor);
 
-                Log.Logger.Information("Condutor excluído com sucesso. {@condutor}", condutor);
+                    contextoPersistOrm.GravarDados();
 
-                return Result.Ok();
+                    Log.Logger.Information("Condutor excluído com sucesso. {@condutor}", condutor);
+
+                    return Result.Ok();
+                }
+                catch (Exception ex)
+                {
+                    contextoPersistOrm.DesfazerAlteracoes();
+
+                    string msgErro = "Falha ao tentar excluir Condutor.";
+
+                    Log.Logger.Error(ex, msgErro + "{CondutorId}", condutor.Id);
+
+                    return Result.Fail(msgErro);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                contextoPersistOrm.DesfazerAlteracoes();
+                string msgErro = "O condutor está relacionada à outra tabela e não pode ser excluída";
 
-                string msgErro = "Falha ao tentar excluir Condutor.";
-
-                Log.Logger.Error(ex, msgErro + "{CondutorId}", condutor.Id);
+                Log.Logger.Error(msgErro + "{Condutor}", condutor.Id);
 
                 return Result.Fail(msgErro);
             }
@@ -193,38 +206,6 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 
         private bool CnhDuplicada(Condutor condutor)
         {
-    //        repositorioCondutor.Sql_selecao_por_parametro =
-    //            @" SELECT
-				//CONDUTOR.[ID] CONDUTOR_ID,
-				//CONDUTOR.[NOME] CONDUTOR_NOME,
-				//CONDUTOR.[CPF] CONDUTOR_CPF,
-				//CONDUTOR.[CNH] CONDUTOR_CNH,
-				//CONDUTOR.[VENCIMENTOCNH] CONDUTOR_VENCIMENTOCNH,
-				//CONDUTOR.[EMAIL]CONDUTOR_EMAIL,
-				//CONDUTOR.[ENDERECO] CONDUTOR_ENDERECO,
-				//CONDUTOR.[TELEFONE] CONDUTOR_TELEFONE,
-				//CONDUTOR.[CLIENTE_ID] CONDUTOR_CLIENTE_ID,
-		
-				//CLIENTE.[NOME] CLIENTE_NOME,
-				//CLIENTE.[CPF] CLIENTE_CPF,
-				//CLIENTE.[CNPJ] CLIENTE_CNPJ,
-				//CLIENTE.[ENDERECO] CLIENTE_ENDERECO,
-				//CLIENTE.[TIPOCLIENTE] CLIENTE_TIPOCLIENTE,
-				//CLIENTE.[EMAIL] CLIENTE_EMAIL,
-				//CLIENTE.[TELEFONE] CLIENTE_TELEFONE
-
-			 //   FROM
-    //                [TBCONDUTOR] AS CONDUTOR INNER JOIN 
-    //                [TBCLIENTE] AS CLIENTE
-    //            ON
-    //                CLIENTE.ID = CONDUTOR.CLIENTE_ID
-
-
-    //            WHERE CONDUTOR.CNH = @CNHCONDUTOR";
-
-    //        repositorioCondutor.PropriedadeParametro = "CNHCONDUTOR";
-    //        repositorioCondutor.propriedadeValidar = "Cnh";
-
             var condutorEncontrado = repositorioCondutor.SelecionarPorCnh(condutor.Cnh);
 
             return condutorEncontrado != null &&
@@ -234,38 +215,6 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 
         private bool CpfDuplicado(Condutor condutor)
         {
-    //        repositorioCondutor.Sql_selecao_por_parametro =
-    //            @" SELECT
-				//CONDUTOR.[ID] CONDUTOR_ID,
-				//CONDUTOR.[NOME] CONDUTOR_NOME,
-				//CONDUTOR.[CPF] CONDUTOR_CPF,
-				//CONDUTOR.[CNH] CONDUTOR_CNH,
-				//CONDUTOR.[VENCIMENTOCNH] CONDUTOR_VENCIMENTOCNH,
-				//CONDUTOR.[EMAIL]CONDUTOR_EMAIL,
-				//CONDUTOR.[ENDERECO] CONDUTOR_ENDERECO,
-				//CONDUTOR.[TELEFONE] CONDUTOR_TELEFONE,
-				//CONDUTOR.[CLIENTE_ID] CONDUTOR_CLIENTE_ID,
-		
-				//CLIENTE.[NOME] CLIENTE_NOME,
-				//CLIENTE.[CPF] CLIENTE_CPF,
-				//CLIENTE.[CNPJ] CLIENTE_CNPJ,
-				//CLIENTE.[ENDERECO] CLIENTE_ENDERECO,
-				//CLIENTE.[TIPOCLIENTE] CLIENTE_TIPOCLIENTE,
-				//CLIENTE.[EMAIL] CLIENTE_EMAIL,
-				//CLIENTE.[TELEFONE] CLIENTE_TELEFONE
-
-			 //   FROM
-    //                [TBCONDUTOR] AS CONDUTOR INNER JOIN 
-    //                [TBCLIENTE] AS CLIENTE
-    //            ON
-    //                CLIENTE.ID = CONDUTOR.CLIENTE_ID
-
-
-    //            WHERE CONDUTOR.CPF = @CPFCONDUTOR";
-
-    //        repositorioCondutor.PropriedadeParametro = "CPFCONDUTOR";
-    //        repositorioCondutor.propriedadeValidar = "Cpf";
-
             var condutorEncontrado = repositorioCondutor.SelecionarPorCpf(condutor.Cpf);
 
             return condutorEncontrado != null &&
@@ -275,43 +224,22 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 
         private bool NomeDuplicado(Condutor condutor)
         {
-    //        repositorioCondutor.Sql_selecao_por_parametro =
-    //            @" SELECT
-				//CONDUTOR.[ID] CONDUTOR_ID,
-				//CONDUTOR.[NOME] CONDUTOR_NOME,
-				//CONDUTOR.[CPF] CONDUTOR_CPF,
-				//CONDUTOR.[CNH] CONDUTOR_CNH,
-				//CONDUTOR.[VENCIMENTOCNH] CONDUTOR_VENCIMENTOCNH,
-				//CONDUTOR.[EMAIL]CONDUTOR_EMAIL,
-				//CONDUTOR.[ENDERECO] CONDUTOR_ENDERECO,
-				//CONDUTOR.[TELEFONE] CONDUTOR_TELEFONE,
-				//CONDUTOR.[CLIENTE_ID] CONDUTOR_CLIENTE_ID,
-		
-				//CLIENTE.[NOME] CLIENTE_NOME,
-				//CLIENTE.[CPF] CLIENTE_CPF,
-				//CLIENTE.[CNPJ] CLIENTE_CNPJ,
-				//CLIENTE.[ENDERECO] CLIENTE_ENDERECO,
-				//CLIENTE.[TIPOCLIENTE] CLIENTE_TIPOCLIENTE,
-				//CLIENTE.[EMAIL] CLIENTE_EMAIL,
-				//CLIENTE.[TELEFONE] CLIENTE_TELEFONE
-
-			 //   FROM
-    //                [TBCONDUTOR] AS CONDUTOR INNER JOIN 
-    //                [TBCLIENTE] AS CLIENTE
-    //            ON
-    //                CLIENTE.ID = CONDUTOR.CLIENTE_ID
-
-
-    //            WHERE CONDUTOR.NOME = @NOMECONDUTOR";
-
-    //        repositorioCondutor.PropriedadeParametro = "NOMECONDUTOR";
-    //        repositorioCondutor.propriedadeValidar = "Nome";
-
             var condutorEncontrado = repositorioCondutor.SelecionarPorNome(condutor.Nome);
 
             return condutorEncontrado != null &&
                    condutorEncontrado.Nome.Equals(condutor.Nome) &&
                   !condutorEncontrado.Id.Equals(condutor.Id);
+        }
+
+        private bool VerificarRelacionamento(Condutor condutor)
+        {
+            bool resultado = false;
+
+            var condutores = repositorioLocacao.SelecionarTodos();
+
+            resultado = condutores.Any(x => x.ItensTaxa.Equals(condutor));
+
+            return resultado;
         }
 
         #endregion

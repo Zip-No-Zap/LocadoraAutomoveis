@@ -139,7 +139,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             {
                 string msgErro = "A taxa está relacionada à outra tabela e não pode ser excluída";
 
-                Log.Logger.Error(msgErro + "{GrupoVeiculo}", taxa.Id);
+                Log.Logger.Error(msgErro + "{Taxa}", taxa.Id);
 
                 return Result.Fail(msgErro);
             }

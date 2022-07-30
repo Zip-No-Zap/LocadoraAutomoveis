@@ -105,7 +105,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 
                 if (resultado == DialogResult.OK)
                 {
-                    servicoCondutor.Excluir(selecionado);
+                    var exclusaoResult = servicoCondutor.Excluir(selecionado);
+
+                    if (exclusaoResult.IsFailed)
+                        MessageBox.Show("Não foi possível excluir este condutor!\n\n" + exclusaoResult.Errors[0], "Aviso");
 
                     CarregarCondutores();
                 }
@@ -124,8 +127,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 
             return servicoCondutor.SelecionarPorId(numero);
         }
-
-        
         
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()
         {
