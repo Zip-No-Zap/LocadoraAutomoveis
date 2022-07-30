@@ -1,4 +1,5 @@
 ﻿using FluentResults;
+using GeradorTestes.Infra.Arquivo.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
@@ -8,6 +9,7 @@ using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -22,8 +24,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         List<Taxa> taxas;
         List<GrupoVeiculo> grupos;
         List<Plano> planos;
-        public TelaCadastroLocacao(List<Cliente> clientes, 
-            List<Condutor> condutores, List<Veiculo> veiculos, 
+        public TelaCadastroLocacao(List<Cliente> clientes,
+            List<Condutor> condutores, List<Veiculo> veiculos,
             List<Taxa> taxas, List<GrupoVeiculo> grupos, List<Plano> planos)
         {
             InitializeComponent();
@@ -46,7 +48,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             }
         }
 
-        public Func< Locacao, Result<Locacao> > GravarRegistro
+        public Func<Locacao, Result<Locacao>> GravarRegistro
         {
             get; set;
         }
@@ -120,7 +122,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             FormPrincipal.Instancia.AtualizarRodape("");
         }
 
-         private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             var cliente = (Cliente)cmbClientes.SelectedItem;
 
@@ -147,9 +149,9 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         private void btnOK_Click(object sender, EventArgs e)
         {
             locacao.ClienteLocacao = (Cliente)cmbClientes.SelectedItem;
-           
+
             locacao.CondutorLocacao = (Condutor)cmbCondutor.SelectedItem;
-           
+
             locacao.VeiculoLocacao = (Veiculo)cmbVeiculo.SelectedItem;
 
             var resultadoValidacao = GravarRegistro(locacao);
@@ -162,6 +164,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
                 DialogResult = DialogResult.None;
             }
+
+            CarregarRichText();
+
+            GerarPdf();
         }
 
         private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
@@ -240,7 +246,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             {
                 var taxa = taxas.Find(x => x.Descricao.Contains(item.ToString().Remove(15)));
 
-                if(taxa != null)
+                if (taxa != null)
                     locacao.TotalPrevisto += taxa.Valor;
             }
         }
@@ -276,6 +282,65 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             {
                 listTaxasAdicionais.SetItemChecked(i, false);
             }
+        }
+
+        private void CarregarRichText()
+        {
+            string detalhe = 
+            $"DETALHES DA LOCAÇÃO \n\n\r" +
+            $"Tota Previsto: { locacao.TotalPrevisto.ToString() } \n\n\r" +
+            $"Data Locação: { dpDataLocacao.Text} \n\r " +
+            $"Data Devolução: { dpDataDevolucao.Text} \n\n\r" +
+            $"Cliente: { cmbClientes.Text} \n\r" +
+            $"Condutor: { cmbCondutor.Text} \n\r" +
+            $"Grupo: { cmbGrupoVeiculo.Text} \n\r" +
+            $"Veículo: { cmbVeiculo.Text} \n\r" 
+            ;
+
+            rtPDF.Text = detalhe;
+
+            CarregarItensRichText();
+
+            //CarregarImagem();
+        }
+
+        private void CarregarImagem()
+        {
+            OpenFileDialog ofd1 = new();
+
+            rtPDF.Visible = true;
+            ofd1.Filter = "Images |*.bmp;*.jpg;*.png;*.gif;*.ico";
+            ofd1.Multiselect = false;
+            ofd1.FileName = "";
+            DialogResult resultado = ofd1.ShowDialog();
+            if (resultado == DialogResult.OK)
+            {
+                Image img = Image.FromFile(ofd1.FileName);
+                Clipboard.SetImage(img);
+                rtPDF.Paste();
+                rtPDF.Focus();
+            }
+            else
+            {
+                rtPDF.Focus();
+            }
+        }
+
+        private void CarregarItensRichText()
+        {
+            foreach (var item in listTaxasAdicionais.CheckedItems)
+            {
+                rtPDF.Text += "Item Adicional: " + item.ToString() + "\n";
+            }
+        }
+
+        private void GerarPdf()
+        {
+            GeradorPdf pdf = new();
+
+            pdf.GerarPDF_ItextSharp(rtPDF.Text);
+
+            MessageBox.Show("Arquivo PDF Gerado!\n\nDestino: C: -> temp -> pdf -> ComprovanteLocacao.pdf");
         }
     }
 

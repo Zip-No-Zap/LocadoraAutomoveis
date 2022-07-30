@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnDesmarcar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.gbCondutor = new System.Windows.Forms.GroupBox();
@@ -37,7 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbClientes = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gb = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotalPrevisto = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -55,10 +56,10 @@
             this.dpDataLocacao = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnDesmarcar = new System.Windows.Forms.Button();
+            this.rtPDF = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.gbCondutor.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gb.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +75,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 98);
             this.panel1.TabIndex = 8;
+            // 
+            // btnDesmarcar
+            // 
+            this.btnDesmarcar.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnDesmarcar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDesmarcar.Location = new System.Drawing.Point(391, 16);
+            this.btnDesmarcar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDesmarcar.Name = "btnDesmarcar";
+            this.btnDesmarcar.Size = new System.Drawing.Size(168, 65);
+            this.btnDesmarcar.TabIndex = 10;
+            this.btnDesmarcar.Text = "Desmarcar Itens";
+            this.btnDesmarcar.UseVisualStyleBackColor = false;
+            this.btnDesmarcar.Click += new System.EventHandler(this.btnDesmarcar_Click_1);
             // 
             // btnLimpar
             // 
@@ -174,36 +188,36 @@
             this.label3.TabIndex = 38;
             this.label3.Text = "Plano";
             // 
-            // groupBox1
+            // gb
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox1.Controls.Add(this.panel2);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.cmbGrupoVeiculo);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cmbPlano);
-            this.groupBox1.Controls.Add(this.btnCalcular);
-            this.groupBox1.Controls.Add(this.listTaxasAdicionais);
-            this.groupBox1.Controls.Add(this.txtKmAtual);
-            this.groupBox1.Controls.Add(this.lblQuilometragem);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.cmbVeiculo);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.dpDataDevolucao);
-            this.groupBox1.Controls.Add(this.dpDataLocacao);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(48, 175);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(801, 618);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Dados Locação";
+            this.gb.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.gb.Controls.Add(this.panel2);
+            this.gb.Controls.Add(this.label10);
+            this.gb.Controls.Add(this.label8);
+            this.gb.Controls.Add(this.cmbGrupoVeiculo);
+            this.gb.Controls.Add(this.label3);
+            this.gb.Controls.Add(this.cmbPlano);
+            this.gb.Controls.Add(this.btnCalcular);
+            this.gb.Controls.Add(this.listTaxasAdicionais);
+            this.gb.Controls.Add(this.txtKmAtual);
+            this.gb.Controls.Add(this.lblQuilometragem);
+            this.gb.Controls.Add(this.label7);
+            this.gb.Controls.Add(this.cmbVeiculo);
+            this.gb.Controls.Add(this.label6);
+            this.gb.Controls.Add(this.dpDataDevolucao);
+            this.gb.Controls.Add(this.dpDataLocacao);
+            this.gb.Controls.Add(this.label4);
+            this.gb.Controls.Add(this.label5);
+            this.gb.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.gb.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.gb.Location = new System.Drawing.Point(48, 175);
+            this.gb.Margin = new System.Windows.Forms.Padding(2);
+            this.gb.Name = "gb";
+            this.gb.Padding = new System.Windows.Forms.Padding(2);
+            this.gb.Size = new System.Drawing.Size(801, 618);
+            this.gb.TabIndex = 10;
+            this.gb.TabStop = false;
+            this.gb.Text = "Dados Locação";
             // 
             // panel2
             // 
@@ -395,25 +409,21 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Data Locação";
             // 
-            // btnDesmarcar
+            // rtPDF
             // 
-            this.btnDesmarcar.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDesmarcar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDesmarcar.Location = new System.Drawing.Point(391, 16);
-            this.btnDesmarcar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDesmarcar.Name = "btnDesmarcar";
-            this.btnDesmarcar.Size = new System.Drawing.Size(168, 65);
-            this.btnDesmarcar.TabIndex = 10;
-            this.btnDesmarcar.Text = "Desmarcar Itens";
-            this.btnDesmarcar.UseVisualStyleBackColor = false;
-            this.btnDesmarcar.Click += new System.EventHandler(this.btnDesmarcar_Click_1);
+            this.rtPDF.Location = new System.Drawing.Point(866, 30);
+            this.rtPDF.Name = "rtPDF";
+            this.rtPDF.Size = new System.Drawing.Size(550, 668);
+            this.rtPDF.TabIndex = 11;
+            this.rtPDF.Text = "";
             // 
             // TelaCadastroLocacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(899, 970);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1428, 970);
+            this.Controls.Add(this.rtPDF);
+            this.Controls.Add(this.gb);
             this.Controls.Add(this.gbCondutor);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -427,8 +437,8 @@
             this.panel1.ResumeLayout(false);
             this.gbCondutor.ResumeLayout(false);
             this.gbCondutor.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gb.ResumeLayout(false);
+            this.gb.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -437,7 +447,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gb;
         private System.Windows.Forms.Button btnCalcular;
         private System.Windows.Forms.CheckedListBox listTaxasAdicionais;
         private System.Windows.Forms.TextBox txtKmAtual;
@@ -465,5 +475,6 @@
         private System.Windows.Forms.Label lblTotalPrevisto;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnDesmarcar;
+        private System.Windows.Forms.RichTextBox rtPDF;
     }
 }
