@@ -225,6 +225,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
+            locacao.TotalPrevisto = 0;
+
             CalcularItensAdicionais();
 
             CalcularPlanos();
@@ -270,9 +272,9 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private void btnDesmarcar_Click_1(object sender, EventArgs e)
         {
-            var checados = listTaxasAdicionais.CheckedItems.Count;
+            var totalItens = listTaxasAdicionais.Items.Count;
 
-            for (int i = 0; i < checados; i++)
+            for (int i = 0; i < totalItens; i++)
             {
                 listTaxasAdicionais.SetItemChecked(i, false);
             }
