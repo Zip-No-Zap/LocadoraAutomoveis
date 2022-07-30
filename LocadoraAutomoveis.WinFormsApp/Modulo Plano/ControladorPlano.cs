@@ -93,7 +93,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
                 return;
             }
 
-
             var resultado = servicoPlano.SelecionarPorId(id);
 
             if (resultado.IsFailed)
@@ -103,13 +102,16 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
                 return;
             }
 
-            var Selecionado = resultado.Value;
-
+            var selecionado = resultado.Value;
 
             if (MessageBox.Show("Deseja realmente excluir o plano?",
             "Exclusão de Plano", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                servicoPlano.Excluir(Selecionado);
+                var exclusaoResult = servicoPlano.Excluir(selecionado);
+
+                if (exclusaoResult.IsFailed)
+                    MessageBox.Show("Não foi possível excluir este plano!\n\n" + exclusaoResult.Errors[0], "Aviso");
+
                 CarregarPlanos();
             }
         }

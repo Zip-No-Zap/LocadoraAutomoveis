@@ -69,7 +69,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
             tela.GravarRegistro = servicoVeiculo.Editar;
 
-
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 CarregarVeiculos();

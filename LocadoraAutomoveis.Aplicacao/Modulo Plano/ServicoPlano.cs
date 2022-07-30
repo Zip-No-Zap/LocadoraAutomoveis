@@ -3,23 +3,26 @@ using FluentValidation.Results;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloPlano;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
-using Serilog;
-using System;
+using LocadoraAutomoveis.Infra.Orm.ModuloLocacao;
 using System.Collections.Generic;
 using System.Linq;
+using Serilog;
+using System;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 {
     public class ServicoPlano
     {
         readonly RepositorioPlanoOrm repositorioPlano;
+        readonly RepositorioLocacaoOrm repositorioLocacao;
         readonly IContextoPersistencia contextoPersistOrm;
         ValidadorPlano validadorPlano;
 
-        public ServicoPlano(RepositorioPlanoOrm repositorioPlano, IContextoPersistencia contextoPersistOrm)
+        public ServicoPlano(RepositorioPlanoOrm repositorioPlano, IContextoPersistencia contextoPersistOrm, RepositorioLocacaoOrm repositorioLocacao)
         {
             this.repositorioPlano = repositorioPlano;
             this.contextoPersistOrm = contextoPersistOrm;
+            this.repositorioLocacao = repositorioLocacao;
         }
 
         public Result<Plano> Inserir(Plano plano)
@@ -103,23 +106,34 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
         {
             Log.Logger.Debug("Tentando excluir Plano... {@grupo}", plano);
 
-            try
+            if (VerificarRelacionamento(plano) == true)
             {
-                repositorioPlano.Excluir(plano);
+                try
+                {
+                    repositorioPlano.Excluir(plano);
 
-                contextoPersistOrm.GravarDados();
+                    contextoPersistOrm.GravarDados();
 
-                Log.Logger.Information("plano {planoId} excluído com sucesso", plano.Id);
+                    Log.Logger.Information("plano {planoId} excluído com sucesso", plano.Id);
 
-                return Result.Ok();
+                    return Result.Ok();
+                }
+                catch (Exception ex)
+                {
+                    contextoPersistOrm.DesfazerAlteracoes();
+
+                    string msgErro = "Falha no sistema ao tentar excluir o Plano";
+
+                    Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
+
+                    return Result.Fail(msgErro);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                contextoPersistOrm.DesfazerAlteracoes();
+                string msgErro = "O plano está relacionado à outra tabela e não pode ser excluído";
 
-                string msgErro = "Falha no sistema ao tentar excluir o Plano";
-
-                Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
+                Log.Logger.Error(msgErro + "{Plano}", plano.Id);
 
                 return Result.Fail(msgErro);
             }
@@ -210,6 +224,18 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
                    planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&
                   !planoEncontrado.Id.Equals(plano.Id);
         }
+
+        private bool VerificarRelacionamento(Plano plano)
+        {
+            bool resultado = false;
+
+            var locacoes = repositorioLocacao.SelecionarTodos();
+
+            resultado = locacoes.Any(x => x.PlanoLocacao.Id == (plano.Id));
+
+            return resultado;
+        }
+
         #endregion
     }
 }
