@@ -267,6 +267,16 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     break;
             }
         }
+
+        private void btnDesmarcar_Click_1(object sender, EventArgs e)
+        {
+            var checados = listTaxasAdicionais.CheckedItems.Count;
+
+            for (int i = 0; i < checados; i++)
+            {
+                listTaxasAdicionais.SetItemChecked(i, false);
+            }
+        }
     }
 
 }

@@ -406,6 +406,7 @@
             this.btnDesmarcar.TabIndex = 10;
             this.btnDesmarcar.Text = "Desmarcar Itens";
             this.btnDesmarcar.UseVisualStyleBackColor = false;
+            this.btnDesmarcar.Click += new System.EventHandler(this.btnDesmarcar_Click_1);
             // 
             // TelaCadastroLocacao
             // 
