@@ -336,6 +336,11 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private void btnDesmarcar_Click_1(object sender, EventArgs e)
         {
+            DesmarcarCheckBoxes();
+        }
+
+        private void DesmarcarCheckBoxes()
+        {
             var totalItens = listTaxasAdicionais.Items.Count;
 
             for (int i = 0; i < totalItens; i++)
@@ -425,6 +430,20 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     }
                 }
             }
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            cmbClientes.Items.Clear();
+            cmbCondutor.Items.Clear();
+            dpDataLocacao.Value = DateTime.Today;
+            dpDataDevolucao.Value = DateTime.Today;
+            cmbGrupoVeiculo.Items.Clear();
+            cmbVeiculo.Items.Clear();
+            txtKmAtual.Clear();
+            cmbPlano.Items.Clear();
+            lblTotalPrevisto.Text = "0,00";
+            DesmarcarCheckBoxes();
         }
     }
 
