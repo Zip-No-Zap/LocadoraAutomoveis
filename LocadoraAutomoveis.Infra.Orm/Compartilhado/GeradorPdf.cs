@@ -27,7 +27,9 @@ namespace GeradorTestes.Infra.Arquivo.Compartilhado
 
         public void GerarPDF_ItextSharp(string texto)
         {
-            string nomeArquivo = @"C:\temp\pdf\ComprovanteLocacao.pdf";
+            int i = 0;
+            string nomeArquivo = @"C:\temp\pdf\ComprovanteLocacao"+i+@".pdf";
+            i++;
             FileStream arquivoPDF = new(nomeArquivo, FileMode.Create);
             iTextSharp.text.Document doc = new(PageSize.A4);
             PdfWriter escritorPDF = PdfWriter.GetInstance(doc, arquivoPDF);

@@ -48,6 +48,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
                 .Include(x => x.ClienteLocacao)
                 .Include(x => x.CondutorLocacao)
                 .Include(x => x.VeiculoLocacao)
+                .Include(x => x.VeiculoLocacao.GrupoPertencente)
                 .Include(x => x.Grupo)
                 .Include(x => x.PlanoLocacao)
                 .Include(x => x.ItensTaxa)
@@ -61,18 +62,17 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
 
         public Locacao SelecionarPorCliente(Cliente entidade)
         {
-            return dbsetLocacoes.FirstOrDefault(x => x.Equals(entidade));
+            return dbsetLocacoes.FirstOrDefault(x => x.ClienteLocacao.Equals(entidade));
         }
 
         public Locacao SelecionarPorCondutor(Condutor entidade)
         {
-            return dbsetLocacoes.FirstOrDefault(x => x.Equals(entidade));
+            return dbsetLocacoes.FirstOrDefault(x => x.CondutorLocacao.Equals(entidade));
         }
 
         public Locacao SelecionarPorVeiculo(Veiculo entidade)
         {
-            return dbsetLocacoes.FirstOrDefault(x => x.Equals(entidade));
+            return dbsetLocacoes.FirstOrDefault(x => x.VeiculoLocacao.Equals(entidade));
         }
     }
-
 }

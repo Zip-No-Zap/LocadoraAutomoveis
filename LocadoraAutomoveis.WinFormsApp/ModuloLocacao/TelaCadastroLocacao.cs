@@ -99,7 +99,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     txtKmAtual.Text = locacao.VeiculoLocacao.QuilometragemAtual.ToString();
 
                 dpDataLocacao.Value = locacao.DataLocacao;
-                dpDataDevolucao.Value = locacao.DataLocacao;
+                dpDataDevolucao.Value = locacao.DataDevolucao;
 
                 if (locacao.VeiculoLocacao != null)
                     cmbVeiculo.SelectedItem = locacao.VeiculoLocacao;
@@ -406,7 +406,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             string nomeCliente = cmbClientes.Text;
 
-            if(nomeCliente != null)
+            if(nomeCliente != null && locacao.ItensTaxa != null)
             {
                 var clienteSelecionado = clientes.Find(x => x.Nome == nomeCliente);
                 var locacaoSelecionada = locacoes.Find(x => x.ClienteLocacao.Equals(clienteSelecionado));

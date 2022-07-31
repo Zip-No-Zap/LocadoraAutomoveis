@@ -53,7 +53,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     registro.VeiculoLocacao.Modelo, 
                     registro.VeiculoLocacao.GrupoPertencente.Nome,
                     registro.DataLocacao.ToShortDateString(), 
-                    registro.DataDevolucaoString, 
+                    registro.DataDevolucao.ToShortDateString(),
                     registro.PlanoLocacao_Descricao);
             }
         }

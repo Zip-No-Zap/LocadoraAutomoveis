@@ -15,6 +15,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
             builder.HasOne(x => x.CondutorLocacao);
             builder.HasOne(x => x.ClienteLocacao);
             builder.HasOne(x => x.VeiculoLocacao);
+            builder.HasOne(x => x.Grupo);
             builder.HasOne(x => x.PlanoLocacao);
             builder.HasMany(x => x.ItensTaxa);
             builder.Property(x => x.DataLocacao).HasColumnType("date").IsRequired();
