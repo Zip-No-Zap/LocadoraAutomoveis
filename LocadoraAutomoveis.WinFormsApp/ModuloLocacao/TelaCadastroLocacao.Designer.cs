@@ -292,7 +292,6 @@
             // cmbPlano
             // 
             this.cmbPlano.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPlano.Enabled = false;
             this.cmbPlano.FormattingEnabled = true;
             this.cmbPlano.Items.AddRange(new object[] {
             "Diário",

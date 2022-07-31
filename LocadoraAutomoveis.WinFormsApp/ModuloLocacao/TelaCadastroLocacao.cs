@@ -54,6 +54,14 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             btnLimpar.Enabled = false;
             btnDesmarcar.Enabled = false;
             btnRegistrarDevolucao.Visible = true;
+            cmbClientes.Enabled = false;
+            cmbCondutor.Enabled = false;
+            dpDataLocacao.Enabled = false;
+            dpDataDevolucao.Enabled = false;
+            cmbPlano.Enabled = false;
+            cmbGrupoVeiculo.Enabled = false;
+            cmbVeiculo.Enabled = false;
+            listTaxasAdicionais.Enabled = false;
         }
 
         private void CarregarGrupoVeiculos(List<GrupoVeiculo> grupo)
@@ -259,7 +267,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             GrupoVeiculo grupo = CarregarVeiculos();
 
-            HabilitarPlanos(grupo);
+            //HabilitarPlanos(grupo);
         }
 
         private bool VerificarSeGrupoTemPlano(GrupoVeiculo grupo)
@@ -493,6 +501,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             telaDevolucao.quilometragemAnterior = locacao.VeiculoLocacao.QuilometragemAtual;
             telaDevolucao.totalPrevisto = locacao.TotalPrevisto;
             telaDevolucao.plano = locacao.PlanoLocacao_Descricao;
+            telaDevolucao.tanqueMaximoVeiculo = locacao.VeiculoLocacao.CapacidadeTanque;
+            telaDevolucao.tipoCombustivel = locacao.VeiculoLocacao.TipoCombustivel;
 
             switch (telaDevolucao.plano)
             {

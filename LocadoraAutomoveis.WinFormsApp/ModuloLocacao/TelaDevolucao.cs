@@ -16,6 +16,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         public string plano;
         public float limiteKm;
         public double totalPrevisto;
+        public string tipoCombustivel;
+        public float tanqueMaximoVeiculo;
 
         public TelaDevolucao()
         {
@@ -101,8 +103,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private double CalcularConsumoTanque()
         {
-            string tipoCombustivel = "Gasolina";
-            float tanqueMaximoVeiculo = 0;
             int porcentagemTanque = int.Parse(cmbTanque.Text.Split("%").ToString().Trim());
             int deduzir = 100 - porcentagemTanque;
             double tanqueDeduzido = tanqueMaximoVeiculo * (deduzir / 100);
@@ -119,7 +119,11 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private double CalcularValorDiarioPlano()
         {
-            int diferenca = Convert.ToInt32(dataLocacao - dpDataDevolvido.Value);
+            var dataDevolvido = dpDataDevolvido.Value;
+            int dataLocacaoConvertida = Convert.ToInt32(dataLocacao.Day);
+            int dataDevolvidoConvertida = Convert.ToInt32(dataDevolvido.Day);
+
+            int diferenca = dataLocacaoConvertida - dataDevolvidoConvertida;
 
             return diferenca * valorDiario;
         }
