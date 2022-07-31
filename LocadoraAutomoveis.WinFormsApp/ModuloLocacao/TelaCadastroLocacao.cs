@@ -85,11 +85,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 else
                     cmbVeiculo.SelectedIndex = -1;
 
-                if (locacao.VeiculoLocacao != null)
-                    cmbVeiculo.SelectedItem = locacao.VeiculoLocacao;
-                else
-                    cmbVeiculo.SelectedIndex = -1;
-
                 if (locacao.PlanoLocacao != null)
                     cmbPlano.SelectedItem = locacao.PlanoLocacao_Descricao;
                 else
@@ -100,11 +95,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
                 dpDataLocacao.Value = locacao.DataLocacao;
                 dpDataDevolucao.Value = locacao.DataDevolucao;
-
-                if (locacao.VeiculoLocacao != null)
-                    cmbVeiculo.SelectedItem = locacao.VeiculoLocacao;
-                else
-                    cmbVeiculo.SelectedIndex = -1;
 
                 CarregarItensAdicionais();
             }
@@ -145,8 +135,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             {
                 if (item.GrupoPertencente.Equals(grupo))
                 {
-                    if (item.StatusVeiculo == "Disponível")
-                        cmbVeiculo.Items.Add(item);
+                    cmbVeiculo.Items.Add(item);
                 }
             }
 

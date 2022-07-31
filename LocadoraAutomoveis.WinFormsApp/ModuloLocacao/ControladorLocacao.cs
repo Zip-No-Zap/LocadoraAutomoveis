@@ -113,7 +113,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 tela.GerarPdf();
                 CarregarLocacoes();
             }
-            
+
         }
 
         public override void Excluir()
