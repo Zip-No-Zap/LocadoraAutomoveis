@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using FluentValidation.Results;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloLocacao;
 using LocadoraAutomoveis.Infra.Orm.ModuloTaxa;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using Serilog;
@@ -13,13 +14,15 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
     public class ServicoTaxa
     {
         readonly RepositorioTaxaOrm repositorioTaxa;
+        readonly RepositorioLocacaoOrm repositorioLocacao;
         readonly IContextoPersistencia contextoPersistOrm;
         ValidadorTaxa validadorTaxa;
 
-        public ServicoTaxa(RepositorioTaxaOrm repositorioTaxa, IContextoPersistencia contextoPersistOrm)
+        public ServicoTaxa(RepositorioTaxaOrm repositorioTaxa, IContextoPersistencia contextoPersistOrm, RepositorioLocacaoOrm repositorioLocacao)
         {
             this.repositorioTaxa = repositorioTaxa;
             this.contextoPersistOrm = contextoPersistOrm;
+            this.repositorioLocacao = repositorioLocacao;
         }
 
         public Result<Taxa> Inserir(Taxa taxa)
@@ -53,6 +56,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar inserir Taxa";
 
                 Log.Logger.Error(ex, msgErro + "{taxaId}", taxa.Id);
@@ -92,6 +97,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar editar Taxa";
 
                 Log.Logger.Error(ex, msgErro + "{taxaId}", taxa.Id);
@@ -104,24 +111,37 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
         {
             Log.Logger.Debug("Tentando excluir Taxa... {@taxa}", taxa);
 
-            try
+            if (VerificarRelacionamento(taxa) == false)
             {
-                repositorioTaxa.Excluir(taxa);
 
-                contextoPersistOrm.GravarDados();
+                try
+                {
+                    repositorioTaxa.Excluir(taxa);
 
-                Log.Logger.Information("taxa {taxaId} excluída com sucesso", taxa.Id);
+                    contextoPersistOrm.GravarDados();
 
-                return Result.Ok();
+                    Log.Logger.Information("taxa {taxaId} excluída com sucesso", taxa.Id);
+
+                    return Result.Ok();
+                }
+                catch (Exception ex)
+                {
+                    contextoPersistOrm.DesfazerAlteracoes();
+
+                    string msgErro = "Falha no sistema ao tentar excluir Taxa";
+
+                    Log.Logger.Error(ex, msgErro + "{taxa}", taxa.Id);
+
+                    return Result.Fail(msgErro);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                string msgErro = "Falha no sistema ao tentar excluir Taxa";
+                string msgErro = "A taxa está relacionada à outra tabela e não pode ser excluída";
 
-                Log.Logger.Error(ex, msgErro + "{taxa}", taxa.Id);
+                Log.Logger.Error(msgErro + "{Taxa}", taxa.Id);
 
                 return Result.Fail(msgErro);
-
             }
         }
 
@@ -129,7 +149,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
         {
             try
             {
-                return Result.Ok(repositorioTaxa.SelecionarTodos());
+                return Result.Ok(repositorioTaxa.SelecionarTodos(false));
             }
             catch (Exception ex)
             {
@@ -177,18 +197,28 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
                 return Result.Fail(erros);
 
             return Result.Ok();
-            
         }
 
         #region privates
        
         private bool DescricaoDuplicado(Taxa taxa)
         {
-            var TaxaEncontrado = repositorioTaxa.SelecionarPorParametro(taxa.Descricao);
+            var TaxaEncontrado = repositorioTaxa.SelecionarPorDescricao(taxa.Descricao);
 
             return TaxaEncontrado != null &&
                    TaxaEncontrado.Descricao.Equals(taxa.Descricao) &&
                   !TaxaEncontrado.Id.Equals(taxa.Id);
+        }
+
+        private bool VerificarRelacionamento(Taxa taxa)
+        {
+            bool resultado = false;
+
+            var locacoes = repositorioLocacao.SelecionarTodos();
+          
+            resultado = locacoes.Any(x => x.ItensTaxa.Equals(taxa));
+
+            return resultado;
         }
 
         #endregion

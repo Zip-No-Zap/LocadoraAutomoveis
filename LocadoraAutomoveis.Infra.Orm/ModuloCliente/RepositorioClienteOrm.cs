@@ -14,7 +14,8 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCliente
 
         public RepositorioClienteOrm(LocadoraAutomoveisDbContext dbContext)
         {
-            dbsetClientes = dbContext.Set<Cliente>();
+            _dbContext = dbContext;
+            dbsetClientes = _dbContext.Set<Cliente>();
         }
 
         public void Inserir(Cliente registro)
@@ -34,6 +35,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCliente
 
         public Cliente SelecionarPorId(Guid id)
         {
+            //return dbsetClientes.Find(id);
             return dbsetClientes.FirstOrDefault(x => x.Id == id);
         }
 

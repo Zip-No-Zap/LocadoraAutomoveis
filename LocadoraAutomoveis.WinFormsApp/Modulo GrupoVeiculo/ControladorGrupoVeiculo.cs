@@ -33,7 +33,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
             }
         }
 
-
         public override void Editar()
         {
             var id = tabelaGrupoVeiculo.ObtemNumeroGrupoVeiculoSelecionado();
@@ -45,7 +44,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
                 return;
             }
 
-
             var resultado = servicoGrupoVeiculo.SelecionarPorId(id);
 
             if (resultado.IsFailed)
@@ -55,21 +53,19 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
                 return;
             }
 
-                var Selecionado = resultado.Value;
+                var selecionado = resultado.Value;
 
                 TelaCadastroGrupoVeiculo tela = new();
 
-                tela.GrupoVeiculo = Selecionado;
+                tela.GrupoVeiculo = selecionado;
 
                 tela.GravarRegistro = servicoGrupoVeiculo.Editar;
 
 
                 if (tela.ShowDialog() == DialogResult.OK)
-                {
-                    CarregarGruposVeiculos();
-                }
-        }
 
+                    CarregarGruposVeiculos();
+        }
 
         public override void Excluir()
         {
@@ -94,11 +90,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
 
             var Selecionado = resultado.Value;
 
-
             if (MessageBox.Show("Deseja realmente excluir o grupo?",
             "Exclusão de Grupo Veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                servicoGrupoVeiculo.Excluir(Selecionado);
+                var exclusaoResult = servicoGrupoVeiculo.Excluir(Selecionado);
+
+                if (exclusaoResult.IsFailed)
+                    MessageBox.Show("Não foi possível excluir este grupo!\n\n" + exclusaoResult.Errors[0], "Aviso");
+
                 CarregarGruposVeiculos();
             }
         }
@@ -130,7 +129,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo
                 tabelaGrupoVeiculo.AtualizarRegistros(grupos);
 
                 FormPrincipal.Instancia.AtualizarRodape($"Visualizando {grupos.Count} grupo(s) de Veiculo(s)");
-
             }
 
             else

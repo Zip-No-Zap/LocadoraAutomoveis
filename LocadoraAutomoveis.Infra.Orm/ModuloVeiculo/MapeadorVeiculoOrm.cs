@@ -26,8 +26,6 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloVeiculo
             builder.Property(x => x.StatusVeiculo).HasColumnType("varchar(50)").IsRequired();
             builder.Property(x => x.QuilometragemAtual).HasColumnType("int").IsRequired();
             builder.Property(x => x.Foto).HasColumnType("varbinary(max)").IsRequired();
-
-
         }
     }
 }

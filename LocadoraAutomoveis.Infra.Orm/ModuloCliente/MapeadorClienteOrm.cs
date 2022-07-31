@@ -14,7 +14,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCliente
             builder.Property(x => x.Email).HasColumnType("varchar(100)").IsRequired();
             builder.Property(x => x.Telefone).HasColumnType("varchar(20)").IsRequired();
             builder.Property(x => x.Endereco).HasColumnType("varchar(100)").IsRequired();
-            builder.Property(x => x.TipoCliente).HasColumnType("varchar(10)").IsRequired();
+            builder.Property(x => x.TipoCliente).HasConversion<string>().IsRequired();
             builder.Property(x => x.Cpf).HasColumnType("varchar(20)");
             builder.Property(x => x.Cnpj).HasColumnType("varchar(20)");
 

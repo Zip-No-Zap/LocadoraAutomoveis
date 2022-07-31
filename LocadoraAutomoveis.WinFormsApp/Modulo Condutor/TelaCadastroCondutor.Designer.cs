@@ -73,7 +73,7 @@
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.tbEndereco);
             this.panel1.Location = new System.Drawing.Point(32, 20);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(606, 465);
             this.panel1.TabIndex = 0;
@@ -83,10 +83,10 @@
             this.cbClienteECondutor.AutoSize = true;
             this.cbClienteECondutor.Enabled = false;
             this.cbClienteECondutor.Location = new System.Drawing.Point(306, 54);
-            this.cbClienteECondutor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbClienteECondutor.Margin = new System.Windows.Forms.Padding(4);
             this.cbClienteECondutor.Name = "cbClienteECondutor";
             this.cbClienteECondutor.Size = new System.Drawing.Size(199, 29);
-            this.cbClienteECondutor.TabIndex = 90;
+            this.cbClienteECondutor.TabIndex = 1;
             this.cbClienteECondutor.Text = "Cliente é o condutor";
             this.cbClienteECondutor.UseVisualStyleBackColor = true;
             this.cbClienteECondutor.CheckedChanged += new System.EventHandler(this.cbClienteECondutor_CheckedChanged);
@@ -108,10 +108,10 @@
             this.cmbClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbClientes.FormattingEnabled = true;
             this.cmbClientes.Location = new System.Drawing.Point(18, 51);
-            this.cmbClientes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbClientes.Margin = new System.Windows.Forms.Padding(4);
             this.cmbClientes.Name = "cmbClientes";
             this.cmbClientes.Size = new System.Drawing.Size(272, 33);
-            this.cmbClientes.TabIndex = 88;
+            this.cmbClientes.TabIndex = 0;
             this.cmbClientes.SelectedIndexChanged += new System.EventHandler(this.cmbClientes_SelectedIndexChanged);
             // 
             // tbCnh
@@ -121,7 +121,7 @@
             this.tbCnh.Mask = "00000000000";
             this.tbCnh.Name = "tbCnh";
             this.tbCnh.Size = new System.Drawing.Size(270, 31);
-            this.tbCnh.TabIndex = 87;
+            this.tbCnh.TabIndex = 7;
             // 
             // label3
             // 
@@ -138,10 +138,10 @@
             // 
             this.txtDataVencimentoCnh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.txtDataVencimentoCnh.Location = new System.Drawing.Point(306, 389);
-            this.txtDataVencimentoCnh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDataVencimentoCnh.Margin = new System.Windows.Forms.Padding(4);
             this.txtDataVencimentoCnh.Name = "txtDataVencimentoCnh";
             this.txtDataVencimentoCnh.Size = new System.Drawing.Size(278, 31);
-            this.txtDataVencimentoCnh.TabIndex = 85;
+            this.txtDataVencimentoCnh.TabIndex = 8;
             // 
             // label2
             // 
@@ -161,7 +161,7 @@
             this.tbCpf.Mask = "000,000,000-00";
             this.tbCpf.Name = "tbCpf";
             this.tbCpf.Size = new System.Drawing.Size(279, 31);
-            this.tbCpf.TabIndex = 83;
+            this.tbCpf.TabIndex = 3;
             // 
             // tbTelefone
             // 
@@ -170,7 +170,7 @@
             this.tbTelefone.Mask = "(99) 00000-0000";
             this.tbTelefone.Name = "tbTelefone";
             this.tbTelefone.Size = new System.Drawing.Size(278, 31);
-            this.tbTelefone.TabIndex = 77;
+            this.tbTelefone.TabIndex = 4;
             // 
             // label1
             // 
@@ -200,7 +200,7 @@
             this.tbNome.Margin = new System.Windows.Forms.Padding(2);
             this.tbNome.Name = "tbNome";
             this.tbNome.Size = new System.Drawing.Size(566, 31);
-            this.tbNome.TabIndex = 74;
+            this.tbNome.TabIndex = 2;
             this.tbNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNome_KeyPress);
             // 
             // tbEmail
@@ -209,7 +209,7 @@
             this.tbEmail.Margin = new System.Windows.Forms.Padding(2);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(564, 31);
-            this.tbEmail.TabIndex = 76;
+            this.tbEmail.TabIndex = 5;
             this.tbEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEmail_KeyPress);
             // 
             // label9
@@ -251,7 +251,7 @@
             this.tbEndereco.Margin = new System.Windows.Forms.Padding(2);
             this.tbEndereco.Name = "tbEndereco";
             this.tbEndereco.Size = new System.Drawing.Size(564, 31);
-            this.tbEndereco.TabIndex = 75;
+            this.tbEndereco.TabIndex = 6;
             // 
             // panel2
             // 
@@ -272,7 +272,7 @@
             this.btnLimpar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(112, 59);
-            this.btnLimpar.TabIndex = 8;
+            this.btnLimpar.TabIndex = 10;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
@@ -286,7 +286,7 @@
             this.btnOK.Margin = new System.Windows.Forms.Padding(2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(112, 59);
-            this.btnOK.TabIndex = 7;
+            this.btnOK.TabIndex = 9;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = false;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -299,7 +299,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "TelaCadastroCondutor";
             this.ShowIcon = false;

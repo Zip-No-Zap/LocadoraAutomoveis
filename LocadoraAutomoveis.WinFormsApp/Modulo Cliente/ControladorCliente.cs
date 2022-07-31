@@ -2,8 +2,8 @@
 using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
-using System;
 using System.Collections.Generic;
+using System;
 
 using System.Windows.Forms;
 
@@ -38,41 +38,36 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
         public override void Editar()
         {
-            Cliente selecionado = null;
+            var id = tabelaClientes.ObtemNumerClienteSelecionado();
 
-            Result<Cliente> resultadoResult = ObtemClienteSelecionado();
-
-            if (resultadoResult.IsSuccess)
+            if (id == Guid.Empty)
             {
-                selecionado = resultadoResult.Value;
-
-                if (selecionado.Id == Guid.Empty)
-                {
-                    MessageBox.Show("Selecione um cliente primeiro",
-                    "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                TelaCadastroCliente tela = new()
-                {
-                    Cliente = selecionado,
-
-                    GravarRegistro = servicoCliente.Editar
-                };
-
-                DialogResult resultado = tela.ShowDialog();
-
-                if (resultado == DialogResult.OK)
-                {
-                    CarregarClientes();
-                }
+                MessageBox.Show("Selecione um cliente primeiro",
+                "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
-            else if (resultadoResult.IsFailed)
+
+            var resultado = servicoCliente.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
             {
-                MessageBox.Show(resultadoResult.Errors[0].Message,
+                MessageBox.Show(resultado.Errors[0].Message,
                    "Edição de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            var selecionado = resultado.Value; 
+
+            TelaCadastroCliente tela = new()
+            {
+                Cliente = selecionado,
+
+                GravarRegistro = servicoCliente.Editar
+            };
+
+              if(tela.ShowDialog() == DialogResult.OK)
+                      
+                 CarregarClientes();
         }
         
         public override void Excluir()
@@ -97,7 +92,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Cliente
 
                 if (resultado == DialogResult.OK)
                 {
-                    servicoCliente.Excluir(selecionado);
+                    var exclusaoResult = servicoCliente.Excluir(selecionado);
+
+                    if (exclusaoResult.IsFailed)
+                        MessageBox.Show("Não foi possível excluir este cliente!\n\n" + exclusaoResult.Errors[0], "Aviso");
 
                     CarregarClientes();
                 }

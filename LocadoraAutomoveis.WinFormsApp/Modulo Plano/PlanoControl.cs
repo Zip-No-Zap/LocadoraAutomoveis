@@ -21,7 +21,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID", Visible = false},
                 new DataGridViewTextBoxColumn { DataPropertyName = "NomeGrupo", HeaderText = "Grupo Veículo"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "ValorDiario_Diario", HeaderText = "Diário:\nValor diário"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "ValorPorKm_Diario", HeaderText = "Diário:\nValor por Km rodado"},

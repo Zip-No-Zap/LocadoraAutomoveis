@@ -23,20 +23,13 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
         public override void Inserir()
         {
-            var grupos = servicoGrupoVeiculo.SelecionarTodos();
+            var grupos = servicoGrupoVeiculo.SelecionarTodos().Value;
 
-            TelaCadastroVeiculo tela = new()
-            {
-                Veiculo = new()
-                {
-                    GrupoPertencente = new(null),
+            var tela = new TelaCadastroVeiculo(grupos);
 
-                },
-
-            };
+            tela.Veiculo = new();
 
             tela.GravarRegistro = servicoVeiculo.Inserir;
-
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -47,6 +40,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         public override void Editar()
         {
             var id = tabelaVeiculos.ObtemNumeroVeiculoSelecionado();
+
+            var grupos = servicoGrupoVeiculo.SelecionarTodos().Value;
+
 
             if (id == Guid.Empty)
             {
@@ -67,19 +63,17 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
 
             var Selecionado = resultado.Value;
 
-            TelaCadastroVeiculo tela = new();
+            TelaCadastroVeiculo tela = new(grupos);
 
             tela.Veiculo = Selecionado;
 
             tela.GravarRegistro = servicoVeiculo.Editar;
-
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 CarregarVeiculos();
             }
         }
-
 
         public override void Excluir()
         {
@@ -102,19 +96,21 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 return;
             }
 
-            var Selecionado = resultado.Value;
-
+            var selecionado = resultado.Value;
 
             if (MessageBox.Show("Deseja realmente excluir o veiculo?",
             "Exclusão de Veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                var resultadoExclusao = servicoVeiculo.Excluir(Selecionado);
+                var exclusaoResult = servicoVeiculo.Excluir(selecionado);
 
-                if (resultadoExclusao.IsSuccess)
+                if (exclusaoResult.IsFailed)
+                    MessageBox.Show("Não foi possível excluir este veículo!\n\n" + exclusaoResult.Errors[0], "Aviso");
+
+                if (exclusaoResult.IsSuccess)
                     CarregarVeiculos();
 
                 else
-                    MessageBox.Show(resultadoExclusao.Errors[0].Message, "Exclusão de Veiculo",
+                    MessageBox.Show(exclusaoResult.Errors[0].Message, "Exclusão de Veiculo",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

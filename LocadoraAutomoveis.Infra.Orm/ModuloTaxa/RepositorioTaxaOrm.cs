@@ -1,12 +1,10 @@
 ﻿using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
-using LocadoraVeiculos.Infra.BancoDados;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloTaxa
 {
@@ -46,7 +44,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloTaxa
             return dbsetTaxas.ToList();
         }
 
-        public Taxa SelecionarPorParametro(string valor)
+        public Taxa SelecionarPorDescricao(string valor)
         {
             return dbsetTaxas.FirstOrDefault(x => x.Descricao == valor);
         }

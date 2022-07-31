@@ -53,25 +53,35 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 
                 pbFoto.Image = veiculo.Imagem;
 
-                cmbGrupoVeiculo.Text = veiculo.GrupoPertencente.Nome;
+                if (veiculo.GrupoPertencente != null)
+                    cmbGrupoVeiculo.SelectedItem = veiculo.GrupoPertencente;
+                else
+                    cmbGrupoVeiculo.SelectedIndex = -1;
 
                 imagemSelecionada = veiculo.Foto;
             }
         }
-        public TelaCadastroVeiculo()
+        public TelaCadastroVeiculo(List<GrupoVeiculo> grupos)
         {
             InitializeComponent();
-           // CarregarGrupos(grupos);
+            CarregarGrupos(grupos);
+        }
+
+        private void CarregarGrupos(List<GrupoVeiculo> grupos)
+        {
+            cmbGrupoVeiculo.Items.Clear();
+
+            foreach (var item in grupos)
+            {
+                cmbGrupoVeiculo.Items.Add(item);
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
             ImputarZeroCamposVazios();
 
-            if (!string.IsNullOrEmpty(cmbGrupoVeiculo.Text))
-                veiculo.GrupoPertencente.Id = Guid.Parse(lblIDGrupo.Text);
-
-            veiculo.GrupoPertencente.Nome = cmbGrupoVeiculo.Text;
+            veiculo.GrupoPertencente = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
 
             veiculo.Modelo = txbModelo.Text;
             veiculo.Placa = txbPlaca.Text;
@@ -131,7 +141,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 txbQuilometragemAtual.Text = "0";
         }
 
-
         private void btnAdicionarFoto_Click(object sender, EventArgs e)
         {
             imagemSelecionada = veiculo.Foto;
@@ -163,54 +172,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         private void TelaCadastroVeiculo_Load(object sender, EventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
-
-            ObterItensGrupoVeiculo();
         }
 
-        private void ObterIdGrupoVeiculo()
-        {
-            if (cmbGrupoVeiculo.SelectedIndex != -1)
-            {
-                var servicoGrupo = new ServicoGrupoVeiculo(new RepositorioGrupoVeiculoOrm(dbContext), contextoPersistencia);
-
-                var gruposResult = servicoGrupo.SelecionarTodos();
-
-                List<GrupoVeiculo> grupos = null;
-
-                if (gruposResult.IsSuccess)
-                    grupos = gruposResult.Value;
-
-                var grupoEncontrado = grupos.Find(g => g.Nome.Equals(cmbGrupoVeiculo.SelectedItem.ToString()));
-
-                lblIDGrupo.Text = grupoEncontrado.Id.ToString();
-            }
-        }
-
-        private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ObterIdGrupoVeiculo();
-        }
-
-        private void ObterItensGrupoVeiculo()//TODO : Obter itens grupo deve ser feito pelo controlador/serviço
-        {
-            var servicoGrupo = new ServicoGrupoVeiculo(new RepositorioGrupoVeiculoOrm(dbContext), contextoPersistencia);
-
-            var nomesResult = servicoGrupo.SelecionarTodos();
-
-            List<GrupoVeiculo> nomes = null;
-
-            if (nomesResult.IsSuccess)
-                nomes = nomesResult.Value;
-
-            if (nomes != null)
-            {
-                foreach (GrupoVeiculo gv in nomes)
-                {
-                    cmbGrupoVeiculo.Items.Add(gv.Nome);
-                }
-            }
-        }
-    
         private void txbModelo_Leave(object sender, EventArgs e)
         {
             ValidadorCampos.ImpedirTextoMenorDois(txbModelo.Text);
@@ -239,11 +202,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
         private void TelaCadastroVeiculo_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
-        }
-
-        private void cmbGrupoVeiculo_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            ObterIdGrupoVeiculo();
         }
 
         private void txbPlaca_KeyPress(object sender, KeyPressEventArgs e)
