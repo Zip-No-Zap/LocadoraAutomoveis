@@ -54,7 +54,9 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             if (resultadoResult.IsSuccess)
             {
                 tela.Locacao = new();
+
                 tela.Locacao._estaLocado = "sim";
+
                 tela.GravarRegistro = servicoLocacao.Inserir;
 
                 DialogResult resultado = tela.ShowDialog();
@@ -99,11 +101,9 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             TelaCadastroLocacao tela = new(clientes, condutores, veiculos, taxas, grupos, planos, locacoes);
 
+            tela.Locacao = selecionado;
+
             tela.Locacao._estaLocado = "sim";
-
-            tela.Locacao = selecionado;
-
-            tela.Locacao = selecionado;
 
             tela.GravarRegistro = servicoLocacao.Editar;
 
