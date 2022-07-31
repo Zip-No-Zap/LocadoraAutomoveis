@@ -39,7 +39,6 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             DataLocacao = DateTime.Today;
             DataDevolucao = DateTime.Today;
             DataDevolvidoDeFato = DateTime.Today;
-            _estaLocado = false;
             ItensTaxa = new();
         }
 
