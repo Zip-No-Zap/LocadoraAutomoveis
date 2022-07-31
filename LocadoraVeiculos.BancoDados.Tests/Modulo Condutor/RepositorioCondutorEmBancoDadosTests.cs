@@ -60,7 +60,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Condutor
             Assert.IsNotNull(resultado);
         }
 
-
         [TestMethod]
         public void Deve_excluir_condutor()
         {
@@ -94,7 +93,6 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Condutor
             //assert
             Assert.AreNotEqual(0, resultado.Count);
         }
-
 
         [TestMethod]
         public void Deve_selecionar_unico()
