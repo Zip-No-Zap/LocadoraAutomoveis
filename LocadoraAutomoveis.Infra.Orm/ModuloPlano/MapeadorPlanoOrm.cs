@@ -14,13 +14,13 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
             builder.HasOne(x => x.Grupo);
 
             builder.Property(x => x.LimiteQuilometragem_Controlado).HasColumnType("float").IsRequired();
-            builder.Property(x => x.ValorDiario_Controlado).HasColumnType("float").IsRequired();
-            builder.Property(x => x.ValorPorKm_Controlado).HasColumnType("float").IsRequired();
+            builder.Property(x => x.ValorDiario_Controlado).HasColumnType("money").IsRequired();
+            builder.Property(x => x.ValorPorKm_Controlado).HasColumnType("money").IsRequired();
 
-            builder.Property(x => x.ValorDiario_Livre).HasColumnType("float").IsRequired();
+            builder.Property(x => x.ValorDiario_Livre).HasColumnType("money").IsRequired();
 
-            builder.Property(x => x.ValorDiario_Diario).HasColumnType("float").IsRequired(); 
-            builder.Property(x => x.ValorPorKm_Diario).HasColumnType("float").IsRequired(); 
+            builder.Property(x => x.ValorDiario_Diario).HasColumnType("money").IsRequired(); 
+            builder.Property(x => x.ValorPorKm_Diario).HasColumnType("money").IsRequired(); 
         }
     }
 }

@@ -15,7 +15,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloFuncionario
             builder.Property(x => x.Cidade).HasColumnType("varchar(150)").IsRequired();
             builder.Property(x => x.Estado).HasColumnType("varchar(2)").IsRequired();
             builder.Property(x => x.Perfil).HasColumnType("varchar(50)").IsRequired();
-            builder.Property(x => x.Salario).HasColumnType("float").IsRequired();
+            builder.Property(x => x.Salario).HasColumnType("money").IsRequired();
             builder.Property(x => x.DataAdmissao).HasColumnType("date").IsRequired(); 
             builder.Property(x => x.Login).HasColumnType("varchar(50)").IsRequired(); 
             builder.Property(x => x.Senha).HasColumnType("varchar(50)").IsRequired(); 

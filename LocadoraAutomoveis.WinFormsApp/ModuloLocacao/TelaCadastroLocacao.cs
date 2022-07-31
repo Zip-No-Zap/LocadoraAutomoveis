@@ -376,7 +376,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             CarregarItensRichText();
 
             //CarregarImagem();
-        } // TODO :  precisa de mais mais detalhes no rich text
+        }
 
         private void CarregarImagemPdf()
         {

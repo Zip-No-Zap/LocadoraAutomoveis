@@ -13,7 +13,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloTaxa
             builder.Property(x => x.Id).ValueGeneratedNever();
             builder.Property(x => x.Tipo).HasColumnType("varchar(20)").IsRequired(); 
             builder.Property(x => x.Descricao).HasColumnType("varchar(100)").IsRequired(); 
-            builder.Property(x => x.Valor).HasColumnType("float").IsRequired(); 
+            builder.Property(x => x.Valor).HasColumnType("money").IsRequired(); 
         }
     }
 }
