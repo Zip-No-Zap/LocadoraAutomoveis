@@ -392,7 +392,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             $"\n" +
             $"------------------------------------------------------------------------" +
             $"DETALHES DA LOCAÇÃO \n\r" +
-            $"Tota Previsto: { locacao.TotalPrevisto.ToString() } \n\r" +
+            $"Total: { locacao.TotalPrevisto.ToString("N2") } \n\r" +
             $"------------------------------------------------------------------------" +
             $"Data Locação: { dpDataLocacao.Text} \n\r" +
             $"Data Devolução: { dpDataDevolucao.Text}\n\r" +
@@ -531,6 +531,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 locacao._estaLocado = "não";
                 btnOK.Enabled = true;
                 txtKmAtual.Text = telaDevolucao.quilometragemAtualizada.ToString();
+                locacao.VeiculoLocacao.situacao = "disponível";
+                btnCalcular.Enabled = false;
             }
         }
     }
