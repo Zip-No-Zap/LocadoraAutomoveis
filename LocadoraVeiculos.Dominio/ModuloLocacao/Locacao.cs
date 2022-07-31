@@ -11,6 +11,8 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
 {
     public class Locacao : EntidadeBase<Locacao>
     {
+        public bool _estaLocado;
+
         public Condutor CondutorLocacao { get; set; }
         public Cliente ClienteLocacao { get; set; }
         public Veiculo VeiculoLocacao { get; set; }
@@ -28,6 +30,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public DateTime DataDevolvidoDeFato { get; set; }
         public Double TotalPrevisto { get; set; }
 
+        public string Status { get; set; }
         public string CondutorLocacao_Cnh => CondutorLocacao.Cnh.ToString();
         public string PlanoLocacao_Descricao { get; set; } // recebe de acordo com check da tela
 
@@ -36,6 +39,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             DataLocacao = DateTime.Today;
             DataDevolucao = DateTime.Today;
             DataDevolvidoDeFato = DateTime.Today;
+            _estaLocado = false;
         }
 
         public Locacao(Condutor condutorLocacao, Veiculo veiculoLocacao, List<Taxa> itensTaxa, Plano plano, Guid veiculoLocacaoId, Guid clienteLocacaoId, Cliente clienteLocacao) : base()
@@ -49,5 +53,10 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             ClienteLocacao = clienteLocacao;
             ItensTaxa = new();
          }
+
+        public void AtualizarStatus()
+        {
+            Status = _estaLocado == true ? "Aberta" : "Fechada"; 
+        }
     }
 }

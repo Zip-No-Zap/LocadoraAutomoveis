@@ -29,6 +29,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 new DataGridViewTextBoxColumn { DataPropertyName = "DataLocacao", HeaderText = "Data Locação"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "DataDevolucao", HeaderText = "Data Devolução"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "PlanoLocacao_Descricao", HeaderText = "Plano"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Status", HeaderText = "Situação"},
             };
 
             return colunas;
@@ -46,15 +47,16 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             foreach (var registro in registros)
             {
                 grid.Rows.Add(
-                    registro.Id, 
+                    registro.Id,
                     registro.ClienteLocacao.Nome,
-                    registro.CondutorLocacao.Nome, 
+                    registro.CondutorLocacao.Nome,
                     registro.CondutorLocacao_Cnh,
-                    registro.VeiculoLocacao.Modelo, 
+                    registro.VeiculoLocacao.Modelo,
                     registro.VeiculoLocacao.GrupoPertencente.Nome,
-                    registro.DataLocacao.ToShortDateString(), 
+                    registro.DataLocacao.ToShortDateString(),
                     registro.DataDevolucao.ToShortDateString(),
-                    registro.PlanoLocacao_Descricao);
+                    registro.PlanoLocacao_Descricao,
+                    registro.Status);
             }
         }
     }

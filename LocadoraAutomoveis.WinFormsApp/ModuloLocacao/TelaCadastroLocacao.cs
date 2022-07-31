@@ -192,6 +192,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             locacao.Grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
             locacao.DataLocacao = Convert.ToDateTime(dpDataLocacao.Text);
             locacao.DataDevolucao = Convert.ToDateTime(dpDataDevolucao.Text);
+            locacao._estaLocado = true;
 
             //receber Plano
             var planoSelecionado = planos.Find(x => x.Grupo.Nome == cmbGrupoVeiculo.Text); 
