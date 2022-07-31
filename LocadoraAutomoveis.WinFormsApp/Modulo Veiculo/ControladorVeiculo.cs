@@ -26,7 +26,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             var grupos = servicoGrupoVeiculo.SelecionarTodos().Value;
 
             var tela = new TelaCadastroVeiculo(grupos);
-
+            tela.Veiculo.situacao = "alugado";
             tela.Veiculo = new();
 
             tela.GravarRegistro = servicoVeiculo.Inserir;
@@ -51,7 +51,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
                 return;
             }
 
-
             var resultado = servicoVeiculo.SelecionarPorId(id);
 
             if (resultado.IsFailed)
@@ -64,6 +63,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo
             var Selecionado = resultado.Value;
 
             TelaCadastroVeiculo tela = new(grupos);
+            tela.Veiculo.situacao = "alugado";
 
             tela.Veiculo = Selecionado;
 

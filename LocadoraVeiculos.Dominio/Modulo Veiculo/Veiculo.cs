@@ -6,6 +6,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
 {
     public class Veiculo : EntidadeBase<Veiculo>
     {
+        public string situacao;
         public Veiculo()
         {
 
@@ -40,7 +41,7 @@ namespace LocadoraVeiculos.Dominio.Modulo_Veiculo
 
         public string StatusVeiculo { get; set; }
 
-        public int QuilometragemAtual { get; set; }
+        public float QuilometragemAtual { get; set; }
 
         public byte[] Foto { get; set; }
 

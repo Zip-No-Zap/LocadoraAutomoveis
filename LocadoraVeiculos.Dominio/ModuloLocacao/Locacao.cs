@@ -11,7 +11,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
 {
     public class Locacao : EntidadeBase<Locacao>
     {
-        public bool _estaLocado;
+        public string _estaLocado;
 
         public Condutor CondutorLocacao { get; set; }
         public Cliente ClienteLocacao { get; set; }
@@ -53,10 +53,5 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             ClienteLocacaoId = clienteLocacaoId;
             ClienteLocacao = clienteLocacao;
          }
-
-        public void AtualizarStatus()
-        {
-            Status = _estaLocado == true ? "Aberta" : "Fechada"; 
-        }
     }
 }

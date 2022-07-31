@@ -434,6 +434,7 @@
             this.btnDevolucao.Text = "Registrar Devolução";
             this.btnDevolucao.UseVisualStyleBackColor = false;
             this.btnDevolucao.Visible = false;
+            this.btnDevolucao.Click += new System.EventHandler(this.btnDevolucao_Click);
             // 
             // TelaCadastroLocacao
             // 

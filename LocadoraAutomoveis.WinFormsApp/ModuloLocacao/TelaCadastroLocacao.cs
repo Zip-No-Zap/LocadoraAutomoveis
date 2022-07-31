@@ -189,12 +189,40 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             locacao.ClienteLocacao = (Cliente)cmbClientes.SelectedItem;
             locacao.CondutorLocacao = (Condutor)cmbCondutor.SelectedItem;
             locacao.VeiculoLocacao = (Veiculo)cmbVeiculo.SelectedItem;
+            locacao.VeiculoLocacao.QuilometragemAtual = float.Parse(txtKmAtual.Text);
             locacao.Grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
             locacao.DataLocacao = Convert.ToDateTime(dpDataLocacao.Text);
             locacao.DataDevolucao = Convert.ToDateTime(dpDataDevolucao.Text);
-            locacao._estaLocado = true;
-            locacao.AtualizarStatus();
-            locacao.VeiculoLocacao.StatusVeiculo = "Alugado";
+
+            //mudar status Veículo
+            switch (locacao.VeiculoLocacao.situacao)
+            {
+                case "alugado":
+                    locacao.VeiculoLocacao.StatusVeiculo = "Alugado";
+                    break;
+
+                case "disponível":
+                    locacao.VeiculoLocacao.StatusVeiculo = "Disponível";
+                    break;
+
+                default:
+                     break;
+            }
+
+            //mudar Status Locação
+            switch (locacao._estaLocado)
+            {
+                case "sim":
+                    locacao.Status = "Aberta";
+                    break;
+
+                case "não":
+                    locacao.Status = "Fechada";
+                    break;
+
+                default:
+                    break;
+            }
 
             //receber Plano
             var planoSelecionado = planos.Find(x => x.Grupo.Nome == cmbGrupoVeiculo.Text); 
@@ -454,6 +482,44 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             cmbPlano.Items.Clear();
             lblTotalPrevisto.Text = "0,00";
             DesmarcarCheckBoxes();
+        }
+
+        private void btnDevolucao_Click(object sender, EventArgs e)
+        {
+            TelaDevolucao telaDevolucao = new();
+
+            telaDevolucao.dataLocacao = locacao.DataLocacao;
+            telaDevolucao.quilometragemAnterior = locacao.VeiculoLocacao.QuilometragemAtual;
+            telaDevolucao.totalPrevisto = locacao.TotalPrevisto;
+            telaDevolucao.plano = locacao.PlanoLocacao_Descricao;
+
+            switch (telaDevolucao.plano)
+            {
+                case "Díário":
+                    telaDevolucao.valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Diario;
+                    telaDevolucao.valorDiario = locacao.PlanoLocacao.ValorDiario_Diario;
+                    break;
+
+                case "Livre":
+                    telaDevolucao.valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
+                    break;
+
+                case "Controlado":
+                    telaDevolucao.valorDiario = locacao.PlanoLocacao.ValorDiario_Controlado;
+                    telaDevolucao.valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Controlado;
+                    telaDevolucao.limiteKm = locacao.PlanoLocacao.LimiteQuilometragem_Controlado;
+                    break;
+            }
+
+            if (telaDevolucao.ShowDialog() == DialogResult.OK)
+            {
+                locacao.TotalPrevisto = telaDevolucao.totalDeFato;
+                lblTotalPrevisto.Text = "Total a Pagar";
+                lblTotalPrevisto.Text = locacao.TotalPrevisto.ToString();
+                locacao._estaLocado = "não";
+                btnOK.Enabled = true;
+                txtKmAtual.Text = telaDevolucao.quilometragemAtualizada.ToString();
+            }
         }
     }
 
