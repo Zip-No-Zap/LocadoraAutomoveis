@@ -47,8 +47,9 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             var taxas = servicoTaxa.SelecionarTodos().Value;
             var grupos = servicoGrupo.SelecionarTodos().Value;
             var planos = servicoPlano.SelecionarTodos().Value;
+            var locacoes = servicoLocacao.SelecionarTodos().Value;
 
-            var tela = new TelaCadastroLocacao(clientes, condutores, veiculos, taxas, grupos, planos);
+            var tela = new TelaCadastroLocacao(clientes, condutores, veiculos, taxas, grupos, planos, locacoes);
 
             if (resultadoResult.IsSuccess)
             {
@@ -93,8 +94,9 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             var clientes = servicoCliente.SelecionarTodos().Value;
             var grupos = servicoGrupo.SelecionarTodos().Value;
             var planos = servicoPlano.SelecionarTodos().Value;
+            var locacoes = servicoLocacao.SelecionarTodos().Value;
 
-            TelaCadastroLocacao tela = new(clientes, condutores, veiculos, taxas, grupos, planos);
+            TelaCadastroLocacao tela = new(clientes, condutores, veiculos, taxas, grupos, planos, locacoes);
 
             tela.Locacao = selecionado;
 

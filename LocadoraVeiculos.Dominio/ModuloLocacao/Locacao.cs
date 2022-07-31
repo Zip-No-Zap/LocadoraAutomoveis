@@ -22,6 +22,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public Guid VeiculoLocacaoId { get; set; }
         public Guid ClienteLocacaoId { get; set; }
         public Guid CondutorLocacaoId { get; set; }
+        public Guid ItensTaxaId { get; set; }
         public DateTime DataLocacao { get { return DateTime.Today; } set { } }
         public DateTime DataDevolucao { get { return DateTime.Now ; } set { } }
         public DateTime DataDevolvidoDeFato { get { return DateTime.Now ; } set { } }

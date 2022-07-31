@@ -24,10 +24,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         List<Taxa> taxas;
         List<GrupoVeiculo> grupos;
         List<Plano> planos;
+        List<Cliente> clientes;
+        List<Locacao> locacoes;
 
         public TelaCadastroLocacao(List<Cliente> clientes,
             List<Condutor> condutores, List<Veiculo> veiculos,
-            List<Taxa> taxas, List<GrupoVeiculo> grupos, List<Plano> planos)
+            List<Taxa> taxas, List<GrupoVeiculo> grupos, List<Plano> planos, List<Locacao> locacoes)
         {
             InitializeComponent();
             CarregarClientes(clientes);
@@ -37,6 +39,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             this.taxas = taxas;
             this.planos = planos;
             this.grupos = grupos;
+            this.clientes = clientes;
+            this.locacoes = locacoes;
         }
 
         private void CarregarGrupoVeiculos(List<GrupoVeiculo> grupo)
@@ -62,7 +66,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 locacao = value;
 
                 if (locacao.ClienteLocacao != null)
-                    cmbClientes.Text.Replace(" ", locacao.ClienteLocacao.ToString(), StringComparison.Ordinal);
+                    cmbClientes.SelectedItem = locacao.ClienteLocacao;
                 else
                     cmbClientes.SelectedIndex = -1;
 
@@ -87,7 +91,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     cmbVeiculo.SelectedIndex = -1;
 
                 if (locacao.PlanoLocacao != null)
-                    cmbPlano.SelectedItem = locacao.PlanoLocacao;
+                    cmbPlano.SelectedItem = locacao.PlanoLocacao_Descricao;
                 else
                     cmbPlano.SelectedIndex = -1;
 
@@ -121,6 +125,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     i++;
                 }
             }
+
+            MarcarItensDeEdicao();
         }
 
         private void CarregarClientes(List<Cliente> clientes)
@@ -394,6 +400,29 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             pdf.GerarPDF_ItextSharp(rtPDF.Text);
 
             MessageBox.Show("Arquivo PDF Gerado!\n\nDestino: C: -> temp -> pdf -> ComprovanteLocacao.pdf");
+        }
+
+        private void MarcarItensDeEdicao()
+        {
+            string nomeCliente = cmbClientes.Text;
+
+            if(nomeCliente != null)
+            {
+                var clienteSelecionado = clientes.Find(x => x.Nome == nomeCliente);
+                var locacaoSelecionada = locacoes.Find(x => x.ClienteLocacao.Equals(clienteSelecionado));
+
+                for(int i = 0; i < listTaxasAdicionais.Items.Count; i++)
+                {
+                    var item = listTaxasAdicionais.Items[i];
+                    string cortado = item.ToString().Split("-")[0].Trim();
+
+                    foreach (var taxa in locacao.ItensTaxa)
+                    {
+                        if (cortado == taxa.Descricao)
+                            listTaxasAdicionais.SetItemChecked(i, true);
+                    }
+                }
+            }
         }
     }
 
