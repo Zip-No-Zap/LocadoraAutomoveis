@@ -48,7 +48,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.ModuloLocacao
         public void Deve_inserir_locacao()
         {
             //arrange
-           
+            var locacao = InstanciarLocacao();
+            
             //action
          
             //assert
