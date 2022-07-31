@@ -33,10 +33,12 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
 
         public Locacao()
         {
-
+            DataLocacao = DateTime.Today;
+            DataDevolucao = DateTime.Today;
+            DataDevolvidoDeFato = DateTime.Today;
         }
 
-        public Locacao(Condutor condutorLocacao, Veiculo veiculoLocacao, List<Taxa> itensTaxa, Plano plano, Guid veiculoLocacaoId, Guid clienteLocacaoId, DateTime dataLocacao, DateTime dataDevolucao, Cliente clienteLocacao) : base()
+        public Locacao(Condutor condutorLocacao, Veiculo veiculoLocacao, List<Taxa> itensTaxa, Plano plano, Guid veiculoLocacaoId, Guid clienteLocacaoId, Cliente clienteLocacao) : base()
         {
             CondutorLocacao = condutorLocacao;
             VeiculoLocacao = veiculoLocacao;
@@ -44,10 +46,8 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             PlanoLocacao = plano;
             VeiculoLocacaoId = veiculoLocacaoId;
             ClienteLocacaoId = clienteLocacaoId;
-            DataLocacao = dataLocacao;
-            DataDevolucao = dataDevolucao;
             ClienteLocacao = clienteLocacao;
             ItensTaxa = new();
-        }
+         }
     }
 }

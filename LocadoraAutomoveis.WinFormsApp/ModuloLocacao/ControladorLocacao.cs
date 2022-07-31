@@ -54,7 +54,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             if (resultadoResult.IsSuccess)
             {
                 tela.Locacao = new();
-
                 tela.GravarRegistro = servicoLocacao.Inserir;
 
                 DialogResult resultado = tela.ShowDialog();
