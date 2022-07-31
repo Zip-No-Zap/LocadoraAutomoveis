@@ -399,7 +399,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             pdf.GerarPDF_ItextSharp(rtPDF.Text, cmbClientes.Text);
 
-            MessageBox.Show("Arquivo PDF Gerado!\n\nDestino: C: -> temp -> pdf -> ComprovanteLocacao.pdf");
+            MessageBox.Show("Arquivo PDF Gerado!\n\nDestino: C: -> temp -> pdf -> ComprovanteLocacao_.pdf");
         }
 
         private void MarcarItensDeEdicao()

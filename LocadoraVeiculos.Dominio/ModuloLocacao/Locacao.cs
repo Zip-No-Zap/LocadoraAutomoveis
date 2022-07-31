@@ -23,21 +23,13 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public Guid ClienteLocacaoId { get; set; }
         public Guid CondutorLocacaoId { get; set; }
         public Guid ItensTaxaId { get; set; }
-        public DateTime DataLocacao { get { return DateTime.Today; } set { } }
-        public DateTime DataDevolucao { get { return DateTime.Now ; } set { } }
-        public DateTime DataDevolvidoDeFato { get { return DateTime.Now ; } set { } }
+        public DateTime DataLocacao { get; set; }
+        public DateTime DataDevolucao { get; set; }
+        public DateTime DataDevolvidoDeFato { get; set; }
         public Double TotalPrevisto { get; set; }
 
-        // para usar no LocacaoControl
-        // public string ClienteLocacao_Nome => ClienteLocacao.Nome;
-        // public string CondutorLocacao_Nome => CondutorLocacao.Nome;
-        // public string VeiculoLocacao_Modelo => VeiculoLocacao.Modelo;
-        //public string DataLocacaoString => DataLocacao.ToShortDateString();
-        public string VeiculoLocacao_Grupo => VeiculoLocacao.GrupoPertencente.Nome;
         public string CondutorLocacao_Cnh => CondutorLocacao.Cnh.ToString();
-        public string DataDevolucaoString => DataDevolucao.ToShortDateString();
         public string PlanoLocacao_Descricao { get; set; } // recebe de acordo com check da tela
-        //=======================================================================================
 
         public Locacao()
         {
