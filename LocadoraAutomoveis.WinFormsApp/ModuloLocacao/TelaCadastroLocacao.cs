@@ -367,7 +367,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             $"Veículo: { cmbVeiculo.Text}  \n\r" +
             $"Placa: { locacao.VeiculoLocacao.Placa}  \n\r" +
             $"Quilometragem Registrada: { txtKmAtual.Text}\n\r" +
-            $"------------------------------------------------------------------------"
+            $"------------------------------------------------------------------------" +
+            $"Itens Adicionais: \n\n\r"
             ;
 
             rtPDF.Text = detalhe;
@@ -403,7 +404,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             foreach (var item in listTaxasAdicionais.CheckedItems)
             {
-                rtPDF.Text += "Item Adicional: " + item.ToString() + "\n";
+                rtPDF.Text += item.ToString() + "\n";
             }
         }
 
