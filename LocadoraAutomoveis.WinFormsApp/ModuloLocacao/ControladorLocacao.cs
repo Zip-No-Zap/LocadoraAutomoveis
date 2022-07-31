@@ -152,12 +152,50 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             }
         }
 
-
-
         public override void FazerDevolucao()
         {
-            // Implementar devolucao 
+            var id = tabelaLocacaos.ObtemNumeroLocacaoSelecionado();
 
+            if (id == Guid.Empty)
+            {
+                MessageBox.Show("Selecione uma locação primeiro",
+                "Devolução de Locação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var resultado = servicoLocacao.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Devolução de Locação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var selecionado = resultado.Value;
+
+            var condutores = servicoCondutor.SelecionarTodos().Value;
+            var veiculos = servicoVeiculo.SelecionarTodos().Value;
+            var taxas = servicoTaxa.SelecionarTodos().Value;
+            var clientes = servicoCliente.SelecionarTodos().Value;
+            var grupos = servicoGrupo.SelecionarTodos().Value;
+            var planos = servicoPlano.SelecionarTodos().Value;
+            var locacoes = servicoLocacao.SelecionarTodos().Value;
+
+            TelaCadastroLocacao tela = new(clientes, condutores, veiculos, taxas, grupos, planos, locacoes);
+
+            tela.Locacao = selecionado;
+
+            tela.Locacao = selecionado;
+
+            tela.GravarRegistro = servicoLocacao.Editar;
+
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                tela.GerarPdf();
+                CarregarLocacoes();
+            }
         }
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()
         {

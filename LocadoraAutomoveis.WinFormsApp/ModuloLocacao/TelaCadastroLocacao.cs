@@ -176,7 +176,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             var veiculo = (Veiculo)cmbVeiculo.SelectedItem;
             txtKmAtual.Text = veiculo.QuilometragemAtual.ToString();
-
         }
 
         private void cmbPlano_SelectedIndexChanged(object sender, EventArgs e)
