@@ -41,7 +41,7 @@
             this.gb = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotalPrevisto = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cmbGrupoVeiculo = new System.Windows.Forms.ComboBox();
             this.cmbPlano = new System.Windows.Forms.ComboBox();
@@ -57,6 +57,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.rtPDF = new System.Windows.Forms.RichTextBox();
+            this.btnDevolucao = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.gbCondutor.SuspendLayout();
             this.gb.SuspendLayout();
@@ -67,6 +68,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.btnDevolucao);
             this.panel1.Controls.Add(this.btnDesmarcar);
             this.panel1.Controls.Add(this.btnLimpar);
             this.panel1.Controls.Add(this.btnOK);
@@ -194,7 +196,7 @@
             // 
             this.gb.BackColor = System.Drawing.SystemColors.ControlLight;
             this.gb.Controls.Add(this.panel2);
-            this.gb.Controls.Add(this.label10);
+            this.gb.Controls.Add(this.lblTotal);
             this.gb.Controls.Add(this.label8);
             this.gb.Controls.Add(this.cmbGrupoVeiculo);
             this.gb.Controls.Add(this.label3);
@@ -240,14 +242,14 @@
             this.lblTotalPrevisto.TabIndex = 41;
             this.lblTotalPrevisto.Text = "0,00";
             // 
-            // label10
+            // lblTotal
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(490, 559);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(151, 25);
-            this.label10.TabIndex = 42;
-            this.label10.Text = "Total Previsto R$";
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(490, 559);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(151, 25);
+            this.lblTotal.TabIndex = 42;
+            this.lblTotal.Text = "Total Previsto R$";
             // 
             // label8
             // 
@@ -420,6 +422,19 @@
             this.rtPDF.Text = "";
             this.rtPDF.Visible = false;
             // 
+            // btnDevolucao
+            // 
+            this.btnDevolucao.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnDevolucao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDevolucao.Location = new System.Drawing.Point(575, 16);
+            this.btnDevolucao.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDevolucao.Name = "btnDevolucao";
+            this.btnDevolucao.Size = new System.Drawing.Size(168, 65);
+            this.btnDevolucao.TabIndex = 12;
+            this.btnDevolucao.Text = "Registrar Devolução";
+            this.btnDevolucao.UseVisualStyleBackColor = false;
+            this.btnDevolucao.Visible = false;
+            // 
             // TelaCadastroLocacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -474,10 +489,11 @@
         private System.Windows.Forms.ComboBox cmbCondutor;
         private System.Windows.Forms.ComboBox cmbGrupoVeiculo;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblTotalPrevisto;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnDesmarcar;
         private System.Windows.Forms.RichTextBox rtPDF;
+        private System.Windows.Forms.Button btnDevolucao;
     }
 }
