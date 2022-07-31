@@ -1,12 +1,13 @@
 ﻿using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-
+using LocadoraVeiculos.Dominio.Modulo_Cliente;
 
 namespace GeradorTestes.Infra.Arquivo.Compartilhado
 {
     public class GeradorPdf
     {
+
         //public void GerarPDF_Sharp(string texto)
         //{
         //    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -25,11 +26,9 @@ namespace GeradorTestes.Infra.Arquivo.Compartilhado
         //    }
         //}
 
-        public void GerarPDF_ItextSharp(string texto)
+        public void GerarPDF_ItextSharp(string texto, string cliente)
         {
-            int i = 0;
-            string nomeArquivo = @"C:\temp\pdf\ComprovanteLocacao"+i+@".pdf";
-            i++;
+            string nomeArquivo = @"C:\temp\pdf\ComprovanteLocacao_"+cliente+@".pdf";
             FileStream arquivoPDF = new(nomeArquivo, FileMode.Create);
             iTextSharp.text.Document doc = new(PageSize.A4);
             PdfWriter escritorPDF = PdfWriter.GetInstance(doc, arquivoPDF);

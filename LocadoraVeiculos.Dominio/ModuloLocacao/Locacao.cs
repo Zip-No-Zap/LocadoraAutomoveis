@@ -55,6 +55,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             DataLocacao = dataLocacao;
             DataDevolucao = dataDevolucao;
             ClienteLocacao = clienteLocacao;
+            ItensTaxa = new();
         }
     }
 }

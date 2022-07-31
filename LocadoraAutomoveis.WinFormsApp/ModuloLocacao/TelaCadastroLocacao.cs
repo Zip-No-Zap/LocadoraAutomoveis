@@ -107,8 +107,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     cmbVeiculo.SelectedIndex = -1;
 
                 CarregarItensAdicionais();
-
-                locacao.ItensTaxa = new();
             }
         }
 
@@ -139,6 +137,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private GrupoVeiculo CarregarVeiculos()
         {
+            cmbVeiculo.Items.Clear();
+
             var grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
 
             foreach (var item in veiculos)
@@ -363,7 +363,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             //CarregarImagem();
         } // TODO :  precisa de mais mais detalhes no rich text
 
-        private void CarregarImagem()
+        private void CarregarImagemPdf()
         {
             OpenFileDialog ofd1 = new();
 
@@ -397,7 +397,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             GeradorPdf pdf = new();
 
-            pdf.GerarPDF_ItextSharp(rtPDF.Text);
+            pdf.GerarPDF_ItextSharp(rtPDF.Text, cmbClientes.Text);
 
             MessageBox.Show("Arquivo PDF Gerado!\n\nDestino: C: -> temp -> pdf -> ComprovanteLocacao.pdf");
         }
