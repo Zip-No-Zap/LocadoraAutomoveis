@@ -84,7 +84,7 @@
             this.btnDesmarcar.Margin = new System.Windows.Forms.Padding(2);
             this.btnDesmarcar.Name = "btnDesmarcar";
             this.btnDesmarcar.Size = new System.Drawing.Size(168, 65);
-            this.btnDesmarcar.TabIndex = 10;
+            this.btnDesmarcar.TabIndex = 11;
             this.btnDesmarcar.Text = "Desmarcar Itens";
             this.btnDesmarcar.UseVisualStyleBackColor = false;
             this.btnDesmarcar.Click += new System.EventHandler(this.btnDesmarcar_Click_1);
@@ -97,7 +97,7 @@
             this.btnLimpar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(168, 65);
-            this.btnLimpar.TabIndex = 9;
+            this.btnLimpar.TabIndex = 10;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
@@ -111,7 +111,7 @@
             this.btnOK.Margin = new System.Windows.Forms.Padding(6);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(168, 65);
-            this.btnOK.TabIndex = 8;
+            this.btnOK.TabIndex = 9;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = false;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -143,7 +143,7 @@
             this.cmbCondutor.Margin = new System.Windows.Forms.Padding(2);
             this.cmbCondutor.Name = "cmbCondutor";
             this.cmbCondutor.Size = new System.Drawing.Size(332, 33);
-            this.cmbCondutor.TabIndex = 4;
+            this.cmbCondutor.TabIndex = 1;
             // 
             // label2
             // 
@@ -270,7 +270,7 @@
             this.cmbGrupoVeiculo.Margin = new System.Windows.Forms.Padding(6);
             this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
             this.cmbGrupoVeiculo.Size = new System.Drawing.Size(353, 33);
-            this.cmbGrupoVeiculo.TabIndex = 39;
+            this.cmbGrupoVeiculo.TabIndex = 4;
             this.cmbGrupoVeiculo.SelectedIndexChanged += new System.EventHandler(this.cmbGrupoVeiculo_SelectedIndexChanged);
             // 
             // cmbPlano
@@ -286,7 +286,7 @@
             this.cmbPlano.Margin = new System.Windows.Forms.Padding(6);
             this.cmbPlano.Name = "cmbPlano";
             this.cmbPlano.Size = new System.Drawing.Size(340, 33);
-            this.cmbPlano.TabIndex = 37;
+            this.cmbPlano.TabIndex = 7;
             this.cmbPlano.SelectedIndexChanged += new System.EventHandler(this.cmbPlano_SelectedIndexChanged);
             // 
             // btnCalcular
@@ -298,7 +298,7 @@
             this.btnCalcular.Margin = new System.Windows.Forms.Padding(2);
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(167, 47);
-            this.btnCalcular.TabIndex = 7;
+            this.btnCalcular.TabIndex = 8;
             this.btnCalcular.Text = "Calcular";
             this.btnCalcular.UseVisualStyleBackColor = false;
             this.btnCalcular.Click += new System.EventHandler(this.btnCalcular_Click);
@@ -321,7 +321,7 @@
             this.txtKmAtual.Margin = new System.Windows.Forms.Padding(2);
             this.txtKmAtual.Name = "txtKmAtual";
             this.txtKmAtual.Size = new System.Drawing.Size(349, 31);
-            this.txtKmAtual.TabIndex = 9;
+            this.txtKmAtual.TabIndex = 6;
             // 
             // lblQuilometragem
             // 
@@ -355,7 +355,7 @@
             this.cmbVeiculo.Margin = new System.Windows.Forms.Padding(6);
             this.cmbVeiculo.Name = "cmbVeiculo";
             this.cmbVeiculo.Size = new System.Drawing.Size(340, 33);
-            this.cmbVeiculo.TabIndex = 3;
+            this.cmbVeiculo.TabIndex = 5;
             this.cmbVeiculo.SelectedIndexChanged += new System.EventHandler(this.cmbVeiculo_SelectedIndexChanged);
             // 
             // label6
@@ -377,7 +377,7 @@
             this.dpDataDevolucao.MinDate = new System.DateTime(2022, 7, 25, 23, 59, 59, 0);
             this.dpDataDevolucao.Name = "dpDataDevolucao";
             this.dpDataDevolucao.Size = new System.Drawing.Size(338, 31);
-            this.dpDataDevolucao.TabIndex = 2;
+            this.dpDataDevolucao.TabIndex = 3;
             // 
             // dpDataLocacao
             // 
@@ -387,7 +387,7 @@
             this.dpDataLocacao.MinDate = new System.DateTime(2022, 7, 25, 23, 59, 59, 0);
             this.dpDataLocacao.Name = "dpDataLocacao";
             this.dpDataLocacao.Size = new System.Drawing.Size(352, 31);
-            this.dpDataLocacao.TabIndex = 1;
+            this.dpDataLocacao.TabIndex = 2;
             // 
             // label4
             // 

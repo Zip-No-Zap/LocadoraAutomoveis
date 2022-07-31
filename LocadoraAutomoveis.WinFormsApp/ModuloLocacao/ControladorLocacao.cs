@@ -60,6 +60,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
                 if (resultado == DialogResult.OK)
                 {
+                    tela.GerarPdf();
                     CarregarLocacoes();
                 }
             }
@@ -105,7 +106,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
 
             if (tela.ShowDialog() == DialogResult.OK)
+            {
+                tela.GerarPdf();
                 CarregarLocacoes();
+            }
             
         }
 

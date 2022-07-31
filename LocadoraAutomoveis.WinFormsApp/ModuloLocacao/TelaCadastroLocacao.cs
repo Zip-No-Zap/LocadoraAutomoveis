@@ -193,6 +193,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             locacao.DataLocacao = Convert.ToDateTime(dpDataLocacao.Text);
             locacao.DataDevolucao = Convert.ToDateTime(dpDataDevolucao.Text);
             locacao._estaLocado = true;
+            locacao.AtualizarStatus();
+            locacao.VeiculoLocacao.StatusVeiculo = "Alugado";
 
             //receber Plano
             var planoSelecionado = planos.Find(x => x.Grupo.Nome == cmbGrupoVeiculo.Text); 
@@ -222,9 +224,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 DialogResult = DialogResult.None;
             }
 
-            CarregarRichText();
-
-            GerarPdf();
         }
 
         private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
@@ -353,15 +352,22 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         private void CarregarRichText()
         {
             string detalhe = 
-            $"DETALHES DA LOCAÇÃO \n\n\r" +
-            $"Tota Previsto: { locacao.TotalPrevisto.ToString() } \n\n\r" +
+            $"\n" +
+            $"------------------------------------------------------------------------" +
+            $"DETALHES DA LOCAÇÃO \n\r" +
+            $"Tota Previsto: { locacao.TotalPrevisto.ToString() } \n\r" +
+            $"------------------------------------------------------------------------" +
             $"Data Locação: { dpDataLocacao.Text} \n\r" +
-            $"Data Devolução: { dpDataDevolucao.Text} \n\n\r" +
+            $"Data Devolução: { dpDataDevolucao.Text}\n\r" +
+            $"------------------------------------------------------------------------" +
             $"Cliente: { cmbClientes.Text} \n\r" +
-            $"Condutor: { cmbCondutor.Text} \n\r" +
-            $"Grupo: { cmbGrupoVeiculo.Text} \n\r" +
-            $"Veículo: { cmbVeiculo.Text} \n\r" +
-            $"Quilometragem Registrada: { txtKmAtual.Text} \n\r"
+            $"Condutor: { cmbCondutor.Text}  \n\r" +
+            $"CNH: { locacao.CondutorLocacao.Cnh} \n\r" +
+            $"Grupo: { cmbGrupoVeiculo.Text}  \n\r" +
+            $"Veículo: { cmbVeiculo.Text}  \n\r" +
+            $"Placa: { locacao.VeiculoLocacao.Placa}  \n\r" +
+            $"Quilometragem Registrada: { txtKmAtual.Text}\n\r" +
+            $"------------------------------------------------------------------------"
             ;
 
             rtPDF.Text = detalhe;
@@ -401,8 +407,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             }
         }
 
-        private void GerarPdf()
+        public void GerarPdf()
         {
+            CarregarRichText();
+
             GeradorPdf pdf = new();
 
             pdf.GerarPDF_ItextSharp(rtPDF.Text, cmbClientes.Text);

@@ -40,6 +40,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             DataDevolucao = DateTime.Today;
             DataDevolvidoDeFato = DateTime.Today;
             _estaLocado = false;
+            ItensTaxa = new();
         }
 
         public Locacao(Condutor condutorLocacao, Veiculo veiculoLocacao, List<Taxa> itensTaxa, Plano plano, Guid veiculoLocacaoId, Guid clienteLocacaoId, Cliente clienteLocacao) : base()
@@ -51,7 +52,6 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
             VeiculoLocacaoId = veiculoLocacaoId;
             ClienteLocacaoId = clienteLocacaoId;
             ClienteLocacao = clienteLocacao;
-            ItensTaxa = new();
          }
 
         public void AtualizarStatus()
