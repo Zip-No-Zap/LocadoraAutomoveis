@@ -176,7 +176,6 @@ namespace LocadoraAutomoveis.WinFormsApp
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
             ConfigurarToolbox();
-            btnEditar.Enabled = false;
         }
     }
 }

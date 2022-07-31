@@ -62,14 +62,37 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 locacao = value;
 
                 if (locacao.ClienteLocacao != null)
-                    cmbClientes.SelectedItem = locacao.ClienteLocacao;
+                    cmbClientes.Text.Replace(" ", locacao.ClienteLocacao.ToString(), StringComparison.Ordinal);
                 else
                     cmbClientes.SelectedIndex = -1;
 
                 if (locacao.CondutorLocacao != null)
-                    cmbClientes.SelectedItem = locacao.CondutorLocacao;
+                    cmbCondutor.SelectedItem = locacao.CondutorLocacao;
                 else
-                    cmbClientes.SelectedIndex = -1;
+                    cmbCondutor.SelectedIndex = -1;
+
+                if (locacao.Grupo != null)
+                    cmbGrupoVeiculo.SelectedItem = locacao.Grupo;
+                else
+                    cmbGrupoVeiculo.SelectedIndex = -1;
+
+                if (locacao.VeiculoLocacao != null)
+                    cmbVeiculo.SelectedItem = locacao.VeiculoLocacao;
+                else
+                    cmbVeiculo.SelectedIndex = -1;
+
+                if (locacao.VeiculoLocacao != null)
+                    cmbVeiculo.SelectedItem = locacao.VeiculoLocacao;
+                else
+                    cmbVeiculo.SelectedIndex = -1;
+
+                if (locacao.PlanoLocacao != null)
+                    cmbPlano.SelectedItem = locacao.PlanoLocacao;
+                else
+                    cmbPlano.SelectedIndex = -1;
+
+                if (locacao.VeiculoLocacao != null)
+                    txtKmAtual.Text = locacao.VeiculoLocacao.QuilometragemAtual.ToString();
 
                 dpDataLocacao.Value = locacao.DataLocacao;
                 dpDataDevolucao.Value = locacao.DataLocacao;
@@ -87,6 +110,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private void CarregarItensAdicionais()
         {
+            listTaxasAdicionais.Items.Clear();
+
             if (taxas != null)
             {
                 int i = 0;

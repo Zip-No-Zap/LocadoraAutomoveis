@@ -412,7 +412,7 @@
             // 
             // rtPDF
             // 
-            this.rtPDF.Location = new System.Drawing.Point(866, 30);
+            this.rtPDF.Location = new System.Drawing.Point(934, 30);
             this.rtPDF.Name = "rtPDF";
             this.rtPDF.Size = new System.Drawing.Size(286, 668);
             this.rtPDF.TabIndex = 11;
@@ -423,7 +423,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 970);
+            this.ClientSize = new System.Drawing.Size(906, 970);
             this.Controls.Add(this.rtPDF);
             this.Controls.Add(this.gb);
             this.Controls.Add(this.gbCondutor);
