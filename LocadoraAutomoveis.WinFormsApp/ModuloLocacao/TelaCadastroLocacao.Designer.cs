@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRegistrarDevolucao = new System.Windows.Forms.Button();
             this.btnDesmarcar = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
@@ -57,7 +58,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.rtPDF = new System.Windows.Forms.RichTextBox();
-            this.btnDevolucao = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.gbCondutor.SuspendLayout();
             this.gb.SuspendLayout();
@@ -68,7 +68,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.btnDevolucao);
+            this.panel1.Controls.Add(this.btnRegistrarDevolucao);
             this.panel1.Controls.Add(this.btnDesmarcar);
             this.panel1.Controls.Add(this.btnLimpar);
             this.panel1.Controls.Add(this.btnOK);
@@ -77,6 +77,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 98);
             this.panel1.TabIndex = 8;
+            // 
+            // btnRegistrarDevolucao
+            // 
+            this.btnRegistrarDevolucao.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnRegistrarDevolucao.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegistrarDevolucao.Location = new System.Drawing.Point(575, 16);
+            this.btnRegistrarDevolucao.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRegistrarDevolucao.Name = "btnRegistrarDevolucao";
+            this.btnRegistrarDevolucao.Size = new System.Drawing.Size(168, 65);
+            this.btnRegistrarDevolucao.TabIndex = 12;
+            this.btnRegistrarDevolucao.Text = "Registrar Devolução";
+            this.btnRegistrarDevolucao.UseVisualStyleBackColor = false;
+            this.btnRegistrarDevolucao.Visible = false;
+            this.btnRegistrarDevolucao.Click += new System.EventHandler(this.btnDevolucao_Click);
             // 
             // btnDesmarcar
             // 
@@ -422,20 +436,6 @@
             this.rtPDF.Text = "";
             this.rtPDF.Visible = false;
             // 
-            // btnDevolucao
-            // 
-            this.btnDevolucao.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnDevolucao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDevolucao.Location = new System.Drawing.Point(575, 16);
-            this.btnDevolucao.Margin = new System.Windows.Forms.Padding(2);
-            this.btnDevolucao.Name = "btnDevolucao";
-            this.btnDevolucao.Size = new System.Drawing.Size(168, 65);
-            this.btnDevolucao.TabIndex = 12;
-            this.btnDevolucao.Text = "Registrar Devolução";
-            this.btnDevolucao.UseVisualStyleBackColor = false;
-            this.btnDevolucao.Visible = false;
-            this.btnDevolucao.Click += new System.EventHandler(this.btnDevolucao_Click);
-            // 
             // TelaCadastroLocacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -495,6 +495,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnDesmarcar;
         private System.Windows.Forms.RichTextBox rtPDF;
-        private System.Windows.Forms.Button btnDevolucao;
+        private System.Windows.Forms.Button btnRegistrarDevolucao;
     }
 }

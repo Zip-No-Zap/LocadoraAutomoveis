@@ -49,7 +49,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             var planos = servicoPlano.SelecionarTodos().Value;
             var locacoes = servicoLocacao.SelecionarTodos().Value;
 
-            var tela = new TelaCadastroLocacao(clientes, condutores, veiculos, taxas, grupos, planos, locacoes);
+            var tela = new TelaCadastroLocacao(clientes, condutores, veiculos, taxas, grupos, planos, locacoes, false);
 
             if (resultadoResult.IsSuccess)
             {
@@ -66,6 +66,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     tela.GerarPdf();
                     CarregarLocacoes();
                 }
+
             }
         }
 
@@ -99,21 +100,19 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             var planos = servicoPlano.SelecionarTodos().Value;
             var locacoes = servicoLocacao.SelecionarTodos().Value;
 
-            TelaCadastroLocacao tela = new(clientes, condutores, veiculos, taxas, grupos, planos, locacoes);
+            TelaCadastroLocacao tela = new(clientes, condutores, veiculos, taxas, grupos, planos, locacoes, false);
 
             tela.Locacao = selecionado;
 
             tela.Locacao._estaLocado = "sim";
 
-            tela.GravarRegistro = servicoLocacao.Editar;
-
+           tela.GravarRegistro = servicoLocacao.Editar;
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 tela.GerarPdf();
                 CarregarLocacoes();
             }
-
         }
 
         public override void Excluir()
@@ -182,9 +181,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             var planos = servicoPlano.SelecionarTodos().Value;
             var locacoes = servicoLocacao.SelecionarTodos().Value;
 
-            TelaCadastroLocacao tela = new(clientes, condutores, veiculos, taxas, grupos, planos, locacoes);
-
-            tela.Locacao = selecionado;
+            TelaCadastroLocacao tela = new(clientes, condutores, veiculos, taxas, grupos, planos, locacoes, true);
 
             tela.Locacao = selecionado;
 

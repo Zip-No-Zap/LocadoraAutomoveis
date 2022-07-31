@@ -26,10 +26,11 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         List<Plano> planos;
         List<Cliente> clientes;
         List<Locacao> locacoes;
+        public bool ehDevolucao;
 
         public TelaCadastroLocacao(List<Cliente> clientes,
             List<Condutor> condutores, List<Veiculo> veiculos,
-            List<Taxa> taxas, List<GrupoVeiculo> grupos, List<Plano> planos, List<Locacao> locacoes)
+            List<Taxa> taxas, List<GrupoVeiculo> grupos, List<Plano> planos, List<Locacao> locacoes, bool ehDevolucao)
         {
             InitializeComponent();
             CarregarClientes(clientes);
@@ -41,6 +42,18 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             this.grupos = grupos;
             this.clientes = clientes;
             this.locacoes = locacoes;
+            this.ehDevolucao = ehDevolucao;
+
+            if (ehDevolucao == true)
+                ConfigurarBotoesDevolucao();
+        }
+
+        private void ConfigurarBotoesDevolucao()
+        {
+            btnOK.Enabled = false;
+            btnLimpar.Enabled = false;
+            btnDesmarcar.Enabled = false;
+            btnRegistrarDevolucao.Visible = true;
         }
 
         private void CarregarGrupoVeiculos(List<GrupoVeiculo> grupo)
