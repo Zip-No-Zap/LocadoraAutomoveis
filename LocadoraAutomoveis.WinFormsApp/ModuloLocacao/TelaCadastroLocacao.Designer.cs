@@ -42,7 +42,7 @@
             this.gb = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotalPrevisto = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblTotalMarcador = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cmbGrupoVeiculo = new System.Windows.Forms.ComboBox();
             this.cmbPlano = new System.Windows.Forms.ComboBox();
@@ -210,7 +210,7 @@
             // 
             this.gb.BackColor = System.Drawing.SystemColors.ControlLight;
             this.gb.Controls.Add(this.panel2);
-            this.gb.Controls.Add(this.lblTotal);
+            this.gb.Controls.Add(this.lblTotalMarcador);
             this.gb.Controls.Add(this.label8);
             this.gb.Controls.Add(this.cmbGrupoVeiculo);
             this.gb.Controls.Add(this.label3);
@@ -242,28 +242,28 @@
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.lblTotalPrevisto);
-            this.panel2.Location = new System.Drawing.Point(657, 552);
+            this.panel2.Location = new System.Drawing.Point(550, 552);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(100, 34);
+            this.panel2.Size = new System.Drawing.Size(207, 34);
             this.panel2.TabIndex = 43;
             // 
             // lblTotalPrevisto
             // 
             this.lblTotalPrevisto.AutoSize = true;
-            this.lblTotalPrevisto.Location = new System.Drawing.Point(40, 5);
+            this.lblTotalPrevisto.Location = new System.Drawing.Point(83, 5);
             this.lblTotalPrevisto.Name = "lblTotalPrevisto";
             this.lblTotalPrevisto.Size = new System.Drawing.Size(46, 25);
             this.lblTotalPrevisto.TabIndex = 41;
             this.lblTotalPrevisto.Text = "0,00";
             // 
-            // lblTotal
+            // lblTotalMarcador
             // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(490, 559);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(151, 25);
-            this.lblTotal.TabIndex = 42;
-            this.lblTotal.Text = "Total Previsto R$";
+            this.lblTotalMarcador.AutoSize = true;
+            this.lblTotalMarcador.Location = new System.Drawing.Point(393, 561);
+            this.lblTotalMarcador.Name = "lblTotalMarcador";
+            this.lblTotalMarcador.Size = new System.Drawing.Size(151, 25);
+            this.lblTotalMarcador.TabIndex = 42;
+            this.lblTotalMarcador.Text = "Total Previsto R$";
             // 
             // label8
             // 
@@ -495,5 +495,6 @@
         private System.Windows.Forms.Button btnDesmarcar;
         private System.Windows.Forms.RichTextBox rtPDF;
         private System.Windows.Forms.Button btnRegistrarDevolucao;
+        private System.Windows.Forms.Label lblTotalMarcador;
     }
 }

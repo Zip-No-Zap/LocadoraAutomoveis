@@ -8,6 +8,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
     public partial class TelaDevolucao : Form
     {
         public DateTime dataLocacao;
+        public DateTime dataDevolucaoLocacao;
         public double totalDeFato = 0;
         public float quilometragemAnterior;
         public float quilometragemAtualizada;
@@ -60,18 +61,13 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             var dataDevolvido = dpDataDevolvido.Value;
 
-            if (dataDevolvido >= dataLocacao)
+            if (dataDevolvido >= dataDevolucaoLocacao)
             {
                 var totalTemp = totalDeFato * 0.10;
                 return totalTemp;
             }
             else
-            {
-                MessageBox.Show("Data de devolução inválida", "Aviso");
-                this.DialogResult = DialogResult.None;
-            }
-
-            return 0;
+                return 0;
         }
 
         private double CalcularDiferencaQuilometragem()
@@ -103,7 +99,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private double CalcularConsumoTanque()
         {
-            int porcentagemTanque = int.Parse(cmbTanque.Text.Split("%").ToString().Trim());
+            string porcentagemTanqueString = cmbTanque.Text.Split("%")[0].ToString().Trim();
+            int porcentagemTanque = int.Parse(porcentagemTanqueString);
             int deduzir = 100 - porcentagemTanque;
             double tanqueDeduzido = tanqueMaximoVeiculo * (deduzir / 100);
             double valor = 0;
@@ -114,18 +111,23 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             if (tipoCombustivel == "Diesel")
                 valor = 7.55 * tanqueDeduzido;
 
+            if (tipoCombustivel == "Álcool")
+                valor = 5.30 * tanqueDeduzido;
+
             return valor;
         }
 
         private double CalcularValorDiarioPlano()
         {
             var dataDevolvido = dpDataDevolvido.Value;
-            int dataLocacaoConvertida = Convert.ToInt32(dataLocacao.Day);
-            int dataDevolvidoConvertida = Convert.ToInt32(dataDevolvido.Day);
 
-            int diferenca = dataLocacaoConvertida - dataDevolvidoConvertida;
+            TimeSpan intervalo = dataDevolvido - dataLocacao;
 
-            return diferenca * valorDiario;
+            int diferenca = Convert.ToInt32(intervalo.Days);
+
+            double resultado = valorDiario * diferenca;
+
+            return resultado;
         }
     }
 }

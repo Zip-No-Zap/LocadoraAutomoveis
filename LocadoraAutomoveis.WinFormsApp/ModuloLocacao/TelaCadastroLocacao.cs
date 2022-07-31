@@ -503,6 +503,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             telaDevolucao.plano = locacao.PlanoLocacao_Descricao;
             telaDevolucao.tanqueMaximoVeiculo = locacao.VeiculoLocacao.CapacidadeTanque;
             telaDevolucao.tipoCombustivel = locacao.VeiculoLocacao.TipoCombustivel;
+            telaDevolucao.dataDevolucaoLocacao = locacao.DataDevolucao;
 
             switch (telaDevolucao.plano)
             {
@@ -525,8 +526,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             if (telaDevolucao.ShowDialog() == DialogResult.OK)
             {
                 locacao.TotalPrevisto = telaDevolucao.totalDeFato;
-                lblTotalPrevisto.Text = "Total a Pagar";
-                lblTotalPrevisto.Text = locacao.TotalPrevisto.ToString();
+                lblTotalMarcador.Text = "Total a Pagar R$";
+                lblTotalPrevisto.Text = locacao.TotalPrevisto.ToString("N2");
                 locacao._estaLocado = "não";
                 btnOK.Enabled = true;
                 txtKmAtual.Text = telaDevolucao.quilometragemAtualizada.ToString();
