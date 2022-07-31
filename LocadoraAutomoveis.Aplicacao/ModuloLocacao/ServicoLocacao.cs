@@ -23,18 +23,18 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
             this.contextoPersistOrm = contextoPersistOrm;
         }
 
-        public Result<Locacao> Inserir(Locacao plano)
+        public Result<Locacao> Inserir(Locacao locacao)
         {
-            Log.Logger.Debug("Tentando inserir Locacao... {@plano}", plano);
+            Log.Logger.Debug("Tentando inserir Locaçãao... {@locacao}", locacao);
 
-            var resultadoValidacao = Validar(plano);
+            var resultadoValidacao = Validar(locacao);
 
             if (resultadoValidacao.IsFailed)
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
 
-                    Log.Logger.Warning("Falha ao tentar inserir Locacao. {plano} -> Motivo: {erro}", plano.Id, erro.Message);
+                    Log.Logger.Warning("Falha ao tentar inserir Locação. {locacao} -> Motivo: {erro}", locacao.Id, erro.Message);
 
                 }
 
@@ -43,38 +43,38 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
 
             try
             {
-                repositorioLocacao.Inserir(plano);  // RepositorioLocacaoOrm
+                repositorioLocacao.Inserir(locacao);  // RepositorioLocacaoOrm
 
                 contextoPersistOrm.GravarDados(); // LocadoraAutomoviesDbContext / SaveChanges()
 
-                Log.Logger.Information("Locacao inserido com sucesso. {@plano}", plano);
+                Log.Logger.Information("Locacao inserido com sucesso. {@locacao}", locacao);
 
-                return Result.Ok(plano);
+                return Result.Ok(locacao);
             }
             catch (Exception ex)
             {
-                contextoPersistOrm.DesfazerAlteracoes();
+         //       contextoPersistOrm.DesfazerAlteracoes();
 
-                string msgErro = "Falha ao tentar inserir Locacao";
+                string msgErro = "Falha ao tentar inserir Locação";
 
-                Log.Logger.Error(ex, msgErro + "{LocacaoId}", plano.Id);
+                Log.Logger.Error(ex, msgErro + "{LocacaoId}", locacao.Id);
 
                 return Result.Fail(msgErro);
             }
         }
 
-        public Result<Locacao> Editar(Locacao plano)
+        public Result<Locacao> Editar(Locacao locacao)
         {
-            Log.Logger.Debug("Tentando editar Locacao... {@grupo}", plano);
+            Log.Logger.Debug("Tentando editar Locação... {@locacao}", locacao);
 
-            Result resultadoValidacao = Validar(plano);
+            Result resultadoValidacao = Validar(locacao);
 
             if (resultadoValidacao.IsFailed)
             {
                 foreach (var erro in resultadoValidacao.Errors)
                 {
 
-                    Log.Logger.Warning("Falha ao tentar editar Locacao. {planoId} -> Motivo: {erro}", plano.Id, erro.Message);
+                    Log.Logger.Warning("Falha ao tentar editar Locação. {locaocaoId} -> Motivo: {erro}", locacao.Id, erro.Message);
 
                 }
 
@@ -83,13 +83,13 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
 
             try
             {
-                repositorioLocacao.Editar(plano);
+                repositorioLocacao.Editar(locacao);
 
                 contextoPersistOrm.GravarDados();
 
-                Log.Logger.Information("Locacao. {planoId} editado com sucesso", plano.Id);
+                Log.Logger.Information("Locacao. {locacaoId} editado com sucesso", locacao.Id);
 
-                return Result.Ok(plano);
+                return Result.Ok(locacao);
             }
             catch (Exception ex)
             {
@@ -97,23 +97,23 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
 
                 string msgErro = "Falha ao tentar editar Locacao";
 
-                Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
+                Log.Logger.Error(ex, msgErro + "{locacaoId}", locacao.Id);
 
                 return Result.Fail(msgErro);
             }
         }
 
-        public Result Excluir(Locacao plano)
+        public Result Excluir(Locacao locacao)
         {
-            Log.Logger.Debug("Tentando excluir Locacao... {@grupo}", plano);
+            Log.Logger.Debug("Tentando excluir Locação... {@locacao}", locacao);
 
             try
             {
-                repositorioLocacao.Excluir(plano);
+                repositorioLocacao.Excluir(locacao);
 
                 contextoPersistOrm.GravarDados();
 
-                Log.Logger.Information("plano {planoId} excluído com sucesso", plano.Id);
+                Log.Logger.Information("locação {locacaoId} excluída com sucesso", locacao.Id);
 
                 return Result.Ok();
             }
@@ -121,9 +121,9 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
             {
                 contextoPersistOrm.DesfazerAlteracoes();
 
-                string msgErro = "Falha no sistema ao tentar excluir o Locacao";
+                string msgErro = "Falha no sistema ao tentar excluir a lcoação";
 
-                Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
+                Log.Logger.Error(ex, msgErro + "{locacaoId}", locacao.Id);
 
                 return Result.Fail(msgErro);
             }
@@ -153,7 +153,7 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
             }
             catch (Exception ex)
             {
-                string msgErro = "Falha no sistema ao tentar selecionar o plano";
+                string msgErro = "Falha no sistema ao tentar selecionar a locação";
 
                 Log.Logger.Error(ex, msgErro + "{LocacaoId}", id);
 
@@ -161,12 +161,12 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
             }
         }
 
-        public Result Validar(Locacao plano)
+        public Result Validar(Locacao locacao)
         {
 
             validadorLocacao = new ValidadorLocacao();
 
-            var resultadoValidacao = validadorLocacao.Validate(plano);
+            var resultadoValidacao = validadorLocacao.Validate(locacao);
 
             List<Error> erros = new List<Error>(); //FluentResult
 
@@ -175,8 +175,8 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
                 erros.Add(new Error(item.ErrorMessage));
             }
 
-            if (LocacaoDuplicada(plano))
-                erros.Add(new Error("Locacao de Cobrança duplicado"));
+            if (LocacaoDuplicada(locacao))
+                erros.Add(new Error("Locacao duplicada"));
 
             if (erros.Any())
                 return Result.Fail(erros);

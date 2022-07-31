@@ -79,6 +79,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     cmbVeiculo.SelectedIndex = -1;
 
                 CarregarItensAdicionais();
+
+                locacao.ItensTaxa = new();
             }
         }
 
@@ -124,6 +126,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cmbClientes.Items.Clear();
+
             var cliente = (Cliente)cmbClientes.SelectedItem;
 
             var condutoresCliente = condutores.FindAll(x => x.Cliente.Equals(cliente)).ToList();
@@ -153,14 +157,20 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             locacao.VeiculoLocacao = (Veiculo)cmbVeiculo.SelectedItem;
             locacao.Grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
 
+            //receber Plano
+            var planoSelecionado = planos.Find(x => x.Grupo.Nome == cmbGrupoVeiculo.Text); 
+            locacao.PlanoLocacao = planoSelecionado;
+
+            //receber Taxas
             foreach (var item in listTaxasAdicionais.CheckedItems)
             {
                 if (item.ToString().Contains("Plano"))
                     continue;
                 else
                 {
-                    var convertido = (Taxa)item;
-                    locacao.ItensTaxa.Add(convertido);
+                    string separador = item.ToString().Split("-")[0].Trim();
+                    var selecionado = taxas.Find(x => x.Descricao.Contains(separador));
+                    locacao.ItensTaxa.Add(selecionado);
                 }
             }
 
@@ -257,7 +267,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             foreach (var item in checados)
             {
-                var taxa = taxas.Find(x => x.Descricao.Contains(item.ToString().Remove(15)));
+                string separador = item.ToString().Split("-")[0].Trim();
+                var taxa = taxas.Find(x => x.Descricao.Contains(separador));
 
                 if (taxa != null)
                     locacao.TotalPrevisto += taxa.Valor;
@@ -316,7 +327,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             CarregarItensRichText();
 
             //CarregarImagem();
-        }
+        } // TODO :  precisa de mais mais detalhes no rich text
 
         private void CarregarImagem()
         {

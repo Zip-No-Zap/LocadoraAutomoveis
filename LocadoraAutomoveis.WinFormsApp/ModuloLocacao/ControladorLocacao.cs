@@ -21,7 +21,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         readonly ServicoVeiculo servicoVeiculo;
         readonly ServicoTaxa servicoTaxa;
         readonly ServicoCliente servicoCliente;
-        readonly ServicoGrupoVeiculo servicoGrupoVeiculo;
+        readonly ServicoGrupoVeiculo servicoGrupo;
         readonly ServicoPlano servicoPlano;
         LocacaoControl tabelaLocacaos;
 
@@ -33,7 +33,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             this.servicoVeiculo = servicoVeiculo;
             this.servicoTaxa = servicoTaxa;
             this.servicoCliente = servicoCliente;
-            this.servicoGrupoVeiculo = servicoGrupo;
+            this.servicoGrupo = servicoGrupo;
             this.servicoPlano = servicoPlano;
         }
 
@@ -45,7 +45,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             var condutores = servicoCondutor.SelecionarTodos().Value;
             var veiculos = servicoVeiculo.SelecionarTodos().Value;
             var taxas = servicoTaxa.SelecionarTodos().Value;
-            var grupos = servicoGrupoVeiculo.SelecionarTodos().Value;
+            var grupos = servicoGrupo.SelecionarTodos().Value;
             var planos = servicoPlano.SelecionarTodos().Value;
 
             var tela = new TelaCadastroLocacao(clientes, condutores, veiculos, taxas, grupos, planos);
@@ -91,7 +91,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             var veiculos = servicoVeiculo.SelecionarTodos().Value;
             var taxas = servicoTaxa.SelecionarTodos().Value;
             var clientes = servicoCliente.SelecionarTodos().Value;
-            var grupos = servicoGrupoVeiculo.SelecionarTodos().Value;
+            var grupos = servicoGrupo.SelecionarTodos().Value;
             var planos = servicoPlano.SelecionarTodos().Value;
 
             TelaCadastroLocacao tela = new(clientes, condutores, veiculos, taxas, grupos, planos);
