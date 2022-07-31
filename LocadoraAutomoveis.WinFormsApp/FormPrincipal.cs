@@ -2,6 +2,7 @@
 using LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Condutor;
+using LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
 using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Plano;
@@ -161,6 +162,13 @@ namespace LocadoraAutomoveis.WinFormsApp
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorPlano>());
             HabilitarBotoesToolStrip();
+        }
+
+        private void combustívelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfiguracaoControl configuracaoTela = new ConfiguracaoControl();
+
+            configuracaoTela.Show();
         }
     }
 }
