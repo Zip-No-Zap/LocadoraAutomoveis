@@ -168,7 +168,7 @@ namespace LocadoraAutomoveis.WinFormsApp
         {
             ConfiguracaoControl configuracaoTela = new ConfiguracaoControl();
 
-            configuracaoTela.Show();
+            panelPrincipal.Controls.Add(configuracaoTela);
         }
     }
 }
