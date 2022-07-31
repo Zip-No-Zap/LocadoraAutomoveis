@@ -175,8 +175,14 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
                 erros.Add(new Error(item.ErrorMessage));
             }
 
-            if (LocacaoDuplicada(locacao))
-                erros.Add(new Error("Locacao duplicada"));
+            if (ClienteDuplicado(locacao))
+                erros.Add(new Error("Cliente duplicado"));
+
+            if (CondutorDuplicado(locacao))
+                erros.Add(new Error("Condutor duplicado"));
+
+            if (VeiculoDuplicado(locacao))
+                erros.Add(new Error("Veículo duplicado"));
 
             if (erros.Any())
                 return Result.Fail(erros);
@@ -186,23 +192,31 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
 
         #region privates
 
-        private bool LocacaoDuplicada(Locacao plano)
+        private bool ClienteDuplicado(Locacao locacao)
         {
-            //var planoEncontrado = repositorioLocacao.SelecionarPorValor(plano.ValorDiario_Diario);
+            var clienteEncontrado = repositorioLocacao.SelecionarPorCliente(locacao.ClienteLocacao);
 
-            //return planoEncontrado != null &&
-            //       planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&
-            //       planoEncontrado.ValorDiario_Diario.Equals(plano.ValorDiario_Diario) &&
-            //       planoEncontrado.ValorPorKm_Diario.Equals(plano.ValorPorKm_Diario) &&
+            return clienteEncontrado != null &&
+                   clienteEncontrado.ClienteLocacao.Equals(locacao.ClienteLocacao) &&
+                  !clienteEncontrado.Id.Equals(locacao.Id);
+        }
 
-            //       planoEncontrado.ValorDiario_Livre.Equals(plano.ValorDiario_Livre) &&
+        private bool CondutorDuplicado(Locacao locacao)
+        {
+            var condutorEncontrado = repositorioLocacao.SelecionarPorCondutor(locacao.CondutorLocacao);
 
-            //       planoEncontrado.ValorDiario_Controlado.Equals(plano.ValorDiario_Controlado) &&
-            //       planoEncontrado.ValorPorKm_Controlado.Equals(plano.ValorPorKm_Controlado) &&
-            //       planoEncontrado.LimiteQuilometragem_Controlado.Equals(plano.LimiteQuilometragem_Controlado) &&
+            return condutorEncontrado != null &&
+                   condutorEncontrado.CondutorLocacao.Equals(locacao.CondutorLocacao) &&
+                  !condutorEncontrado.Id.Equals(locacao.Id);
+        }
 
-            //      !planoEncontrado.Id.Equals(plano.Id);
-            return false;
+        private bool VeiculoDuplicado(Locacao locacao)
+        {
+            var veiculoEncontrado = repositorioLocacao.SelecionarPorVeiculo(locacao.VeiculoLocacao);
+
+            return veiculoEncontrado != null &&
+                   veiculoEncontrado.VeiculoLocacao.Equals(locacao.VeiculoLocacao) &&
+                  !veiculoEncontrado.Id.Equals(locacao.Id);
         }
 
         #endregion

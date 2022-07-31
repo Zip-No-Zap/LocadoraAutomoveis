@@ -1,12 +1,12 @@
 ﻿using FluentResults;
-using GeradorTestes.Infra.Arquivo.Compartilhado;
-using LocadoraVeiculos.Dominio.Modulo_Cliente;
-using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
+using GeradorTestes.Infra.Arquivo.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_Condutor;
+using LocadoraVeiculos.Dominio.Modulo_Veiculo;
+using LocadoraVeiculos.Dominio.Modulo_Cliente;
+using LocadoraVeiculos.Dominio.ModuloLocacao;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
-using LocadoraVeiculos.Dominio.Modulo_Veiculo;
-using LocadoraVeiculos.Dominio.ModuloLocacao;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
@@ -24,6 +24,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         List<Taxa> taxas;
         List<GrupoVeiculo> grupos;
         List<Plano> planos;
+
         public TelaCadastroLocacao(List<Cliente> clientes,
             List<Condutor> condutores, List<Veiculo> veiculos,
             List<Taxa> taxas, List<GrupoVeiculo> grupos, List<Plano> planos)
@@ -104,6 +105,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             foreach (var item in clientes)
                 cmbClientes.Items.Add(item);
         }
+
         private GrupoVeiculo CarregarVeiculos()
         {
             var grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
@@ -112,7 +114,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             {
                 if (item.GrupoPertencente.Equals(grupo))
                 {
-                    cmbVeiculo.Items.Add(item);
+                    if (item.StatusVeiculo == "Disponível")
+                        cmbVeiculo.Items.Add(item);
                 }
             }
 
@@ -126,7 +129,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmbClientes.Items.Clear();
+            cmbCondutor.Items.Clear();
 
             var cliente = (Cliente)cmbClientes.SelectedItem;
 

@@ -1,4 +1,7 @@
 ﻿using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_Cliente;
+using LocadoraVeiculos.Dominio.Modulo_Condutor;
+using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,36 +15,36 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
     public class RepositorioLocacaoOrm : IRepositorioOrmLocacao
     {
         private readonly LocadoraAutomoveisDbContext _dbContext;
-        private DbSet<Locacao> dbsetLocacaos;
+        private DbSet<Locacao> dbsetLocacoes;
 
         public RepositorioLocacaoOrm(LocadoraAutomoveisDbContext dbContext)
         {
-            dbsetLocacaos = dbContext.Set<Locacao>();
+            dbsetLocacoes = dbContext.Set<Locacao>();
         }
 
         public void Inserir(Locacao registro)
         {
-            dbsetLocacaos.Add(registro);
+            dbsetLocacoes.Add(registro);
         }
 
         public void Editar(Locacao registro)
         {
-            dbsetLocacaos.Update(registro);
+            dbsetLocacoes.Update(registro);
         }
 
         public void Excluir(Locacao registro)
         {
-            dbsetLocacaos.Remove(registro);
+            dbsetLocacoes.Remove(registro);
         }
 
         public Locacao SelecionarPorId(Guid id)
         {
-            return dbsetLocacaos.FirstOrDefault(x => x.Id == id);
+            return dbsetLocacoes.FirstOrDefault(x => x.Id == id);
         }
 
         public List<Locacao> SelecionarTodos(bool incluir = true)
         {
-            return dbsetLocacaos
+            return dbsetLocacoes
                 .Include(x => x.ClienteLocacao)
                 .Include(x => x.CondutorLocacao)
                 .Include(x => x.VeiculoLocacao)
@@ -51,15 +54,24 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
                 .ToList();
         }
 
-        public Locacao SelecionarPorAlgo(string valor)
-        {
-            return dbsetLocacaos.FirstOrDefault(x => x.CondutorLocacao.Cpf == valor);
-        }
-
         public void RegistrarDevolucao(Locacao locacao)
         {
+            //TODO : fazer RegistrarDevolucao
+        }
 
-            // fazer
+        public Locacao SelecionarPorCliente(Cliente entidade)
+        {
+            return dbsetLocacoes.FirstOrDefault(x => x.Equals(entidade));
+        }
+
+        public Locacao SelecionarPorCondutor(Condutor entidade)
+        {
+            return dbsetLocacoes.FirstOrDefault(x => x.Equals(entidade));
+        }
+
+        public Locacao SelecionarPorVeiculo(Veiculo entidade)
+        {
+            return dbsetLocacoes.FirstOrDefault(x => x.Equals(entidade));
         }
     }
 
