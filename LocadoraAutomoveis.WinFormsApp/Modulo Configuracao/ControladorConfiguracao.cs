@@ -36,7 +36,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
 
         public override UserControl ObtemListagem()
         {
-            return new ConfiguracaoControl(configuracao);
+            return new ConfiguracaoControl();
         }
     }
 }

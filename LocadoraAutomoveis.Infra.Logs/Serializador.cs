@@ -27,7 +27,7 @@ namespace LocadoraAutomoveis.Infra.Logs
         {
             try
             {
-                string folder = @"C:\Temp\";
+                string folder = @"C:\temp\";
 
                 if (!Directory.Exists(folder))
                 {
@@ -53,7 +53,7 @@ namespace LocadoraAutomoveis.Infra.Logs
             try
             {
                 string pegaArquivo;
-                string folder = @"C:\Temp\";
+                string folder = @"C:\temp\";
 
                 if (!Directory.Exists(folder))
                 {
@@ -78,7 +78,7 @@ namespace LocadoraAutomoveis.Infra.Logs
 
         private string ObterDiretorio()
         {
-            return @"C:\Temp\ConfiguracaoCombustivel.json";
+            return @"C:\temp\ConfiguracaoCombustivel.json";
         }
 
         #endregion

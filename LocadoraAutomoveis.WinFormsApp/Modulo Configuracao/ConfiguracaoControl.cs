@@ -1,8 +1,8 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_Configuracao;
 using LocadoraAutomoveis.Infra.Logs;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System;
-using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
 {
@@ -10,7 +10,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
     {
         private readonly Configuracao conf;
         private readonly List<Configuracao> config = new();
-        private readonly ConfiguracaoLogger configuracaologger;
         private Serializador gravador;
 
         public ConfiguracaoControl()
@@ -25,7 +24,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
         private void ObterTextosNoTextBox()
         {
             gravador = new(config);
-            var configuracoes = gravador.ObterArquivo(@"C:\Temp\");
+            var configuracoes = gravador.ObterArquivo(@"C:\temp\ConfiguracaoCombustivel.json");
             var conf = configuracoes[0];
 
             txbGasolina.Text = conf.valorGasolina;
