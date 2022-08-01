@@ -229,7 +229,7 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
         {
             var locacaoEncontrada = repositorioLocacao.SelecionarPorCondutor(locacao.CondutorLocacao);
 
-            if (locacaoEncontrada.CondutorLocacao.VencimentoCnh < DateTime.Today)
+            if (locacaoEncontrada != null && locacaoEncontrada.CondutorLocacao.VencimentoCnh < DateTime.Today)
                 return true;
 
             return false;
@@ -239,7 +239,7 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
         {
             var locacaoEncontrada = repositorioLocacao.SelecionarPorVeiculo(locacao.VeiculoLocacao);
 
-            if (locacaoEncontrada.VeiculoLocacao.StatusVeiculo != "Disponível")
+            if (locacaoEncontrada != null && locacaoEncontrada.VeiculoLocacao.StatusVeiculo != "Disponível")
                 return true;
 
             return false;

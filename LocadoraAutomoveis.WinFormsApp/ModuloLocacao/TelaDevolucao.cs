@@ -35,14 +35,15 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             InitializeComponent();
             ObterPrecoCombustiveis();
-            dataDevolvido = dpDataDevolvido.Value;
-            nivelTanque = cmbTanque.Text;
+            
         }
 
         private void ObterPrecoCombustiveis()
         {
+            confs = new();
             configuracao = new();
             serializador = new(confs);
+            confs = serializador.ObterArquivo();
             configuracao = confs[0];
 
             precoGasolina = Convert.ToDouble(configuracao.valorGasolina);
@@ -52,7 +53,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(ValidadorCampos.ValidarCampoData(dpDataDevolvido.Text) == false)
+            dataDevolvido = dpDataDevolvido.Value;
+            nivelTanque = cmbTanque.Text;
+
+            if (ValidadorCampos.ValidarCampoData(dpDataDevolvido.Text) == false)
             {
                 MessageBox.Show("Data de devolução inválida", "Aviso");
                 this.DialogResult = DialogResult.None;

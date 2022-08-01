@@ -24,7 +24,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
         private void ObterTextosNoTextBox()
         {
             gravador = new(config);
-            var configuracoes = gravador.ObterArquivo(@"C:\temp\ConfiguracaoCombustivel.json");
+            var configuracoes = gravador.ObterArquivo();
             var conf = configuracoes[0];
 
             txbGasolina.Text = conf.valorGasolina;

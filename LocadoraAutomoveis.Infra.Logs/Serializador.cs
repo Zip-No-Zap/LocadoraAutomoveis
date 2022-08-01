@@ -48,7 +48,7 @@ namespace LocadoraAutomoveis.Infra.Logs
             }
         }
 
-        public List<Configuracao> ObterArquivo(string diretorio)
+        public List<Configuracao> ObterArquivo()
         {
             try
             {
@@ -61,7 +61,7 @@ namespace LocadoraAutomoveis.Infra.Logs
                     _diretorio = ObterDiretorio();
                 }
 
-                using (var reader = new StreamReader(diretorio))
+                using (var reader = new StreamReader(_diretorio))
                 {
                     pegaArquivo = reader.ReadToEnd();
                 }

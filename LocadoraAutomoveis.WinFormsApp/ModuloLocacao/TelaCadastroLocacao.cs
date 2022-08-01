@@ -266,8 +266,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
         {
             GrupoVeiculo grupo = CarregarVeiculos();
-
-            //HabilitarPlanos(grupo);
         }
 
         private bool VerificarSeGrupoTemPlano(GrupoVeiculo grupo)
@@ -331,7 +329,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             CalcularPlanos();
 
-            lblTotalPrevisto.Text = Locacao.TotalPrevisto.ToString();
+            lblTotalPrevisto.Text = Locacao.TotalPrevisto.ToString("N2");
         }
 
         private void CalcularItensAdicionais()
@@ -478,7 +476,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public void GerarPdf()
         {
-            if (btnRegistrarDevolucao.Visible == false)
+            if (btnLimpar.Enabled == true)
                 CarregarRichTextLocacao();
             else
                 CarregarRichTextDevolucao();
@@ -511,8 +509,21 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     }
                 }
             }
+
+            MarcarPlanosNosItensEdicao();
         }
 
+        private void MarcarPlanosNosItensEdicao()
+        {
+            Locacao.PlanoLocacao_Descricao = cmbPlano.Text;
+
+            for (int i = 0; i < listTaxasAdicionais.Items.Count; i++)
+            {
+                if (listTaxasAdicionais.Items[i].ToString().Contains("Plano"))
+                    listTaxasAdicionais.SetItemChecked(i, true);
+            }
+
+        }
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             cmbClientes.Items.Clear();
