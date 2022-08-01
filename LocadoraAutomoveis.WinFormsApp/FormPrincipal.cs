@@ -1,15 +1,17 @@
 ﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator;
+using LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao;
 using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Condutor;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraAutomoveis.WinFormsApp.ModuloLocacao;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Taxa;
 using System.Windows.Forms;
 using System;
-using LocadoraAutomoveis.WinFormsApp.ModuloLocacao;
+
 
 namespace LocadoraAutomoveis.WinFormsApp
 {
@@ -176,6 +178,11 @@ namespace LocadoraAutomoveis.WinFormsApp
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorLocacao>());
             ConfigurarToolbox();
+        }
+
+        private void combustívelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(serviceLocator.Get<ControladorConfiguracao>());
         }
     }
 }

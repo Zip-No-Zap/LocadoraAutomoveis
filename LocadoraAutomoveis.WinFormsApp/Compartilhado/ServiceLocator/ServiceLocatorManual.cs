@@ -17,12 +17,14 @@ using LocadoraAutomoveis.Infra.Orm.ModuloTaxa;
 using LocadoraAutomoveis.Infra.Orm.ModuloVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Cliente;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Condutor;
+using LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario;
 using LocadoraAutomoveis.WinFormsApp.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Taxa;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo;
 using LocadoraAutomoveis.WinFormsApp.ModuloLocacao;
+using LocadoraVeiculos.Dominio.Modulo_Configuracao;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.IO;
@@ -49,6 +51,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
 
         private void InicializarControladores()
         {
+            //CaonfiguradorCombustível
+            var config = new Configuracao();
 
             //RepositorioOrm - LocadoraAutomoveisOrmDB
             var configuracao = new ConfigurationBuilder()
@@ -88,6 +92,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
             controladores.Add("ControladorCondutor", new ControladorCondutor(servicoCondutorOrm, servicoClienteOrm));
             controladores.Add("ControladorCliente", new ControladorCliente(servicoClienteOrm));
             controladores.Add("ControladorLocacao", new ControladorLocacao(servicoLocacaoOrm, servicoCondutorOrm, servicoVeiculoOrm, servicoTaxaOrm, servicoClienteOrm, servicoGrupoVeiculoOrm, servicoPlanoOrm));
+            controladores.Add("ControladorConfiguracao", new ControladorConfiguracao(config));
         }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocadoraVeiculos.Dominio.Modulo_Configuracao
 {
@@ -11,20 +8,15 @@ namespace LocadoraVeiculos.Dominio.Modulo_Configuracao
         public string valorGasolina { get; set; }
 
         public string valorDiesel { get; set; }
-
-        public Configuracao(string gasolina, string diesel)
-        {
-            valorGasolina = gasolina;
-            valorDiesel = diesel;
-        }
+        public string valorAlcool { get; set; }
 
         public override bool Equals(object obj)
         {
             return obj is Configuracao configuracao &&
                 valorGasolina == configuracao.valorGasolina &&
-                valorDiesel == configuracao.valorDiesel;
-
-        }
+                valorDiesel == configuracao.valorDiesel &&
+                valorAlcool == configuracao.valorAlcool;
+       }
         public override int GetHashCode()
         {
             HashCode hash = new HashCode();

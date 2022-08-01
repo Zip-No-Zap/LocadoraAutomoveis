@@ -1,37 +1,29 @@
-﻿using FluentResults;
-using LocadoraVeiculos.Dominio.Modulo_Configuracao;
-using System;
+﻿using LocadoraVeiculos.Dominio.Modulo_Configuracao;
+using LocadoraAutomoveis.Infra.Logs;
 using System.Windows.Forms;
+using FluentResults;
+using System;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
 {
     public partial class ConfiguracaoControl : UserControl
     {
         private Configuracao configuracao;
-        public ConfiguracaoControl()
+
+        private readonly ConfiguracaoLogger configuracaologger;
+
+        public ConfiguracaoControl(Configuracao configuracao)
         {
             InitializeComponent();
+
+            txbGasolina.Text = configuracao.valorGasolina;
+            txbDiesel.Text = configuracao.valorDiesel;
+            txbAlcool.Text = configuracao.valorAlcool;
         }
 
         public Func<Configuracao, Result<Configuracao>> GravarRegistro
         {
             get; set;
-        }
-
-        public Configuracao GrupoVeiculo
-        {
-            get
-            {
-                return configuracao;
-            }
-            set
-            {
-                configuracao = value;
-
-                txbGasolina.Text = configuracao.valorGasolina;
-                txbDiesel.Text = configuracao.valorDiesel;
-
-            }
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
