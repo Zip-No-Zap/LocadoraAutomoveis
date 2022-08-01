@@ -1,12 +1,12 @@
-﻿using FluentResults;
-using FluentValidation.Results;
-using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+﻿using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloLocacao;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
+using System.Collections.Generic;
+using FluentValidation.Results;
+using FluentResults;
+using System.Linq;
 using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 
 namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
@@ -184,6 +184,12 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
             if (VeiculoDuplicado(locacao))
                 erros.Add(new Error("Veículo duplicado"));
 
+            if (CnhVencido(locacao))
+                erros.Add(new Error("CNH vencido"));
+
+            if (VeiculoIndisponivel(locacao))
+                erros.Add(new Error($"Veículo indisponível para locação. Status: {locacao.VeiculoLocacao.StatusVeiculo}"));
+
             if (erros.Any())
                 return Result.Fail(erros);
 
@@ -217,6 +223,26 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
             return veiculoEncontrado != null &&
                    veiculoEncontrado.VeiculoLocacao.Equals(locacao.VeiculoLocacao) &&
                   !veiculoEncontrado.Id.Equals(locacao.Id);
+        }
+
+        private bool CnhVencido(Locacao locacao)
+        {
+            var locacaoEncontrada = repositorioLocacao.SelecionarPorCondutor(locacao.CondutorLocacao);
+
+            if (locacaoEncontrada.CondutorLocacao.VencimentoCnh < DateTime.Today)
+                return true;
+
+            return false;
+        }
+
+        private bool VeiculoIndisponivel(Locacao locacao)
+        {
+            var locacaoEncontrada = repositorioLocacao.SelecionarPorVeiculo(locacao.VeiculoLocacao);
+
+            if (locacaoEncontrada.VeiculoLocacao.StatusVeiculo != "Disponível")
+                return true;
+
+            return false;
         }
 
         #endregion

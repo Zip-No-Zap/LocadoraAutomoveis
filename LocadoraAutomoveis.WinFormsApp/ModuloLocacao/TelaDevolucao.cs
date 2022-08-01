@@ -1,12 +1,21 @@
-﻿using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+﻿using LocadoraVeiculos.Dominio.Modulo_Configuracao;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using System.Windows.Forms;
 using System;
-
+using LocadoraAutomoveis.Infra.Logs;
+using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 {
     public partial class TelaDevolucao : Form
     {
+        List<Configuracao> confs;
+        Configuracao configuracao;
+        Serializador serializador;
+        double precoGasolina;
+        double precoDiesel;
+        double precoAlcool;
+
         public DateTime dataLocacao;
         public DateTime dataDevolucaoLocacao;
         public double totalDeFato = 0;
@@ -23,6 +32,18 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         public TelaDevolucao()
         {
             InitializeComponent();
+            ObterPrecoCombustiveis();
+        }
+
+        private void ObterPrecoCombustiveis()
+        {
+            configuracao = new();
+            serializador = new(confs);
+            configuracao = confs[0];
+
+            precoGasolina = Convert.ToDouble(configuracao.valorGasolina);
+            precoDiesel = Convert.ToDouble(configuracao.valorDiesel);
+            precoAlcool = Convert.ToDouble(configuracao.valorAlcool);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -106,13 +127,13 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             double valor = 0;
 
             if(tipoCombustivel == "Gasolina")
-               valor = 6.50 * tanqueDeduzido;
+               valor = precoGasolina * tanqueDeduzido;
 
             if (tipoCombustivel == "Diesel")
-                valor = 7.55 * tanqueDeduzido;
+                valor = precoDiesel * tanqueDeduzido;
 
             if (tipoCombustivel == "Álcool")
-                valor = 5.30 * tanqueDeduzido;
+                valor = precoAlcool * tanqueDeduzido;
 
             return valor;
         }

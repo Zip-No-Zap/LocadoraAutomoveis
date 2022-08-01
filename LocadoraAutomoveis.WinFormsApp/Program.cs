@@ -1,8 +1,8 @@
+using LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator;
 using GeradorTestes.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Logs;
-using LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator;
-using System;
 using System.Windows.Forms;
+using System;
 
 namespace LocadoraAutomoveis.WinFormsApp
 {

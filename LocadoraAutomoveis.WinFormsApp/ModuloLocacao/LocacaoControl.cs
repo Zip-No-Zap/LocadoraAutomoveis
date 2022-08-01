@@ -29,6 +29,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 new DataGridViewTextBoxColumn { DataPropertyName = "DataLocacao", HeaderText = "Data Locação"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "DataDevolucao", HeaderText = "Data Devolução"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "PlanoLocacao_Descricao", HeaderText = "Plano"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "PlanoLocacao_Descricao", HeaderText = "Plano"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "TotalPrevisto", HeaderText = "Valor"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Status", HeaderText = "Situação"},
             };
 
@@ -56,6 +58,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     registro.DataLocacao.ToShortDateString(),
                     registro.DataDevolucao.ToShortDateString(),
                     registro.PlanoLocacao_Descricao,
+                    registro.TotalPrevisto.ToString("N2"),
                     registro.Status);
             }
         }
