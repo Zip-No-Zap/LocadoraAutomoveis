@@ -27,7 +27,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 
                 tbDescricao.Text = taxa.Descricao;
                 cbTipo.Text = taxa.Tipo;
-                tbValor.Text = taxa.Valor.ToString();
+                tbValor.Text = taxa.Valor.ToString("N2");
             }
         }
         public TelaCadastroTaxa()

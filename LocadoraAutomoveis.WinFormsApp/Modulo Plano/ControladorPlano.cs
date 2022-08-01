@@ -1,12 +1,12 @@
-﻿using FluentResults;
-using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
-using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
+﻿using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
+using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using FluentResults;
+using System;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
 {

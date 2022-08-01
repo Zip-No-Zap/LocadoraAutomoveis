@@ -27,14 +27,14 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             {
                 plano = value;
 
-                tbValorDiario_Diario.Text = plano.ValorDiario_Diario.ToString();
-                tbValorKmRodado_Diario.Text = plano.ValorPorKm_Diario.ToString();
+                tbValorDiario_Diario.Text = plano.ValorDiario_Diario.ToString("N2");
+                tbValorKmRodado_Diario.Text = plano.ValorPorKm_Diario.ToString("N2");
 
-                tbValorDiario_Livre.Text = plano.ValorDiario_Livre.ToString();
+                tbValorDiario_Livre.Text = plano.ValorDiario_Livre.ToString("N2");
 
-                tbValorDiario_Controlado.Text = plano.ValorDiario_Controlado.ToString();
-                tbKmRodado_Controlado.Text = plano.ValorPorKm_Controlado.ToString();
-                tbLimiteQuilometragem.Text = plano.LimiteQuilometragem_Controlado.ToString();
+                tbValorDiario_Controlado.Text = plano.ValorDiario_Controlado.ToString("N2");
+                tbKmRodado_Controlado.Text = plano.ValorPorKm_Controlado.ToString("N2");
+                tbLimiteQuilometragem.Text = plano.LimiteQuilometragem_Controlado.ToString("N2");
             }
         }
 
