@@ -8,7 +8,9 @@ namespace LocadoraAutomoveis.Infra.Logs
     {
         public ConfiguracaoLogger()
         {
-            CriarLoggerCombustivel();
+            CriarLoggerGasolina();
+            CriarLoggerDiesel();
+            CriarLoggerAlcool();
         }
 
         public ConfiguracaoLogs ConfiguracaoLogs { get; set; }
@@ -32,7 +34,7 @@ namespace LocadoraAutomoveis.Infra.Logs
                 .CreateLogger();
         }
 
-        public void CriarLoggerCombustivel()
+        public void CriarLoggerGasolina()
         {
             var configuracao = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -40,14 +42,46 @@ namespace LocadoraAutomoveis.Infra.Logs
                 .Build();
 
             var diretorioGasolina = configuracao
-                .GetSection("ConfiguracaoCombustivel")
+                .GetSection("ConfiguracaoGasolina")
                 .GetSection("Preco")
                 .Value;
 
+            Log.Logger = new LoggerConfiguration()
+               .MinimumLevel.Debug()
+               .WriteTo.Debug()
+               .WriteTo.File(diretorioGasolina + "Log.txt", rollingInterval: RollingInterval.Day)
+               .CreateLogger();
+
+            ConfiguracaoLogs = new ConfiguracaoLogs { PrecoGasolina = diretorioGasolina };
+        }
+
+        public void CriarLoggerDiesel()
+        {
+            var configuracao = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfiguracaoAplicacao.json")
+                .Build();
+
             var diretorioDiesel = configuracao
-                .GetSection("ConfiguracaoDiesel")
-                .GetSection("Preco")
-                .Value;
+             .GetSection("ConfiguracaoDiesel")
+             .GetSection("Preco")
+             .Value;
+
+            Log.Logger = new LoggerConfiguration()
+              .MinimumLevel.Debug()
+              .WriteTo.Debug()
+              .WriteTo.File(diretorioDiesel + "Log.txt", rollingInterval: RollingInterval.Day)
+              .CreateLogger();
+
+            ConfiguracaoLogs = new ConfiguracaoLogs { PrecoDiesel = diretorioDiesel };
+        }
+
+        public void CriarLoggerAlcool()
+        {
+            var configuracao = new ConfigurationBuilder()
+               .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("ConfiguracaoAplicacao.json")
+               .Build();
 
             var diretorioAlcool = configuracao
                 .GetSection("ConfiguracaoAlcool")
@@ -55,25 +89,11 @@ namespace LocadoraAutomoveis.Infra.Logs
                 .Value;
 
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Debug()
-                .WriteTo.File(diretorioGasolina + "Log.txt", rollingInterval: RollingInterval.Day)
-                .CreateLogger();
+             .MinimumLevel.Debug()
+             .WriteTo.Debug()
+             .WriteTo.File(diretorioAlcool + "Log.txt", rollingInterval: RollingInterval.Day)
+             .CreateLogger();
 
-            Log.Logger = new LoggerConfiguration()
-               .MinimumLevel.Debug()
-               .WriteTo.Debug()
-               .WriteTo.File(diretorioDiesel + "Log.txt", rollingInterval: RollingInterval.Day)
-               .CreateLogger();
-
-            Log.Logger = new LoggerConfiguration()
-               .MinimumLevel.Debug()
-               .WriteTo.Debug()
-               .WriteTo.File(diretorioAlcool + "Log.txt", rollingInterval: RollingInterval.Day)
-               .CreateLogger();
-
-            ConfiguracaoLogs = new ConfiguracaoLogs { PrecoGasolina = diretorioGasolina };
-            ConfiguracaoLogs = new ConfiguracaoLogs { PrecoDiesel = diretorioDiesel };
             ConfiguracaoLogs = new ConfiguracaoLogs { PrecoAlcool = diretorioAlcool };
         }
 

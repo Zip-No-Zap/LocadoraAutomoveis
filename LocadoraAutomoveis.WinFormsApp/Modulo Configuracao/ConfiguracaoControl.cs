@@ -2,32 +2,47 @@
 using LocadoraAutomoveis.Infra.Logs;
 using System.Windows.Forms;
 using System;
-
+using System.Collections.Generic;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
 {
     public partial class ConfiguracaoControl : UserControl
     {
-        private Configuracao configuracao;
-
+        private readonly Configuracao conf;
+        private readonly List<Configuracao> config = new();
         private readonly ConfiguracaoLogger configuracaologger;
+        private Serializador gravador;
 
-        public ConfiguracaoControl(ConfiguracaoLogger configuracao)
+        public ConfiguracaoControl()
         {
             InitializeComponent();
 
-            configuracaologger = configuracao;
+            conf = new();
 
-            txbGasolina.Text = configuracao.ConfiguracaoLogs.PrecoGasolina;
-            txbDiesel.Text = configuracao.ConfiguracaoLogs.PrecoDiesel;
-            txbAlcool.Text = configuracao.ConfiguracaoLogs.PrecoAlcool;
+            ObterTextosNoTextBox();
+        }
+
+        private void ObterTextosNoTextBox()
+        {
+            gravador = new(config);
+            var configuracoes = gravador.ObterArquivo(@"C:\Temp\");
+            var conf = configuracoes[0];
+
+            txbGasolina.Text = conf.valorGasolina;
+            txbDiesel.Text = conf.valorDiesel;
+            txbAlcool.Text = conf.valorAlcool;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            configuracao.valorGasolina = txbGasolina.Text;
-            configuracao.valorDiesel = txbDiesel.Text;
-            configuracao.valorAlcool = txbAlcool.Text;
+            conf.valorGasolina =  txbGasolina.Text;
+            conf.valorDiesel = txbDiesel.Text;
+            conf.valorAlcool = txbAlcool.Text;
+
+            config.Add(conf);
+
+            gravador = new(config);
+            gravador.GuardarArquivo();
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)

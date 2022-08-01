@@ -6,7 +6,6 @@ namespace LocadoraVeiculos.Dominio.Modulo_Configuracao
     public class Configuracao
     {
         public string valorGasolina { get; set; }
-
         public string valorDiesel { get; set; }
         public string valorAlcool { get; set; }
 

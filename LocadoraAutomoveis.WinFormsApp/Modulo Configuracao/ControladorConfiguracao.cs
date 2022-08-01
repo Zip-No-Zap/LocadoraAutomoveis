@@ -1,17 +1,18 @@
 ﻿
 using LocadoraAutomoveis.Infra.Logs;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_Configuracao;
 using System.Windows.Forms;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
 {
     public  class ControladorConfiguracao : ControladorBase
     {
-        private readonly ConfiguracaoLogger configuracao;
+       //private readonly ConfiguracaoLogger configuracao;
 
         public ControladorConfiguracao(ConfiguracaoLogger configuracao)
         {
-            this.configuracao = configuracao;
+            //this.configuracao = configuracao;
         }
 
         public override void Editar()
