@@ -1,8 +1,8 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_Configuracao;
 using LocadoraAutomoveis.Infra.Logs;
 using System.Windows.Forms;
-using FluentResults;
 using System;
+
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
 {
@@ -12,27 +12,22 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
 
         private readonly ConfiguracaoLogger configuracaologger;
 
-        public ConfiguracaoControl(Configuracao configuracao)
+        public ConfiguracaoControl(ConfiguracaoLogger configuracao)
         {
             InitializeComponent();
 
-            txbGasolina.Text = configuracao.valorGasolina;
-            txbDiesel.Text = configuracao.valorDiesel;
-            txbAlcool.Text = configuracao.valorAlcool;
-        }
+            configuracaologger = configuracao;
 
-        public Func<Configuracao, Result<Configuracao>> GravarRegistro
-        {
-            get; set;
+            txbGasolina.Text = configuracao.ConfiguracaoLogs.PrecoGasolina;
+            txbDiesel.Text = configuracao.ConfiguracaoLogs.PrecoDiesel;
+            txbAlcool.Text = configuracao.ConfiguracaoLogs.PrecoAlcool;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
             configuracao.valorGasolina = txbGasolina.Text;
             configuracao.valorDiesel = txbDiesel.Text;
-
-            var resultadoValidacao = GravarRegistro(configuracao);
-
+            configuracao.valorAlcool = txbAlcool.Text;
         }
 
         private void btnLimpar_Click(object sender, EventArgs e)

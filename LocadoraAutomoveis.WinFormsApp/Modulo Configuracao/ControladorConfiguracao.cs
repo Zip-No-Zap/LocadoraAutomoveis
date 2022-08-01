@@ -1,16 +1,15 @@
 ﻿
-using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraAutomoveis.Infra.Logs;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using System.Windows.Forms;
-using LocadoraVeiculos.Dominio.Modulo_Configuracao;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
 {
     public  class ControladorConfiguracao : ControladorBase
     {
-        private readonly Configuracao configuracao;
+        private readonly ConfiguracaoLogger configuracao;
 
-        public ControladorConfiguracao(Configuracao configuracao)
+        public ControladorConfiguracao(ConfiguracaoLogger configuracao)
         {
             this.configuracao = configuracao;
         }
@@ -27,7 +26,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
 
         public override void Inserir()
         {
-
         }
 
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()

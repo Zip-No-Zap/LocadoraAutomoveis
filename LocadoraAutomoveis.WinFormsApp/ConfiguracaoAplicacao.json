@@ -14,5 +14,18 @@
 
   "ConnectionStrings": {
     "SqlServer": "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDB;Integrated Security=True"
+  },
+
+  "ConfiguracaoGasolina": {
+    "Preco": "6,50"
+  },
+
+  "ConfiguracaoDiesel": {
+    "Preco": "7,55"
+  },
+
+  "ConfiguracaoAlcool": {
+    "Preco": "5,30"
   }
+
 }

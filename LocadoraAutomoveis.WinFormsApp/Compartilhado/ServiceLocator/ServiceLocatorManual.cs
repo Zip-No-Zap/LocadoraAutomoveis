@@ -6,6 +6,7 @@ using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
 using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
 using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
 using LocadoraAutomoveis.Aplicacao.ModuloLocacao;
+using LocadoraAutomoveis.Infra.Logs;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloCliente;
 using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
@@ -24,7 +25,6 @@ using LocadoraAutomoveis.WinFormsApp.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Taxa;
 using LocadoraAutomoveis.WinFormsApp.Modulo_Veiculo;
 using LocadoraAutomoveis.WinFormsApp.ModuloLocacao;
-using LocadoraVeiculos.Dominio.Modulo_Configuracao;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.IO;
@@ -52,7 +52,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado.ServiceLocator
         private void InicializarControladores()
         {
             //CaonfiguradorCombustível
-            var config = new Configuracao();
+            var config = new ConfiguracaoLogger();
 
             //RepositorioOrm - LocadoraAutomoveisOrmDB
             var configuracao = new ConfigurationBuilder()
