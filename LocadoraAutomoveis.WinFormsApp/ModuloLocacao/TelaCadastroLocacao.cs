@@ -135,6 +135,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 }
             }
 
+            AdicionarPlanoAosItensAdicionais(cmbGrupoVeiculo.Text);
+
             MarcarItensDeEdicao();
         }
 
