@@ -4,9 +4,9 @@ using Serilog;
 
 namespace LocadoraAutomoveis.Infra.Logs
 {
-    public static class ConfiguracaoLogger
+    public  class ConfiguracaoLogger
     {
-        public static void CriarLogger()
+        public  void CriarLogger()
         {
             var configuracao = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())

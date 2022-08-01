@@ -15,7 +15,9 @@ namespace LocadoraAutomoveis.WinFormsApp
         static void Main()
         {
             MigradorBancoDadosLocadoraAutomoveis.AtualizarBancoDados();
-            ConfiguracaoLogger.CriarLogger();
+            
+            ConfiguracaoLogger configuracao = new();
+            configuracao.CriarLogger();
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();

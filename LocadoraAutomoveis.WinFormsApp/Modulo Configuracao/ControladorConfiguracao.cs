@@ -12,7 +12,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Configuracao
 
         public ControladorConfiguracao(ConfiguracaoLogger configuracao)
         {
-            //this.configuracao = configuracao;
         }
 
         public override void Editar()
