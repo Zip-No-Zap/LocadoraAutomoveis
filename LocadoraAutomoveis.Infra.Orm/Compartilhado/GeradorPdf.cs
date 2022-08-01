@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using LocadoraVeiculos.Dominio.Modulo_Cliente;
+
 
 namespace GeradorTestes.Infra.Arquivo.Compartilhado
 {
@@ -43,8 +43,9 @@ namespace GeradorTestes.Infra.Arquivo.Compartilhado
             paragrafo.Alignment = Element.ALIGN_LEFT;
             paragrafo.Add(texto + "\n");
 
-            Image imagem = Image.GetInstance(@"C:\Users\Thais\OneDrive\Área de Trabalho\Cantinho do William\projeto Locadora\imagens carros\Lobini h1 preto.jpg");
-            imagem.ScalePercent(60);
+            //Image imagem = Image.GetInstance(@"C:\Users\Thais\OneDrive\Área de Trabalho\Cantinho do William\projeto Locadora\imagens carros\Lobini h1 preto.jpg");
+            //imagem.ScalePercent(30);
+            //doc.Add(imagem);
 
             doc.Open();
             doc.Add(paragrafo);

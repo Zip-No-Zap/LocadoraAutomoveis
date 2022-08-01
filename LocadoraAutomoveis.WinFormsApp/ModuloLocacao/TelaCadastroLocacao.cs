@@ -388,20 +388,22 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private void CarregarRichText()
         {
-            string detalhe = 
+            string detalhe =
             $"\n" +
             $"------------------------------------------------------------------------" +
             $"DETALHES DA LOCAÇÃO \n\r" +
-            $"Total: { locacao.TotalPrevisto.ToString("N2") } \n\r" +
+            $"Total: {locacao.TotalPrevisto.ToString("N2")} \n\r" +
             $"------------------------------------------------------------------------" +
-            $"Data Locação: { dpDataLocacao.Text} \n\r" +
-            $"Data Devolução: { dpDataDevolucao.Text}\n\r" +
+            $"Data Locação: {dpDataLocacao.Text} \n\r" +
+            $"Data Devolução: {dpDataDevolucao.Text}\n\r" +
             $"------------------------------------------------------------------------" +
-            $"Cliente: { cmbClientes.Text} \n\r" +
-            $"Condutor: { cmbCondutor.Text}  \n\r" +
-            $"CNH: { locacao.CondutorLocacao.Cnh} \n\r" +
-            $"Grupo: { cmbGrupoVeiculo.Text}  \n\r" +
-            $"Veículo: { cmbVeiculo.Text}  \n\r" +
+            $"Cliente: {cmbClientes.Text} \n\r" +
+            $"Condutor: {cmbCondutor.Text}  \n\r" +
+            $"CNH: {locacao.CondutorLocacao.Cnh} \n\r" +
+            $"------------------------------------------------------------------------" +
+            $"Grupo: {cmbGrupoVeiculo.Text}  \n\r" +
+            $"Veículo: {cmbVeiculo.Text}  \n\r" +
+            $""+
             $"Placa: { locacao.VeiculoLocacao.Placa}  \n\r" +
             $"Quilometragem Registrada: { txtKmAtual.Text}\n\r" +
             $"------------------------------------------------------------------------" +
@@ -411,8 +413,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             rtPDF.Text = detalhe;
 
             CarregarItensRichText();
-
-            //CarregarImagem();
         }
 
         private void CarregarImagemPdf()
