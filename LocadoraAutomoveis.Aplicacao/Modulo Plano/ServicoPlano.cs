@@ -3,23 +3,26 @@ using FluentValidation.Results;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloPlano;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
-using Serilog;
-using System;
+using LocadoraAutomoveis.Infra.Orm.ModuloLocacao;
 using System.Collections.Generic;
 using System.Linq;
+using Serilog;
+using System;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 {
     public class ServicoPlano
     {
         readonly RepositorioPlanoOrm repositorioPlano;
+        readonly RepositorioLocacaoOrm repositorioLocacao;
         readonly IContextoPersistencia contextoPersistOrm;
         ValidadorPlano validadorPlano;
 
-        public ServicoPlano(RepositorioPlanoOrm repositorioPlano, IContextoPersistencia contextoPersistOrm)
+        public ServicoPlano(RepositorioPlanoOrm repositorioPlano, IContextoPersistencia contextoPersistOrm, RepositorioLocacaoOrm repositorioLocacao)
         {
             this.repositorioPlano = repositorioPlano;
             this.contextoPersistOrm = contextoPersistOrm;
+            this.repositorioLocacao = repositorioLocacao;
         }
 
         public Result<Plano> Inserir(Plano plano)
@@ -33,7 +36,6 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
                 foreach (var erro in resultadoValidacao.Errors) {
 
                     Log.Logger.Warning("Falha ao tentar inserir Plano. {plano} -> Motivo: {erro}", plano.Id, erro.Message);
-
                 }
 
                 return Result.Fail(resultadoValidacao.Errors);
@@ -51,6 +53,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar inserir Plano";
 
                 Log.Logger.Error(ex, msgErro + "{PlanoId}", plano.Id);
@@ -88,6 +92,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
             }
             catch(Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar editar Plano";
 
                 Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
@@ -100,24 +106,36 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
         {
             Log.Logger.Debug("Tentando excluir Plano... {@grupo}", plano);
 
-            try
+            if (VerificarRelacionamento(plano) == true)
             {
-                repositorioPlano.Excluir(plano);
+                try
+                {
+                    repositorioPlano.Excluir(plano);
 
-                contextoPersistOrm.GravarDados();
+                    contextoPersistOrm.GravarDados();
 
-                Log.Logger.Information("plano {planoId} excluído com sucesso", plano.Id);
+                    Log.Logger.Information("plano {planoId} excluído com sucesso", plano.Id);
 
-                return Result.Ok();
+                    return Result.Ok();
+                }
+                catch (Exception ex)
+                {
+                    contextoPersistOrm.DesfazerAlteracoes();
+
+                    string msgErro = "Falha no sistema ao tentar excluir o Plano";
+
+                    Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
+
+                    return Result.Fail(msgErro);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                string msgErro = "Falha no sistema ao tentar excluir o Plano";
+                string msgErro = "O plano está relacionado à outra tabela e não pode ser excluído";
 
-                Log.Logger.Error(ex, msgErro + "{planoId}", plano.Id);
+                Log.Logger.Error(msgErro + "{Plano}", plano.Id);
 
                 return Result.Fail(msgErro);
-
             }
         }
 
@@ -155,7 +173,6 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
         public Result Validar(Plano plano)
         {
-
             validadorPlano = new ValidadorPlano();
 
             var resultadoValidacao = validadorPlano.Validate(plano);
@@ -170,6 +187,9 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
             if (PlanoDiarioDuplicado(plano))
                 erros.Add(new Error("Plano de Cobrança duplicado"));
 
+            if (PlanoGrupoDuplicado(plano))
+                erros.Add(new Error("Grupoo do plano duplicado"));
+
             if (erros.Any())
                 return Result.Fail(erros);
 
@@ -180,32 +200,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 
         private bool PlanoDiarioDuplicado(Plano plano)
         {
-            //repositorioPlano.Sql_selecao_por_parametro = @"SELECT 
-          
-            //                                                PLANO.[ID],
-            //                                                PLANO.[GRUPO_ID],
-            //                                                PLANO.[VALORDIARIO_DIARIO],
-            //                                                PLANO.[VALORPORKM_DIARIO],
-                                                 
-            //                                                PLANO.[VALORDIARIO_LIVRE],
-                                               
-            //                                                PLANO.[VALORDIARIO_CONTROLADO],
-            //                                                PLANO.[VALORPORKM_CONTROLADO],
-            //                                                PLANO.[LIMITEQUILOMETRAGEM_CONTROLADO],
-                                                            
-            //                                                GRUPO.[NOMEGRUPO] AS GRUPO_NOME
-                         
-            //                                            FROM TBPLANO AS PLANO
-
-            //                                                INNER JOIN TBplano AS GRUPO 
-
-            //                                                ON PLANO.GRUPO_ID = GRUPO.ID 
-                                            
-            //                                            WHERE VALORDIARIO_DIARIO = @VALORDIARIODIARIO";
-
-            //repositorioPlano.PropriedadeParametro = "VALORDIARIODIARIO";
-
-            var planoEncontrado = repositorioPlano.SelecionarPorParametro(plano.ValorDiario_Diario.ToString());
+            var planoEncontrado = repositorioPlano.SelecionarPorValor(plano.ValorDiario_Diario);
 
             return planoEncontrado != null &&
                    planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&
@@ -219,6 +214,26 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
                    planoEncontrado.LimiteQuilometragem_Controlado.Equals(plano.LimiteQuilometragem_Controlado) &&
 
                   !planoEncontrado.Id.Equals(plano.Id);
+        }
+
+        private bool PlanoGrupoDuplicado(Plano plano)
+        {
+            var planoEncontrado = repositorioPlano.SelecionarPorGrupo(plano.Grupo.Nome);
+
+            return planoEncontrado != null &&
+                   planoEncontrado.Grupo.Nome.Equals(plano.Grupo.Nome) &&
+                  !planoEncontrado.Id.Equals(plano.Id);
+        }
+
+        private bool VerificarRelacionamento(Plano plano)
+        {
+            bool resultado = false;
+
+            var locacoes = repositorioLocacao.SelecionarTodos();
+
+            resultado = locacoes.Any(x => x.PlanoLocacao.Id == (plano.Id));
+
+            return resultado;
         }
 
         #endregion

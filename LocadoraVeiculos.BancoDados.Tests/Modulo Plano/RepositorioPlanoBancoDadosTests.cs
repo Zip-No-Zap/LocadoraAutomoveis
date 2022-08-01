@@ -1,4 +1,7 @@
-﻿using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
+﻿using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
+using LocadoraAutomoveis.Infra.Orm.ModuloPlano;
+using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
 using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
@@ -12,17 +15,16 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
     [TestClass]
     public class RepositorioPlanoBancoDadosTests
     {
-
-       readonly RepositorioGrupoVeiculoEmBancoDados repoGrupo;
-       readonly RepositorioPlanoEmBancoDados repoPlano;
+        readonly RepositorioGrupoVeiculoOrm repoGrupo;
+        readonly RepositorioPlanoOrm repoPlano;
+        LocadoraAutomoveisDbContext dbContext;
+        const string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDBTestes;Integrated Security=True";
 
         public RepositorioPlanoBancoDadosTests()
         {
-            repoPlano = new();
-            repoGrupo = new();
-
-            //ResetarBancoDados();
-            //ResetarBancoDadosGrupo();
+            dbContext = new(connectionString);
+            repoGrupo = new(dbContext);
+            repoPlano = new(dbContext);
         }
 
         [TestMethod]
@@ -32,9 +34,11 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
             Plano plano = InstanciarPlano();
            
             repoGrupo.Inserir(plano.Grupo);
+            dbContext.SaveChanges();
 
             //action
             repoPlano.Inserir(plano);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repoPlano.SelecionarPorId(plano.Id);
@@ -51,13 +55,15 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
 
             repoGrupo.Inserir(plano.Grupo);
             repoPlano.Inserir(plano);
-           
+            dbContext.SaveChanges();
+
             Plano planoSelecionado = repoPlano.SelecionarPorId(plano.Id);
 
             planoSelecionado.ValorDiario_Diario = 9000;
 
             //action
             repoPlano.Editar(planoSelecionado);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repoPlano.SelecionarPorId(planoSelecionado.Id);
@@ -73,9 +79,11 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
          
             repoGrupo.Inserir(plano.Grupo);
             repoPlano.Inserir(plano);
+            dbContext.SaveChanges();
 
             //action
             repoPlano.Excluir(plano);
+            dbContext.SaveChanges();
 
             //assert
             var resultado = repoPlano.SelecionarPorId(plano.Id);
@@ -93,15 +101,15 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
             repoGrupo.Inserir(plano1.Grupo);
             plano2.Grupo = plano1.Grupo;
             repoPlano.Inserir(plano1); 
-            repoPlano.Inserir(plano2); 
+            repoPlano.Inserir(plano2);
+            dbContext.SaveChanges();
 
             //action
-            var resultado = repoPlano.SelecionarTodos();
+            var resultado = repoPlano.SelecionarTodos(true);
 
             //assert
             Assert.AreNotEqual(0, resultado.Count);
         }
-
 
         [TestMethod]
         public void Deve_selecionar_unico()
@@ -111,6 +119,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Plano
 
             repoGrupo.Inserir(plano.Grupo);
             repoPlano.Inserir(plano);
+            dbContext.SaveChanges();
 
             //action
             var resultado = repoPlano.SelecionarPorId(plano.Id);

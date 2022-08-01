@@ -40,17 +40,21 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloPlano
             return dbsetPlanos.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Plano> SelecionarTodos(bool incluiGrupo)
+        public List<Plano> SelecionarTodos(bool incluiGrupo = true)
         {
-            if (incluiGrupo)
-                return dbsetPlanos.Include(x => x.Grupo).ToList();
-
-            return dbsetPlanos.ToList();
+            return dbsetPlanos
+                .Include(x => x.Grupo)
+                .ToList();
         }
 
-        public Plano SelecionarPorParametro(string valor)
+        public Plano SelecionarPorValor(double valor)
         {
-            return dbsetPlanos.FirstOrDefault(x => x.ValorDiario_Diario == float.Parse(valor));
+            return dbsetPlanos.FirstOrDefault(x => x.ValorDiario_Diario == valor);
+        }
+
+        public Plano SelecionarPorGrupo(string valor)
+        {
+            return dbsetPlanos.FirstOrDefault(x => x.Grupo.Nome == valor);
         }
     }
 }

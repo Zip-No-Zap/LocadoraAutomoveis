@@ -2,29 +2,29 @@
 using FluentValidation.Results;
 using LocadoraAutomoveis.Infra.Orm.Compartilhado;
 using LocadoraAutomoveis.Infra.Orm.ModuloCliente;
+using LocadoraAutomoveis.Infra.Orm.ModuloCondutor;
+using LocadoraAutomoveis.Infra.Orm.ModuloLocacao;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
+using System.Collections.Generic;
 using Serilog;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 {
     public class ServicoCliente
     {
-        //readonly RepositorioClienteEmBancoDados repositorioCliente;
-
         readonly RepositorioClienteOrm repositorioCliente;
+        readonly RepositorioCondutorOrm repositorioCondutor;
+        readonly RepositorioLocacaoOrm repositorioLocacao;
         readonly IContextoPersistencia contextoPersistOrm;
-        ValidadorCliente validadorCliente;
 
-
-        public ServicoCliente(RepositorioClienteOrm repositorioCliente, IContextoPersistencia contextoPersistOrm)
+        public ServicoCliente(RepositorioClienteOrm repositorioCliente, IContextoPersistencia contextoPersistOrm, RepositorioCondutorOrm repositorioCondutor, RepositorioLocacaoOrm repositorioLocacao)
         {
             this.repositorioCliente = repositorioCliente;
             this.contextoPersistOrm = contextoPersistOrm;
-
+            this.repositorioCondutor = repositorioCondutor;
+            this.repositorioLocacao = repositorioLocacao;
         }
 
         public Result<Cliente> Inserir(Cliente cliente)
@@ -47,12 +47,16 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             {
                 repositorioCliente.Inserir(cliente);
 
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Cliente inserido com sucesso. {@cliente}", cliente);
 
                 return Result.Ok(cliente);
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar inserir Cliente.";
 
                 Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
@@ -83,12 +87,16 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             {
                 repositorioCliente.Editar(cliente);
 
+                contextoPersistOrm.GravarDados();
+
                 Log.Logger.Information("Cliente editado com sucesso. {@cliente}", cliente);
 
                 return Result.Ok(cliente);
             }
             catch (Exception ex)
             {
+                contextoPersistOrm.DesfazerAlteracoes();
+
                 string msgErro = "Falha ao tentar editar Cliente";
 
                 Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
@@ -101,19 +109,35 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
         {
             Log.Logger.Debug("Tentando excluir Cliente... {@cliente}", cliente);
 
-            try
+            if (VerificarRelacionamento(cliente) == false)
             {
-                repositorioCliente.Excluir(cliente);
 
-                Log.Logger.Information("Cliente excluído com sucesso. {@cliente}", cliente);
+                try
+                {
+                    repositorioCliente.Excluir(cliente);
 
-                return Result.Ok();
+                    contextoPersistOrm.GravarDados();
+
+                    Log.Logger.Information("Cliente excluído com sucesso. {@cliente}", cliente);
+
+                    return Result.Ok();
+                }
+                catch (Exception ex)
+                {
+                    contextoPersistOrm.DesfazerAlteracoes();
+
+                    string msgErro = "Falha ao tentar excluir Cliente.";
+
+                    Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
+
+                    return Result.Fail(msgErro);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                string msgErro = "Falha ao tentar excluir Cliente.";
+                string msgErro = "O cliente está relacionado à outra tabela e não pode ser excluído";
 
-                Log.Logger.Error(ex, msgErro + "{ClienteId}", cliente.Id);
+                Log.Logger.Error(msgErro + "{Cliente}", cliente.Id);
 
                 return Result.Fail(msgErro);
             }
@@ -151,14 +175,10 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             }
         }
 
-
         #region privates
 
         private bool NomeDuplicado(Cliente cliente)
         {
-           // repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE NOME = @NOMECLIENTE";
-           // repositorioCliente.PropriedadeParametro = "NOMECLIENTE";
-
             var clienteEncontrado = repositorioCliente.SelecionarPorNome(cliente.Nome);
 
             return clienteEncontrado != null &&
@@ -168,22 +188,17 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
         private bool CnpjDuplicado(Cliente cliente)
         {
-           // repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE CNPJ = @CNPJCLIENTE";
-           // repositorioCliente.PropriedadeParametro = "CNPJCLIENTE";
 
             var clienteEncontrado = repositorioCliente.SelecionarPorCnpj(cliente.Cnpj);
 
             return clienteEncontrado != null &&
                    clienteEncontrado.Cnpj != "-" &&
                    clienteEncontrado.Cnpj.Equals(cliente.Cnpj) &&
-                  !clienteEncontrado.Id.Equals(cliente.Id);
+                   !clienteEncontrado.Id.Equals(cliente.Id);
         }
 
         private bool CpfDuplicado(Cliente cliente)
         {
-            //repositorioCliente.Sql_selecao_por_parametro = @"SELECT * FROM TBCLIENTE WHERE CPF = @CPFCLIENTE";
-            //repositorioCliente.PropriedadeParametro = "CPFCLIENTE";
-
             var clienteEncontrado = repositorioCliente.SelecionarPorCpf(cliente.Cpf);
 
             return clienteEncontrado != null &&
@@ -219,8 +234,25 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 
             return Result.Ok();
         }
+        private bool VerificarRelacionamento(Cliente cliente)
+        {
+            bool resultadoCondutor;
+            bool resultadoLocacao;
+            bool resultadofinal = false;
+              
+            var condutores = repositorioCondutor.SelecionarTodos();
+            var locacoes = repositorioLocacao.SelecionarTodos();
+              
+            resultadoCondutor = condutores.Any(x => x.Cliente.Nome == cliente.Nome);
+            resultadoLocacao = locacoes.Any(x => x.ClienteLocacao.Nome == cliente.Nome);
+           
+            if (resultadoCondutor == true || resultadoLocacao == true)
+                resultadofinal = true;
+            
+            return resultadofinal;
+         }
 
-        #endregion
-    }
+         #endregion
+        }
     
 }

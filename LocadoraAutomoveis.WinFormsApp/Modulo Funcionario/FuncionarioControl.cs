@@ -21,7 +21,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "ID", Visible = false},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Login", HeaderText = "Login"},
                 new DataGridViewTextBoxColumn { DataPropertyName = "Salario", HeaderText = "Salário"},

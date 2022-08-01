@@ -1,6 +1,8 @@
 ﻿using FluentResults;
+using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
 using System;
 using System.Collections.Generic;
@@ -12,36 +14,42 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
     {
         ServicoPlano servicoPlano;
         PlanoControl tabelaPlanos;
+        readonly ServicoGrupoVeiculo servicoGrupoVeiculo;
 
-        public ControladorPlano(ServicoPlano servicoPlano)
+        public ControladorPlano(ServicoPlano servicoPlano, ServicoGrupoVeiculo servicoGrupoVeiculo)
         {
             this.servicoPlano = servicoPlano;
+            this.servicoGrupoVeiculo = servicoGrupoVeiculo;
         }
 
         public override void Inserir()
         {
-            TelaCadastroPlano tela = new()
+            Result<List<GrupoVeiculo>> resultadoResult = servicoGrupoVeiculo.SelecionarTodos();
+
+            var grupos = servicoGrupoVeiculo.SelecionarTodos().Value;
+
+            var tela = new TelaCadastroPlano(grupos);
+
+            if (resultadoResult.IsSuccess)
             {
-                Plano = new()
+                tela.Plano = new();
+
+                tela.GravarRegistro = servicoPlano.Inserir;
+
+                DialogResult resultado = tela.ShowDialog();
+
+                if (resultado == DialogResult.OK)
                 {
-                    Grupo = new(null)
-                },
-                
-                GravarRegistro = servicoPlano.Inserir
-            };
-
-
-            DialogResult resultado = tela.ShowDialog();
-
-            if (resultado == DialogResult.OK)
-            {
-                CarregarPlanos();
+                    CarregarPlanos();
+                }
             }
         }
 
         public override void Editar()
         {
             var id = tabelaPlanos.ObtemNumeroPlanoSelecionado();
+
+            var grupos = servicoGrupoVeiculo.SelecionarTodos().Value;
 
             if (id == Guid.Empty)
             {
@@ -50,24 +58,23 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
                 return;
             }
 
-
             var resultado = servicoPlano.SelecionarPorId(id);
 
             if (resultado.IsFailed)
             {
                 MessageBox.Show(resultado.Errors[0].Message,
                     "Edição de Plano", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 return;
             }
 
             var Selecionado = resultado.Value;
 
-            TelaCadastroPlano tela = new();
+            TelaCadastroPlano tela = new(grupos);
 
             tela.Plano = Selecionado;
 
             tela.GravarRegistro = servicoPlano.Editar;
-
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -86,7 +93,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
                 return;
             }
 
-
             var resultado = servicoPlano.SelecionarPorId(id);
 
             if (resultado.IsFailed)
@@ -96,13 +102,16 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
                 return;
             }
 
-            var Selecionado = resultado.Value;
-
+            var selecionado = resultado.Value;
 
             if (MessageBox.Show("Deseja realmente excluir o plano?",
             "Exclusão de Plano", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                servicoPlano.Excluir(Selecionado);
+                var exclusaoResult = servicoPlano.Excluir(selecionado);
+
+                if (exclusaoResult.IsFailed)
+                    MessageBox.Show("Não foi possível excluir este plano!\n\n" + exclusaoResult.Errors[0], "Aviso");
+
                 CarregarPlanos();
             }
         }

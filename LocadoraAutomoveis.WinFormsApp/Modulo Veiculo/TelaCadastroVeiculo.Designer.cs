@@ -52,7 +52,6 @@
             this.btnOk = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.lblIDGrupo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.panel1.SuspendLayout();
@@ -240,6 +239,7 @@
             // 
             // cmbGrupoVeiculo
             // 
+            this.cmbGrupoVeiculo.DisplayMember = "Nome";
             this.cmbGrupoVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGrupoVeiculo.FormattingEnabled = true;
             this.cmbGrupoVeiculo.Location = new System.Drawing.Point(393, 345);
@@ -247,7 +247,6 @@
             this.cmbGrupoVeiculo.Name = "cmbGrupoVeiculo";
             this.cmbGrupoVeiculo.Size = new System.Drawing.Size(300, 33);
             this.cmbGrupoVeiculo.TabIndex = 16;
-            this.cmbGrupoVeiculo.SelectedIndexChanged += new System.EventHandler(this.cmbGrupoVeiculo_SelectedIndexChanged_1);
             // 
             // pbFoto
             // 
@@ -314,18 +313,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // lblIDGrupo
-            // 
-            this.lblIDGrupo.AutoSize = true;
-            this.lblIDGrupo.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblIDGrupo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblIDGrupo.Location = new System.Drawing.Point(394, 383);
-            this.lblIDGrupo.Name = "lblIDGrupo";
-            this.lblIDGrupo.Size = new System.Drawing.Size(120, 25);
-            this.lblIDGrupo.TabIndex = 23;
-            this.lblIDGrupo.Text = "pegaIDGrupo";
-            this.lblIDGrupo.Visible = false;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -343,7 +330,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(725, 741);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.lblIDGrupo);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnAdicionarFoto);
             this.Controls.Add(this.pbFoto);
@@ -408,7 +394,6 @@
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Label lblIDGrupo;
         private System.Windows.Forms.Panel panel1;
     }
 }

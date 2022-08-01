@@ -6,6 +6,6 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloTaxa
 {
     public interface IRepositorioOrmTaxa : IRepositorioOrmBase<Taxa>
     {
-      
+        public Taxa SelecionarPorDescricao(string valor);
     }
 }

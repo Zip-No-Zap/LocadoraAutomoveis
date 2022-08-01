@@ -1,23 +1,22 @@
-using FluentValidation.Results;
+using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
-using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_GrupoVeiculo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+
 
 namespace LocadoraVeiculos.BancoDados.Tests
 {
     [TestClass]
     public class RepositorioGrupoVeiculoBancoDadosTests
     {
-        RepositorioGrupoVeiculoEmBancoDados repoGrupoVeiculo;
+        RepositorioGrupoVeiculoOrm repoGrupoVeiculo;
+        LocadoraAutomoveisDbContext dbContext;
+        const string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDBTestes;Integrated Security=True";
 
         public RepositorioGrupoVeiculoBancoDadosTests()
         {
-            repoGrupoVeiculo = new();
-
-           // ResetarBancoVeiculo();
-           // ResetarBancoGrupo();
+            dbContext = new(connectionString);
+            repoGrupoVeiculo = new(dbContext);
         }
 
         [TestMethod]
@@ -28,9 +27,9 @@ namespace LocadoraVeiculos.BancoDados.Tests
 
             //action
             repoGrupoVeiculo.Inserir(grupo);
+            dbContext.SaveChanges();
 
             //assert
-
             GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
 
             Assert.IsNotNull(grupoEncontrado);
@@ -44,12 +43,14 @@ namespace LocadoraVeiculos.BancoDados.Tests
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
 
             repoGrupoVeiculo.Inserir(grupo);
+            dbContext.SaveChanges();
+
 
             grupo.Nome = "Foi alterado no teste";
-            
 
             //action
             repoGrupoVeiculo.Editar(grupo);
+            dbContext.SaveChanges();
 
             GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
 
@@ -64,9 +65,11 @@ namespace LocadoraVeiculos.BancoDados.Tests
         {
             //arrange
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
-
+            repoGrupoVeiculo.Inserir(grupo);
+            
             //action
             repoGrupoVeiculo.Excluir(grupo);
+            dbContext.SaveChanges();
 
             //assert
             GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
@@ -79,10 +82,14 @@ namespace LocadoraVeiculos.BancoDados.Tests
         {
             //arrange
             GrupoVeiculo grupo1 = InstanciarGrupoVeiculo();
-            GrupoVeiculo grupo2 = InstanciarGrupoVeiculo2();
-
             repoGrupoVeiculo.Inserir(grupo1);
+            dbContext.SaveChanges();
+
+
+            GrupoVeiculo grupo2 = InstanciarGrupoVeiculo2();
             repoGrupoVeiculo.Inserir(grupo2);
+            dbContext.SaveChanges();
+
 
             //action
             var grupos = repoGrupoVeiculo.SelecionarTodos();
@@ -94,12 +101,12 @@ namespace LocadoraVeiculos.BancoDados.Tests
         [TestMethod]
         public void Deve_selecionar_por_id_grupo()
         {
-            
             //arrange
             GrupoVeiculo grupo = InstanciarGrupoVeiculo();
             grupo.Nome = "teste04";
 
             repoGrupoVeiculo.Inserir(grupo);
+            dbContext.SaveChanges();
 
             //action
             GrupoVeiculo grupoEncontrado = repoGrupoVeiculo.SelecionarPorId(grupo.Id);
@@ -124,17 +131,6 @@ namespace LocadoraVeiculos.BancoDados.Tests
             {
 
             };
-        }
-
-        private void ResetarBancoVeiculo()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBVEICULO; DBCC CHECKIDENT (TBVEICULO, RESEED, 0)");
-        }
-
-        private void ResetarBancoGrupo()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBGRUPOVEICULO; DBCC CHECKIDENT (TBGRUPOVEICULO, RESEED, 0)");
-            repoGrupoVeiculo = new();
         }
 
         #endregion

@@ -1,22 +1,28 @@
-﻿using LocadoraVeiculos.Dominio.Modulo_Cliente;
-using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
-using LocadoraVeiculos.Infra.BancoDados.Modulo_Cliente;
+﻿using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using LocadoraAutomoveis.Infra.Orm.Compartilhado;
+using LocadoraAutomoveis.Infra.Orm.ModuloCliente;
+using LocadoraVeiculos.Dominio.Modulo_Cliente;
+using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
 
 namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
 {
     [TestClass]
     public class RepositorioClienteEmBancoDadosTest
     {
-        RepositorioClienteEmBancoDados repositorioCliente ;
+        RepositorioClienteOrm repositorioCliente;
+        LocadoraAutomoveisDbContext dbContext;
+        const string connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=LocadoraAutomoveisOrmDBTestes;Integrated Security=True";
 
         public RepositorioClienteEmBancoDadosTest()
         {
-            repositorioCliente = new();
-           // ResetarBancoDadosCondutor();
-           // ResetarBancoDadosCliente();
+            dbContext = new(connectionString);
+            repositorioCliente = new(dbContext);
+
+            // ResetarBancoDadosCondutor();
+            // ResetarBancoDadosCliente();
         }
+
         [TestMethod]
         public void Deve_inserir_cliente()
         {
@@ -25,39 +31,47 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
 
             //action
             repositorioCliente.Inserir(cliente);
+            dbContext.SaveChanges();
 
             //assert
             var selecionado = repositorioCliente.SelecionarPorId(cliente.Id);
 
             Assert.IsNotNull(selecionado);
         }
+
         [TestMethod]
         public void Deve_editar_cliente()
         {
             // arrange
             var cliente = InstanciarCliente();
             repositorioCliente.Inserir(cliente);
+            dbContext.SaveChanges();
 
-            cliente.Nome = "Ana Beatriz";
+            cliente.Nome = "Ana Beatriz editado pelo teste";
 
             //action
             repositorioCliente.Editar(cliente);
+            dbContext.SaveChanges();
 
             //assert
             var selecionado = repositorioCliente.SelecionarPorId(cliente.Id);
 
             Assert.AreEqual(cliente.Nome, selecionado.Nome);
         }
+
         [TestMethod]
         public void Deve_excluir_cliente()
         {
             //arrange
             var cliente = InstanciarCliente();
             repositorioCliente.Inserir(cliente);
+            dbContext.SaveChanges();
+
             Cliente clienteSelecionado = repositorioCliente.SelecionarPorId(cliente.Id);
 
             //action
             repositorioCliente.Excluir(clienteSelecionado);
+            dbContext.SaveChanges();
 
             //assert
             var selecionado = repositorioCliente.SelecionarPorId(clienteSelecionado.Id);
@@ -91,6 +105,8 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             var cliente1 = InstanciarCliente();
 
             repositorioCliente.Inserir(cliente1);
+            dbContext.SaveChanges();
+
 
             //action
             var resultado = repositorioCliente.SelecionarPorId(cliente1.Id);
@@ -98,6 +114,39 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             //assert
             Assert.AreNotEqual(null, resultado);
         }
+
+        [TestMethod]
+        public void Deve_selecionar_por_nome()
+        {
+            //arrange
+            var cliente1 = InstanciarCliente();
+            repositorioCliente.Inserir(cliente1);
+            dbContext.SaveChanges();
+
+
+            //action
+            var resultado = repositorioCliente.SelecionarPorNome(cliente1.Nome);
+
+            //assert
+            Assert.AreNotEqual(null, resultado);
+        }
+
+        [TestMethod]
+        public void Deve_selecionar_por_cpf()
+        {
+            //arrange
+            var cliente1 = InstanciarCliente();
+            repositorioCliente.Inserir(cliente1);
+            dbContext.SaveChanges();
+
+            //action
+            var resultado = repositorioCliente.SelecionarPorCpf(cliente1.Cpf);
+
+            //assert
+            Assert.AreNotEqual(null, resultado);
+        }
+
+        #region privates
 
         private Cliente InstanciarCliente()
         {
@@ -127,15 +176,7 @@ namespace LocadoraVeiculos.BancoDados.Tests.Modulo_Cliente
             };
         }
 
-        void ResetarBancoDadosCliente()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBCLIENTE; DBCC CHECKIDENT (TBCLIENTE, RESEED, 0)");
-        }
-
-        void ResetarBancoDadosCondutor()
-        {
-            DbTests.ExecutarSql("DELETE FROM TBCONDUTOR; DBCC CHECKIDENT (TBCONDUTOR, RESEED, 0)");
-        }
+        #endregion
 
     }
 }

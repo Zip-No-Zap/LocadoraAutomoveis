@@ -4,9 +4,9 @@ using LocadoraAutomoveis.Aplicacao.Modulo_Condutor;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System;
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 {
@@ -26,16 +26,15 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
         {
             Result<List<Cliente>> resultadoResult = servicoCliente.SelecionarTodos();
 
+            var clientes = servicoCliente.SelecionarTodos().Value;
+
+            var tela = new TelaCadastroCondutor(clientes);
+
             if (resultadoResult.IsSuccess)
             {
-                List<Cliente> clientes = resultadoResult.Value;
+                tela.Condutor = new(); 
 
-                TelaCadastroCondutor tela = new(clientes)
-                {
-                    Condutor = new(),
-
-                    GravarRegistro = servicoCondutor.Inserir
-                };
+                tela.GravarRegistro = servicoCondutor.Inserir;
 
                 DialogResult resultado = tela.ShowDialog();
 
@@ -48,47 +47,42 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 
         public override void Editar()
         {
-            Condutor selecionado = null;
-            List<Cliente> selecionadoClientes = null; 
+            var id = tabelaCondutor.ObtemNumerCondutorSelecionado();
 
-            Result<Condutor> resultadoResult = ObtemCondutorSelecionado();
+            if (id == Guid.Empty)
+            {
+                MessageBox.Show("Selecione um condutor primeiro",
+                    "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var resultado = servicoCondutor.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var selecionado = resultado.Value;
 
             Result<List<Cliente>> resultadocliente = servicoCliente.SelecionarTodos();
 
-            if (resultadoResult.IsSuccess && resultadocliente.IsSuccess)
-            {
-                selecionado = resultadoResult.Value;
+            var selecionadoClientes = resultadocliente.Value;
 
-                selecionadoClientes = resultadocliente.Value;
+            TelaCadastroCondutor tela = new(selecionadoClientes);
 
-                if (selecionado.Id == Guid.Empty)
-                {
-                    MessageBox.Show("Selecione um condutor primeiro",
-                    "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
+            tela.Condutor = selecionado;
 
-                TelaCadastroCondutor tela = new(selecionadoClientes)
-                {
-                    Condutor = selecionado,
+            tela.GravarRegistro = servicoCondutor.Editar;
 
-                    GravarRegistro = servicoCondutor.Editar
-                };
 
-                DialogResult resultado = tela.ShowDialog();
+            if (tela.ShowDialog() == DialogResult.OK)
 
-                if (resultado == DialogResult.OK)
-                {
-                    CarregarCondutores();
-                }
-            }
-            else if (resultadoResult.IsFailed)
-            {
-                MessageBox.Show(resultadoResult.Errors[0].Message,
-                   "Edição de Condutor", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+                CarregarCondutores();
         }
+
         public override void Excluir()
         {
             Condutor selecionado = null;
@@ -111,7 +105,10 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 
                 if (resultado == DialogResult.OK)
                 {
-                    servicoCondutor.Excluir(selecionado);
+                    var exclusaoResult = servicoCondutor.Excluir(selecionado);
+
+                    if (exclusaoResult.IsFailed)
+                        MessageBox.Show("Não foi possível excluir este condutor!\n\n" + exclusaoResult.Errors[0], "Aviso");
 
                     CarregarCondutores();
                 }
@@ -130,8 +127,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Condutor
 
             return servicoCondutor.SelecionarPorId(numero);
         }
-
-        
         
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()
         {

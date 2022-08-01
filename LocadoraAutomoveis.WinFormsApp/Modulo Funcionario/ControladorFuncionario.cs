@@ -36,40 +36,36 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Funcionario
 
         public override void Editar()
         {
-            Funcionario Selecionado = null;
+            var id = tabelaFuncionarios.ObtemNumerFuncionarioSelecionado();
 
-            Result<Funcionario> resultadoResult = ObtemFuncionarioSelecionado();
-
-            if (resultadoResult.IsSuccess)
+            if (id == Guid.Empty)
             {
-                Selecionado = resultadoResult.Value;
-
-                if (Selecionado.Id == Guid.Empty)
-                {
-                    MessageBox.Show("Selecione um funcionário primeiro",
-                    "Edição de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-
-                TelaCadastroFuncionario tela = new();
-
-                tela.Funcionario = Selecionado;
-
-                tela.GravarRegistro = servicoFuncionario.Editar;
-
-                DialogResult resultado = tela.ShowDialog();
-
-                if (resultado == DialogResult.OK)
-                {
-                    CarregarFuncionarios();
-                }
-            }
-            else if (resultadoResult.IsFailed)
-            {
-                MessageBox.Show(resultadoResult.Errors[0].Message,
-                   "Edição de Funcionários", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Selecione um funcionário primeiro",
+                    "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
+            var resultado = servicoFuncionario.SelecionarPorId(id);
+
+            if (resultado.IsFailed)
+            {
+                MessageBox.Show(resultado.Errors[0].Message,
+                    "Edição de Funcionário", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var selecionado = resultado.Value;
+
+            TelaCadastroFuncionario tela = new();
+
+            tela.Funcionario = selecionado;
+
+            tela.GravarRegistro = servicoFuncionario.Editar;
+
+
+            if (tela.ShowDialog() == DialogResult.OK)
+
+                CarregarFuncionarios();
         }
 
         public override void Excluir()
