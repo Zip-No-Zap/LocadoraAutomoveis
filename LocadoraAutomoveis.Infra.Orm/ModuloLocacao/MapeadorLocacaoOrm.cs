@@ -24,6 +24,7 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
             builder.Property(x => x.PlanoLocacao_Descricao).HasColumnType("varchar(20)").IsRequired();
             builder.Property(x => x.TotalPrevisto).HasColumnType("money");
             builder.Property(x => x.Status).HasColumnType("varchar(10)").IsRequired();
+            builder.Property(x => x.NivelTanqueVeiculo).HasColumnType("varchar(10)");
         }
     }
 }
