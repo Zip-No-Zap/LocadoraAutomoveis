@@ -1,5 +1,4 @@
-﻿using FluentResults;
-using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
+﻿using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using GeradorTestes.Infra.Arquivo.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
@@ -10,6 +9,7 @@ using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
+using FluentResults;
 using System.Linq;
 using System;
 
