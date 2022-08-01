@@ -1,10 +1,10 @@
-﻿using LocadoraVeiculos.Dominio.Modulo_Veiculo;
+﻿using System;
 using System.Collections.Generic;
-using System;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
-using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Dominio.Modulo_Cliente;
+using LocadoraVeiculos.Dominio.Modulo_Veiculo;
+using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 
 namespace LocadoraVeiculos.Dominio.ModuloLocacao
@@ -29,6 +29,7 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public DateTime DataDevolucao { get; set; }
         public DateTime DataDevolvidoDeFato { get; set; }
         public double TotalPrevisto { get; set; }
+        public string NivelTanqueVeiculo { get; set; }
 
         public string Status { get; set; }
         public string CondutorLocacao_Cnh => CondutorLocacao.Cnh.ToString();

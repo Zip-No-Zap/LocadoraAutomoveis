@@ -386,16 +386,17 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             }
         }
 
-        private void CarregarRichText()
+        private void CarregarRichTextLocacao()
         {
             string detalhe =
             $"\n" +
             $"------------------------------------------------------------------------" +
             $"DETALHES DA LOCAÇÃO \n\r" +
-            $"Total: {locacao.TotalPrevisto.ToString("N2")} \n\r" +
+            $"Total: R$ {locacao.TotalPrevisto.ToString("N2")} \n\r" +
             $"------------------------------------------------------------------------" +
             $"Data Locação: {dpDataLocacao.Text} \n\r" +
             $"Data Devolução: {dpDataDevolucao.Text}\n\r" +
+            $"Status Locação: {locacao.Status}\n\r" +
             $"------------------------------------------------------------------------" +
             $"Cliente: {cmbClientes.Text} \n\r" +
             $"Condutor: {cmbCondutor.Text}  \n\r" +
@@ -406,6 +407,36 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             $""+
             $"Placa: { locacao.VeiculoLocacao.Placa}  \n\r" +
             $"Quilometragem Registrada: { txtKmAtual.Text}\n\r" +
+            $"------------------------------------------------------------------------" +
+            $"Itens Adicionais: \n\n\r"
+            ;
+
+            rtPDF.Text = detalhe;
+
+            CarregarItensRichText();
+        }
+
+        private void CarregarRichTextDevolucao()
+        {
+            string detalhe =
+            $"\n" +
+            $"------------------------------------------------------------------------" +
+            $"DETALHES DA DEVOLUÇÃO \n\r" +
+            $"Total: R$ {locacao.TotalPrevisto.ToString("N2")} \n\r" +
+            $"------------------------------------------------------------------------" +
+            $"Data Locação: {locacao.DataLocacao.ToShortDateString()} \n\r" +
+            $"Data Devolução: {locacao.DataDevolucao.ToShortDateString()}\n\r" +
+            $"Status Locação: {locacao.Status}\n\r" +
+            $"------------------------------------------------------------------------" +
+            $"Cliente: {cmbClientes.Text} \n\r" +
+            $"Condutor: {cmbCondutor.Text}  \n\r" +
+            $"CNH: {locacao.CondutorLocacao.Cnh} \n\r" +
+            $"------------------------------------------------------------------------" +
+            $"Grupo: {cmbGrupoVeiculo.Text}  \n\r" +
+            $"Veículo: {cmbVeiculo.Text}  \n\r" +
+            $"Placa: {locacao.VeiculoLocacao.Placa}  \n\r" +
+            $"Quilometragem Registrada: {locacao.VeiculoLocacao.QuilometragemAtual}\n\r" +
+            $"Nível Tanque: {locacao.NivelTanqueVeiculo}\n\r" +
             $"------------------------------------------------------------------------" +
             $"Itens Adicionais: \n\n\r"
             ;
@@ -447,7 +478,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public void GerarPdf()
         {
-            CarregarRichText();
+            if (btnRegistrarDevolucao.Visible == false)
+                CarregarRichTextLocacao();
+            else
+                CarregarRichTextDevolucao();
 
             GeradorPdf pdf = new();
 
@@ -532,6 +566,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 btnOK.Enabled = true;
                 txtKmAtual.Text = telaDevolucao.quilometragemAtualizada.ToString();
                 locacao.VeiculoLocacao.situacao = "disponível";
+                locacao.DataDevolucao = telaDevolucao.dataDevolvido;
+                locacao.NivelTanqueVeiculo = telaDevolucao.nivelTanque;
                 btnCalcular.Enabled = false;
             }
         }

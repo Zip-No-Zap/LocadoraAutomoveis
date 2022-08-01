@@ -18,21 +18,25 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public DateTime dataLocacao;
         public DateTime dataDevolucaoLocacao;
+        public DateTime dataDevolvido;
         public double totalDeFato = 0;
         public float quilometragemAnterior;
         public float quilometragemAtualizada;
         public double valorPoKmRodado;
         public double valorDiario;
-        public string plano;
         public float limiteKm;
         public double totalPrevisto;
+        public string plano;
         public string tipoCombustivel;
+        public string nivelTanque;
         public float tanqueMaximoVeiculo;
 
         public TelaDevolucao()
         {
             InitializeComponent();
             ObterPrecoCombustiveis();
+            dataDevolvido = dpDataDevolvido.Value;
+            nivelTanque = cmbTanque.Text;
         }
 
         private void ObterPrecoCombustiveis()
