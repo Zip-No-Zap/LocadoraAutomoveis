@@ -66,7 +66,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     tela.GerarPdf();
                     CarregarLocacoes();
                 }
-
             }
         }
 
@@ -226,7 +225,5 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 MessageBox.Show(resultado.Errors[0].Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
     }
 }

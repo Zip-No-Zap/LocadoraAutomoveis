@@ -62,6 +62,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             cmbGrupoVeiculo.Enabled = false;
             cmbVeiculo.Enabled = false;
             listTaxasAdicionais.Enabled = false;
+            btnCalcular.Enabled = false;
         }
 
         private void CarregarGrupoVeiculos(List<GrupoVeiculo> grupo)
@@ -82,6 +83,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         public Locacao Locacao
         {
             get { return locacao; }
+
             set
             {
                 locacao = value;
@@ -168,6 +170,13 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         private void TelaCadastroLocacao_Load(object sender, EventArgs e)
         {
             FormPrincipal.Instancia.AtualizarRodape("");
+
+            lblTotalPrevisto.Text = locacao.TotalPrevisto.ToString("N2");
+
+            if(btnLimpar.Enabled == false)
+            {
+                this.Text = "Devolução";
+            }
         }
 
         private void cmbClientes_SelectedIndexChanged(object sender, EventArgs e)
@@ -277,12 +286,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             bool temPlano = grupoSelecionado != null;
 
             return temPlano;
-        }
-
-        private void HabilitarPlanos(GrupoVeiculo grupo)
-        {
-            if (VerificarSeGrupoTemPlano(grupo))
-                cmbPlano.Enabled = true;
         }
 
         private void AdicionarPlanoAosItensAdicionais(string nomeGrupo)
@@ -446,28 +449,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             CarregarItensRichText();
         }
 
-        private void CarregarImagemPdf()
-        {
-            OpenFileDialog ofd1 = new();
-
-            rtPDF.Visible = true;
-            ofd1.Filter = "Images |*.bmp;*.jpg;*.png;*.gif;*.ico";
-            ofd1.Multiselect = false;
-            ofd1.FileName = "";
-            DialogResult resultado = ofd1.ShowDialog();
-            if (resultado == DialogResult.OK)
-            {
-                Image img = Image.FromFile(ofd1.FileName);
-                Clipboard.SetImage(img);
-                rtPDF.Paste();
-                rtPDF.Focus();
-            }
-            else
-            {
-                rtPDF.Focus();
-            }
-        }
-
         private void CarregarItensRichText()
         {
             foreach (var item in listTaxasAdicionais.CheckedItems)
@@ -526,6 +507,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             }
 
         }
+
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             cmbClientes.Items.Clear();
@@ -584,6 +566,35 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 btnCalcular.Enabled = false;
             }
         }
+
+        private void CarregarImagemPdf()
+        {
+            OpenFileDialog ofd1 = new();
+
+            rtPDF.Visible = true;
+            ofd1.Filter = "Images |*.bmp;*.jpg;*.png;*.gif;*.ico";
+            ofd1.Multiselect = false;
+            ofd1.FileName = "";
+            DialogResult resultado = ofd1.ShowDialog();
+            if (resultado == DialogResult.OK)
+            {
+                Image img = Image.FromFile(ofd1.FileName);
+                Clipboard.SetImage(img);
+                rtPDF.Paste();
+                rtPDF.Focus();
+            }
+            else
+            {
+                rtPDF.Focus();
+            }
+        }
+
+        private void HabilitarPlanos(GrupoVeiculo grupo)
+        {
+            if (VerificarSeGrupoTemPlano(grupo))
+                cmbPlano.Enabled = true;
+        }
+
     }
 
 }

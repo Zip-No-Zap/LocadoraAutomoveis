@@ -34,6 +34,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         public TelaDevolucao()
         {
             InitializeComponent();
+            
             ObterPrecoCombustiveis();
             
         }
@@ -56,12 +57,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             dataDevolvido = dpDataDevolvido.Value;
             nivelTanque = cmbTanque.Text;
 
-            if (ValidadorCampos.ValidarCampoData(dpDataDevolvido.Text) == false)
-            {
-                MessageBox.Show("Data de devolução inválida", "Aviso");
-                this.DialogResult = DialogResult.None;
-            }
-
+            Validar();
+  
             quilometragemAtualizada = float.Parse(txtKmAtualDevolucao.Text);
 
             if (plano != "Livre")
@@ -74,6 +71,29 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             totalDeFato += totalPrevisto;
 
             totalDeFato += CalcularMultaDevolucaoAtraso();
+        }
+
+        private void Validar()
+        {
+            if (ValidarDataRetorno() == false)
+            {
+                MessageBox.Show("Data de Retorno inválida", "Aviso");
+                DialogResult = DialogResult.None;
+            }
+
+            if (txtKmAtualDevolucao.Text == "")
+            {
+                MessageBox.Show("Quilometragem de Retorno inválida", "Aviso");
+                DialogResult = DialogResult.None;
+            }
+        }
+
+        private bool ValidarDataRetorno()
+        {
+            if (dataDevolvido < dataLocacao)
+                return false;
+
+            return true;
         }
 
         private void txtKmAtualDevolucao_KeyPress(object sender, KeyPressEventArgs e)
@@ -119,7 +139,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             }
             else
             {
-                MessageBox.Show("Data de devolução inválida", "Aviso");
+                MessageBox.Show("Quilometragem de retorno inválida", "Aviso");
                 this.DialogResult = DialogResult.None;
             }
 
