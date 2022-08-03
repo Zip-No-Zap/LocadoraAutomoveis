@@ -209,10 +209,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             locacao.ClienteLocacao = (Cliente)cmbClientes.SelectedItem;
             locacao.CondutorLocacao = (Condutor)cmbCondutor.SelectedItem;
             locacao.VeiculoLocacao = (Veiculo)cmbVeiculo.SelectedItem;
-            locacao.VeiculoLocacao.QuilometragemAtual = float.Parse(txtKmAtual.Text);
-            locacao.Grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
             locacao.DataLocacao = Convert.ToDateTime(dpDataLocacao.Text);
             locacao.DataDevolucao = Convert.ToDateTime(dpDataDevolucao.Text);
+            locacao.VeiculoLocacao.QuilometragemAtual = float.Parse(txtKmAtual.Text);
+            locacao.Grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
 
             //mudar status Veículo
             switch (locacao.VeiculoLocacao.situacao)
