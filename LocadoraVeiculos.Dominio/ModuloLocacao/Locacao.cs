@@ -32,8 +32,8 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public string NivelTanqueVeiculo { get; set; }
 
         public string Status { get; set; }
-        public string CondutorLocacao_Cnh => CondutorLocacao.Cnh.ToString();
-        public string PlanoLocacao_Descricao { get; set; } // recebe de acordo com check da tela
+        public string CondutorLocacao_Cnh => CondutorLocacao != null ? CondutorLocacao.Cnh.ToString() : "";
+        public string PlanoLocacao_Descricao { get; set; }
 
         public Locacao()
         {

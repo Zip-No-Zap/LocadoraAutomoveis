@@ -206,30 +206,81 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            VerificarCampoVAzio();
+
             locacao.ClienteLocacao = (Cliente)cmbClientes.SelectedItem;
             locacao.CondutorLocacao = (Condutor)cmbCondutor.SelectedItem;
             locacao.VeiculoLocacao = (Veiculo)cmbVeiculo.SelectedItem;
             locacao.DataLocacao = Convert.ToDateTime(dpDataLocacao.Text);
             locacao.DataDevolucao = Convert.ToDateTime(dpDataDevolucao.Text);
-            locacao.VeiculoLocacao.QuilometragemAtual = float.Parse(txtKmAtual.Text);
             locacao.Grupo = (GrupoVeiculo)cmbGrupoVeiculo.SelectedItem;
+          
+            AlterarStatusVeiculo();
 
-            //mudar status Veículo
-            switch (locacao.VeiculoLocacao.situacao)
+            AlterarStatusLocacao();
+
+            ReceberPlano();
+
+            ReceberTaxa();
+
+            var resultadoValidacao = GravarRegistro(locacao);
+
+            if (resultadoValidacao.IsSuccess == false)
             {
-                case "alugado":
-                    locacao.VeiculoLocacao.StatusVeiculo = "Alugado";
-                    break;
+                string erro = resultadoValidacao.Errors[0].Message;
 
-                case "disponível":
-                    locacao.VeiculoLocacao.StatusVeiculo = "Disponível";
-                    break;
+                FormPrincipal.Instancia.AtualizarRodape(erro);
 
-                default:
-                     break;
+                DialogResult = DialogResult.None;
             }
 
-            //mudar Status Locação
+        }
+
+        private void ReceberTaxa()
+        {
+            foreach (var item in listTaxasAdicionais.CheckedItems)
+            {
+                if (item.ToString().Contains("Plano"))
+                    continue;
+                else
+                {
+                    string separador = item.ToString().Split("-")[0].Trim();
+                    var selecionado = taxas.Find(x => x.Descricao.Contains(separador));
+                    locacao.ItensTaxa.Add(selecionado);
+                }
+            }
+        }
+
+        private void ReceberPlano()
+        {
+            var planoSelecionado = planos.Find(x => x.Grupo.Nome == cmbGrupoVeiculo.Text);
+            locacao.PlanoLocacao = planoSelecionado;
+        }
+
+        private void AlterarStatusVeiculo()
+        {
+            if (locacao.VeiculoLocacao != null)
+            {
+                locacao.VeiculoLocacao.QuilometragemAtual = float.Parse(txtKmAtual.Text);
+
+                switch (locacao.VeiculoLocacao.situacao)
+                {
+                    case "alugado":
+                        locacao.VeiculoLocacao.StatusVeiculo = "Alugado";
+                        break;
+
+                    case "disponível":
+                        locacao.VeiculoLocacao.StatusVeiculo = "Disponível";
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void AlterarStatusLocacao()
+        {
             switch (locacao._estaLocado)
             {
                 case "sim":
@@ -243,35 +294,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 default:
                     break;
             }
-
-            //receber Plano
-            var planoSelecionado = planos.Find(x => x.Grupo.Nome == cmbGrupoVeiculo.Text); 
-            locacao.PlanoLocacao = planoSelecionado;
-
-            //receber Taxas
-            foreach (var item in listTaxasAdicionais.CheckedItems)
-            {
-                if (item.ToString().Contains("Plano"))
-                    continue;
-                else
-                {
-                    string separador = item.ToString().Split("-")[0].Trim();
-                    var selecionado = taxas.Find(x => x.Descricao.Contains(separador));
-                    locacao.ItensTaxa.Add(selecionado);
-                }
-            }
-
-            var resultadoValidacao = GravarRegistro(locacao);
-
-            if (resultadoValidacao.IsSuccess == false)
-            {
-                string erro = resultadoValidacao.Errors[0].Message;
-
-                FormPrincipal.Instancia.AtualizarRodape(erro);
-
-                DialogResult = DialogResult.None;
-            }
-
         }
 
         private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
@@ -377,6 +399,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         private void btnDesmarcar_Click_1(object sender, EventArgs e)
         {
             DesmarcarCheckBoxes();
+            lblTotalPrevisto.Text = "0,00";
         }
 
         private void DesmarcarCheckBoxes()
@@ -595,6 +618,26 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 cmbPlano.Enabled = true;
         }
 
+        private void VerificarCampoVAzio()
+        {
+            if (cmbClientes.SelectedItem == null)
+                locacao.ClienteLocacao = null;
+
+            if (cmbCondutor.SelectedItem == null)
+                locacao.CondutorLocacao = null;
+
+            if (cmbPlano.SelectedItem == null)
+            {
+                locacao.PlanoLocacao = null;
+                locacao.PlanoLocacao_Descricao = "";
+            }
+
+            if (cmbVeiculo.SelectedItem == null)
+                locacao.VeiculoLocacao = null;
+
+            if (cmbGrupoVeiculo.SelectedItem == null)
+                locacao.Grupo = null;
+        }
     }
 
 }

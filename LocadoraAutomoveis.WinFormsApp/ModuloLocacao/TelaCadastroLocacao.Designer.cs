@@ -489,7 +489,6 @@
         private System.Windows.Forms.ComboBox cmbCondutor;
         private System.Windows.Forms.ComboBox cmbGrupoVeiculo;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblTotalPrevisto;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnDesmarcar;

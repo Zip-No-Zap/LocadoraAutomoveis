@@ -29,6 +29,10 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
                 .NotNull().WithMessage("Campo 'Plano', é obrigatório")
                 .NotEmpty().WithMessage("Campo 'Plano', é obrigatório");
 
+            RuleFor(x => x.PlanoLocacao_Descricao)
+                .NotNull().WithMessage("Campo 'Plano', é obrigatório")
+                .NotEmpty().WithMessage("Campo 'Plano', é obrigatório");
+
             RuleFor(x => x.DataLocacao)
                 .NotNull().WithMessage("Campo 'Data Locação', é obrigatório")
                 .NotEmpty().WithMessage("Campo 'Data Locação', é obrigatório");
