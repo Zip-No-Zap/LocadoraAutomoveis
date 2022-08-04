@@ -35,6 +35,9 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
                 tbValorDiario_Controlado.Text = plano.ValorDiario_Controlado.ToString("N2");
                 tbKmRodado_Controlado.Text = plano.ValorPorKm_Controlado.ToString("N2");
                 tbLimiteQuilometragem.Text = plano.LimiteQuilometragem_Controlado.ToString("N2");
+
+                if(plano.Grupo != null)
+                    cbGrupo.Text = plano.Grupo.Nome;
             }
         }
 

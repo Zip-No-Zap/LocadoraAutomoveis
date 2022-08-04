@@ -321,17 +321,17 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             switch (cmbPlano.Text)
             {
                 case "Diário":
-                    listTaxasAdicionais.Items.Add("Plano " + Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: R$ " + planoSelecionado.ValorDiario_Diario + " - " + "Valor por Km Rodado: R$ " + planoSelecionado.ValorPorKm_Diario);
+                    listTaxasAdicionais.Items.Add($"Plano {Locacao.PlanoLocacao_Descricao:N2} - Valor Diário: R$ {planoSelecionado.ValorDiario_Diario:N2}  - Valor por Km Rodado: R$ {planoSelecionado.ValorPorKm_Diario:N2}");
                     listTaxasAdicionais.SetItemChecked(listTaxasAdicionais.Items.Count -1, true);
                     break;
 
                 case "Livre":
-                    listTaxasAdicionais.Items.Add("Plano " + Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: R$ " + planoSelecionado.ValorDiario_Livre);
+                    listTaxasAdicionais.Items.Add($"Plano {Locacao.PlanoLocacao_Descricao:N2} - Valor Diário: R$ {planoSelecionado.ValorDiario_Livre:N2}");
                     listTaxasAdicionais.SetItemChecked(listTaxasAdicionais.Items.Count -1, true);
                     break;
 
                 case "Controlado":
-                    listTaxasAdicionais.Items.Add("Plano " + Locacao.PlanoLocacao_Descricao + " - " + "Valor Diário: R$ " + planoSelecionado.ValorDiario_Controlado + " - " + "Valor por Km Rodado: R$ " + planoSelecionado.ValorPorKm_Controlado + "Limite de Quilometragem: " + planoSelecionado.LimiteQuilometragem_Controlado);
+                    listTaxasAdicionais.Items.Add($"Plano {Locacao.PlanoLocacao_Descricao:N2} - Valor Diário: R$ {planoSelecionado.ValorDiario_Controlado:N2} - Valor por Km Rodado: R$ {planoSelecionado.ValorPorKm_Controlado:N2} Limite de Quilometragem: {planoSelecionado.LimiteQuilometragem_Controlado}");
                     listTaxasAdicionais.SetItemChecked(listTaxasAdicionais.Items.Count -1, true);
                     break;
 
@@ -558,22 +558,28 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             telaDevolucao.tanqueMaximoVeiculo = locacao.VeiculoLocacao.CapacidadeTanque;
             telaDevolucao.tipoCombustivel = locacao.VeiculoLocacao.TipoCombustivel;
             telaDevolucao.dataDevolucaoLocacao = locacao.DataDevolucao;
+            telaDevolucao.diario_valorDiario = locacao.PlanoLocacao.ValorDiario_Diario;
+            telaDevolucao.diario_valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Diario;
+            telaDevolucao.livre_valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
+            telaDevolucao.controlado_valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
+            telaDevolucao.controlado_valorKmRodado = locacao.PlanoLocacao.ValorDiario_Livre;
+            telaDevolucao.controlado_limiteKm = locacao.PlanoLocacao.LimiteQuilometragem_Controlado;
 
             switch (telaDevolucao.plano)
             {
                 case "Díário":
-                    telaDevolucao.valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Diario;
-                    telaDevolucao.valorDiario = locacao.PlanoLocacao.ValorDiario_Diario;
+                    telaDevolucao.diario_valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Diario;
+                    telaDevolucao.diario_valorDiario = locacao.PlanoLocacao.ValorDiario_Diario;
                     break;
 
                 case "Livre":
-                    telaDevolucao.valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
+                    telaDevolucao.diario_valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
                     break;
 
                 case "Controlado":
-                    telaDevolucao.valorDiario = locacao.PlanoLocacao.ValorDiario_Controlado;
-                    telaDevolucao.valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Controlado;
-                    telaDevolucao.limiteKm = locacao.PlanoLocacao.LimiteQuilometragem_Controlado;
+                    telaDevolucao.diario_valorDiario = locacao.PlanoLocacao.ValorDiario_Controlado;
+                    telaDevolucao.diario_valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Controlado;
+                    telaDevolucao.controlado_limiteKm = locacao.PlanoLocacao.LimiteQuilometragem_Controlado;
                     break;
             }
 

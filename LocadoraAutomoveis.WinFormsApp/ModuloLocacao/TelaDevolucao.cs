@@ -1,9 +1,9 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_Configuracao;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
-using System.Windows.Forms;
-using System;
 using LocadoraAutomoveis.Infra.Logs;
 using System.Collections.Generic;
+using System.Windows.Forms;
+using System;
 
 namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 {
@@ -22,9 +22,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         public double totalDeFato = 0;
         public float quilometragemAnterior;
         public float quilometragemAtualizada;
-        public double valorPoKmRodado;
-        public double valorDiario;
-        public float limiteKm;
+        public double diario_valorPoKmRodado;
+        public double diario_valorDiario;
+        public double livre_valorDiario;
+        public double controlado_valorDiario;
+        public double controlado_valorKmRodado;
+        public float controlado_limiteKm;
         public double totalPrevisto;
         public string plano;
         public string tipoCombustivel;
@@ -36,7 +39,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             InitializeComponent();
             
             ObterPrecoCombustiveis();
-            
         }
 
         private void ObterPrecoCombustiveis()
@@ -109,8 +111,9 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         private double CalcularMultaDevolucaoAtraso()
         {
             var dataDevolvido = dpDataDevolvido.Value;
+            var diferenca = (dataDevolvido - dataDevolucaoLocacao).TotalDays;
 
-            if (dataDevolvido >= dataDevolucaoLocacao)
+            if (diferenca >= 1)
             {
                 var totalTemp = totalDeFato * 0.10;
                 return totalTemp;
@@ -123,16 +126,17 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             double diferenca = 0;
             double totalTemp = 0;
+            
 
             float KmDevolvido = float.Parse(txtKmAtualDevolucao.Text);
 
             if (KmDevolvido >= quilometragemAnterior)
             {
                 diferenca = KmDevolvido - quilometragemAnterior;
-                totalTemp = diferenca * valorPoKmRodado;
+                totalTemp = diferenca * diario_valorPoKmRodado;
                 return totalTemp;
             }
-            else if (plano == "Controlado" && diferenca > limiteKm)
+            else if (plano == "Controlado" && diferenca > controlado_limiteKm)
             {
                 totalTemp = totalDeFato * 0.10;
                 return totalTemp;
@@ -174,7 +178,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             int diferenca = Convert.ToInt32(intervalo.Days);
 
-            double resultado = valorDiario * diferenca;
+            double resultado = diario_valorDiario * diferenca;
 
             return resultado;
         }
