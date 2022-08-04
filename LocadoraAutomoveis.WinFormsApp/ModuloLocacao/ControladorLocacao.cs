@@ -23,8 +23,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         readonly ServicoCliente servicoCliente;
         readonly ServicoGrupoVeiculo servicoGrupo;
         readonly ServicoPlano servicoPlano;
-        LocacaoControl tabelaLocacaos;
+        LocacaoControl tabelaLocacoes;
 
+        public ControladorLocacao()
+        {
+
+        }
         public ControladorLocacao(ServicoLocacao servicoLocacao, ServicoCondutor servicoCondutor,
             ServicoVeiculo servicoVeiculo, ServicoTaxa servicoTaxa, ServicoCliente servicoCliente, ServicoGrupoVeiculo servicoGrupo, ServicoPlano servicoPlano)
         {
@@ -71,7 +75,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public override void Editar()
         {
-            var id = tabelaLocacaos.ObtemNumeroLocacaoSelecionado();
+            var id = tabelaLocacoes.ObtemNumeroLocacaoSelecionado();
 
             if (id == Guid.Empty)
             {
@@ -105,7 +109,13 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             tela.Locacao._estaLocado = "sim";
 
-           tela.GravarRegistro = servicoLocacao.Editar;
+            if(tela.Locacao.Status == "Fechada")
+            {
+                MessageBox.Show("Não é possível editar uma locação em situação: 'Fechada'", "Aviso");
+                return;
+            }
+
+            tela.GravarRegistro = servicoLocacao.Editar;
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -116,7 +126,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public override void Excluir()
         {
-            var id = tabelaLocacaos.ObtemNumeroLocacaoSelecionado();
+            var id = tabelaLocacoes.ObtemNumeroLocacaoSelecionado();
 
             if (id == Guid.Empty)
             {
@@ -152,7 +162,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public override void FazerDevolucao()
         {
-            var id = tabelaLocacaos.ObtemNumeroLocacaoSelecionado();
+            var id = tabelaLocacoes.ObtemNumeroLocacaoSelecionado();
 
             if (id == Guid.Empty)
             {
@@ -184,6 +194,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             tela.Locacao = selecionado;
 
+            if (tela.Locacao.Status == "Fechada")
+            {
+                MessageBox.Show("Não é possível fazer devolução de uma locação em situação: 'Fechada'", "Aviso");
+                return;
+            }
+
             tela.GravarRegistro = servicoLocacao.Editar;
 
 
@@ -200,12 +216,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public override UserControl ObtemListagem()
         {
-            if (tabelaLocacaos == null)
-                tabelaLocacaos = new LocacaoControl();
+            if (tabelaLocacoes == null)
+                tabelaLocacoes = new LocacaoControl();
 
             CarregarLocacoes();
 
-            return tabelaLocacaos;
+            return tabelaLocacoes;
         }
 
         private void CarregarLocacoes()
@@ -216,7 +232,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             {
                 List<Locacao> locacoes = resultado.Value;
 
-                tabelaLocacaos.AtualizarRegistros(locacoes);
+                tabelaLocacoes.AtualizarRegistros(locacoes);
 
                 FormPrincipal.Instancia.AtualizarRodape($"Visualizando {locacoes.Count} Locação(ões)");
             }

@@ -18,6 +18,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
 
         public virtual string TooltipDevolucao { get => ""; }
 
+
         public virtual bool InserirHabilitado { get { return true; } }
 
         public virtual bool EditarHabilitado { get { return true; } }

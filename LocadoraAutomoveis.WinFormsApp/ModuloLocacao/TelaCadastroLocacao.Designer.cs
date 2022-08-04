@@ -250,7 +250,7 @@
             // lblTotalPrevisto
             // 
             this.lblTotalPrevisto.AutoSize = true;
-            this.lblTotalPrevisto.Location = new System.Drawing.Point(83, 5);
+            this.lblTotalPrevisto.Location = new System.Drawing.Point(25, 3);
             this.lblTotalPrevisto.Name = "lblTotalPrevisto";
             this.lblTotalPrevisto.Size = new System.Drawing.Size(46, 25);
             this.lblTotalPrevisto.TabIndex = 41;
@@ -259,7 +259,7 @@
             // lblTotalMarcador
             // 
             this.lblTotalMarcador.AutoSize = true;
-            this.lblTotalMarcador.Location = new System.Drawing.Point(393, 561);
+            this.lblTotalMarcador.Location = new System.Drawing.Point(393, 557);
             this.lblTotalMarcador.Name = "lblTotalMarcador";
             this.lblTotalMarcador.Size = new System.Drawing.Size(151, 25);
             this.lblTotalMarcador.TabIndex = 42;
@@ -309,10 +309,10 @@
             this.btnCalcular.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnCalcular.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCalcular.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCalcular.Location = new System.Drawing.Point(32, 539);
+            this.btnCalcular.Location = new System.Drawing.Point(35, 552);
             this.btnCalcular.Margin = new System.Windows.Forms.Padding(2);
             this.btnCalcular.Name = "btnCalcular";
-            this.btnCalcular.Size = new System.Drawing.Size(167, 47);
+            this.btnCalcular.Size = new System.Drawing.Size(165, 47);
             this.btnCalcular.TabIndex = 8;
             this.btnCalcular.Text = "Calcular";
             this.btnCalcular.UseVisualStyleBackColor = false;

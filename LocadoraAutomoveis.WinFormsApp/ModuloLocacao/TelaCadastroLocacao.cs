@@ -27,6 +27,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         List<Cliente> clientes;
         List<Locacao> locacoes;
         public bool ehDevolucao;
+        public bool verificaFechada;
 
         public TelaCadastroLocacao(List<Cliente> clientes,
             List<Condutor> condutores, List<Veiculo> veiculos,
@@ -176,6 +177,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             if(btnLimpar.Enabled == false)
             {
                 this.Text = "Devolução";
+                lblTotalMarcador.Text = "Total a Pagar R$";
             }
         }
 

@@ -20,6 +20,11 @@ namespace LocadoraAutomoveis.WinFormsApp
         private ControladorBase controlador;
         private IServiceLocator serviceLocator;
 
+        public FormPrincipal()
+        {
+
+        }
+
         public FormPrincipal(IServiceLocator serviceLocator)
         {
             InitializeComponent();
@@ -78,7 +83,7 @@ namespace LocadoraAutomoveis.WinFormsApp
             btnExcluir.Enabled = configuracao.ExcluirHabilitado;
             btnDevolucao.Enabled = configuracao.DevolucaoHabilitado;
         }
-
+      
         private void ConfigurarTooltips(ConfiguracaoToolStripBase configuracao)
         {
             btnInserir.ToolTipText = configuracao.TooltipInserir;

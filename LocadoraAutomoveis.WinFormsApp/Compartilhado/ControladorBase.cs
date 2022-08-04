@@ -10,5 +10,5 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
         public virtual void FazerDevolucao() { }
         public abstract UserControl ObtemListagem();
         public abstract ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip();
-    }
+     }
 }
