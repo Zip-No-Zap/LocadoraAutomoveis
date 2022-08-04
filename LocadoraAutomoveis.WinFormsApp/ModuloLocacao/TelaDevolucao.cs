@@ -126,7 +126,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             double diferenca = 0;
             double totalTemp = 0;
-            
+            double total = 0;
 
             float KmDevolvido = float.Parse(txtKmAtualDevolucao.Text);
 
@@ -134,20 +134,21 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             {
                 diferenca = KmDevolvido - quilometragemAnterior;
                 totalTemp = diferenca * diario_valorPoKmRodado;
-                return totalTemp;
-            }
-            else if (plano == "Controlado" && diferenca > controlado_limiteKm)
-            {
-                totalTemp = totalDeFato * 0.10;
-                return totalTemp;
+                total += totalTemp;
             }
             else
             {
                 MessageBox.Show("Quilometragem de retorno inválida", "Aviso");
                 this.DialogResult = DialogResult.None;
             }
+            
+            if (plano == "Controlado" && diferenca > controlado_limiteKm)
+            {
+                totalTemp = totalTemp * 0.10;
+                total += totalTemp;
+            }
 
-            return 0;
+            return total;
         }
 
         private double CalcularConsumoTanque()
@@ -155,7 +156,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             string porcentagemTanqueString = cmbTanque.Text.Split("%")[0].ToString().Trim();
             int porcentagemTanque = int.Parse(porcentagemTanqueString);
             int deduzir = 100 - porcentagemTanque;
-            double tanqueDeduzido = tanqueMaximoVeiculo * (deduzir / 100);
+            double divisao = (double)Decimal.Divide(deduzir, 100);
+            double tanqueDeduzido = tanqueMaximoVeiculo * divisao;
             double valor = 0;
 
             if(tipoCombustivel == "Gasolina")

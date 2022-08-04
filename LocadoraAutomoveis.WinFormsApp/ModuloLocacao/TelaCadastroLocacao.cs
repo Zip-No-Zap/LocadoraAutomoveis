@@ -454,6 +454,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             $"------------------------------------------------------------------------" +
             $"Data Locação: {locacao.DataLocacao.ToShortDateString()} \n\r" +
             $"Data Devolução: {locacao.DataDevolucao.ToShortDateString()}\n\r" +
+            $"Devolvido dia: {locacao.DataDevolvidoDeFato.ToShortDateString()}\n\r" +
             $"Status Locação: {locacao.Status}\n\r" +
             $"------------------------------------------------------------------------" +
             $"Cliente: {cmbClientes.Text} \n\r" +
@@ -564,7 +565,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             telaDevolucao.controlado_valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
             telaDevolucao.controlado_valorKmRodado = locacao.PlanoLocacao.ValorDiario_Livre;
             telaDevolucao.controlado_limiteKm = locacao.PlanoLocacao.LimiteQuilometragem_Controlado;
-
+ 
             switch (telaDevolucao.plano)
             {
                 case "Díário":
@@ -593,6 +594,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 txtKmAtual.Text = telaDevolucao.quilometragemAtualizada.ToString();
                 locacao.VeiculoLocacao.situacao = "disponível";
                 locacao.DataDevolucao = telaDevolucao.dataDevolvido;
+                locacao.DataDevolvidoDeFato = telaDevolucao.dataDevolvido;
                 locacao.NivelTanqueVeiculo = telaDevolucao.nivelTanque;
                 btnCalcular.Enabled = false;
             }
