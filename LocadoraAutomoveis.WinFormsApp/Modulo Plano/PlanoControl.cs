@@ -39,9 +39,24 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Plano
             return grid.SelecionarNumero<Guid>();
         }
 
-        public void AtualizarRegistros(List<Plano> registro)
+        public void AtualizarRegistros(List<Plano> registros)
         {
-            grid.DataSource = registro;
+            grid.Rows.Clear();
+
+            foreach (var registro in registros)
+            {
+                grid.Rows.Add(
+                    registro.Id,
+                    registro.Grupo.Nome,
+                    registro.ValorDiario_Diario.ToString("N2"),
+                    registro.ValorPorKm_Diario.ToString("N2"),
+                    registro.ValorDiario_Livre.ToString("N2"),
+                    registro.ValorDiario_Controlado.ToString("N2"),
+                    registro.ValorPorKm_Controlado.ToString("N2"),
+                    registro.LimiteQuilometragem_Controlado.ToString()
+
+                   );
+            }
         }
     }
 }
