@@ -28,6 +28,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         List<Locacao> locacoes;
         public bool ehDevolucao;
         public bool verificaFechada;
+        double diferencaTanque;
+        double diferencaKm;
+        double diasAtraso = 0;
+        double calcPlano;
 
         public TelaCadastroLocacao(List<Cliente> clientes,
             List<Condutor> condutores, List<Veiculo> veiculos,
@@ -467,7 +471,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             $"Quilometragem Registrada: {locacao.VeiculoLocacao.QuilometragemAtual}\n\r" +
             $"Nível Tanque: {locacao.NivelTanqueVeiculo}\n\r" +
             $"------------------------------------------------------------------------" +
-            $"Itens Adicionais: \n\n\r"
+            $"Valor calculado plano: R$ {calcPlano.ToString("N2")}\n\r" +
+            $"Valor calculado quilometragem: R$ {diferencaKm.ToString("N2")}\n\r" +
+            $"Valor calculado tanque: R$ {diferencaTanque.ToString("N2")}\n\r" +
+            $"Valor calculado atraso: R4 {diasAtraso.ToString("N2")}\n\r" +
+            $"------------------------------------------------------------------------" +
+            $"Descrição dos Itens Adicionais: \n\n\r"
             ;
 
             rtPDF.Text = detalhe;
@@ -597,6 +606,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 locacao.DataDevolvidoDeFato = telaDevolucao.dataDevolvido;
                 locacao.NivelTanqueVeiculo = telaDevolucao.nivelTanque;
                 btnCalcular.Enabled = false;
+                diferencaTanque = telaDevolucao.diferencaTanque;
+                diferencaKm = telaDevolucao.diferencaKm;
+                calcPlano = telaDevolucao.calcPlano;
+
+                if(diasAtraso != telaDevolucao.diasAtraso)
+                    diasAtraso = telaDevolucao.diasAtraso;
             }
         }
 

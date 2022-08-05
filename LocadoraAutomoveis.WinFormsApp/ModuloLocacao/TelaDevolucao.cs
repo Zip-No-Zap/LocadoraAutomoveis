@@ -32,7 +32,11 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         public string plano;
         public string tipoCombustivel;
         public string nivelTanque;
-        public float tanqueMaximoVeiculo;
+        public float  tanqueMaximoVeiculo;
+        public double diferencaTanque;
+        public double diferencaKm;
+        public double diasAtraso = 0;
+        public double calcPlano;
 
         public TelaDevolucao()
         {
@@ -61,10 +65,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             Validar();
   
-            quilometragemAtualizada = float.Parse(txtKmAtualDevolucao.Text);
-
-            if (plano != "Livre")
-                totalDeFato += CalcularDiferencaQuilometragem();
+            totalDeFato += CalcularDiferencaQuilometragem();
 
             totalDeFato += CalcularValorDiarioPlano();
 
@@ -108,7 +109,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             cmbTanque.SelectedIndex = 0;
         }
 
-        private double CalcularMultaDevolucaoAtraso()
+        public double CalcularMultaDevolucaoAtraso()
         {
             var dataDevolvido = dpDataDevolvido.Value;
             var diferenca = (dataDevolvido - dataDevolucaoLocacao).TotalDays;
@@ -116,42 +117,48 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             if (diferenca >= 1)
             {
                 var totalTemp = totalDeFato * 0.10;
+
+                diasAtraso = totalTemp;
                 return totalTemp;
             }
             else
                 return 0;
         }
 
-        private double CalcularDiferencaQuilometragem()
+        public double CalcularDiferencaQuilometragem()
         {
             double diferenca = 0;
             double totalTemp = 0;
             double total = 0;
 
-            float KmDevolvido = float.Parse(txtKmAtualDevolucao.Text);
+            quilometragemAtualizada = float.Parse(txtKmAtualDevolucao.Text);
 
-            if (KmDevolvido >= quilometragemAnterior)
+            if (quilometragemAtualizada >= quilometragemAnterior)
             {
-                diferenca = KmDevolvido - quilometragemAnterior;
-                totalTemp = diferenca * diario_valorPoKmRodado;
-                total += totalTemp;
+                if (plano != "Livre")
+                {
+                    diferenca = quilometragemAtualizada - quilometragemAnterior;
+                    totalTemp = diferenca * diario_valorPoKmRodado;
+                    total += totalTemp;
+                }
             }
             else
             {
                 MessageBox.Show("Quilometragem de retorno inválida", "Aviso");
                 this.DialogResult = DialogResult.None;
             }
-            
+        
             if (plano == "Controlado" && diferenca > controlado_limiteKm)
             {
                 totalTemp = totalTemp * 0.10;
                 total += totalTemp;
             }
 
+            diferencaKm = total;
             return total;
         }
 
-        private double CalcularConsumoTanque()
+        public double CalcularConsumoTanque()
         {
             string porcentagemTanqueString = cmbTanque.Text.Split("%")[0].ToString().Trim();
             int porcentagemTanque = int.Parse(porcentagemTanqueString);
@@ -169,10 +176,11 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             if (tipoCombustivel == "Álcool")
                 valor = precoAlcool * tanqueDeduzido;
 
+            diferencaTanque = valor;
             return valor;
         }
 
-        private double CalcularValorDiarioPlano()
+        public double CalcularValorDiarioPlano()
         {
             var dataDevolvido = dpDataDevolvido.Value;
 
@@ -182,6 +190,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             double resultado = diario_valorDiario * diferenca;
 
+            calcPlano = resultado;
             return resultado;
         }
     }
