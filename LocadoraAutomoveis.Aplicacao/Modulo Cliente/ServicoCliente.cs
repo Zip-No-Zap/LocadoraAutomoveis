@@ -14,12 +14,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
 {
     public class ServicoCliente
     {
-        readonly RepositorioClienteOrm repositorioCliente;
-        readonly RepositorioCondutorOrm repositorioCondutor;
-        readonly RepositorioLocacaoOrm repositorioLocacao;
+        readonly IRepositorioClienteOrm repositorioCliente;
+        readonly IRepositorioCondutorOrm repositorioCondutor;
+        readonly IRepositorioLocacaoOrm repositorioLocacao;
         readonly IContextoPersistencia contextoPersistOrm;
 
-        public ServicoCliente(RepositorioClienteOrm repositorioCliente, IContextoPersistencia contextoPersistOrm, RepositorioCondutorOrm repositorioCondutor, RepositorioLocacaoOrm repositorioLocacao)
+        public ServicoCliente(IRepositorioClienteOrm repositorioCliente, IContextoPersistencia contextoPersistOrm, IRepositorioCondutorOrm repositorioCondutor, IRepositorioLocacaoOrm repositorioLocacao)
         {
             this.repositorioCliente = repositorioCliente;
             this.contextoPersistOrm = contextoPersistOrm;
@@ -147,7 +147,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
         {
             try
             {
-                return Result.Ok(repositorioCliente.SelecionarTodos());
+                return Result.Ok(repositorioCliente.SelecionarTodos(false));
             }
             catch (Exception ex)
             {
@@ -240,8 +240,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Cliente
             bool resultadoLocacao;
             bool resultadofinal = false;
               
-            var condutores = repositorioCondutor.SelecionarTodos();
-            var locacoes = repositorioLocacao.SelecionarTodos();
+            var condutores = repositorioCondutor.SelecionarTodos(true);
+            var locacoes = repositorioLocacao.SelecionarTodos(true);
               
             resultadoCondutor = condutores.Any(x => x.Cliente.Nome == cliente.Nome);
             resultadoLocacao = locacoes.Any(x => x.ClienteLocacao.Nome == cliente.Nome);

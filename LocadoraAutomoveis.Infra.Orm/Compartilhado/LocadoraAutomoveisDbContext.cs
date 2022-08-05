@@ -16,7 +16,10 @@ namespace LocadoraAutomoveis.Infra.Orm.Compartilhado
     {
 
         private readonly string connectionString;
+        public LocadoraAutomoveisDbContext()        
+        {
 
+        }
         public LocadoraAutomoveisDbContext(string connectionString)
         {
             this.connectionString = connectionString;  // vem da classe ServiceLocatorManual
@@ -74,17 +77,17 @@ namespace LocadoraAutomoveis.Infra.Orm.Compartilhado
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) // configurar modelo de banco
         {
-            //modelBuilder.ApplyConfigurationsFromAssembly( typeof(LocadoraAutomoveisDbContext).Assembly );
+            modelBuilder.ApplyConfigurationsFromAssembly( typeof(LocadoraAutomoveisDbContext).Assembly );
 
-            modelBuilder.ApplyConfiguration(new MapeadorGrupoVeiculoOrm());
-            modelBuilder.ApplyConfiguration(new MapeadorClienteOrm());
-            modelBuilder.ApplyConfiguration(new MapeadorCondutorOrm());
-            modelBuilder.ApplyConfiguration(new MapeadorFuncionarioOrm());
-            modelBuilder.ApplyConfiguration(new MapeadorPlanoOrm());
-            modelBuilder.ApplyConfiguration(new MapeadorTaxaOrm());
-            modelBuilder.ApplyConfiguration(new MapeadorVeiculoOrm());
-            modelBuilder.ApplyConfiguration(new MapeadorLocacaoOrm());
-            
+            //modelBuilder.ApplyConfiguration(new MapeadorGrupoVeiculoOrm());
+            //modelBuilder.ApplyConfiguration(new MapeadorClienteOrm());
+            //modelBuilder.ApplyConfiguration(new MapeadorCondutorOrm());
+            //modelBuilder.ApplyConfiguration(new MapeadorFuncionarioOrm());
+            //modelBuilder.ApplyConfiguration(new MapeadorPlanoOrm());
+            //modelBuilder.ApplyConfiguration(new MapeadorTaxaOrm());
+            //modelBuilder.ApplyConfiguration(new MapeadorVeiculoOrm());
+            //modelBuilder.ApplyConfiguration(new MapeadorLocacaoOrm());
+
             //modelBuilder.Ignore<Cliente>();   cancela a criação automática das entidades relacionadas, do tipo informado
         }
     }

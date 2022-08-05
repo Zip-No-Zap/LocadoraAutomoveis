@@ -8,14 +8,15 @@ using System.Linq;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloTaxa
 {
-    public class RepositorioTaxaOrm : IRepositorioOrmTaxa
+    public class RepositorioTaxaOrm : IRepositorioTaxaOrm
     {
         private readonly LocadoraAutomoveisDbContext _dbContext;
         private DbSet<Taxa> dbsetTaxas;
 
-        public RepositorioTaxaOrm(LocadoraAutomoveisDbContext dbContext)
+        public RepositorioTaxaOrm(IContextoPersistencia dbContext)
         {
-            dbsetTaxas = dbContext.Set<Taxa>();
+            _dbContext = (LocadoraAutomoveisDbContext)dbContext;
+            dbsetTaxas = _dbContext.Set<Taxa>();
         }
 
         public void Inserir(Taxa registro)

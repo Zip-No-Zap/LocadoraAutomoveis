@@ -8,14 +8,15 @@ using System.Linq;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloFuncionario
 {
-    public class RepositorioFuncionarioOrm : IRepositorioOrmFuncionario
+    public class RepositorioFuncionarioOrm : IRepositorioFuncionarioOrm
     {
         private readonly LocadoraAutomoveisDbContext _dbContext;
         private DbSet<Funcionario> dbsetFuncionarios;
 
-        public RepositorioFuncionarioOrm(LocadoraAutomoveisDbContext dbContext)
+        public RepositorioFuncionarioOrm(IContextoPersistencia dbContext)
         {
-            dbsetFuncionarios = dbContext.Set<Funcionario>();
+            _dbContext = (LocadoraAutomoveisDbContext)dbContext;
+            dbsetFuncionarios = _dbContext.Set<Funcionario>();
         }
 
         public void Inserir(Funcionario registro)

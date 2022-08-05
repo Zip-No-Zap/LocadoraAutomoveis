@@ -7,6 +7,7 @@ using LocadoraAutomoveis.Infra.Orm.ModuloVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using LocadoraVeiculos.Dominio.Modulo_Plano;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
+using LocadoraVeiculos.Infra.BancoDados;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,14 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
 {
     public class ServicoGrupoVeiculo
     {
-        readonly RepositorioGrupoVeiculoOrm repositorioGrupoVeiculo;
-        readonly RepositorioVeiculoOrm repositorioVeiculo;
-        readonly RepositorioPlanoOrm repositorioPlano;
+        readonly IRepositorioGrupoVeiculoOrm repositorioGrupoVeiculo;
+        readonly IRepositorioVeiculoOrm repositorioVeiculo;
+        readonly IRepositorioPlanoOrm repositorioPlano;
         readonly IContextoPersistencia contextoPersistOrm;
         ValidadorGrupoVeiculo validadorGrupoVeiculo;
 
 
-        public ServicoGrupoVeiculo(RepositorioGrupoVeiculoOrm repositorioGrupoVeiculo, IContextoPersistencia contextoPersistOrm, RepositorioPlanoOrm repositorioPlano, RepositorioVeiculoOrm repositorioVeiculo)
+        public ServicoGrupoVeiculo(IRepositorioGrupoVeiculoOrm repositorioGrupoVeiculo, IContextoPersistencia contextoPersistOrm, IRepositorioPlanoOrm repositorioPlano, IRepositorioVeiculoOrm repositorioVeiculo)
         {
             this.repositorioGrupoVeiculo = repositorioGrupoVeiculo;
             this.contextoPersistOrm = contextoPersistOrm;
@@ -153,7 +154,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
         {
             try
             {
-                return Result.Ok(repositorioGrupoVeiculo.SelecionarTodos());
+                return Result.Ok(repositorioGrupoVeiculo.SelecionarTodos(false));
             }
             catch (Exception ex)
             {
@@ -224,8 +225,8 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo
             bool resultadoPlano;
             bool resultadoFinal = false;
 
-            var veiculos = repositorioVeiculo.SelecionarTodos();
-            var planos = repositorioPlano.SelecionarTodos();
+            var veiculos = repositorioVeiculo.SelecionarTodos(false);
+            var planos = repositorioPlano.SelecionarTodos(true);
 
             resultadoVeiculo = veiculos.Any(x => x.GrupoPertencente.Nome == grupoVeiculo.Nome);
             resultadoPlano = planos.Any(x => x.Grupo.Nome == grupoVeiculo.Nome);

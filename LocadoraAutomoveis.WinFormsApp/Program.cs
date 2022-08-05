@@ -23,9 +23,9 @@ namespace LocadoraAutomoveis.WinFormsApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-           //var serviceLocatorAutofac = new ServiceLocatorComAutofac();
-           var serviceLocatorManual = new ServiceLocatorManual();
-           Application.Run(new FormPrincipal(serviceLocatorManual));
+           var serviceLocatorAutofac = new ServiceLocatorComAutofac();
+           //var serviceLocatorManual = new ServiceLocatorManual();
+           Application.Run(new FormPrincipal(serviceLocatorAutofac));
         }
     }
 }

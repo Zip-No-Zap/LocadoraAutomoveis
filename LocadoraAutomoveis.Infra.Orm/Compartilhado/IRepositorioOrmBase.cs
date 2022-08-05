@@ -4,7 +4,7 @@ using System;
 
 namespace LocadoraVeiculos.Infra.BancoDados.Compartilhado
 {
-    public interface IRepositorioOrmBase<T> where T : EntidadeBase<T>
+    public interface IRepositorioBaseOrm<T> where T : EntidadeBase<T>
     {
         void Inserir(T registro);
         void Editar(T registro);

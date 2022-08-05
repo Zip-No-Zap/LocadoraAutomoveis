@@ -8,15 +8,15 @@ using LocadoraVeiculos.Infra.BancoDados;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloPlano
 {
-    public class RepositorioPlanoOrm : IRepositorioOrmPlano
+    public class RepositorioPlanoOrm : IRepositorioPlanoOrm
     {
         private readonly LocadoraAutomoveisDbContext _dbContext;
         private DbSet<Plano> dbsetPlanos;
 
-        public RepositorioPlanoOrm(LocadoraAutomoveisDbContext dbContext)
+        public RepositorioPlanoOrm(IContextoPersistencia dbContext)
         {
-            //_dbContext = dbContext;
-            dbsetPlanos = dbContext.Set<Plano>();
+            _dbContext =(LocadoraAutomoveisDbContext) dbContext;
+            dbsetPlanos = _dbContext.Set<Plano>();
         }
 
         public void Inserir(Plano registro)

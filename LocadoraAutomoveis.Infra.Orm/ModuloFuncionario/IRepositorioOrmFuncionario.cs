@@ -4,7 +4,7 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloFuncionario
 {
-    public interface IRepositorioOrmFuncionario : IRepositorioOrmBase<Funcionario>
+    public interface IRepositorioFuncionarioOrm : IRepositorioBaseOrm<Funcionario>
     {
         Funcionario SelecionarPorLogin(string valor);
 

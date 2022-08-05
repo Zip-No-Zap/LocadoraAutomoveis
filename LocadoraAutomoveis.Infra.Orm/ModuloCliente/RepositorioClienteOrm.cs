@@ -7,14 +7,14 @@ using System.Linq;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloCliente
 {
-    public class RepositorioClienteOrm : IRepositorioOrmCliente
+    public class RepositorioClienteOrm : IRepositorioClienteOrm
     {
         private readonly LocadoraAutomoveisDbContext _dbContext;
         private DbSet<Cliente> dbsetClientes;
 
-        public RepositorioClienteOrm(LocadoraAutomoveisDbContext dbContext)
+        public RepositorioClienteOrm(IContextoPersistencia dbContext)
         {
-            _dbContext = dbContext;
+            _dbContext = (LocadoraAutomoveisDbContext)dbContext;
             dbsetClientes = _dbContext.Set<Cliente>();
         }
 

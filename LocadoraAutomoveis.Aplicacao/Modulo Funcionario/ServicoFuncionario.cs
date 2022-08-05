@@ -12,11 +12,11 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Funcionario
 {
     public class ServicoFuncionario
     {
-        readonly RepositorioFuncionarioOrm repositorioFuncionario;
+        readonly IRepositorioFuncionarioOrm repositorioFuncionario;
         readonly IContextoPersistencia contextoPersistOrm;
         ValidadorFuncionario validadorFuncionario;
 
-        public ServicoFuncionario(RepositorioFuncionarioOrm repositorioFuncionario, IContextoPersistencia contextoPersistOrm)
+        public ServicoFuncionario(IRepositorioFuncionarioOrm repositorioFuncionario, IContextoPersistencia contextoPersistOrm)
         {
             this.repositorioFuncionario = repositorioFuncionario;
             this.contextoPersistOrm = contextoPersistOrm;

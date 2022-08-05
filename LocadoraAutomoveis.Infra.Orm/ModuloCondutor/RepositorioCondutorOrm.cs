@@ -7,14 +7,14 @@ using System.Linq;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
 {
-    public class RepositorioCondutorOrm : IRepositorioOrmCondutor
+    public class RepositorioCondutorOrm : IRepositorioCondutorOrm
     {
         private readonly LocadoraAutomoveisDbContext _dbContext;
         private DbSet<Condutor> dbsetCondutor;
 
-        public RepositorioCondutorOrm(LocadoraAutomoveisDbContext dbContext)
+        public RepositorioCondutorOrm(IContextoPersistencia dbContext)
         {
-            _dbContext = dbContext;
+            _dbContext =(LocadoraAutomoveisDbContext) dbContext;
             dbsetCondutor = _dbContext.Set<Condutor>();
         }
         public void Inserir(Condutor registro)

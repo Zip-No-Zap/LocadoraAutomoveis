@@ -13,12 +13,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
 {
     public class ServicoTaxa
     {
-        readonly RepositorioTaxaOrm repositorioTaxa;
-        readonly RepositorioLocacaoOrm repositorioLocacao;
+        readonly IRepositorioTaxaOrm repositorioTaxa;
+        readonly IRepositorioLocacaoOrm repositorioLocacao;
         readonly IContextoPersistencia contextoPersistOrm;
         ValidadorTaxa validadorTaxa;
 
-        public ServicoTaxa(RepositorioTaxaOrm repositorioTaxa, IContextoPersistencia contextoPersistOrm, RepositorioLocacaoOrm repositorioLocacao)
+        public ServicoTaxa(IRepositorioTaxaOrm repositorioTaxa, IContextoPersistencia contextoPersistOrm, IRepositorioLocacaoOrm repositorioLocacao)
         {
             this.repositorioTaxa = repositorioTaxa;
             this.contextoPersistOrm = contextoPersistOrm;
@@ -214,7 +214,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Taxa
         {
             bool resultado = false;
 
-            var locacoes = repositorioLocacao.SelecionarTodos();
+            var locacoes = repositorioLocacao.SelecionarTodos(false);
           
             resultado = locacoes.Any(x => x.ItensTaxa.Equals(taxa));
 

@@ -3,7 +3,7 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloCliente
 {
-    public interface IRepositorioOrmCliente : IRepositorioOrmBase<Cliente>
+    public interface IRepositorioClienteOrm : IRepositorioBaseOrm<Cliente>
     {
         Cliente SelecionarPorNome(string nome);
 

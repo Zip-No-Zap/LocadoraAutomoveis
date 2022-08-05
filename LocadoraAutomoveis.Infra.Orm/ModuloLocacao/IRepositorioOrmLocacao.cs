@@ -7,7 +7,7 @@ using LocadoraVeiculos.Dominio.ModuloLocacao;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
 {
-    public interface IRepositorioOrmLocacao : IRepositorioOrmBase<Locacao>
+    public interface IRepositorioLocacaoOrm : IRepositorioBaseOrm<Locacao>
     {
         public void RegistrarDevolucao(Locacao locacao);
         public Locacao SelecionarPorCliente(Cliente entidade);

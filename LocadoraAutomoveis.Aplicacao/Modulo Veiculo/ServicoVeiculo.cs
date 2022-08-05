@@ -13,12 +13,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
 {
     public class ServicoVeiculo
     {
-        readonly RepositorioVeiculoOrm repositorioVeiculo;
-        readonly RepositorioLocacaoOrm repositorioLocacao;
+        readonly IRepositorioVeiculoOrm repositorioVeiculo;
+        readonly IRepositorioLocacaoOrm repositorioLocacao;
         readonly IContextoPersistencia contextoPersistOrm;
         ValidadorVeiculo validadorVeiculo;
 
-        public ServicoVeiculo(RepositorioVeiculoOrm repositorioVeiculo, IContextoPersistencia contextoPersistOrm, RepositorioLocacaoOrm repositorioLocacao)
+        public ServicoVeiculo(IRepositorioVeiculoOrm repositorioVeiculo, IContextoPersistencia contextoPersistOrm, IRepositorioLocacaoOrm repositorioLocacao)
         {
             this.repositorioVeiculo = repositorioVeiculo;
             this.contextoPersistOrm = contextoPersistOrm;
@@ -211,7 +211,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Veiculo
         {
             bool resultado = false;
 
-            var locacoes = repositorioLocacao.SelecionarTodos();
+            var locacoes = repositorioLocacao.SelecionarTodos(false);
 
             resultado = locacoes.Any(x => x.VeiculoLocacao.Equals(veiculo));
 

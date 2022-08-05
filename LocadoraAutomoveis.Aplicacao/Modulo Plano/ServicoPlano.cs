@@ -8,17 +8,18 @@ using System.Collections.Generic;
 using System.Linq;
 using Serilog;
 using System;
+using LocadoraVeiculos.Infra.BancoDados;
 
 namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
 {
     public class ServicoPlano
     {
-        readonly RepositorioPlanoOrm repositorioPlano;
-        readonly RepositorioLocacaoOrm repositorioLocacao;
+        readonly IRepositorioPlanoOrm repositorioPlano;
+        readonly IRepositorioLocacaoOrm repositorioLocacao;
         readonly IContextoPersistencia contextoPersistOrm;
         ValidadorPlano validadorPlano;
 
-        public ServicoPlano(RepositorioPlanoOrm repositorioPlano, IContextoPersistencia contextoPersistOrm, RepositorioLocacaoOrm repositorioLocacao)
+        public ServicoPlano(IRepositorioPlanoOrm repositorioPlano, IContextoPersistencia contextoPersistOrm, IRepositorioLocacaoOrm repositorioLocacao)
         {
             this.repositorioPlano = repositorioPlano;
             this.contextoPersistOrm = contextoPersistOrm;
@@ -143,7 +144,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
         {
             try
             {
-                return Result.Ok(repositorioPlano.SelecionarTodos(incluiGrupo:true));
+                return Result.Ok(repositorioPlano.SelecionarTodos(true));
             }
             catch (Exception ex)
             {
@@ -229,7 +230,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Plano
         {
             bool resultado = false;
 
-            var locacoes = repositorioLocacao.SelecionarTodos();
+            var locacoes = repositorioLocacao.SelecionarTodos(true);
 
             resultado = locacoes.Any(x => x.PlanoLocacao.Id == (plano.Id));
 

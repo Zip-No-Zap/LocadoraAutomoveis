@@ -12,14 +12,15 @@ using System.Linq;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
 {
-    public class RepositorioLocacaoOrm : IRepositorioOrmLocacao
+    public class RepositorioLocacaoOrm : IRepositorioLocacaoOrm
     {
         private readonly LocadoraAutomoveisDbContext _dbContext;
         private DbSet<Locacao> dbsetLocacoes;
 
-        public RepositorioLocacaoOrm(LocadoraAutomoveisDbContext dbContext)
+        public RepositorioLocacaoOrm(IContextoPersistencia dbContext)
         {
-            dbsetLocacoes = dbContext.Set<Locacao>();
+            _dbContext = (LocadoraAutomoveisDbContext)dbContext;
+            dbsetLocacoes = _dbContext.Set<Locacao>();
         }
 
         public void Inserir(Locacao registro)

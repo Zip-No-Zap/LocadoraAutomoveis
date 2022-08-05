@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloVeiculo
 {
-    public interface IRepositorioOrmVeiculo : IRepositorioOrmBase<Veiculo>
+    public interface IRepositorioVeiculoOrm : IRepositorioBaseOrm<Veiculo>
     {
         public Veiculo SelecionarPorPlaca(string placa);
     }

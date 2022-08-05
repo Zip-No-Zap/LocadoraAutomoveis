@@ -8,15 +8,15 @@ using System.Linq;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo
 {
-    public class RepositorioGrupoVeiculoOrm : IRepositorioOrmGrupoVeiculo
+    public class RepositorioGrupoVeiculoOrm : IRepositorioGrupoVeiculoOrm
     {
         private DbSet<GrupoVeiculo> dbsetGrupos;
 
         private readonly LocadoraAutomoveisDbContext _dbContext;
 
-        public RepositorioGrupoVeiculoOrm(LocadoraAutomoveisDbContext dbContext)
+        public RepositorioGrupoVeiculoOrm(IContextoPersistencia dbContext)
         {
-            _dbContext = dbContext;
+            _dbContext = (LocadoraAutomoveisDbContext) dbContext;
             dbsetGrupos = _dbContext.Set<GrupoVeiculo>();
         }
 

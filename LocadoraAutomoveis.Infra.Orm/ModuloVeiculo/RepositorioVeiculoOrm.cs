@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloVeiculo
 {
-    public class RepositorioVeiculoOrm : IRepositorioOrmVeiculo
+    public class RepositorioVeiculoOrm : IRepositorioVeiculoOrm
     {
         private readonly LocadoraAutomoveisDbContext _dbContext;
         private DbSet<Veiculo> dbsetVeiculos;
 
-        public RepositorioVeiculoOrm(LocadoraAutomoveisDbContext dbContext)
+        public RepositorioVeiculoOrm(IContextoPersistencia dbContext)
         {
-            dbsetVeiculos = dbContext.Set<Veiculo>();
+            _dbContext = (LocadoraAutomoveisDbContext)dbContext;
+            dbsetVeiculos = _dbContext.Set<Veiculo>();
         }
 
         public void Inserir(Veiculo registro)

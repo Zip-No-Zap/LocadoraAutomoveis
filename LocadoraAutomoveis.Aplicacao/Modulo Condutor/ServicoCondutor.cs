@@ -13,12 +13,12 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
 {
     public class ServicoCondutor
     {
-        readonly RepositorioCondutorOrm repositorioCondutor;
-        readonly RepositorioLocacaoOrm repositorioLocacao;
+        readonly IRepositorioCondutorOrm repositorioCondutor;
+        readonly IRepositorioLocacaoOrm repositorioLocacao;
         readonly IContextoPersistencia contextoPersistOrm;
 
 
-        public ServicoCondutor(RepositorioCondutorOrm repositorioCondutor, IContextoPersistencia contextoPersistOrm, RepositorioLocacaoOrm repositorioLocacao)
+        public ServicoCondutor(IRepositorioCondutorOrm repositorioCondutor, IContextoPersistencia contextoPersistOrm, IRepositorioLocacaoOrm repositorioLocacao)
         {
             this.contextoPersistOrm = contextoPersistOrm;
             this.repositorioCondutor = repositorioCondutor;
@@ -145,7 +145,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
         {
             try
             {
-                return Result.Ok(repositorioCondutor.SelecionarTodos());
+                return Result.Ok(repositorioCondutor.SelecionarTodos(true));
             }
             catch (Exception ex)
             {
@@ -235,7 +235,7 @@ namespace LocadoraAutomoveis.Aplicacao.Modulo_Condutor
         {
             bool resultado = false;
 
-            var condutores = repositorioLocacao.SelecionarTodos();
+            var condutores = repositorioLocacao.SelecionarTodos(true);
 
             resultado = condutores.Any(x => x.ItensTaxa.Equals(condutor));
 

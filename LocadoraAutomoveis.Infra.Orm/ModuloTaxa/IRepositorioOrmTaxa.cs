@@ -4,7 +4,7 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloTaxa
 {
-    public interface IRepositorioOrmTaxa : IRepositorioOrmBase<Taxa>
+    public interface IRepositorioTaxaOrm : IRepositorioBaseOrm<Taxa>
     {
         public Taxa SelecionarPorDescricao(string valor);
     }

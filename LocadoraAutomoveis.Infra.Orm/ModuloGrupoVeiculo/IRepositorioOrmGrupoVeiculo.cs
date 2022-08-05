@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloGrupoVeiculo
 {
-    public interface IRepositorioOrmGrupoVeiculo : IRepositorioOrmBase<GrupoVeiculo>
+    public interface IRepositorioGrupoVeiculoOrm : IRepositorioBaseOrm<GrupoVeiculo>
     {
         public GrupoVeiculo SelecionarPorNome(string grupoVeiculo);
     }

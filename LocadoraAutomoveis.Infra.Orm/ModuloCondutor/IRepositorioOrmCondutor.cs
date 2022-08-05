@@ -3,7 +3,7 @@ using LocadoraVeiculos.Infra.BancoDados.Compartilhado;
 
 namespace LocadoraAutomoveis.Infra.Orm.ModuloCondutor
 {
-    public interface IRepositorioOrmCondutor : IRepositorioOrmBase<Condutor>
+    public interface IRepositorioCondutorOrm : IRepositorioBaseOrm<Condutor>
     {
 
         Condutor SelecionarPorNome(string nome);
