@@ -137,7 +137,6 @@
             this.tbValor.Name = "tbValor";
             this.tbValor.Size = new System.Drawing.Size(329, 31);
             this.tbValor.TabIndex = 1;
-            this.tbValor.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             this.tbValor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbValor_KeyPress);
             // 
             // tbDescricao

@@ -1,8 +1,9 @@
-﻿using FluentResults;
-using LocadoraVeiculos.Dominio.Modulo_Taxa;
+﻿using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using Microsoft.VisualBasic;
-using System;
 using System.Windows.Forms;
+using FluentResults;
+using System;
+
 
 namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
 {
@@ -35,11 +36,6 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
             InitializeComponent();
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             tbDescricao.Clear();
@@ -64,6 +60,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
                 DialogResult = DialogResult.None;
             }
         }
+
         private void tbDescricao_Leave(object sender, EventArgs e)
         {
             if (tbDescricao.Text.Length < 2)
@@ -71,6 +68,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
                 tbDescricao.Clear();
             }
         }
+
         private void tbValor_KeyPress(object sender, KeyPressEventArgs e)
         {
             ImpedirLetrasCharEspeciais(e);
