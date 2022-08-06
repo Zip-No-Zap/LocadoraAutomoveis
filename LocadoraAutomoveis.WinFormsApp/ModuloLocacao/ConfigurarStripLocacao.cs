@@ -13,9 +13,13 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public override string TooltipExcluir => "excluir locação selecionada";
 
-        public override string TooltipDevolucao => "Registrar devolução";
+        public override string TooltipDevolucao => "registrar devolução";
+
+        public override string TooltipSeparar => "agrupar abertas/fechadas";
 
         public override bool DevolucaoHabilitado => true;
+
+        public  override bool SepararHabilitado => true;
 
     }
 }

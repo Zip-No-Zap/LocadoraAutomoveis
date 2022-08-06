@@ -32,7 +32,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public TelaCadastroLocacao(List<Cliente> clientes,
             List<Condutor> condutores, List<Veiculo> veiculos,
-            List<Taxa> taxas, List<GrupoVeiculo> grupos, List<Plano> planos, List<Locacao> locacoes, bool ehDevolucao)
+            List<Taxa> taxas, List<GrupoVeiculo> grupos, 
+            List<Plano> planos, List<Locacao> locacoes, bool ehDevolucao)
         {
             InitializeComponent();
             CarregarClientes(clientes);

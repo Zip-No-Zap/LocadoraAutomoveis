@@ -82,6 +82,7 @@ namespace LocadoraAutomoveis.WinFormsApp
             btnEditar.Enabled = configuracao.EditarHabilitado;
             btnExcluir.Enabled = configuracao.ExcluirHabilitado;
             btnDevolucao.Enabled = configuracao.DevolucaoHabilitado;
+            btnSeparar.Enabled = configuracao.SepararHabilitado;
         }
       
         private void ConfigurarTooltips(ConfiguracaoToolStripBase configuracao)
@@ -90,6 +91,7 @@ namespace LocadoraAutomoveis.WinFormsApp
             btnEditar.ToolTipText = configuracao.TooltipEditar;
             btnExcluir.ToolTipText = configuracao.TooltipExcluir;
             btnDevolucao.ToolTipText = configuracao.TooltipDevolucao;
+            btnSeparar.ToolTipText = configuracao.TooltipSeparar;
         }
 
         private void ConfigurarListagem()
@@ -135,6 +137,11 @@ namespace LocadoraAutomoveis.WinFormsApp
         private void btnDevolucao_Click(object sender, EventArgs e)
         {
             controlador.FazerDevolucao();
+        }
+
+        private void btnSeparar_Click(object sender, EventArgs e)
+        {
+            controlador.Separar();
         }
 
         private void funcionarioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -189,5 +196,6 @@ namespace LocadoraAutomoveis.WinFormsApp
         {
             ConfigurarTelaPrincipal(serviceLocator.Get<ControladorConfiguracao>());
         }
+
     }
 }

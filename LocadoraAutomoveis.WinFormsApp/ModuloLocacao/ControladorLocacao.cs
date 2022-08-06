@@ -1,16 +1,17 @@
-﻿using FluentResults;
-using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
+﻿using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
 using LocadoraAutomoveis.Aplicacao.Modulo_Condutor;
-using LocadoraAutomoveis.Aplicacao.Modulo_GrupoVeiculo;
-using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
-using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
+using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraAutomoveis.Aplicacao.Modulo_Cliente;
 using LocadoraAutomoveis.Aplicacao.Modulo_Veiculo;
 using LocadoraAutomoveis.Aplicacao.ModuloLocacao;
-using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraAutomoveis.Aplicacao.Modulo_Plano;
+using LocadoraAutomoveis.Aplicacao.Modulo_Taxa;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using FluentResults;
+using System;
+using System.Linq;
 
 namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 {
@@ -29,6 +30,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
 
         }
+
         public ControladorLocacao(ServicoLocacao servicoLocacao, ServicoCondutor servicoCondutor,
             ServicoVeiculo servicoVeiculo, ServicoTaxa servicoTaxa, ServicoCliente servicoCliente, ServicoGrupoVeiculo servicoGrupo, ServicoPlano servicoPlano)
         {
@@ -109,7 +111,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             tela.Locacao._estaLocado = "sim";
 
-            if(tela.Locacao.Status == "Fechada")
+            if (tela.Locacao.Status == "Fechada")
             {
                 MessageBox.Show("Não é possível editar uma locação em situação: 'Fechada'", "Aviso");
                 return;
@@ -209,6 +211,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 CarregarLocacoes();
             }
         }
+
+        public override void Separar()
+        {
+            ObtemListagemAgrupada();
+        }
+
         public override ConfiguracaoToolStripBase ObtemConfiguracaoToolStrip()
         {
             return new ConfigurarStripLocacao();
@@ -224,6 +232,16 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             return tabelaLocacoes;
         }
 
+        public UserControl ObtemListagemAgrupada()
+        {
+            if (tabelaLocacoes == null)
+                tabelaLocacoes = new LocacaoControl();
+
+            CarregarLocacoesAgrupadas();
+
+            return tabelaLocacoes;
+        }
+
         private void CarregarLocacoes()
         {
             var resultado = servicoLocacao.SelecionarTodos();
@@ -231,6 +249,28 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             if (resultado.IsSuccess)
             {
                 List<Locacao> locacoes = resultado.Value;
+
+                tabelaLocacoes.AtualizarRegistros(locacoes);
+
+                FormPrincipal.Instancia.AtualizarRodape($"Visualizando {locacoes.Count} Locação(ões)");
+            }
+            else
+            {
+                MessageBox.Show(resultado.Errors[0].Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CarregarLocacoesAgrupadas()
+        {
+            var resultado = servicoLocacao.SelecionarTodos();
+
+            if (resultado.IsSuccess)
+            {
+                List<Locacao> locacoes = resultado.Value;
+
+                var agrupadas = locacoes.GroupBy(x => x.Status).ToList();
+
+                locacoes = agrupadas; 
 
                 tabelaLocacoes.AtualizarRegistros(locacoes);
 

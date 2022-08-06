@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System;
 
 namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
 {
@@ -18,6 +18,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
 
         public virtual string TooltipDevolucao { get => ""; }
 
+        public virtual string TooltipSeparar { get => ""; }
+
 
         public virtual bool InserirHabilitado { get { return true; } }
 
@@ -26,5 +28,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
         public virtual bool ExcluirHabilitado { get { return true; } }
 
         public virtual bool DevolucaoHabilitado { get { return false; } }
+
+        public virtual bool SepararHabilitado { get { return false; } }
     }
 }

@@ -51,6 +51,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDevolucao = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnSeparar = new System.Windows.Forms.ToolStripButton();
             this.lblToolStripPrincipal = new System.Windows.Forms.ToolStripLabel();
             this.menuPrincipal.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -193,6 +194,7 @@
             this.toolStripSeparator2,
             this.btnDevolucao,
             this.toolStripSeparator1,
+            this.btnSeparar,
             this.lblToolStripPrincipal});
             this.toolStripPrincipal.Location = new System.Drawing.Point(0, 33);
             this.toolStripPrincipal.Name = "toolStripPrincipal";
@@ -245,6 +247,15 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
+            // 
+            // btnSeparar
+            // 
+            this.btnSeparar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSeparar.Image = ((System.Drawing.Image)(resources.GetObject("btnSeparar.Image")));
+            this.btnSeparar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSeparar.Name = "btnSeparar";
+            this.btnSeparar.Size = new System.Drawing.Size(34, 28);
+            this.btnSeparar.Click += new System.EventHandler(this.btnSeparar_Click);
             // 
             // lblToolStripPrincipal
             // 
@@ -305,5 +316,6 @@
         private System.Windows.Forms.ToolStripButton btnDevolucao;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnSeparar;
     }
 }
