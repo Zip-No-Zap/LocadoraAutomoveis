@@ -70,5 +70,13 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
         {
             return dbsetLocacoes.FirstOrDefault(x => x.VeiculoLocacao.Equals(entidade));
         }
+
+        public void ExcluirFechadas(List<Locacao> registros)
+        {
+            foreach (Locacao locacao in registros)
+            {
+                dbsetLocacoes.Remove(locacao);
+            }
+        }
     }
 }

@@ -10,8 +10,8 @@ using LocadoraVeiculos.Dominio.ModuloLocacao;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using FluentResults;
-using System;
 using System.Linq;
+using System;
 
 namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 {
@@ -146,12 +146,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 return;
             }
 
-            var Selecionado = resultado.Value;
+            var selecionado = resultado.Value;
 
             if (MessageBox.Show("Deseja realmente excluir a locação?",
             "Exclusão de Locação", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                var resultadoExclusao = servicoLocacao.Excluir(Selecionado);
+                var resultadoExclusao = servicoLocacao.Excluir(selecionado);
 
                 if (resultadoExclusao.IsSuccess)
                     CarregarLocacoes();
@@ -159,6 +159,39 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 else
                     MessageBox.Show(resultadoExclusao.Errors[0].Message, "Exclusão de Locação",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public override void ExcluirFechadas()
+        {
+            if (MessageBox.Show("As locações em situação 'Fechada' serão arquivadas PDF e excluídas da tabela.\n" +
+                "Deseja realmente arquivar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                var resultado = servicoLocacao.SelecionarTodos();
+
+                if (resultado.IsFailed)
+                {
+                    MessageBox.Show(resultado.Errors[0].Message,
+                        "Exclusão de Locação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var selecionadas = resultado.Value;
+
+                var fechadas = selecionadas.FindAll(x => x.Status == "Fechada");
+
+                if (MessageBox.Show("Deseja realmente excluir a locação?",
+                "Exclusão de Locação", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    var resultadoExclusao = servicoLocacao.ExcluirFechadas(fechadas);
+
+                    if (resultadoExclusao.IsSuccess)
+                        CarregarLocacoes();
+
+                    else
+                        MessageBox.Show(resultadoExclusao.Errors[0].Message, "Exclusão de Locação",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

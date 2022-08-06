@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -28,7 +29,7 @@ namespace GeradorTestes.Infra.Arquivo.Compartilhado
 
         public void GerarPDF_ItextSharp(string texto, string cliente)
         {
-            string nomeArquivo = @"C:\temp\pdf\ComprovanteLocacao_"+cliente+@".pdf";
+            string nomeArquivo = @"C:\temp\pdf\Comprovante_"+cliente+@"_"+DateTime.Now.Second+@".pdf";
             FileStream arquivoPDF = new(nomeArquivo, FileMode.Create);
             iTextSharp.text.Document doc = new(PageSize.A4);
             PdfWriter escritorPDF = PdfWriter.GetInstance(doc, arquivoPDF);
@@ -48,7 +49,7 @@ namespace GeradorTestes.Infra.Arquivo.Compartilhado
             //doc.Add(imagem);
 
             doc.Open();
-            doc.Add(paragrafo);
+            doc.Add(paragrafo);//doc.Add(imagem)
             doc.Close();
         }
     }

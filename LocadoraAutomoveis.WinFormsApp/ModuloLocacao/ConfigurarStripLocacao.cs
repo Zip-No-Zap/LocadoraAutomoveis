@@ -17,9 +17,13 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public override string TooltipSeparar => "agrupar abertas/fechadas";
 
+        public override string TooltipExcluirFechadas => "arquivar fechadas";
+
         public override bool DevolucaoHabilitado => true;
 
         public  override bool SepararHabilitado => true;
+
+        public  override bool ExcluirFechadasHabilitado => true;
 
     }
 }

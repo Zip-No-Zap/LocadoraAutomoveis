@@ -1,8 +1,8 @@
 ﻿using LocadoraVeiculos.Dominio.Modulo_Configuracao;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.IO;
+using System;
 
 namespace LocadoraAutomoveis.Infra.Logs
 {

@@ -83,6 +83,7 @@ namespace LocadoraAutomoveis.WinFormsApp
             btnExcluir.Enabled = configuracao.ExcluirHabilitado;
             btnDevolucao.Enabled = configuracao.DevolucaoHabilitado;
             btnSeparar.Enabled = configuracao.SepararHabilitado;
+            btnExcluirFechadas.Enabled = configuracao.ExcluirFechadasHabilitado;
         }
       
         private void ConfigurarTooltips(ConfiguracaoToolStripBase configuracao)
@@ -92,6 +93,7 @@ namespace LocadoraAutomoveis.WinFormsApp
             btnExcluir.ToolTipText = configuracao.TooltipExcluir;
             btnDevolucao.ToolTipText = configuracao.TooltipDevolucao;
             btnSeparar.ToolTipText = configuracao.TooltipSeparar;
+            btnExcluirFechadas.ToolTipText = configuracao.TooltipSeparar;
         }
 
         private void ConfigurarListagem()
@@ -142,6 +144,11 @@ namespace LocadoraAutomoveis.WinFormsApp
         private void btnSeparar_Click(object sender, EventArgs e)
         {
             controlador.Separar();
+        }
+
+        private void btnExcluirFechadas_Click(object sender, EventArgs e)
+        {
+            controlador.ExcluirFechadas();
         }
 
         private void funcionarioToolStripMenuItem_Click(object sender, EventArgs e)

@@ -456,7 +456,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             $"Valor calculado plano: R$ {Devolucao.calcPlano.ToString("N2")}\n\r" +
             $"Valor calculado quilometragem: R$ {Devolucao.diferencaKm.ToString("N2")}\n\r" +
             $"Valor calculado tanque: R$ {Devolucao.diferencaTanque.ToString("N2")}\n\r" +
-            $"Valor calculado atraso: R4 {Devolucao.diasAtraso.ToString("N2")}\n\r" +
+            $"Valor calculado Taxas Diárias: R$ {Devolucao.calcTaxasDiarias.ToString("N2")}\n\r" +
+            $"Valor calculado atraso: R$ {Devolucao.diasAtraso.ToString("N2")}\n\r" +
             $"------------------------------------------------------------------------" +
             $"Descrição dos Itens Adicionais: \n\n\r"
             ;

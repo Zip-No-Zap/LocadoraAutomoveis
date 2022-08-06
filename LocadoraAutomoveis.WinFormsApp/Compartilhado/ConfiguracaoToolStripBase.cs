@@ -20,6 +20,8 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
 
         public virtual string TooltipSeparar { get => ""; }
 
+        public virtual string TooltipExcluirFechadas { get => ""; }
+
 
         public virtual bool InserirHabilitado { get { return true; } }
 
@@ -30,5 +32,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Compartilhado
         public virtual bool DevolucaoHabilitado { get { return false; } }
 
         public virtual bool SepararHabilitado { get { return false; } }
+
+        public virtual bool ExcluirFechadasHabilitado { get { return false; } }
     }
 }

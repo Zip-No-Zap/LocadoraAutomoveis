@@ -121,9 +121,35 @@ namespace LocadoraAutomoveis.Aplicacao.ModuloLocacao
             {
                 contextoPersistOrm.DesfazerAlteracoes();
 
-                string msgErro = "Falha no sistema ao tentar excluir a lcoação";
+                string msgErro = "Falha no sistema ao tentar excluir a locação";
 
                 Log.Logger.Error(ex, msgErro + "{locacaoId}", locacao.Id);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result ExcluirFechadas(List<Locacao> locacoes)
+        {
+            Log.Logger.Debug("Tentando excluir Locação... {@locacao}", locacoes);
+
+            try
+            {
+                repositorioLocacao.ExcluirFechadas(locacoes);
+
+                contextoPersistOrm.GravarDados();
+
+                Log.Logger.Information("locação {locacaoId} excluída com sucesso");
+
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                contextoPersistOrm.DesfazerAlteracoes();
+
+                string msgErro = "Falha no sistema ao tentar excluir a locação";
+
+                Log.Logger.Error(ex, msgErro + "{locacaoId}");
 
                 return Result.Fail(msgErro);
             }

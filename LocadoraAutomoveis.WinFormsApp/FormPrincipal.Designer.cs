@@ -48,10 +48,12 @@
             this.btnInserir = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnDevolucao = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnSeparar = new System.Windows.Forms.ToolStripButton();
+            this.btnExcluirFechadas = new System.Windows.Forms.ToolStripButton();
             this.lblToolStripPrincipal = new System.Windows.Forms.ToolStripLabel();
             this.menuPrincipal.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -191,10 +193,12 @@
             this.btnInserir,
             this.btnEditar,
             this.btnExcluir,
+            this.toolStripSeparator3,
             this.toolStripSeparator2,
             this.btnDevolucao,
             this.toolStripSeparator1,
             this.btnSeparar,
+            this.btnExcluirFechadas,
             this.lblToolStripPrincipal});
             this.toolStripPrincipal.Location = new System.Drawing.Point(0, 33);
             this.toolStripPrincipal.Name = "toolStripPrincipal";
@@ -228,8 +232,14 @@
             this.btnExcluir.Size = new System.Drawing.Size(34, 28);
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 33);
+            // 
             // toolStripSeparator2
             // 
+            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
@@ -257,8 +267,18 @@
             this.btnSeparar.Size = new System.Drawing.Size(34, 28);
             this.btnSeparar.Click += new System.EventHandler(this.btnSeparar_Click);
             // 
+            // btnExcluirFechadas
+            // 
+            this.btnExcluirFechadas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExcluirFechadas.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluirFechadas.Image")));
+            this.btnExcluirFechadas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExcluirFechadas.Name = "btnExcluirFechadas";
+            this.btnExcluirFechadas.Size = new System.Drawing.Size(34, 28);
+            this.btnExcluirFechadas.Click += new System.EventHandler(this.btnExcluirFechadas_Click);
+            // 
             // lblToolStripPrincipal
             // 
+            this.lblToolStripPrincipal.Margin = new System.Windows.Forms.Padding(20, 2, 0, 3);
             this.lblToolStripPrincipal.Name = "lblToolStripPrincipal";
             this.lblToolStripPrincipal.Size = new System.Drawing.Size(83, 28);
             this.lblToolStripPrincipal.Text = "Cadastro";
@@ -317,5 +337,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnSeparar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton btnExcluirFechadas;
     }
 }
