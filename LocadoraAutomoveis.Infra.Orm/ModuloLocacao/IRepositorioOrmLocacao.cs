@@ -9,7 +9,6 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
 {
     public interface IRepositorioLocacaoOrm : IRepositorioBaseOrm<Locacao>
     {
-        public void RegistrarDevolucao(Locacao locacao);
         public Locacao SelecionarPorCliente(Cliente entidade);
         public Locacao SelecionarPorCondutor(Condutor entidade);
         public Locacao SelecionarPorVeiculo(Veiculo entidade);

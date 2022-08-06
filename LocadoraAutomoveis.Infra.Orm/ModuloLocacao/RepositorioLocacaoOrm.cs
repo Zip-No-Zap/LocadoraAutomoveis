@@ -56,11 +56,6 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
                 .ToList();
         }
 
-        public void RegistrarDevolucao(Locacao locacao)
-        {
-            //TODO : fazer RegistrarDevolucao
-        }
-
         public Locacao SelecionarPorCliente(Cliente entidade)
         {
             return dbsetLocacoes.FirstOrDefault(x => x.ClienteLocacao.Equals(entidade));

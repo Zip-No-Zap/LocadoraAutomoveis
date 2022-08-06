@@ -12,6 +12,7 @@ using System.Drawing;
 using FluentResults;
 using System.Linq;
 using System;
+using LocadoraAutomoveis.WinFormsApp.ModuloLocacao.Devolucao;
 
 namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 {
@@ -22,12 +23,14 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         List<Condutor> condutores;
         List<Veiculo> veiculos;
         List<Taxa> taxas;
-        List<GrupoVeiculo> grupos;
         List<Plano> planos;
         List<Cliente> clientes;
         List<Locacao> locacoes;
         public bool ehDevolucao;
         public bool verificaFechada;
+
+        StructDevolucao Devolucao;
+        
         double diferencaTanque;
         double diferencaKm;
         double diasAtraso = 0;
@@ -44,7 +47,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             this.veiculos = veiculos;
             this.taxas = taxas;
             this.planos = planos;
-            this.grupos = grupos;
             this.clientes = clientes;
             this.locacoes = locacoes;
             this.ehDevolucao = ehDevolucao;
@@ -561,57 +563,61 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             TelaDevolucao telaDevolucao = new();
 
-            telaDevolucao.dataLocacao = locacao.DataLocacao;
-            telaDevolucao.quilometragemAnterior = locacao.VeiculoLocacao.QuilometragemAtual;
-            telaDevolucao.totalPrevisto = locacao.TotalPrevisto;
-            telaDevolucao.plano = locacao.PlanoLocacao_Descricao;
-            telaDevolucao.tanqueMaximoVeiculo = locacao.VeiculoLocacao.CapacidadeTanque;
-            telaDevolucao.tipoCombustivel = locacao.VeiculoLocacao.TipoCombustivel;
-            telaDevolucao.dataDevolucaoLocacao = locacao.DataDevolucao;
-            telaDevolucao.diario_valorDiario = locacao.PlanoLocacao.ValorDiario_Diario;
-            telaDevolucao.diario_valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Diario;
-            telaDevolucao.livre_valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
-            telaDevolucao.controlado_valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
-            telaDevolucao.controlado_valorKmRodado = locacao.PlanoLocacao.ValorDiario_Livre;
-            telaDevolucao.controlado_limiteKm = locacao.PlanoLocacao.LimiteQuilometragem_Controlado;
+            telaDevolucao.Devolucao.dataLocacao = locacao.DataLocacao;
+            telaDevolucao.Devolucao.quilometragemAnterior = locacao.VeiculoLocacao.QuilometragemAtual;
+            telaDevolucao.Devolucao.totalPrevisto = locacao.TotalPrevisto;
+            telaDevolucao.Devolucao.plano = locacao.PlanoLocacao_Descricao;
+            telaDevolucao.Devolucao.tanqueMaximoVeiculo = locacao.VeiculoLocacao.CapacidadeTanque;
+            telaDevolucao.Devolucao.tipoCombustivel = locacao.VeiculoLocacao.TipoCombustivel;
+            telaDevolucao.Devolucao.dataDevolucaoLocacao = locacao.DataDevolucao;
+            telaDevolucao.Devolucao.diario_valorDiario = locacao.PlanoLocacao.ValorDiario_Diario;
+            telaDevolucao.Devolucao.diario_valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Diario;
+            telaDevolucao.Devolucao.livre_valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
+            telaDevolucao.Devolucao.controlado_valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
+            telaDevolucao.Devolucao.controlado_valorKmRodado = locacao.PlanoLocacao.ValorDiario_Livre;
+            telaDevolucao.Devolucao.controlado_limiteKm = locacao.PlanoLocacao.LimiteQuilometragem_Controlado;
  
-            switch (telaDevolucao.plano)
+            this.Devolucao = telaDevolucao.Devolucao;
+
+            switch (telaDevolucao.Devolucao.plano)
             {
                 case "Díário":
-                    telaDevolucao.diario_valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Diario;
-                    telaDevolucao.diario_valorDiario = locacao.PlanoLocacao.ValorDiario_Diario;
+                    telaDevolucao.Devolucao.diario_valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Diario;
+                    telaDevolucao.Devolucao.diario_valorDiario = locacao.PlanoLocacao.ValorDiario_Diario;
                     break;
 
                 case "Livre":
-                    telaDevolucao.diario_valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
+                    telaDevolucao.Devolucao.diario_valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
                     break;
 
                 case "Controlado":
-                    telaDevolucao.diario_valorDiario = locacao.PlanoLocacao.ValorDiario_Controlado;
-                    telaDevolucao.diario_valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Controlado;
-                    telaDevolucao.controlado_limiteKm = locacao.PlanoLocacao.LimiteQuilometragem_Controlado;
+                    telaDevolucao.Devolucao.diario_valorDiario = locacao.PlanoLocacao.ValorDiario_Controlado;
+                    telaDevolucao.Devolucao.diario_valorPoKmRodado = locacao.PlanoLocacao.ValorPorKm_Controlado;
+                    telaDevolucao.Devolucao.controlado_limiteKm = locacao.PlanoLocacao.LimiteQuilometragem_Controlado;
                     break;
             }
 
             if (telaDevolucao.ShowDialog() == DialogResult.OK)
             {
-                locacao.TotalPrevisto = telaDevolucao.totalDeFato;
+                locacao.TotalPrevisto = telaDevolucao.Devolucao.totalDeFato;
                 lblTotalMarcador.Text = "Total a Pagar R$";
                 lblTotalPrevisto.Text = locacao.TotalPrevisto.ToString("N2");
                 locacao._estaLocado = "não";
                 btnOK.Enabled = true;
-                txtKmAtual.Text = telaDevolucao.quilometragemAtualizada.ToString();
+                txtKmAtual.Text = telaDevolucao.Devolucao.quilometragemAtualizada.ToString();
                 locacao.VeiculoLocacao.situacao = "disponível";
-                locacao.DataDevolucao = telaDevolucao.dataDevolvido;
-                locacao.DataDevolvidoDeFato = telaDevolucao.dataDevolvido;
-                locacao.NivelTanqueVeiculo = telaDevolucao.nivelTanque;
-                btnCalcular.Enabled = false;
-                diferencaTanque = telaDevolucao.diferencaTanque;
-                diferencaKm = telaDevolucao.diferencaKm;
-                calcPlano = telaDevolucao.calcPlano;
+                locacao.DataDevolucao = telaDevolucao.Devolucao.dataDevolvido;
+                locacao.DataDevolvidoDeFato = telaDevolucao.Devolucao.dataDevolvido;
+                locacao.NivelTanqueVeiculo = telaDevolucao.Devolucao.nivelTanque;
 
-                if(diasAtraso != telaDevolucao.diasAtraso)
-                    diasAtraso = telaDevolucao.diasAtraso;
+                btnCalcular.Enabled = false;
+
+                diferencaTanque = telaDevolucao.Devolucao.diferencaTanque;
+                diferencaKm = telaDevolucao.Devolucao.diferencaKm;
+                calcPlano = telaDevolucao.Devolucao.calcPlano;
+
+                if(diasAtraso != telaDevolucao.Devolucao.diasAtraso)
+                    diasAtraso = telaDevolucao.Devolucao.diasAtraso;
             }
         }
 
