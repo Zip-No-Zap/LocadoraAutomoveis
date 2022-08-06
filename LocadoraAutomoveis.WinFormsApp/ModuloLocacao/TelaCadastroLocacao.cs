@@ -30,10 +30,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         public bool pdFechadas;
 
         StructDevolucao Devolucao;
-        public TelaCadastroLocacao()
-        {
-
-        }
 
         public TelaCadastroLocacao(List<Cliente> clientes,
             List<Condutor> condutores, List<Veiculo> veiculos,
@@ -512,23 +508,25 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             GeradorPdf pdf = new();
 
-            if (btnLimpar != null && btnLimpar.Enabled == true)
-                CarregarRichTextLocacao();
+            if (pdFechadas == false)
+            {
+                if (btnLimpar != null && btnLimpar.Enabled == true)
+                    CarregarRichTextLocacao();
 
-            if (btnLimpar != null && btnLimpar.Enabled == false)
-                CarregarRichTextDevolucao();
+                if (btnLimpar != null && btnLimpar.Enabled == false)
+                    CarregarRichTextDevolucao();
 
-            pdf.GerarPDF_ItextSharp(rtPDF.Text, cmbClientes.Text);
+                pdf.GerarPDF_ItextSharp(rtPDF.Text, cmbClientes.Text);
 
-            if(pdFechadas == true)
+            }
+            else
             {
                 CarregarRichTextGerarPDFLocacoesFechadas();
                 pdf.GerarPDF_ItextSharp(rtPDF.Text, "Arquivo");
                 pdFechadas = false;
             }
 
-
-            MessageBox.Show("Arquivo PDF Gerado!\n\nDestino: C: -> temp -> pdf -> ComprovanteLocacao_.pdf");
+            MessageBox.Show("Arquivo PDF Gerado!\n\nDestino: C: -> temp -> pdf -> Comprovante_.pdf");
         }
 
         private void MarcarItensDeEdicao()

@@ -164,10 +164,21 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public override void ExcluirFechadas()
         {
+            var resultado = servicoLocacao.SelecionarTodos();
+
+            var selecionadas = resultado.Value;
+
+            var fechadas = selecionadas.FindAll(x => x.Status == "Fechada");
+
+            if(fechadas.Count == 0)
+            {
+                MessageBox.Show("Não há locações fechadas para arquivar", "Aviso");
+                return;
+            }
+
             if (MessageBox.Show("As locações em situação 'Fechada' serão arquivadas em PDF e excluídas da tabela.\n\n" +
                "Deseja realmente arquivar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                var resultado = servicoLocacao.SelecionarTodos();
 
                 if (resultado.IsFailed)
                 {
@@ -176,13 +187,18 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     return;
                 }
 
-                var selecionadas = resultado.Value;
+                var condutores = servicoCondutor.SelecionarTodos().Value;
+                var veiculos = servicoVeiculo.SelecionarTodos().Value;
+                var taxas = servicoTaxa.SelecionarTodos().Value;
+                var clientes = servicoCliente.SelecionarTodos().Value;
+                var grupos = servicoGrupo.SelecionarTodos().Value;
+                var planos = servicoPlano.SelecionarTodos().Value;
+                var locacoes = servicoLocacao.SelecionarTodos().Value;
 
-                var fechadas = selecionadas.FindAll(x => x.Status == "Fechada");
+                TelaCadastroLocacao tela = new(clientes, condutores, veiculos, taxas, grupos, planos, locacoes, false);
 
                 var resultadoExclusao = servicoLocacao.ExcluirFechadas(fechadas);
 
-                TelaCadastroLocacao tela = new();
 
                 if (resultadoExclusao.IsSuccess)
                 {
