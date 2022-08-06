@@ -145,7 +145,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 soma += item.Valor;
             }
 
-            return soma * dias;
+            Devolucao.calcTaxasDiarias = soma * dias;
+            return Devolucao.calcTaxasDiarias;
         }
 
         private int ObterDiferencaDias()

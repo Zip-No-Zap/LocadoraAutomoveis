@@ -610,6 +610,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 Devolucao.diferencaTanque = telaDevolucao.Devolucao.diferencaTanque;
                 Devolucao.diferencaKm = telaDevolucao.Devolucao.diferencaKm;
                 Devolucao.calcPlano = telaDevolucao.Devolucao.calcPlano;
+                Devolucao.calcTaxasDiarias = telaDevolucao.Devolucao.calcTaxasDiarias;
 
                 if(Devolucao.diasAtraso != telaDevolucao.Devolucao.diasAtraso)
                     Devolucao.diasAtraso = telaDevolucao.Devolucao.diasAtraso;

@@ -27,6 +27,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao.Devolucao
         public double diferencaKm;
         public double diasAtraso;
         public double calcPlano;
+        public double calcTaxasDiarias;
         
         public List<Taxa> taxasDiarias;
 
