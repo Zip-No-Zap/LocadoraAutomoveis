@@ -472,21 +472,23 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             var fechadas = locacoes.FindAll(x => x.Status == "Fechada");
 
+            var fechadasOrdenadas = fechadas.OrderBy(x => x.DataLocacao).Select(x => x).ToList();
+
             string detalhe =
             $"\n" +
             $"------------------------------------------------------------------------" +
             $"REGISTRO DE LOCAÇÕES FECHADAS \n\r";
 
-            foreach (Locacao locacao in fechadas)
+            foreach (Locacao locacao in fechadasOrdenadas)
             {
                 detalhe += $"\n" +
-                           $"Cliente: {locacao.ClienteLocacao.Nome}\n " +
-                           $"Condutor: {locacao.CondutorLocacao.Nome}\n, " +
+                           $"Data Locação: {locacao.DataLocacao.ToShortDateString()}\n" +
+                           $"Devolvido Dia: {locacao.DataDevolvidoDeFato.ToShortDateString()}\n" +
+                           $"Cliente: {locacao.ClienteLocacao.Nome}\n" +
+                           $"Condutor: {locacao.CondutorLocacao.Nome}\n" +
                            $"CNH: {locacao.CondutorLocacao.Cnh}\n" +
                            $"Veículo: {locacao.VeiculoLocacao.Modelo}\n" +
                            $"Grupo: {locacao.VeiculoLocacao.GrupoPertencente.Nome}\n" +
-                           $"Data Locação: {locacao.DataLocacao.ToShortDateString()}\n" +
-                           $"Data Devolução: {locacao.DataDevolucao.ToShortDateString()}\n" +
                            $"Plano: {locacao.PlanoLocacao_Descricao}\n" +
                            $"Total: {locacao.TotalPrevisto.ToString("N2")}\n" + 
                            $"------------------------------------------------------------------------\n"  

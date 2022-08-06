@@ -26,10 +26,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         readonly ServicoPlano servicoPlano;
         LocacaoControl tabelaLocacoes;
 
-        public ControladorLocacao()
-        {
-
-        }
 
         public ControladorLocacao(ServicoLocacao servicoLocacao, ServicoCondutor servicoCondutor,
             ServicoVeiculo servicoVeiculo, ServicoTaxa servicoTaxa, ServicoCliente servicoCliente, ServicoGrupoVeiculo servicoGrupo, ServicoPlano servicoPlano)
