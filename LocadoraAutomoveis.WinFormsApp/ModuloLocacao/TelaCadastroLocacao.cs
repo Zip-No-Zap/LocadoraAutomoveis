@@ -31,10 +31,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         StructDevolucao Devolucao;
         
-        double diferencaTanque;
-        double diferencaKm;
-        double diasAtraso = 0;
-        double calcPlano;
+        //double diferencaTanque;
+        //double diferencaKm;
+        //double diasAtraso = 0;
+        //double calcPlano;
 
         public TelaCadastroLocacao(List<Cliente> clientes,
             List<Condutor> condutores, List<Veiculo> veiculos,
@@ -473,10 +473,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             $"Quilometragem Registrada: {locacao.VeiculoLocacao.QuilometragemAtual}\n\r" +
             $"Nível Tanque: {locacao.NivelTanqueVeiculo}\n\r" +
             $"------------------------------------------------------------------------" +
-            $"Valor calculado plano: R$ {calcPlano.ToString("N2")}\n\r" +
-            $"Valor calculado quilometragem: R$ {diferencaKm.ToString("N2")}\n\r" +
-            $"Valor calculado tanque: R$ {diferencaTanque.ToString("N2")}\n\r" +
-            $"Valor calculado atraso: R4 {diasAtraso.ToString("N2")}\n\r" +
+            $"Valor calculado plano: R$ {Devolucao.calcPlano.ToString("N2")}\n\r" +
+            $"Valor calculado quilometragem: R$ {Devolucao.diferencaKm.ToString("N2")}\n\r" +
+            $"Valor calculado tanque: R$ {Devolucao.diferencaTanque.ToString("N2")}\n\r" +
+            $"Valor calculado atraso: R4 {Devolucao.diasAtraso.ToString("N2")}\n\r" +
             $"------------------------------------------------------------------------" +
             $"Descrição dos Itens Adicionais: \n\n\r"
             ;
@@ -612,41 +612,13 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
                 btnCalcular.Enabled = false;
 
-                diferencaTanque = telaDevolucao.Devolucao.diferencaTanque;
-                diferencaKm = telaDevolucao.Devolucao.diferencaKm;
-                calcPlano = telaDevolucao.Devolucao.calcPlano;
+                Devolucao.diferencaTanque = telaDevolucao.Devolucao.diferencaTanque;
+                Devolucao.diferencaKm = telaDevolucao.Devolucao.diferencaKm;
+                Devolucao.calcPlano = telaDevolucao.Devolucao.calcPlano;
 
-                if(diasAtraso != telaDevolucao.Devolucao.diasAtraso)
-                    diasAtraso = telaDevolucao.Devolucao.diasAtraso;
+                if(Devolucao.diasAtraso != telaDevolucao.Devolucao.diasAtraso)
+                    Devolucao.diasAtraso = telaDevolucao.Devolucao.diasAtraso;
             }
-        }
-
-        private void CarregarImagemPdf()
-        {
-            OpenFileDialog ofd1 = new();
-
-            rtPDF.Visible = true;
-            ofd1.Filter = "Images |*.bmp;*.jpg;*.png;*.gif;*.ico";
-            ofd1.Multiselect = false;
-            ofd1.FileName = "";
-            DialogResult resultado = ofd1.ShowDialog();
-            if (resultado == DialogResult.OK)
-            {
-                Image img = Image.FromFile(ofd1.FileName);
-                Clipboard.SetImage(img);
-                rtPDF.Paste();
-                rtPDF.Focus();
-            }
-            else
-            {
-                rtPDF.Focus();
-            }
-        }
-
-        private void HabilitarPlanos(GrupoVeiculo grupo)
-        {
-            if (VerificarSeGrupoTemPlano(grupo))
-                cmbPlano.Enabled = true;
         }
 
         private void VerificarCampoVAzio()
