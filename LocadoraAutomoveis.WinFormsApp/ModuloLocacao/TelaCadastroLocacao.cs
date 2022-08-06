@@ -512,9 +512,10 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         {
             GeradorPdf pdf = new();
 
-            if (btnLimpar.Enabled == true)
+            if (btnLimpar != null && btnLimpar.Enabled == true)
                 CarregarRichTextLocacao();
-            else
+
+            if (btnLimpar != null && btnLimpar.Enabled == false)
                 CarregarRichTextDevolucao();
 
             pdf.GerarPDF_ItextSharp(rtPDF.Text, cmbClientes.Text);

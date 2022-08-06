@@ -164,7 +164,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public override void ExcluirFechadas()
         {
-            if (MessageBox.Show("As locações em situação 'Fechada' serão arquivadas PDF e excluídas da tabela.\n\n" +
+            if (MessageBox.Show("As locações em situação 'Fechada' serão arquivadas em PDF e excluídas da tabela.\n\n" +
                "Deseja realmente arquivar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 var resultado = servicoLocacao.SelecionarTodos();
