@@ -93,7 +93,7 @@ namespace LocadoraAutomoveis.WinFormsApp
             btnExcluir.ToolTipText = configuracao.TooltipExcluir;
             btnDevolucao.ToolTipText = configuracao.TooltipDevolucao;
             btnSeparar.ToolTipText = configuracao.TooltipSeparar;
-            btnExcluirFechadas.ToolTipText = configuracao.TooltipSeparar;
+            btnExcluirFechadas.ToolTipText = configuracao.TooltipExcluirFechadas;
         }
 
         private void ConfigurarListagem()

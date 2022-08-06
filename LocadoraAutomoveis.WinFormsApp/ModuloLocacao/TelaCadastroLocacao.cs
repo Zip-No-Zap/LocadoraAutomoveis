@@ -27,8 +27,13 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         List<Locacao> locacoes;
         public bool ehDevolucao;
         public bool verificaFechada;
+        public bool pdFechadas;
 
         StructDevolucao Devolucao;
+        public TelaCadastroLocacao()
+        {
+
+        }
 
         public TelaCadastroLocacao(List<Cliente> clientes,
             List<Condutor> condutores, List<Veiculo> veiculos,
@@ -436,7 +441,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             $"\n" +
             $"------------------------------------------------------------------------" +
             $"DETALHES DA DEVOLUÇÃO \n\r" +
-            $"Total: R$ {locacao.TotalPrevisto.ToString("N2")} \n\r" +
+            $"Total: R$ {Devolucao.totalDeFato.ToString("N2")} \n\r" +
             $"------------------------------------------------------------------------" +
             $"Data Locação: {locacao.DataLocacao.ToShortDateString()} \n\r" +
             $"Data Devolução: {locacao.DataDevolucao.ToShortDateString()}\n\r" +
@@ -467,6 +472,34 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             CarregarItensRichText();
         }
 
+        private void CarregarRichTextGerarPDFLocacoesFechadas()
+        {
+            var fechadas = locacoes.FindAll(x => x.Status == "Fechada");
+
+            string detalhe =
+            $"\n" +
+            $"------------------------------------------------------------------------" +
+            $"REGISTRO DE LOCAÇÕES FECHADAS \n\r";
+
+            foreach (Locacao locacao in fechadas)
+            {
+                detalhe += $"\n" +
+                           $"Cliente: {locacao.ClienteLocacao.Nome}\n " +
+                           $"Condutor: {locacao.CondutorLocacao.Nome}\n, " +
+                           $"CNH: {locacao.CondutorLocacao.Cnh}\n" +
+                           $"Veículo: {locacao.VeiculoLocacao.Modelo}\n" +
+                           $"Grupo: {locacao.VeiculoLocacao.GrupoPertencente.Nome}\n" +
+                           $"Data Locação: {locacao.DataLocacao.ToShortDateString()}\n" +
+                           $"Data Devolução: {locacao.DataDevolucao.ToShortDateString()}\n" +
+                           $"Plano: {locacao.PlanoLocacao_Descricao}\n" +
+                           $"Total: {locacao.TotalPrevisto.ToString("N2")}\n" + 
+                           $"------------------------------------------------------------------------\n"  
+                           ;   
+            }
+
+            rtPDF.Text = detalhe;
+        }
+
         private void CarregarItensRichText()
         {
             foreach (var item in listTaxasAdicionais.CheckedItems)
@@ -477,14 +510,22 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public void GerarPdf()
         {
+            GeradorPdf pdf = new();
+
             if (btnLimpar.Enabled == true)
                 CarregarRichTextLocacao();
             else
                 CarregarRichTextDevolucao();
 
-            GeradorPdf pdf = new();
-
             pdf.GerarPDF_ItextSharp(rtPDF.Text, cmbClientes.Text);
+
+            if(pdFechadas == true)
+            {
+                CarregarRichTextGerarPDFLocacoesFechadas();
+                pdf.GerarPDF_ItextSharp(rtPDF.Text, "Arquivo");
+                pdFechadas = false;
+            }
+
 
             MessageBox.Show("Arquivo PDF Gerado!\n\nDestino: C: -> temp -> pdf -> ComprovanteLocacao_.pdf");
         }
@@ -587,7 +628,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
             if (telaDevolucao.ShowDialog() == DialogResult.OK)
             {
-                locacao.TotalPrevisto = telaDevolucao.Devolucao.totalDeFato;
+                Devolucao.totalDeFato = telaDevolucao.Devolucao.totalDeFato;
+                locacao.TotalPrevisto = Devolucao.totalDeFato;
                 lblTotalMarcador.Text = "Total a Pagar R$";
                 lblTotalPrevisto.Text = locacao.TotalPrevisto.ToString("N2");
                 locacao._estaLocado = "não";

@@ -28,9 +28,10 @@ namespace LocadoraVeiculos.Dominio.ModuloLocacao
         public DateTime DataLocacao { get; set; }
         public DateTime DataDevolucao { get; set; }
         public DateTime DataDevolvidoDeFato { get; set; }
-        public double TotalPrevisto { get; set; }
-        public string NivelTanqueVeiculo { get; set; }
 
+        public double TotalPrevisto { get; set; }
+
+        public string NivelTanqueVeiculo { get; set; }
         public string Status { get; set; }
         public string CondutorLocacao_Cnh => CondutorLocacao != null ? CondutorLocacao.Cnh.ToString() : "";
         public string PlanoLocacao_Descricao { get; set; }

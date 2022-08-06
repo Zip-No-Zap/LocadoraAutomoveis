@@ -164,15 +164,15 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public override void ExcluirFechadas()
         {
-            if (MessageBox.Show("As locações em situação 'Fechada' serão arquivadas PDF e excluídas da tabela.\n" +
-                "Deseja realmente arquivar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("As locações em situação 'Fechada' serão arquivadas PDF e excluídas da tabela.\n\n" +
+               "Deseja realmente arquivar?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 var resultado = servicoLocacao.SelecionarTodos();
 
                 if (resultado.IsFailed)
                 {
                     MessageBox.Show(resultado.Errors[0].Message,
-                        "Exclusão de Locação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        "Exclusão de Locações 'Fechadas'", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -180,18 +180,19 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
                 var fechadas = selecionadas.FindAll(x => x.Status == "Fechada");
 
-                if (MessageBox.Show("Deseja realmente excluir a locação?",
-                "Exclusão de Locação", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                var resultadoExclusao = servicoLocacao.ExcluirFechadas(fechadas);
+
+                TelaCadastroLocacao tela = new();
+
+                if (resultadoExclusao.IsSuccess)
                 {
-                    var resultadoExclusao = servicoLocacao.ExcluirFechadas(fechadas);
-
-                    if (resultadoExclusao.IsSuccess)
-                        CarregarLocacoes();
-
-                    else
-                        MessageBox.Show(resultadoExclusao.Errors[0].Message, "Exclusão de Locação",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    tela.pdFechadas = true;
+                    tela.GerarPdf();
+                    CarregarLocacoes();
                 }
+                else
+                    MessageBox.Show(resultadoExclusao.Errors[0].Message, "Exclusão de Locações 'Fechadas'",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

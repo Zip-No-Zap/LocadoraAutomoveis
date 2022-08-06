@@ -270,6 +270,7 @@
             // btnExcluirFechadas
             // 
             this.btnExcluirFechadas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExcluirFechadas.Enabled = false;
             this.btnExcluirFechadas.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluirFechadas.Image")));
             this.btnExcluirFechadas.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExcluirFechadas.Name = "btnExcluirFechadas";
