@@ -268,11 +268,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             {
                 List<Locacao> locacoes = resultado.Value;
 
-                var agrupadas = locacoes.GroupBy(x => x.Status).ToList();
+                var agrupadas = locacoes
+                    .OrderBy(x => x.Status)
+                    .Select(x => x)
+                    .ToList();
 
-                locacoes = agrupadas; 
-
-                tabelaLocacoes.AtualizarRegistros(locacoes);
+                tabelaLocacoes.AtualizarRegistros(agrupadas);
 
                 FormPrincipal.Instancia.AtualizarRodape($"Visualizando {locacoes.Count} Locação(ões)");
             }
