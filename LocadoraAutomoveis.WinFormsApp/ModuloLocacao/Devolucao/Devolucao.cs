@@ -42,7 +42,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao.Devolucao
                          float controlado_limiteKm, double totalPrevisto, string plano, string tipoCombustivel,
                          string nivelTanque, float tanqueMaximoVeiculo, double diferencaTanque, double diferencaKm,
                          double diasAtraso, double calcPlano, double precoGasolina, double precoDiesel, double precoAlcool,
-                         List<Taxa> taxasDiarias)
+                         List<Taxa> taxasDiarias, double calcTaxasDiarias)
         {
             this.dataLocacao = dataLocacao;
             this.dataDevolucaoLocacao = dataDevolucaoLocacao;
@@ -69,6 +69,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao.Devolucao
             this.precoDiesel = precoDiesel;
             this.precoAlcool = precoAlcool;
             this.taxasDiarias = taxasDiarias;
+            this.calcTaxasDiarias = calcTaxasDiarias;
         }
     }
 

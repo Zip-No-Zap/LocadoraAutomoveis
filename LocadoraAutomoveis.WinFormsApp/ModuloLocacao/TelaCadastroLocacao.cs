@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
+﻿using LocadoraAutomoveis.WinFormsApp.ModuloLocacao.Devolucao;
+using LocadoraVeiculos.Dominio.Modulo_GrupoVeiculo;
 using GeradorTestes.Infra.Arquivo.Compartilhado;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
@@ -11,7 +12,6 @@ using System.Windows.Forms;
 using FluentResults;
 using System.Linq;
 using System;
-using LocadoraAutomoveis.WinFormsApp.ModuloLocacao.Devolucao;
 
 namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 {
@@ -301,15 +301,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         private void cmbGrupoVeiculo_SelectedIndexChanged(object sender, EventArgs e)
         {
             GrupoVeiculo grupo = CarregarVeiculos();
-        }
-
-        private bool VerificarSeGrupoTemPlano(GrupoVeiculo grupo)
-        {
-            var grupoSelecionado = planos.Find(x => x.Grupo.Equals(grupo));
-
-            bool temPlano = grupoSelecionado != null;
-
-            return temPlano;
         }
 
         private void AdicionarPlanoAosItensAdicionais(string nomeGrupo)
