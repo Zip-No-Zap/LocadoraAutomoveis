@@ -1,12 +1,12 @@
 ﻿using LocadoraAutomoveis.Infra.Orm.Compartilhado;
-using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Dominio.Modulo_Condutor;
+using LocadoraVeiculos.Dominio.Modulo_Cliente;
 using LocadoraVeiculos.Dominio.Modulo_Veiculo;
 using LocadoraVeiculos.Dominio.ModuloLocacao;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 
 
@@ -14,8 +14,8 @@ namespace LocadoraAutomoveis.Infra.Orm.ModuloLocacao
 {
     public class RepositorioLocacaoOrm : IRepositorioLocacaoOrm
     {
-        private readonly LocadoraAutomoveisDbContext _dbContext;
         private DbSet<Locacao> dbsetLocacoes;
+        private readonly LocadoraAutomoveisDbContext _dbContext;
 
         public RepositorioLocacaoOrm(IContextoPersistencia dbContext)
         {

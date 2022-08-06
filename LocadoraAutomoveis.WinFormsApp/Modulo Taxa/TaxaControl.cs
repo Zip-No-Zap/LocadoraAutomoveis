@@ -35,9 +35,19 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
             return grid.SelecionarNumero<Guid>();
         }
 
-        public void AtualizarRegistros(List<Taxa> registro)
+        public void AtualizarRegistros(List<Taxa> registros)
         {
-            grid.DataSource = registro;
+            grid.Rows.Clear();
+
+            foreach (var registro in registros)
+            {
+                grid.Rows.Add(
+                    registro.Id,
+                    registro.Descricao,
+                    registro.Tipo,
+                    registro.Valor.ToString("N2")
+                   );
+            }
         }
     }
 }
