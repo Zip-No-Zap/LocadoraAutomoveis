@@ -8,7 +8,6 @@ using LocadoraVeiculos.Dominio.Modulo_Plano;
 using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Drawing;
 using FluentResults;
 using System.Linq;
 using System;
@@ -30,11 +29,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         public bool verificaFechada;
 
         StructDevolucao Devolucao;
-        
-        //double diferencaTanque;
-        //double diferencaKm;
-        //double diasAtraso = 0;
-        //double calcPlano;
 
         public TelaCadastroLocacao(List<Cliente> clientes,
             List<Condutor> condutores, List<Veiculo> veiculos,
@@ -404,12 +398,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             }
         }
 
-        private void btnDesmarcar_Click_1(object sender, EventArgs e)
-        {
-            DesmarcarCheckBoxes();
-            lblTotalPrevisto.Text = "0,00";
-        }
-
         private void DesmarcarCheckBoxes()
         {
             var totalItens = listTaxasAdicionais.Items.Count;
@@ -545,6 +533,12 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         }
 
+        private void btnDesmarcar_Click_1(object sender, EventArgs e)
+        {
+            DesmarcarCheckBoxes();
+            lblTotalPrevisto.Text = "0,00";
+        }
+
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             cmbClientes.Items.Clear();
@@ -576,6 +570,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             telaDevolucao.Devolucao.controlado_valorDiario = locacao.PlanoLocacao.ValorDiario_Livre;
             telaDevolucao.Devolucao.controlado_valorKmRodado = locacao.PlanoLocacao.ValorDiario_Livre;
             telaDevolucao.Devolucao.controlado_limiteKm = locacao.PlanoLocacao.LimiteQuilometragem_Controlado;
+            telaDevolucao.Devolucao.taxasDiarias = locacao.ItensTaxa.FindAll(x => x.Tipo == "Diário");
  
             this.Devolucao = telaDevolucao.Devolucao;
 

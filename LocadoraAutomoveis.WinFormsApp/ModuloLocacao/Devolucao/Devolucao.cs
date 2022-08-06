@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LocadoraVeiculos.Dominio.Modulo_Taxa;
+using System.Collections.Generic;
+using System;
 
 namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao.Devolucao
 {
@@ -25,6 +27,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao.Devolucao
         public double diferencaKm;
         public double diasAtraso;
         public double calcPlano;
+        
+        public List<Taxa> taxasDiarias;
 
         public double precoGasolina;
         public double precoDiesel;
@@ -36,7 +40,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao.Devolucao
                          double livre_valorDiario, double controlado_valorDiario, double controlado_valorKmRodado,
                          float controlado_limiteKm, double totalPrevisto, string plano, string tipoCombustivel,
                          string nivelTanque, float tanqueMaximoVeiculo, double diferencaTanque, double diferencaKm,
-                         double diasAtraso, double calcPlano, double precoGasolina, double precoDiesel, double precoAlcool)
+                         double diasAtraso, double calcPlano, double precoGasolina, double precoDiesel, double precoAlcool,
+                         List<Taxa> taxasDiarias)
         {
             this.dataLocacao = dataLocacao;
             this.dataDevolucaoLocacao = dataDevolucaoLocacao;
@@ -62,6 +67,8 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao.Devolucao
             this.precoGasolina = precoGasolina;
             this.precoDiesel = precoDiesel;
             this.precoAlcool = precoAlcool;
+            this.taxasDiarias = taxasDiarias;
         }
     }
+
 }

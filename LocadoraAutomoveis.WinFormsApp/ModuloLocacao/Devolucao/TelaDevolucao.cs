@@ -1,10 +1,11 @@
-﻿using LocadoraVeiculos.Dominio.Modulo_Configuracao;
+﻿using LocadoraAutomoveis.WinFormsApp.ModuloLocacao.Devolucao;
+using LocadoraVeiculos.Dominio.Modulo_Configuracao;
 using LocadoraAutomoveis.WinFormsApp.Compartilhado;
+using LocadoraVeiculos.Dominio.Modulo_Taxa;
 using LocadoraAutomoveis.Infra.Logs;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System;
-using LocadoraAutomoveis.WinFormsApp.ModuloLocacao.Devolucao;
 
 namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 {
@@ -14,32 +15,6 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         Configuracao configuracao;
         Serializador serializador;
         public StructDevolucao Devolucao;
-
-        //double precoGasolina;
-        //double precoDiesel;
-        //double precoAlcool;
-
-        //public DateTime dataLocacao;
-        //public DateTime dataDevolucaoLocacao;
-        //public DateTime dataDevolvido;
-        //public double totalDeFato = 0;
-        //public float quilometragemAnterior;
-        //public float quilometragemAtualizada;
-        //public double diario_valorPoKmRodado;
-        //public double diario_valorDiario;
-        //public double livre_valorDiario;
-        //public double controlado_valorDiario;
-        //public double controlado_valorKmRodado;
-        //public float controlado_limiteKm;
-        //public double totalPrevisto;
-        //public string plano;
-        //public string tipoCombustivel;
-        //public string nivelTanque;
-        //public float  tanqueMaximoVeiculo;
-        //public double diferencaTanque;
-        //public double diferencaKm;
-        //public double diasAtraso = 0;
-        //public double calcPlano;
 
         public TelaDevolucao()
         {
@@ -75,41 +50,9 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             Devolucao.totalDeFato += CalcularDiferencaQuilometragem();
             Devolucao.totalDeFato += CalcularValorDiarioPlano();
             Devolucao.totalDeFato += CalcularConsumoTanque();
+            Devolucao.totalDeFato += CalcularTaxasDiarias();
             Devolucao.totalDeFato += Devolucao.totalPrevisto;
             Devolucao.totalDeFato += CalcularMultaDevolucaoAtraso();
-        }
-
-        private void Validar()
-        {
-            if (ValidarDataRetorno() == false)
-            {
-                MessageBox.Show("Data de Retorno inválida", "Aviso");
-                DialogResult = DialogResult.None;
-            }
-
-            if (txtKmAtualDevolucao.Text == "")
-            {
-                MessageBox.Show("Quilometragem de Retorno inválida", "Aviso");
-                DialogResult = DialogResult.None;
-            }
-        }
-
-        private bool ValidarDataRetorno()
-        {
-            if (Devolucao.dataDevolvido < Devolucao.dataLocacao)
-                return false;
-
-            return true;
-        }
-
-        private void txtKmAtualDevolucao_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
-        }
-
-        private void TelaDevolucao_Load(object sender, EventArgs e)
-        {
-            cmbTanque.SelectedIndex = 0;
         }
 
         public double CalcularMultaDevolucaoAtraso()
@@ -184,14 +127,65 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
 
         public double CalcularValorDiarioPlano()
         {
-            TimeSpan intervalo = Devolucao.dataDevolvido - Devolucao.dataLocacao;
-
-            int diferenca = Convert.ToInt32(intervalo.Days);
+            int diferenca = ObterDiferencaDias();
 
             double resultado = Devolucao.diario_valorDiario * diferenca;
 
             Devolucao.calcPlano = resultado;
             return resultado;
+        }
+
+        public double CalcularTaxasDiarias()
+        {
+            int dias = ObterDiferencaDias() - 1;
+            double soma = 0;
+
+            foreach (Taxa item in Devolucao.taxasDiarias)
+            {
+                soma += item.Valor;
+            }
+
+            return soma * dias;
+        }
+
+        private int ObterDiferencaDias()
+        {
+            TimeSpan intervalo = Devolucao.dataDevolvido - Devolucao.dataLocacao;
+
+            return Convert.ToInt32(intervalo.Days);
+        }
+
+        private void Validar()
+        {
+            if (ValidarDataRetorno() == false)
+            {
+                MessageBox.Show("Data de Retorno inválida", "Aviso");
+                DialogResult = DialogResult.None;
+            }
+
+            if (txtKmAtualDevolucao.Text == "")
+            {
+                MessageBox.Show("Quilometragem de Retorno inválida", "Aviso");
+                DialogResult = DialogResult.None;
+            }
+        }
+
+        private bool ValidarDataRetorno()
+        {
+            if (Devolucao.dataDevolvido < Devolucao.dataLocacao)
+                return false;
+
+            return true;
+        }
+
+        private void txtKmAtualDevolucao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorCampos.ImpedirLetrasCharEspeciais(e);
+        }
+
+        private void TelaDevolucao_Load(object sender, EventArgs e)
+        {
+            cmbTanque.SelectedIndex = 0;
         }
     }
    
