@@ -261,6 +261,7 @@
             // btnSeparar
             // 
             this.btnSeparar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSeparar.Enabled = false;
             this.btnSeparar.Image = ((System.Drawing.Image)(resources.GetObject("btnSeparar.Image")));
             this.btnSeparar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSeparar.Name = "btnSeparar";

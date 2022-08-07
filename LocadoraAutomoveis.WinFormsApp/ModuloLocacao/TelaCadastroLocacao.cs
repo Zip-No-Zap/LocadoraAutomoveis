@@ -407,7 +407,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             $"\n" +
             $"------------------------------------------------------------------------" +
             $"DETALHES DA LOCAÇÃO \n\r" +
-            $"Total: R$ {locacao.TotalPrevisto.ToString("N2")} \n\r" +
+            $"Total Previsto: R$ {locacao.TotalPrevisto.ToString("N2")} \n\r" +
             $"------------------------------------------------------------------------" +
             $"Data Locação: {dpDataLocacao.Text} \n\r" +
             $"Data Devolução: {dpDataDevolucao.Text}\n\r" +

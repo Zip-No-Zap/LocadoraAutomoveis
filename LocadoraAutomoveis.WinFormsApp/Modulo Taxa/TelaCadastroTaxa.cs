@@ -47,7 +47,7 @@ namespace LocadoraAutomoveis.WinFormsApp.Modulo_Taxa
         {
             taxa.Descricao = tbDescricao.Text;
             taxa.Tipo = cbTipo.Text;
-            taxa.Valor = float.Parse(tbValor.Text);
+            taxa.Valor = Double.Parse(tbValor.Text);
 
             Result<Taxa> resultadoValidacao = GravarRegistro(taxa);
 

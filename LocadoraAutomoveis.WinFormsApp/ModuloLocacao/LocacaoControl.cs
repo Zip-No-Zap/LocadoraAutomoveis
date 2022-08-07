@@ -62,18 +62,5 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     registro.Status);
             }
         }
-
-        //public bool VerificarBotoesStatusFechada() 
-        //{
-        //    linhaSelecionada = grid.SelectedRows.Count > 0 ? grid.SelectedRows[0].Index : -1 ;
-
-        //    string texto = grid[10, linhaSelecionada].Value.ToString();
-
-        //    if (texto.Contains("Fechada"))
-        //        return true;
-        //    else 
-        //        return false;
-        //}
-
     }
 }

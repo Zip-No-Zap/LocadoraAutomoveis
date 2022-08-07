@@ -44,9 +44,9 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.btnOK);
-            this.panel1.Location = new System.Drawing.Point(12, 352);
+            this.panel1.Location = new System.Drawing.Point(31, 327);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(362, 88);
+            this.panel1.Size = new System.Drawing.Size(250, 88);
             this.panel1.TabIndex = 0;
             // 
             // btnOK
@@ -54,7 +54,7 @@
             this.btnOK.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOK.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(18, 11);
+            this.btnOK.Location = new System.Drawing.Point(38, 11);
             this.btnOK.Margin = new System.Windows.Forms.Padding(6);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(168, 65);
@@ -75,7 +75,7 @@
             // lblQuilometragem
             // 
             this.lblQuilometragem.AutoSize = true;
-            this.lblQuilometragem.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblQuilometragem.BackColor = System.Drawing.SystemColors.Control;
             this.lblQuilometragem.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblQuilometragem.Location = new System.Drawing.Point(31, 125);
             this.lblQuilometragem.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -136,7 +136,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 452);
+            this.ClientSize = new System.Drawing.Size(325, 443);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cmbTanque);
             this.Controls.Add(this.dpDataDevolvido);

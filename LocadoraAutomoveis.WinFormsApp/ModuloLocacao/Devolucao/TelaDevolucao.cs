@@ -19,25 +19,13 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
         public TelaDevolucao()
         {
             InitializeComponent();
+
+            Devolucao = new();
             
             ObterPrecoCombustiveis();
 
-            Devolucao = new();
             Devolucao.totalDeFato = 0;
             Devolucao.diasAtraso = 0;
-        }
-
-        private void ObterPrecoCombustiveis()
-        {
-            confs = new();
-            configuracao = new();
-            serializador = new(confs);
-            confs = serializador.ObterArquivo();
-            configuracao = confs[0];
-
-            Devolucao.precoGasolina = Convert.ToDouble(configuracao.valorGasolina);
-            Devolucao.precoDiesel = Convert.ToDouble(configuracao.valorDiesel);
-            Devolucao.precoAlcool = Convert.ToDouble(configuracao.valorAlcool);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -76,7 +64,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             double totalTemp = 0;
             double total = 0;
 
-            Devolucao.quilometragemAtualizada = float.Parse(txtKmAtualDevolucao.Text);
+            Devolucao.quilometragemAtualizada = txtKmAtualDevolucao.Text != "" ? float.Parse(txtKmAtualDevolucao.Text) : 0;
 
             if (Devolucao.quilometragemAtualizada >= Devolucao.quilometragemAnterior)
             {
@@ -87,12 +75,7 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                     total += totalTemp;
                 }
             }
-            else
-            {
-                MessageBox.Show("Quilometragem de retorno inválida", "Aviso");
-                this.DialogResult = DialogResult.None;
-            }
-        
+
             if (Devolucao.plano == "Controlado" && diferenca > Devolucao.controlado_limiteKm)
             {
                 totalTemp = totalTemp * 0.10;
@@ -145,8 +128,9 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
                 soma += item.Valor;
             }
 
-            Devolucao.calcTaxasDiarias = soma * dias;
-            return Devolucao.calcTaxasDiarias;
+            Devolucao.calcTaxasDiarias = soma * (dias + 1);
+            var resultado = soma * dias;
+            return resultado;
         }
 
         private int ObterDiferencaDias()
@@ -154,6 +138,19 @@ namespace LocadoraAutomoveis.WinFormsApp.ModuloLocacao
             TimeSpan intervalo = Devolucao.dataDevolvido - Devolucao.dataLocacao;
 
             return Convert.ToInt32(intervalo.Days);
+        }
+
+        private void ObterPrecoCombustiveis()
+        {
+            confs = new();
+            configuracao = new();
+            serializador = new(confs);
+            confs = serializador.ObterArquivo();
+            configuracao = confs[0];
+
+            Devolucao.precoGasolina = Convert.ToDouble(configuracao.valorGasolina);
+            Devolucao.precoDiesel = Convert.ToDouble(configuracao.valorDiesel);
+            Devolucao.precoAlcool = Convert.ToDouble(configuracao.valorAlcool);
         }
 
         private void Validar()
